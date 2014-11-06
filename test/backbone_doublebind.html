@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<p class="temperature-converter" id="tc-backbone">
+    <label class="celsius-wrap"><input type="number" class="celsius" value="0">°C</label>
+    <span class="arrows">⇄</span>
+    <label class="fahrenheit-wrap"><input type="number" class="fahrenheit" value="32">°F</label>
+</p>
+<script type="text/javascript" src="../app/vendor/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../app/vendor/underscore/underscore.js"></script>
+<script type="text/javascript" src="../app/vendor/backbone/backbone.js"></script>
+<script type="text/javascript">
+
+    function c2f(c) {
+        return 9/5 * c + 32
+    }
+    function f2c(f) {
+        return 5/9 * (f - 32)
+    }
+    var Temperature = Backbone.Model.extend({
+        defaults: {
+            celsius: 0
+        },
+        fahrenheit: function(value) {
+            if (typeof value == 'undefined') {
+                return c2f(this.get('celsius'))
+            }
+            this.set('celsius', f2c(value))
+        }
+    })
+
+    var TemperatureView = Backbone.View.extend({
+        el: document.getElementById('tc-backbone'),
+        model: new Temperature(),
+        events: {
+            'input .celsius': 'updateCelsius',
+            'input .fahrenheit': 'updateFahrenheit'
+        },
+        initialize: function() {
+            this.listenTo(this.model, 'change:celsius', this.render)
+            this.render()
+        },
+        render: function() {
+            this.$('.celsius').val(this.model.get('celsius'))
+            this.$('.fahrenheit').val(this.model.fahrenheit())
+        },
+        updateCelsius: function(event) {
+            this.model.set('celsius', event.target.value)
+        },
+        updateFahrenheit: function(event) {
+            this.model.fahrenheit(event.target.value)
+        }
+    })
+
+    var temperatureView = new TemperatureView()
+</script>
+
+</body>
+</html>
