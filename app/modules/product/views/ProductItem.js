@@ -38,10 +38,30 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 var ProductDetail = require("ProductDetail");
 
                 this.model.fetch().done(function(){
-                    new ProductDetail({
+                    var productDetail = new ProductDetail({
                         model: ctx.model
                     });
-                    var d = dialog({
+
+                    BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+
+                        var form = new Form.HForm({
+                            srcNode : '#form'
+                        }).render();
+
+                        var dialog = new Overlay.Dialog({
+                            title:'产品修改',
+                            width:800,
+                            height:400,
+                            contentId:'dialog-container',
+                            success:function () {
+                                productDetail.saveItem();
+                                this.close();
+                            }
+                        });
+                        dialog.show();
+                    });
+
+                   /* var d = dialog({
                         title: '修改产品',
                         content: document.getElementById("product-add-inner")
                     });
@@ -50,7 +70,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                             console.log(this.returnValue);
                         }
                     });
-                    d.show();
+                    d.show();*/
                 });
             },
             deleteItem: function(){

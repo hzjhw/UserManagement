@@ -40,17 +40,15 @@
     <a href="javascript:;" class="product-refresh">刷新列表</a>
     <ul id="product-list-ul"></ul>
 </div>
-<div id="dialog-container">
+<div id="dialog-container" class="hide">
     <div id="product-add-container"></div>
 </div>
-
 
 <!--template-->
 <script type="text/template" id="item-product">
     <div><span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
            class="edit" target="_blank">修改</span>{{id}}</div>
 </script>
-
 
 <script type="text/template" id="product-detail-tpl">
     <div id="product-add-inner">
@@ -106,12 +104,12 @@
                             <input type="text" class="calendar"/>
                         </div>
                     </div>
-                    <div class="row actions-bar">
+                    <!--<div class="row actions-bar">
                         <div class="form-actions span13 offset3">
                             <button id="product-submit" type="button" class="button button-primary">保存</button>
                             <button type="reset" class="button">重置</button>
                         </div>
-                    </div>
+                    </div>-->
                 </form>
 
             </div>

@@ -23,12 +23,12 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 this.listenTo(this.collection, 'add', this.addOne);
                 this.listenTo(this.collection, 'reset', this.render);
                 this.views = [];
-                // 从服务器上抓取数据
                 this.collection.fetch({
                     success: function (collection, resp) {
                         console.dir(collection.models);
                     }
                 });
+                return this;
             },
             render: function () {
                 _.each(this.views, function (view) {
@@ -46,21 +46,27 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 this.views.push(itemView);
             },
             openAddDialog: function () {
-                var dialog = require('dialog');
+                var ctx = this;
                 var ProductDetail = require("ProductDetail");
                 var ProductModel = require('ProductModel');
-                new ProductDetail({model: new ProductModel()});
-                var d = dialog({
-                    title: '修改产品',
-                    content: document.getElementById("dialog-container")
-                });
-                d.addEventListener('close', function () {
-                    if (!this.returnValue.length < 1) {
-                        console.log(this.returnValue);
+                var productDetail = new ProductDetail({model: new ProductModel()});
+                BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+                    if (!ctx.addDialog){
+                        ctx.addDialog = new Overlay.Dialog({
+                            title:'产品添加',
+                            width:800,
+                            height:400,
+                            contentId:'dialog-container',
+                            success:function () {
+                                ctx.addOne(productDetail.saveItem());
+                                this.close();
+                            }
+                        });
                     }
+                    ctx.addDialog.show();
                 });
-                d.show();
             }
         });
+
         module.exports = ProductView;
     });
