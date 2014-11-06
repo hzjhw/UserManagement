@@ -28,7 +28,6 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
             template: Handlebars.compile($("#product-detail-tpl").html()),
 
             initialize: function () {
-                debugger
                 this.render();
             },
 
@@ -104,16 +103,18 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
             },
 
             saveItem: function () {
-                this.model.save(null, {
+                var model = this.model;
+                model.save(null, {
+                    wait: true,
                     success: function(response){
-                        console.dir(response);
-                    },
-                    wait: true
+                        debugger
+                        return model;
+                    }
                 });
-                return this.model;
             },
 
             close: function(){
+                this.undelegateEvents();
                 this.stopListening();
                 this.off();
             }

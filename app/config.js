@@ -27,11 +27,17 @@ seajs.config({
         'handlebars': 'vendor/handlebars/handlebars-debug.js',
         // user
         'AbcUser': 'models/AbcUser.js',
+
+        // common
+        'PaginationModel': 'common/pagination/PaginationModel.js',
+        'PaginationView': 'common/pagination/PaginationView.js',
+
         // todo
         'TodoModel': 'demo/todo/models/TodoModel.js',
         'TodoView': 'demo/todo/views/TodoView.js',
         'TodoItem': 'demo/todo/views/TodoItem.js',
         'TodosCollection': 'demo/todo/collections/TodosCollection.js',
+
         // product
         'ProductModel': 'models/ProductModel.js',
         'ProductCollection': 'modules/product/collections/ProductCollection.js',
