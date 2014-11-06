@@ -65,6 +65,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                     if (!ctx.addDialog){
                         ctx.addDialog = new Overlay.Dialog({
                             title:'产品添加',
+                            width:800,
                             contentId:'dialog-container',
                             success:function () {
                                 ctx.collection.unshift(productDetail.saveItem());
