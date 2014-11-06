@@ -14,7 +14,6 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
         ProductView = Backbone.View.extend({
 
             el: '#list-product',
-
             list: $("#product-list-ul"),
 
             events: {
@@ -23,11 +22,18 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             initialize: function () {
+                var ctx = this;
                 this.views = [];
+
                 this.collection = new ProductCollection();
+
                 this.listenTo(this.collection, 'add', this.addOne);
                 this.listenTo(this.collection, 'reset replace', this.render);
-                this.collection.fetch();
+
+                this.collection.paginationModel.on('reloadList', function(model){
+                    ctx.collection.load(ctx.collection, model);
+                });
+                this.collection.load(ctx.collection);
                 return this;
             },
 

@@ -23,18 +23,17 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
         var PaginationView = Backbone.View.extend({
 
             el: "#pagination-container",
+            tagName: "div",
+            template: Handlebars.compile(document.getElementById('pagination-template').innerHTML),
 
             initialize: function () {
                 this.render();
             },
 
-            tagName: "div",
-            template: Handlebars.compile(document.getElementById('pagination-template').innerHTML),
-
             render: function () {
                 var ctx = this;
+
                 this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));
-                this.model.set('totalPage', 7);
                 var $html = $(this.template(this.model.toJSON()));
 
                 $(".danaiPageNum", $html).bind('click', function () {
@@ -47,7 +46,6 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
             },
 
             toPage: function (num) {
-                console.log(num);
                 this.model.set('page', num);
                 this.model.trigger('reloadList', this.model);
             }
