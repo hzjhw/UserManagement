@@ -54,8 +54,8 @@
 
 <script type="text/template" id="pagination-template">
     <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
-        {{#pagination page count}}
-            <a href="javascript:;" class="danaiPageNum" data-page="{{this}}">{{this}}</a>
+        {{#pagination page totalPage}}
+        <li class="bui-bar-item bui-button-number bui-inline-block danaiPageNum" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
         {{/pagination}}
     </ul>
 </script>

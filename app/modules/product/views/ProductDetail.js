@@ -8,11 +8,8 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
         var ProductDetail, ProductModel, Handlebars, Est, Backbone;
 
         ProductModel = require('ProductModel');
-
         Handlebars = require('handlebars');
-
         Backbone = require('backbone');
-
         Est = require('Est');
 
         ProductDetail = Backbone.View.extend({

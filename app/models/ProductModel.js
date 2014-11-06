@@ -5,9 +5,7 @@
  */
 define('ProductModel', ['jquery', 'underscore', 'backbone'],
     function (require, exports, module) {
-
         var Backbone;
-
         Backbone = require('backbone');
 
         var ProductModel = Backbone.Model.extend({

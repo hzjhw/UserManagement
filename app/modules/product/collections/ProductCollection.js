@@ -3,33 +3,16 @@
  * @namespace ProductCollection
  * @author yongjin on 2014/10/31
  */
-define('ProductCollection', ['jquery', 'underscore', 'backbone', 'ProductModel', 'PaginationModel'],
+define('ProductCollection', ['jquery', 'underscore', 'backbone', 'ProductModel', 'BaseCollection'],
     function (require, exports, module) {
-        var ProductCollection, ProductModel, Backbone, PaginationModel, paginationModel;
+        var ProductCollection, ProductModel, BaseCollection;
 
         ProductModel = require("ProductModel");
-        Backbone = require('backbone');
-        PaginationModel = require('PaginationModel');
+        BaseCollection = require('BaseCollection');
 
-
-        ProductCollection = Backbone.Collection.extend({
-            model: ProductModel,
+        ProductCollection = BaseCollection.extend({
             url: 'http://jihui88.com/rest/api/product/list',
-            initialize: function(){
-                this.paginationModel = new PaginationModel;
-            },
-            parse: function (resp, xhr) {
-                this.paginationModel.set('page', resp.attributes.page);
-                this.paginationModel.set('pageSize', resp.attributes.per_page);
-                this.paginationModel.set('count', resp.attributes.count);
-                return resp.attributes.data;
-            },
-            pagination: function(){
-                var page = this.paginationModel.get('page');
-                var pageSize = this.paginationModel.get('pageSize');
-                this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
-                    this.url.lastIndexOf("?") : this.url.length) + "?page=" + page + '&pageSize=' + pageSize;
-            }
+            model: ProductModel
         });
         module.exports = ProductCollection;
     });

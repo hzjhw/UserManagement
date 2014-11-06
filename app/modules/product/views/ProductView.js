@@ -3,16 +3,16 @@
  * @namespace ProductView
  * @author yongjin on 2014/10/31
  */
-define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'dialog', 'ProductDetail', 'ProductModel', 'PaginationModel', 'PaginationView'],
+define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'dialog', 'ProductDetail', 'ProductModel'],
     function (require, exports, module) {
-        var ProductView, ProductItem, ProductCollection, Backbone, PaginationModel;
+        var ProductView, ProductItem, ProductCollection, Backbone;
 
         ProductItem = require("ProductItem");
         ProductCollection = require("ProductCollection");
         Backbone = require('backbone');
-        PaginationModel = require('PaginationModel');
 
         ProductView = Backbone.View.extend({
+
             el: '#list-product',
 
             list: $("#product-list-ul"),
@@ -23,20 +23,11 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             initialize: function () {
-                var ctx = this;
-                this.collection = new ProductCollection();
-                this.paginationModel = this.collection.paginationModel;
-
-                this.paginationModel.on('reloadList', function(model){
-                    ctx.collection.pagination();
-                    ctx.collection.fetch({success: ctx.pagination.call(ctx)});
-                });
-
-                this.listenTo(this.collection, 'add', this.addOne);
-                this.listenTo(this.collection, 'reset', this.render);
-
-                this.collection.fetch({ success: this.pagination.call(ctx) });
                 this.views = [];
+                this.collection = new ProductCollection();
+                this.listenTo(this.collection, 'add', this.addOne);
+                this.listenTo(this.collection, 'reset replace', this.render);
+                this.collection.fetch();
                 return this;
             },
 
@@ -50,15 +41,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 this.collection.each(this.addOne, this);
             },
 
-            pagination: function(){
-                var ctx = this;
-                var PaginationView = require('PaginationView');
-                new PaginationView({
-                    model: ctx.paginationModel
-                });
-            },
-
-            addOne: function (product, isHead) {
+            addOne: function (product) {
                 var itemView = new ProductItem({
                     model: product
                 });
