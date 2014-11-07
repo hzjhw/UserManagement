@@ -3,12 +3,13 @@
  * @namespace ProducItem
  * @author yongjin on 2014/10/31
  */
-define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars'],
+define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'BaseRoot'],
     function (require, exports, module) {
-        var ProductItem, handlebars, Backbone;
+        var ProductItem, handlebars, Backbone, BaseRoot;
 
         Backbone = require('backbone');
         handlebars = require('handlebars');
+        BaseRoot = require('BaseRoot');
 
         ProductItem = Backbone.View.extend({
             id: 'product-li-',
@@ -27,52 +28,54 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
-            close: function(){
+            close: function () {
                 // 重新实例化时释放监听
                 this.stopListening();
             },
-            editItem: function(){
+            editItem: function () {
                 var ctx = this;
 
                 var dialog = require('dialog');
                 var ProductDetail = require("ProductDetail");
 
-                this.model.fetch().done(function(){
+                this.model.fetch().done(function () {
                     var productDetail = new ProductDetail({
                         model: ctx.model
                     });
-
-                    BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+                    BUI.use(['bui/overlay', 'bui/form'], function (Overlay, Form) {
 
                         var form = new Form.HForm({
-                            srcNode : '#form'
+                            srcNode: '#form'
                         }).render();
 
-                        var dialog = new Overlay.Dialog({
-                            title:'产品修改',
-                            width:800,
-                            height:400,
-                            contentId:'dialog-container',
-                            success:function () {
-                                productDetail.saveItem();
-                                this.close();
-                            }
-                        });
-                        dialog.show();
+                        if (!BaseRoot.productDetailDialog) {
+                            BaseRoot.productDetailDialog = new Overlay.Dialog({
+                                title: '产品修改',
+                                width: 800,
+                                contentId: 'dialog-container',
+                                success: function () {
+                                    productDetail.saveItem(function(){
+                                        this.close();
+                                    }, this);
+                                    this.close();
+                                }
+                            });
+                        }
+                        BaseRoot.productDetailDialog.show();
                     });
                 });
             },
-            deleteItem: function(){
+            deleteItem: function () {
                 this.model.destroy();
                 this.remove();
             },
             showName: function () {
-               var ctx = this;
+                var ctx = this;
                 var dialog = require('dialog');
                 var oldName = this.model.attributes.name;
                 var d = dialog({
                     title: '修改名称',
-                    content: '<input id="property-returnValue-demo" class="text" value="'+oldName+'" />',
+                    content: '<input id="property-returnValue-demo" class="text" value="' + oldName + '" />',
                     ok: function () {
                         var value = $('#property-returnValue-demo').val();
                         this.close(value);
@@ -80,7 +83,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                     }
                 });
                 d.addEventListener('close', function () {
-                    if (!this.returnValue.length < 1){
+                    if (!this.returnValue.length < 1) {
                         ctx.setName(this.returnValue);
                     }
                 });
@@ -91,7 +94,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.model.saveField({
                     'name': name,
                     'test': 'test'
-                }, function(model, result){
+                }, function (model, result) {
                     console.dir(model);
                     console.dir(result);
                     ctx.render();

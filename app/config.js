@@ -4,7 +4,7 @@
  * @author yongjin on 2014/7/18
  */
 
-var $rootScope = {};
+var rootScope = {};
 var host = 'http://jihui88.com/member';
 
 seajs.config({
@@ -26,6 +26,7 @@ seajs.config({
         'marionette': 'vendor/backbone/backbone.marionette.js',
         'handlebars': 'vendor/handlebars/handlebars-debug.js',
         'BaseCollection': 'base/BaseCollection.js',
+        'BaseRoot': 'base/BaseRoot',
         // user
         'AbcUser': 'models/AbcUser.js',
 

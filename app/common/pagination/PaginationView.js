@@ -19,6 +19,52 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
             return accum;
         });
 
+        Handlebars.registerHelper('compare', function (lvalue, rvalue, options) {
+            if (arguments.length < 3)
+                throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+            var operator = options.hash.operator || "==";
+            var operators = {
+                '==': function (l, r) {
+                    return l == r;
+                },
+                '===': function (l, r) {
+                    return l === r;
+                },
+                '!=': function (l, r) {
+                    return l != r;
+                },
+                '!==': function (l, r) {
+                    return l !== r
+                },
+                '<': function (l, r) {
+                    return l < r;
+                },
+                '>': function (l, r) {
+                    return l > r;
+                },
+                '<=': function (l, r) {
+                    return l <= r;
+                },
+                '>=': function (l, r) {
+                    return l >= r;
+                },
+                'typeof': function (l, r) {
+                    return typeof l == r;
+                }
+            }
+            if (!operators[operator])
+                throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+            var result = operators[operator](lvalue, rvalue);
+            if (options.hash.debug) {
+                console.log("value1 :" + lvalue + "; value2 :" + rvalue + "; result : " + result);
+            }
+            if (result) {
+                return options.fn(this);
+            } else {
+                return options.inverse(this);
+            }
+        });
+
         //分页模板
         var PaginationView = Backbone.View.extend({
 

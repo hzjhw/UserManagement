@@ -3,13 +3,14 @@
  * @namespace ProductView
  * @author yongjin on 2014/10/31
  */
-define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'dialog', 'ProductDetail', 'ProductModel'],
+define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'dialog','BaseRoot', 'ProductDetail', 'ProductModel'],
     function (require, exports, module) {
-        var ProductView, ProductItem, ProductCollection, Backbone;
+        var ProductView, ProductItem, ProductCollection, Backbone, BaseRoot;
 
         ProductItem = require("ProductItem");
         ProductCollection = require("ProductCollection");
         Backbone = require('backbone');
+        BaseRoot = require('BaseRoot');
 
         ProductView = Backbone.View.extend({
 
@@ -17,8 +18,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             list: $("#product-list-ul"),
 
             events: {
-                'click .product-add': 'openAddDialog',
-                'click .product-refresh': 'render'
+                'click .product-add': 'openAddDialog'
             },
 
             initialize: function () {
@@ -26,25 +26,26 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 this.views = [];
 
                 this.collection = new ProductCollection();
-
                 this.listenTo(this.collection, 'add', this.addOne);
-                this.listenTo(this.collection, 'reset replace', this.render);
+                this.listenTo(this.collection, 'reset', this.render);
 
                 this.collection.paginationModel.on('reloadList', function(model){
-                    ctx.collection.load(ctx.collection, model);
+                    ctx.collection.load(ctx.collection, ctx, model);
                 });
-                this.collection.load(ctx.collection);
+                this.collection.load(ctx.collection, this);
+
                 return this;
             },
 
             render: function () {
+                this.collection.each(this.addOne, this);
+            },
+
+            empty: function(){
                 _.each(this.views, function (view) {
                     view.remove().off();
                 })
                 this.views = [];
-                this.list.empty();
-
-                this.collection.each(this.addOne, this);
             },
 
             addOne: function (product) {
@@ -57,23 +58,32 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
 
             openAddDialog: function () {
                 var ctx = this;
-                var ProductDetail = require("ProductDetail");
                 var ProductModel = require('ProductModel');
-                var productDetail = new ProductDetail({model: new ProductModel()});
+                var ProductDetail = require("ProductDetail");
+
+                this.productDetail = new ProductDetail({model: new ProductModel});
 
                 BUI.use(['bui/overlay','bui/form'],function(Overlay, Form){
-                    if (!ctx.addDialog){
-                        ctx.addDialog = new Overlay.Dialog({
+                    if (!BaseRoot.productDetailDialog){
+                        BaseRoot.productDetailDialog = new Overlay.Dialog({
                             title:'产品添加',
                             width:800,
                             contentId:'dialog-container',
                             success:function () {
-                                ctx.collection.unshift(productDetail.saveItem());
-                                this.close();
+                                var context = this;
+                                ctx.productDetail.saveItem(function(response){
+                                    debugger
+                                    ctx.collection.paginationModel.set('page', 1);
+                                    //ctx.empty();
+                                    ctx.collection.load(ctx.collection,ctx, ctx.collection.paginationModel).done(function(){
+                                        ctx.render();
+                                        context.close();
+                                    });
+                                });
                             }
                         });
                     }
-                    ctx.addDialog.show();
+                    BaseRoot.productDetailDialog.show();
                 });
             }
         });

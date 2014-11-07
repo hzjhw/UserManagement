@@ -28,6 +28,16 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                 this.render();
             },
 
+            saveItem: function (callback, context) {
+                this.model.save(null, {
+                    wait: true,
+                    success: function(response){
+                        if (callback && typeof callback === 'function')
+                            callback.call(context, response);
+                    }
+                });
+            },
+
             render: function () {
                 var ctx = this;
 
@@ -97,17 +107,6 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
 
             setPhoto: function(){
                 this.model.set('photo', $('#model-photo').val());
-            },
-
-            saveItem: function () {
-                var model = this.model;
-                model.save(null, {
-                    wait: true,
-                    success: function(response){
-                        debugger
-                        return model;
-                    }
-                });
             },
 
             close: function(){

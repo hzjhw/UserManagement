@@ -37,7 +37,6 @@
 <!--<![endif]-->
 <div id="list-product">
     <a href="javascript:;" class="product-add">添加产品</a>
-    <a href="javascript:;" class="product-refresh">刷新列表</a>
     <ul id="product-list-ul"></ul>
     <div id="pagination-container"></div>
 </div>
@@ -55,7 +54,7 @@
 <script type="text/template" id="pagination-template">
     <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
         {{#pagination page totalPage}}
-        <li class="bui-bar-item bui-button-number bui-inline-block danaiPageNum" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
+            <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
         {{/pagination}}
     </ul>
 </script>

@@ -35,15 +35,10 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                     this.url.length) + '?page=' + page + '&pageSize=' + pageSize;
             },
 
-            load: function(instance, model){
-                if (typeof model !== 'undefined'){
-                    this.parseUrl(model);
-                }
-                instance.fetch({
-                    success: function(response){
-                        console.dir(response);
-                    }
-                });
+            load: function(instance, context, model){
+                if (typeof model !== 'undefined') this.parseUrl(model);
+                context.empty();
+                return instance.fetch();
             },
 
             paginationRender: function(){
