@@ -73,10 +73,12 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
             template: Handlebars.compile(document.getElementById('pagination-template').innerHTML),
 
             initialize: function () {
+                console.log('PaginationView.initialize ===================');
                 this.render();
             },
 
             render: function () {
+                console.log('PaginationView.render');
                 var ctx = this;
 
                 this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));
@@ -92,6 +94,7 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
             },
 
             toPage: function (num) {
+                console.log('PaginationView.toPage');
                 this.model.set('page', num);
                 this.model.trigger('reloadList', this.model);
             }

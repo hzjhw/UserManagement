@@ -18,6 +18,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             //localStorage: new Backbone.LocalStorage('base-collection'),
 
             initialize: function () {
+                console.log('BaseCollection.initialize');
                 this.paginationModel = new PaginationModel;
             },
 
@@ -29,6 +30,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             },
 
             parseUrl: function (model) {
+                console.log('BaseCollection.parseUrl')
                 var page = model.get('page');
                 var pageSize = model.get('pageSize');
                 this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
@@ -37,6 +39,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             },
 
             parsePagination: function(resp){
+                console.log('BaseCollection.parsePagination')
                 resp.attributes = resp.attributes
                     || { page: 1, per_page: 10, count: 10 };
                 this.paginationModel.set('page', resp.attributes.page);
@@ -52,12 +55,14 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             },
 
             load: function(instance, context, model){
+                console.log('BaseCollection.load');
                 if (typeof model !== 'undefined') this.parseUrl(model);
                 context.empty();
                 return instance.fetch();
             },
 
             empty: function(){
+                console.log('BaseCollection.empty')
                 var collection = this.collection;
                 this.collection.each(function(view){
                     collection.remove(view);

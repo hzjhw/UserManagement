@@ -57,7 +57,7 @@ define('ProductModel', ['jquery', 'underscore', 'backbone'],
             },
 
             initialize: function () {
-                console.log('ProductModel model is initialized');
+                console.log('ProductModel.initialize [add to collection]');
                /* this.on('change', function () {
                     console.log('new model:' + JSON.stringify(this.attributes));
                 });*/

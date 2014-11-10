@@ -78,7 +78,6 @@ define('PaginationView', ['jquery', 'underscore', 'backbone'], function(require,
         },
 
         loadPages:function(toPage,refObject){
-            debugger
             var totalPages = parseInt($("#totalPagesOf"+refObject).html());
             var toItems = parseInt($("#totalItemsOf"+refObject).html());
             if(! /^[0-9]{1,}$/.test(toPage) || toPage<1){

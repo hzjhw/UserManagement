@@ -29,15 +29,18 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.model.view = this;
             },
             render: function () {
+                console.log('ProductItem.render [item display]');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
             close: function () {
+                console.log('ProductItem.close');
                 // 重新实例化时释放监听
                 this.stopListening();
             },
             editItem: function () {
                 var ctx = this;
+                console.log('ProductItem.editItem');
 
                 var dialog = require('dialog');
                 var ProductDetail = require("ProductDetail");
@@ -85,10 +88,12 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 });
             },
             deleteItem: function () {
+                console.log('ProductItem.deleteItem');
                 this.model.destroy();
             },
             showName: function () {
                 var ctx = this;
+                console.log('ProductItem.showName');
                 var dialog = require('dialog');
                 var oldName = this.model.attributes.name;
                 var d = dialog({
@@ -108,6 +113,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 d.show();
             },
             setName: function (name) {
+                console.log('ProductItem.setName');
                 var ctx = this;
                 this.model.saveField({
                     'name': name,
@@ -119,6 +125,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 }, this);
             },
             clear: function () {
+                console.log('ProductItem.clear');
                 this.model.destroy();
             }
         });
