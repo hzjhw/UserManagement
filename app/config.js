@@ -4,7 +4,6 @@
  * @author yongjin on 2014/7/18
  */
 
-var rootScope = {};
 var host = 'http://jihui88.com/member';
 
 seajs.config({
@@ -17,7 +16,7 @@ seajs.config({
         'jquery': 'vendor/jquery/jquery-1.10.2.js',
         'underscore': 'vendor/underscore/underscore-debug.js',
         'backbone': 'vendor/backbone/backbone-debug.js',
-        'localStorage': 'vendor/backbone/backbone.localStorage.js',
+        'localStorage': 'vendor/backbone/backbone.localStorage-debug.js',
         'Est': 'vendor/Est/Est.min.js',
         'dialog': 'vendor/artDialog_v6/dialog.js',
         'dialog-plus': 'vendor/artDialog_v6/dialog-plus-min.js',

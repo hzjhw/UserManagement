@@ -5,7 +5,8 @@
  */
 define('BaseRoot', [], function(require, exports, module){
 
-    var BaseRoot = {};
+    var BaseRoot = {
+    };
 
     module.exports = BaseRoot;
 

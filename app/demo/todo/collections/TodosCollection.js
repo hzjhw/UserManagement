@@ -1,9 +1,11 @@
 define('TodosCollection', ['jquery', 'underscore', 'backbone', 'localStorage', 'TodoModel'],
     function (require, exports, module) {
-        var TodoModel, TodosCollection, Backbone;
+        var TodoModel, TodosCollection, Backbone, localStorage;
 
         TodoModel = require('TodoModel');
         Backbone = require('backbone');
+        Backbone.localStorage = require('localStorage');
+
 
         TodosCollection = Backbone.Collection.extend({
             model: TodoModel,

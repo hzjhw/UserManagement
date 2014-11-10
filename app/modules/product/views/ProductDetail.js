@@ -109,6 +109,12 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                 this.model.set('photo', $('#model-photo').val());
             },
 
+            remove: function(){
+                this.model.destroy();
+                this.model = null;
+                return this;
+            },
+
             close: function(){
                 this.undelegateEvents();
                 this.stopListening();

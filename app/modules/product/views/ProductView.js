@@ -27,7 +27,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
 
                 this.collection = new ProductCollection();
                 this.listenTo(this.collection, 'add', this.addOne);
-                this.listenTo(this.collection, 'reset', this.render);
+                //this.listenTo(this.collection, 'reset', this.render);
 
                 this.collection.paginationModel.on('reloadList', function(model){
                     ctx.collection.load(ctx.collection, ctx, model);
@@ -38,12 +38,13 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             render: function () {
+                this.empty();
                 this.collection.each(this.addOne, this);
             },
 
             empty: function(){
                 _.each(this.views, function (view) {
-                    view.remove().off();
+                    view.off().remove();
                 })
                 this.views = [];
             },
@@ -70,15 +71,16 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                             width:800,
                             contentId:'dialog-container',
                             success:function () {
-                                var context = this;
+                                var dialog = this;
                                 ctx.productDetail.saveItem(function(response){
-                                    debugger
                                     ctx.collection.paginationModel.set('page', 1);
-                                    //ctx.empty();
-                                    ctx.collection.load(ctx.collection,ctx, ctx.collection.paginationModel).done(function(){
-                                        ctx.render();
-                                        context.close();
+                                   ctx.collection.load(ctx.collection,ctx, ctx.collection.paginationModel)
+                                        .done(function(response){
+                                            ctx.render();
+                                            dialog.close();
+                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
                                     });
+                                    ctx.collection.fetch();
                                 });
                             }
                         });

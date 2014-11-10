@@ -4,24 +4,25 @@
  * @author yongjin on 2014/11/6
  */
 
-define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'PaginationView'],
+define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'PaginationView', 'localStorage'],
     function(require, exports, module){
         var Backbone, BaseCollection, PaginationModel, PaginationView;
 
         Backbone = require('backbone');
+        //Backbone.localStorage = require('localStorage');
         PaginationModel = require('PaginationModel');
         PaginationView = require('PaginationView');
 
         BaseCollection = Backbone.Collection.extend({
+
+            //localStorage: new Backbone.LocalStorage('base-collection'),
 
             initialize: function () {
                 this.paginationModel = new PaginationModel;
             },
 
             parse: function (resp, xhr) {
-                this.paginationModel.set('page', resp.attributes.page);
-                this.paginationModel.set('pageSize', resp.attributes.per_page);
-                this.paginationModel.set('count', resp.attributes.count);
+                this.parsePagination(resp);
                 this.parseUrl(this.paginationModel);
                 this.paginationRender();
                 return resp.attributes.data;
@@ -35,16 +36,31 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                     this.url.length) + '?page=' + page + '&pageSize=' + pageSize;
             },
 
-            load: function(instance, context, model){
-                if (typeof model !== 'undefined') this.parseUrl(model);
-                context.empty();
-                return instance.fetch();
+            parsePagination: function(resp){
+                resp.attributes = resp.attributes
+                    || { page: 1, per_page: 10, count: 10 };
+                this.paginationModel.set('page', resp.attributes.page);
+                this.paginationModel.set('pageSize', resp.attributes.per_page);
+                this.paginationModel.set('count', resp.attributes.count);
             },
 
             paginationRender: function(){
                 var ctx = this;
                 new PaginationView({
                     model: ctx.paginationModel
+                });
+            },
+
+            load: function(instance, context, model){
+                if (typeof model !== 'undefined') this.parseUrl(model);
+                context.empty();
+                return instance.fetch();
+            },
+
+            empty: function(){
+                var collection = this.collection;
+                this.collection.each(function(view){
+                    collection.remove(view);
                 });
             }
         });

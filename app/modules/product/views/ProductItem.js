@@ -3,16 +3,16 @@
  * @namespace ProducItem
  * @author yongjin on 2014/10/31
  */
-define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'BaseRoot'],
+define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'BaseRoot', 'Est'],
     function (require, exports, module) {
-        var ProductItem, handlebars, Backbone, BaseRoot;
+        var ProductItem, handlebars, Backbone, BaseRoot, Est;
 
         Backbone = require('backbone');
         handlebars = require('handlebars');
         BaseRoot = require('BaseRoot');
+        Est = require('Est');
 
         ProductItem = Backbone.View.extend({
-            id: 'product-li-',
             tagName: 'li',
             template: handlebars.compile($('#item-product').html()),
             events: {
@@ -22,7 +22,11 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
             },
             initialize: function () {
                 // 判断是否修改
-                this.listenTo(this.model, 'change', this.render);
+                this.model.bind('reset', this.render, this);
+                this.model.bind('change', this.render, this);
+                this.model.bind('destroy', this.remove, this);
+                if (this.model.view) this.model.view.remove();
+                this.model.view = this;
             },
             render: function () {
                 this.$el.html(this.template(this.model.toJSON()));
@@ -38,8 +42,8 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 var dialog = require('dialog');
                 var ProductDetail = require("ProductDetail");
 
-                this.model.fetch().done(function () {
-                    var productDetail = new ProductDetail({
+                this.model.fetch().done(function (response) {
+                    ctx.productDetail = new ProductDetail({
                         model: ctx.model
                     });
                     BUI.use(['bui/overlay', 'bui/form'], function (Overlay, Form) {
@@ -48,26 +52,40 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                             srcNode: '#form'
                         }).render();
 
-                        if (!BaseRoot.productDetailDialog) {
-                            BaseRoot.productDetailDialog = new Overlay.Dialog({
+                        if (!ctx.productDetailDialog){
+                            ctx.productDetailDialog = new Overlay.Dialog({
                                 title: '产品修改',
                                 width: 800,
                                 contentId: 'dialog-container',
-                                success: function () {
-                                    productDetail.saveItem(function(){
-                                        this.close();
-                                    }, this);
-                                    this.close();
-                                }
+                                closeAction : 'destroy',//每次关闭dialog释放
+                                buttons:[
+                                    {
+                                        text:'确定',
+                                        elCls : 'button button-primary',
+                                        handler : function(){
+                                            ctx.productDetail.saveItem(function () {
+                                                //this.close();
+                                            }, ctx);
+                                            this.close();
+                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
+                                        }
+                                    },{
+                                        text:'关闭',
+                                        elCls : 'button',
+                                        handler : function(){
+                                            this.close();
+                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
+                                        }
+                                    }
+                                ]
                             });
                         }
-                        BaseRoot.productDetailDialog.show();
+                        ctx.productDetailDialog.show();
                     });
                 });
             },
             deleteItem: function () {
                 this.model.destroy();
-                this.remove();
             },
             showName: function () {
                 var ctx = this;
