@@ -3,13 +3,12 @@
  * @namespace ProducItem
  * @author yongjin on 2014/10/31
  */
-define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'BaseRoot', 'Est'],
+define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'Est'],
     function (require, exports, module) {
-        var ProductItem, handlebars, Backbone, BaseRoot, Est;
+        var ProductItem, handlebars, Backbone, Est;
 
         Backbone = require('backbone');
         handlebars = require('handlebars');
-        BaseRoot = require('BaseRoot');
         Est = require('Est');
 
         ProductItem = Backbone.View.extend({
@@ -39,53 +38,54 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.stopListening();
             },
             editItem: function () {
-                var ctx = this;
                 console.log('ProductItem.editItem');
+                var ctx = this;
+                seajs.use(['dialog-plus'], function (dialog) {
+                    window.dialog = dialog;
 
-                var dialog = require('dialog');
-                var ProductDetail = require("ProductDetail");
-
-                this.model.fetch().done(function (response) {
-                    ctx.productDetail = new ProductDetail({
-                        model: ctx.model
-                    });
-                    BUI.use(['bui/overlay', 'bui/form'], function (Overlay, Form) {
-
-                        var form = new Form.HForm({
-                            srcNode: '#form'
-                        }).render();
-
-                        if (!ctx.productDetailDialog){
-                            ctx.productDetailDialog = new Overlay.Dialog({
-                                title: '产品修改',
-                                width: 800,
-                                contentId: 'dialog-container',
-                                closeAction : 'destroy',//每次关闭dialog释放
-                                buttons:[
-                                    {
-                                        text:'确定',
-                                        elCls : 'button button-primary',
-                                        handler : function(){
-                                            ctx.productDetail.saveItem(function () {
-                                                //this.close();
-                                            }, ctx);
-                                            this.close();
-                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
-                                        }
-                                    },{
-                                        text:'关闭',
-                                        elCls : 'button',
-                                        handler : function(){
-                                            this.close();
-                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
-                                        }
-                                    }
-                                ]
-                            });
+                    window.detailDialog = dialog({
+                        id: 'product-edit-dialog',
+                        title: '产品修改',
+                        width: 800,
+                        url: 'http://jihui88.com/member/modules/product/product_detail.html?id=' + ctx.model.id ,
+                        button: [{
+                            value: '保存',
+                            callback: function () {
+                                this.iframeNode.contentWindow.$("#product-submit").click();
+                                //this.close();
+                                //ctx.model.set(window.model);
+                                return false;
+                            },
+                            autofocus: true
+                        },{
+                            value: '重置',
+                            callback: function () {
+                                this.iframeNode.contentWindow.$("#product-reset").click();
+                                return false;
+                            }
+                        },{ value: '关闭' } ],
+                        onshow: function () {
+                            console.log('onshow');
+                        },
+                        oniframeload: function () {
+                            this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+                            console.log('oniframeload');
+                        },
+                        onclose: function () {
+                            ctx.model.set(window.model);
+                            if (this.returnValue) {
+                                $('#value').html(this.returnValue);
+                            }
+                            console.log('onclose');
+                        },
+                        onremove: function () {
+                            console.log('onremove');
                         }
-                        ctx.productDetailDialog.show();
                     });
+                    window.detailDialog.showModal();
                 });
+
+
             },
             deleteItem: function () {
                 console.log('ProductItem.deleteItem');

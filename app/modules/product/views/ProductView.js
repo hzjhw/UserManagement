@@ -3,14 +3,13 @@
  * @namespace ProductView
  * @author yongjin on 2014/10/31
  */
-define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'dialog', 'BaseRoot', 'ProductDetail', 'ProductModel'],
+define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'ProductCollection', 'ProductDetail', 'ProductModel'],
     function (require, exports, module) {
-        var ProductView, ProductItem, ProductCollection, Backbone, BaseRoot;
+        var ProductView, ProductItem, ProductCollection, Backbone;
 
         ProductItem = require("ProductItem");
         ProductCollection = require("ProductCollection");
         Backbone = require('backbone');
-        BaseRoot = require('BaseRoot');
 
         ProductView = Backbone.View.extend({
 
@@ -70,33 +69,50 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             openAddDialog: function () {
                 console.log('ProductView.openAddDialog');
                 var ctx = this;
-                var ProductModel = require('ProductModel');
-                var ProductDetail = require("ProductDetail");
-                var productModel = new ProductModel();
 
-                this.productDetail = new ProductDetail({model: productModel});
+                seajs.use(['dialog-plus'], function (dialog) {
+                    window.dialog = dialog;
 
-                BUI.use(['bui/overlay', 'bui/form'], function (Overlay, Form) {
-                    if (!BaseRoot.productDetailDialog) {
-                        BaseRoot.productDetailDialog = new Overlay.Dialog({
-                            title: '产品添加',
-                            width: 800,
-                            contentId: 'dialog-container',
-                            success: function () {
-                                var dialog = this;
-                                ctx.productDetail.saveItem(function (response) {
-                                    ctx.collection.paginationModel.set('page', 1);
-                                    ctx.collection.load(ctx.collection, ctx, ctx.collection.paginationModel)
-                                        .done(function (response) {
-                                            dialog.close();
-                                            $("#dialog-container").append("<div id=\"product-add-container\"></div>");
-                                        });
-                                    ctx.collection.load();
-                                });
+                    window.detailDialog = dialog({
+                        id: 'product-add-dialog',
+                        title: '产品添加',
+                        width: 800,
+                        url: 'http://jihui88.com/member/modules/product/product_detail.html?time=' + new Date().getTime() ,
+                        button: [{
+                            value: '保存',
+                            callback: function () {
+                                this.iframeNode.contentWindow.$("#product-submit").click();
+                                return false;
+                            },
+                            autofocus: true
+                        },{
+                            value: '重置',
+                            callback: function () {
+                                this.iframeNode.contentWindow.$("#product-reset").click();
+                                return false;
                             }
-                        });
-                    }
-                    BaseRoot.productDetailDialog.show();
+                        },{ value: '关闭' } ],
+                        onshow: function () {
+                            console.log('onshow');
+                        },
+                        oniframeload: function () {
+                            this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+                            console.log('oniframeload');
+                        },
+                        onclose: function () {
+                            ctx.collection.load(ctx.collection, ctx).done(function(){
+                                ctx.render();
+                            });
+                            if (this.returnValue) {
+                                $('#value').html(this.returnValue);
+                            }
+                            console.log('onclose');
+                        },
+                        onremove: function () {
+                            console.log('onremove');
+                        }
+                    });
+                    window.detailDialog.showModal();
                 });
             }
         });

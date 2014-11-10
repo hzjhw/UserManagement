@@ -19,14 +19,29 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
             events: {
                 'change #model-name': 'setName',
                 'change #model-protype': 'setProtype',
-                'change #model-photo': 'setPhoto'
+                'change #model-photo': 'setPhoto',
+                'click #product-reset': 'reset'
             },
 
             template: Handlebars.compile($("#product-detail-tpl").html()),
 
             initialize: function () {
                 console.log('ProductDetail.initialize');
-                this.render();
+                var ctx = this;
+                this.passId = Est.getUrlParam('id', window.location.href);
+                if (!Est.isEmpty(this.passId)){
+
+                    this.model = new ProductModel();
+                    this.model.set('id', this.passId);
+
+                    this.model.fetch().done(function(){
+                        if (top) { top.model = ctx.model.attributes; }
+                        ctx.render().resetIframe();
+                    });
+
+                } else{
+                    this.render();
+                }
             },
 
             saveItem: function (callback, context) {
@@ -44,6 +59,10 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
             render: function () {
                 console.log('ProductDetail.render');
                 var ctx = this;
+
+                if (!this.model){
+                    this.model = new ProductModel();
+                }
 
                 this.$el.html(this.template(this.model.toJSON()));
 
@@ -95,7 +114,8 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
 
                 // 保存
                 $('#product-submit', this.el).on('click', function(){
-                    ctx.saveItem();
+                    ctx.saveItem(function(){
+                    });
                 });
 
                 return this;
@@ -114,6 +134,15 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
             setPhoto: function(){
                 console.log('ProductDetail.setPhoto');
                 this.model.set('photo', $('#model-photo').val());
+            },
+
+            reset: function(){
+                debugger
+                this.model.set(this.model.defaults);
+            },
+
+            resetIframe: function(){
+                window.detailDialog.height($(document).height());
             },
 
             remove: function(){
