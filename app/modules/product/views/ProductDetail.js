@@ -37,7 +37,7 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                         ctx.render().resetIframe();
                     });
                 } else{
-                    this.passId = 'new';
+                    this.passId = new Date().getTime();
                     this[this.passId] = new ProductModel();
                     this.render();
                 }
