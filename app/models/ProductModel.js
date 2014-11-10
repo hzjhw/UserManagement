@@ -37,8 +37,10 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                             ctx.set('id', null);
                        }});
                         buttons.push({ value: '确定', callback: function () {
-                            if (typeof window.detailDialog != 'undefined')
+                            debugger
+                            if (typeof window.detailDialog != 'undefined'){
                                 window.detailDialog.close(); // 关键性语句
+                            }
                             this.close();
                         }, autofocus: true });
                     } else{

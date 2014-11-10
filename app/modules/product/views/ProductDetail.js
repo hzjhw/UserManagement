@@ -33,13 +33,12 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                     this[this.passId] = new ProductModel();
                     this[this.passId].set('id', this.passId);
                     this[this.passId].fetch().done(function(){
-                        if (top) { top.model = ctx.passId.attributes; }
                         ctx.render().resetIframe();
                     });
                 } else{
                     this.passId = new Date().getTime();
                     this[this.passId] = new ProductModel();
-                    this.render();
+                    this.render().resetIframe();
                 }
             },
 
@@ -49,6 +48,8 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                     wait: true,
                     success: function(response){
                         console.log('ProductDetail.saveSuccess');
+                        debugger
+                        if (top) { top.model = response.attributes; }
                         if (callback && typeof callback === 'function')
                             callback.call(context, response);
                     }

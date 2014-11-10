@@ -67,6 +67,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                         },
                         onclose: function () {
                             ctx.model.set(Est.cloneDeep(window.model));
+                            this.remove();
                             window.model = {};
                         }
                     });
