@@ -52,8 +52,6 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                             value: '保存',
                             callback: function () {
                                 this.iframeNode.contentWindow.$("#product-submit").click();
-                                //this.close();
-                                //ctx.model.set(window.model);
                                 return false;
                             },
                             autofocus: true
@@ -64,22 +62,12 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                                 return false;
                             }
                         },{ value: '关闭' } ],
-                        onshow: function () {
-                            console.log('onshow');
-                        },
                         oniframeload: function () {
                             this.iframeNode.contentWindow.detailDialog = window.detailDialog;
-                            console.log('oniframeload');
                         },
                         onclose: function () {
-                            ctx.model.set(window.model);
-                            if (this.returnValue) {
-                                $('#value').html(this.returnValue);
-                            }
-                            console.log('onclose');
-                        },
-                        onremove: function () {
-                            console.log('onremove');
+                            ctx.model.set(Est.cloneDeep(window.model));
+                            window.model = {};
                         }
                     });
                     window.detailDialog.showModal();

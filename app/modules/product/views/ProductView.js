@@ -103,6 +103,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                             ctx.collection.load(ctx.collection, ctx).done(function(){
                                 ctx.render();
                             });
+                            this.remove();
                             if (this.returnValue) {
                                 $('#value').html(this.returnValue);
                             }

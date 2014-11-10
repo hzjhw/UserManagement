@@ -30,23 +30,22 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                 var ctx = this;
                 this.passId = Est.getUrlParam('id', window.location.href);
                 if (!Est.isEmpty(this.passId)){
-
-                    this.model = new ProductModel();
-                    this.model.set('id', this.passId);
-
-                    this.model.fetch().done(function(){
-                        if (top) { top.model = ctx.model.attributes; }
+                    this[this.passId] = new ProductModel();
+                    this[this.passId].set('id', this.passId);
+                    this[this.passId].fetch().done(function(){
+                        if (top) { top.model = ctx.passId.attributes; }
                         ctx.render().resetIframe();
                     });
-
                 } else{
+                    this.passId = 'new';
+                    this[this.passId] = new ProductModel();
                     this.render();
                 }
             },
 
             saveItem: function (callback, context) {
                 console.log('ProductDetail.saveItem');
-                this.model.save(null, {
+                this[this.passId].save(null, {
                     wait: true,
                     success: function(response){
                         console.log('ProductDetail.saveSuccess');
@@ -60,11 +59,7 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                 console.log('ProductDetail.render');
                 var ctx = this;
 
-                if (!this.model){
-                    this.model = new ProductModel();
-                }
-
-                this.$el.html(this.template(this.model.toJSON()));
+                this.$el.html(this.template(this[this.passId].toJSON()));
 
                 BUI.use(['bui/tab','bui/mask'],function(Tab) {
                     var tab = new Tab.TabPanel({
@@ -94,7 +89,7 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
                         });
                     select.render();
                     select.on('change', function(ev){
-                        ctx.model.set('category', ev.item.value);
+                        ctx[ctx.passId].set('category', ev.item.value);
                     });
                 });
                 // 时间
@@ -123,22 +118,22 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
 
             setName : function(){
                 console.log('ProductDetail.setName');
-                this.model.set('name', $("#model-name").val());
+                this[this.passId].set('name', $("#model-name").val());
             },
 
             setProtype: function(){
                 console.log('ProductDetail.setProtype');
-                this.model.set('protype', $('#model-protype').val());
+                this[this.passId].set('protype', $('#model-protype').val());
             },
 
             setPhoto: function(){
                 console.log('ProductDetail.setPhoto');
-                this.model.set('photo', $('#model-photo').val());
+                this[this.passId].set('photo', $('#model-photo').val());
             },
 
             reset: function(){
                 debugger
-                this.model.set(this.model.defaults);
+                this[this.passId].set(this[this.passId].defaults);
             },
 
             resetIframe: function(){
@@ -147,8 +142,8 @@ define('ProductDetail',['jquery', 'underscore', 'backbone', 'ProductModel', 'han
 
             remove: function(){
                 console.log('ProductDetail.remove');
-                this.model.destroy();
-                this.model = null;
+                this[this.passId].destroy();
+                this[this.passId]= null;
                 return this;
             },
 
