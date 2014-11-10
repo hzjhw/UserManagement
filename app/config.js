@@ -25,6 +25,7 @@ seajs.config({
         'marionette': 'vendor/backbone/backbone.marionette.js',
         'handlebars': 'vendor/handlebars/handlebars-debug.js',
         'BaseCollection': 'base/BaseCollection.js',
+        'BaseModel': 'base/BaseModel.js',
         'BaseRoot': 'base/BaseRoot',
         // user
         'AbcUser': 'models/AbcUser.js',
