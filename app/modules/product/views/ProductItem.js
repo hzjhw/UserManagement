@@ -28,7 +28,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.model.view = this;
             },
             render: function () {
-                console.log('ProductItem.render [item display]');
+                console.log('11.ProductItem.render [item display]');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },

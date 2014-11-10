@@ -21,7 +21,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             initialize: function () {
-                console.log('ProductView.initialize');
+                console.log('1.ProductView.initialize');
                 var ctx = this;
                 this.views = [];
 
@@ -44,7 +44,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             empty: function () {
-                console.log('ProductView.empty');
+                console.log('5.ProductView.empty');
                 _.each(this.views, function (view) {
                     view.off().remove();
                 })

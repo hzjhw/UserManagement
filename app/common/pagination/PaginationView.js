@@ -73,12 +73,12 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'handlebars', 'Est
             template: Handlebars.compile(document.getElementById('pagination-template').innerHTML),
 
             initialize: function () {
-                console.log('PaginationView.initialize ===================');
+                console.log('8.PaginationView.initialize');
                 this.render();
             },
 
             render: function () {
-                console.log('PaginationView.render');
+                console.log('9.PaginationView.render');
                 var ctx = this;
 
                 this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));
