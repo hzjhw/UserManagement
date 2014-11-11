@@ -11,19 +11,13 @@ define('ProductTypeModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseM
         dialog = require('dialog');
 
         ProductTypeModel = BaseModel.extend({
+            baseId: 'typeId',
             baseUrl: 'http://jihui88.com/rest/api/product/type/detail',
-            baseId: 'id',
             defaults: {
+                checked: false,
                 name: '',
-                state:'01',
-                checked: false
-            },
-            validate: function (attributes) {
-                if (!attributes.name || attributes.name < 0) {
-                    return "名称不能为空";
-                }
-             }
-
+                state:'01'
+            }
         });
         module.exports = ProductTypeModel;
     });

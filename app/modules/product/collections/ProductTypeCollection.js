@@ -7,7 +7,7 @@ define('ProductTypeCollection', ['jquery', 'underscore', 'backbone', 'ProductTyp
     function (require, exports, module) {
         var ProductTypeCollection, ProductTypeModel, BaseCollection;
 
-        ProductTypeModel = require("ProductsTypeModel");
+        ProductTypeModel = require("ProductTypeModel");
         BaseCollection = require('BaseCollection');
 
         ProductTypeCollection = BaseCollection.extend({

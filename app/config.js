@@ -40,16 +40,23 @@ seajs.config({
         'TodoItem': 'demo/todo/views/TodoItem.js',
         'TodosCollection': 'demo/todo/collections/TodosCollection.js',
 
+        // category
+        'CategoryModel': 'models/CategoryModel.js',
+
         // product
         'ProductModel': 'models/ProductModel.js',
         'ProductTypeModel': 'models/ProductTypeModel.js',
         'ProductCollection': 'modules/product/collections/ProductCollection.js',
+        'ProductCategoryCollection': 'modules/product/collections/ProductCategoryCollection.js',
         'ProductTypeCollection': 'modules/product/collections/ProductTypeCollection.js',
         'ProductItem': 'modules/product/views/ProductItem.js',
+        'ProductCategoryItem': 'modules/product/views/ProductCategoryItem.js',
         'ProductTypeItem': 'modules/product/views/ProductTypeItem.js',
         'ProductView': 'modules/product/views/ProductView.js',
+        'ProductCategoryView': 'modules/product/views/ProductCategoryView.js',
         'ProductTypeView': 'modules/product/views/ProductTypeView.js',
         'ProductDetail': 'modules/product/views/ProductDetail.js',
+        'ProductCategoryDetail': 'modules/product/views/ProductCategoryDetail.js',
         'ProductTypeDetail': 'modules/product/views/ProductTypeDetail.js'
     },
 

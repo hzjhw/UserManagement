@@ -3,26 +3,23 @@
  * @namespace BaseModel
  * @author yongjin on 2014/11/10
  */
-
-
 define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
     function (require, exports, module) {
-
         var Backbone, dialog, BaseModel;
 
         Backbone = require('backbone');
         dialog = require('dialog');
 
         BaseModel = Backbone.Model.extend({
-
             baseId: '',
-
             url: function () {
                 var base = this.baseUrl;
                 if (this.isNew() && !this.id) return base;
                 return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
             },
-
+            initialize: function () {
+                console.log('10.ProductModel.initialize [add to collection]');
+            },
             parse: function (response, options) {
                 var ctx = this;
                 if (response.msg) {
@@ -66,6 +63,9 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                         }
                     }
                 });
+            },
+            toggle: function(){
+                this.set('checked', !this.get('checked'));
             }
         });
 
