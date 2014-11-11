@@ -22,7 +22,7 @@
     <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
     <![endif]-->
 
-    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
 </head>
 <!--[if IE 7]>
 <body class="ie7"><![endif]-->
@@ -41,12 +41,6 @@
 
 <div id="product-type-list">
     <input id="toggle-all" type="checkbox"><a href="javascript:;" class="product-type-add">添加类型</a>
-    <ul>
-        <li>类型名称</li>
-        <li>创建日期</li>
-        <li>属性列表</li>
-        <li>操作</li>
-    </ul>
     <ul id="product-type-list-ul"></ul>
     <div id="pagination-container"></div>
 </div>
@@ -58,16 +52,22 @@
 <script type="text/template" id="product-type-list-tpl">
     <div>
         <input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}>
-
-        <span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
-           class="edit" target="_blank">修改</span>{{id}}</div>
+        <span class="name">{{name}} </span>&nbsp;&nbsp;
+        <span class="addtime">{{dateFormat addTime 'yyyy-MM-dd'}}</span>&nbsp;&nbsp;&nbsp;
+        <a href="javascript:;" class="delete">[删除]</a> &nbsp;&nbsp;
+        <a href="javascript:;" class="edit" target="_blank">[修改]</a>&nbsp;&nbsp;
+        <a href="javascript:;" class="list-attr">[属性列表]</a> &nbsp;&nbsp;&nbsp;
+        {{id}}
+    </div>
 </script>
 
 
 <script type="text/template" id="pagination-template">
-    <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
+    <ul class="pagination" id="pagination-ul" style="float:left;margin-top:0px;" currentPage="{{page}}">
         {{#pagination page totalPage}}
-            <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
+        <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}"
+            data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a>
+        </li>
         {{/pagination}}
     </ul>
 </script>

@@ -17,7 +17,8 @@ define('ProductTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handle
             events: {
                 'click .name': 'showName',
                 'click .delete': 'deleteItem',
-                'click .edit': 'editItem'
+                'click .edit': 'editItem',
+                'click .list-attr': 'openAttrDialog'
             },
             initialize: function () {
                 // 判断是否修改
@@ -38,7 +39,7 @@ define('ProductTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handle
                 this.stopListening();
             },
             toggleChecked: function () {
-                this.$el.find(".toggle").attr( "checked", this.model.get('checked') );
+                this.$el.find(".toggle").attr("checked", this.model.get('checked'));
             },
             editItem: function () {
                 console.log('ProductTypeItem.editItem');
@@ -48,23 +49,28 @@ define('ProductTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handle
 
                     window.detailDialog = dialog({
                         id: 'product-type-edit-dialog',
-                        title: '产品属性修改',
-                        width: 800,
-                        url: 'http://jihui88.com/member/modules/product/product_type_detail.html?id=' + ctx.model.id ,
-                        button: [{
-                            value: '保存',
-                            callback: function () {
-                                this.iframeNode.contentWindow.$("#product-type-submit").click();
-                                return false;
+                        title: '产品类型修改',
+                        width: 400,
+                        height: 150,
+                        url: 'http://jihui88.com/member/modules/product/product_type_detail.html?id=' + ctx.model.id,
+                        button: [
+                            {
+                                value: '保存',
+                                callback: function () {
+                                    this.iframeNode.contentWindow.$("#product-type-submit").click();
+                                    return false;
+                                },
+                                autofocus: true
                             },
-                            autofocus: true
-                        },{
-                            value: '重置',
-                            callback: function () {
-                                this.iframeNode.contentWindow.$("#product-type-reset").click();
-                                return false;
-                            }
-                        },{ value: '关闭' } ],
+                            {
+                                value: '重置',
+                                callback: function () {
+                                    this.iframeNode.contentWindow.$("#product-type-reset").click();
+                                    return false;
+                                }
+                            },
+                            { value: '关闭' }
+                        ],
                         oniframeload: function () {
                             this.iframeNode.contentWindow.detailDialog = window.detailDialog;
                         },
@@ -81,7 +87,28 @@ define('ProductTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handle
             },
             deleteItem: function () {
                 console.log('ProductTypeItem.deleteItem');
-                this.model.destroy();
+                var ctx = this;
+                seajs.use(['dialog-plus'], function (dialog) {
+                    dialog({
+                        title: '提示',
+                        content: '是否删除！',
+                        width:150,
+                        button: [{
+                            value: '确定',
+                            autofocus: true,
+                            callback: function () {
+                                ctx.model.destroy();
+                            }}, {
+                            value: '取消',
+                            callback: function(){
+                                this.close();
+                            }
+                        }]
+                    }).show(ctx.$el.find('.delete').get(0));
+                });
+            },
+            openAttrDialog: function(){
+
             },
             showName: function () {
                 var ctx = this;
@@ -102,7 +129,7 @@ define('ProductTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handle
                         ctx.setName(this.returnValue);
                     }
                 });
-                d.show();
+                d.show(ctx.$el.find('.name').get(0));
             },
             setName: function (name) {
                 console.log('ProductTypeItem.setName');

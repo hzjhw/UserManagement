@@ -24,6 +24,7 @@ seajs.config({
         'DatetimePicker': 'common/datetimepicker/scripts/DatetimePicker.js',
         'marionette': 'vendor/backbone/backbone.marionette.js',
         'handlebars': 'vendor/handlebars/handlebars-debug.js',
+        'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
         'BaseCollection': 'base/BaseCollection.js',
         'BaseModel': 'base/BaseModel.js',
         'BaseRoot': 'base/BaseRoot',

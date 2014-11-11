@@ -81,7 +81,25 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
             },
             deleteItem: function () {
                 console.log('ProductItem.deleteItem');
-                this.model.destroy();
+                var ctx = this;
+                seajs.use(['dialog-plus'], function (dialog) {
+                    dialog({
+                        title: '提示',
+                        content: '是否删除！',
+                        width:150,
+                        button: [{
+                            value: '确定',
+                            autofocus: true,
+                            callback: function () {
+                                ctx.model.destroy();
+                            }}, {
+                            value: '取消',
+                            callback: function(){
+                                this.close();
+                            }
+                        }]
+                    }).show(ctx.$el.find('.delete').get(0));
+                });
             },
             showName: function () {
                 var ctx = this;
@@ -102,7 +120,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                         ctx.setName(this.returnValue);
                     }
                 });
-                d.show();
+                d.show(ctx.$el.find('.name').get(0));
             },
             setName: function (name) {
                 console.log('ProductItem.setName');
