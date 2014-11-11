@@ -42,10 +42,15 @@ seajs.config({
 
         // product
         'ProductModel': 'models/ProductModel.js',
+        'ProductTypeModel': 'models/ProductTypeModel.js',
         'ProductCollection': 'modules/product/collections/ProductCollection.js',
+        'ProductTypeCollection': 'modules/product/collections/ProductTypeCollection.js',
         'ProductItem': 'modules/product/views/ProductItem.js',
+        'ProductTypeItem': 'modules/product/views/ProductTypeItem.js',
         'ProductView': 'modules/product/views/ProductView.js',
-        'ProductDetail': 'modules/product/views/ProductDetail.js'
+        'ProductTypeView': 'modules/product/views/ProductTypeView.js',
+        'ProductDetail': 'modules/product/views/ProductDetail.js',
+        'ProductTypeDetail': 'modules/product/views/ProductTypeDetail.js'
     },
 
     // 路径配置

@@ -22,7 +22,7 @@
     <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
     <![endif]-->
 
-    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
 </head>
 <!--[if IE 7]>
 <body class="ie7"><![endif]-->
@@ -38,36 +38,38 @@
 <body>
 <!--<![endif]-->
 
-
-<div id="list-product">
-    <input id="toggle-all" type="checkbox"><a href="javascript:;" class="product-add">添加产品</a>
-    <ul id="product-list-ul"></ul>
-    <div id="pagination-container"></div>
-</div>
-<div id="dialog-container" class="hide">
-    <div id="product-add-container"></div>
-</div>
+<div id="product-add-container"></div>
 
 <!--template-->
 <script type="text/template" id="item-product">
-    <div>
-        <input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}>
-
-        <span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
-           class="edit" target="_blank">修改</span>{{id}}</div>
+    <div><span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
+            class="edit" target="_blank">修改</span>{{id}}
+    </div>
 </script>
 
-
-<script type="text/template" id="pagination-template">
-    <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
-        {{#pagination page totalPage}}
-            <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
-        {{/pagination}}
-    </ul>
+<script type="text/template" id="product-type-detail-tpl">
+    <div id="product-add-inner">
+        <form id="J_Form" action="" class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label"><s>*</s>商品类型名称：</label>
+                <div class="controls">
+                    <input id="model-name" name="name" value="{{name}}" type="text" class="input-middle"
+                           data-rules="{required : true}"
+                           data-tip='{"text":"请输入类型名称","iconCls":"icon icon-pencil"}'>
+                </div>
+            </div>
+            <div class="row actions-bar" style="display:none;">
+                <div class="form-actions span13 offset3">
+                    <button id="product-type-submit" type="button" class="button button-primary">保存</button>
+                    <button id="product-type-reset" type="reset" class="button">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </script>
 
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
-<script type="text/javascript" src="controllers/ProductListCtrl.js"></script>
+<script type="text/javascript" src="controllers/ProductTypeDetailCtrl.js"></script>
 </body>
 </html>

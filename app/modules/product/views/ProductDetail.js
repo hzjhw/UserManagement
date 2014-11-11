@@ -114,6 +114,37 @@ define('ProductDetail', ['jquery', 'underscore', 'backbone', 'ProductModel', 'ha
                                 select.on('change', function (ev) {
                                     $("#category").val(ev.item.categoryId);
                                 });
+
+                                var typeSelect = new Select.Select({
+                                    render: '#s2',
+                                    width:100,
+                                    valueField: '#model-type',
+                                    items: [{text: '普通', value: 'NM'}, {text: '新品', value: 'NW'}, {text: '精品', value: 'CP'}]
+                                });
+                                typeSelect.render();
+                                typeSelect.on('change', function(ev){
+                                    $("#model-type").val(ev.item.value);
+                                });
+                                var loginViewSelect = new Select.Select({
+                                    render: '#s2',
+                                    width:100,
+                                    valueField: '#model-loginView',
+                                    items: [{text: '访问者可见', value: '1'}, {text: '登录后可见', value: '0'}]
+                                });
+                                loginViewSelect.render();
+                                loginViewSelect.on('change', function(ev){
+                                    $("#model-loginView").val(ev.item.value);
+                                });
+                                var adsSelect = new Select.Select({
+                                    render: '#s2',
+                                    width:100,
+                                    valueField: '#model-ads',
+                                    items: [{text: '广告产品', value: '2'}, {text: '是', value: '1'}, {text: '否', value: '0'}]
+                                });
+                                adsSelect.render();
+                                adsSelect.on('change', function(ev){
+                                    $("#model-ads").val(ev.item.value);
+                                });
                             });
                         }
                         console.dir(result);

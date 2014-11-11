@@ -22,7 +22,7 @@
     <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
     <![endif]-->
 
-    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
 </head>
 <!--[if IE 7]>
 <body class="ie7"><![endif]-->
@@ -43,7 +43,8 @@
 <!--template-->
 <script type="text/template" id="item-product">
     <div><span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
-           class="edit" target="_blank">修改</span>{{id}}</div>
+            class="edit" target="_blank">修改</span>{{id}}
+    </div>
 </script>
 
 <script type="text/template" id="product-detail-tpl">
@@ -66,7 +67,9 @@
 
                         <div class="controls">
                             <div id="s1">
-                                <input type="hidden" id="category" value="{{category}}" name="category">
+                                <input type="hidden" id="category" value="{{category}}" name="category"
+                                       data-rules="{required : true}"
+                                       data-tip='{"text":"请选择产品分类"}'>
                             </div>
                         </div>
                     </div>
@@ -74,7 +77,8 @@
                         <label class="control-label">产品型号：</label>
 
                         <div class="controls">
-                            <input id="model-prodtype" name="prodtype" value="{{prodtype}}" type="text" class="input-large"
+                            <input id="model-prodtype" name="prodtype" value="{{prodtype}}" type="text"
+                                   class="input-large"
                                    data-tip='{"text":"请输入产品型号","iconCls":"icon icon-pencil"}'>
                         </div>
                     </div>
@@ -87,10 +91,30 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="model-type">产品属性：</label>
+
+                        <div class="controls">
+                            <div id="s2">
+                                <input id="model-type" name="type" value="{{type}}" class="input-small" type="hidden" style="margin-right:5px;"/>
+                                <input id="model-loginView" name="type" value="{{loginView}}" class="input-small" type="hidden" style="margin-right:5px;"/>
+                                <input id="model-ads" name="type" value="{{ads}}" class="input-small" type="hidden"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <label class="control-label">产品图片：</label>
 
                         <div class="controls">
                             <input id="model-photo" value="{{photo}}" name="photo" type="text" class="input-small">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">产品描述：</label>
+
+                        <div class="controls">
+                            <textarea id="model-proddesc" value="{{proddesc}}" name="proddesc" class="input-small"></textarea>
                         </div>
                     </div>
 

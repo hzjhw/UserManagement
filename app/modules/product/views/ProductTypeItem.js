@@ -1,19 +1,19 @@
 /**
- * @description 产品列表li视图
- * @namespace ProducItem
- * @author yongjin on 2014/10/31
+ * @description 产品属性li视图
+ * @namespace ProducTypeItem
+ * @author yongjin on 2014/11/11
  */
-define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'Est'],
+define('ProductsTypeItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars', 'Est'],
     function (require, exports, module) {
-        var ProductItem, handlebars, Backbone, Est;
+        var ProductTypeItem, handlebars, Backbone, Est;
 
         Backbone = require('backbone');
         handlebars = require('handlebars');
         Est = require('Est');
 
-        ProductItem = Backbone.View.extend({
+        ProductTypeItem = Backbone.View.extend({
             tagName: 'li',
-            template: handlebars.compile($('#item-product').html()),
+            template: handlebars.compile($('#product-type-list-tpl').html()),
             events: {
                 'click .name': 'showName',
                 'click .delete': 'deleteItem',
@@ -28,12 +28,12 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.model.view = this;
             },
             render: function () {
-                console.log('11.ProductItem.render [item display]');
+                console.log('11.ProductTypeItem.render [item display]');
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
             close: function () {
-                console.log('ProductItem.close');
+                console.log('ProductTypeItem.close');
                 // 重新实例化时释放监听
                 this.stopListening();
             },
@@ -41,27 +41,27 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.$el.find(".toggle").attr( "checked", this.model.get('checked') );
             },
             editItem: function () {
-                console.log('ProductItem.editItem');
+                console.log('ProductTypeItem.editItem');
                 var ctx = this;
                 seajs.use(['dialog-plus'], function (dialog) {
                     window.dialog = dialog;
 
                     window.detailDialog = dialog({
-                        id: 'product-edit-dialog',
-                        title: '产品修改',
+                        id: 'product-type-edit-dialog',
+                        title: '产品属性修改',
                         width: 800,
-                        url: 'http://jihui88.com/member/modules/product/product_detail.html?id=' + ctx.model.id ,
+                        url: 'http://jihui88.com/member/modules/product/product_type_detail.html?id=' + ctx.model.id ,
                         button: [{
                             value: '保存',
                             callback: function () {
-                                this.iframeNode.contentWindow.$("#product-submit").click();
+                                this.iframeNode.contentWindow.$("#product-type-submit").click();
                                 return false;
                             },
                             autofocus: true
                         },{
                             value: '重置',
                             callback: function () {
-                                this.iframeNode.contentWindow.$("#product-reset").click();
+                                this.iframeNode.contentWindow.$("#product-type-reset").click();
                                 return false;
                             }
                         },{ value: '关闭' } ],
@@ -80,12 +80,12 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
 
             },
             deleteItem: function () {
-                console.log('ProductItem.deleteItem');
+                console.log('ProductTypeItem.deleteItem');
                 this.model.destroy();
             },
             showName: function () {
                 var ctx = this;
-                console.log('ProductItem.showName');
+                console.log('ProductTypeItem.showName');
                 var dialog = require('dialog');
                 var oldName = this.model.attributes.name;
                 var d = dialog({
@@ -105,7 +105,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 d.show();
             },
             setName: function (name) {
-                console.log('ProductItem.setName');
+                console.log('ProductTypeItem.setName');
                 var ctx = this;
                 this.model.saveField({
                     'name': name,
@@ -117,10 +117,10 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 }, this);
             },
             clear: function () {
-                console.log('ProductItem.clear');
+                console.log('ProductTypeItem.clear');
                 this.model.destroy();
             }
         });
 
-        module.exports = ProductItem;
+        module.exports = ProductTypeItem;
     });

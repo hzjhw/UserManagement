@@ -14,13 +14,19 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog'],
             defaults: {
                 name: '',
                 type: 'NM',
+                unit: '件',
                 price: 0,
                 sort: 1,
+                loginView: '1',
+                ads: '2',
                 prodtype: '',
                 category: '',
+                isBest: false,
+                isNew: false,
                 photo2: [],
                 photoId: 'Attach_0000000000000000000011056',
-                photo: 'upload/g/g2/ggggfj/picture/2014/09/01/01bcc9d6-4790-403f-a546-eb97fc3aee31.jpg'
+                photo: 'upload/g/g2/ggggfj/picture/2014/09/01/01bcc9d6-4790-403f-a546-eb97fc3aee31.jpg',
+                checked: false
             },
 
             url: function () {
@@ -86,6 +92,9 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                 /* this.on('change', function () {
                  console.log('new model:' + JSON.stringify(this.attributes));
                  });*/
+            },
+            toggle: function(){
+                this.set('checked', !this.get('checked'));
             }
         });
         module.exports = ProductModel;

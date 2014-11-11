@@ -17,6 +17,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             list: $("#product-list-ul"),
 
             events: {
+                'click #toggle-all': 'toggleAllChecked',
                 'click .product-add': 'openAddDialog'
             },
 
@@ -24,17 +25,19 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 console.log('1.ProductView.initialize');
                 var ctx = this;
                 this.views = [];
-
+                this.allCheckbox = this.$('#toggle-all')[0];
                 this.collection = new ProductCollection();
                 this.collection.bind('add', this.addOne, this);
                 // 当调用fetch后， 就会调用reset事件
                 this.collection.bind('reset', this.render, this);
 
+                this.listenTo(this.collection, 'change:checked', this.checkSelect);
+
+
                 this.collection.paginationModel.on('reloadList', function (model) {
                     ctx.collection.load(ctx.collection, ctx, model);
                 });
                 this.collection.load(ctx.collection, this);
-
                 return this;
             },
 
@@ -64,6 +67,10 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 console.log('ProductView.addAll');
                 this.empty();
                 this.collection.each(this.addOne, this);
+            },
+
+            checkSelect: function(){
+
             },
 
             openAddDialog: function () {
@@ -114,6 +121,12 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                         }
                     });
                     window.detailDialog.showModal();
+                });
+            },
+            toggleAllChecked: function () {
+                var checked = this.allCheckbox.checked;
+                this.collection.each(function (product) {
+                   product.set('checked', checked);
                 });
             }
         });
