@@ -16,8 +16,8 @@ define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, mo
      * @time 2014-03-27
      * @example
      *      {{#pagination page totalPage}}
-                <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
-            {{/pagination}}
+     <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
+     {{/pagination}}
      */
     Handlebars.registerHelper('pagination', function (page, totalPage, block) {
         var accum = '';
@@ -33,51 +33,48 @@ define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, mo
      * @author wyj
      * @time 2014-03-27
      * @example
-     *      {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}
+     *      {{#compare ../page '!==' this}}danaiPageNum{{else}}active{{/compare}}
      */
-    Handlebars.registerHelper('compare', function (lvalue, rvalue, options) {
+    Handlebars.registerHelper('compare', function (v1, operator, v2, options) {
         if (arguments.length < 3)
             throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
-        var operator = options.hash.operator || "==";
-        var operators = {
-            '==': function (l, r) {
-                return l == r;
-            },
-            '===': function (l, r) {
-                return l === r;
-            },
-            '!=': function (l, r) {
-                return l != r;
-            },
-            '!==': function (l, r) {
-                return l !== r
-            },
-            '<': function (l, r) {
-                return l < r;
-            },
-            '>': function (l, r) {
-                return l > r;
-            },
-            '<=': function (l, r) {
-                return l <= r;
-            },
-            '>=': function (l, r) {
-                return l >= r;
-            },
-            'typeof': function (l, r) {
-                return typeof l == r;
+        try {
+            switch (operator.toString()) {
+                case '==':
+                    return (v1 == v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '!=':
+                    return (v1 != v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '===':
+                    return (v1 === v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '!==':
+                    return (v1 !== v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '<':
+                    return (v1 < v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '<=':
+                    return (v1 <= v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '>':
+                    return (v1 > v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '>=':
+                    return (v1 >= v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '&&':
+                    return (v1 && v2) ? options.fn(this) :
+                        options.inverse(this);
+                case '||':
+                    return (v1 || v2) ? options.fn(this) :
+                        options.inverse(this);
+                default:
+                    return options.inverse(this);
             }
-        }
-        if (!operators[operator])
-            throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
-        var result = operators[operator](lvalue, rvalue);
-        if (options.hash.debug) {
-            console.log("value1 :" + lvalue + "; value2 :" + rvalue + "; result : " + result);
-        }
-        if (result) {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
+        } catch (e) {
+            console.log('【Errow】: hbs.compare v1=' + v1 + ';v2=' + v2 + e);
         }
     });
 

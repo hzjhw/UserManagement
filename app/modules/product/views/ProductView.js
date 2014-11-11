@@ -25,14 +25,14 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                 console.log('1.ProductView.initialize');
                 var ctx = this;
                 this.views = [];
+
                 this.allCheckbox = this.$('#toggle-all')[0];
                 this.collection = new ProductCollection();
+
                 this.collection.bind('add', this.addOne, this);
                 // 当调用fetch后， 就会调用reset事件
                 this.collection.bind('reset', this.render, this);
-
                 this.listenTo(this.collection, 'change:checked', this.checkSelect);
-
 
                 this.collection.paginationModel.on('reloadList', function (model) {
                     ctx.collection.load(ctx.collection, ctx, model);
@@ -74,7 +74,7 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
             },
 
             openAddDialog: function () {
-                console.log('ProductView.openAddDialog');
+                console.log('1.ProductView.openAddDialog');
                 var ctx = this;
 
                 seajs.use(['dialog-plus'], function (dialog) {
@@ -99,12 +99,8 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                                 return false;
                             }
                         },{ value: '关闭' } ],
-                        onshow: function () {
-                            console.log('onshow');
-                        },
                         oniframeload: function () {
                             this.iframeNode.contentWindow.detailDialog = window.detailDialog;
-                            console.log('oniframeload');
                         },
                         onclose: function () {
                             ctx.collection.load(ctx.collection, ctx).done(function(){
@@ -114,10 +110,6 @@ define('ProductView', ['jquery', 'underscore', 'backbone', 'ProductItem', 'Produ
                             if (this.returnValue) {
                                 $('#value').html(this.returnValue);
                             }
-                            console.log('onclose');
-                        },
-                        onremove: function () {
-                            console.log('onremove');
                         }
                     });
                     window.detailDialog.showModal();

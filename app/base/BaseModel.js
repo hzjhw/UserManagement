@@ -18,7 +18,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                 return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
             },
             initialize: function () {
-                console.log('10.ProductModel.initialize [add to collection]');
+                console.log('10.BaseModel.initialize [add to collection] or 3.[add to detail]');
             },
             parse: function (response, options) {
                 var ctx = this;

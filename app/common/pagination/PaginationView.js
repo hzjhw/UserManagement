@@ -39,7 +39,6 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper'
             },
 
             toPage: function (num) {
-                console.log('PaginationView.toPage');
                 this.model.set('page', num);
                 this.model.trigger('reloadList', this.model);
             }

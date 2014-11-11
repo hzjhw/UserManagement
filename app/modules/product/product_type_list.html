@@ -63,11 +63,9 @@
 
 
 <script type="text/template" id="pagination-template">
-    <ul class="pagination" id="pagination-ul" style="float:left;margin-top:0px;" currentPage="{{page}}">
+    <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
         {{#pagination page totalPage}}
-        <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum{{else}}active{{/compare}}"
-            data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a>
-        </li>
+        <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page '!==' this}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
         {{/pagination}}
     </ul>
 </script>

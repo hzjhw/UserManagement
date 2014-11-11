@@ -41,7 +41,7 @@ define('ProductItem', ['jquery', 'underscore', 'backbone', 'dialog', 'handlebars
                 this.$el.find(".toggle").attr( "checked", this.model.get('checked') );
             },
             editItem: function () {
-                console.log('ProductItem.editItem');
+                console.log('1.ProductItem.editItem');
                 var ctx = this;
                 seajs.use(['dialog-plus'], function (dialog) {
                     window.dialog = dialog;

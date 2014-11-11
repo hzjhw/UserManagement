@@ -787,9 +787,9 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
                 var success = options.success;
                 var collection = this;
                 options.success = function(resp) {
+                    if (success) success(collection, resp, options);
                     var method = options.reset ? "reset" : "set";
                     collection[method](resp, options);
-                    if (success) success(collection, resp, options);
                     collection.trigger("sync", collection, resp, options);
                 };
                 wrapError(this, options);

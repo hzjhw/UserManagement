@@ -57,8 +57,9 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             load: function(instance, context, model){
                 console.log('4.BaseCollection.load');
                 if (typeof model !== 'undefined') this.parseUrl(model);
-                context.empty();
-                return instance.fetch();
+                return instance.fetch({success: function(){
+                    context.empty();
+                }});
             },
 
             empty: function(){
