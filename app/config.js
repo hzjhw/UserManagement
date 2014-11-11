@@ -27,6 +27,7 @@ seajs.config({
         'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
         'BaseCollection': 'base/BaseCollection.js',
         'BaseModel': 'base/BaseModel.js',
+        'BaseItem': 'base/BaseItem.js',
         'BaseRoot': 'base/BaseRoot',
         // user
         'AbcUser': 'models/AbcUser.js',

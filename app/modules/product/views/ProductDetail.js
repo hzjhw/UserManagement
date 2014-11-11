@@ -24,15 +24,9 @@ define('ProductDetail', ['jquery', 'underscore', 'backbone', 'ProductModel', 'ha
 
             initialize: function () {
                 console.log('2.ProductDetail.initialize');
+
                 var ctx = this;
                 this.passId = Est.getUrlParam('id', window.location.href);
-
-                this.items = [
-                    {text: '分类1', value: 'Category_00000000000000000001683'},
-                    {text: '选项2', value: 'Category_00000000000000000001684'},
-                    {text: '选项3', value: 'Category_00000000000000000001685'}
-                ];
-
 
                 if (!Est.isEmpty(this.passId)) {
                     this.model = new ProductModel();
@@ -40,6 +34,7 @@ define('ProductDetail', ['jquery', 'underscore', 'backbone', 'ProductModel', 'ha
                     this.model.fetch().done(function () {
                         ctx.render().resetIframe();
                     });
+
                 } else {
                     this.passId = new Date().getTime();
                     this.model = new ProductModel();
