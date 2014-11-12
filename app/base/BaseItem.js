@@ -37,6 +37,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
 
             editField: function(options, context){
                 return new Est.promise(function(resolve, reject){
+                    context.model.fetch();
                     var dialog = require('dialog');
                     var oldName = context.model.attributes[options.field];
                     var d = dialog({
