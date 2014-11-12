@@ -4,14 +4,15 @@
  * @author yongjin on 2014/11/6
  */
 
-define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'PaginationView', 'localStorage'],
+define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'PaginationView', 'localStorage', 'Est'],
     function(require, exports, module){
-        var Backbone, BaseCollection, PaginationModel, PaginationView;
+        var Backbone, BaseCollection, PaginationModel, PaginationView, Est;
 
         Backbone = require('backbone');
         //Backbone.localStorage = require('localStorage');
         PaginationModel = require('PaginationModel');
         PaginationView = require('PaginationView');
+        Est = require('Est');
 
         BaseCollection = Backbone.Collection.extend({
 
@@ -57,9 +58,12 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
             load: function(instance, context, model){
                 console.log('4.BaseCollection.load');
                 if (typeof model !== 'undefined') this.parseUrl(model);
-                return instance.fetch({success: function(){
-                    context.empty();
-                }});
+                return new Est.promise(function(resolve, reject){
+                    return instance.fetch({success: function(){
+                        resolve(instance);
+                        context.empty();
+                    }});
+                });
             },
 
             empty: function(){

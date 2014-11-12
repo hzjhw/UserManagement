@@ -11,7 +11,7 @@ define('ProductCategoryCollection', ['jquery', 'underscore', 'backbone', 'Catego
         BaseCollection = require('BaseCollection');
 
         ProductCategoryCollection = BaseCollection.extend({
-            url: 'http://jihui88.com/rest/api/category/product',
+            url: 'http://jihui88.com/rest/api/category/product?pageSize=1000',
             model: CategoryModel
         });
         module.exports = ProductCategoryCollection;

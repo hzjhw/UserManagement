@@ -28,6 +28,8 @@ seajs.config({
         'BaseCollection': 'base/BaseCollection.js',
         'BaseModel': 'base/BaseModel.js',
         'BaseItem': 'base/BaseItem.js',
+        'BaseDetail': 'base/BaseDetail.js',
+        'BaseView': 'base/BaseView.js',
         'BaseRoot': 'base/BaseRoot',
         // user
         'AbcUser': 'models/AbcUser.js',
@@ -44,22 +46,17 @@ seajs.config({
 
         // category
         'CategoryModel': 'models/CategoryModel.js',
+        'ProductCategoryCollection': 'modules/category/collections/ProductCategoryCollection.js',
+        'ProductCategoryItem': 'modules/category/views/ProductCategoryItem.js',
+        'ProductCategoryView': 'modules/category/views/ProductCategoryView.js',
+        'ProductCategoryDetail': 'modules/category/views/ProductCategoryDetail.js',
 
         // product
         'ProductModel': 'models/ProductModel.js',
-        'ProductTypeModel': 'models/ProductTypeModel.js',
         'ProductCollection': 'modules/product/collections/ProductCollection.js',
-        'ProductCategoryCollection': 'modules/product/collections/ProductCategoryCollection.js',
-        'ProductTypeCollection': 'modules/product/collections/ProductTypeCollection.js',
         'ProductItem': 'modules/product/views/ProductItem.js',
-        'ProductCategoryItem': 'modules/product/views/ProductCategoryItem.js',
-        'ProductTypeItem': 'modules/product/views/ProductTypeItem.js',
         'ProductView': 'modules/product/views/ProductView.js',
-        'ProductCategoryView': 'modules/product/views/ProductCategoryView.js',
-        'ProductTypeView': 'modules/product/views/ProductTypeView.js',
-        'ProductDetail': 'modules/product/views/ProductDetail.js',
-        'ProductCategoryDetail': 'modules/product/views/ProductCategoryDetail.js',
-        'ProductTypeDetail': 'modules/product/views/ProductTypeDetail.js'
+        'ProductDetail': 'modules/product/views/ProductDetail.js'
     },
 
     // 路径配置

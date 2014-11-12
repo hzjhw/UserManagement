@@ -7,8 +7,8 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel
     function (require, exports, module) {
         var dialog, BaseModel;
 
-        dialog = require('dialog');
         BaseModel = require('BaseModel');
+        dialog = require('dialog');
 
         var ProductModel = BaseModel.extend({
             baseUrl: 'http://jihui88.com/rest/api/product/detail',

@@ -11,7 +11,7 @@
     <meta name="description" content="Description"/>
     <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" href="../../styles/default/base.css"/>
-    <link rel="stylesheet" href="styles/product.css"/>
+    <link rel="stylesheet" href="styles/category.css"/>
     <link href="../../styles/default/dpl.css" rel="stylesheet">
     <link href="../../styles/default/bui.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -38,26 +38,21 @@
 <body>
 <!--<![endif]-->
 
-<div id="product-add-container"></div>
+<div id="product-category-add-container"></div>
 
 <!--template-->
-<script type="text/template" id="item-product">
-    <div><span class="name">{{name}} </span><a href="javascript:;" class="delete">删除</a> <span
-            class="edit" target="_blank">修改</span>{{id}}
-    </div>
-</script>
-
-<script type="text/template" id="product-type-detail-tpl">
+<script type="text/template" id="product-category-detail-tpl">
     <div id="product-add-inner">
         <form id="J_Form" action="" class="form-horizontal">
             <div class="control-group">
-                <label class="control-label"><s>*</s>商品类型名称：</label>
+                <label class="control-label"><s>*</s>分类名称：</label>
                 <div class="controls">
-                    <input id="model-name" name="name" value="{{name}}" type="text" class="input-middle"
+                    <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
                            data-rules="{required : true}"
-                           data-tip='{"text":"请输入类型名称","iconCls":"icon icon-pencil"}'>
+                           data-tip='{"text":"请输入分类名称","iconCls":"icon icon-pencil"}'>
                 </div>
             </div>
+
             <div class="row actions-bar" style="display:none;">
                 <div class="form-actions span13 offset3">
                     <button id="submit" type="button" class="button button-primary">保存</button>
@@ -70,6 +65,6 @@
 
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
-<script type="text/javascript" src="controllers/ProductTypeDetailCtrl.js"></script>
+<script type="text/javascript" src="controllers/ProductCategoryDetailCtrl.js"></script>
 </body>
 </html>

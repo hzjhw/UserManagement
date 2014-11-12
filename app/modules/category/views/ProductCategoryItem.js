@@ -21,11 +21,7 @@ define('ProductCategoryItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'B
             },
 
             initialize: function () {
-                this.model.bind('reset', this.render, this);
-                this.model.bind('change', this.render, this);
-                this.model.bind('destroy', this.remove, this);
-                if (this.model.view) this.model.view.remove();
-                this.model.view = this;
+                this.__proto__.constructor.__super__.initialize.apply(this, arguments);
             },
 
             render: function () {
@@ -37,7 +33,7 @@ define('ProductCategoryItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'B
             editItem: function () {
                 this.edit({
                     title: '产品分类修改',
-                    url: 'http://jihui88.com/member/modules/product/product_category_detail.html?id=' + this.model.id
+                    url: 'http://jihui88.com/member/modules/category/product_category_detail.html?id=' + this.model.id
                 });
             },
 
