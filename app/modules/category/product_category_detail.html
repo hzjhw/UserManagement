@@ -11,7 +11,6 @@
     <meta name="description" content="Description"/>
     <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" href="../../styles/default/base.css"/>
-    <link rel="stylesheet" href="styles/category.css"/>
     <link href="../../styles/default/dpl.css" rel="stylesheet">
     <link href="../../styles/default/bui.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -65,6 +64,12 @@
 
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
-<script type="text/javascript" src="controllers/ProductCategoryDetailCtrl.js"></script>
+<script type="text/javascript">
+
+    seajs.use(['jquery', 'ProductCategoryDetail'], function(jquery, ProductCategoryDetail){
+        new ProductCategoryDetail();
+    });
+
+</script>
 </body>
 </html>

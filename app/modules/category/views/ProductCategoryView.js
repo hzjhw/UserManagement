@@ -5,16 +5,16 @@
  */
 define('ProductCategoryView', ['jquery', 'ProductCategoryItem', 'ProductCategoryCollection', 'BaseView', 'Est'],
     function (require, exports, module) {
-        var ProductCategoryView, ProductCategoryItem, ProductCategoryCollection, BaseView, Est;
+        var ProductCategoryView, ProductCategoryItem, ProductCategoryCollection, BaseView, Est, template;
 
         ProductCategoryItem = require("ProductCategoryItem");
         ProductCategoryCollection = require("ProductCategoryCollection");
         BaseView = require('BaseView');
         Est = require('Est');
+        template = require('http://jihui88.com/member/modules/category/templates/category_product_list.html');
 
         ProductCategoryView = BaseView.extend({
-            el: '#list-product-category',
-            list: $("#product-category-list-ul"),
+            el: '#main',
             events: {
                 'click #toggle-all': 'toggleAllChecked',
                 'click .product-category-add': 'openAddDialog'
@@ -22,8 +22,10 @@ define('ProductCategoryView', ['jquery', 'ProductCategoryItem', 'ProductCategory
 
             initialize: function(){
                 var ctx = this;
+                this.$el.empty();
+                this.$el.append($(template));
+                this.list = $("#product-category-list-ul", this.$el);
                 this.initCollection(ProductCategoryCollection, this).then(function(collection){
-                    debugger
                     Est.sortBy(collection.models, function(item){
                         return item.attributes.sort;
                     });

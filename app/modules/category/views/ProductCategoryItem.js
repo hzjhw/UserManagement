@@ -5,15 +5,16 @@
  */
 define('ProductCategoryItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'BaseItem'],
     function (require, exports, module) {
-        var ProductCategoryItem, HandlebarsHelper, Est, BaseItem;
+        var ProductCategoryItem, HandlebarsHelper, Est, BaseItem, template;
 
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseItem = require('BaseItem');
+        template = require('http://jihui88.com/member/modules/category/templates/category_product_item.html');
 
         ProductCategoryItem = BaseItem.extend({
             tagName: 'li',
-            template: HandlebarsHelper.compile($('#item-product-category').html()),
+            template: HandlebarsHelper.compile(template),
             events: {
                 'click .name': 'editName',
                 'click .delete': 'deleteItem',

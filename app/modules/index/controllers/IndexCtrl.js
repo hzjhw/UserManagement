@@ -21,13 +21,13 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
                 new ProductView();
             });
 
-            define('main', function(require, exports, module){
+            define('product/template', function(require){
                 require('http://jihui88.com/member/modules/product/templates/product_item.html');
                 require('http://jihui88.com/member/modules/product/templates/product_list.html');
                 require('http://jihui88.com/member/common/pagination/pagination.html');
             });
 
-            seajs.use(['main'], function(main){
+            seajs.use(['product/template'], function(template){
 
             });
         },
@@ -35,6 +35,15 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         productCategory: function(){
             seajs.use(['jquery', 'ProductCategoryView'], function(jquery, ProductCategoryView){
                 new ProductCategoryView();
+            });
+            define('category/product', function(require){
+                require('http://jihui88.com/member/modules/category/templates/category_product_item.html');
+                require('http://jihui88.com/member/modules/category/templates/category_product_list.html');
+                require('http://jihui88.com/member/common/pagination/pagination.html');
+            });
+
+            seajs.use(['category/product'], function(template){
+
             });
         },
 
