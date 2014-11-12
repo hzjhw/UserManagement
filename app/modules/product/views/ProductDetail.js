@@ -5,16 +5,17 @@
  */
 define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail'],
     function (require, exports, module) {
-        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail;
+        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template;
 
         ProductModel = require('ProductModel');
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseDetail = require('BaseDetail');
+        template = require('http://jihui88.com/member/modules/product/templates/product_detail.html');
 
         ProductDetail = BaseDetail.extend({
-            el: '#product-add-container',
-            template: HandlebarsHelper.compile($("#product-detail-tpl").html()),
+            el: '#main',
+            template: HandlebarsHelper.compile(template),
             events: {
                 'click #product-reset': 'reset'
             },

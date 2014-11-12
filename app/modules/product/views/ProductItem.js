@@ -5,15 +5,16 @@
  */
 define('ProductItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'BaseItem'],
     function (require, exports, module) {
-        var ProductItem, HandlebarsHelper, Est, BaseItem;
+        var ProductItem, HandlebarsHelper, Est, BaseItem, template;
 
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseItem = require('BaseItem');
+        template = require('http://jihui88.com/member/modules/product/templates/product_item.html');
 
         ProductItem = BaseItem.extend({
             tagName: 'li',
-            template: HandlebarsHelper.compile($('#item-product').html()),
+            template: HandlebarsHelper.compile(template),
             events: {
                 'click .name': 'editName',
                 'click .edit': 'editItem',
@@ -26,10 +27,6 @@ define('ProductItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'BaseItem'
 
             render: function () {
                 console.log('11.ProductItem.render [item display]');
-
-                var tpl = require(host + '/modules/product/templates/product-item.html');
-                console.log(tpl);
-
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },

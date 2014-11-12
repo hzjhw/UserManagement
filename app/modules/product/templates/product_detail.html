@@ -17,7 +17,9 @@
 
                     <div class="controls">
                         <div id="s1">
-                            <input type="hidden" id="hide" value="b" name="hide">
+                            <input type="hidden" id="category" value="{{category}}" name="category"
+                                   data-rules="{required : true}"
+                                   data-tip='{"text":"请选择产品分类"}'>
                         </div>
                     </div>
                 </div>
@@ -25,7 +27,8 @@
                     <label class="control-label">产品型号：</label>
 
                     <div class="controls">
-                        <input id="model-protype" name="protype" value="{{protype}}" type="text" class="input-large"
+                        <input id="model-prodtype" name="prodtype" value="{{prodtype}}" type="text"
+                               class="input-large"
                                data-tip='{"text":"请输入产品型号","iconCls":"icon icon-pencil"}'>
                     </div>
                 </div>
@@ -38,25 +41,39 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label" for="model-type">产品属性：</label>
+
+                    <div class="controls">
+                        <div id="s2">
+                            <input id="model-type" name="type" value="{{type}}" class="input-small" type="hidden" style="margin-right:5px;"/>
+                            <input id="model-loginView" name="type" value="{{loginView}}" class="input-small" type="hidden" style="margin-right:5px;"/>
+                            <input id="model-ads" name="type" value="{{ads}}" class="input-small" type="hidden"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
                     <label class="control-label">产品图片：</label>
 
                     <div class="controls">
                         <input id="model-photo" value="{{photo}}" name="photo" type="text" class="input-small">
                     </div>
                 </div>
+
                 <div class="control-group">
-                    <label class="control-label">上架时间：</label>
+                    <label class="control-label">产品描述：</label>
 
                     <div class="controls">
-                        <input type="text" class="calendar"/>
+                        <textarea id="model-proddesc" value="{{proddesc}}" name="proddesc" class="input-small"></textarea>
                     </div>
                 </div>
-                <!--<div class="row actions-bar">
+
+                <div class="row actions-bar" style="display:none;">
                     <div class="form-actions span13 offset3">
-                        <button id="product-submit" type="button" class="button button-primary">保存</button>
-                        <button type="reset" class="button">重置</button>
+                        <button id="submit" type="button" class="button button-primary">保存</button>
+                        <button id="reset" type="reset" class="button">重置</button>
                     </div>
-                </div>-->
+                </div>
             </form>
 
         </div>

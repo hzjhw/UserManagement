@@ -168,3 +168,20 @@ body .m0{margin:0}
         opacity:.6
     }
 }
+
+div#top {
+    height: 100px;
+    background: #dfdfdf;
+}
+#left-bar{
+    float: left;
+    width: 150px;
+    border-right: 1px solid #dfdfdf;
+    margin-right: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+div#main {
+    float: left;
+    padding-top: 5px;
+}

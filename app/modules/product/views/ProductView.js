@@ -5,24 +5,28 @@
  */
 define('ProductView', ['jquery', 'ProductItem', 'ProductCollection', 'BaseView'],
     function (require, exports, module) {
-        var ProductView, ProductItem, ProductCollection, BaseView;
+        var ProductView, ProductItem, ProductCollection, BaseView, template;
 
         ProductItem = require("ProductItem");
         ProductCollection = require("ProductCollection");
         BaseView = require('BaseView');
+        template = require('http://jihui88.com/member/modules/product/templates/product_list.html');
 
         ProductView = BaseView.extend({
-            el: '#list-product',
-            list: $("#product-list-ul"),
+            el: '#main',
             events: {
                 'click #toggle-all': 'toggleAllChecked',
                 'click .product-add': 'openAddDialog'
             },
 
             initialize: function () {
+                this.$el.empty();
+                this.$el.append($(template));
+                this.list = $("#product-list-ul", this.$el);
                 this.initCollection(ProductCollection, this);
                 this.initBind();
                 this.initItemView(ProductItem, this);
+
                 return this;
             },
 
