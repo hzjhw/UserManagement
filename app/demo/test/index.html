@@ -5,7 +5,7 @@
     <title>backbone test</title>
     <script src="scripts/jquery-1.10.2.js"></script>
     <script src="scripts/underscore.js"></script>
-    <script src="scripts/backbone-debug.js"></script>
+    <script src="scripts/backbone.js"></script>
 </head>
 <body>
 
@@ -14,11 +14,78 @@
 </div>
 
 <script type="text/template" id="form-template">
+	<form id="p_form" action = "" class = "form-horizontal">
+		<input type="text" name="name" value="火鸡"/>
+		<input type="text" name="marketPrice" value="11"/>
+		<input type="text" name="weight" value="2"/>
+		<input type="text" name="photo" value="upload/z/z2/zhongjue/picture/2013/03/27/02f986f8-60c7-4221-8307-b0ca84f87655.jpg"/>
+		<input type="text" name="photoId" value="Attach_0000000000000000000153731"/>
+		<input type="text" name="category" value="Category_00000000000000000008401"/>
+		<select class="{required: true}" name="4028338149a83f320149a8609b450004" id="productAttributeType">
+							<option value="">请选择...</option>
+								<option value="红色">
+								红色
+								</option>
+								<option value="绿色">
+								绿色
+								</option>
+		</select>
+		<div class="row actions-bar">
+            <div class="form-actions span13 offset3">
+                <button id="submit" type="button" class="button button-primary">保存</button>
+                <button id="reset" type="reset" class="button">重置</button>
+            </div>
+        </div>
+	</form>
     <form id="J_Form" action="" class="form-horizontal">
         <div class="control-group">
             <label class="control-label"><s>*</s>产品名称：</label>
             <div class="controls">
-                <input id="model-name" name="name" value="" type="text" class="input-large">
+			
+			<input id="model-name" name="attributeOptionList" value="['dddd','aaaaa']" type="text" class="input-large">
+			
+                <input id="model-name" name="categoryId" value="Category_00000000000000000008401" type="text" class="input-large">
+				<input id="model-name" name="name" value="颜色" type="text" class="input-large">
+				<select class="{required: true}" name="attributeType" id="productAttributeType">
+							<option value="">请选择...</option>
+								<option value="text">
+								文本
+								</option>
+								<option value="number">
+								数字
+								</option>
+								<option value="alphaint">
+								字母
+								</option>
+								<option value="select">
+								单选项
+								</option>
+								<option value="checkbox">
+								多选项
+								</option>
+								<option value="date">
+								日期
+								</option>
+						</select>
+				<input id="model-name" name="orderList" value="44" type="text" class="input-large">
+				<tr>
+					<th>
+						是否必填:
+					</th>
+					<td>
+						<label><input type="radio" value="true" name="isRequired">是</label>
+						<label><input type="radio" checked="" value="false" name="isRequired">否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						是否启用:
+					</th>
+					<td>
+						<label><input type="radio" checked="" value="true" name="isEnabled">是</label>
+						<label><input type="radio" value="false" name="isEnabled">否</label>
+					</td>
+				</tr>
             </div>
         </div>
 

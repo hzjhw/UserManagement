@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>backbone test</title>
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/underscore.js"></script>
+    <script src="scripts/backbone.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+</div>
+
+<script type="text/template" id="form-template">
+	
+
+	<form method="post" action="" class="validate" id="addMember">
+			<table class="inputTable">
+				<tbody><tr>
+					<th>
+						支付类型:
+					</th>
+					<td>
+						<select class="{required: true}" name="paymentConfigType">
+							<option value="">请选择...</option>
+								<option value="deposit">
+									预存款
+								</option>
+								<option value="offline">
+									线下支付
+								</option>
+								<option value="tenpay">
+									财付通
+								</option>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						支付方式名称:
+					</th>
+					<td>
+						<input type="text" value="" class="formText {required: true, remote: 'payment_config!checkName.action?oldValue=', messages: {remote: '支付方式名称已存在!'}}" name="name">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						支付手续费设置:
+					</th>
+					<td>
+							<label class="requireField">
+								<input type="radio" checked="" value="scale" name="paymentFeeType">
+								按比例收费
+							</label>
+							<label class="requireField">
+								<input type="radio" value="fixed" name="paymentFeeType">
+								固定手续费
+							</label>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+					<tr><th>
+						支付费率/固定费用:
+					</th>
+					<td>
+						<input type="text" value="0" class="formText {required: true, min: 0}' valid" name="paymentFee">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr hidden">
+					<th>
+						财付通交易类型:
+					</th>
+					<td>
+						<select class="ignoreValidate {required: true}" name="tenpayType">
+							<option value="">请选择...</option>
+								<option value="direct">
+									即时交易
+								</option>
+								<option value="partnerMaterial">
+									担保交易-实物
+								</option>
+								<option value="partnerVirtual">
+									担保交易-虚拟
+								</option>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr hidden">
+					<th>
+						财付通商户号:
+					</th>
+					<td>
+						<input type="text" value="" class="formText ignoreValidate {required: true}'" name="bargainorId">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr hidden">
+					<th>
+						财付通密钥:
+					</th>
+					<td>
+						<input type="text" value="" class="formText ignoreValidate {required: true}'" name="key">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						排序:
+					</th>
+					<td>
+						<input type="text" title="" value="50" class="formText {required: true, digits: true} " name="sort">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						介绍:
+					</th>
+					<td>
+						<input type="text" title="" value="50" class="formText {required: true, digits: true} " name="description">
+					</td>
+				</tr>
+			</tbody></table>
+			<div class="row actions-bar">
+            <div class="form-actions span13 offset3">
+                <button id="submit" type="button" class="button button-primary">保存</button>
+                <button id="reset" type="reset" class="button">重置</button>
+            </div>
+		</form>
+   
+</script>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>03700721953

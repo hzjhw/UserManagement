@@ -6,7 +6,7 @@
 
 // 模型类
 var UserModel = Backbone.Model.extend({
-    url: 'http://jihui88.com/rest/api/user/info', // 请求地址
+    url: 'http://jihui88.com/rest/api/paymentconfig/detail', // 请求地址
     defaults: {
         name: '未登录'
     }
@@ -27,8 +27,12 @@ var view = Backbone.View.extend({
     },
     submit: function(){
         var ctx = this;
+		this.model.set('name', '111');
         // 为模型类  赋值
-        $("#J_Form input").each(function () {
+        $("#addMember input").each(function () {
+            ctx.model.set($(this).attr('name'), $(this).val());
+        });
+		$("#addMember select").each(function () {
             ctx.model.set($(this).attr('name'), $(this).val());
         });
 
