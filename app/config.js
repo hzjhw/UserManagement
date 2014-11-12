@@ -32,11 +32,15 @@ seajs.config({
         'BaseView': 'base/BaseView.js',
         'BaseRoot': 'base/BaseRoot',
         // user
-        'AbcUser': 'models/AbcUser.js',
+        'UserModel': 'models/UserModel.js',
 
         // common
         'PaginationModel': 'common/pagination/PaginationModel.js',
         'PaginationView': 'common/pagination/PaginationView.js',
+
+        // index
+        'TopView': 'modules/index/views/TopView.js',
+        'LeftView': 'modules/index/views/LeftView.js',
 
         // todo
         'TodoModel': 'demo/todo/models/TodoModel.js',

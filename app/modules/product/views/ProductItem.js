@@ -26,6 +26,10 @@ define('ProductItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'BaseItem'
 
             render: function () {
                 console.log('11.ProductItem.render [item display]');
+
+                var tpl = require(host + '/modules/product/templates/product-item.html');
+                console.log(tpl);
+
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },

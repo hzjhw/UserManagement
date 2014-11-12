@@ -6,35 +6,62 @@
     </script>
     <meta charset="UTF-8">
     <title>产品管理</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="fragment" content="!">
     <meta name="description" content="Description"/>
     <meta name="viewport" content="width=device-width"/>
-    <!-- bulid:css styles/default/base.css -->
     <link rel="stylesheet" href="styles/default/base.css"/>
-    <link rel="stylesheet" href="styles/default/dpl.css"/>
-    <link rel="stylesheet" href="styles/default/bui.css"/>
-    <!-- endbulid -->
+    <link href="styles/default/dpl.css" rel="stylesheet">
+    <link href="styles/default/bui.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <link href="http://g.tbcdn.cn/fi/bui/css/dpl-min.css" rel="stylesheet"/>
-    <link href="http://g.tbcdn.cn/fi/bui/css/bui-min.css" rel="stylesheet"/>
+    <link href="http://g.tbcdn.cn/fi/bui/css/dpl-min.css" rel="stylesheet">
+    <link href="http://g.tbcdn.cn/fi/bui/css/bui-min.css" rel="stylesheet">
     <![endif]-->
+    <!--[if IE6]>
+    <script type="text/javascript" src="vendor/patch/patch.min.js"></script>
+    <![endif]-->
+
+    <link href="vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 </head>
-<!--[if IE 7]><body class="ie7"><![endif]-->
-<!--[if IE 8]><body class="ie8"><![endif]-->
-<!--[if IE 9]><body class="ie9"><![endif]-->
-<!--[if IE 10]><body class="ie10"><![endif]-->
-<!--[if IE 11]><body class="ie11"><![endif]-->
+<!--[if IE 7]>
+<body class="ie7"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11"><![endif]-->
 <!--[if !IE]>-->
 <body>
 <!--<![endif]-->
-<div id="main">
-    main
-</div>
 
-<!-- build:js scripts/base.js -->
+<div id="top"> </div>
+<div id="left-bar"> </div>
+<div id="main"> </div>
+<!--template-->
+<script type="text/template" id="top-template">
+    <ul>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">商品管理</a></li>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">订单处理</a></li>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">会员管理</a></li>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">页面内容</a></li>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">管理员</a></li>
+        <li><a href="javascript:;" target="menuFrame" hidefocus="true">网站设置</a></li>
+        <li class="home"><a href="javascript:;" target="_blank" hidefocus="true"></a></li>
+    </ul>
+</script>
+
+<script type="text/template" id="left-bar-template">
+    <ul id="left-bar-ul">
+        <li><a href="/member/modules/product/product_list.html">产品管理</a></li>
+        <li><a href="/member/modules/category/product_category_list.html">分类管理</a></li>
+    </ul>
+</script>
+
 <script type="text/javascript" src="scripts/base.js"></script>
 <script type="text/javascript" src="config.js"></script>
-<!-- endbulid -->
+<script type="text/javascript" src="modules/index/controllers/IndexCtrl.js"></script>
 </body>
 </html>
