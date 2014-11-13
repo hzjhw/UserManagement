@@ -22,7 +22,7 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel
                 loginView: '1',
                 ads: '2',
                 prodtype: '',
-                category: '',
+                category: '0',
                 isBest: false,
                 isNew: false,
                 photo2: [],

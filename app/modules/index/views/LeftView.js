@@ -14,7 +14,7 @@ define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est
         UserModel = require('UserModel');
 
         LeftView = Backbone.View.extend({
-            el: '#left-bar',
+            el: '#jhw-left-bar',
             template: HandlebarsHelper.compile($("#left-bar-template").html()),
             events: {
                 'click #product': 'toProduct'
@@ -33,7 +33,11 @@ define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est
             },
 
             render: function(){
-                this.$el.html(this.template(this.model.toJSON()));
+                try{
+                    this.$el.html(this.template(this.model.toJSON()));
+                }catch (e){
+                    console.error('LeftView.render');
+                }
                 return this;
             }
 

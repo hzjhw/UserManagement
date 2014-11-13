@@ -12,7 +12,7 @@ define('TopView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'User
         UserModel = require('UserModel');
 
         TopView = Backbone.View.extend({
-            el: '#left-bar',
+            el: '#jhw-left-bar',
             template: HandlebarsHelper.compile($("#left-bar-template").html()),
             events: {
                 'click #product': 'toProduct'
@@ -26,7 +26,11 @@ define('TopView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'User
             },
 
             render: function(){
-                this.el.html(this.template(this.model.toJSON()));
+                try{
+                    this.el.html(this.template(this.model.toJSON()));
+                }catch(e){
+                    console.error('TopView');
+                }
                 return this;
             }
 

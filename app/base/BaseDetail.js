@@ -72,7 +72,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                                 }
                             });
                             if (options.select){
-                                result.attributes.data = Est.bulidSelectNode(result.attributes.data, 2, {
+                                result.attributes.data = Est.bulidSelectNode(result.attributes.data, 1, {
                                     name: 'text'
                                 })
                             }
@@ -82,31 +82,35 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                         } else{
                             result.attributes.data = [];
                         }
+                        result.attributes.data.unshift({text: '请选择分类', value: '0'});
                         topResolve(result.attributes.data);
                     });
                 });
             },
 
             initSelect: function (options) {
-                var container = {};
-                var target = options.target || '#category';
-                var render = options.render || '#s1';
-                var itemId = options.itemId || 'categoryId';
-                var width = options.width || '150';
-                var items = options.items || [];
+                return new Est.promise(function(resove, reject){
+                    var container = {};
+                    var target = options.target || '#category';
+                    var render = options.render || '#s1';
+                    var itemId = options.itemId || 'categoryId';
+                    var width = options.width || '150';
+                    var items = options.items || [];
+                    BUI.use('bui/select', function (Select) {
+                        container[render] = new Select.Select({
+                            render: render,
+                            valueField: target,
+                            width: width,
+                            items: items
+                        });
+                        container[render].render();
+                        container[render].on('change', function (ev) {
+                            $(target).val(Est.trim(ev.item[itemId]));
+                            resove(ev.item[itemId]);
+                        });
+                    })
+                });
 
-                BUI.use('bui/select', function (Select) {
-                    container[render] = new Select.Select({
-                        render: render,
-                        valueField: target,
-                        width: width,
-                        items: items
-                    });
-                    container[render].render();
-                    container[render].on('change', function (ev) {
-                        $(target).val(ev.item[itemId]);
-                    });
-                })
             },
 
             reset: function () {

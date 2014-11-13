@@ -14,7 +14,7 @@ define('ProductCategoryView', ['jquery', 'ProductCategoryItem', 'ProductCategory
         template = require('http://jihui88.com/member/modules/category/templates/category_product_list.html');
 
         ProductCategoryView = BaseView.extend({
-            el: '#main',
+            el: '#jhw-main',
             events: {
                 'click #toggle-all': 'toggleAllChecked',
                 'click .product-category-add': 'openAddDialog'

@@ -9,6 +9,8 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             '': 'index',
             'product': 'product',
             'category/product': 'productCategory',
+            'attributes': 'attributes',
+
             '*other': 'default'
         },
 
@@ -43,6 +45,21 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             });
 
             seajs.use(['category/product'], function(template){
+
+            });
+        },
+
+        attributes: function(){
+            seajs.use(['jquery', 'AttributesView'], function(jquery, AttributesView){
+                new AttributesView();
+            });
+            define('attributes/template', function(require){
+                require('http://jihui88.com/member/modules/category/templates/attributes_item.html');
+                require('http://jihui88.com/member/modules/category/templates/attributes_list.html');
+                require('http://jihui88.com/member/common/pagination/pagination.html');
+            });
+
+            seajs.use(['attributes/template'], function(template){
 
             });
         },

@@ -22,6 +22,7 @@ seajs.config({
         'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js',
         'datetimepicker': 'vendor/jquery-datetimepicker/jquery.datetimepicker.js',
         'DatetimePicker': 'common/datetimepicker/scripts/DatetimePicker.js',
+        'xheditor': 'vendor/xheditor/xheditor.js',
         'marionette': 'vendor/backbone/backbone.marionette.js',
         'handlebars': 'vendor/handlebars/handlebars-debug.js',
         'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
@@ -37,6 +38,7 @@ seajs.config({
         // common
         'PaginationModel': 'common/pagination/PaginationModel.js',
         'PaginationView': 'common/pagination/PaginationView.js',
+        'option': 'common/options/option.js',
 
         // index
         'TopView': 'modules/index/views/TopView.js',
@@ -54,6 +56,13 @@ seajs.config({
         'ProductCategoryItem': 'modules/category/views/ProductCategoryItem.js',
         'ProductCategoryView': 'modules/category/views/ProductCategoryView.js',
         'ProductCategoryDetail': 'modules/category/views/ProductCategoryDetail.js',
+
+        // attributes
+        'AttributesModel': 'models/AttributesModel.js',
+        'AttributesCollection': 'modules/category/collections/AttributesCollection.js',
+        'AttributesItem': 'modules/category/views/AttributesItem.js',
+        'AttributesView': 'modules/category/views/AttributesView.js',
+        'AttributesDetail': 'modules/category/views/AttributesDetail.js',
 
         // product
         'ProductModel': 'models/ProductModel.js',

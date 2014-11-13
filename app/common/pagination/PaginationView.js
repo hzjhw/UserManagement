@@ -9,7 +9,7 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper'
         var Backbone = require('backbone');
         var Est = require('Est');
         var HandlebarsHelper = require('HandlebarsHelper');
-        var template = require('http://jihui88.com/member/common/pagination/pagination.html');
+        var template = require('http://jihui88.com/member/common/pagination/pagination.html') || 'pagination.html[404]';
 
         //分页模板
         var PaginationView = Backbone.View.extend({

@@ -28,17 +28,21 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'HandlebarsHelper', 
                 console.log('ProductCategoryDetail.render');
                 console.log('4.ProductDetail.render');
                 var ctx = this;
-                this.$el.html(this.template(this.model.toJSON()));
+
+                try{
+                    this.$el.html(this.template(this.model.toJSON()));
+                } catch (e){
+                    console.error('ProductCategoryDetail.render');
+                }
 
                 // 验证
                 BUI.use('bui/form', function (Form) {
-                    new Form.Form({
-                        srcNode: '#J_Form'
-                    }).render();
+                    new Form.Form({ srcNode: '#J_Form' }).render();
                 });
+
                 // 保存
                 $('#submit', this.el).on('click', function () {
-                    $("#J_Form input").each(function () {
+                    $("#J_Form input, #J_Form textarea").each(function () {
                         ctx.model.set($(this).attr('name'), $(this).val());
                     });
                     ctx.saveItem(function () {

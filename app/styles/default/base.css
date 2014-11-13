@@ -169,11 +169,11 @@ body .m0{margin:0}
     }
 }
 
-div#top {
+#jhw-top {
     height: 100px;
     background: #dfdfdf;
 }
-#left-bar{
+#jhw-left-bar{
     float: left;
     width: 150px;
     border-right: 1px solid #dfdfdf;
@@ -181,27 +181,47 @@ div#top {
     padding-top: 5px;
     padding-left: 10px;
 }
-div#main {
+#jhw-main {
     float: left;
     padding-top: 5px;
 }
 
-/*产品*/
-#product{
+/* 编辑器 **************************************************************************************/
+
+
+/* 产品 ***************************************************************************************/
+#jhw-product{
 
 }
 
-/* 产品分类*/
-#product-category{
+/* 产品分类 ***********************************************************************************/
+#jhw-product-category{
 
 }
 
-/*新闻*/
-#news{
+/* 新闻 ****************************************************************************************/
+#jhw-news{
 
 }
+/* 新闻分类 ************************************************************************************/
+#jhw-news-category{
+
+}
+
 /*
-新闻分类*/
-#news-category{
+属性*/
 
+.attributes-item{
+    vertical-align: middle;
+    overflow:hidden;
+}
+
+.attributes-item input[type=password], .attributes-item  input[type=text], .attributes-item  select, .attributes-item  textarea{
+    vertical-align: bottom;
+    margin-right: 6px;
+    height: 24px;
+}
+
+.attributes-btn{
+    padding-top: 0px;
 }

@@ -13,7 +13,7 @@ define('ProductView', ['jquery', 'ProductItem', 'ProductCollection', 'BaseView']
         template = require('http://jihui88.com/member/modules/product/templates/product_list.html');
 
         ProductView = BaseView.extend({
-            el: '#main',
+            el: '#jhw-main',
             events: {
                 'click #toggle-all': 'toggleAllChecked',
                 'click .product-add': 'openAddDialog'

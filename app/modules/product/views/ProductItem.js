@@ -10,7 +10,7 @@ define('ProductItem', ['jquery', 'dialog', 'HandlebarsHelper', 'Est', 'BaseItem'
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseItem = require('BaseItem');
-        template = require('http://jihui88.com/member/modules/product/templates/product_item.html');
+        template = require('http://jihui88.com/member/modules/product/templates/product_item.html') || 'product_item.html[404]';
 
         ProductItem = BaseItem.extend({
             tagName: 'li',

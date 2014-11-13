@@ -20,16 +20,19 @@ define('BaseView', ['jquery', 'underscore', 'backbone', 'Est'],
                 this.listenTo(this.collection, 'change:checked', this.checkSelect);
                 return new Est.promise(function(resolve, reject){
                     ctx.collection.paginationModel.on('reloadList', function (model) {
-                        ctx.collection.load(ctx.collection, ctx, model)
-                            .then(function(result){
-                                resolve(result);
-                        });
+                        ctx.load.call(ctx, resolve, model);
                     });
-                    ctx.collection.load(ctx.collection, ctx)
+                    ctx.load.call(ctx, resolve);
+                });
+            },
+
+            load: function(resolve, model){
+                if (this.collection.url){
+                    this.collection.load(this.collection, this, model)
                         .then(function(result){
                             resolve(result);
-                    });
-                });
+                        });
+                }
             },
 
             initBind: function(){
