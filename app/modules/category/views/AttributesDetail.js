@@ -16,39 +16,16 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         AttributesDetail = BaseDetail.extend({
             el: '#jhw-main',
             events: {
-                'click #reset': 'reset',
-                'click #attributes-add-btn': 'addAttribute',
-                'click #attributes-remove-btn': 'removeAttribute'
+                'click #reset': 'reset'
             },
             template: HandlebarsHelper.compile($("#attributes-detail-tpl").html()),
-
             initialize: function () {
                 this.initModel(AttributesModel, this);
             },
-
-            showAttribute: function(){
-                $("#multi-attribute").show();
-            },
-
-            attributeRender: function(){
-                var ctx = this;
-                var options = { el: '#multi-attribute' , add: function(){
-                    ctx.resetIframe();
-                }};
-                if (this.model.get('attributeOptionList').length > 0){
-                    options.items = this.model.get('attributeOptionList');
-                    this.showAttribute();
-                }
-                this.optionsInstance = new option(options);
-            },
-
             render: function () {
                 var ctx = this;
-                try{
-                    this.$el.html(this.template(this.model.toJSON()));
-                } catch (e){
-                    console.error('AttributesDetail.render');
-                }
+                // 添加元素
+                this.$el.html(this.template(this.model.toJSON()));
                 // 产品分类
                 this.getProductCategory({ select: true, extend: true })
                     .then(function (list) {
@@ -58,7 +35,20 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
                             items: list
                         });
                     });
-
+                // 属性选择框
+                this.attributeSelect();
+                // 属性
+                this.attributeRender();
+                // 绑定提交与验证
+                this.form("#J_Form").validate().init(function () {
+                    this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
+                });
+                return this;
+            },
+            showAttribute: function () {
+                $("#multi-attribute").show();
+            },
+            attributeSelect: function () {
                 this.initSelect({
                     render: '#s2',
                     target: '#model-attributeType',
@@ -71,32 +61,24 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
                         {text: '多选项', value: 'checkbox'},
                         {text: '日期', value: 'date'}
                     ]
-                }).then(function(select){
-                    if (select === 'select' || select === 'checkbox'){
+                }).then(function (select) {
+                    if (select === 'select' || select === 'checkbox') {
                         $("#multi-attribute").show();
-                    } else{
+                    } else {
                         $("#multi-attribute").hide();
                     }
                 });
-
-                this.attributeRender();
-
-                // 验证
-                BUI.use('bui/form', function (Form) {
-                    new Form.Form({
-                        srcNode: '#J_Form'
-                    }).render();
-                });
-                // 保存
-                $('#submit', this.el).on('click', function () {
-                    $("#J_Form input, #J_Form textarea").each(function () {
-                        ctx.model.set($(this).attr('name'), $(this).val());
-                    });
-                    ctx.model.set("attributeOptionList", Est.pluck(ctx.optionsInstance.getItems(), 'value'));
-                    ctx.saveItem(function () {
-                    });
-                });
-                return this;
+            },
+            attributeRender: function () {
+                var ctx = this;
+                var options = { el: '#multi-attribute', add: function () {
+                    ctx.resetIframe();
+                }};
+                if (this.model.get('attributeOptionList').length > 0) {
+                    options.items = this.model.get('attributeOptionList');
+                    this.showAttribute();
+                }
+                this.optionsInstance = new option(options);
             }
         });
 

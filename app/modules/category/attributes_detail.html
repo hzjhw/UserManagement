@@ -44,9 +44,9 @@
     <div id="product-add-inner">
         <form id="J_Form" action="" class="form-horizontal">
 
+            <!--属性分类-->
             <div class="control-group">
                 <label class="control-label"><s>*</s>产品分类：</label>
-
                 <div class="controls">
                     <div id="s1">
                         <input type="hidden" id="model-categoryId" value="{{categoryId}}" name="categoryId"
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--属性名称-->
             <div class="control-group">
                 <label class="control-label"><s>*</s>属性名称：</label>
 
@@ -64,10 +64,9 @@
                            data-tip='{"text":"请输入属性名称","iconCls":"icon icon-pencil"}'/>
                 </div>
             </div>
-
+            <!--属性类型-->
             <div class="control-group">
                 <label class="control-label">属性类型：</label>
-
                 <div class="controls">
                     <div id="s2">
                         <input type="hidden" id="model-attributeType" value="{{attributeType}}" name="attributeType">
@@ -75,31 +74,27 @@
                 </div>
             </div>
 
+            <!--多选属性-->
             <div id="multi-attribute" style="display:none;">
-
             </div>
 
-
+            <!--是否必填-->
             <div class="control-group">
                 <label class="control-label">是否必填：</label>
-
                 <div class="controls">
-                    <!--<label><input type="radio" name="isRequired" value="{{isRequired}}">是</label>
-                    <label><input type="radio" name="isRequired" value="{{isRequired}}">否</label>-->
-                    <label><input type="radio" name="isRequired" value="{{isRequired}}" {{#if isRequired}}checked ='checked'{{/if}}>是</label>
-                    <label><input type="radio" name="isRequired" value="{{isRequired}}" {{#if isRequired}}checked=''{{else}}checked='checked'{{/if}}>否</label>
+                    <label><input type="radio" name="isRequired" value="01" {{#compare isRequired '===' '01'}}checked{{/compare}}>是</label>
+                    <label><input type="radio" name="isRequired" value="00" {{#compare isRequired '===' '00'}}checked{{/compare}}>否</label>
                 </div>
             </div>
-
+            <!--是否启用-->
             <div class="control-group">
                 <label class="control-label">是否启用：</label>
-
                 <div class="controls">
-                    <label><input type="radio" name="isEnabled" value="{{isEnabled}}" {{#if isEnabled}}checked='checked'{{/if}}>是</label>
-                    <label><input type="radio" name="isEnabled" value="{{isEnabled}}" {{#if isEnabled}}checked=''{{else}}checked='checked'{{/if}}>否</label>
+                    <label><input type="radio" name="isEnabled" value="01" {{#compare isEnabled '===' '01'}}checked{{/compare}}>是</label>
+                    <label><input type="radio" name="isEnabled" value="00" {{#compare isEnabled '===' '00'}}checked{{/compare}}>否</label>
                 </div>
             </div>
-
+            <!--保存重置-->
             <div class="row actions-bar" style="display:none;">
                 <div class="form-actions span13 offset3">
                     <button id="submit" type="button" class="button button-primary">保存</button>
@@ -110,7 +105,7 @@
     </div>
 </script>
 
-
+<!--多选模板-->
 <script type="text/template" id="option-template">
     <div id="attributes-container">
     </div>
@@ -124,7 +119,6 @@
         </div>
     </div>
 </script>
-
 <script type="text/template" id="option-item-template">
     <div class="attributes-div control-group">
         <label class="control-label">{{key}}:</label>

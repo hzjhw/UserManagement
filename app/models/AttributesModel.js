@@ -14,8 +14,8 @@ define('AttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
             defaults: {
                 attributeType: "text",
                 categoryId: "0", // 必填
-                isRequired: false,
-                isEnabled: true,
+                isRequired: '00',
+                isEnabled: '01',
                 orderList: 0,
                 attributeOptionList: [],
                 name: "",

@@ -12,6 +12,15 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
         Est = require('Est');
 
         BaseDetail = Backbone.View.extend({
+            /**
+             * 初始化模型类 将自动判断是否有ID传递进来，
+             * 若存在则从服务器端获取详细内容
+             *
+             * @method [initialize] - initModel
+             * @param model
+             * @param ctx
+             * @author wyj on 14.11.15
+             */
             initModel: function (model, ctx) {
                 ctx.passId = Est.getUrlParam('id', window.location.href);
                 if (!Est.isEmpty(this.passId)) {
@@ -26,6 +35,69 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     ctx.render().resetIframe();
                 }
             },
+            /**
+             * form包装器， 传递表单选择器
+             *
+             * @method [render] - form
+             * @param {String} formSelector 选择器
+             * @returns {BaseDetail}
+             * @author wyj on 14.11.15
+             */
+            form: function(formSelector){
+                this.formSelector = formSelector;
+                return this;
+            },
+            /**
+             * 启用表单验证
+             *
+             * @method [render] - validate
+             * @returns {BaseDetail}
+             * @author wyj 14.11.15
+             */
+            validate: function(){
+                BUI.use('bui/form', function (Form) {
+                    new Form.Form({
+                        srcNode: this.fromId
+                    }).render();
+                }); return this;
+            },
+            /**
+             * 绑定提交按钮
+             *
+             * @method [render] - init
+             * @param callback
+             * @author wyj 14.11.15
+             */
+            init: function(callback){
+                var ctx = this;
+                $('#submit', this.el).on('click', function () {
+                    $("input, textarea", $(ctx.formSelector)).each(function () {
+                        var name, val, pass; name = $(this).attr('name');
+                        if (!Est.isEmpty(name)){
+                            switch (this.type){
+                                case 'radio':
+                                    val = $(this).is(":checked") ? $(this).val() : pass = true; break;
+                                default :
+                                    val = $(this).val();break;
+                            }
+                            if (!pass){
+                                ctx.model.set(name, val);
+                            }
+                        }
+                    });
+                    if (typeof callback !== 'undefined')
+                        callback.call(ctx);
+                    ctx.saveItem(function () {
+                    });
+                });
+            },
+            /**
+             * 保存表单
+             * @method [render] - saveItem
+             * @param callback
+             * @param context
+             * @author wyj 14.11.15
+             */
             saveItem: function (callback, context) {
                 console.log('BaseDetail.saveItem');
                 this.model.save(null, {
@@ -40,7 +112,14 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     }
                 });
             },
-
+            /**
+             * 获取产品分类
+             *
+             * @method [render] - getProductCategory
+             * @param options select 转换成select形式，extend 转换成列表形式
+             * @returns {ln.promise}
+             * @author wyj 14.11.15
+             */
             getProductCategory: function(options){
                 return new Est.promise(function(topResolve, topReject){
                     options.select = options ? options.select ? true : false : false;
@@ -87,7 +166,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     });
                 });
             },
-
             initSelect: function (options) {
                 return new Est.promise(function(resove, reject){
                     var container = {};
@@ -110,12 +188,16 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                         });
                     })
                 });
-
             },
-
+            /**
+             * 重置表单
+             */
             reset: function () {
                 this.model.set(this.model.defaults);
             },
+            /**
+             * 重置对话框高度
+             */
             resetIframe: function () {
                 try{
                     window.detailDialog.height($(document).height());
@@ -123,6 +205,11 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     console.error('【error】: BaseDetail.resetIframe' + e);
                 }
             },
+            /**
+             * 移除模型类
+             *
+             * @returns {BaseDetail}
+             */
             remove: function () {
                 console.log('BaseDetail.remove');
                 this.model.destroy();
@@ -138,5 +225,4 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
         });
 
         module.exports = BaseDetail;
-
     });
