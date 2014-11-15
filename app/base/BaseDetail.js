@@ -166,6 +166,14 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     });
                 });
             },
+            /**
+             * 下拉框初始化
+             *
+             * @method [render] - initSelect
+             * @param options  [target 文本框ID] [render 渲染ID] [itemId ID标识] [width 宽度] [items 数组]
+             * @returns {ln.promise} 返回promise
+             * @author wyj 14.11.15
+             */
             initSelect: function (options) {
                 return new Est.promise(function(resove, reject){
                     var container = {};
@@ -186,6 +194,40 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                             $(target).val(Est.trim(ev.item[itemId]));
                             resove(ev.item[itemId]);
                         });
+                    })
+                });
+            },
+            /**
+             * 初始化编辑器
+             *
+             * @method initEditor
+             * @author wyj 14.11.15
+             */
+            initEditor: function(){
+                seajs.use(['xheditor'], function(xheditor){
+                    function startEditor(obj){
+                        $(obj).xheditor(
+                            {
+                                tools : 'Preview,Fullscreen,Source,|,contact,abbccQQ,abbccMap,abbccLayout,abbccQrcode,|,Table,abbccImages,abbccFlash,Media,|,FontColor,BackColor,|,Align,Underline,Italic,Bold,|,FontSize,Fontface,|,Link,Unlink',
+                                layerShadow : 2,
+                                html5Upload : false,
+                                upBtnText : '浏览',
+                                upLinkExt : 'jpg,png,bmp',
+                                upImgUrl : '/fileUpload/uploadByJson',
+                                upFlashUrl : '/fileUpload/uploadByJson',
+                                upMediaUrl: '/fileUpload/uploadByJson',
+                                upFlashExt : "swf",
+                                upMediaExt:'wmv,avi,wma,mp3,mid',
+                                linkTag:true,
+                                internalScript:true,
+                                inlineScript:true
+                            });
+                    }
+                    $(function() {
+                        $(".ckeditor").each(function(){
+                            startEditor($(this));
+                        });
+
                     })
                 });
             },

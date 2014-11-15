@@ -76,46 +76,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                 });
 
                 // 编辑器
-                seajs.use(['xheditor'], function(xheditor){
-                    function startEditor(obj){
-                        $(obj).xheditor(
-                            {
-                                tools : 'Preview,Fullscreen,Source,|,contact,abbccQQ,abbccMap,abbccLayout,abbccQrcode,|,Table,abbccImages,abbccFlash,Media,|,FontColor,BackColor,|,Align,Underline,Italic,Bold,|,FontSize,Fontface,|,Link,Unlink',
-                                layerShadow : 2,
-                                html5Upload : false,
-                                upBtnText : '浏览',
-                                upLinkExt : 'jpg,png,bmp',
-                                upImgUrl : '/fileUpload/uploadByJson',
-                                upFlashUrl : '/fileUpload/uploadByJson',
-                                upMediaUrl: '/fileUpload/uploadByJson',
-                                upFlashExt : "swf",
-                                upMediaExt:'wmv,avi,wma,mp3,mid',
-                                linkTag:true,
-                                internalScript:true,
-                                inlineScript:true
-                            });
-                    }
-                    $(function() {
-                        $(".ckeditor").each(function(){
-                            startEditor($(this));
-                        });
+                this.initEditor();
 
-                    })
-                });
-
-                // 验证
-                BUI.use('bui/form', function (Form) {
-                    new Form.Form({ srcNode: '#J_Form' }).render();
-                });
-
-                // 保存
-                $('#product-submit', this.el).on('click', function () {
-                    $("#J_Form input  #J_Form textarea").each(function () {
-                        ctx.model.set($(this).attr('name'), $(this).val());
-                    });
-                    ctx.saveItem(function () {
-                    });
-                });
+                this.form('#J_Form').validate.init();
                 return this;
             }
         });

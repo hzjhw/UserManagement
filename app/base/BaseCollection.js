@@ -55,6 +55,23 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                 });
             },
 
+            /**
+             * 加载列表
+             *
+             * @method [render] - load
+             * @param instance 实例对象
+             * @param context 上下文
+             * @param model 模型类
+             * @returns {ln.promise} 返回promise
+             * @method wyj 14.11.15
+             * @example
+             *      if (this.collection.url){
+                    this.collection.load(this.collection, this, model)
+                        .then(function(result){
+                            resolve(result);
+                        });
+                }
+             */
             load: function(instance, context, model){
                 console.log('4.BaseCollection.load');
                 if (typeof model !== 'undefined') this.parseUrl(model);
@@ -66,6 +83,11 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                 });
             },
 
+            /**
+             * 清空列表
+             * @method [render] - empty
+             * @author wyj 14.11.15
+             */
             empty: function(){
                 console.log('BaseCollection.empty')
                 var collection = this.collection;

@@ -26,7 +26,6 @@ define('ProductView', ['jquery', 'ProductItem', 'ProductCollection', 'BaseView']
                 this.initCollection(ProductCollection, this);
                 this.initBind();
                 this.initItemView(ProductItem, this);
-
                 return this;
             },
 

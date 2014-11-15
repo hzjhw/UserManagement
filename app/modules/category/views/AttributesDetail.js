@@ -37,7 +37,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
                     });
                 // 属性选择框
                 this.attributeSelect();
-                // 属性
+                // 属性选项
                 this.attributeRender();
                 // 绑定提交与验证
                 this.form("#J_Form").validate().init(function () {
