@@ -57,6 +57,11 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                             target: '#category',
                             items: list
                         });
+                        ctx.initSelect({
+                            render: '#s3',
+                            target: '#attributesCate',
+                            items: list
+                        });
                     });
 
                 // 产品属性

@@ -37,6 +37,7 @@ seajs.config({
         'Pagination': 'common/pagination/Pagination.js',
         'PaginationModel': 'common/pagination/PaginationModel.js',
         'AttributesAdd': 'common/attributes/AttributesAdd.js',
+        'AttributesShow': 'common/attributes/AttributesShow.js',
 
         // index
         'TopView': 'modules/index/views/TopView.js',

@@ -1,12 +1,12 @@
 /**
- * @description 添加属性
- * @namespace AttributesAdd
- * @author yongjin on 2014/11/13
+ * @description 属性列表显示
+ * @namespace AttributesList
+ * @author yongjin on 2014/11/16
  */
 
-define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
+define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
     function(require, exports, module){
-        var AttributesAdd, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est;
+        var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est;
 
         HandlebarsHelper = require('HandlebarsHelper');
         BaseCollection = require('BaseCollection');
@@ -26,7 +26,7 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
         item = BaseItem.extend({
             tagName: 'div',
             className: 'control-group',
-            template : HandlebarsHelper.compile($('#option-item-template').html()),
+            template : HandlebarsHelper.compile($('#attributes-item-template').html()),
             events: {
                 'click .delete': 'del',
                 'change input': 'update'
@@ -43,8 +43,8 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
             }
         });
 
-        AttributesAdd = BaseList.extend({
-            el: '#multi-attribute',
+        AttributesShow = BaseList.extend({
+            el: '#product-attr',
             template: HandlebarsHelper.compile($("#option-template").html()),
             events: {
                 'click .option-add': 'add',
@@ -89,6 +89,6 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
             }
         });
 
-        module.exports = AttributesAdd;
+        module.exports = AttributesShow;
 
-});
+    });
