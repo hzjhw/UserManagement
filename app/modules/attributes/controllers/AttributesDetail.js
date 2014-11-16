@@ -3,15 +3,15 @@
  * @namespace AttributesDetail
  * @author yongjin on 2014/11/13
  */
-define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'option'],
+define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesAdd'],
     function (require, exports, module) {
-        var AttributesDetail, AttributesModel, HandlebarsHelper, Est, BaseDetail, option;
+        var AttributesDetail, AttributesModel, HandlebarsHelper, Est, BaseDetail, AttributesAdd;
 
         AttributesModel = require('AttributesModel');
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseDetail = require('BaseDetail');
-        option = require('option');
+        AttributesAdd = require('AttributesAdd');
 
         AttributesDetail = BaseDetail.extend({
             el: '#jhw-main',
@@ -78,7 +78,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
                     options.items = this.model.get('attributeOptionList');
                     this.showAttribute();
                 }
-                this.optionsInstance = new option(options);
+                this.optionsInstance = new AttributesAdd(options);
             }
         });
 

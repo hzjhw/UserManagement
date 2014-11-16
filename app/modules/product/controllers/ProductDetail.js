@@ -11,7 +11,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseDetail = require('BaseDetail');
-        template = require('http://jihui88.com/member/modules/product/templates/product_detail.html') || 'product_detail.html[404]';
+        template = require('http://jihui88.com/member/modules/product/views/product_detail.html') || 'product_detail.html[404]';
 
         ProductDetail = BaseDetail.extend({
             el: '#jhw-detail',
@@ -78,7 +78,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                 // 编辑器
                 this.initEditor();
 
-                this.form('#J_Form').validate.init();
+                this.form('#J_Form').validate().init();
                 return this;
             }
         });

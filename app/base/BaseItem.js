@@ -12,7 +12,12 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
         Est = require('Est');
 
         BaseItem = Backbone.View.extend({
-
+            /**
+             * 初始化
+             *
+             * @method [private] - initialize
+             * @author wyj 14.11.16
+             */
             initialize: function () {
                 this.model.bind('reset', this.render, this);
                 this.model.bind('change', this.render, this);
@@ -20,21 +25,44 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
                 if (this.model.view) this.model.view.remove();
                 this.model.view = this;
             },
-
+            /**
+             * 移除监听
+             *
+             * @method [public] - close
+             * @author wyj 14.11.16
+             */
             close: function () {
                 console.log('BaseItem.close');
                 this.stopListening();
             },
-
+            /**
+             * 移除此模型
+             *
+             * @method [public] - clear
+             * @author wyj 14.11.16
+             */
             clear: function () {
                 console.log('ProductItem.clear');
                 this.model.destroy();
             },
-
+            /**
+             * checkbox选择框转换
+             *
+             * @method [public] - toggleChecked
+             * @author wyj 14.11.16
+             */
             toggleChecked: function () {
                 this.$el.find(".toggle").attr( "checked", this.model.get('checked') );
             },
-
+            /**
+             * 单个字段保存
+             *
+             * @method [public] - editField
+             * @param options
+             * @param context
+             * @returns {ln.promise}
+             * @author wyj 14.11.16
+             */
             editField: function(options, context){
                 return new Est.promise(function(resolve, reject){
                     context.model.fetch();
@@ -62,7 +90,12 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
                     d.show(context.$el.find(options.target || 'div').get(0));
                 });
             },
-
+            /**
+             *  删除模型类
+             *
+             *  @method [public] - del
+             *  @author wyj 14.11.16
+             */
             del: function(){
                 console.log('1.BaseItem.del');
                 var context = this;
@@ -85,7 +118,13 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
                     }).show(context.$el.find('.delete').get(0));
                 });
             },
-
+            /**
+             * 修改模型类
+             *
+             * @method [public] - edit
+             * @param options
+             * @author wyj 14.11.16
+             */
             edit: function(options){
                 console.log('1.BaseItem.edit');
                 var ctx = this;

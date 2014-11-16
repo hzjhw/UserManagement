@@ -12,14 +12,36 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
 
         BaseModel = Backbone.Model.extend({
             baseId: '',
+            /**
+             * 初始化请求连接, 判断是否为新对象， 否自动加上ID
+             *
+             * @method [private] - url
+             * @returns {*}
+             * @author wyj 14.11.16
+             */
             url: function () {
                 var base = this.baseUrl;
                 if (this.isNew() && !this.id) return base;
                 return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
             },
+            /**
+             * 模型类初始化
+             *
+             * @method [public] - initialize
+             * @author wyj 14.11.16
+             */
             initialize: function () {
                 console.log('10.BaseModel.initialize [add to collection] or 3.[add to detail]');
             },
+            /**
+             * 过滤结果, 并提示信息对话框
+             *
+             * @method [private] - parse
+             * @param response
+             * @param options
+             * @returns {*}
+             * @author wyj 14.11.16
+             */
             parse: function (response, options) {
                 var ctx = this;
                 if (response.msg) {
@@ -52,6 +74,16 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                 response.id = response[ctx.baseId];
                 return response;
             },
+            /**
+             * 保存模型类
+             *
+             * @method [public] - saveField
+             * @param keyValue
+             * @param callback
+             * @param ctx
+             * @param async
+             * @author wyj 14.11.16
+             */
             saveField: function (keyValue, callback, ctx, async) {
                 var wait = async || true;
                 ctx.model.set(keyValue);
@@ -64,6 +96,12 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
                     }
                 });
             },
+            /**
+             * checkbox选择框
+             *
+             * @method [public] - toggle
+             * @author wyj 14.11.16
+             */
             toggle: function(){
                 this.set('checked', !this.get('checked'));
             }

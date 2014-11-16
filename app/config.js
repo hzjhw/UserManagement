@@ -30,19 +30,20 @@ seajs.config({
         'BaseModel': 'base/BaseModel.js',
         'BaseItem': 'base/BaseItem.js',
         'BaseDetail': 'base/BaseDetail.js',
-        'BaseView': 'base/BaseView.js',
+        'BaseList': 'base/BaseList.js',
         'BaseRoot': 'base/BaseRoot',
-        // user
-        'UserModel': 'models/UserModel.js',
 
         // common
+        'Pagination': 'common/pagination/Pagination.js',
         'PaginationModel': 'common/pagination/PaginationModel.js',
-        'PaginationView': 'common/pagination/PaginationView.js',
-        'option': 'common/options/option.js',
+        'AttributesAdd': 'common/attributes/AttributesAdd.js',
 
         // index
         'TopView': 'modules/index/views/TopView.js',
         'LeftView': 'modules/index/views/LeftView.js',
+
+        // user
+        'UserModel': 'models/UserModel.js',
 
         // todo
         'TodoModel': 'demo/todo/models/TodoModel.js',
@@ -52,24 +53,18 @@ seajs.config({
 
         // category
         'CategoryModel': 'models/CategoryModel.js',
-        'ProductCategoryCollection': 'modules/category/collections/ProductCategoryCollection.js',
-        'ProductCategoryItem': 'modules/category/views/ProductCategoryItem.js',
-        'ProductCategoryView': 'modules/category/views/ProductCategoryView.js',
-        'ProductCategoryDetail': 'modules/category/views/ProductCategoryDetail.js',
+        'ProductCategoryList': 'modules/category/controllers/ProductCategoryList.js',
+        'ProductCategoryDetail': 'modules/category/controllers/ProductCategoryDetail.js',
 
         // attributes
         'AttributesModel': 'models/AttributesModel.js',
-        'AttributesCollection': 'modules/category/collections/AttributesCollection.js',
-        'AttributesItem': 'modules/category/views/AttributesItem.js',
-        'AttributesView': 'modules/category/views/AttributesView.js',
-        'AttributesDetail': 'modules/category/views/AttributesDetail.js',
+        'AttributesList': 'modules/attributes/controllers/AttributesList.js',
+        'AttributesDetail': 'modules/attributes/controllers/AttributesDetail.js',
 
         // product
         'ProductModel': 'models/ProductModel.js',
-        'ProductCollection': 'modules/product/collections/ProductCollection.js',
-        'ProductItem': 'modules/product/views/ProductItem.js',
-        'ProductView': 'modules/product/views/ProductView.js',
-        'ProductDetail': 'modules/product/views/ProductDetail.js'
+        'ProductList': 'modules/product/controllers/ProductList.js',
+        'ProductDetail': 'modules/product/controllers/ProductDetail.js'
     },
 
     // 路径配置
@@ -96,7 +91,78 @@ seajs.config({
     charset: 'utf-8'
 });
 
+/** Backbone路由
+ * */
+seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+    var router = Backbone.Router.extend({
+        routes: {
+            '': 'index',
+            'product': 'product',
+            'category/product': 'productCategory',
+            'attributes': 'attributes',
 
+            '*other': 'default'
+        },
+
+        index: function () {
+
+        },
+
+        product: function (id) {
+            seajs.use(['jquery', 'ProductList'], function(jquery, ProductList){
+                new ProductList();
+            });
+
+            define('product/template', function(require){
+                require('http://jihui88.com/member/modules/product/views/product_item.html');
+                require('http://jihui88.com/member/modules/product/views/product_list.html');
+                require('http://jihui88.com/member/common/pagination/pagination.html');
+            });
+
+            seajs.use(['product/template'], function(template){
+
+            });
+        },
+
+        productCategory: function(){
+            seajs.use(['jquery', 'ProductCategoryList'], function(jquery, ProductCategoryList){
+                new ProductCategoryList();
+            });
+            define('category/product', function(require){
+                require('http://jihui88.com/member/modules/category/views/category_product_item.html');
+                require('http://jihui88.com/member/modules/category/views/category_product_list.html');
+                require('http://jihui88.com/member/common/pagination/pagination.html');
+            });
+
+            seajs.use(['category/product'], function(template){
+
+            });
+        },
+
+        attributes: function(){
+            seajs.use(['jquery', 'AttributesList'], function(jquery, AttributesList){
+                new AttributesList();
+            });
+            define('attributes/template', function(require){
+                require('http://jihui88.com/member/modules/attributes/views/attributes_item.html');
+                require('http://jihui88.com/member/modules/attributes/views/attributes_list.html');
+                require('http://jihui88.com/member/common/pagination/pagination.html');
+            });
+
+            seajs.use(['attributes/template'], function(template){
+
+            });
+        },
+
+        default: function (other) {
+            //$(document.body).append("This route is not hanled.. you tried to access: " + other);
+
+        }
+
+    });
+    new router;
+    Backbone.history.start();
+});
 
 (function() {
 

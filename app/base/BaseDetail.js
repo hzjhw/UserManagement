@@ -16,7 +16,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
              * 初始化模型类 将自动判断是否有ID传递进来，
              * 若存在则从服务器端获取详细内容
              *
-             * @method [initialize] - initModel
+             * @method [public] - initModel
              * @param model
              * @param ctx
              * @author wyj on 14.11.15
@@ -38,7 +38,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * form包装器， 传递表单选择器
              *
-             * @method [render] - form
+             * @method [public] - form
              * @param {String} formSelector 选择器
              * @returns {BaseDetail}
              * @author wyj on 14.11.15
@@ -50,7 +50,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 启用表单验证
              *
-             * @method [render] - validate
+             * @method [public] - validate
              * @returns {BaseDetail}
              * @author wyj 14.11.15
              */
@@ -64,7 +64,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 绑定提交按钮
              *
-             * @method [render] - init
+             * @method [public] - init
              * @param callback
              * @author wyj 14.11.15
              */
@@ -93,7 +93,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             },
             /**
              * 保存表单
-             * @method [render] - saveItem
+             *
+             * @method [pubic] - saveItem
              * @param callback
              * @param context
              * @author wyj 14.11.15
@@ -115,7 +116,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 获取产品分类
              *
-             * @method [render] - getProductCategory
+             * @method [public] - getProductCategory
              * @param options select 转换成select形式，extend 转换成列表形式
              * @returns {ln.promise}
              * @author wyj 14.11.15
@@ -200,7 +201,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 初始化编辑器
              *
-             * @method initEditor
+             * @method [public] - initEditor
              * @author wyj 14.11.15
              */
             initEditor: function(){
@@ -239,6 +240,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             },
             /**
              * 重置对话框高度
+             * @method [public] - resetIframe
+             * @author wyj 14.11.16
              */
             resetIframe: function () {
                 try{
@@ -250,7 +253,9 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 移除模型类
              *
+             * @method [public] - remove
              * @returns {BaseDetail}
+             * @author wyj 14.11.16
              */
             remove: function () {
                 console.log('BaseDetail.remove');
@@ -258,6 +263,12 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                 this.model = null;
                 return this;
             },
+            /**
+             * 移除所有绑定的事件
+             *
+             * @method [public] - close
+             * @author wyj 14.11.16
+             */
             close: function () {
                 console.log('BaseDetail.close');
                 this.undelegateEvents();

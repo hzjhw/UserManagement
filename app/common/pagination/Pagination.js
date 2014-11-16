@@ -1,30 +1,31 @@
 /**
- * @description PaginationView
- * @namespace PaginationView
+ * @description Pagination
+ * @namespace Pagination
  * @author yongjin on 2014/11/6
  */
-define('PaginationView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est'],
+define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est'],
     function (require, exports, module) {
+        var Backbone, Est, HandlebarsHelper, Pagination, template;
 
-        var Backbone = require('backbone');
-        var Est = require('Est');
-        var HandlebarsHelper = require('HandlebarsHelper');
-        var template = require('http://jihui88.com/member/common/pagination/pagination.html') || 'pagination.html[404]';
+        Backbone = require('backbone');
+        Est = require('Est');
+        HandlebarsHelper = require('HandlebarsHelper');
+        template = require('http://jihui88.com/member/common/pagination/pagination.html') || 'pagination.html[404]';
 
         //分页模板
-        var PaginationView = Backbone.View.extend({
+        var Pagination = Backbone.View.extend({
 
             el: "#pagination-container",
             tagName: "div",
             template: HandlebarsHelper.compile(template),
 
             initialize: function () {
-                console.log('8.PaginationView.initialize');
+                console.log('8.Pagination.initialize');
                 this.render();
             },
 
             render: function () {
-                console.log('9.PaginationView.render');
+                console.log('9.Pagination.render');
                 var ctx = this;
 
                 this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));
@@ -44,5 +45,5 @@ define('PaginationView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper'
                 this.model.trigger('reloadList', this.model);
             }
         });
-        module.exports = PaginationView;
+        module.exports = Pagination;
     });

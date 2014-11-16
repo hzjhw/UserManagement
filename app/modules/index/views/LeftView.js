@@ -4,13 +4,12 @@
  * @author yongjin on 2014/11/12
  */
 
-define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est', 'UserModel'],
+define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'UserModel'],
     function(require, exports, module){
-    var LeftView, Backbone, HandlebarsHelper, Est, UserModel;
+    var LeftView, Backbone, HandlebarsHelper, UserModel;
 
         Backbone = require('backbone');
         HandlebarsHelper = require('HandlebarsHelper');
-        Est = require('Est');
         UserModel = require('UserModel');
 
         LeftView = Backbone.View.extend({
