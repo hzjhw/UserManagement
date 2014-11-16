@@ -39,9 +39,13 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                             {title: '常规', value: '1', selected: true},
                             {title: '产品描述', value: '2'},
                             {title: '产品属性', value: '3'},
-                            {title: '产品标签', value: '4'},
-                            {title: '搜索引擎优化', value: '5'}
+                            {title: '商城属性', value: '4'},
+                            {title: '产品标签', value: '5'},
+                            {title: '搜索引擎优化', value: '6'}
                         ]
+                    });
+                    tab.on('selectedchange',function (ev) {
+                        ctx.resetIframe();
                     });
                 });
 
@@ -56,12 +60,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                     });
 
                 // 产品属性
-                this.initSelect({
-                    render: '#s2',
-                    width: 100,
-                    target: '#model-type',
-                    items: [ {text: '普通', value: 'NM'}, {text: '新品', value: 'NW'}, {text: '精品', value: 'CP'} ]
-                });
                 this.initSelect({
                     render: '#s2',
                     width: 100,

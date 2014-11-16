@@ -36,7 +36,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                 }
             },
             /**
-             * form包装器， 传递表单选择器
+             * form包装器， 传递表单选择符
              *
              * @method [public] - form
              * @param {String} formSelector 选择器
@@ -67,6 +67,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
              * @method [public] - init
              * @param callback
              * @author wyj 14.11.15
+             * @example
+             *      this.form("#J_Form").validate().init(function () {
+                    this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
+                });
              */
             init: function(callback){
                 var ctx = this;
