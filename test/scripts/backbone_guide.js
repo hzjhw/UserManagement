@@ -233,3 +233,49 @@ deleteBook: function(){
     this.model.destroy();
     this.remove();
 }
+
+
+
+Backbone.View.extend({
+    render: function(){
+        that = this;
+        $.ajax("GET", "/template/foo.html", function(template){
+            var html = _.template(template);
+            that.$el.html(html);
+        });
+        return this;
+    }
+});
+
+
+view.render().done(function(){
+    $("#page-content").html(view.el);
+});
+
+
+MyView = new Backbone.View.extend({
+    initialize: function() {
+        _.bindAll(this, 'render');
+        this.model.bind('change', this.render);
+    },
+
+    render: function(done) {
+        var view = this;
+        app.fetchTemplate('/path/to/template.html', function(t) {
+            $(view.el).html(t(view.model.toJSON()));
+            done(view.el);
+        });
+    }
+};
+
+
+
+// radio
+var view = Backbone.View.extend({
+        initialize:function () {
+            // on click is ok
+            this.model.on('click', this.click, this);
+            // cannot bind using backbone events change for some reasons, have to use jquery to setup the event
+            $('input[name="my-dropdown"]', this.el).on('change', $.proxy(this.onselect, this));
+        }
+);

@@ -1,16 +1,20 @@
 /**
- * @description 用户模型类
- * @namespace AbcUser
- * @author yongjin on 2014/10/31
+ * @description UserModel
+ * @namespace UserModel
+ * @author yongjin on 2014/11/12
  */
-define(function(require, exports, module){
-    var AbcUser = Backbone.Model.extend({
-        defaults: {
-            username: "",
-            password: "",
-            valCode: 0
-        },
-        url: "http://jihui88.com/rest/api/profile"
+define('UserModel', ['jquery', 'BaseModel'], function (require, exports, module) {
+        var UserModel, BaseModel;
+
+        BaseModel = require('BaseModel');
+
+        UserModel = BaseModel.extend({
+            baseId: 'userId',
+            baseUrl: 'http://jihui88.com/rest/api/user/info',
+            defaults: {
+                name: '未登录'
+            }
+        });
+
+        module.exports = UserModel;
     });
-    module.exports = AbcUser;
-});

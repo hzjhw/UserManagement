@@ -137,3 +137,92 @@ body .m0{margin:0}
 100%{transform:rotate(360deg)}}
 .ui-dialog-loading{vertical-align:middle;position:relative;display:block;overflow:hidden;width:32px;height:32px;top:50%;margin:-16px auto 0;font-size:0;text-indent:-999em;color:#666}
 .ui-dialog-loading::after{position:absolute;content:'';width:3px;height:3px;margin:14.5px 0 0 14.5px;border-radius:100%;box-shadow:0 -10px 0 1px #ccc,10px 0 #ccc,0 10px #ccc,-10px 0 #ccc,-7px -7px 0 .5px #ccc,7px -7px 0 1.5px #ccc,7px 7px #ccc,-7px 7px #ccc;-webkit-transform:rotate(360deg);-webkit-animation:ui-dialog-loading 1.5s infinite linear;transform:rotate(360deg);animation:ui-dialog-loading 1.5s infinite linear}
+#progress {
+    position:fixed;
+    height: 2px;
+    background:#428bca;
+    transition:opacity 500ms linear
+}
+#progress.done {
+    opacity:0
+}
+#progress span {
+    position:absolute;
+    height:2px;
+    -webkit-box-shadow:#428bca 1px 0 6px 1px;
+    -webkit-border-radius:100%;
+    opacity:1;
+    width:150px;
+    right:-10px;
+    -webkit-animation:pulse 2s ease-out 0s infinite;
+}
+
+@-webkit-keyframes pulse {
+    30% {
+        opacity:.6
+    }
+    60% {
+        opacity:0;
+    }
+    100% {
+        opacity:.6
+    }
+}
+
+#jhw-top {
+    height: 100px;
+    background: #dfdfdf;
+}
+#jhw-left-bar{
+    float: left;
+    width: 150px;
+    border-right: 1px solid #dfdfdf;
+    margin-right: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+#jhw-main {
+    float: left;
+    padding-top: 5px;
+}
+
+/* 通用 ****************************************************************************************/
+
+/* 编辑器 **************************************************************************************/
+
+
+/* 产品 ****************************************************************************************/
+#jhw-product{
+
+}
+
+/* 产品分类 ************************************************************************************/
+#jhw-product-category{
+
+}
+
+/* 新闻 ****************************************************************************************/
+#jhw-news{
+
+}
+/* 新闻分类 ************************************************************************************/
+#jhw-news-category{
+
+}
+
+/* 属性 ***************************************************************************************/
+
+.attributes-item{
+    vertical-align: middle;
+    overflow:hidden;
+}
+
+.attributes-item input[type=password], .attributes-item  input[type=text], .attributes-item  select, .attributes-item  textarea{
+    vertical-align: bottom;
+    margin-right: 6px;
+    height: 24px;
+}
+
+.attributes-btn{
+    padding-top: 0px;
+}

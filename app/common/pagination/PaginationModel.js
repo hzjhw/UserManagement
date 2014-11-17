@@ -7,16 +7,13 @@ define('PaginationModel', ['jquery', 'underscore', 'backbone'],
     function(require, exports, module){
 
         var PaginationModel, Backbone;
-
         Backbone = require('backbone');
 
         PaginationModel = Backbone.Model.extend({
-            defaults: {
-                page: 1,
-                pageSize: 10,
-                count: 0
+            defaults: { page: 1, pageSize: 10, count: 0 },
+            initialize: function(){
+                console.log('3.PaginationModel.initialize');
             }
         });
-
         module.exports = PaginationModel;
     });

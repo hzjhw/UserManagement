@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+    </script>
+    <meta charset="UTF-8">
+    <title>产品管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="../../styles/default/base.css"/>
+    <link href="../../styles/default/dpl.css" rel="stylesheet">
+    <link href="../../styles/default/bui.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <link href="http://g.tbcdn.cn/fi/bui/css/dpl-min.css" rel="stylesheet">
+    <link href="http://g.tbcdn.cn/fi/bui/css/bui-min.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE6]>
+    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+    <![endif]-->
+
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+</head>
+<!--[if IE 7]>
+<body class="ie7"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11"><![endif]-->
+<!--[if !IE]>-->
+<body>
+<!--<![endif]-->
+
+<div id="product-category-add-container"></div>
+
+<!--template-->
+<script type="text/template" id="option-template">
+    <div id="attributes-container">
+    </div>
+    <div class="control-group">
+        <label class="control-label">&nbsp;</label>
+        <div class="controls">
+            <div class="attributes-btn">
+                <span class="option-add x-icon x-icon-small x-icon-success">+</span>
+                <span class="option-remove x-icon x-icon-small x-icon-success">-</span>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="option-item-template">
+    <div class="attributes-div control-group">
+        <label class="control-label">{{key}}:</label>
+
+        <div class="controls control-row-auto">
+            <div class="attributes-item">
+                <input name="attr" type="text" value="{{value}}"/><span
+                    class="delete x-icon x-icon-small x-icon-error">×</span>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../config.js"></script>
+<script type="text/javascript">
+
+    seajs.use(['jquery', 'ProductCategoryDetail'], function(jquery, ProductCategoryDetail){
+        new ProductCategoryDetail();
+    });
+
+</script>
+</body>
+</html>

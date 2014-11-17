@@ -3,7 +3,10 @@
  * @namespace TodoModel
  * @author yongjin on 2014/10/31
  */
-define(function(require, exports, module){
+define('TodoModel', ['jquery', 'underscore', 'backbone'], function(require, exports, module){
+
+    var Backbone = require('backbone');
+
     var TodoModel = Backbone.Model.extend({
         defaults: {
             title: '',
