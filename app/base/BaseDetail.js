@@ -58,9 +58,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
              * @author wyj 14.11.15
              */
             validate: function(){
+                var ctx = this;
                 BUI.use('bui/form', function (Form) {
                     new Form.Form({
-                        srcNode: this.fromId
+                        srcNode: ctx.formSelector
                     }).render();
                 }); return this;
             },
