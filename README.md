@@ -1,17 +1,29 @@
 操作历史
 ====
 
-### 服务端API文档
+### 服务端API文档 - 数据接口
 - 192.168.1.99:8001/jihui88/
 
-### BUI组件
+### BUI组件 - UI组件
 - http://builive.com/scaffolding/index.php
 
-### Backbone API文档
+### Backbone API文档 - MVC框架
 - http://backbonejs.org/
 
-### seajs API文档
+### seajs API文档 - 模块加载
 - http://seajs.org/docs/#docs
+
+### artDialog API文档 - 对话框
+- http://aui.github.io/artDialog/doc/index.html
+
+### handlebars API文档 - 模板引擎
+- http://aui.github.io/artDialog/doc/index.html
+
+### jquery API文档 - DOM选择器
+- http://oscarotero.com/jquery/
+
+### git API文档 - 项目管理
+- http://git-scm.com/book/zh/v1
 
 ### 注意
 1.git一天只能提交一次， 晚上10点之前提交
