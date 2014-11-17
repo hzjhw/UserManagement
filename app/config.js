@@ -98,6 +98,7 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     var router = Backbone.Router.extend({
         routes: {
             '': 'index',
+            'login' : 'login',
             'product': 'product',
             'category/product': 'productCategory',
             'attributes': 'attributes',
@@ -108,7 +109,19 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         index: function () {
 
         },
+        login : function(){
+            seajs.use(['jquery', 'Login'], function(jquery, Login){
+                new Login();
+            });
 
+            define('login/template', function(require){
+                require('http://jihui88.com/member/modules/login/views/login.html');
+            });
+
+            seajs.use(['login/template'], function(template){
+
+            });
+        },
         product: function (id) {
             seajs.use(['jquery', 'ProductList'], function(jquery, ProductList){
                 new ProductList();
