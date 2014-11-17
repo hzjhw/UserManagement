@@ -210,6 +210,47 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                 });
             },
             /**
+             * 标签选择框
+             *
+             * @method [public] - initCombox
+             * @param options
+             * @returns {ln.promise}
+             * @author wyj 14.11.17
+             * @example
+             *      this.initCombox({
+                    render: '#tag',
+                    target: '#model-tag',
+                    items: [ '选项一', '选项二', '选项三', '选项四' ]
+                });
+             */
+            initCombox: function (options) {
+                return new Est.promise(function (resolve, reject) {
+                    var container = {};
+                    var target = options.target || '#category';
+                    var render = options.render || '#s1';
+                    var itemId = options.itemId || 'categoryId';
+                    var width = options.width || '500';
+                    var items = options.items || [];
+                    BUI.use('bui/select', function (Select) {
+                        container[render] = new Select.Combox({
+                            render: render,
+                            showTag: true,
+                            valueField: target,
+                            elCls : 'bui-tag-follow',
+                            width: width,
+                            items: items
+                        });
+                        container[render].render();
+                        container[render].on('change', function (ev) {
+                            $(target).val(Est.trim(ev.item[itemId]));
+                            if (typeof options.change !== 'undefined')
+                                options.change.call(this, ev.item[itemId]);
+                            resolve(ev.item[itemId]);
+                        });
+                    })
+                });
+            },
+            /**
              * 初始化编辑器
              *
              * @method [public] - initEditor

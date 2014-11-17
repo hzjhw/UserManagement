@@ -59,35 +59,49 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                             target: '#model-category',
                             items: list,
                             change: function (categoryId) {
-                                if (!ctx._isAdd){
+                                var buttons = [{
+                                    value: '更换',
+                                    callback: function () {
+                                        ctx.attributes = new AttributesShow({
+                                            categoryId: categoryId
+                                        });
+                                    }},{
+                                    value: '保留',
+                                    autofocus: true,
+                                    callback: function () {
+                                        this.close();
+                                    }
+                                }];
+                                if (!ctx._isAdd) {
                                     dialog({
                                         title: '提示',
                                         content: '更换分类将更改产品属性选项， 点击“保留”只更改分类， 不更改属性！',
-                                        width:250,
-                                        button: [{
-                                            value: '保留',
-                                            autofocus: true,
-                                            callback: function(){
-                                                this.close();
-                                            }
-                                        },{
-                                        value: '更换',
-                                            callback: function () {
-                                            ctx.attributes = new AttributesShow({
-                                                categoryId: categoryId
-                                            });
-                                        }}]
+                                        width: 250,
+                                        button: buttons
                                     }).show($("#s1").get(0));
-                                } else{
+                                } else {
                                     ctx.attributes = new AttributesShow({
                                         categoryId: categoryId
                                     });
                                 }
                             }
                         });
+                        ctx.initSelect({
+                            render: '#attCate',
+                            target: '#attCateHid',
+                            items: list,
+                            change: function (categoryId) {
+                                ctx.attributes = new AttributesShow({
+                                    categoryId: categoryId
+                                });
+                                setTimeout(function(){
+                                    ctx.resetIframe();
+                                }, 500);
+                            }
+                        });
                     });
 
-                if (!ctx._isAdd){
+                if (!ctx._isAdd) {
                     ctx.attributes = new AttributesShow({
                         categoryId: ctx.model.get('category'),
                         items: ctx.model.get('productAttributeMapStore')
@@ -126,13 +140,22 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                     ]
                 });
 
+                this.initCombox({
+                    render: '#pro-tag',
+                    target: '#model-tag',
+                    items: [ '选项一', '选项二', '选项三', '选项四' ],
+                    change: function(){
+                        ctx.resetIframe();
+                    }
+                });
+
                 // 编辑器
                 this.initEditor();
 
                 this.form('#J_Form').validate().init(function () {
                     // 处理特殊字段
                 });
-                setTimeout(function(){
+                setTimeout(function () {
                     ctx.resetIframe();
                 }, 1000);
                 return this;

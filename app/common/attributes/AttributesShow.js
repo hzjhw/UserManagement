@@ -78,7 +78,6 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
                         .then(function (opts) {
                             Est.each(options.items, function (item) {
                                 var fields = item.productAttribute;
-                                debugger
                                 fields.element = item.element.substring(1, item.element.length -1);
                                 ctx.collection.push(new model(fields));
                             }, this);
