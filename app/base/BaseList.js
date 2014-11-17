@@ -182,6 +182,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                         button: [{
                                 value: '保存',
                                 callback: function () {
+                                    this.title('正在提交..');
                                     this.iframeNode.contentWindow.$("#submit").click();
                                     return false;
                                 },

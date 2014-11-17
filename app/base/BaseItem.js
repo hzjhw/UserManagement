@@ -139,6 +139,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
                         button: [{
                             value: '保存',
                             callback: function () {
+                                this.title('正在提交..');
                                 this.iframeNode.contentWindow.$("#submit").click();
                                 return false;
                             },

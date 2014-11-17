@@ -298,6 +298,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             resetIframe: function () {
                 try{
                     window.detailDialog.height($(document).height());
+                    window.detailDialog.reset();
                 } catch(e){
                     console.error('【error】: BaseDetail.resetIframe' + e);
                 }
