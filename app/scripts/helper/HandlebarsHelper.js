@@ -89,6 +89,17 @@ define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, mo
         return Est.dateFormat(date, fmt);
     });
 
+    /**
+     * 判断字符串是否包含
+     * @author wyj 14.11.17
+     * @example
+     *      {{#contains ../element this}}checked="checked"{{/contains}}
+     */
+    Handlebars.registerHelper('contains', function(target, thisVal, options){
+        if (Est.isEmpty(target)) return;
+        return Est.contains(target, thisVal) ? options.fn(this): options.inverse(this);
+    });
+
     module.exports = Handlebars;
 
 });

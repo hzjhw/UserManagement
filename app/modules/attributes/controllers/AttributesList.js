@@ -51,7 +51,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
                     title: '修改属性名称',
                     field: 'name',
                     target: '.name'
-                },this);
+                }, this);
             },
 
             deleteItem: function () {
@@ -66,23 +66,30 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
                 'click #attributes-add': 'openAddDialog'
             },
 
-            initialize: function(){
+            initialize: function () {
                 var ctx = this;
-                this.$el.empty();
-                this.$el.append($(listTemp));
-                this.list = $("#attributes-list-ul", this.$el);
-                this.initCollection(AttributesCollection, this).then(function(collection){
-                    ctx.render();
+
+                // 初始化视图
+                this.initView({
+                    viewTemp: listTemp,
+                    collectionId: '#attributes-list-ul'
                 });
-                this.initItemView(AttributesItem, this);
+
+                // 初始化集合类
+                this.initCollection(AttributesCollection, AttributesItem, this, {
+                }).then(function (options) {
+                    ctx.initPagination(options);
+                    ctx.load(options);
+                });
+
                 return this;
             },
 
-            render: function(){
+            render: function () {
                 this.addAll();
             },
 
-            openAddDialog: function(){
+            openAddDialog: function () {
                 this.detail({
                     title: '属性添加',
                     url: 'http://jihui88.com/member/modules/attributes/attributes_detail.html?time=' + new Date().getTime()

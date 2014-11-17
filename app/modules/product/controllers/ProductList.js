@@ -62,28 +62,30 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
                 'click #toggle-all': 'toggleAllChecked',
                 'click .product-add': 'openAddDialog'
             },
-
             initialize: function () {
                 var ctx = this;
-                this.$el.empty();
-                this.$el.append($(listTemp));
-                this.list = $("#product-list-ul", this.$el);
-                this.initCollection(ProductCollection, this).then(function(options){
-                    ctx.initPagination(options);
-                    ctx.load(options);
+
+                // 初始化视图
+                this.initView({
+                    viewTemp: listTemp,
+                    collectionId: '#product-list-ul'
                 });
-                this.initBind();
-                this.initItemView(ProductItem, this);
+
+                // 初始化集合类
+                this.initCollection(ProductCollection, ProductItem, this,{})
+                    .then(function (options) {
+                        ctx.initPagination(options);
+                        ctx.load(options);
+                    });
+
                 return this;
             },
-
-            openAddDialog: function(){
+            openAddDialog: function () {
                 this.detail({
                     title: '产品添加',
                     url: 'http://jihui88.com/member/modules/product/product_detail.html?time=' + new Date().getTime()
                 });
             }
-
         });
         module.exports = ProductList;
     });

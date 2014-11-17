@@ -13,29 +13,52 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
 
         BaseList = Backbone.View.extend({
             /**
-             * 初始化集合类， 绑定checkbox， 分页
+             * 初始化集合类
              *
              * @method [public] - initCollection
              * @param collection 对应的collection集合类， 如ProductCollection
+             * @param itemView 对应的单个视图， 如ProductItem
              * @param ctx 上下文
              * @param options [beforeLoad 加载数据前执行]
              * @returns {ln.promise} 返回promise对象
              * @author wyj 14.11.16
+             * @example
+             *      this.initCollection(ProductCollection, ProductItem, this,{
+                           beforeLoad: function(){
+                               this.setCategoryId(options.categoryId);
+                           }
+                    }).then(function (options) {
+                            ctx.initPagination(options);
+                            ctx.load(options);
+                        });
              */
-            initCollection: function (collection, ctx, options) {
+            initCollection: function (collection,itemView, ctx, options) {
                 console.log('1.ProductView.initialize');
                 var options = options || {};
                 this.views = [];
                 this.allCheckbox = this.$('#toggle-all')[0];
                 this.collection = new collection();
                 this.listenTo(this.collection, 'change:checked', this.checkSelect);
-                return new Est.promise(function(resolve, reject){
-                    resolve(options);
-                    //ctx.collection.paginationModel.on('reloadList', function (model) {
-                        //ctx.load.call(ctx, resolve,options, model);
-                    //});
-                    //ctx.load.call(ctx, resolve, options);
+                this.initBind();
+                this.initItemView(itemView, this);
+                return new Est.promise(function(resolve, reject){ resolve(options); });
+            },
+            /**
+             * 初始化视图
+             *
+             * @method [public] - initView
+             * @param options
+             * @author wyj 14.11.17
+             * @example
+             *      this.initView({
+                    viewTemp: viewTemp,
+                    collectionId: '#product-list-ul'
                 });
+             */
+            initView: function(options){
+                this.$el.empty();
+                this.$el.append($(options.viewTemp));
+                this.list = $(options.collectionId, this.$el);
             },
             /**
              * 初始化分页

@@ -5,7 +5,7 @@
  */
 
 define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
-    function(require, exports, module){
+    function (require, exports, module) {
         var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, itemTemp;
 
         HandlebarsHelper = require('HandlebarsHelper');
@@ -22,14 +22,14 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         });
 
         collection = BaseCollection.extend({
-            url: function(){
+            url: function () {
                 return 'http://jihui88.com/rest/api/attr/list/' + this.getCategoryId();
             },
             model: model,
-            setCategoryId: function(categoryId){
+            setCategoryId: function (categoryId) {
                 this.categoryId = categoryId;
             },
-            getCategoryId: function(){
+            getCategoryId: function () {
                 return this.categoryId;
             }
         });
@@ -37,26 +37,26 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         item = BaseItem.extend({
             tagName: 'div',
             className: 'control-group',
-            template : HandlebarsHelper.compile(itemTemp),
+            template: HandlebarsHelper.compile(itemTemp),
             events: {
                 'change input': 'update',
                 'click input[type=checkbox]': 'resetCheckbox'
             },
-            initialize: function(){
+            initialize: function () {
                 this.__proto__.constructor.__super__.initialize.apply(this, arguments);
             },
-            render: function(){
+            render: function () {
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
-            resetCheckbox: function(){
+            resetCheckbox: function () {
                 var array = [];
-                $("input[type=checkbox]:checked", this.$el).each(function(){
+                $("input[type=checkbox]:checked", this.$el).each(function () {
                     array.push($(this).val());
                 });
                 $('input[type=hidden]', this.$el).val(array.join(","));
             },
-            update: function(){
+            update: function () {
                 //this.model.set(this.$('input').attr("name").replace('attr-', ''), this.$('input').val());
             }
         });
@@ -73,39 +73,41 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
                 this.options = options || {};
                 this.$el.empty();
                 this.list = this.$el;
-                if (options.items){
-                    this.initCollection(collection, this).then(function(options){
-                        Est.each(options.items, function(item){
-                            //this.collection.push(new model(item.productAttribute));
-                        }, this);
-                    });
-                } else{
-                    this.initCollection(collection, this, {
-                        beforeLoad: function(){
+                if (options.items) {
+                    this.initCollection(collection, item, this, {})
+                        .then(function (opts) {
+                            Est.each(options.items, function (item) {
+                                var fields = item.productAttribute;
+                                debugger
+                                fields.element = item.element.substring(1, item.element.length -1);
+                                ctx.collection.push(new model(fields));
+                            }, this);
+                        });
+                }
+                else {
+                    this.initCollection(collection, item, this, {
+                        beforeLoad: function () {
                             this.setCategoryId(options.categoryId);
                         }
-                    }).then(function(options){
+                    }).then(function (options) {
                         ctx.initPagination(options);
                         ctx.load(options);
                     });
                 }
 
-                this.initItemView(item, this);
-                this.initBind();
-
                 return this;
             },
-            add: function(){
+            add: function () {
                 this.collection.push(new model());
-                if (typeof this.options.add !== 'undefined'){
+                if (typeof this.options.add !== 'undefined') {
                     this.options.add.call(this);
                 }
             },
-            remove: function(){
+            remove: function () {
                 this.collection.pop();
                 this.render();
             },
-            getItems: function(){
+            getItems: function () {
                 // 转换成[{key: '', value: ''}, ... ] 数组格式
                 return Est.pluck(this.collection.models, 'attributes');
             }
