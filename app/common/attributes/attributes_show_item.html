@@ -1,6 +1,27 @@
 {{#compare attributeType '===' 'text'}}
 <label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
 <div class="controls">
-    <input id="model-attr-name" name="attr-name" value="{{../name}}" type="text" class="input-large">
+    <input id="model-{{../id}}" name="{{../id}}" value="{{../element}}" type="text" class="input-large">
+</div>
+{{/compare}}
+
+{{#compare attributeType '===' 'select'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <select id="model-{{id}}" name="{{id}}">
+        {{#each ../attributeOptionList}}
+        <option value="{{this}}" {{#compare this '===' ../element}}selected="selected"{{/compare}}>{{this}}</option>
+        {{/each}}
+    </select>
+</div>
+{{/compare}}
+
+{{#compare attributeType '===' 'checkbox'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <input id="model-{{id}}" type="hidden" name="{{id}}" value=""/>
+    {{#each ../attributeOptionList}}
+    <label><input type="checkbox" name="{{this}}" value="{{this}}" >{{this}}</label>
+    {{/each}}
 </div>
 {{/compare}}

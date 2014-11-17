@@ -64,10 +64,14 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             },
 
             initialize: function () {
+                var ctx = this;
                 this.$el.empty();
                 this.$el.append($(listTemp));
                 this.list = $("#product-list-ul", this.$el);
-                this.initCollection(ProductCollection, this);
+                this.initCollection(ProductCollection, this).then(function(options){
+                    ctx.initPagination(options);
+                    ctx.load(options);
+                });
                 this.initBind();
                 this.initItemView(ProductItem, this);
                 return this;

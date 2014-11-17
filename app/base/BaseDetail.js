@@ -15,6 +15,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             /**
              * 初始化模型类 将自动判断是否有ID传递进来，
              * 若存在则从服务器端获取详细内容
+             * 若为添加， 则设置ctx._isAdd = true
              *
              * @method [public] - initModel
              * @param model
@@ -22,6 +23,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
              * @author wyj on 14.11.15
              */
             initModel: function (model, ctx) {
+                ctx._isAdd = false;
                 ctx.passId = Est.getUrlParam('id', window.location.href);
                 if (!Est.isEmpty(this.passId)) {
                     ctx.model = new model();
@@ -30,6 +32,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                         ctx.render().resetIframe();
                     });
                 } else {
+                    ctx._isAdd = true;
                     ctx.passId = new Date().getTime();
                     ctx.model = new model();
                     ctx.render().resetIframe();
@@ -75,9 +78,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             init: function(callback){
                 var ctx = this;
                 $('#submit', this.el).on('click', function () {
-                    $("input, textarea", $(ctx.formSelector)).each(function () {
+                    $("input, textarea, select", $(ctx.formSelector)).each(function () {
                         var name, val, pass; name = $(this).attr('name');
-                        if (!Est.isEmpty(name)){
+                        var modelId = $(this).attr('id');
+                        if (modelId && modelId.indexOf('model-') !== -1 && !Est.isEmpty(name)){
                             switch (this.type){
                                 case 'radio':
                                     val = $(this).is(":checked") ? $(this).val() : pass = true; break;

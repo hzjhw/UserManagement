@@ -17,7 +17,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         itemTemp = require('http://jihui88.com/member/common/attributes/attributes_show_item.html');
 
         model = BaseModel.extend({
-            defaults: { key: '选项', value: '' }
+            defaults: { key: '选项', value: '' },
+            baseId: 'attId'
         });
 
         collection = BaseCollection.extend({
@@ -38,7 +39,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
             className: 'control-group',
             template : HandlebarsHelper.compile(itemTemp),
             events: {
-                'change input': 'update'
+                'change input': 'update',
+                'click input[type=checkbox]': 'resetCheckbox'
             },
             initialize: function(){
                 this.__proto__.constructor.__super__.initialize.apply(this, arguments);
@@ -47,34 +49,50 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
                 this.$el.html(this.template(this.model.toJSON()));
                 return this;
             },
+            resetCheckbox: function(){
+                var array = [];
+                $("input[type=checkbox]:checked", this.$el).each(function(){
+                    array.push($(this).val());
+                });
+                $('input[type=hidden]', this.$el).val(array.join(","));
+            },
             update: function(){
-                this.model.set(this.$('input').attr("name").replace('attr-', ''), this.$('input').val());
+                //this.model.set(this.$('input').attr("name").replace('attr-', ''), this.$('input').val());
             }
         });
 
         AttributesShow = BaseList.extend({
-            el: '#product-attr',
+            el: '#attributes-list',
             events: {
                 'click .option-add': 'add',
                 'click .option-remove': 'remove',
                 'click .getItemsBtn': 'getItems'
             },
             initialize: function (options) {
+                var ctx = this;
                 this.options = options || {};
                 this.$el.empty();
-                this.list = $("#attributes-list", this.$el);
-                this.initCollection(collection, this, {
-                    beforeLoad: function(){
-                        this.setCategoryId(options.categoryId);
-                    }
-                });
+                this.list = this.$el;
+                if (options.items){
+                    this.initCollection(collection, this).then(function(options){
+                        Est.each(options.items, function(item){
+                            //this.collection.push(new model(item.productAttribute));
+                        }, this);
+                    });
+                } else{
+                    this.initCollection(collection, this, {
+                        beforeLoad: function(){
+                            this.setCategoryId(options.categoryId);
+                        }
+                    }).then(function(options){
+                        ctx.initPagination(options);
+                        ctx.load(options);
+                    });
+                }
+
                 this.initItemView(item, this);
                 this.initBind();
-                if (options.items){
-                    Est.each(options.items, function(item){
-                        this.collection.push(new model(item));
-                    }, this);
-                }
+
                 return this;
             },
             add: function(){

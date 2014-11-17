@@ -52,9 +52,11 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                 console.log('7.BaseCollection.parseUrl')
                 var page = model.get('page');
                 var pageSize = model.get('pageSize');
-                this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
-                    this.url.lastIndexOf("?") :
-                    this.url.length) + '?page=' + page + '&pageSize=' + pageSize;
+                if (typeof this.url !== 'function'){
+                    this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
+                        this.url.lastIndexOf("?") :
+                        this.url.length) + '?page=' + page + '&pageSize=' + pageSize;
+                }
             },
             /**
              * 设置分页模型类

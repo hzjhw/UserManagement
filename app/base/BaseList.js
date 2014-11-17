@@ -30,30 +30,46 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                 this.collection = new collection();
                 this.listenTo(this.collection, 'change:checked', this.checkSelect);
                 return new Est.promise(function(resolve, reject){
-                    ctx.collection.paginationModel.on('reloadList', function (model) {
-                        ctx.load.call(ctx, resolve,options, model);
-                    });
-                    ctx.load.call(ctx, resolve, options);
+                    resolve(options);
+                    //ctx.collection.paginationModel.on('reloadList', function (model) {
+                        //ctx.load.call(ctx, resolve,options, model);
+                    //});
+                    //ctx.load.call(ctx, resolve, options);
+                });
+            },
+            /**
+             * 初始化分页
+             *
+             * @method [public] - initPagination
+             * @param options
+             * @author wyj 14.11.17
+             */
+            initPagination: function(options){
+                var ctx = this;
+                ctx.collection.paginationModel.on('reloadList', function (model) {
+                    ctx.load.call(ctx, options, model);
                 });
             },
             /**
              * 获取集合数据
              *
              * @method [public] - load
-             * @param resolve
              * @param model
              * @author wyj 14.11.16
              */
-            load: function(resolve, options, model){
-                if (options.beforeLoad){
-                    options.beforeLoad.call(this.collection);
-                }
-                if (this.collection.url){
-                    this.collection.load(this.collection, this, model)
-                        .then(function(result){
-                            resolve(result);
-                        });
-                }
+            load: function(options, model){
+                var ctx = this;
+                return new Est.promise(function(resolve, reject){
+                    if (options.beforeLoad){
+                        options.beforeLoad.call(ctx.collection);
+                    }
+                    if (ctx.collection.url){
+                        ctx.collection.load(ctx.collection, ctx, model)
+                            .then(function(result){
+                                resolve(result);
+                            });
+                    }
+                });
             },
             /**
              * 绑定事件， 如果添加事件， 重置事件

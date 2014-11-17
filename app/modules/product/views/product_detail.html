@@ -18,7 +18,7 @@
 
             <div class="controls">
                 <div id="s1">
-                    <input type="hidden" id="category" value="{{category}}" name="category"
+                    <input type="hidden" id="model-category" value="{{category}}" name="category"
                            data-rules="{required : true}">
                 </div>
             </div>
@@ -37,9 +37,9 @@
 
             <div class="controls">
                 <div id="s2">
-                    <input id="model-loginView" name="type" value="{{loginView}}" class="input-small"
+                    <input id="model-loginView" name="loginView" value="{{loginView}}" class="input-small"
                            type="hidden" style="margin-right:5px;"/>
-                    <input id="model-ads" name="type" value="{{ads}}" class="input-small" type="hidden"/>
+                    <input id="model-ads" name="ads" value="{{ads}}" class="input-small" type="hidden"/>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="control-group">
             <label class="control-label">图片浏览：</label>
 
-            <div class="controls">
+            <div class="controls control-row-auto">
                 <img width="600" src="../../images/pic-upload.jpg" alt=""/>
             </div>
         </div>
@@ -70,31 +70,20 @@
 
     </div>
     <!--产品描述-->
-    <div>
+    <div class="hide">
         <textarea id="model-proddesc" name="proddesc" class="ckeditor proddesc text" rows="12"
-                  cols="95" style="width: 100%;height:250px;" value="{{proddesc}}"/>
+                  cols="95" style="width: 100%;height:250px;">{{proddesc}}</textarea>
     </div>
     <!--产品属性-->
-    <div>
+    <div class="hide">
         <div id="product-attr">
-            <div class="control-group">
-                <label class="control-label"><s>*</s>属性分类：</label>
-
-                <div class="controls">
-                    <div id="s3">
-                        <input type="hidden" id="attributesCate" value="{{attributesCate}}" name="attributesCate">
-                    </div>
-                </div>
-            </div>
             <div id="attributes-list">
 
-
             </div>
-
         </div>
     </div>
     <!--商城属性-->
-    <div>
+    <div class="hide">
 
         <div class="row-fluid show-grid">
             <div class="span12 span-first">
@@ -110,7 +99,7 @@
                     <label class="control-label">商品重量：</label>
 
                     <div class="controls">
-                        <input id="model-weight" name="weight" value="{{weight}}" type="text" class="input-small">&nbsp;千克
+                        <input id="model-weight" name="weight" value="{{weight}}" type="text" class="input-small">
                     </div>
                 </div>
                 <div class="control-group">
@@ -124,9 +113,9 @@
                     <label class="control-label">是否上架：</label>
 
                     <div class="controls">
-                        <label><input type="radio" name="isMarketable" value="01" {{#compare isMarketable '==='
+                        <label><input id="model-isMarketable" type="radio" name="isMarketable" value="01" {{#compare isMarketable '==='
                             '01'}}checked{{/compare}}>是</label>
-                        <label><input type="radio" name="isMarketable" value="00" {{#compare isMarketable '==='
+                        <label><input id="model-isMarketable1" type="radio" name="isMarketable" value="00" {{#compare isMarketable '==='
                             '00'}}checked{{/compare}}>否</label>
                     </div>
                 </div>
@@ -134,9 +123,9 @@
                     <label class="control-label">新品商品：</label>
 
                     <div class="controls">
-                        <label><input type="radio" name="isNew" value="01" {{#compare isNew '==='
+                        <label><input id="model-isNew" type="radio" name="isNew" value="01" {{#compare isNew '==='
                             '01'}}checked{{/compare}}>是</label>
-                        <label><input type="radio" name="isNew" value="00" {{#compare isNew '==='
+                        <label><input id="model-isNew1" type="radio" name="isNew" value="00" {{#compare isNew '==='
                             '00'}}checked{{/compare}}>否</label>
                     </div>
                 </div>
@@ -156,7 +145,9 @@
                     <label class="control-label">重量单位：</label>
 
                     <div class="controls">
-                        <input id="model-weightUnit" name="weightUnit" value="{{weightUnit}}" type="text" class="input-small">
+                        <div id="weightUnit">
+                            <input id="model-weightUnit" name="weightUnit" value="{{weightUnit}}" type="hidden"/>
+                        </div>
                     </div>
                 </div>
                 <div class="control-group">
@@ -170,17 +161,17 @@
                     <label class="control-label">精品商品：</label>
 
                     <div class="controls">
-                        <label><input type="radio" name="isBest" value="01" {{#compare isBest '===' '01'}}checked{{/compare}}>是</label>
-                        <label><input type="radio" name="isBest" value="00" {{#compare isBest '===' '00'}}checked{{/compare}}>否</label>
+                        <label><input id="model-isBest" type="radio" name="isBest" value="01" {{#compare isBest '===' '01'}}checked{{/compare}}>是</label>
+                        <label><input id="model-isBest1" type="radio" name="isBest" value="00" {{#compare isBest '===' '00'}}checked{{/compare}}>否</label>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">热销商品：</label>
 
                     <div class="controls">
-                        <label><input type="radio" name="isHot" value="01" {{#compare isHot '==='
+                        <label><input id="model-isHot" type="radio" name="isHot" value="01" {{#compare isHot '==='
                             '01'}}checked{{/compare}}>是</label>
-                        <label><input type="radio" name="isHot" value="00" {{#compare isHot '==='
+                        <label><input id="model-isHot1" type="radio" name="isHot" value="00" {{#compare isHot '==='
                             '00'}}checked{{/compare}}>否</label>
                     </div>
                 </div>
@@ -208,11 +199,11 @@
 
 
 
-    </div>
+    </div >
     <!--产品标签-->
-    <div>第四个面板</div>
+    <div class="hide">第四个面板</div>
     <!--搜索引擎优化-->
-    <div>
+    <div class="hide">
         <div class="control-group">
             <label class="control-label">SEO标题：</label>
 
@@ -230,9 +221,9 @@
         <div class="control-group">
             <label class="control-label">SEO描述：</label>
 
-            <div class="controls">
-                <textarea id="model-seoDescription" name="seoDescription" value="{{seoDescription}}"
-                          class="input-large"/>&nbsp;&nbsp;限79字内，加联系电话或邮件
+            <div class="controls control-row-auto">
+                <textarea id="model-seoDescription" name="seoDescription"
+                          class="input-large">{{seoDescription}}</textarea>&nbsp;&nbsp;限79字内，加联系电话或邮件
             </div>
         </div>
     </div>

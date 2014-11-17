@@ -3,15 +3,17 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog'],
     function (require, exports, module) {
-        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow;
+        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog;
 
         ProductModel = require('ProductModel');
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseDetail = require('BaseDetail');
         template = require('http://jihui88.com/member/modules/product/views/product_detail.html') || 'product_detail.html[404]';
+        dialog = require('dialog');
+        AttributesShow = require('AttributesShow');
 
         ProductDetail = BaseDetail.extend({
             el: '#jhw-detail',
@@ -44,7 +46,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                             {title: '搜索引擎优化', value: '6'}
                         ]
                     });
-                    tab.on('selectedchange',function (ev) {
+                    tab.on('selectedchange', function (ev) {
                         ctx.resetIframe();
                     });
                 });
@@ -54,41 +56,85 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                     .then(function (list) {
                         ctx.initSelect({
                             render: '#s1',
-                            target: '#category',
+                            target: '#model-category',
                             items: list,
-                            change: function(categoryId){
-                                console.log('changed');
-                                AttributesShow = require('AttributesShow');
-                                new AttributesShow({
-                                    categoryId: categoryId
-                                });
+                            change: function (categoryId) {
+                                if (!ctx._isAdd){
+                                    dialog({
+                                        title: '提示',
+                                        content: '更换分类将更改产品属性选项， 点击“保留”只更改分类， 不更改属性！',
+                                        width:250,
+                                        button: [{
+                                            value: '保留',
+                                            autofocus: true,
+                                            callback: function(){
+                                                this.close();
+                                            }
+                                        },{
+                                        value: '更换',
+                                            callback: function () {
+                                            ctx.attributes = new AttributesShow({
+                                                categoryId: categoryId
+                                            });
+                                        }}]
+                                    }).show($("#s1").get(0));
+                                } else{
+                                    ctx.attributes = new AttributesShow({
+                                        categoryId: categoryId
+                                    });
+                                }
                             }
                         });
-                        ctx.initSelect({
-                            render: '#s3',
-                            target: '#attributesCate',
-                            items: list
-                        });
                     });
+
+                if (!ctx._isAdd){
+                    ctx.attributes = new AttributesShow({
+                        categoryId: ctx.model.get('category'),
+                        items: ctx.model.get('productAttributeMapStore')
+                    });
+                }
 
                 // 产品属性
                 this.initSelect({
                     render: '#s2',
                     width: 100,
                     target: '#model-loginView',
-                    items: [ {text: '访问者可见', value: '1'}, {text: '登录后可见', value: '0'} ]
+                    items: [
+                        {text: '访问者可见', value: '1'},
+                        {text: '登录后可见', value: '0'}
+                    ]
                 });
                 this.initSelect({
                     render: '#s2',
                     width: 100,
                     target: '#model-ads',
-                    items: [ {text: '广告产品', value: '2'}, {text: '是', value: '1'}, {text: '否', value: '0'} ]
+                    items: [
+                        {text: '广告产品', value: '2'},
+                        {text: '是', value: '1'},
+                        {text: '否', value: '0'}
+                    ]
+                });
+                this.initSelect({
+                    render: '#weightUnit',
+                    width: 100,
+                    target: '#model-weightUnit',
+                    itemId: 'value',
+                    items: [
+                        {text: '克', value: 'g'},
+                        {text: '千克', value: 'kg'},
+                        {text: '吨', value: 't'}
+                    ]
                 });
 
                 // 编辑器
                 this.initEditor();
 
-                this.form('#J_Form').validate().init();
+                this.form('#J_Form').validate().init(function () {
+                    // 处理特殊字段
+                });
+                setTimeout(function(){
+                    ctx.resetIframe();
+                }, 1000);
                 return this;
             }
         });
