@@ -5,25 +5,25 @@
  */
 
 define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
-    function (require, exports, module) {
-        var BaseList, Backbone, Est;
+  function (require, exports, module) {
+    var BaseList, Backbone, Est;
 
-        Backbone = require('backbone');
-        Est = require('Est');
+    Backbone = require('backbone');
+    Est = require('Est');
 
-        BaseList = Backbone.View.extend({
-            /**
-             * 初始化集合类
-             *
-             * @method [public] - initCollection
-             * @param collection 对应的collection集合类， 如ProductCollection
-             * @param itemView 对应的单个视图， 如ProductItem
-             * @param ctx 上下文
-             * @param options [beforeLoad 加载数据前执行]
-             * @returns {ln.promise} 返回promise对象
-             * @author wyj 14.11.16
-             * @example
-             *      this.initCollection(ProductCollection, ProductItem, this,{
+    BaseList = Backbone.View.extend({
+      /**
+       * 初始化集合类
+       *
+       * @method [public] - initCollection
+       * @param collection 对应的collection集合类， 如ProductCollection
+       * @param itemView 对应的单个视图， 如ProductItem
+       * @param ctx 上下文
+       * @param options [beforeLoad 加载数据前执行]
+       * @returns {ln.promise} 返回promise对象
+       * @author wyj 14.11.16
+       * @example
+       *      this.initCollection(ProductCollection, ProductItem, this,{
                            beforeLoad: function(){
                                this.setCategoryId(options.categoryId);
                            }
@@ -31,202 +31,206 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                             ctx.initPagination(options);
                             ctx.load(options);
                         });
-             */
-            initCollection: function (collection,itemView, ctx, options) {
-                console.log('1.ProductView.initialize');
-                var options = options || {};
-                this.views = [];
-                this.allCheckbox = this.$('#toggle-all')[0];
-                this.collection = new collection();
-                this.listenTo(this.collection, 'change:checked', this.checkSelect);
-                this.initBind();
-                this.initItemView(itemView, this);
-                return new Est.promise(function(resolve, reject){ resolve(options); });
-            },
-            /**
-             * 初始化视图
-             *
-             * @method [public] - initView
-             * @param options
-             * @author wyj 14.11.17
-             * @example
-             *      this.initView({
+       */
+      initCollection: function (collection, itemView, ctx, options) {
+        console.log('1.ProductView.initialize');
+        var options = options || {};
+        this.views = [];
+        this.allCheckbox = this.$('#toggle-all')[0];
+        this.collection = new collection();
+        this.listenTo(this.collection, 'change:checked', this.checkSelect);
+        this.initBind();
+        this.initItemView(itemView, this);
+        return new Est.promise(function (resolve, reject) {
+          resolve(options);
+        });
+      },
+      /**
+       * 初始化视图
+       *
+       * @method [public] - initView
+       * @param options
+       * @author wyj 14.11.17
+       * @example
+       *      this.initView({
                     viewTemp: viewTemp,
                     collectionId: '#product-list-ul'
                 });
-             */
-            initView: function(options){
-                this.$el.empty();
-                this.$el.append($(options.viewTemp));
-                this.list = $(options.collectionId, this.$el);
-            },
-            /**
-             * 初始化分页
-             *
-             * @method [public] - initPagination
-             * @param options
-             * @author wyj 14.11.17
-             */
-            initPagination: function(options){
-                var ctx = this;
-                ctx.collection.paginationModel.on('reloadList', function (model) {
-                    ctx.load.call(ctx, options, model);
-                });
-            },
-            /**
-             * 获取集合数据
-             *
-             * @method [public] - load
-             * @param model
-             * @author wyj 14.11.16
-             */
-            load: function(options, model){
-                var ctx = this;
-                return new Est.promise(function(resolve, reject){
-                    if (options.beforeLoad){
-                        options.beforeLoad.call(ctx.collection);
-                    }
-                    if (ctx.collection.url){
-                        ctx.collection.load(ctx.collection, ctx, model)
-                            .then(function(result){
-                                resolve(result);
-                            });
-                    }
-                });
-            },
-            /**
-             * 绑定事件， 如果添加事件， 重置事件
-             * @method [public] - initBind
-             * @author wyj 14.11.16
-             */
-            initBind: function(){
-                this.collection.bind('add', this.addOne, this);
-                this.collection.bind('reset', this.render, this);
-            },
-            /**
-             * 渲染视图
-             *
-             * @method [public] - render
-             * @author wyj 14.11.16
-             */
-            render: function () {
-                console.log('BaseList.render');
-                this.addAll();
-            },
-            /**
-             * 初始化单个枚举视图
-             *
-             * @method [public] - initItemView
-             * @param itemView
-             * @author wyj 14.11.16
-             */
-            initItemView: function (itemView) {
-                this.itemView = itemView;
-            },
-            /**
-             * 清空列表， 并移除所有绑定的事件
-             *
-             * @method [public] - empty
-             * @author wyj 14.11.16
-             */
-            empty: function () {
-                console.log('5.ProductView.empty');
-                _.each(this.views, function (view) {
-                    view.off().remove();
-                })
-                this.views = [];
-                this.list.html("");
-            },
-            /**
-             * 向视图添加元素
-             *
-             * @method [public] - addOne
-             * @param target
-             * @author wyj 14.11.16
-             */
-            addOne: function (target) {
-                var itemView = new this.itemView({
-                    model: target
-                });
-                this.list.append(itemView.render().el);
-                this.views.push(itemView);
-            },
-            /**
-             * 添加所有元素， 相当于刷新视图
-             *
-             * @method [public] - addAll
-             * @author wyj 14.11.16
-             */
-            addAll: function () {
-                console.log('ProductView.addAll');
-                this.empty();
-                this.collection.each(this.addOne, this);
-            },
-            /**
-             * 弹出查看详细信息对话框
-             *
-             * @method [public] - detail
-             * @param options
-             * @author wyj 14.11.16
-             */
-            detail: function (options) {
-                console.log('1.ProductView.openAddDialog');
-                var ctx = this;
-                seajs.use(['dialog-plus'], function (dialog) {
-                    window.dialog = dialog;
-                    window.detailDialog = dialog({
-                        id: 'detail-dialog',
-                        title: options.title || '详细信息',
-                        width: 800,
-                        url: options.url || '',
-                        button: [{
-                                value: '保存',
-                                callback: function () {
-                                    this.title('正在提交..');
-                                    this.iframeNode.contentWindow.$("#submit").click();
-                                    return false;
-                                },
-                                autofocus: true
-                            }, {
-                                value: '重置',
-                                callback: function () {
-                                    this.iframeNode.contentWindow.$("#reset").click();
-                                    return false;
-                                }
-                            },
-                            { value: '关闭' }
-                        ],
-                        oniframeload: function () {
-                            this.iframeNode.contentWindow.detailDialog = window.detailDialog;
-                        },
-                        onclose: function () {
-                            ctx.collection.load(ctx.collection, ctx).
-                                then(function () {
-                                    ctx.render();
-                            });
-                            this.remove();
-                            if (this.returnValue) {
-                                $('#value').html(this.returnValue);
-                            }
-                        }
-                    });
-                    window.detailDialog.showModal();
-                });
-            },
-            /**
-             * 全选checkbox选择框
-             *
-             * @method [public] - toggleAllChecked
-             * @author wyj 14.11.16
-             */
-            toggleAllChecked: function () {
-                var checked = this.allCheckbox.checked;
-                this.collection.each(function (product) {
-                    product.set('checked', checked);
-                });
-            }
+       */
+      initView: function (options) {
+        this.$el.empty();
+        this.$el.append($(options.viewTemp));
+        this.list = $(options.collectionId, this.$el);
+      },
+      /**
+       * 初始化分页
+       *
+       * @method [public] - initPagination
+       * @param options
+       * @author wyj 14.11.17
+       */
+      initPagination: function (options) {
+        var ctx = this;
+        ctx.collection.paginationModel.on('reloadList', function (model) {
+          ctx.load.call(ctx, options, model);
         });
-
-        module.exports = BaseList;
-
+      },
+      /**
+       * 获取集合数据
+       *
+       * @method [public] - load
+       * @param model
+       * @author wyj 14.11.16
+       */
+      load: function (options, model) {
+        var ctx = this;
+        return new Est.promise(function (resolve, reject) {
+          if (options.beforeLoad) {
+            options.beforeLoad.call(ctx.collection);
+          }
+          if (ctx.collection.url) {
+            ctx.collection.load(ctx.collection, ctx, model)
+              .then(function (result) {
+                resolve(result);
+              });
+          }
+        });
+      },
+      /**
+       * 绑定事件， 如果添加事件， 重置事件
+       * @method [public] - initBind
+       * @author wyj 14.11.16
+       */
+      initBind: function () {
+        this.collection.bind('add', this.addOne, this);
+        this.collection.bind('reset', this.render, this);
+      },
+      /**
+       * 渲染视图
+       *
+       * @method [public] - render
+       * @author wyj 14.11.16
+       */
+      render: function () {
+        console.log('BaseList.render');
+        this.addAll();
+      },
+      /**
+       * 初始化单个枚举视图
+       *
+       * @method [public] - initItemView
+       * @param itemView
+       * @author wyj 14.11.16
+       */
+      initItemView: function (itemView) {
+        this.itemView = itemView;
+      },
+      /**
+       * 清空列表， 并移除所有绑定的事件
+       *
+       * @method [public] - empty
+       * @author wyj 14.11.16
+       */
+      empty: function () {
+        console.log('5.ProductView.empty');
+        _.each(this.views, function (view) {
+          view.off().remove();
+        })
+        this.views = [];
+        this.list.html("");
+      },
+      /**
+       * 向视图添加元素
+       *
+       * @method [public] - addOne
+       * @param target
+       * @author wyj 14.11.16
+       */
+      addOne: function (target) {
+        var itemView = new this.itemView({
+          model: target
+        });
+        this.list.append(itemView.render().el);
+        this.views.push(itemView);
+      },
+      /**
+       * 添加所有元素， 相当于刷新视图
+       *
+       * @method [public] - addAll
+       * @author wyj 14.11.16
+       */
+      addAll: function () {
+        console.log('ProductView.addAll');
+        this.empty();
+        this.collection.each(this.addOne, this);
+      },
+      /**
+       * 弹出查看详细信息对话框
+       *
+       * @method [public] - detail
+       * @param options
+       * @author wyj 14.11.16
+       */
+      detail: function (options) {
+        console.log('1.ProductView.openAddDialog');
+        var ctx = this;
+        seajs.use(['dialog-plus'], function (dialog) {
+          window.dialog = dialog;
+          window.detailDialog = dialog({
+            id: 'detail-dialog',
+            title: options.title || '详细信息',
+            width: 800,
+            url: options.url || '',
+            button: [
+              {
+                value: '保存',
+                callback: function () {
+                  this.title('正在提交..');
+                  this.iframeNode.contentWindow.$("#submit").click();
+                  return false;
+                },
+                autofocus: true
+              },
+              {
+                value: '重置',
+                callback: function () {
+                  this.iframeNode.contentWindow.$("#reset").click();
+                  return false;
+                }
+              },
+              { value: '关闭' }
+            ],
+            oniframeload: function () {
+              this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+            },
+            onclose: function () {
+              ctx.collection.load(ctx.collection, ctx).
+                then(function () {
+                  ctx.render();
+                });
+              this.remove();
+              if (this.returnValue) {
+                $('#value').html(this.returnValue);
+              }
+            }
+          });
+          window.detailDialog.showModal();
+        });
+      },
+      /**
+       * 全选checkbox选择框
+       *
+       * @method [public] - toggleAllChecked
+       * @author wyj 14.11.16
+       */
+      toggleAllChecked: function () {
+        var checked = this.allCheckbox.checked;
+        this.collection.each(function (product) {
+          product.set('checked', checked);
+        });
+      }
     });
+
+    module.exports = BaseList;
+
+  });

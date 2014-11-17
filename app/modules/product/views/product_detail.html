@@ -2,245 +2,241 @@
 <form id="J_Form" action="" class="form-horizontal">
 <div id="tab"></div>
 <div id="panel" class="" style="padding:10px;">
-    <!--常规-->
-    <div>
-        <div class="control-group">
-            <label class="control-label"><s>*</s>产品名称：</label>
+<!--常规-->
+<div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>产品名称：</label>
 
-            <div class="controls">
-                <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
-                       data-rules="{required : true}"
-                       data-tip='{"text":"请输入产品名称","iconCls":"icon icon-pencil"}'>
-            </div>
+        <div class="controls">
+            <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入产品名称","iconCls":"icon icon-pencil"}'>
         </div>
-        <div class="control-group">
-            <label class="control-label"><s>*</s>产品分类：</label>
-
-            <div class="controls">
-                <div id="s1">
-                    <input type="hidden" id="model-category" value="{{category}}" name="category"
-                           data-rules="{required : true}">
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">产品型号：</label>
-
-            <div class="controls">
-                <input id="model-prodtype" name="prodtype" value="{{prodtype}}" type="text"
-                       class="input-large"
-                       data-tip='{"text":"请输入产品型号","iconCls":"icon icon-pencil"}'>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="model-loginView">产品属性：</label>
-
-            <div class="controls">
-                <div id="s2">
-                    <input id="model-loginView" name="loginView" value="{{loginView}}" class="input-small"
-                           type="hidden" style="margin-right:5px;"/>
-                    <input id="model-ads" name="ads" value="{{ads}}" class="input-small" type="hidden"/>
-                </div>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label"><s>*</s>产品图片：</label>
-
-            <div class="controls">
-                <input id="model-photo" value="{{photo}}" name="photo" type="text" class="input-small">
-                <a href="javascript:;">本地上传</a>丨<a href="javascript:;">资源库选取</a>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">图片浏览：</label>
-
-            <div class="controls control-row-auto">
-                <img width="600" src="../../images/pic-upload.jpg" alt=""/>
-            </div>
-        </div>
-
-        <div class="row actions-bar" style="display:none;">
-            <div class="form-actions span13 offset3">
-                <button id="submit" type="button" class="button button-primary">保存</button>
-                <button id="reset" type="reset" class="button">重置</button>
-            </div>
-        </div>
-
-
     </div>
-    <!--产品描述-->
-    <div class="hide" style="margin: -10px;">
-        <textarea id="model-proddesc" name="proddesc" class="ckeditor proddesc text" rows="12"
-                  cols="95" style="width: 100%;height:250px;">{{proddesc}}</textarea>
-    </div>
-    <!--产品属性-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label"><s>*</s>更改分类：</label>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>产品分类：</label>
 
-            <div class="controls">
-                <div id="attCate">
-                    <input id="attCateHid" type="hidden" value="{{category}}" name="category">
-                </div>
-            </div>
-        </div>
-        <div id="product-attr">
-            <div id="attributes-list">
-
+        <div class="controls">
+            <div id="s1">
+                <input type="hidden" id="model-category" value="{{category}}" name="category"
+                       data-rules="{required : true}">
             </div>
         </div>
     </div>
-    <!--商城属性-->
-    <div class="hide">
+    <div class="control-group">
+        <label class="control-label">产品型号：</label>
 
-        <div class="row-fluid show-grid">
-            <div class="span12 span-first">
-                <div class="control-group">
-                    <label class="control-label">产品价格：</label>
-
-                    <div class="controls">
-                        <input id="model-price" name="price" value="{{price}}" type="text" class="input-middle"
-                               data-tip='{"text":"产品价格","iconCls":"icon icon-pencil"}'>&nbsp;元
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">商品重量：</label>
-
-                    <div class="controls">
-                        <input id="model-weight" name="weight" value="{{weight}}" type="text" class="input-small">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">库存数量：</label>
-
-                    <div class="controls">
-                        <input id="model-store" name="store" value="{{store}}" type="text" class="input-small">&nbsp;件
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">是否上架：</label>
-
-                    <div class="controls">
-                        <label><input id="model-isMarketable" type="radio" name="isMarketable" value="01" {{#compare isMarketable '==='
-                            '01'}}checked{{/compare}}>是</label>
-                        <label><input id="model-isMarketable1" type="radio" name="isMarketable" value="00" {{#compare isMarketable '==='
-                            '00'}}checked{{/compare}}>否</label>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">新品商品：</label>
-
-                    <div class="controls">
-                        <label><input id="model-isNew" type="radio" name="isNew" value="01" {{#compare isNew '==='
-                            '01'}}checked{{/compare}}>是</label>
-                        <label><input id="model-isNew1" type="radio" name="isNew" value="00" {{#compare isNew '==='
-                            '00'}}checked{{/compare}}>否</label>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="span12">
-                <div class="control-group">
-                    <label class="control-label">市场价格：</label>
-
-                    <div class="controls">
-                        <input id="model-marketPrice" name="marketPrice" value="{{marketPrice}}" type="text"
-                               class="input-middle">元
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">重量单位：</label>
-
-                    <div class="controls">
-                        <div id="weightUnit">
-                            <input id="model-weightUnit" name="weightUnit" value="{{weightUnit}}" type="hidden"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">商品积分：</label>
-
-                    <div class="controls">
-                        <input id="model-point" name="point" value="{{point}}" type="text" class="input-middle">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">精品商品：</label>
-
-                    <div class="controls">
-                        <label><input id="model-isBest" type="radio" name="isBest" value="01" {{#compare isBest '===' '01'}}checked{{/compare}}>是</label>
-                        <label><input id="model-isBest1" type="radio" name="isBest" value="00" {{#compare isBest '===' '00'}}checked{{/compare}}>否</label>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">热销商品：</label>
-
-                    <div class="controls">
-                        <label><input id="model-isHot" type="radio" name="isHot" value="01" {{#compare isHot '==='
-                            '01'}}checked{{/compare}}>是</label>
-                        <label><input id="model-isHot1" type="radio" name="isHot" value="00" {{#compare isHot '==='
-                            '00'}}checked{{/compare}}>否</label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="span24">
-                <div class="control-group">
-                    <label class="control-label">图片路径存储：</label>
-
-                    <div class="controls">
-                        <input id="model-productImageListStore" name="productImageListStore" value="{{productImageListStore}}"
-                               type="text" class="input-large">
-                    </div>
-                </div>
-            </div>
+        <div class="controls">
+            <input id="model-prodtype" name="prodtype" value="{{prodtype}}" type="text"
+                   class="input-large"
+                   data-tip='{"text":"请输入产品型号","iconCls":"icon icon-pencil"}'>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-    </div >
-    <!--产品标签-->
-    <div class="hide">
-        <div id="pro-tag">
-            <input type="hidden" id="model-tag" value="选项二" name="hide">
-        </div>
-
     </div>
-    <!--搜索引擎优化-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label">SEO标题：</label>
+    <div class="control-group">
+        <label class="control-label" for="model-loginView">产品属性：</label>
 
-            <div class="controls">
-                <input id="model-seoTitle" name="seoTitle" value="{{seoTitle}}" type="text" class="input-large">&nbsp;&nbsp;如：防盗门、防火门等
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">SEO关键字：</label>
-
-            <div class="controls">
-                <input id="model-pkey" name="pkey" value="{{pkey}}" type="text" class="input-large">&nbsp;&nbsp;如：防盗门、防火门等
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">SEO描述：</label>
-
-            <div class="controls control-row-auto">
-                <textarea id="model-seoDescription" name="seoDescription"
-                          class="input-large">{{seoDescription}}</textarea>&nbsp;&nbsp;限79字内，加联系电话或邮件
+        <div class="controls">
+            <div id="s2">
+                <input id="model-loginView" name="loginView" value="{{loginView}}" class="input-small"
+                       type="hidden" style="margin-right:5px;"/>
+                <input id="model-ads" name="ads" value="{{ads}}" class="input-small" type="hidden"/>
             </div>
         </div>
     </div>
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>产品图片：</label>
+
+        <div class="controls">
+            <input id="model-photo" value="{{photo}}" name="photo" type="text" class="input-small">
+            <a href="javascript:;">本地上传</a>丨<a href="javascript:;">资源库选取</a>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">图片浏览：</label>
+
+        <div class="controls control-row-auto">
+            <img width="600" src="../../images/pic-upload.jpg" alt=""/>
+        </div>
+    </div>
+
+    <div class="row actions-bar" style="display:none;">
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">保存</button>
+            <button id="reset" type="reset" class="button">重置</button>
+        </div>
+    </div>
+
+
+</div>
+<!--产品描述-->
+<div class="hide" style="margin: -10px;">
+    <textarea id="model-proddesc" name="proddesc" class="ckeditor proddesc text" rows="12"
+              cols="95" style="width: 100%;height:250px;">{{proddesc}}</textarea>
+</div>
+<!--产品属性-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label"><s>*</s>更改分类：</label>
+
+        <div class="controls">
+            <div id="attCate">
+                <input id="attCateHid" type="hidden" value="{{category}}" name="category">
+            </div>
+        </div>
+    </div>
+    <div id="product-attr">
+        <div id="attributes-list">
+
+        </div>
+    </div>
+</div>
+<!--商城属性-->
+<div class="hide">
+
+    <div class="row-fluid show-grid">
+        <div class="span12 span-first">
+            <div class="control-group">
+                <label class="control-label">产品价格：</label>
+
+                <div class="controls">
+                    <input id="model-price" name="price" value="{{price}}" type="text" class="input-middle"
+                           data-tip='{"text":"产品价格","iconCls":"icon icon-pencil"}'>&nbsp;元
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">商品重量：</label>
+
+                <div class="controls">
+                    <input id="model-weight" name="weight" value="{{weight}}" type="text" class="input-small">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">库存数量：</label>
+
+                <div class="controls">
+                    <input id="model-store" name="store" value="{{store}}" type="text" class="input-small">&nbsp;件
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">是否上架：</label>
+
+                <div class="controls">
+                    <label><input id="model-isMarketable" type="radio" name="isMarketable" value="01" {{#compare
+                        isMarketable '==='
+                        '01'}}checked{{/compare}}>是</label>
+                    <label><input id="model-isMarketable1" type="radio" name="isMarketable" value="00" {{#compare
+                        isMarketable '==='
+                        '00'}}checked{{/compare}}>否</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">新品商品：</label>
+
+                <div class="controls">
+                    <label><input id="model-isNew" type="radio" name="isNew" value="01" {{#compare isNew '==='
+                        '01'}}checked{{/compare}}>是</label>
+                    <label><input id="model-isNew1" type="radio" name="isNew" value="00" {{#compare isNew '==='
+                        '00'}}checked{{/compare}}>否</label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label">市场价格：</label>
+
+                <div class="controls">
+                    <input id="model-marketPrice" name="marketPrice" value="{{marketPrice}}" type="text"
+                           class="input-middle">元
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">重量单位：</label>
+
+                <div class="controls">
+                    <div id="weightUnit">
+                        <input id="model-weightUnit" name="weightUnit" value="{{weightUnit}}" type="hidden"/>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">商品积分：</label>
+
+                <div class="controls">
+                    <input id="model-point" name="point" value="{{point}}" type="text" class="input-middle">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">精品商品：</label>
+
+                <div class="controls">
+                    <label><input id="model-isBest" type="radio" name="isBest" value="01" {{#compare isBest '==='
+                        '01'}}checked{{/compare}}>是</label>
+                    <label><input id="model-isBest1" type="radio" name="isBest" value="00" {{#compare isBest '==='
+                        '00'}}checked{{/compare}}>否</label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">热销商品：</label>
+
+                <div class="controls">
+                    <label><input id="model-isHot" type="radio" name="isHot" value="01" {{#compare isHot '==='
+                        '01'}}checked{{/compare}}>是</label>
+                    <label><input id="model-isHot1" type="radio" name="isHot" value="00" {{#compare isHot '==='
+                        '00'}}checked{{/compare}}>否</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="span24">
+            <div class="control-group">
+                <label class="control-label">图片路径存储：</label>
+
+                <div class="controls">
+                    <input id="model-productImageListStore" name="productImageListStore"
+                           value="{{productImageListStore}}"
+                           type="text" class="input-large">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--产品标签-->
+<div class="hide">
+    <div id="pro-tag">
+        <input type="hidden" id="model-tag" value="选项二" name="hide">
+    </div>
+
+</div>
+<!--搜索引擎优化-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">SEO标题：</label>
+
+        <div class="controls">
+            <input id="model-seoTitle" name="seoTitle" value="{{seoTitle}}" type="text" class="input-large">&nbsp;&nbsp;如：防盗门、防火门等
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">SEO关键字：</label>
+
+        <div class="controls">
+            <input id="model-pkey" name="pkey" value="{{pkey}}" type="text" class="input-large">&nbsp;&nbsp;如：防盗门、防火门等
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">SEO描述：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-seoDescription" name="seoDescription"
+                      class="input-large">{{seoDescription}}</textarea>&nbsp;&nbsp;限79字内，加联系电话或邮件
+        </div>
+    </div>
+</div>
 </div>
 </form>
 </div>
