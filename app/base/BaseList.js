@@ -16,22 +16,24 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
              * 初始化集合类， 绑定checkbox， 分页
              *
              * @method [public] - initCollection
-             * @param collection
-             * @param ctx
+             * @param collection 对应的collection集合类， 如ProductCollection
+             * @param ctx 上下文
+             * @param options [beforeLoad 加载数据前执行]
              * @returns {ln.promise} 返回promise对象
              * @author wyj 14.11.16
              */
-            initCollection: function (collection, ctx) {
+            initCollection: function (collection, ctx, options) {
                 console.log('1.ProductView.initialize');
+                var options = options || {};
                 this.views = [];
                 this.allCheckbox = this.$('#toggle-all')[0];
                 this.collection = new collection();
                 this.listenTo(this.collection, 'change:checked', this.checkSelect);
                 return new Est.promise(function(resolve, reject){
                     ctx.collection.paginationModel.on('reloadList', function (model) {
-                        ctx.load.call(ctx, resolve, model);
+                        ctx.load.call(ctx, resolve,options, model);
                     });
-                    ctx.load.call(ctx, resolve);
+                    ctx.load.call(ctx, resolve, options);
                 });
             },
             /**
@@ -42,7 +44,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
              * @param model
              * @author wyj 14.11.16
              */
-            load: function(resolve, model){
+            load: function(resolve, options, model){
+                if (options.beforeLoad){
+                    options.beforeLoad.call(this.collection);
+                }
                 if (this.collection.url){
                     this.collection.load(this.collection, this, model)
                         .then(function(result){

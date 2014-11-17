@@ -6,7 +6,7 @@
 
 define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
     function(require, exports, module){
-        var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est;
+        var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, itemTemp;
 
         HandlebarsHelper = require('HandlebarsHelper');
         BaseCollection = require('BaseCollection');
@@ -14,21 +14,30 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         BaseList = require('BaseList');
         BaseModel = require('BaseModel');
         Est = require('Est');
+        itemTemp = require('http://jihui88.com/member/common/attributes/attributes_show_item.html');
 
         model = BaseModel.extend({
             defaults: { key: '选项', value: '' }
         });
 
         collection = BaseCollection.extend({
-            model: model
+            url: function(){
+                return 'http://jihui88.com/rest/api/attr/list/' + this.getCategoryId();
+            },
+            model: model,
+            setCategoryId: function(categoryId){
+                this.categoryId = categoryId;
+            },
+            getCategoryId: function(){
+                return this.categoryId;
+            }
         });
 
         item = BaseItem.extend({
             tagName: 'div',
             className: 'control-group',
-            template : HandlebarsHelper.compile($('#attributes-item-template').html()),
+            template : HandlebarsHelper.compile(itemTemp),
             events: {
-                'click .delete': 'del',
                 'change input': 'update'
             },
             initialize: function(){
@@ -39,13 +48,12 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
                 return this;
             },
             update: function(){
-                this.model.set(this.$('input').attr("name"), this.$('input').val());
+                this.model.set(this.$('input').attr("name").replace('attr-', ''), this.$('input').val());
             }
         });
 
         AttributesShow = BaseList.extend({
             el: '#product-attr',
-            template: HandlebarsHelper.compile($("#option-template").html()),
             events: {
                 'click .option-add': 'add',
                 'click .option-remove': 'remove',
@@ -54,22 +62,18 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
             initialize: function (options) {
                 this.options = options || {};
                 this.$el.empty();
-                this.$el.html(this.template({}));
-                this.list = $("#attributes-container", this.$el);
-
-                this.initCollection(collection, this);
+                this.list = $("#attributes-list", this.$el);
+                this.initCollection(collection, this, {
+                    beforeLoad: function(){
+                        this.setCategoryId(options.categoryId);
+                    }
+                });
                 this.initItemView(item, this);
                 this.initBind();
-
                 if (options.items){
                     Est.each(options.items, function(item){
-                        this.collection.push(new model({
-                            key: '选项',
-                            value: item
-                        }));
+                        this.collection.push(new model(item));
                     }, this);
-                } else{
-                    this.add();
                 }
                 return this;
             },

@@ -99,6 +99,7 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         routes: {
             '': 'index',
             'login' : 'login',
+            'register': 'register',
             'product': 'product',
             'category/product': 'productCategory',
             'attributes': 'attributes',
@@ -121,6 +122,9 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
             seajs.use(['login/template'], function(template){
 
             });
+        },
+        register: function(){
+
         },
         product: function (id) {
             seajs.use(['jquery', 'ProductList'], function(jquery, ProductList){

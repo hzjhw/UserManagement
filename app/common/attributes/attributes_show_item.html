@@ -1,0 +1,6 @@
+{{#compare attributeType '===' 'text'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <input id="model-attr-name" name="attr-name" value="{{../name}}" type="text" class="input-large">
+</div>
+{{/compare}}

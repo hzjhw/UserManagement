@@ -197,6 +197,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                         container[render].render();
                         container[render].on('change', function (ev) {
                             $(target).val(Est.trim(ev.item[itemId]));
+                            if (typeof options.change !== 'undefined')
+                                options.change.call(this, ev.item[itemId]);
                             resove(ev.item[itemId]);
                         });
                     })

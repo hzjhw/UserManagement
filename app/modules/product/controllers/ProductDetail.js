@@ -3,9 +3,9 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow'],
     function (require, exports, module) {
-        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template;
+        var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow;
 
         ProductModel = require('ProductModel');
         HandlebarsHelper = require('HandlebarsHelper');
@@ -55,7 +55,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                         ctx.initSelect({
                             render: '#s1',
                             target: '#category',
-                            items: list
+                            items: list,
+                            change: function(categoryId){
+                                console.log('changed');
+                                AttributesShow = require('AttributesShow');
+                                new AttributesShow({
+                                    categoryId: categoryId
+                                });
+                            }
                         });
                         ctx.initSelect({
                             render: '#s3',
