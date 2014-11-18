@@ -32,7 +32,7 @@
             <label class="control-label"><s>*</s>用户名</label>
 
             <div class="controls">
-                <input id="username" name="username" value="{{username}}" type="text" class="input-large"
+                <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
                        data-rules="{required : true}"
                        data-tip='{"text":"请输入用户名","iconCls":"icon icon-pencil"}'>
             </div>
@@ -41,7 +41,7 @@
             <label class="control-label"><s>*</s>密码</label>
 
             <div class="controls">
-                <input id="password" name="password" value="{{password}}" type="text" class="input-large"
+                <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
                        data-rules="{required : true}"
                        data-tip='{"text":"请输入密码","iconCls":"icon icon-pencil"}'>
             </div>
@@ -50,10 +50,11 @@
             <label class="control-label"><s>*</s>检证码</label>
 
             <div class="controls">
-                <input id="randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
+                <input id="model-randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
                        data-rules="{required : true}"
                        data-tip='{"text":"请输入检证码"}'>
-                <img id="verifyPic" name="verifyPic" width="56" height="25" class="validete-num" src="/veriIng" >
+                <img id="verifyPic" name="verifyPic" width="56" height="25" class="validete-num refreshCode" src="/veriImg" >
+                <a class="refreshCode" href="javascript:;">换一张？</a>
             </div>
         </div>
         <div class="row actions-bar" >

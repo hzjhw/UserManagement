@@ -22,16 +22,20 @@ define('Login', ['jquery', 'UserModel', 'HandlebarsHelper', 'Est', 'BaseDetail']
             },
             render: function () {
                 console.log('4.Login.render');
-                var ctx = this;
                 this.$el.html(this.template(this.model.toJSON()));
                 this.form('#J_Form').validate().init();
                 return this;
             },
             events : {
-                "click input[type=button]" : "click_login"
+                "click input[type=button]" : "click_login",
+                'click .refreshCode': 'refreshCode'
             },
             click_login : function(event){
 
+            },
+            refreshCode: function(){
+                var $verifyPic = this.$("#verifyPic");
+                $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
             }
         });
         module.exports = Login;
