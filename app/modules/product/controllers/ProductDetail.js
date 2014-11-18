@@ -113,7 +113,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
               url: 'http://jihui88.com/rest/api/tag/product',
               success: function(result){
                 var taglist = Est.pluck(result.attributes.data, 'name');
-                Est.each(Est.pluck(list, 'text'), function(item, i){
+                Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
                   if (i !== 0) {
                     taglist.push(item.replace(/^\s*\|-/g, ''));
                   }
@@ -121,10 +121,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                 ctx.initCombox({
                   render: '#pro-tag',
                   target: '#model-taglist',
-                  items: taglist,
-                  change: function(result){
-                    alert(result);
-                  }
+                  items: taglist
                 });
               }
             })

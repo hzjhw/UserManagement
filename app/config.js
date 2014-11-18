@@ -42,6 +42,7 @@ seajs.config({
     // index
     'TopView': 'modules/index/views/TopView.js',
     'LeftView': 'modules/index/views/LeftView.js',
+    'Main': 'modules/index/controllers/Main.js',
 
     // user
     'UserModel': 'models/UserModel.js',
@@ -110,6 +111,17 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     },
 
     index: function () {
+      seajs.use(['jquery', 'Main'], function (jquery, Main) {
+        new Main();
+      });
+
+      define('Main/template', function (require) {
+        require('http://jihui88.com/member/modules/index/views/main.html');
+      });
+
+      seajs.use(['Main/template'], function (Main) {
+
+      });
 
     },
     login: function () {

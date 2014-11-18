@@ -594,20 +594,22 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
     },
     //设置tags，初始化时处理
     _setTags : function(value){
-      var _self = this,
-        tagList = _self.get('tagList'),
-        separator = _self.get('separator'),
-        values = value.split(separator);
-      if(!tagList){
-        tagList = _self._initTagList();
+      try{
+        var _self = this,
+          tagList = _self.get('tagList'),
+          separator = _self.get('separator'),
+          values = value.split(separator);
+        if(!tagList){
+          tagList = _self._initTagList();
+        }
+        if(value){
+          BUI.each(values,function(val){
+            tagList.addItem({value : val});
+          });
+        }
+      }catch(e){
+        console.error(e);
       }
-      if(value){
-        BUI.each(values,function(val){
-          tagList.addItem({value : val});
-        });
-      }
-      
-
     },
     //添加tag
     _addTag : function(value){
