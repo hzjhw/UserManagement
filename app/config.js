@@ -80,7 +80,7 @@ seajs.config({
 
   // 映射配置
   map: [
-    [/bui\/(.*).js/, 'bui/$1-min.js'], //['.js', '-min.js'] ,仅bui目录下使用-min.js
+    //[/bui\/(.*).js/, 'bui/$1-min.js'], //['.js', '-min.js'] ,仅bui目录下使用-min.js
     ['http://example.com/js/app/', 'http://localhost/js/app/'],
     ['.js', '.js?20141105']
   ],
