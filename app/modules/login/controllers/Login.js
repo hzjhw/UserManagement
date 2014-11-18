@@ -1,7 +1,7 @@
 /**
- * @description Login
+ * @description Login js
  * @namespace Login
- * @author Administrator on 14-11-17
+ * @author jihui-wxw on 14-11-17
  */
 
 define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'],
