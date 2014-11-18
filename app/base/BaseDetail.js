@@ -99,8 +99,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             }
           });
           if (typeof callback !== 'undefined')
-            callback.call(this);
-          this.save();
+            callback.call(ctx);
+          ctx.save();
         });
       },
       /**
