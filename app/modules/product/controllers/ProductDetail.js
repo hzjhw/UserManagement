@@ -29,6 +29,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
       render: function () {
         console.log('4.ProductDetail.render');
         var ctx = this;
+        this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'),'tag'), 'name')
+        .join(","));
         this.$el.html(this.template(this.model.toJSON()));
 
         BUI.use(['bui/tab', 'bui/mask'], function (Tab) {
@@ -91,6 +93,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                 }
               }
             });
+            // 属性
             ctx.initSelect({
               render: '#attCate',
               target: '#attCateHid',
@@ -104,6 +107,28 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                 }, 500);
               }
             });
+            // 标签
+            $.ajax({
+              type: 'get',
+              url: 'http://jihui88.com/rest/api/tag/product',
+              success: function(result){
+                var taglist = Est.pluck(result.attributes.data, 'name');
+                Est.each(Est.pluck(list, 'text'), function(item, i){
+                  if (i !== 0) {
+                    taglist.push(item.replace(/^\s*\|-/g, ''));
+                  }
+                });
+                ctx.initCombox({
+                  render: '#pro-tag',
+                  target: '#model-taglist',
+                  items: taglist,
+                  change: function(result){
+                    alert(result);
+                  }
+                });
+              }
+            })
+
           });
 
         if (!ctx._isAdd) {
@@ -143,15 +168,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             {text: '千克', value: 'kg'},
             {text: '吨', value: 't'}
           ]
-        });
-
-        this.initCombox({
-          render: '#pro-tag',
-          target: '#model-tag',
-          items: [],
-          change: function () {
-            ctx.resetIframe();
-          }
         });
 
         // 编辑器

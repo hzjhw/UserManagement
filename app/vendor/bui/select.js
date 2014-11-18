@@ -616,7 +616,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
         tagInput = _self.getTagInput(),
         preItem = tagList.getItem(value);
       if(!preItem){
-        tagList.addItem({value : value});
+        tagList.addItem({value : value.replace(/^\s*\|-/g, '')});
         _self._synTagsValue();
       }else{
         _self._blurItem(tagList,preItem);
@@ -675,7 +675,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
       list.on('itemclick',function(ev){
         var sender = $(ev.domTarget);
         if(sender.is('button')){
-          //_self._delTag(ev.item);
+          _self._delTag(ev.item);
         }
       });
     },

@@ -15,7 +15,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 初始化模型类 将自动判断是否有ID传递进来，
        * 若存在则从服务器端获取详细内容
-       * 若为添加， 则设置ctx._isAdd = true
+       * 若为添加， 则在ctx 与模型类里设置 _isAdd = true
        *
        * @method [public] - initModel
        * @param model
@@ -23,18 +23,18 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj on 14.11.15
        */
       initModel: function (model, ctx) {
-        ctx._isAdd = false;
         ctx.passId = Est.getUrlParam('id', window.location.href);
         if (!Est.isEmpty(this.passId)) {
           ctx.model = new model();
           ctx.model.set('id', ctx.passId);
           ctx.model.fetch().done(function () {
+            ctx.model.set('_isAdd', ctx._isAdd = false);
             ctx.render().resetIframe();
           });
         } else {
-          ctx._isAdd = true;
           ctx.passId = new Date().getTime();
           ctx.model = new model();
+          ctx.model.set('_isAdd', ctx._isAdd = true)
           ctx.render().resetIframe();
         }
       },
@@ -254,11 +254,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
               items: items
             });
             container[render].render();
-           /* container[render].on('change', function (ev) {
+           /*container[render].on('change', function (ev) {
               //$(target).val($(target)Est.trim(ev.item[itemId]));
               if (typeof options.change !== 'undefined')
                 options.change.call(this, ev.item[itemId]);
-              resolve(ev.item[itemId]);
             });*/
           })
         });

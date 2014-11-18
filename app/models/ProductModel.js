@@ -29,6 +29,8 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel
         marketPrice: '0',
         isMarketable: '00',
         weightUnit: 'kg',
+        taglist:'',
+        tagMapStore: [],
         photo2: [],
         photoId: 'Attach_0000000000000000000011056',
         photo: 'upload/g/g2/ggggfj/picture/2014/09/01/01bcc9d6-4790-403f-a546-eb97fc3aee31.jpg',
