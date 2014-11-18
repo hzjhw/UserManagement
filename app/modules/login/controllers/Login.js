@@ -4,11 +4,11 @@
  * @author Administrator on 14-11-17
  */
 
-define('Login', ['jquery', 'UserModel', 'HandlebarsHelper', 'Est', 'BaseDetail'],
+define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'],
     function (require, exports, module) {
-        var Login, UserModel, HandlebarsHelper, Est, BaseDetail, template;
+        var Login, LoginModel, HandlebarsHelper, Est, BaseDetail, template;
 
-        UserModel = require('UserModel');
+        LoginModel = require('LoginModel');
         HandlebarsHelper = require('HandlebarsHelper');
         Est = require('Est');
         BaseDetail = require('BaseDetail');
@@ -18,7 +18,7 @@ define('Login', ['jquery', 'UserModel', 'HandlebarsHelper', 'Est', 'BaseDetail']
             template: HandlebarsHelper.compile($('#login_template').html()),
             initialize: function () {
                 console.log('2.Login.initialize');
-                this.initModel(UserModel, this);
+                this.initModel(LoginModel, this);
             },
             render: function () {
                 console.log('4.Login.render');
@@ -27,11 +27,12 @@ define('Login', ['jquery', 'UserModel', 'HandlebarsHelper', 'Est', 'BaseDetail']
                 return this;
             },
             events : {
-                "click input[type=button]" : "click_login",
                 'click .refreshCode': 'refreshCode'
             },
-            click_login : function(event){
-
+            save: function(){
+                this.saveItem(function () {
+                    window.location.href = '/member/index.html';
+                });
             },
             refreshCode: function(){
                 var $verifyPic = this.$("#verifyPic");

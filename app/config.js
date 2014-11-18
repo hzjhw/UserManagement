@@ -45,6 +45,8 @@ seajs.config({
 
     // user
     'UserModel': 'models/UserModel.js',
+    'LoginModel': 'models/LoginModel.js',
+    'Login': 'modules/login/controllers/Login.js',
 
     // todo
     'TodoModel': 'demo/todo/models/TodoModel.js',
