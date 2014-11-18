@@ -254,12 +254,12 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
               items: items
             });
             container[render].render();
-            container[render].on('change', function (ev) {
+           /* container[render].on('change', function (ev) {
               //$(target).val($(target)Est.trim(ev.item[itemId]));
               if (typeof options.change !== 'undefined')
                 options.change.call(this, ev.item[itemId]);
               resolve(ev.item[itemId]);
-            });
+            });*/
           })
         });
       },

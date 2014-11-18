@@ -17,7 +17,7 @@
 - http://aui.github.io/artDialog/doc/index.html
 
 ### handlebars API文档 - 模板引擎
-- http://aui.github.io/artDialog/doc/index.html
+- http://handlebarsjs.com/
 
 ### jquery API文档 - DOM选择器
 - http://oscarotero.com/jquery/

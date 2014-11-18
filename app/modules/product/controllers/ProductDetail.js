@@ -86,6 +86,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                   ctx.attributes = new AttributesShow({
                     categoryId: categoryId
                   });
+                  //TODO 产品标签
+
                 }
               }
             });
@@ -146,7 +148,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         this.initCombox({
           render: '#pro-tag',
           target: '#model-tag',
-          items: [ '选项一', '选项二', '选项三', '选项四' ],
+          items: [],
           change: function () {
             ctx.resetIframe();
           }

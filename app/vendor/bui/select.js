@@ -534,7 +534,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
      * @type {String}
      */
     separator : {
-      value : ';'
+      value : ','
     }
   };
 
@@ -675,7 +675,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
       list.on('itemclick',function(ev){
         var sender = $(ev.domTarget);
         if(sender.is('button')){
-          _self._delTag(ev.item);
+          //_self._delTag(ev.item);
         }
       });
     },
