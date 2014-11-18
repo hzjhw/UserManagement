@@ -24,6 +24,7 @@
 
 ### git API文档 - 项目管理
 - http://git-scm.com/book/zh/v1
+- git fetch[或git pull] -> git add . -> git commit -m "14.11.18" -> git push origin
 
 ### 说明
 - config.js [配置模块路径与路由]
@@ -39,5 +40,5 @@
 ### 注意
 - git一天只能提交一次， 晚上10点之前提交
 - 各模块[必须]、方法前 标注自己的作者， 如： @author yongjin on 2014.11.6
-- 修改别人的代码， 请通知原作者， 禁止私自修改
+- 修改别人的代码， 请通知原作者， 禁止私自修改[可以添加方法， 注明作者]
 - 功能模块完成后， 请附带demo.html

@@ -26,6 +26,18 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
         this.model.view = this;
       },
       /**
+       * 渲染
+       *
+       * @method [protected] - render
+       * @returns {BaseCollection}
+       * @author wyj 14.11.18
+       */
+      render: function () {
+        console.log('11.ProductItem.render [item display]');
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
+      },
+      /**
        * 移除监听
        *
        * @method [public] - close
