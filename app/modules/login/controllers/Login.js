@@ -15,7 +15,7 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'
 
         Login = BaseDetail.extend({
             el: '#jhw-login',
-            template: HandlebarsHelper.compile($('#login_template').html()),
+            template: HandlebarsHelper.compile($('#login_template').html()),//Handlebars
             initialize: function () {
                 console.log('2.Login.initialize');
                 this.initModel(LoginModel, this);
