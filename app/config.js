@@ -118,7 +118,7 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       });
 
       define('login/template', function (require) {
-        require('http://jihui88.com/member/modules/login/views/login.html');
+        require('http://jihui88.com/member/modules/login/login.html');
       });
 
       seajs.use(['login/template'], function (template) {
