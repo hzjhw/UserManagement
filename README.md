@@ -24,7 +24,7 @@
 
 ### git API文档 - 项目管理
 - http://git-scm.com/book/zh/v1
-- git fetch[或git pull] -> git add . -> git commit -m "14.11.18" -> git push origin
+- git fetch origin master:tmp -> git merge tmp -> git add . -> git commit -m "wyj" -> git push origin
 
 ### 说明
 - config.js [配置模块路径与路由]
