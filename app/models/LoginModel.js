@@ -1,7 +1,7 @@
 /**
  * @description UserModel
  * @namespace UserModel
- * @author yongjin on 2014/11/12
+ * @author jihui-wxw on 2014/11/12
  */
 define('LoginModel', ['jquery', 'BaseModel'], function (require, exports, module) {
   var LoginModel, BaseModel;

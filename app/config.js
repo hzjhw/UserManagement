@@ -68,7 +68,12 @@ seajs.config({
     // product
     'ProductModel': 'models/ProductModel.js',
     'ProductList': 'modules/product/controllers/ProductList.js',
-    'ProductDetail': 'modules/product/controllers/ProductDetail.js'
+    'ProductDetail': 'modules/product/controllers/ProductDetail.js',
+
+   // member
+    'MemberModel': 'models/MemberModel.js',
+    'MemberList': 'modules/member/controllers/MemberList.js',
+    'MemberDetail': 'modules/member/controllers/MemberDetail.js'
   },
 
   // 路径配置
@@ -106,6 +111,7 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       'product': 'product',
       'category/product': 'productCategory',
       'attributes': 'attributes',
+      'member': 'member',
 
       '*other': 'default'
     },
@@ -176,12 +182,27 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         new AttributesList();
       });
       define('attributes/template', function (require) {
-        require('http://jihui88.com/member/modules/attributes/views/attributes_item.html');
-        require('http://jihui88.com/member/modules/attributes/views/attributes_list.html');
+        require('http://jihui88.com/member/modules/attributes/views/member_item.html');
+        require('http://jihui88.com/member/modules/attributes/views/member_list.html');
         require('http://jihui88.com/member/common/pagination/pagination.html');
       });
 
       seajs.use(['attributes/template'], function (template) {
+
+      });
+    },
+
+    member: function (id) {
+      seajs.use(['jquery', 'MemberList'], function (jquery, MemberList) {
+        new MemberList();
+      });
+      define('member/template', function (require) {
+        require('http://jihui88.com/member/modules/member/views/member_item.html');
+        require('http://jihui88.com/member/modules/member/views/member_list.html');
+        require('http://jihui88.com/member/common/pagination/pagination.html');
+      });
+
+      seajs.use(['member/template'], function (template) {
 
       });
     },
