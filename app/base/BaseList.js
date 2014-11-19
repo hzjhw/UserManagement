@@ -188,8 +188,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                   this.title('正在提交..');
                   this.iframeNode.contentWindow.$("#submit").click();
                   return false;
-                },
-                autofocus: true
+                }
               },
               {
                 value: '重置',

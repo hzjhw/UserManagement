@@ -44,7 +44,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        */
       parse: function (response, options) {
         var ctx = this;
-        if (response.msg) {
+        if (response.msg && !this.hideTip) {
           var buttons = [];
           if (response.success) {
             buttons.push({ value: '继续添加', callback: function () {

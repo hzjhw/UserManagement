@@ -36,30 +36,16 @@
 <!--[if !IE]>-->
 <body>
 <!--<![endif]-->
+
 <div id="tag-box"></div>
 
-<script type="text/template" id="tag-template">
-    <div class="bui-combox bui-select bui-tag-follow" aria-disabled="false" tabindex="0" hidefocus="true"
-         style="width: 500px;" aria-pressed="false">
-        <div class="bui-simple-list" aria-disabled="false" aria-pressed="false">
-            <ul id="tag-list-ul">
-
-            </ul>
-        </div>
-        <input type="text" class="bui-combox-input" placeholder="输入标签"></div>
-</script>
-
-<script type="text/template" id="tag-item-template">
-    {{name}}
-    <button class="{{tagId}}">×</button>
-</script>
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
 
     seajs.use(['jquery', 'Tag'], function (jquery, Tag) {
         new Tag({
-            itemId: 'Product_000000000000000000116201'
+            _isAdd: true
         });
     });
 

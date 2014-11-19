@@ -516,7 +516,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
      * @type {String}
      */
     tagItemTpl : {
-      value : '<li>{value}<button>×</button></li>'
+      value : '<li>{value}<span style="cursor:pointer;">×</span></li>'
     },
     /**
      * @private

@@ -3,9 +3,9 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog;
+    var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog, Tag;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +14,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
     template = require('template/product_detail');
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
+    Tag = require('Tag');
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -108,7 +109,11 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
               }
             });
             // 标签
-            $.ajax({
+            ctx.tagInstance = new Tag({
+              itemId: ctx.model.get('id'),
+              _isAdd: ctx._isAdd // 是否初始化标签列表
+            });
+            /*$.ajax({
               type: 'get',
               url: Global.API + '/tag/product',
               success: function(result){
@@ -124,7 +129,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                   items: taglist
                 });
               }
-            })
+            })*/
 
           });
 
@@ -166,7 +171,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             {text: '吨', value: 't'}
           ]
         });
-
         // 编辑器
         this.initEditor();
 

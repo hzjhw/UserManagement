@@ -137,6 +137,15 @@ define('template/attributes_item', function(require, exports, module){
 define('template/attributes_list', function(require, exports, module){
   module.exports = require('modules/attributes/views/attributes_list.html');
 });
+define('template/tag_view', function(require, exports, module){
+  module.exports = require('common/tag/views/tag_view.html');
+});
+define('template/tag_view_item', function(require, exports, module){
+  module.exports = require('common/tag/views/tag_view_item.html');
+});
+define('template/tag_picker_item', function(require, exports, module){
+  module.exports = require('common/tag/views/tag_picker_item.html');
+});
 
 /** Backbone路由
  * */
