@@ -41,6 +41,7 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'E
       },
 
       toPage: function (num) {
+        if (parseInt(num, 10) > this.model.get('totalPage') || parseInt(num, 10) < 1) return;
         this.model.set('page', num);
         this.model.trigger('reloadList', this.model);
       }

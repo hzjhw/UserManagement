@@ -4,9 +4,11 @@
  * @author yongjin on 2014/11/18
  */
 
-define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est', 'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
+define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est',
+    'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
   function(require, exports, module){
-    var Tag, TagList,TagItem, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, model, collection, item, tagView, tagViewItem, tagPickerItem;
+    var Tag, TagList,TagItem, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper,
+      Est, model, collection, item, tagView, tagViewItem, tagPickerItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');

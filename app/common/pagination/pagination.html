@@ -1,5 +1,13 @@
 <ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
+    <li class="bui-bar-item bui-inline-block {{#compare page '===' 1}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
+        id="prev" data-page="{{minus page 1}}"><a href="javascript:;">上一页</a></li>
+
     {{#pagination page totalPage}}
     <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page '!==' this}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
     {{/pagination}}
+    <li class="bui-bar-item bui-inline-block {{#compare page '===' totalPage}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
+        id="next" data-page="{{add page 1}}"><a href="javascript:;">下一页</a></li>
+    <li class="bui-bar-item-text bui-bar-item bui-inline-block bui-bar-item-text-hover bui-bar-item-hover" aria-disabled="false" id="totalCount">{{page}} / {{totalPage}}页, 共{{count}}个</li>
+   <!-- <li class="bui-bar-item bui-inline-block danaiPageNum" aria-disabled="true"
+        id="test" data-page="55"><a href="javascript:;">55</a></li>-->
 </ul>

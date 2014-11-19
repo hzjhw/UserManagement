@@ -176,6 +176,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
 
         this.form('#J_Form').validate().init(function () {
           // 处理特殊字段
+          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
+            return item.get('name');
+          }).join(','));
         });
         setTimeout(function () {
           ctx.resetIframe();
