@@ -42,7 +42,7 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       editItem: function () {
         this.edit({
           title: '产品修改',
-          url: host + '/modules/member/member_detail.html?id=' + this.model.id
+          url: Global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
         });
       },
 

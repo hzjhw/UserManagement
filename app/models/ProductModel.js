@@ -11,7 +11,7 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel
     dialog = require('dialog');
 
     var ProductModel = BaseModel.extend({
-      baseUrl: 'http://jihui88.com/rest/api/product/detail',
+      baseUrl: Global.API + '/product/detail',
       baseId: 'productId',
       defaults: {
         name: '',

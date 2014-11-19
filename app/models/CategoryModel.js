@@ -21,7 +21,7 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
         belongId: null, // 父类ID
         type: '10' // 产品
       },
-      baseUrl: 'http://jihui88.com/rest/api/category/detail',
+      baseUrl: Global.API + '/category/detail',
       baseId: 'categoryId'
     });
     module.exports = CategorytModel;

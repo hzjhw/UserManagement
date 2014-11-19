@@ -11,7 +11,7 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
     dialog = require('dialog');
 
     var MemberModel = BaseModel.extend({
-      baseUrl: 'http://jihui88.com/rest/api/member/detail',
+      baseUrl: Global.API + '/member/detail',
       baseId: 'memberId',
       defaults: {
         username: '',

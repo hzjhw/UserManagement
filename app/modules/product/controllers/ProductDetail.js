@@ -110,7 +110,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             // 标签
             $.ajax({
               type: 'get',
-              url: 'http://jihui88.com/rest/api/tag/product',
+              url: Global.API + '/tag/product',
               success: function(result){
                 var taglist = Est.pluck(result.attributes.data, 'name');
                 Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){

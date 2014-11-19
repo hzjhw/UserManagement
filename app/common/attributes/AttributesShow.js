@@ -23,7 +23,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
 
     collection = BaseCollection.extend({
       url: function () {
-        return 'http://jihui88.com/rest/api/attr/list/' + this.getCategoryId();
+        return Global.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
       setCategoryId: function (categoryId) {

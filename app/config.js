@@ -4,12 +4,17 @@
  * @author yongjin on 2014/7/18
  */
 
-var host = 'http://jihui88.com/member';
+
+window.Global = {
+  HOST : 'http://jihui88.com/member',
+  API: 'http://jihui88.com/rest/api',
+  SEP: '/'
+}
 
 seajs.config({
 
   // Sea.js 的基础路径
-  base: host,
+  base: Global.HOST,
 
   // 别名配置
   alias: {
@@ -79,7 +84,7 @@ seajs.config({
 
   // 路径配置
   paths: {
-    bui: host + '/vendor/bui'
+    bui: Global.HOST + '/vendor/bui'
   },
 
   // 变量配置
@@ -183,8 +188,8 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
         new AttributesList();
       });
       define('attributes/template', function (require) {
-        require('http://jihui88.com/member/modules/attributes/views/member_item.html');
-        require('http://jihui88.com/member/modules/attributes/views/member_list.html');
+        require('http://jihui88.com/member/modules/attributes/views/attributes_item.html');
+        require('http://jihui88.com/member/modules/attributes/views/attributes_list.html');
         require('http://jihui88.com/member/common/pagination/pagination.html');
       });
 

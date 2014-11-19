@@ -223,6 +223,27 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
         });
       },
       /**
+       * 时间选择
+       *
+       * @method [public] - initDate
+       * @param options [render 控件选择符] [showTime 是否显示时间]
+       * @author wyj 14.11.19
+       * @example
+       *    this.initDate({
+       *      render: '.calendar',
+       *      showTime: false
+       *    });
+       */
+      initDate: function(options){
+        BUI.use('bui/calendar',function(Calendar){
+          new Calendar.DatePicker({
+            trigger:options.render || '.calendar',
+            showTime:options.showTime || false,
+            autoRender : true
+          });
+        });
+      },
+      /**
        * 标签选择框
        *
        * @method [public] - initCombox
@@ -310,8 +331,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       resetIframe: function () {
         try {
-          window.detailDialog.height($(document).height());
-          window.detailDialog.reset();
+          if (window.detailDialog && window.detailDialog.height){
+            window.detailDialog.height($(document).height());
+            window.detailDialog.reset();
+          }
         } catch (e) {
           console.error('【error】: BaseDetail.resetIframe' + e);
         }

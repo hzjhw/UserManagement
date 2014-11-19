@@ -16,7 +16,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     itemTemp = require('http://jihui88.com/member/modules/product/views/product_item.html');
 
     ProductCollection = BaseCollection.extend({
-      url: 'http://jihui88.com/rest/api/product/list',
+      url: Global.API + '/product/list',
       model: ProductModel
     });
 
@@ -42,7 +42,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       editItem: function () {
         this.edit({
           title: '产品修改',
-          url: host + '/modules/product/product_detail.html?id=' + this.model.id
+          url: Global.HOST+ '/modules/product/product_detail.html?id=' + this.model.id
         });
       },
 
@@ -83,7 +83,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       openAddDialog: function () {
         this.detail({
           title: '产品添加',
-          url: 'http://jihui88.com/member/modules/product/product_detail.html?time=' + new Date().getTime()
+          url: Global.HOST+ '/modules/product/product_detail.html?time=' + new Date().getTime()
         });
       }
     });
