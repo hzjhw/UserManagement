@@ -106,6 +106,38 @@ seajs.config({
   charset: 'utf-8'
 });
 
+/** 注册模板*/
+define('template/main', function (require, exports, module) {
+  module.exports = require('modules/index/views/main.html');
+});
+define('template/product_item', function(require, exports, module){
+  module.exports = require('modules/product/views/product_item.html');;
+});
+define('template/product_list', function(require, exports, module){
+  module.exports = require('modules/product/views/product_list.html');
+});
+define('template/pagination', function(require, exports, module){
+  module.exports = require('common/pagination/pagination.html');
+});
+define('template/product_detail', function(require, exports, module){
+  module.exports = require('modules/product/views/product_detail.html');
+});
+define('template/attributes_show_item', function(require, exports, module){
+  module.exports = require('common/attributes/attributes_show_item.html');
+});
+define('template/category_product_item', function(require, exports, module){
+  module.exports = require('modules/category/views/category_product_item.html');
+});
+define('template/category_product_list', function(require, exports, module){
+  module.exports = require('modules/category/views/category_product_list.html');
+});
+define('template/attributes_item', function(require, exports, module){
+  module.exports = require('modules/attributes/views/attributes_item.html');
+});
+define('template/attributes_list', function(require, exports, module){
+  module.exports = require('modules/attributes/views/attributes_list.html');
+});
+
 /** Backbone路由
  * */
 seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
@@ -118,23 +150,12 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       'category/product': 'productCategory',
       'attributes': 'attributes',
       'member': 'member',
-
       '*other': 'default'
     },
-
     index: function () {
       seajs.use(['jquery', 'Main'], function (jquery, Main) {
         new Main();
       });
-
-      define('Main/template', function (require) {
-        require('http://jihui88.com/member/modules/index/views/main.html');
-      });
-
-      seajs.use(['Main/template'], function (Main) {
-
-      });
-
     },
     login: function () {
       seajs.use(['jquery', 'Login'], function (jquery, Login) {
@@ -156,45 +177,17 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
         new ProductList();
       });
-
-      define('product/template', function (require) {
-        require('http://jihui88.com/member/modules/product/views/product_item.html');
-        require('http://jihui88.com/member/modules/product/views/product_list.html');
-        require('http://jihui88.com/member/common/pagination/pagination.html');
-      });
-
-      seajs.use(['product/template'], function (template) {
-
-      });
     },
 
     productCategory: function () {
       seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
         new ProductCategoryList();
       });
-      define('category/product', function (require) {
-        require('http://jihui88.com/member/modules/category/views/category_product_item.html');
-        require('http://jihui88.com/member/modules/category/views/category_product_list.html');
-        require('http://jihui88.com/member/common/pagination/pagination.html');
-      });
-
-      seajs.use(['category/product'], function (template) {
-
-      });
     },
 
     attributes: function () {
       seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
         new AttributesList();
-      });
-      define('attributes/template', function (require) {
-        require('http://jihui88.com/member/modules/attributes/views/attributes_item.html');
-        require('http://jihui88.com/member/modules/attributes/views/attributes_list.html');
-        require('http://jihui88.com/member/common/pagination/pagination.html');
-      });
-
-      seajs.use(['attributes/template'], function (template) {
-
       });
     },
 

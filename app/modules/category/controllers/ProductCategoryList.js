@@ -3,7 +3,7 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est'],
+define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est', 'template/category_product_list', 'template/category_product_item'],
     function (require, exports, module) {
         var ProductCategoryList, ProductCategoryCollection, ProductCategoryItem, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, listTemp, itemTemp;
 
@@ -13,11 +13,11 @@ define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'Ba
         BaseList = require('BaseList');
         Est = require('Est');
         HandlebarsHelper = require('HandlebarsHelper');
-        listTemp = require('http://jihui88.com/member/modules/category/views/category_product_list.html');
-        itemTemp = require('http://jihui88.com/member/modules/category/views/category_product_item.html');
+        listTemp = require('template/category_product_list');
+        itemTemp = require('template/category_product_item');
 
         ProductCategoryCollection = BaseCollection.extend({
-            url: 'http://jihui88.com/rest/api/category/product?pageSize=1000',
+            url: Global.API + '/category/product?pageSize=1000',
             model: CategoryModel
         });
 
@@ -43,7 +43,7 @@ define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'Ba
             editItem: function () {
                 this.edit({
                     title: '产品分类修改',
-                    url: 'http://jihui88.com/member/modules/category/product_category_detail.html?id=' + this.model.id
+                    url: Global.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
                 });
             },
 
@@ -104,7 +104,7 @@ define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'Ba
             openAddDialog: function(){
                 this.detail({
                     title: '分类添加',
-                    url: 'http://jihui88.com/member/modules/category/product_category_detail.html?time=' + new Date().getTime()
+                    url: Global.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
                 });
             }
         });

@@ -3,14 +3,14 @@
  * @namespace Pagination
  * @author yongjin on 2014/11/6
  */
-define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est'],
+define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est', 'template/pagination'],
   function (require, exports, module) {
     var Backbone, Est, HandlebarsHelper, Pagination, template;
 
     Backbone = require('backbone');
     Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
-    template = require('http://jihui88.com/member/common/pagination/pagination.html') || 'pagination.html[404]';
+    template = require('template/pagination') || 'pagination.html[404]';
 
     //分页模板
     var Pagination = Backbone.View.extend({

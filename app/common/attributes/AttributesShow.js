@@ -4,7 +4,7 @@
  * @author yongjin on 2014/11/16
  */
 
-define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
+define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est', 'template/attributes_show_item'],
   function (require, exports, module) {
     var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, itemTemp;
 
@@ -14,7 +14,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
     Est = require('Est');
-    itemTemp = require('http://jihui88.com/member/common/attributes/attributes_show_item.html');
+    itemTemp = require('template/attributes_show_item');
 
     model = BaseModel.extend({
       defaults: { key: '选项', value: '' },

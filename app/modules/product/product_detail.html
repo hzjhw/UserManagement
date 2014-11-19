@@ -39,22 +39,11 @@
 
 <div id="jhw-detail"></div>
 
-
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
-
     seajs.use(['jquery', 'ProductDetail'], function(jquery, ProductDetail){
         new ProductDetail();
-    });
-
-    define('main', function(require, exports, module){
-        require('http://jihui88.com/member/modules/product/views/product_detail.html');
-        require('http://jihui88.com/member/common/attributes/attributes_show_item.html');
-    });
-
-    seajs.use(['main'], function(main){
-
     });
 </script>
 </body>

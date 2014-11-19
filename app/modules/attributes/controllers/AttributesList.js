@@ -3,7 +3,7 @@
  * @namespace CategoryAttrView
  * @author yongjin on 2014/11/13
  */
-define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'],
+define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/attributes_list', 'template/attributes_item'],
     function (require, exports, module) {
         var AttributesModel, BaseCollection, AttributesCollection, AttributesItem, BaseItem, HandlebarsHelper, AttributesList, BaseList, listTemp, itemTemp;
 
@@ -12,8 +12,8 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
         BaseItem = require('BaseItem');
         BaseList = require('BaseList');
         HandlebarsHelper = require('HandlebarsHelper');
-        listTemp = require('http://jihui88.com/member/modules/attributes/views/attributes_list.html');
-        itemTemp = require('http://jihui88.com/member/modules/attributes/views/attributes_item.html');
+        listTemp = require('template/attributes_list');
+        itemTemp = require('template/attributes_item');
 
         AttributesCollection = BaseCollection.extend({
             url: 'http://jihui88.com/rest/api/attr/list',
@@ -42,7 +42,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
             editItem: function () {
                 this.edit({
                     title: '属性修改',
-                    url: 'http://jihui88.com/member/modules/attributes/attributes_detail.html?id=' + this.model.id
+                    url: Global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
                 });
             },
 
@@ -92,7 +92,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
             openAddDialog: function () {
                 this.detail({
                     title: '属性添加',
-                    url: 'http://jihui88.com/member/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
+                    url: Global.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
                 });
             }
         });

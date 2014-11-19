@@ -3,7 +3,7 @@
  * @namespace ProductList
  * @author yongjin on 2014/11/16
  */
-define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'],
+define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/product_list', 'template/product_item'],
   function (require, exports, module) {
     var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem, ProductCollection, listTemp, itemTemp;
 
@@ -12,8 +12,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
-    listTemp = require('http://jihui88.com/member/modules/product/views/product_list.html');
-    itemTemp = require('http://jihui88.com/member/modules/product/views/product_item.html');
+    listTemp = require('template/product_list');
+    itemTemp = require('template/product_item');
 
     ProductCollection = BaseCollection.extend({
       url: Global.API + '/product/list',

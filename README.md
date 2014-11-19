@@ -28,7 +28,7 @@
 - 提交 ：git add . -> git commit -m "wyj" -> git push origin
 
 ### 说明
-- config.js [配置模块路径与路由]
+- config.js [配置模块路径、模板与路由]
 - base文件夹 [所有模块的父类]
 - common文件夹 [功能模块，如分页、属性列表]
 - models文件夹 [所有模型类]

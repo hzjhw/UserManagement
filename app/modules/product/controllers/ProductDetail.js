@@ -3,7 +3,7 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail'],
   function (require, exports, module) {
     var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog;
 
@@ -11,7 +11,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
     HandlebarsHelper = require('HandlebarsHelper');
     Est = require('Est');
     BaseDetail = require('BaseDetail');
-    template = require('http://jihui88.com/member/modules/product/views/product_detail.html') || 'product_detail.html[404]';
+    template = require('template/product_detail');
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
 
