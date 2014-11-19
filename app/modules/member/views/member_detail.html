@@ -63,12 +63,29 @@
         <label class="control-label"><s>*</s>是否启用：</label>
         <div class="controls">
             <div id="s2">
-                <label><input type="radio" name="isAccountEnabled" value="01" {{#compare isAccountEnabled '===' '01'}}checked{{/compare}}>是</label>
-                <label><input type="radio" name="isAccountEnabled" value="00" {{#compare isAccountEnabled '===' '00'}}checked{{/compare}}>否</label>
+                <label><input type="radio" name="isAccountEnabled" value="01" {{#compare isAccountEnabled '===' '00'}}checked{{/compare}}>是</label>
+                <label><input type="radio" name="isAccountEnabled" value="00" {{#compare isAccountEnabled '===' '01'}}checked{{/compare}}>否</label>
             </div>
         </div>
     </div>
     <BR>
+
+    <div class="control-group">
+        <label class="control-label">注册时间：</label>
+        <div class="controls">
+            <input id="model-addTime" name="addTime" value="{{addTime}}" type="text" class="calendar"
+                   data-tip='{"text":"请输入时间","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">注册IP：</label>
+        <div class="controls">
+            <input id="model-registerIp" name="registerIp" value="{{registerIp}}" type="text" class="input-large"
+                   data-tip='{"text":"请输入注册IP","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+
     <div class="control-group">
         <label class="control-label">手机：</label>
         <div class="controls">
@@ -105,8 +122,8 @@
         <label class="control-label"><s>*</s>性别：</label>
         <div class="controls">
             <div id="s3">
-                <label><input type="radio" name="isAccountLocked" value="01" {{#compare isAccountLocked '===' '01'}}checked{{/compare}}>男</label>
-                <label><input type="radio" name="isAccountLocked" value="00" {{#compare isAccountLocked '===' '00'}}checked{{/compare}}>女</label>
+                <label><input type="radio" name="isAccountLocked" value="01" {{#compare isAccountLocked '===' '00'}}checked{{/compare}}>男</label>
+                <label><input type="radio" name="isAccountLocked" value="00" {{#compare isAccountLocked '===' '01'}}checked{{/compare}}>女</label>
             </div>
         </div>
     </div>

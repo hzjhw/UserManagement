@@ -42,7 +42,9 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
         email: '',
         addTime: '',
         updateTime: '',
-        memberId: ''
+        memberId: '',
+        cellphone: '',
+        phone: ''
       }
 
     });
