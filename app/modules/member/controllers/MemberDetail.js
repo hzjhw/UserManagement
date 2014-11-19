@@ -64,7 +64,10 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
           }
         })
 
-
+        this.initDate({
+             render: '.calendar',
+                showTime: false
+            });
 
         this.form('#J_Form').validate().init(function () {
           // 处理特殊字段
