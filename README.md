@@ -24,7 +24,7 @@
 
 ### git API文档 - 项目管理
 - http://git-scm.com/book/zh/v1
-- 抓取并合并 ：git fetch origin master:tmp -> git merge tmp
+- 抓取并合并 ：git fetch origin master:jhw -> git merge jhw
 - 提交 ：git add . -> git commit -m "wyj" -> git push origin
 
 ### 说明
