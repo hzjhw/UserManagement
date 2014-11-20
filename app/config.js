@@ -155,6 +155,19 @@ define('template/picture_view', function(require, exports, module){
 define('template/picture_item', function(require, exports, module){
   module.exports = require('common/picture/views/picture_item.html');
 });
+define('template/login', function (require, exports, module){
+  module.exports = require('modules/login/login.html');
+});
+define('template/member_detail', function (require, exports, module){
+  module.exports = require('modules/member/views/member_item.html');
+});
+define('template/member_list', function (require, exports, module){
+  module.exports = require('modules/member/views/member_list.html');
+});
+define('template/member_item', function (require, exports, module){
+  module.exports = require('modules/member/views/member_item.html');
+});
+
 /** Backbone路由
  * */
 seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
@@ -177,14 +190,6 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     login: function () {
       seajs.use(['jquery', 'Login'], function (jquery, Login) {
         new Login();
-      });
-
-      define('login/template', function (require) {
-        require('http://jihui88.com/member/modules/login/login.html');
-      });
-
-      seajs.use(['login/template'], function (template) {
-
       });
     },
     register: function () {
@@ -211,15 +216,6 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
     member: function (id) {
       seajs.use(['jquery', 'MemberList'], function (jquery, MemberList) {
         new MemberList();
-      });
-      define('member/template', function (require) {
-        require('http://jihui88.com/member/modules/member/views/member_item.html');
-        require('http://jihui88.com/member/modules/member/views/member_list.html');
-        require('http://jihui88.com/member/common/pagination/pagination.html');
-      });
-
-      seajs.use(['member/template'], function (template) {
-
       });
     },
 
