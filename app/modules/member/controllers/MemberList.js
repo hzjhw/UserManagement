@@ -3,7 +3,7 @@
  * @namespace MemberList
  * @author jihui-wxw on 2014/11/16
  */
-define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'],
+define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper','template/member_list','template/member_item'],
   function (require, exports, module) {
     var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberList, MemberItem, MemberCollection, listTemp, itemTemp;
 
@@ -12,8 +12,8 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
-    listTemp = require('http://jihui88.com/member/modules/member/views/member_list.html');
-    itemTemp = require('http://jihui88.com/member/modules/member/views/member_item.html');
+    listTemp = require('template/member_list');
+    itemTemp = require('template/member_item');
 
     MemberCollection = BaseCollection.extend({
       url: 'http://jihui88.com/rest/api/member/list',
