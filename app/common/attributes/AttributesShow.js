@@ -74,8 +74,10 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         this.$el.empty();
         this.list = this.$el;
         if (options.items) {
-          this.initCollection(collection, item, this, {})
-            .then(function (opts) {
+          this.initCollection(collection, {
+            item: item,
+            model: model
+          }).then(function (opts) {
               Est.each(options.items, function (item) {
                 var fields = item.productAttribute;
                 fields.element = item.element.substring(1, item.element.length - 1);
@@ -84,7 +86,9 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
             });
         }
         else {
-          this.initCollection(collection, item, this, {
+          this.initCollection(collection, {
+            item: item,
+            model: model,
             beforeLoad: function () {
               this.setCategoryId(options.categoryId);
             }

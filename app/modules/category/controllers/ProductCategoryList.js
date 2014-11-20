@@ -77,21 +77,22 @@ define('ProductCategoryList', ['jquery',  'CategoryModel', 'BaseCollection', 'Ba
                 });
 
                 // 初始化集合类
-                this.initCollection(ProductCategoryCollection, ProductCategoryItem, this,{})
-                    .then(function (options) {
-                        ctx.initPagination(options);
-                        ctx.load(options).then(function(collection){
-                            Est.sortBy(collection.models, function(item){
-                                return item.attributes.sort;
-                            });
-                            Est.bulidTreeNode(collection.models, 'grade', '00', {
-                                categoryId: 'categoryId',// 分类ＩＤ
-                                belongId: 'belongId',// 父类ＩＤ
-                                childTag: 'cates', // 子分类集的字段名称
-                                sortBy: 'sort', // 按某个字段排序
-                                callback: function(item){}  // 回调函数
-                            });
-                            ctx.render();
+                this.initCollection(ProductCategoryCollection, {
+                  item: ProductCategoryItem
+                }).then(function (options) {
+                      ctx.initPagination(options);
+                      ctx.load(options).then(function(collection){
+                          Est.sortBy(collection.models, function(item){
+                            return item.attributes.sort;
+                          });
+                          Est.bulidTreeNode(collection.models, 'grade', '00', {
+                              categoryId: 'categoryId',// 分类ＩＤ
+                              belongId: 'belongId',// 父类ＩＤ
+                              childTag: 'cates', // 子分类集的字段名称
+                              sortBy: 'sort', // 按某个字段排序
+                              callback: function(item){}  // 回调函数
+                          });
+                          ctx.render();
                         });
                     });
                 return this;

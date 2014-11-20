@@ -83,7 +83,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
       initialize: function(options){
         var ctx = this;
         this.list = $("#tag-list-picker-ul")
-        this.initCollection(collection, TagItem, ctx, {
+        this.initCollection(collection, {
+          item: TagItem,
           beforeLoad: function(){
             this.setTagType(options.tagType || 'product');
           }
@@ -112,7 +113,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
           collectionId: '#tag-list-ul'
         });
         // 初始化容器
-        this.initCollection(collection, item, this, {
+        this.initCollection(collection, {
+          item: item,
           beforeLoad: function () {
             this.setItemId(ctx.options.itemId || null);
             this.setTagType(ctx.options.tagType || 'product');

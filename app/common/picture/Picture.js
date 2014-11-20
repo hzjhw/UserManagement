@@ -50,7 +50,8 @@ define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseLis
           collectionId: '#multimage-gallery-ul'
         });
         // 初始化容器
-        this.initCollection(collection, item, this, {
+        this.initCollection(collection,{
+          item: item,
           beforeLoad: function () {
           }
         }).then(function (options) {

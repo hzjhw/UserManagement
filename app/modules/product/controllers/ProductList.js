@@ -32,6 +32,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
 
       initialize: function () {
         this.__proto__.constructor.__super__.initialize.apply(this, arguments);
+        this.initModel = ProductModel;
       },
 
       render: function () {
@@ -73,11 +74,13 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         });
 
         // 初始化集合类
-        this.initCollection(ProductCollection, ProductItem, this, {})
-          .then(function (options) {
-            ctx.initPagination(options);
-            ctx.load(options);
-          });
+        this.initCollection(ProductCollection, {
+          item: ProductItem, // item
+          model: ProductModel // model
+        }).then(function (options) {
+          ctx.initPagination(options); // pagination init
+          ctx.load(options); // data load
+        });
 
         return this;
       },

@@ -32,16 +32,17 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                             ctx.load(options);
                         });
        */
-      initCollection: function (collection, itemView, ctx, options) {
+      initCollection: function (collection, options) {
         console.log('1.ProductView.initialize');
         var options = options || {};
-        this.views = [];
         this.dx = 0;
+        this.views = [];
         this.allCheckbox = this.$('#toggle-all')[0];
         this.collection = new collection();
         this.listenTo(this.collection, 'change:checked', this.checkSelect);
         this.initBind();
-        this.initItemView(itemView, this);
+        this.initItemView(options.item, this);
+        this.initModel(options.model);
         return new Est.promise(function (resolve, reject) {
           resolve(options);
         });
@@ -124,7 +125,17 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       initItemView: function (itemView) {
-        this.itemView = itemView;
+        this.item = itemView;
+      },
+      /**
+       * 初始化模型类
+       *
+       * @method [protected] - initModel
+       * @param model
+       * @author wyj 14.11.20
+       */
+      initModel: function(model){
+        this.initModel = model;
       },
       /**
        * 清空列表， 并移除所有绑定的事件
@@ -161,9 +172,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       addOne: function (target) {
         target.set('dx', this.dx++);
-        var itemView = new this.itemView({
+        var itemView = new this.item({
           model: target
         });
+        itemView.setInitModel(this.initModel);
         this.list.append(itemView.render().$el);
         this.views.push(itemView);
       },

@@ -26,6 +26,15 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
         this.model.view = this;
       },
       /**
+       * 设置模型类
+       * @method [protected] - setInitModel
+       * @param model
+       * @author wyj 14.11.20
+       */
+      setInitModel: function(model){
+        this.initModel = model;
+      },
+      /**
        * 渲染
        *
        * @method [protected] - render
@@ -77,7 +86,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
        */
       editField: function (options, context) {
         return new Est.promise(function (resolve, reject) {
-          context.model.fetch();
+          //context.model.fetch();
           var dialog = require('dialog');
           var oldName = context.model.attributes[options.field];
           var d = dialog({

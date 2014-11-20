@@ -72,11 +72,12 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
         });
 
         // 初始化集合类
-        this.initCollection(MemberCollection, MemberItem, this, {})
-          .then(function (options) {
-            ctx.initPagination(options);
-            ctx.load(options);
-          });
+        this.initCollection(MemberCollection, {
+          item: MemberItem
+        }).then(function (options) {
+          ctx.initPagination(options);
+          ctx.load(options);
+        });
 
         return this;
       },

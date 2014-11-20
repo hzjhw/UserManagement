@@ -76,7 +76,8 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
                 });
 
                 // 初始化集合类
-                this.initCollection(AttributesCollection, AttributesItem, this, {
+                this.initCollection(AttributesCollection, {
+                  item: AttributesItem
                 }).then(function (options) {
                     ctx.initPagination(options);
                     ctx.load(options);

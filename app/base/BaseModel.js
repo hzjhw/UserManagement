@@ -86,8 +86,11 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        */
       saveField: function (keyValue, callback, ctx, async) {
         var wait = async || true;
-        ctx.model.set(keyValue);
-        ctx.model.save(null, {
+        var newModel = new ctx.initModel({
+          id: ctx.model.get('id')
+        });
+        newModel.set(keyValue);
+        newModel.save(null, {
           wait: wait,
           success: function (model, result) {
             if (typeof callback != 'undefined') {
