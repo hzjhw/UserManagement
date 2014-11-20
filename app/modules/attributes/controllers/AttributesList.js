@@ -65,31 +65,22 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
                 'click #toggle-all': 'toggleAllChecked',
                 'click #attributes-add': 'openAddDialog'
             },
-
             initialize: function () {
                 var ctx = this;
-
-                // 初始化视图
-                this.initView({
-                    viewTemp: listTemp,
-                    collectionId: '#attributes-list-ul'
-                });
-
-                // 初始化集合类
                 this.initCollection(AttributesCollection, {
-                  item: AttributesItem
+                  template: listTemp,
+                  render: '#attributes-list-ul',
+                  item: AttributesItem,
+                  model: AttributesModel
                 }).then(function (options) {
                     ctx.initPagination(options);
                     ctx.load(options);
                 });
-
                 return this;
             },
-
             render: function () {
                 this.addAll();
             },
-
             openAddDialog: function () {
                 this.detail({
                     title: '属性添加',

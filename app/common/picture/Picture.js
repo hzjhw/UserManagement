@@ -43,15 +43,12 @@ define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseLis
         var ctx = this; this.options = options || {};
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
-
-        // 初始化视图
-        this.initView({
-          viewTemp: pictureView,
-          collectionId: '#multimage-gallery-ul'
-        });
         // 初始化容器
         this.initCollection(collection,{
+          template: pictureView,
+          render: '#multimage-gallery-ul',
           item: item,
+          model: model,
           beforeLoad: function () {
           }
         }).then(function (options) {

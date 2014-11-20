@@ -71,8 +71,6 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
       initialize: function (options) {
         var ctx = this;
         this.options = options || {};
-        this.$el.empty();
-        this.list = this.$el;
         if (options.items) {
           this.initCollection(collection, {
             item: item,

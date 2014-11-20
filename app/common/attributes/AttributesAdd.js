@@ -53,14 +53,13 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       },
       initialize: function (options) {
         this.options = options || {};
-        this.$el.empty();
-        this.$el.html(this.template({}));
-        this.list = $("#attributes-container", this.$el);
-
-        this.initCollection(collection, this);
-        this.initItemView(item, this);
-        this.initBind();
-
+        debugger
+        this.initCollection(collection, {
+          template: this.template({}),
+          item: item,
+          render: "#attributes-container",
+          model: model
+        });
         if (options.items) {
           Est.each(options.items, function (item) {
             this.collection.push(new model({

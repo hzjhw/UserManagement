@@ -82,9 +82,10 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
       el: '#tag-list-picker',
       initialize: function(options){
         var ctx = this;
-        this.list = $("#tag-list-picker-ul")
         this.initCollection(collection, {
+          render: '#tag-list-picker-ul',
           item: TagItem,
+          model: model,
           beforeLoad: function(){
             this.setTagType(options.tagType || 'product');
           }
@@ -106,15 +107,12 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
         var ctx = this; this.options = options || {};
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
-
-        // 初始化视图
-        this.initView({
-          viewTemp: tagView,
-          collectionId: '#tag-list-ul'
-        });
         // 初始化容器
         this.initCollection(collection, {
+          template: tagView,
+          render: '#tag-list-ul',
           item: item,
+          model: model,
           beforeLoad: function () {
             this.setItemId(ctx.options.itemId || null);
             this.setTagType(ctx.options.tagType || 'product');

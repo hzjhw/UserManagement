@@ -66,22 +66,16 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       initialize: function () {
         var ctx = this;
-
-        // 初始化视图
-        this.initView({
-          viewTemp: listTemp,
-          collectionId: '#product-list-ul'
-        });
-
         // 初始化集合类
         this.initCollection(ProductCollection, {
+          template: listTemp,
+          render: '#product-list-ul',
           item: ProductItem, // item
           model: ProductModel // model
         }).then(function (options) {
           ctx.initPagination(options); // pagination init
           ctx.load(options); // data load
         });
-
         return this;
       },
       openAddDialog: function () {

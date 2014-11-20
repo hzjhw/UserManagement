@@ -13,41 +13,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
 
     BaseList = Backbone.View.extend({
       /**
-       * 初始化集合类
-       *
-       * @method [public] - initCollection
-       * @param collection 对应的collection集合类， 如ProductCollection
-       * @param itemView 对应的单个视图， 如ProductItem
-       * @param ctx 上下文
-       * @param options [beforeLoad 加载数据前执行]
-       * @returns {ln.promise} 返回promise对象
-       * @author wyj 14.11.16
-       * @example
-       *      this.initCollection(ProductCollection, ProductItem, this,{
-                           beforeLoad: function(){
-                               this.setCategoryId(options.categoryId);
-                           }
-                    }).then(function (options) {
-                            ctx.initPagination(options);
-                            ctx.load(options);
-                        });
-       */
-      initCollection: function (collection, options) {
-        console.log('1.ProductView.initialize');
-        var options = options || {};
-        this.dx = 0;
-        this.views = [];
-        this.allCheckbox = this.$('#toggle-all')[0];
-        this.collection = new collection();
-        this.listenTo(this.collection, 'change:checked', this.checkSelect);
-        this.initBind();
-        this.initItemView(options.item, this);
-        this.initModel(options.model);
-        return new Est.promise(function (resolve, reject) {
-          resolve(options);
-        });
-      },
-      /**
        * 初始化视图
        *
        * @method [public] - initView
@@ -63,6 +28,49 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         this.$el.empty();
         this.$el.append($(options.viewTemp));
         this.list = $(options.collectionId, this.$el);
+      },
+      /**
+       * 初始化集合类
+       *
+       * @method [public] - initCollection
+       * @param collection 对应的collection集合类， 如ProductCollection
+       * @param itemView 对应的单个视图， 如ProductItem
+       * @param ctx 上下文
+       * @param options [beforeLoad: 加载数据前执行] [item: 集合单个视图] [model: 模型类]
+       * @returns {ln.promise} 返回promise对象
+       * @author wyj 14.11.16
+       * @example
+       *       this.initCollection(ProductCollection, {
+       *          template: viewTemp,
+       *          render: '#product-list-ul',
+                  item: ProductItem, // item
+                  model: ProductModel // model,
+                  beforeLoad: function(){ // 加载数据前执行
+                    this.setCategoryId(options.categoryId); // this 指向collection
+                  }
+               }).then(function (options) {
+                  ctx.initPagination(options); // pagination init
+                  ctx.load(options); // data load
+              });
+       */
+      initCollection: function (collection, options) {
+        console.log('1.ProductView.initialize');
+        var options = options || {};
+        this.dx = 0;
+        this.views = [];
+        this.$el.empty();
+        if (options.template)
+          this.$el.append($(options.template));
+        this.list = options.render ? $(options.render, this.$el) : this.$el;
+        this.allCheckbox = this.$('#toggle-all')[0];
+        this.collection = new collection();
+        this.listenTo(this.collection, 'change:checked', this.checkSelect);
+        this.initBind();
+        this.initItemView(options.item, this);
+        this.initModel(options.model);
+        return new Est.promise(function (resolve) {
+          resolve(options);
+        });
       },
       /**
        * 初始化分页

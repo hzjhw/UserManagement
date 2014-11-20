@@ -73,7 +73,10 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
 
         // 初始化集合类
         this.initCollection(MemberCollection, {
-          item: MemberItem
+          template: listTemp,
+          render: '#member-list-ul',
+          item: MemberItem,
+          model: MemberModel
         }).then(function (options) {
           ctx.initPagination(options);
           ctx.load(options);
