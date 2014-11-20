@@ -13,36 +13,17 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
 
     BaseList = Backbone.View.extend({
       /**
-       * 初始化视图
-       *
-       * @method [public] - initView
-       * @param options
-       * @author wyj 14.11.17
-       * @example
-       *      this.initView({
-                    viewTemp: viewTemp,
-                    collectionId: '#product-list-ul'
-                });
-       */
-      initView: function (options) {
-        this.$el.empty();
-        this.$el.append($(options.viewTemp));
-        this.list = $(options.collectionId, this.$el);
-      },
-      /**
        * 初始化集合类
        *
        * @method [public] - initCollection
        * @param collection 对应的collection集合类， 如ProductCollection
-       * @param itemView 对应的单个视图， 如ProductItem
-       * @param ctx 上下文
        * @param options [beforeLoad: 加载数据前执行] [item: 集合单个视图] [model: 模型类]
        * @returns {ln.promise} 返回promise对象
        * @author wyj 14.11.16
        * @example
        *       this.initCollection(ProductCollection, {
-       *          template: viewTemp,
-       *          render: '#product-list-ul',
+                  template: viewTemp,
+                  render: '#product-list-ul',
                   item: ProductItem, // item
                   model: ProductModel // model,
                   beforeLoad: function(){ // 加载数据前执行
