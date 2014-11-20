@@ -25,37 +25,31 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
             template: HandlebarsHelper.compile(itemTemp),
             events: {
                 'click .name': 'editName',
-                'click .delete': 'deleteItem',
+                'click .delete': '_del',
                 'click .edit': 'editItem'
             },
 
             initialize: function () {
-                this.__proto__.constructor.__super__.initialize.apply(this, arguments);
+                this._initialize();
             },
 
             render: function () {
-                console.log('11.AttributesItem.render [item display]');
-                this.$el.html(this.template(this.model.toJSON()));
-                return this;
+              this._render();
             },
 
             editItem: function () {
-                this.edit({
+                this._edit({
                     title: '属性修改',
                     url: Global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
                 });
             },
 
             editName: function () {
-                this.editField({
+                this._editField({
                     title: '修改属性名称',
                     field: 'name',
                     target: '.name'
                 }, this);
-            },
-
-            deleteItem: function () {
-                this.del(this);
             }
         });
 

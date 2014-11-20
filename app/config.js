@@ -151,6 +151,12 @@ define('template/tag_picker_item', function(require, exports, module){
 define('template/picture_view', function(require, exports, module){
   module.exports = require('common/picture/views/picture_view.html');
 });
+define('template/attributes_option_template', function(require, exports, module){
+  module.exports = require('common/attributes/attributes_option_template.html');
+});
+define('template/attributes_option_item', function(require, exports, module){
+  module.exports = require('common/attributes/attributes_option_item.html');
+});
 
 define('template/picture_item', function(require, exports, module){
   module.exports = require('common/picture/views/picture_item.html');

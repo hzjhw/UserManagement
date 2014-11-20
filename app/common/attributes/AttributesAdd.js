@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/13
  */
 
-define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est'],
+define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est', 'template/attributes_option_template', 'template/attributes_option_item'],
   function (require, exports, module) {
-    var AttributesAdd, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est;
+    var AttributesAdd, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, optionItem, optionTemp;
 
     HandlebarsHelper = require('HandlebarsHelper');
     BaseCollection = require('BaseCollection');
@@ -14,29 +14,34 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
     Est = require('Est');
+    optionItem = require('template/attributes_option_item');
+    optionTemp = require('template/attributes_option_template');
 
     model = BaseModel.extend({
       defaults: { key: '选项', value: '' }
     });
 
     collection = BaseCollection.extend({
-      model: model
+      model: model,
+      initialize: function(){
+        this._initialize();
+      }
     });
 
     item = BaseItem.extend({
       tagName: 'div',
       className: 'control-group',
-      template: HandlebarsHelper.compile($('#option-item-template').html()),
       events: {
-        'click .delete': 'del',
+        'click .delete': '_del',
         'change input': 'update'
       },
       initialize: function () {
-        this.__proto__.constructor.__super__.initialize.apply(this, arguments);
+        this._initialize({
+          template: optionItem
+        });
       },
       render: function () {
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
+        this._render();
       },
       update: function () {
         this.model.set(this.$('input').attr("name"), this.$('input').val());
@@ -45,19 +50,17 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
 
     AttributesAdd = BaseList.extend({
       el: '#multi-attribute',
-      template: HandlebarsHelper.compile($("#option-template").html()),
       events: {
         'click .option-add': 'add',
-        'click .option-remove': 'remove',
-        'click .getItemsBtn': 'getItems'
+        'click .option-remove': 'remove'
       },
       initialize: function (options) {
         this.options = options || {};
-        debugger
-        this.initCollection(collection, {
-          template: this.template({}),
+        this._initialize({
+          template: optionTemp,
+          collection: collection,
           item: item,
-          render: "#attributes-container",
+          render: '#attributes-container',
           model: model
         });
         if (options.items) {
@@ -72,6 +75,9 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
         }
         return this;
       },
+      render: function(){
+        this._render();
+      },
       add: function () {
         this.collection.push(new model());
         if (typeof this.options.add !== 'undefined') {
@@ -80,7 +86,7 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       },
       remove: function () {
         this.collection.pop();
-        this.render();
+        this._render();
       },
       getItems: function () {
         // 转换成[{key: '', value: ''}, ... ] 数组格式

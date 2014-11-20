@@ -36,50 +36,44 @@
 <!--[if !IE]>-->
 <body>
 <!--<![endif]-->
+
+<!--添加属性-->
 <form>
     <div id="multi-attribute">
+        <div id="attributes-container">
+        </div>
     </div>
 </form>
 
-<script type="text/template" id="option-template">
-    <div id="attributes-container">
-    </div>
-    <div class="control-group">
-        <label class="control-label">&nbsp;</label>
-        <div class="controls">
-            <div class="attributes-btn">
-                <span class="option-add x-icon x-icon-small x-icon-success">+</span>
-                <span class="option-remove x-icon x-icon-small x-icon-success">-</span>
-            </div>
-        </div>
-    </div>
-    <div>
-        <a href="javascript:;" class="getItemsBtn">获取ITEMS</a>
-    </div>
-</script>
+<!--显示属性-->
+<div id="attributes-list"></div>
 
-<script type="text/template" id="option-item-template">
-    <div class="attributes-div control-group">
-        <label class="control-label">{{key}}:</label>
+<div>
+    <a href="javascript:;" class="getItemsBtn">获取ITEMS</a>
+</div>
 
-        <div class="controls control-row-auto">
-            <div class="attributes-item">
-                <input name="value" type="text" value="{{value}}"/><span
-                    class="delete x-icon x-icon-small x-icon-error">×</span>
-            </div>
-        </div>
-    </div>
-</script>
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
 
+    // 属性添加
     seajs.use(['jquery', 'AttributesAdd'], function(jquery, AttributesAdd){
-        new AttributesAdd({
+        var attributeAdd = new AttributesAdd({
             items: ['111', '222', '333']
+        });
+        $(".getItemsBtn").click(function(){
+            alert(attributeAdd.getItems()); // 获取数据
         });
     });
 
+    // 属性显示
+    seajs.use(['jquery', 'AttributesShow'], function(jquery, AttributesShow){
+        var attributeShow = new AttributesShow({
+            render: '#attributes-list',
+            //items: ['111', '222', '333']
+            categoryId: 'Category_00000000000000000008407'
+        });
+    });
 </script>
 </body>
 </html>

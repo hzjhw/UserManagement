@@ -1,24 +1,27 @@
 /**
- * @description BaseItem
+ * @description 集合中的单个视图
  * @namespace BaseItem
- * @author yongjin on 2014/11/11
+ * @author yongjin<zjut_wyj@163.com> 2014.11.11
  */
-define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
+define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var Backbone, dialog, BaseItem, Est;
+    var Backbone, dialog, BaseItem, Est, HandlebarsHelper;
 
     Backbone = require('backbone');
     dialog = require('dialog');
     Est = require('Est');
+    HandlebarsHelper = require('HandlebarsHelper');
 
     BaseItem = Backbone.View.extend({
       /**
        * 初始化
        *
-       * @method [private] - initialize
+       * @method [protected] - _initialize
        * @author wyj 14.11.16
        */
-      initialize: function () {
+      _initialize: function (options) {
+        this.options = options || {};
+        if (options.template) this.template = HandlebarsHelper.compile(options.template);
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
@@ -27,71 +30,71 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
       },
       /**
        * 设置模型类
-       * @method [protected] - setInitModel
+       * @method [private] - _setInitModel
        * @param model
        * @author wyj 14.11.20
        */
-      setInitModel: function(model){
+      _setInitModel: function (model) {
         this.initModel = model;
       },
       /**
        * 渲染
        *
-       * @method [protected] - render
+       * @method [protected] - _render
        * @returns {BaseCollection}
        * @author wyj 14.11.18
        */
-      render: function () {
-        console.log('11.ProductItem.render [item display]');
+      _render: function () {
+        console.log('11.ProductItem._render [item display]');
         this.$el.html(this.template(this.model.toJSON()));
         return this;
       },
       /**
        * 移除监听
        *
-       * @method [public] - close
+       * @method [protected] - _close
        * @author wyj 14.11.16
        */
-      close: function () {
-        console.log('BaseItem.close');
+      _close: function () {
+        console.log('BaseItem._close');
         this.stopListening();
       },
       /**
        * 移除此模型
        *
-       * @method [public] - clear
+       * @method [protected] - _clear
        * @author wyj 14.11.16
        */
-      clear: function () {
-        console.log('ProductItem.clear');
+      _clear: function () {
+        console.log('ProductItem._clear');
         this.model.destroy();
       },
       /**
        * checkbox选择框转换
        *
-       * @method [public] - toggleChecked
+       * @method [protected] - _toggleChecked
        * @author wyj 14.11.16
        */
-      toggleChecked: function () {
+      _toggleChecked: function () {
         this.$el.find(".toggle").attr("checked", this.model.get('checked'));
       },
       /**
        * 单个字段保存
        *
-       * @method [public] - editField
+       * @method [protected] - _editField
        * @param options
        * @param context
        * @returns {ln.promise}
        * @author wyj 14.11.16
        */
-      editField: function (options, context) {
+      _editField: function (options, context) {
         return new Est.promise(function (resolve, reject) {
           //context.model.fetch();
           var dialog = require('dialog');
           var oldName = context.model.attributes[options.field];
           var d = dialog({
             title: options.title || '修改',
-            content: '<input id="property-returnValue-demo" class="text" value="' + oldName + '" />',
+            content: '<input id="property-returnValue-demo" type="text" class="text" value="' + oldName + '" />',
             ok: function () {
               var value = $('#property-returnValue-demo').val();
               this.close(value);
@@ -100,7 +103,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
           });
           d.addEventListener('close', function () {
             if (!this.returnValue.length < 1) {
-              context.model.saveField({
+              context.model._saveField({
+                'id': context.model.get('id'),
                 'name': this.returnValue
               }, function (model, result) {
                 context.render();
@@ -114,19 +118,18 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
       /**
        *  删除模型类
        *
-       *  @method [public] - del
+       *  @method [protected] - _del
        *  @author wyj 14.11.16
        */
-      del: function () {
-        console.log('1.BaseItem.del');
+      _del: function () {
+        console.log('1.BaseItem._del');
         var context = this;
         seajs.use(['dialog-plus'], function (dialog) {
           dialog({
             title: '提示',
             content: '是否删除！',
             width: 150,
-            button: [
-              {
+            button: [{
                 value: '确定',
                 autofocus: true,
                 callback: function () {
@@ -145,12 +148,12 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
       /**
        * 修改模型类
        *
-       * @method [public] - edit
+       * @method [protected] - _edit
        * @param options
        * @author wyj 14.11.16
        */
-      edit: function (options) {
-        console.log('1.BaseItem.edit');
+      _edit: function (options) {
+        console.log('1.BaseItem._edit');
         var ctx = this;
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;

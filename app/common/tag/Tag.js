@@ -4,17 +4,16 @@
  * @author yongjin on 2014/11/18
  */
 
-define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est',
+define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Est',
     'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
   function(require, exports, module){
-    var Tag, TagList,TagItem, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper,
+    var Tag, TagList,TagItem, BaseModel, BaseCollection, BaseItem, BaseList,
       Est, model, collection, item, tagView, tagViewItem, tagPickerItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
-    HandlebarsHelper = require('HandlebarsHelper');
     Est = require('Est');
     tagView = require('template/tag_view');
     tagViewItem = require('template/tag_view_item');
@@ -41,6 +40,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
           Global.SEP+ this.tagType + '/detail/' + this.itemId + '/tag?pageSize=1000' :
           Global.API +  '/tag/' + this.tagType + '?pageSize=1000';
       },
+      initialize: function(){
+        this._initialize();
+      },
       setItemId: function(itemId){
         this.itemId = itemId;
       },
@@ -52,20 +54,28 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
     item = BaseItem.extend({
       tagName: 'li',
       className: 'bui-list-item',
-      template: HandlebarsHelper.compile(tagViewItem),
       events: {
-        'click span':'del'
+        'click span':'_del'
+      },
+      initialize: function(){
+        this._initialize({
+          template: tagViewItem
+        });
       }
     });
 
     TagItem = BaseItem.extend({
       tagName: 'li',
       className: 'bui-list-item',
-      template: HandlebarsHelper.compile(tagPickerItem),
       events: {
         'click .bui-list-item': 'select',
         'mouseover .bui-list-item': 'mouseover',
         'mouseout .bui-list-item': 'mouseout'
+      },
+      initialize: function(){
+        this._initialize({
+          template: tagPickerItem
+        });
       },
       select: function(){
         $(".bui-combox-input-hid").val(this.model.get('name')).click();
@@ -79,22 +89,25 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
       }
     });
     TagList = BaseList.extend({
-      el: '#tag-list-picker',
       initialize: function(options){
-        var ctx = this;
-        this.initCollection(collection, {
+        this.el =  '#tag-list-picker';
+        this._initialize({
           render: '#tag-list-picker-ul',
+          collection: collection,
           item: TagItem,
-          model: model,
-          beforeLoad: function(){
-            this.setTagType(options.tagType || 'product');
-          }
-        }).then(function(options){
-          ctx.load(options);
+          model: model
+        }).then(function(context){
+          context._load({
+            beforeLoad: function(){
+              this.setTagType(options.tagType || 'product');
+            }
+          });
         });
         return this;
+      },
+      render: function(){
+        this._render();
       }
-
     });
 
     Tag = BaseList.extend({
@@ -104,22 +117,24 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
         'click .tag-combox-input-hid': 'addHid'
       },
       initialize: function(options){
-        var ctx = this; this.options = options || {};
+        this.options = options || {};
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
         // 初始化容器
-        this.initCollection(collection, {
+        this._initialize({
+          collection: collection,
           template: tagView,
           render: '#tag-list-ul',
           item: item,
-          model: model,
-          beforeLoad: function () {
-            this.setItemId(ctx.options.itemId || null);
-            this.setTagType(ctx.options.tagType || 'product');
-          }
-        }).then(function (options) {
-          if (!ctx.options._isAdd){
-            ctx.load(options);
+          model: model
+        }).then(function (context) {
+          if (!context.options._isAdd){
+            context._load({
+              beforeLoad: function(){
+                this.setItemId(context.options.itemId || null);
+                this.setTagType(context.options.tagType || 'product');
+              }
+            });
           }
         });
         // 输入框
@@ -173,7 +188,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
       },
       showPicker: function(){
         if (!this.tagList){
-          this.tagList = new TagList(this.options, this);
+          var opts = Est.cloneDeep(this.options);
+          opts.el = null;
+          this.tagList = new TagList(opts, this);
         }
         this.$picker.css({
           left: this.$input.offset().left,

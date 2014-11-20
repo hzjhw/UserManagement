@@ -1,7 +1,7 @@
 /**
  * @description 基础集合类
  * @namespace BaseCollection
- * @author yongjin on 2014/11/6
+ * @author yongjin<zjut_wyj@163.com> 2014/11/6
  */
 
 define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'Pagination', 'localStorage', 'Est'],
@@ -19,11 +19,11 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       /**
        * 初始化
        *
-       * @method [private] - initialize
+       * @method [protected] - _initialize
        * @author wyj 14.11.16
        */
-      initialize: function () {
-        console.log('2.BaseCollection.initialize');
+      _initialize: function () {
+        console.log('2.BaseCollection._initialize');
         if (!this.paginationModel){
           this.paginationModel = new PaginationModel;
         }
@@ -31,27 +31,27 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       /**
        * 处理url 与 分页
        *
-       * @method [private] - parse
+       * @method [private] - _parse
        * @param resp
        * @param xhr
        * @returns {attributes.data|*}
        * @author wyj 14.11.16
        */
       parse: function (resp, xhr) {
-        this.parsePagination(resp);
-        this.parseUrl(this.paginationModel);
-        this.paginationRender();
+        this._parsePagination(resp);
+        this._parseUrl(this.paginationModel);
+        this._paginationRender();
         return resp.attributes.data;
       },
       /**
        * 处理url地址， 加上分页参数
        *
-       * @method [private] - parseUrl
+       * @method [private] - _parseUrl
        * @param model
        * @author wyj 14.11.16
        */
-      parseUrl: function (model) {
-        console.log('7.BaseCollection.parseUrl')
+      _parseUrl: function (model) {
+        console.log('7.BaseCollection._parseUrl')
         var page = model.get('page');
         var pageSize = model.get('pageSize');
         if (typeof this.url !== 'function') {
@@ -63,12 +63,12 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       /**
        * 设置分页模型类
        *
-       * @method [private] - parsePagination
+       * @method [private] - _parsePagination
        * @param resp
        * @author wyj 14.11.16
        */
-      parsePagination: function (resp) {
-        console.log('6.BaseCollection.parsePagination')
+      _parsePagination: function (resp) {
+        console.log('6.BaseCollection._parsePagination')
         resp.attributes = resp.attributes
           || { page: 1, per_page: 10, count: 10 };
         this.paginationModel.set('page', resp.attributes.page);
@@ -78,10 +78,10 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       /**
        * 渲染分页
        *
-       * @method [private] - paginationRender
+       * @method [private] - _paginationRender
        * @author wyj 14.11.16
        */
-      paginationRender: function () {
+      _paginationRender: function () {
         var ctx = this;
         if (!this.pagination){
           this.pagination = new Pagination({
@@ -94,7 +94,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       /**
        * 加载列表
        *
-       * @method [public] - load
+       * @method [protected] - _load
        * @param instance 实例对象
        * @param context 上下文
        * @param model 模型类
@@ -102,31 +102,31 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @method wyj 14.11.15
        * @example
        *      if (this.collection.url){
-                    this.collection.load(this.collection, this, model)
+                    this.collection._load(this.collection, this, model)
                         .then(function(result){
                             resolve(result);
                         });
                 }
        */
-      load: function (instance, context, model) {
-        console.log('4.BaseCollection.load');
-        if (typeof model !== 'undefined') this.parseUrl(model);
+      _load: function (instance, context, model) {
+        console.log('4.BaseCollection._load');
+        if (typeof model !== 'undefined') this._parseUrl(model);
         return new Est.promise(function (resolve, reject) {
           return instance.fetch({success: function () {
             resolve(instance);
-            context.collection.reset();
-            context.empty();
+            context.collection._reset();
+            context._empty();
           }});
         });
       },
       /**
        * 清空列表
        *
-       * @method [public] - empty
+       * @method [protected] - _empty
        * @author wyj 14.11.15
        */
-      empty: function () {
-        console.log('BaseCollection.empty')
+      _empty: function () {
+        console.log('BaseCollection._empty')
         if (this.collection){
           var len = this.collection.length;
           while (len > -1){

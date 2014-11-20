@@ -18,21 +18,23 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
-      template: HandlebarsHelper.compile(template),
       events: {
         'click #product-reset': 'reset'
       },
       initialize: function () {
         console.log('2.ProductDetail.initialize');
-        this.initModel(ProductModel, this);
+        this._initialize({
+          template : template,
+          model: ProductModel
+        });
       },
-
       render: function () {
         console.log('4.ProductDetail.render');
         var ctx = this;
-        this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'),'tag'), 'name')
-        .join(","));
-        this.$el.html(this.template(this.model.toJSON()));
+
+        this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
+          .join(","));
+        this._render();
 
         BUI.use(['bui/tab', 'bui/mask'], function (Tab) {
           var tab = new Tab.TabPanel({
@@ -50,14 +52,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             ]
           });
           tab.on('selectedchange', function (ev) {
-            ctx.resetIframe();
+            ctx._resetIframe();
           });
         });
 
         // 产品分类
-        this.getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ select: true, extend: true })
           .then(function (list) {
-            ctx.initSelect({
+            ctx._initSelect({
               render: '#s1',
               target: '#model-category',
               items: list,
@@ -66,9 +68,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                   {
                     value: '更换',
                     callback: function () {
-                      ctx.attributes = new AttributesShow({
-                        categoryId: categoryId
-                      });
+                      ctx.showAttributes(categoryId, items);
                     }},
                   {
                     value: '保留',
@@ -86,25 +86,21 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                     button: buttons
                   }).show($("#s1").get(0));
                 } else {
-                  ctx.attributes = new AttributesShow({
-                    categoryId: categoryId
-                  });
+                  ctx.showAttributes(categoryId);
                   //TODO 产品标签
 
                 }
               }
             });
             // 属性
-            ctx.initSelect({
+            ctx._initSelect({
               render: '#attCate',
               target: '#attCateHid',
               items: list,
               change: function (categoryId) {
-                ctx.attributes = new AttributesShow({
-                  categoryId: categoryId
-                });
+                ctx.showAttributes(categoryId);
                 setTimeout(function () {
-                  ctx.resetIframe();
+                  ctx._resetIframe();
                 }, 500);
               }
             });
@@ -115,34 +111,31 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
               _isAdd: ctx._isAdd // 是否初始化标签列表
             });
             /*$.ajax({
-              type: 'get',
-              url: Global.API + '/tag/product',
-              success: function(result){
-                var taglist = Est.pluck(result.attributes.data, 'name');
-                Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
-                  if (i !== 0) {
-                    taglist.push(item.replace(/^\s*\|-/g, ''));
-                  }
-                });
-                ctx.initCombox({
-                  render: '#pro-tag',
-                  target: '#model-taglist',
-                  items: taglist
-                });
-              }
-            })*/
+             type: 'get',
+             url: Global.API + '/tag/product',
+             success: function(result){
+             var taglist = Est.pluck(result.attributes.data, 'name');
+             Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
+             if (i !== 0) {
+             taglist.push(item.replace(/^\s*\|-/g, ''));
+             }
+             });
+             ctx.initCombox({
+             render: '#pro-tag',
+             target: '#model-taglist',
+             items: taglist
+             });
+             }
+             })*/
 
           });
 
         if (!ctx._isAdd) {
-          ctx.attributes = new AttributesShow({
-            categoryId: ctx.model.get('category'),
-            items: ctx.model.get('productAttributeMapStore')
-          });
+          ctx.showAttributes(ctx.model.get('category'), ctx.model.get('productAttributeMapStore'));
         }
 
         // 产品属性
-        this.initSelect({
+        this._initSelect({
           render: '#s2',
           width: 100,
           target: '#model-loginView',
@@ -151,7 +144,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             {text: '登录后可见', value: '0'}
           ]
         });
-        this.initSelect({
+
+        this._initSelect({
           render: '#s2',
           width: 100,
           target: '#model-ads',
@@ -161,7 +155,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             {text: '否', value: '0'}
           ]
         });
-        this.initSelect({
+
+        this._initSelect({
           render: '#weightUnit',
           width: 100,
           target: '#model-weightUnit',
@@ -172,19 +167,32 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             {text: '吨', value: 't'}
           ]
         });
-        // 编辑器
-        this.initEditor();
 
-        this.form('#J_Form').validate().init(function () {
+        // 编辑器
+        this._initEditor({
+          render: '.ckeditor'
+        });
+
+        // 表单初始化
+        this._form('#J_Form')._validate()._init(function () {
           // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
+          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
             return item.get('name');
           }).join(','));
         });
+
         setTimeout(function () {
-          ctx.resetIframe();
+          ctx._resetIframe();
         }, 1000);
+
         return this;
+      },
+      showAttributes: function(categoryId, items){
+        this.attributes = new AttributesShow({
+          render: '#attributes-list',
+          categoryId: categoryId,
+          items: items
+        });
       }
     });
 

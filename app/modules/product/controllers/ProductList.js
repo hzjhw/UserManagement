@@ -3,7 +3,8 @@
  * @namespace ProductList
  * @author yongjin on 2014/11/16
  */
-define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/product_list', 'template/product_item'],
+define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
+    'template/product_list', 'template/product_item'],
   function (require, exports, module) {
     var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem, ProductCollection, listTemp, itemTemp;
 
@@ -17,45 +18,43 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
 
     ProductCollection = BaseCollection.extend({
       url: Global.API + '/product/list',
-      model: ProductModel
+      model: ProductModel,
+      initialize: function () {
+        this._initialize();
+      }
     });
 
     ProductItem = BaseItem.extend({
       tagName: 'tr',
       className: 'bui-grid-row',
-      template: HandlebarsHelper.compile(itemTemp),
       events: {
         'click .name': 'editName',
         'click .edit': 'editItem',
-        'click .delete': 'del'
+        'click .delete': '_del'
       },
-
       initialize: function () {
-        this.__proto__.constructor.__super__.initialize.apply(this, arguments);
-        this.initModel = ProductModel;
-      },
-
-      render: function () {
-        console.log('11.ProductItem.render [item display]');
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
-      },
-
-      editItem: function () {
-        this.edit({
-          title: '产品修改',
-          url: Global.HOST+ '/modules/product/product_detail.html?id=' + this.model.id
+        this._initialize({
+          template: itemTemp
         });
       },
-
+      render: function () {
+        this._render();
+      },
+      editItem: function () {
+        var url = Global.HOST + '/modules/product/product_detail.html?id=' +
+          this.model.id;
+        this._edit({
+          title: '产品修改',
+          url: url
+        });
+      },
       editName: function () {
-        this.editField({
+        this._editField({
           title: '修改名称',
           field: 'name',
           target: '.name'
         }, this);
       }
-
     });
 
     ProductList = BaseList.extend({
@@ -65,23 +64,22 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .product-add': 'openAddDialog'
       },
       initialize: function () {
-        var ctx = this;
-        // 初始化集合类
-        this.initCollection(ProductCollection, {
-          template: listTemp,
+        var options = {
           render: '#product-list-ul',
-          item: ProductItem, // item
-          model: ProductModel // model
-        }).then(function (options) {
-          ctx.initPagination(options); // pagination init
-          ctx.load(options); // data load
+          template: listTemp,
+          model: ProductModel,
+          collection: ProductCollection,
+          item: ProductItem
+        }
+        this._initialize(options).then(function (context) {
+          context._initPagination(options);
+          context._load(options);
         });
-        return this;
       },
       openAddDialog: function () {
-        this.detail({
+        this._detail({
           title: '产品添加',
-          url: Global.HOST+ '/modules/product/product_detail.html?time=' + new Date().getTime()
+          url: Global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
         });
       }
     });

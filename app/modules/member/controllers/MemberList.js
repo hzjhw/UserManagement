@@ -26,28 +26,23 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       events: {
         'click .name': 'editName',
         'click .edit': 'editItem',
-        'click .delete': 'del'
+        'click .delete': '_del'
       },
-
       initialize: function () {
-        this.__proto__.constructor.__super__.initialize.apply(this, arguments);
+        this._initialize();
       },
-
       render: function () {
-        console.log('11.memberItem.render [item display]');
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
+        this._render();
       },
-
       editItem: function () {
-        this.edit({
+        this._edit({
           title: '产品修改',
           url: Global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
         });
       },
 
       editName: function () {
-        this.editField({
+        this._editField({
           title: '修改名称',
           field: 'name',
           target: '.name'

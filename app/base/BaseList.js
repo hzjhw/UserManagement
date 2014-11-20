@@ -1,7 +1,7 @@
 /**
- * @description BaseList
+ * @description 基础列表视图
  * @namespace BaseList
- * @author yongjin on 2014/11/12
+ * @author yongjin<zjut_wyj@163.com> 2014/11/12
  */
 
 define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
@@ -13,15 +13,43 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
 
     BaseList = Backbone.View.extend({
       /**
+       * 初始化
+       *
+       * @method [protected] - _initialize
+       * @param options
+       * @returns {ln.promise}
+       * @private
+       * @author wyj 14.11.20
+       * @example
+       *    var options = {
+          render: '#product-list-ul',
+          template: listTemp,
+          model: ProductModel,
+          collection: ProductCollection,
+          item: ProductItem
+        }
+       this._initialize(options).then(function (context) {
+          context._initPagination(options);
+          context._load({
+              beforeLoad: funciton(){
+                this.setCategoryId(options.categoryId);
+              }
+          });
+        });
+       */
+      _initialize: function(options){
+        return this._initCollection(options.collection, options);
+      },
+      /**
        * 初始化集合类
        *
-       * @method [public] - initCollection
+       * @method [protected] - _initCollection
        * @param collection 对应的collection集合类， 如ProductCollection
        * @param options [beforeLoad: 加载数据前执行] [item: 集合单个视图] [model: 模型类]
        * @returns {ln.promise} 返回promise对象
        * @author wyj 14.11.16
        * @example
-       *       this.initCollection(ProductCollection, {
+       *       this._initCollection(ProductCollection, {
                   template: viewTemp,
                   render: '#product-list-ul',
                   item: ProductItem, // item
@@ -34,53 +62,54 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
                   ctx.load(options); // data load
               });
        */
-      initCollection: function (collection, options) {
-        console.log('1.ProductView.initialize');
+      _initCollection: function (collection, options) {
+        console.log('1.ProductView._initialize');
         var options = options || {};
+        var ctx = this;
         this.dx = 0;
         this.views = [];
         this.$el.empty();
         if (options.template)
           this.$el.append($(options.template));
-        this.list = options.render ? $(options.render, this.$el) : this.$el;
+        this.list = options.render ? $(options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
         this.collection = new collection();
         this.listenTo(this.collection, 'change:checked', this.checkSelect);
-        this.initBind();
-        this.initItemView(options.item, this);
-        this.initModel(options.model);
+        this._initBind();
+        this._initItemView(options.item, this);
+        this._initModel(options.model);
         return new Est.promise(function (resolve) {
-          resolve(options);
+          resolve(ctx);
         });
       },
       /**
        * 初始化分页
        *
-       * @method [public] - initPagination
+       * @method [private] - _initPagination
        * @param options
        * @author wyj 14.11.17
        */
-      initPagination: function (options) {
+      _initPagination: function (options) {
         var ctx = this;
         ctx.collection.paginationModel.on('reloadList', function (model) {
-          ctx.load.call(ctx, options, model);
+          ctx._load.call(ctx, options, model);
         });
       },
       /**
        * 获取集合数据
        *
-       * @method [public] - load
+       * @method [protected] - _load
        * @param model
        * @author wyj 14.11.16
        */
-      load: function (options, model) {
+      _load: function (options, model) {
         var ctx = this;
         return new Est.promise(function (resolve, reject) {
           if (options.beforeLoad) {
             options.beforeLoad.call(ctx.collection);
           }
           if (ctx.collection.url) {
-            ctx.collection.load(ctx.collection, ctx, model)
+            ctx.collection._load(ctx.collection, ctx, model)
               .then(function (result) {
                 resolve(result);
               });
@@ -89,51 +118,51 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       },
       /**
        * 绑定事件， 如果添加事件， 重置事件
-       * @method [public] - initBind
+       * @method [private] - _initBind
        * @author wyj 14.11.16
        */
-      initBind: function () {
-        this.collection.bind('add', this.addOne, this);
-        this.collection.bind('reset', this.render, this);
+      _initBind: function () {
+        this.collection.bind('add', this._addOne, this);
+        this.collection.bind('reset', this._render, this);
       },
       /**
        * 渲染视图
        *
-       * @method [public] - render
+       * @method [protected] - _render
        * @author wyj 14.11.16
        */
-      render: function () {
+      _render: function () {
         console.log('BaseList.render');
-        this.addAll();
+        this._addAll();
       },
       /**
        * 初始化单个枚举视图
        *
-       * @method [public] - initItemView
+       * @method [private] - _initItemView
        * @param itemView
        * @author wyj 14.11.16
        */
-      initItemView: function (itemView) {
+      _initItemView: function (itemView) {
         this.item = itemView;
       },
       /**
        * 初始化模型类
        *
-       * @method [protected] - initModel
+       * @method [private] - _initModel
        * @param model
        * @author wyj 14.11.20
        */
-      initModel: function(model){
+      _initModel: function(model){
         this.initModel = model;
       },
       /**
        * 清空列表， 并移除所有绑定的事件
        *
-       * @method [public] - empty
+       * @method [protected] - _empty
        * @author wyj 14.11.16
        */
-      empty: function () {
-        console.log('5.ProductView.empty');
+      _empty: function () {
+        console.log('5.ProductView._empty');
         if (this.collection){
           var len = this.collection.length;
           while (len > -1){
@@ -141,8 +170,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
             len--;
           }
         }
-        this.dx = this.collection.paginationModel.get('pageSize') *
-          (this.collection.paginationModel.get('page') -1);
+        // 设置当前页的起始索引， 如每页显示20条，第2页为20
+        if (this.collection.paginationModel){
+          this.dx = this.collection.paginationModel.get('pageSize') *
+            (this.collection.paginationModel.get('page') -1);
+        }
         //遍历views数组，并对每个view调用Backbone的remove
         Est.each(this.views,function(view){
           view.remove().off();
@@ -155,39 +187,44 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 向视图添加元素
        *
-       * @method [public] - addOne
+       * @method [private] - _addOne
        * @param target
        * @author wyj 14.11.16
        */
-      addOne: function (target) {
+      _addOne: function (target) {
         target.set('dx', this.dx++);
         var itemView = new this.item({
           model: target
         });
-        itemView.setInitModel(this.initModel);
-        this.list.append(itemView.render().$el);
+        itemView._setInitModel(this.initModel);
+        this.list.append(itemView._render().$el);
         this.views.push(itemView);
       },
       /**
        * 添加所有元素， 相当于刷新视图
        *
-       * @method [public] - addAll
+       * @method [private] - _addAll
        * @author wyj 14.11.16
        */
-      addAll: function () {
-        console.log('ProductView.addAll');
-        this.empty();
-        this.collection.each(this.addOne, this);
+      _addAll: function () {
+        console.log('ProductView._addAll');
+        this._empty();
+        this.collection.each(this._addOne, this);
       },
       /**
        * 弹出查看详细信息对话框
        *
-       * @method [public] - detail
+       * @method [protected] - _detail
        * @param options
        * @author wyj 14.11.16
+       * @example
+       *    this._detail({
+              title: '产品添加',
+              url: Global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
+            });
        */
-      detail: function (options) {
-        console.log('1.ProductView.openAddDialog');
+      _detail: function (options) {
+        console.log('1.BaseList._detail');
         var ctx = this;
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
@@ -219,9 +256,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
             },
             onclose: function () {
-              ctx.collection.load(ctx.collection, ctx).
+              ctx.collection._load(ctx.collection, ctx).
                 then(function () {
-                  ctx.render();
+                  ctx._render();
                 });
               this.remove();
               if (this.returnValue) {
@@ -235,10 +272,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 全选checkbox选择框
        *
-       * @method [public] - toggleAllChecked
+       * @method [protected] - _toggleAllChecked
        * @author wyj 14.11.16
        */
-      toggleAllChecked: function () {
+      _toggleAllChecked: function () {
         var checked = this.allCheckbox.checked;
         this.collection.each(function (product) {
           product.set('checked', checked);

@@ -26,6 +26,9 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
         return Global.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
+      initialize: function(){
+        this._initialize();
+      },
       setCategoryId: function (categoryId) {
         this.categoryId = categoryId;
       },
@@ -37,17 +40,17 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
     item = BaseItem.extend({
       tagName: 'div',
       className: 'control-group',
-      template: HandlebarsHelper.compile(itemTemp),
       events: {
         'change input': 'update',
         'click input[type=checkbox]': 'resetCheckbox'
       },
       initialize: function () {
-        this.__proto__.constructor.__super__.initialize.apply(this, arguments);
+        this._initialize({
+          template: itemTemp
+        });
       },
       render: function () {
-        this.$el.html(this.template(this.model.toJSON()));
-        return this;
+        this._render();
       },
       resetCheckbox: function () {
         var array = [];
@@ -62,40 +65,41 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
     });
 
     AttributesShow = BaseList.extend({
-      el: '#attributes-list',
       events: {
         'click .option-add': 'add',
         'click .option-remove': 'remove',
         'click .getItemsBtn': 'getItems'
       },
       initialize: function (options) {
-        var ctx = this;
         this.options = options || {};
         if (options.items) {
-          this.initCollection(collection, {
-            item: item,
-            model: model
-          }).then(function (opts) {
+          this._initialize({
+            render: options.render,
+            item: item, model: model, collection: collection
+          }).then(function (context) {
               Est.each(options.items, function (item) {
                 var fields = item.productAttribute;
                 fields.element = item.element.substring(1, item.element.length - 1);
-                ctx.collection.push(new model(fields));
+                context.collection.push(new model(fields));
               }, this);
             });
         }
         else {
-          this.initCollection(collection, {
+          var opts = {
+            render: options.render,
+            collection: collection,
             item: item,
-            model: model,
-            beforeLoad: function () {
-              this.setCategoryId(options.categoryId);
-            }
-          }).then(function (options) {
-            ctx.initPagination(options);
-            ctx.load(options);
+            model: model
+          }
+          this._initialize(opts).then(function (context) {
+            context._initPagination(opts);
+            context._load({
+              beforeLoad: function(){
+                this.setCategoryId(options.categoryId);
+              }
+            });
           });
         }
-
         return this;
       },
       add: function () {

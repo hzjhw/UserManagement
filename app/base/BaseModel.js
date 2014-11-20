@@ -1,7 +1,7 @@
 /**
- * @description BaseModel
+ * @description 基础模型类
  * @namespace BaseModel
- * @author yongjin on 2014/11/10
+ * @author yongjin<zjut_wyj@163.com> 2014/11/10
  */
 define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
   function (require, exports, module) {
@@ -27,11 +27,11 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
       /**
        * 模型类初始化
        *
-       * @method [public] - initialize
+       * @method [protected] - _initialize
        * @author wyj 14.11.16
        */
-      initialize: function () {
-        console.log('10.BaseModel.initialize [add to collection] or 3.[add to detail]');
+      _initialize: function () {
+        console.log('10.BaseModel._initialize [add to collection] or 3.[add to detail]');
       },
       /**
        * 过滤结果, 并提示信息对话框, 若不想提示信息可以设置hideTip为true
@@ -84,11 +84,12 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        * @param async
        * @author wyj 14.11.16
        */
-      saveField: function (keyValue, callback, ctx, async) {
+      _saveField: function (keyValue, callback, ctx, async) {
         var wait = async || true;
         var newModel = new ctx.initModel({
           id: ctx.model.get('id')
         });
+        newModel.clear(); // 清空字段
         newModel.set(keyValue);
         newModel.save(null, {
           wait: wait,
@@ -105,7 +106,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        * @method [public] - toggle
        * @author wyj 14.11.16
        */
-      toggle: function () {
+      _toggle: function () {
         this.set('checked', !this.get('checked'));
       }
     });

@@ -1,63 +1,105 @@
 /**
  * @description BaseDetail
  * @namespace BaseDetail
- * @author yongjin on 2014/11/12
+ * @author yongjin<zjut_wyj@163.com> 2014.11.12
  */
 
-define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
+define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var BaseDetail, Backbone, Est;
+    var BaseDetail, Backbone, Est, HandlebarsHelper;
 
     Backbone = require('backbone');
     Est = require('Est');
+    HandlebarsHelper = require('HandlebarsHelper');
 
     BaseDetail = Backbone.View.extend({
+      /**
+       * 初始化
+       *
+       * @method [protected] - _initialize
+       * @param options
+       * @private
+       * @author wyj 14.11.20
+       * @example
+       *    this._initialize({
+              template : template,
+              model: ProductModel
+        });
+       */
+      _initialize: function(options){
+        this.template = HandlebarsHelper.compile(options.template);
+        this._initModel(options.model, this);
+      },
+      /**
+       * 渲染
+       *
+       * @method [protected] - _render
+       * @private
+       * @author wyj 14.11.20
+       */
+      _render: function(){
+        this.$el.html(this.template(this.model.toJSON()));
+      },
       /**
        * 初始化模型类 将自动判断是否有ID传递进来，
        * 若存在则从服务器端获取详细内容
        * 若为添加， 则在ctx 与模型类里设置 _isAdd = true
        *
-       * @method [public] - initModel
+       * @method [protected] - _initModel
        * @param model
        * @param ctx
-       * @author wyj on 14.11.15
+       * @author wyj 14.11.15
        */
-      initModel: function (model, ctx) {
+      _initModel: function (model, ctx) {
         ctx.passId = Est.getUrlParam('id', window.location.href);
         if (!Est.isEmpty(this.passId)) {
           ctx.model = new model();
           ctx.model.set('id', ctx.passId);
           ctx.model.fetch().done(function () {
             ctx.model.set('_isAdd', ctx._isAdd = false);
-            ctx.render().resetIframe();
+            ctx.render()._resetIframe();
           });
         } else {
           ctx.passId = new Date().getTime();
           ctx.model = new model();
           ctx.model.set('_isAdd', ctx._isAdd = true)
-          ctx.render().resetIframe();
+          ctx.render()._resetIframe();
         }
       },
       /**
        * form包装器， 传递表单选择符
        *
-       * @method [public] - form
+       * @method [protected] - _form
        * @param {String} formSelector 选择器
        * @returns {BaseDetail}
        * @author wyj on 14.11.15
+       * @example
+       *    this._form('#J_Form')._validate()._init(function () {
+          // 处理特殊字段
+          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
+            return item.get('name');
+          }).join(','));
+        });
        */
-      form: function (formSelector) {
+      _form: function (formSelector) {
         this.formSelector = formSelector;
         return this;
       },
       /**
        * 启用表单验证
        *
-       * @method [public] - validate
+       * @method [protected] - _validate
        * @returns {BaseDetail}
        * @author wyj 14.11.15
+       * @example
+       *    this._form('#J_Form')._validate()._init(function () {
+          // 处理特殊字段
+          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
+            return item.get('name');
+          }).join(','));
+        });
        */
-      validate: function () {
+      _validate: function () {
         var ctx = this;
         BUI.use('bui/form', function (Form) {
           new Form.Form({
@@ -69,15 +111,18 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 绑定提交按钮
        *
-       * @method [public] - init
+       * @method [protected] - _init
        * @param callback
        * @author wyj 14.11.15
        * @example
-       *      this.form("#J_Form").validate().init(function () {
-                    this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
-                });
+       *      this._form('#J_Form')._validate()._init(function () {
+          // 处理特殊字段
+          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
+            return item.get('name');
+          }).join(','));
+        });
        */
-      init: function (callback) {
+      _init: function (callback) {
         var ctx = this;
         $('#submit', this.el).on('click', function () {
           $("input, textarea, select", $(ctx.formSelector)).each(function () {
@@ -100,33 +145,33 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
           });
           if (typeof callback !== 'undefined')
             callback.call(ctx);
-          ctx.save();
+          ctx._save();
         });
       },
       /**
        * 保存结果
        *
-       * @method [protect] - save
+       * @method [protected] - _save
        * @author wyj 14.11.18
        */
-      save: function(){
-        this.saveItem(function () {
+      _save: function(){
+        this._saveItem(function () {
         });
       },
       /**
        * 保存表单
        *
-       * @method [pubic] - saveItem
+       * @method [private] - _saveItem
        * @param callback
        * @param context
        * @author wyj 14.11.15
        */
-      saveItem: function (callback, context) {
-        console.log('BaseDetail.saveItem');
+      _saveItem: function (callback, context) {
+        console.log('BaseDetail._saveItem');
         this.model.save(null, {
           wait: true,
           success: function (response) {
-            console.log('BaseDetail.saveSuccess');
+            console.log('BaseDetail._saveSuccess');
             if (top) {
               top.model = response.attributes;
             }
@@ -138,12 +183,12 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 获取产品分类
        *
-       * @method [public] - getProductCategory
+       * @method [protected] - _getProductCategory
        * @param options select 转换成select形式，extend 转换成列表形式
        * @returns {ln.promise}
        * @author wyj 14.11.15
        */
-      getProductCategory: function (options) {
+      _getProductCategory: function (options) {
         return new Est.promise(function (topResolve, topReject) {
           options.select = options ? options.select ? true : false : false;
           options.extend = options ? options.extend ? true : false : false;
@@ -151,7 +196,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
             return new Est.promise(function (resolve, reject) {
               $.ajax({
                 type: 'post',
-                url: 'http://jihui88.com/rest/api/category/product?pageSize=1000',
+                url: Global.API + '/category/product?pageSize=1000',
                 data: {
                   _method: 'GET'
                 },
@@ -192,12 +237,12 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 下拉框初始化
        *
-       * @method [render] - initSelect
+       * @method [protected] - _initSelect
        * @param options  [target 文本框ID] [render 渲染ID] [itemId ID标识] [width 宽度] [items 数组]
        * @returns {ln.promise} 返回promise
        * @author wyj 14.11.15
        */
-      initSelect: function (options) {
+      _initSelect: function (options) {
         return new Est.promise(function (resove, reject) {
           var container = {};
           var target = options.target || '#category';
@@ -225,7 +270,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 时间选择
        *
-       * @method [public] - initDate
+       * @method [protected] - _initDate
        * @param options [render 控件选择符] [showTime 是否显示时间]
        * @author wyj 14.11.19
        * @example
@@ -234,7 +279,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
        *      showTime: false
        *    });
        */
-      initDate: function(options){
+      _initDate: function(options){
         BUI.use('bui/calendar',function(Calendar){
           new Calendar.DatePicker({
             trigger:options.render || '.calendar',
@@ -246,7 +291,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 标签选择框
        *
-       * @method [public] - initCombox
+       * @method [protected] - _initCombox
        * @param options
        * @returns {ln.promise}
        * @author wyj 14.11.17
@@ -257,7 +302,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
                     items: [ '选项一', '选项二', '选项三', '选项四' ]
                 });
        */
-      initCombox: function (options) {
+      _initCombox: function (options) {
         return new Est.promise(function (resolve, reject) {
           var container = {};
           var target = options.target || '#category';
@@ -286,10 +331,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 初始化编辑器
        *
-       * @method [public] - initEditor
+       * @method [protected] - _initEditor
        * @author wyj 14.11.15
        */
-      initEditor: function () {
+      _initEditor: function (options) {
         seajs.use(['xheditor'], function (xheditor) {
           function startEditor(obj) {
             $(obj).xheditor(
@@ -311,7 +356,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
           }
 
           $(function () {
-            $(".ckeditor").each(function () {
+            $(options.render || '.ckeditor').each(function () {
               startEditor($(this));
             });
 
@@ -320,16 +365,18 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       },
       /**
        * 重置表单
+       * @method [protected] - _reset
+       * @author wyj 14.11.18
        */
-      reset: function () {
+      _reset: function () {
         this.model.set(this.model.defaults);
       },
       /**
        * 重置对话框高度
-       * @method [public] - resetIframe
+       * @method [protected] - _resetIframe
        * @author wyj 14.11.16
        */
-      resetIframe: function () {
+      _resetIframe: function () {
         try {
           if (window.detailDialog && window.detailDialog.height){
             window.detailDialog.height($(document).height());
@@ -342,11 +389,11 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 移除模型类
        *
-       * @method [public] - remove
+       * @method [protected] - _remove
        * @returns {BaseDetail}
        * @author wyj 14.11.16
        */
-      remove: function () {
+      _remove: function () {
         console.log('BaseDetail.remove');
         this.model.destroy();
         this.model = null;
@@ -355,10 +402,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est'],
       /**
        * 移除所有绑定的事件
        *
-       * @method [public] - close
+       * @method [protected] - _close
        * @author wyj 14.11.16
        */
-      close: function () {
+      _close: function () {
         console.log('BaseDetail.close');
         this.undelegateEvents();
         this.stopListening();
