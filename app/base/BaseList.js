@@ -36,6 +36,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         console.log('1.ProductView.initialize');
         var options = options || {};
         this.views = [];
+        this.dx = 0;
         this.allCheckbox = this.$('#toggle-all')[0];
         this.collection = new collection();
         this.listenTo(this.collection, 'change:checked', this.checkSelect);
@@ -133,6 +134,15 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       empty: function () {
         console.log('5.ProductView.empty');
+        if (this.collection){
+          var len = this.collection.length;
+          while (len > -1){
+            this.collection.remove(this.collection[len]);
+            len--;
+          }
+        }
+        this.dx = this.collection.paginationModel.get('pageSize') *
+          (this.collection.paginationModel.get('page') -1);
         //遍历views数组，并对每个view调用Backbone的remove
         Est.each(this.views,function(view){
           view.remove().off();
@@ -140,7 +150,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         //清空views数组，此时旧的view就变成没有任何被引用的不可达对象了
         //垃圾回收器会回收它们
         this.views =[];
-        this.list.empty();
+        //this.list.empty();
       },
       /**
        * 向视图添加元素
@@ -150,6 +160,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       addOne: function (target) {
+        target.set('dx', this.dx++);
         var itemView = new this.itemView({
           model: target
         });

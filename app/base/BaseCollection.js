@@ -114,6 +114,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
         return new Est.promise(function (resolve, reject) {
           return instance.fetch({success: function () {
             resolve(instance);
+            context.collection.reset();
             context.empty();
           }});
         });
@@ -126,10 +127,13 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       empty: function () {
         console.log('BaseCollection.empty')
-        var collection = this.collection;
-        this.collection.each(function (view) {
-          collection.remove(view);
-        });
+        if (this.collection){
+          var len = this.collection.length;
+          while (len > -1){
+            this.collection.remove(this.collection[len]);
+            len--;
+          }
+        }
       }
     });
 
