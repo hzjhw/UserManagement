@@ -1,0 +1,44 @@
+<div class="multimage-wrapper">
+    <div class="multimage-tabs">
+        <div data-type="local" class="tab actived">本地上传</div>
+        <div data-type="remote-image" class="tab">图片空间</div>
+    </div>
+    <div class="multimage-panels">
+        <div class="panel local-panel">
+            <div class="upload-field">
+                <label for="J_MultimageField">选择本地图片：</label>
+                <a href="javascript:void(0);" class="btn btn-default">
+                    <span class="btn-txt">文件上传</span>
+                    <input type="file" name="multimagefile" id="J_MultimageField">
+                </a>
+            </div>
+            <div class="multimage-tips">
+                <div class="tip-title">提示：</div>
+                <ol>
+                    <li>本地上传图片大小不能超过<strong class="bright">500K</strong>。</li>
+                    <li>本类目下您最多可以上传<strong class="bright"> 5 </strong>张图片。</li>																					                                                    </ol>
+            </div>
+        </div>
+        <div class="panel remote-panel remote-image" style="display: none; height: 247px;">
+
+        </div>
+    </div>
+    <div class="multimage-info ">
+        <div class="info-wrapper">
+            <div class="msg">
+                <span class="bright">700*700</span>
+                以上的图片可以在宝贝详情页主图提供图片放大功能
+            </div>
+            <div class="multimage-gallery">
+                <ul id="multimage-gallery-ul">
+                    <li>
+                        <input name="image_pos" type="hidden" value="1">
+                        <div class="preview">
+                            <input type="hidden" class="hideimageurl" name="picUrl1" value="http://img01.taobaocdn.com/imgextra/i1/TB1G_rSFVXXXXa7XVXXXXXXXXXX_!!0-item_pic.jpg">
+                            <img src="http://img01.taobaocdn.com/imgextra/i1/TB1G_rSFVXXXXa7XVXXXXXXXXXX_!!0-item_pic.jpg_100x100.jpg"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

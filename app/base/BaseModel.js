@@ -34,7 +34,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         console.log('10.BaseModel.initialize [add to collection] or 3.[add to detail]');
       },
       /**
-       * 过滤结果, 并提示信息对话框
+       * 过滤结果, 并提示信息对话框, 若不想提示信息可以设置hideTip为true
        *
        * @method [private] - parse
        * @param response

@@ -179,7 +179,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
           window.detailDialog = dialog({
             id: 'detail-dialog',
             title: options.title || '详细信息',
-            width: 800,
+            width: 850,
             url: options.url || '',
             button: [
               {

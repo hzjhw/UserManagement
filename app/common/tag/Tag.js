@@ -63,11 +63,19 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
       className: 'bui-list-item',
       template: HandlebarsHelper.compile(tagPickerItem),
       events: {
-        'click .bui-list-item': 'select'
+        'click .bui-list-item': 'select',
+        'mouseover .bui-list-item': 'mouseover',
+        'mouseout .bui-list-item': 'mouseout'
       },
       select: function(){
         $(".bui-combox-input-hid").val(this.model.get('name')).click();
         $("#tag-list-picker").hide();
+      },
+      mouseover: function(){
+        this.$el.addClass('bui-list-item-hover');
+      },
+      mouseout:function(){
+        this.$el.removeClass('bui-list-item-hover');
       }
     });
     TagList = BaseList.extend({
@@ -88,7 +96,6 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
     });
 
     Tag = BaseList.extend({
-      el: '#tag-box',
       events: {
         'keyup .tag-combox-input': 'add',
         'click .tag-combox-input': 'showPicker',
@@ -108,7 +115,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
         this.initCollection(collection, item, this, {
           beforeLoad: function () {
             this.setItemId(ctx.options.itemId || null);
-            this.setTagType(ctx.tagType || 'product');
+            this.setTagType(ctx.options.tagType || 'product');
           }
         }).then(function (options) {
           if (!ctx.options._isAdd){

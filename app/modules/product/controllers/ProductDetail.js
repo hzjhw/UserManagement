@@ -110,6 +110,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             });
             // 标签
             ctx.tagInstance = new Tag({
+              el: '#tag-box',
               itemId: ctx.model.get('id'),
               _isAdd: ctx._isAdd // 是否初始化标签列表
             });

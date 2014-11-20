@@ -149,7 +149,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est'],
           window.detailDialog = dialog({
             id: 'edit-dialog',
             title: options.title || '提示',
-            width: options.width || 800,
+            width: options.width || 850,
             url: options.url,
             button: [
               {

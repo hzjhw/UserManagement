@@ -147,6 +147,13 @@ define('template/tag_picker_item', function(require, exports, module){
   module.exports = require('common/tag/views/tag_picker_item.html');
 });
 
+define('template/picture_view', function(require, exports, module){
+  module.exports = require('common/picture/views/picture_view.html');
+});
+
+define('template/picture_item', function(require, exports, module){
+  module.exports = require('common/picture/views/picture_item.html');
+});
 /** Backbone路由
  * */
 seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
