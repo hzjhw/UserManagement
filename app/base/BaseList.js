@@ -133,11 +133,14 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       empty: function () {
         console.log('5.ProductView.empty');
-        _.each(this.views, function (view) {
-          view.off().remove();
+        //遍历views数组，并对每个view调用Backbone的remove
+        Est.each(this.views,function(view){
+          view.remove().off();
         })
-        this.views = [];
-        this.list.html("");
+        //清空views数组，此时旧的view就变成没有任何被引用的不可达对象了
+        //垃圾回收器会回收它们
+        this.views =[];
+        this.list.empty();
       },
       /**
        * 向视图添加元素
@@ -150,7 +153,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         var itemView = new this.itemView({
           model: target
         });
-        this.list.append(itemView.render().el);
+        this.list.append(itemView.render().$el);
         this.views.push(itemView);
       },
       /**

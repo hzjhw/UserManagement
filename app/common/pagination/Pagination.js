@@ -17,6 +17,9 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'E
 
       el: "#pagination-container",
       tagName: "div",
+      events: {
+        'change .per_page_show': 'changePerPage'
+      },
       template: HandlebarsHelper.compile(template),
 
       initialize: function () {
@@ -37,9 +40,13 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'E
         });
 
         this.$el.html($html);
+        this.$select = this.$('.per_page_show');
         return this;
       },
-
+      changePerPage: function(){
+        this.model.set('pageSize', this.$select.val());
+        this.model.trigger('reloadList', this.model);
+      },
       toPage: function (num) {
         if (parseInt(num, 10) > this.model.get('totalPage') || parseInt(num, 10) < 1) return;
         this.model.set('page', num);

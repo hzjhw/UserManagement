@@ -175,7 +175,7 @@ body .m0{margin:0}
 }
 #jhw-left-bar{
     float: left;
-    width: 150px;
+    width: 15%;
     border-right: 1px solid #dfdfdf;
     margin-right: 20px;
     padding-top: 5px;
@@ -183,12 +183,21 @@ body .m0{margin:0}
 }
 #jhw-main {
     float: left;
+    width: 75%;
     padding-top: 5px;
 }
 
 /* 通用 ****************************************************************************************/
 #J_Form{
     overflow:hidden;
+}
+/*列表*/
+.gird-td-checkbox{
+    width:40px;
+}
+/*分页*/
+#pagination-container{
+    padding-top:5px;
 }
 /*登录*/
 

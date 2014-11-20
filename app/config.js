@@ -44,6 +44,7 @@ seajs.config({
     'AttributesAdd': 'common/attributes/AttributesAdd.js',
     'AttributesShow': 'common/attributes/AttributesShow.js',
     'Tag': 'common/tag/Tag.js',
+    'Picture': 'common/picture/Picture.js',
 
     // index
     'TopView': 'modules/index/views/TopView.js',

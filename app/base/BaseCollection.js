@@ -24,7 +24,9 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       initialize: function () {
         console.log('2.BaseCollection.initialize');
-        this.paginationModel = new PaginationModel;
+        if (!this.paginationModel){
+          this.paginationModel = new PaginationModel;
+        }
       },
       /**
        * 处理url 与 分页
@@ -81,9 +83,13 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       paginationRender: function () {
         var ctx = this;
-        new Pagination({
-          model: ctx.paginationModel
-        });
+        if (!this.pagination){
+          this.pagination = new Pagination({
+            model: ctx.paginationModel
+          });
+        } else{
+          this.pagination.render();
+        }
       },
       /**
        * 加载列表

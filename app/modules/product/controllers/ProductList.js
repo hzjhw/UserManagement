@@ -21,7 +21,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     });
 
     ProductItem = BaseItem.extend({
-      tagName: 'li',
+      tagName: 'tr',
+      className: 'bui-grid-row',
       template: HandlebarsHelper.compile(itemTemp),
       events: {
         'click .name': 'editName',
