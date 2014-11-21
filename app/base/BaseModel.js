@@ -32,7 +32,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        */
       _initialize: function () {
         this.validateMsg = null;
-        global.debug && console.log('10.BaseModel._initialize [add to collection] or 3.[add to detail]');
+        debug('10.BaseModel._initialize [add to collection] or 3.[add to detail]');
       },
       /**
        * 过滤结果, 并提示信息对话框, 若不想提示信息可以设置hideTip为true

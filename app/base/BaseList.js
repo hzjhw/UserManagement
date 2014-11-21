@@ -63,7 +63,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
               });
        */
       _initCollection: function (collection, options) {
-        global.debug && console.log('1.ProductView._initialize');
+        debug('1.ProductView._initialize');
         var options = options || {};
         var ctx = this;
         this.dx = 0;
@@ -134,7 +134,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       _render: function () {
-        global.debug && console.log('BaseList.render');
+        debug('BaseList.render');
         this._addAll();
       },
       /**
@@ -164,7 +164,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       _empty: function () {
-        global.debug && console.log('5.ProductView._empty');
+        debug('5.ProductView._empty');
         if (this.collection){
           var len = this.collection.length;
           while (len > -1){
@@ -209,7 +209,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       _addAll: function () {
-        global.debug && console.log('ProductView._addAll');
+        debug('ProductView._addAll');
         this._empty();
         this.collection.each(this._addOne, this);
       },
@@ -226,7 +226,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
             });
        */
       _detail: function (options) {
-        global.debug && console.log('1.BaseList._detail');
+        debug('1.BaseList._detail');
         var ctx = this;
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;

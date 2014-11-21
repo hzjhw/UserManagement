@@ -360,3 +360,9 @@ if (!window.console) {
     return getInstance();
   })(false)
 }
+
+window.debug = function(str, options){
+  if (global.debug){
+    console.log(str);
+  }
+}

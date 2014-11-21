@@ -22,14 +22,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         'click #product-reset': 'reset'
       },
       initialize: function () {
-        global.debug && console.log('2.ProductDetail.initialize');
+        debug('2.ProductDetail.initialize');
         this._initialize({
           template : template,
           model: ProductModel
         });
       },
       render: function () {
-        global.debug && console.log('4.ProductDetail.render');
+        debug('4.ProductDetail.render');
         var ctx = this;
 
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
