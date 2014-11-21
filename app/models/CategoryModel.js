@@ -18,6 +18,7 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
         name: '',
         sort: 1,
         state: '01',
+        category: '/',
         belongId: null, // 父类ID
         type: '10' // 产品
       },

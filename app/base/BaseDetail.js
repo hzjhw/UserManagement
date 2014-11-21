@@ -230,7 +230,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
             } else {
               result.attributes.data = [];
             }
-            result.attributes.data.unshift({text: '请选择分类', value: '0'});
+            result.attributes.data.unshift({text: '请选择分类', value: '/'});
             topResolve(result.attributes.data);
           });
         });

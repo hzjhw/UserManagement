@@ -20,18 +20,22 @@ define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseLis
       defaults: {
         src: '',
         name: ''
+      },
+      validate: function(){
+        this._validate();
       }
     });
 
     collection = BaseCollection.extend({
-      model: model
+      model: model,
+      url: ''
     });
 
     item = BaseItem.extend({
       tagName: 'li',
       template: HandlebarsHelper.compile(pictureItem),
       events: {
-        'click .del':'del'
+        'click .del':'_del'
       }
     });
 
@@ -43,16 +47,11 @@ define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseLis
         var ctx = this; this.options = options || {};
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
-        // 初始化容器
-        this.initCollection(collection,{
+        this._initialize({
           template: pictureView,
           render: '#multimage-gallery-ul',
           item: item,
-          model: model,
-          beforeLoad: function () {
-          }
-        }).then(function (options) {
-          Est.each();
+          model: model
         });
         // 输入框
         this.$input = this.$(".tag-combox-input");
