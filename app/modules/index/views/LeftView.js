@@ -25,7 +25,7 @@ define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Use
                 this.model.fetch({
                     async: false
                 }).done(function(){
-                    console.dir(ctx.model);
+                    //console.dir(ctx.model);
                 });
                 this.render();
 

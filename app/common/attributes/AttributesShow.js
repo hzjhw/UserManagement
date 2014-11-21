@@ -23,7 +23,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
 
     collection = BaseCollection.extend({
       url: function () {
-        return Global.API + '/attr/list/' + this.getCategoryId();
+        return global.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
       initialize: function(){
@@ -111,6 +111,13 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
       remove: function () {
         this.collection.pop();
         this.render();
+      },
+      reload: function(categoryId){
+        this._load({
+          beforeLoad: function(){
+            this.setCategoryId(categoryId);
+          }
+        });
       },
       getItems: function () {
         // 转换成[{key: '', value: ''}, ... ] 数组格式

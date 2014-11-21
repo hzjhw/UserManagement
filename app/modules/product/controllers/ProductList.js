@@ -17,7 +17,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     itemTemp = require('template/product_item');
 
     ProductCollection = BaseCollection.extend({
-      url: Global.API + '/product/list',
+      url: global.API + '/product/list',
       model: ProductModel,
       initialize: function () {
         this._initialize();
@@ -41,7 +41,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._render();
       },
       editItem: function () {
-        var url = Global.HOST + '/modules/product/product_detail.html?id=' +
+        var url = global.HOST + '/modules/product/product_detail.html?id=' +
           this.model.id;
         this._edit({
           title: '产品修改',
@@ -79,7 +79,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       openAddDialog: function () {
         this._detail({
           title: '产品添加',
-          url: Global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
+          url: global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
         });
       }
     });

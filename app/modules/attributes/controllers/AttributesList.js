@@ -40,7 +40,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
             editItem: function () {
                 this._edit({
                     title: '属性修改',
-                    url: Global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
+                    url: global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
                 });
             },
 
@@ -76,9 +76,9 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
                 this.addAll();
             },
             openAddDialog: function () {
-                this.detail({
+                this._detail({
                     title: '属性添加',
-                    url: Global.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
+                    url: global.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
                 });
             }
         });

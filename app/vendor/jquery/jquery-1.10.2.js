@@ -23,7 +23,7 @@ u[o]&&(delete u[o],c?delete n[l]:typeof n.removeAttribute!==i?n.removeAttribute(
 
 // Show a message on the console so devs know we're active
     if ( !jQuery.migrateMute && window.console && window.console.log ) {
-        window.console.log("JQMIGRATE: Logging is active");
+        //window.console.log("JQMIGRATE: Logging is active");
     }
 
 // Set to false to disable traces that appear with warnings
@@ -43,7 +43,7 @@ u[o]&&(delete u[o],c?delete n[l]:typeof n.removeAttribute!==i?n.removeAttribute(
             warnedAbout[ msg ] = true;
             jQuery.migrateWarnings.push( msg );
             if ( console && console.warn && !jQuery.migrateMute ) {
-                console.warn( "JQMIGRATE: " + msg );
+                //console.warn( "JQMIGRATE: " + msg );
                 if ( jQuery.migrateTrace && console.trace ) {
                     console.trace();
                 }

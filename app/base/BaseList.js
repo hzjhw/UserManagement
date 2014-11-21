@@ -73,8 +73,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
           this.$el.append($(options.template));
         this.list = options.render ? $(options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
-        this.collection = new collection();
-        this.listenTo(this.collection, 'change:checked', this.checkSelect);
+        if (!this.collection){
+          this.collection = new collection();
+          this.listenTo(this.collection, 'change:checked', this.checkSelect);
+        }
         this._initBind();
         this._initItemView(options.item, this);
         this._initModel(options.model);
@@ -220,7 +222,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @example
        *    this._detail({
               title: '产品添加',
-              url: Global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
+              url: global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
             });
        */
       _detail: function (options) {

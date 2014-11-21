@@ -197,7 +197,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
             return new Est.promise(function (resolve, reject) {
               $.ajax({
                 type: 'post',
-                url: Global.API + '/category/product?pageSize=1000',
+                url: global.API + '/category/product?pageSize=1000',
                 data: {
                   _method: 'GET'
                 },
