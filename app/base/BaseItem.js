@@ -106,8 +106,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
               context.model._saveField({
                 'id': context.model.get('id'),
                 'name': this.returnValue
-              }, function (model, result) {
-                context.render();
+              }, function (keyValue, result) {
+                context.model.set(keyValue);
               }, context);
               resolve(context, this.returnValue);
             }
