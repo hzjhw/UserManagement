@@ -9,7 +9,7 @@ window.global = {
   HOST : 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
   SEP: '/',
-  debug: true
+  debug: false
 }
 
 seajs.config({

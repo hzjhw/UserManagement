@@ -45,7 +45,7 @@ u[o]&&(delete u[o],c?delete n[l]:typeof n.removeAttribute!==i?n.removeAttribute(
             if ( console && console.warn && !jQuery.migrateMute ) {
                 //console.warn( "JQMIGRATE: " + msg );
                 if ( jQuery.migrateTrace && console.trace ) {
-                    console.trace();
+                    //console.trace();
                 }
             }
         }
