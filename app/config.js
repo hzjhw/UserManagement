@@ -5,16 +5,17 @@
  */
 
 
-window.Global = {
+window.global = {
   HOST : 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
-  SEP: '/'
+  SEP: '/',
+  debug: true
 }
 
 seajs.config({
 
   // Sea.js 的基础路径
-  base: Global.HOST,
+  base: global.HOST,
 
   // 别名配置
   alias: {
@@ -85,7 +86,7 @@ seajs.config({
 
   // 路径配置
   paths: {
-    bui: Global.HOST + '/vendor/bui'
+    bui: global.HOST + '/vendor/bui'
   },
 
   // 变量配置

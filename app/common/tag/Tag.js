@@ -25,7 +25,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
         name: '默认标签'
       },
       url: function(){
-        return Global.API + '/tag/detail'+ (model.itemId ? '/' + model.itemId : '') +
+        return global.API + '/tag/detail'+ (model.itemId ? '/' + model.itemId : '') +
           (this.id ? '/' + this.id : '');
       },
       initialize: function(){
@@ -36,9 +36,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 
     collection = BaseCollection.extend({
       model: model,
       url: function(){
-        return this.itemId ? Global.API +
-          Global.SEP+ this.tagType + '/detail/' + this.itemId + '/tag?pageSize=1000' :
-          Global.API +  '/tag/' + this.tagType + '?pageSize=1000';
+        return this.itemId ? global.API +
+          global.SEP+ this.tagType + '/detail/' + this.itemId + '/tag?pageSize=1000' :
+          global.API +  '/tag/' + this.tagType + '?pageSize=1000';
       },
       initialize: function(){
         this._initialize();

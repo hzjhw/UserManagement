@@ -112,7 +112,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             });
             /*$.ajax({
              type: 'get',
-             url: Global.API + '/tag/product',
+             url: global.API + '/tag/product',
              success: function(result){
              var taglist = Est.pluck(result.attributes.data, 'name');
              Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
@@ -188,11 +188,15 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         return this;
       },
       showAttributes: function(categoryId, items){
-        this.attributes = new AttributesShow({
-          render: '#attributes-list',
-          categoryId: categoryId,
-          items: items
-        });
+        if (!this.attributes){
+          this.attributes = new AttributesShow({
+            render: '#attributes-list',
+            categoryId: categoryId,
+            items: items
+          });
+        } else{
+          this.attributes.reload(categoryId);
+        }
       }
     });
 

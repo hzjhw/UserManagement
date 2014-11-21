@@ -37,7 +37,7 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       editItem: function () {
         this._edit({
           title: '产品修改',
-          url: Global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
+          url: global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
         });
       },
 

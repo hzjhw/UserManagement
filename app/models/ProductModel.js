@@ -11,7 +11,7 @@ define('ProductModel', ['jquery', 'BaseModel'],
 
     ProductModel = BaseModel.extend({
       baseId: 'productId',
-      baseUrl: Global.API + '/product/detail',
+      baseUrl: global.API + '/product/detail',
       initialize: function(){
         this._initialize();
       },

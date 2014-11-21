@@ -23,7 +23,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _initialize: function () {
-        console.log('2.BaseCollection._initialize');
+        global.debug || console.log('2.BaseCollection._initialize');
         if (!this.paginationModel) {
           this.paginationModel = new PaginationModel;
         }
@@ -51,7 +51,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _parseUrl: function (model) {
-        console.log('7.BaseCollection._parseUrl')
+        global.debug || console.log('7.BaseCollection._parseUrl')
         var pageSize = model.get('pageSize');
         var page = model.get('page');
         if (typeof this.url !== 'function') {
@@ -68,7 +68,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _parsePagination: function (resp) {
-        console.log('6.BaseCollection._parsePagination')
+        global.debug || console.log('6.BaseCollection._parsePagination')
         resp.attributes = resp.attributes || { page: 1, per_page: 10, count: 10 };
         this.paginationModel.set('page', resp.attributes.page);
         this.paginationModel.set('pageSize', resp.attributes.per_page);
@@ -108,7 +108,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                 }
        */
       _load: function (instance, context, model) {
-        console.log('4.BaseCollection._load');
+        global.debug || console.log('4.BaseCollection._load');
         if (typeof model !== 'undefined') this._parseUrl(model);
 
         return new Est.promise(function(resolve){
@@ -126,7 +126,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.15
        */
       _empty: function () {
-        console.log('BaseCollection._empty')
+        global.debug || console.log('BaseCollection._empty')
         if (this.collection) {
           var len = this.collection.length;
           while (len > -1) {
