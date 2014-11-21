@@ -70,7 +70,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
         var ctx = this;
         var thisOptions = {
           template: listTemp,
-          render: '#list-product-category',
+          render: '.category-ul',
           item: ProductCategoryItem,
           model: CategoryModel,
           collection: ProductCategoryCollection

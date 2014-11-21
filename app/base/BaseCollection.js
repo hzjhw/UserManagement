@@ -39,8 +39,10 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       parse: function (resp, xhr) {
         this._parsePagination(resp);
-        this._parseUrl(this.paginationModel);
-        this._paginationRender();
+        if (this.paginationModel){
+          this._parseUrl(this.paginationModel);
+          this._paginationRender();
+        }
         return resp.attributes.data;
       },
       /**
@@ -52,8 +54,11 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       _parseUrl: function (model) {
         debug('7.BaseCollection._parseUrl');
-        var pageSize = model.get('pageSize');
-        var page = model.get('page');
+        var page = 1, pageSize = 1000;
+        if (model && model.get('pageSize')){
+          pageSize = model.get('pageSize');
+          page = model.get('page');
+        }
         if (typeof this.url !== 'function') {
           this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
           this.url.lastIndexOf("?") :
@@ -69,10 +74,13 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       _parsePagination: function (resp) {
         debug('6.BaseCollection._parsePagination')
-        resp.attributes = resp.attributes || { page: 1, per_page: 10, count: 10 };
-        this.paginationModel.set('page', resp.attributes.page);
-        this.paginationModel.set('pageSize', resp.attributes.per_page);
-        this.paginationModel.set('count', resp.attributes.count);
+        resp.attributes = resp.attributes
+          || { page: 1, per_page: 10, count: 10 };
+        if (this.paginationModel){
+          this.paginationModel.set('page', resp.attributes.page);
+          this.paginationModel.set('pageSize', resp.attributes.per_page);
+          this.paginationModel.set('count', resp.attributes.count);
+        }
       },
       /**
        * 渲染分页

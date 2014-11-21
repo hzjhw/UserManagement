@@ -93,9 +93,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       _initPagination: function (options) {
         var ctx = this;
-        ctx.collection.paginationModel.on('reloadList', function (model) {
-          ctx._load.call(ctx, options, model);
-        });
+        if (ctx.collection && ctx.collection.paginationModel){
+          ctx.collection.paginationModel.on('reloadList', function (model) {
+            ctx._load.call(ctx, options, model);
+          });
+        }
       },
       /**
        * 获取集合数据
@@ -107,14 +109,12 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       _load: function (options, model) {
         var ctx = this;
         return new Est.promise(function (resolve, reject) {
-          if (options.beforeLoad) {
+          if (options.beforeLoad)
             options.beforeLoad.call(ctx.collection);
-          }
           if (ctx.collection.url) {
-            ctx.collection._load(ctx.collection, ctx, model)
-              .then(function (result) {
+            ctx.collection._load(ctx.collection, ctx, model).then(function (result) {
                 resolve(result);
-              });
+            });
           }
         });
       },
@@ -124,8 +124,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       _initBind: function () {
-        this.collection.bind('add', this._addOne, this);
-        this.collection.bind('reset', this._render, this);
+        if (this.collection){
+          this.collection.bind('add', this._addOne, this);
+          this.collection.bind('reset', this._render, this);
+        }
       },
       /**
        * 渲染视图
