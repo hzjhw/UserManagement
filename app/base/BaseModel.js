@@ -31,6 +31,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        * @author wyj 14.11.16
        */
       _initialize: function () {
+        this.validateMsg = null;
         console.log('10.BaseModel._initialize [add to collection] or 3.[add to detail]');
       },
       /**
@@ -89,15 +90,20 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         var newModel = new ctx.initModel({
           id: ctx.model.get('id')
         });
-        newModel.clear(); // 清空字段
+        // 清空字段
+        newModel.clear();
+        // 赋值
         newModel.set(keyValue);
+        // 取消验证
+        newModel.set('silent', true);
+        // 通知服务器执行修改单个字段操作
+        newModel.set('editField', true);
         newModel.save(null, {
-          wait: wait,
           success: function (model, result) {
             if (typeof callback != 'undefined') {
-              callback.call(ctx, model, result);
+              callback.call(ctx, keyValue, result);
             }
-          }
+          }, wait: wait
         });
       },
       /**
@@ -110,15 +116,19 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         this.set('checked', !this.get('checked'));
       },
       /**
-       * 父类验证， 传递disableValidate 取消验证
+       * 预处理验证， 若模型类里有silent=true字段，则取消验证
        *
-       * @method [private] - _validate
+       * @method [protected] - _validate
+       * @param attributes
+       * @param callback
        * @private
        * @author wyj 14.11.21
        */
-      _validate: function(){
-        if (this.disableValidate)
-          return false;
+      _validation: function(attributes, callback){
+        if (!attributes.silent && callback) {
+            callback.call(this, attributes);
+        }
+        return this.validateMsg;
       }
     });
 
