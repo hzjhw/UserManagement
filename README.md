@@ -27,6 +27,9 @@
 - 抓取并合并 ：git fetch origin master:jhw -> git merge jhw
 - 提交 ：git add . -> git commit -m "wyj" -> git push origin
 
+- 若抓取合并失败， 先stash自己的内容[命令git stash]， 然后执行[git merge jhw], 然后再unstash自己的[命令git stash pop]
+- 清空stash[git stash clear]
+
 ### 说明
 - config.js [配置模块路径、模板与路由]
 - base文件夹 [所有模块的父类]
