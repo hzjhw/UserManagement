@@ -23,7 +23,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _initialize: function () {
-        global.debug && console.log('2.BaseCollection._initialize');
+        debug('2.BaseCollection._initialize');
         if (!this.paginationModel) {
           this.paginationModel = new PaginationModel;
         }
@@ -39,8 +39,10 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       parse: function (resp, xhr) {
         this._parsePagination(resp);
-        this._parseUrl(this.paginationModel);
-        this._paginationRender();
+        if (this.paginationModel){
+          this._parseUrl(this.paginationModel);
+          this._paginationRender();
+        }
         return resp.attributes.data;
       },
       /**
@@ -51,9 +53,12 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _parseUrl: function (model) {
-        global.debug && console.log('7.BaseCollection._parseUrl')
-        var pageSize = model.get('pageSize');
-        var page = model.get('page');
+        debug('7.BaseCollection._parseUrl');
+        var page = 1, pageSize = 1000;
+        if (model && model.get('pageSize')){
+          pageSize = model.get('pageSize');
+          page = model.get('page');
+        }
         if (typeof this.url !== 'function') {
           this.url = this.url.substring(0, this.url.indexOf('?') > -1 ?
           this.url.lastIndexOf("?") :
@@ -68,11 +73,14 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.16
        */
       _parsePagination: function (resp) {
-        global.debug && console.log('6.BaseCollection._parsePagination')
-        resp.attributes = resp.attributes || { page: 1, per_page: 10, count: 10 };
-        this.paginationModel.set('page', resp.attributes.page);
-        this.paginationModel.set('pageSize', resp.attributes.per_page);
-        this.paginationModel.set('count', resp.attributes.count);
+        debug('6.BaseCollection._parsePagination')
+        resp.attributes = resp.attributes
+          || { page: 1, per_page: 10, count: 10 };
+        if (this.paginationModel){
+          this.paginationModel.set('page', resp.attributes.page);
+          this.paginationModel.set('pageSize', resp.attributes.per_page);
+          this.paginationModel.set('count', resp.attributes.count);
+        }
       },
       /**
        * 渲染分页
@@ -108,7 +116,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
                 }
        */
       _load: function (instance, context, model) {
-        global.debug && console.log('4.BaseCollection._load');
+        debug('4.BaseCollection._load');
         if (typeof model !== 'undefined') this._parseUrl(model);
 
         return new Est.promise(function(resolve){
@@ -126,7 +134,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        * @author wyj 14.11.15
        */
       _empty: function () {
-        global.debug && console.log('BaseCollection._empty')
+        debug('BaseCollection._empty')
         if (this.collection) {
           var len = this.collection.length;
           while (len > -1) {

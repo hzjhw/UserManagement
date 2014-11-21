@@ -18,18 +18,19 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
       events: {
         'click #reset': 'reset'
       },
-      template: HandlebarsHelper.compile($("#attributes-detail-tpl").html()),
       initialize: function () {
-        this.initModel(AttributesModel, this);
+        this._initialize({
+          template: $("#attributes-detail-tpl").html(),
+          model: AttributesModel
+        });
       },
       render: function () {
         var ctx = this;
-        // 添加元素
-        this.$el.html(this.template(this.model.toJSON()));
+        this._render();
         // 产品分类
-        this.getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ select: true, extend: true })
           .then(function (list) {
-            ctx.initSelect({
+            ctx._initSelect({
               render: '#s1',
               target: '#model-categoryId',
               items: list
@@ -39,8 +40,9 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         this.attributeSelect();
         // 属性选项
         this.attributeRender();
+
         // 绑定提交与验证
-        this.form("#J_Form").validate().init(function () {
+        this._form("#J_Form")._validate()._init(function () {
           this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
         });
         return this;
@@ -49,7 +51,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         $("#multi-attribute").show();
       },
       attributeSelect: function () {
-        this.initSelect({
+        this._initSelect({
           render: '#s2',
           target: '#model-attributeType',
           itemId: 'value',
@@ -73,7 +75,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         var ctx = this;
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute', add: function () {
-          ctx.resetIframe();
+          ctx._resetIframe();
         }};
         if (attributesOptionList && attributesOptionList.length > 0) {
           options.items = attributesOptionList;

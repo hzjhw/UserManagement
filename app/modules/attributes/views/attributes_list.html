@@ -1,10 +1,53 @@
-<div id="attr">
-    <div>
-        <a id="attributes-add" href="javascript:;">添加属性</a>
+<div id="grid">
+    <div class="bui-grid bui-simple-list bui-grid-width bui-grid-border bui-grid-strip bui-grid-hover bui-simple-list-hover">
+        <div class="bui-grid-tbar">
+            <div class="bui-bar" role="toolbar" id="bar2">
+                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4" >
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button1" >
+                        <button id="attributes-add" type="button" class="button button-small"><i class="icon-plus"></i>添加属性</button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
+                        id="bar-item-button2">
+                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量删除</button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
+                        id="bar-item-button3">
+                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量转移分类</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bui-grid-header-container">
+            <div class="bui-grid-header">
+                <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="bui-grid-hd gird-td-checkbox">
+                            <div class="bui-grid-hd-inner">
+                                <div class="bui-grid-checkBox-container"><input id="toggle-all" type="checkbox" /></div>
+                            </div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-col2">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bui-grid-body">
+            <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+                <tbody id="attributes-list-ul">
+                </tbody>
+            </table>
+        </div>
+        <div style="display:none" class="bui-grid-bbar"></div>
     </div>
-
-    <ul id="attributes-list-ul">
-
-    </ul>
-    <div id="pagination-container"></div>
 </div>
+<div id="pagination-container"></div>

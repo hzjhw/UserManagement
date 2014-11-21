@@ -18,12 +18,15 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
 
     ProductCategoryCollection = BaseCollection.extend({
       url: global.API + '/category/product?pageSize=1000',
-      model: CategoryModel
+      model: CategoryModel,
+      initialize: function(){
+        this._initialize();
+      }
     });
 
     ProductCategoryItem = BaseItem.extend({
-      tagName: 'li',
-      template: HandlebarsHelper.compile(itemTemp),
+      tagName: 'tr',
+      className: 'bui-grid-row',
       events: {
         'click .name': 'editName',
         'click .delete': '_del',
@@ -31,7 +34,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
       },
 
       initialize: function () {
-        this._initialize();
+        this._initialize({
+          template: itemTemp
+        });
       },
 
       render: function () {
@@ -63,15 +68,16 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
 
       initialize: function () {
         var ctx = this;
-        // 初始化集合类
-        this.initCollection(ProductCategoryCollection, {
+        var thisOptions = {
           template: listTemp,
-          render: '#product-category-list-ul',
+          render: '.category-ul',
           item: ProductCategoryItem,
-          model: CategoryModel
-        }).then(function (options) {
-          ctx.initPagination(options);
-          ctx.load(options).then(function (collection) {
+          model: CategoryModel,
+          collection: ProductCategoryCollection
+        };
+        this._initialize(thisOptions).then(function(context){
+          context._initPagination(thisOptions);
+          context._load(thisOptions).then(function (collection) {
             Est.sortBy(collection.models, function (item) {
               return item.attributes.sort;
             });
@@ -90,11 +96,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
       },
 
       render: function () {
-        this.addAll();
+        this._addAll();
       },
 
       openAddDialog: function () {
-        this.detail({
+        this._detail({
           title: '分类添加',
           url: global.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
         });
