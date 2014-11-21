@@ -17,20 +17,23 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
 
     MemberDetail = BaseDetail.extend({
       el: '#jhw-member',
-      template: HandlebarsHelper.compile(template),
       events: {
         'click #member-reset': 'reset'
       },
       initialize: function () {
+        debugger
         console.log('2.memberDetail.initialize');
-        this.initModel(MemberModel, this);
+        this._initialize({
+          template :template,
+          model : MemberModel
+        })
       },
 
       render: function () {
         console.log('4.memberDetail.render');
         var ctx = this;
+        this._render();
 
-        this.$el.html(this.template(this.model.toJSON()));
 
         $.ajax({
           type: 'get',
@@ -48,7 +51,7 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
               });
             });
 
-            ctx.initSelect({
+            ctx._initSelect({
               render: '#s1',
               target: '#model-memberRank',
               items: taglist,
@@ -57,23 +60,24 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
                   categoryId: categoryId
                 });
                 setTimeout(function () {
-                  ctx.resetIframe();
+                  ctx._resetIframe();
                 }, 500);
               }
             });
           }
         })
 
-        this.initDate({
+        this._initDate({
              render: '.calendar',
                 showTime: false
             });
 
-        this.form('#J_Form').validate().init(function () {
+
+        this._form('#J_Form')._validate()._init(function () {
           // 处理特殊字段
         });
         setTimeout(function () {
-          ctx.resetIframe();
+          ctx._resetIframe();
         }, 1000);
         return this;
       }

@@ -22,21 +22,23 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
 
     MemberItem = BaseItem.extend({
       tagName: 'li',
-      template: HandlebarsHelper.compile(itemTemp),
       events: {
         'click .name': 'editName',
         'click .edit': 'editItem',
         'click .delete': '_del'
       },
       initialize: function () {
-        this._initialize();
+        this._initialize({
+          template : itemTemp,
+          model :BaseItem
+        });
       },
       render: function () {
         this._render();
       },
       editItem: function () {
         this._edit({
-          title: '产品修改',
+          title: '会员编辑',
           url: global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
         });
       },
@@ -58,29 +60,26 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
         'click .member-add': 'openAddDialog'
       },
       initialize: function () {
-        var ctx = this;
 
-        // 初始化视图
-        this.initView({
-          viewTemp: listTemp,
-          collectionId: '#member-list-ul'
-        });
-
-        // 初始化集合类
-        this.initCollection(MemberCollection, {
+        var options ={
           template: listTemp,
           render: '#member-list-ul',
           item: MemberItem,
-          model: MemberModel
-        }).then(function (options) {
-          ctx.initPagination(options);
-          ctx.load(options);
+          model: MemberModel,
+          collection: MemberCollection
+        }
+        this._initialize(options).then(function (context) {
+          context._initPagination(options);
+          context._load(options);
         });
-
+      return this;
+      },
+      render:function(){
+        this._render();
         return this;
       },
       openAddDialog: function () {
-        this.detail({
+        this._detail({
           title: '会员添加',
           url: 'http://jihui88.com/member/modules/member/member_detail.html?time=' + new Date().getTime()
         });

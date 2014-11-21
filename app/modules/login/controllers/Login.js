@@ -16,24 +16,28 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'
 
         Login = BaseDetail.extend({
             el: '#jhw-login',
-            template: HandlebarsHelper.compile($('#login_template').html()),//Handlebars
             initialize: function () {
                 console.log('2.Login.initialize');
-                this.initModel(LoginModel, this);
+              this._initialize({
+                template: $('#login_template').html(),
+                model: LoginModel
+              });
             },
             render: function () {
                 console.log('4.Login.render');
-                this.$el.html(this.template(this.model.toJSON()));
-                this.form('#J_Form').validate().init();
+                this._render();
+                this._form('#J_Form')._validate()._init(function(){
+
+                });
                 return this;
             },
             events : {
                 'click .refreshCode': 'refreshCode'
             },
             save: function(){
-                this.saveItem(function () {
+                this._saveItem(function () {
                     window.location.href = '/member/index.html';
-                });
+                }, this);
             },
             refreshCode: function(){
                 var $verifyPic = this.$("#verifyPic");

@@ -166,7 +166,7 @@ define('template/login', function (require, exports, module){
   module.exports = require('modules/login/login.html');
 });
 define('template/member_detail', function (require, exports, module){
-  module.exports = require('modules/member/views/member_item.html');
+  module.exports = require('modules/member/views/member_detail.html');
 });
 define('template/member_list', function (require, exports, module){
   module.exports = require('modules/member/views/member_list.html');
