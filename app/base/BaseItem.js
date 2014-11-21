@@ -45,7 +45,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        * @author wyj 14.11.18
        */
       _render: function () {
-        console.log('11.ProductItem._render [item display]');
+        global.debug && console.log('11.ProductItem._render [item display]');
         this.$el.html(this.template(this.model.toJSON()));
         return this;
       },
@@ -56,7 +56,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        * @author wyj 14.11.16
        */
       _close: function () {
-        console.log('BaseItem._close');
+        global.debug &&  console.log('BaseItem._close');
         this.stopListening();
       },
       /**
@@ -66,7 +66,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        * @author wyj 14.11.16
        */
       _clear: function () {
-        console.log('ProductItem._clear');
+        global.debug && console.log('ProductItem._clear');
         this.model.destroy();
       },
       /**
@@ -122,7 +122,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        *  @author wyj 14.11.16
        */
       _del: function () {
-        console.log('1.BaseItem._del');
+        global.debug && console.log('1.BaseItem._del');
         var context = this;
         seajs.use(['dialog-plus'], function (dialog) {
           dialog({
@@ -153,7 +153,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        * @author wyj 14.11.16
        */
       _edit: function (options) {
-        console.log('1.BaseItem._edit');
+        global.debug && console.log('1.BaseItem._edit');
         var ctx = this;
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;

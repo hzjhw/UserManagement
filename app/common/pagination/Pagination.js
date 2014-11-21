@@ -23,12 +23,12 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'E
       template: HandlebarsHelper.compile(template),
 
       initialize: function () {
-        console.log('8.Pagination.initialize');
+        global.debug && console.log('8.Pagination.initialize');
         this.render();
       },
 
       render: function () {
-        console.log('9.Pagination.render');
+        global.debug && console.log('9.Pagination.render');
         var ctx = this;
 
         this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));

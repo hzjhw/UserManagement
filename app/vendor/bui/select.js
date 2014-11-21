@@ -608,7 +608,7 @@ define('bui/select/tag',['bui/common','bui/list'],function (require) {
           });
         }
       }catch(e){
-        console.error(e);
+        //console.error(e);
       }
     },
     //添加tag

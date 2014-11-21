@@ -168,7 +168,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.15
        */
       _saveItem: function (callback, context) {
-        console.log('BaseDetail._saveItem');
+        global.debug && console.log('BaseDetail._saveItem');
         this.model.save(null, {
           wait: true,
           success: function (response) {
@@ -395,7 +395,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.16
        */
       _remove: function () {
-        console.log('BaseDetail.remove');
+        global.debug && console.log('BaseDetail.remove');
         this.model.destroy();
         this.model = null;
         return this;
@@ -407,7 +407,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.16
        */
       _close: function () {
-        console.log('BaseDetail.close');
+        global.debug && console.log('BaseDetail.close');
         this.undelegateEvents();
         this.stopListening();
         this.off();
