@@ -108,6 +108,17 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        */
       _toggle: function () {
         this.set('checked', !this.get('checked'));
+      },
+      /**
+       * 父类验证， 传递disableValidate 取消验证
+       *
+       * @method [private] - _validate
+       * @private
+       * @author wyj 14.11.21
+       */
+      _validate: function(){
+        if (this.disableValidate)
+          return false;
       }
     });
 

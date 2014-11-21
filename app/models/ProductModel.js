@@ -40,6 +40,7 @@ define('ProductModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel
         this._initialize();
       },
       validate: function (attributes) {
+        //if (!this._validate()) return;
         if (!attributes.sort || attributes.sort < 0) {
           return "sort不能为空";
         }

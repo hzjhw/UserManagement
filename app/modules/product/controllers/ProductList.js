@@ -60,7 +60,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     ProductList = BaseList.extend({
       el: '#jhw-main',
       events: {
-        'click #toggle-all': 'toggleAllChecked',
+        'click #toggle-all': '_toggleAllChecked',
         'click .product-add': 'openAddDialog'
       },
       initialize: function () {
