@@ -57,6 +57,9 @@ seajs.config({
     'LoginModel': 'models/LoginModel.js',
     'Login': 'modules/login/controllers/Login.js',
 
+    // register
+    'RegisterModel': 'models/RegisterModel.js',
+    'Register': 'modules/register/controllers/Register.js',
     // todo
     'TodoModel': 'demo/todo/models/TodoModel.js',
     'TodoView': 'demo/todo/views/TodoView.js',
@@ -165,6 +168,12 @@ define('template/picture_item', function(require, exports, module){
 define('template/login', function (require, exports, module){
   module.exports = require('modules/login/login.html');
 });
+define('template/register', function (require, exports, module){
+  module.exports = require('modules/register/register.html');
+});
+define('template/register_detail', function (require, exports, module){
+  module.exports = require('modules/register/views/register_detail.html');
+});
 define('template/member_detail', function (require, exports, module){
   module.exports = require('modules/member/views/member_detail.html');
 });
@@ -200,7 +209,9 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       });
     },
     register: function () {
-
+      seajs.use(['jquery', 'Register'], function (jquery, Register) {
+        new Register();
+      });
     },
     product: function (id) {
       seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {

@@ -17,7 +17,10 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
 
     MemberCollection = BaseCollection.extend({
       url: 'http://jihui88.com/rest/api/member/list',
-      model: MemberModel
+      model: MemberModel,
+      initialize: function () {
+        this._initialize();
+      }
     });
 
     MemberItem = BaseItem.extend({
@@ -72,11 +75,9 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
           context._initPagination(options);
           context._load(options);
         });
-      return this;
       },
       render:function(){
         this._render();
-        return this;
       },
       openAddDialog: function () {
         this._detail({

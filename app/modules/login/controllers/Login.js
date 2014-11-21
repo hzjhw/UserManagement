@@ -45,4 +45,6 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'
             }
         });
         module.exports = Login;
+
+
     });

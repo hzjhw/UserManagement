@@ -1,0 +1,47 @@
+<form id="J_Form" action="" class="form-horizontal">
+
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>Email：</label>
+        <div class="controls">
+            <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入Email","iconCls":"icon icon-user"}'>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>用户名</label>
+        <div class="controls">
+            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入用户名","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>密码</label>
+        <div class="controls">
+            <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>确认密码：</label>
+        <div class="controls">
+            <input id="model-rePassword" name="password" value="{{password}}" type="password" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}'>
+        </div>
+    </div>
+
+    <div class="row actions-bar" >
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">确定</button>
+            <button id="reset" type="reset" class="button">重置</button>
+        </div>
+    </div>
+</form>

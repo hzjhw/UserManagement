@@ -21,7 +21,7 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
         'click #member-reset': 'reset'
       },
       initialize: function () {
-        debugger
+        //debugger
         console.log('2.memberDetail.initialize');
         this._initialize({
           template :template,
