@@ -1,6 +1,6 @@
 @charset "utf-8";
 html{background:#fff;overflow-y:scroll;-webkit-text-size-adjust:none}
-* html,* html body{background-image:url(about:blank);background-attachment:fixed}
+* html,* html body{background-image:url(about:blank);background-attachment:fixed; overflow:hidden;}
 article,aside,blockquote,body,button,code,dd,details,div,dl,dt,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hr,input,legend,li,menu,nav,ol,p,pre,section,td,textarea,th,ul{margin:0;padding:0}
 article,aside,details,figcaption,figure,footer,header,menu,nav,section{display:block}
 body,button,input,select,textarea{font:12px Tahoma,Arial,Microsoft YaHei,'微软雅黑','宋体',sans-serif;background:#fff}
@@ -167,4 +167,77 @@ body .m0{margin:0}
     100% {
         opacity:.6
     }
+}
+
+#jhw-top {
+    height: 60px;
+    background: #dfdfdf;
+}
+#jhw-left-bar{
+    float: left;
+    width: 15%;
+    border-right: 1px solid #dfdfdf;
+    margin-right: 20px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+#jhw-main {
+    float: left;
+    width: 75%;
+    padding-top: 5px;
+}
+
+/* 通用 ****************************************************************************************/
+#J_Form{
+    overflow:hidden;
+}
+/*列表*/
+.gird-td-checkbox{
+    width:40px;
+}
+/*分页*/
+#pagination-container{
+    padding-top:5px;
+}
+/*登录*/
+
+#login{}
+
+/* 编辑器 **************************************************************************************/
+
+
+/* 产品 ****************************************************************************************/
+#jhw-product{
+
+}
+
+/* 产品分类 ************************************************************************************/
+#jhw-product-category{
+
+}
+
+/* 新闻 ****************************************************************************************/
+#jhw-news{
+
+}
+/* 新闻分类 ************************************************************************************/
+#jhw-news-category{
+
+}
+
+/* 属性 ***************************************************************************************/
+
+.attributes-item{
+    vertical-align: middle;
+    overflow:hidden;
+}
+
+.attributes-item input[type=password], .attributes-item  input[type=text], .attributes-item  select, .attributes-item  textarea{
+    vertical-align: bottom;
+    margin-right: 6px;
+    height: 24px;
+}
+
+.attributes-btn{
+    padding-top: 0px;
 }

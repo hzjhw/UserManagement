@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+    </script>
+    <meta charset="UTF-8">
+    <title>标签添加</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="../../styles/default/base.css"/>
+    <link href="../../styles/default/dpl.css" rel="stylesheet">
+    <link href="../../styles/default/bui.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <link href="http://g.tbcdn.cn/fi/bui/css/dpl-min.css" rel="stylesheet">
+    <link href="http://g.tbcdn.cn/fi/bui/css/bui-min.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE6]>
+    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+    <![endif]-->
+
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+</head>
+<!--[if IE 7]>
+<body class="ie7"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11"><![endif]-->
+<!--[if !IE]>-->
+<body>
+<!--<![endif]-->
+
+<div id="tag-box"></div>
+
+
+
+
+<div id="grid">
+
+    <div class="bui-grid bui-simple-list bui-grid-width bui-grid-border bui-grid-strip bui-grid-hover bui-simple-list-hover"
+         aria-disabled="false" aria-pressed="false" style="width: 700px;">
+        <div class="bui-grid-tbar" style="">
+            <div class="bui-bar" role="toolbar" id="bar2" aria-disabled="false" aria-pressed="false">
+                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4" aria-disabled="false"
+                    aria-pressed="false">
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button1" aria-pressed="false">
+                        <button type="button" class="button button-small product-add"><i class="icon-plus"></i>添加</button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button2" aria-pressed="false">
+                        <button type="button" class="button button-small"><i class="icon-remove"></i>删除</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bui-grid-header-container">
+            <div class="bui-grid-header" aria-disabled="false" style="width: 698px;" aria-pressed="false">
+                <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="bui-grid-hd checked" aria-disabled="false" style="width: 40px;" aria-pressed="false">
+                            <div class="bui-grid-hd-inner">
+                                <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input id="toggle-all" type="checkbox"></span></div>
+                            </div>
+                        </th>
+                        <th class="bui-grid-hd" aria-disabled="false" style="width: 131px;" aria-pressed="false">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">文本</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd" aria-disabled="false" style="width: 131px;" aria-pressed="false">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">数字</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd" aria-disabled="false" style="width: 131px;" aria-pressed="false">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">日期</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd" aria-disabled="false" style="width: 131px;" aria-pressed="false">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">单选</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd" aria-disabled="false" style="width: 129px;">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">多选</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd-empty bui-grid-hd" aria-disabled="false">
+                            <div class="bui-grid-hd-inner"></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bui-grid-body" style="width: 698px;">
+            <table cellspacing="0" cellpadding="0" class="bui-grid-table" style="width: 698px;">
+                <tbody>
+                <tr class="bui-grid-row bui-grid-row-odd">
+                    <td class="  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
+                        <div class="bui-grid-cell-inner">
+                            <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"></span></div>
+                        </div>
+                    </td>
+                    <td class="  bui-grid-cell grid-td-col1" data-column-id="col1" data-column-field="a">
+                        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">sdfsdfsd</span>
+                        </div>
+                    </td>
+                    <td class="  bui-grid-cell grid-td-col2" data-column-id="col2" data-column-field="b">
+                        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">0</span></div>
+                    </td>
+                    <td class="  bui-grid-cell grid-td-col3" data-column-id="col3" data-column-field="c">
+                        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title=""></span></div>
+                    </td>
+                    <td class="  bui-grid-cell grid-td-col4" data-column-id="col4" data-column-field="d">
+                        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title=""></span></div>
+                    </td>
+                    <td class="  bui-grid-cell grid-td-col5" data-column-id="col5" data-column-field="e">
+                        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title=""></span></div>
+                    </td>
+                    <td class="bui-grid-cell bui-grid-cell-empty">&nbsp;</td>
+                </tr>
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+        <div style="display:none" class="bui-grid-bbar"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../config.js"></script>
+<script type="text/javascript">
+
+    seajs.use(['jquery', 'Picture'], function (jquery, Picture) {
+        new Picture({
+            el: '#tag-box',
+            itemId: null, // 产品或新闻ID
+            _isAdd: false, // 是否为添加模式， false将从服务器拉数据
+            tagType: 'product' // 获取产品标签还是其它  默认为product
+        });
+    });
+
+</script>
+</body>
+</html>

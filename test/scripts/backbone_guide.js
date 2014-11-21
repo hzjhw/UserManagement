@@ -267,3 +267,15 @@ MyView = new Backbone.View.extend({
         });
     }
 };
+
+
+
+// radio
+var view = Backbone.View.extend({
+        initialize:function () {
+            // on click is ok
+            this.model.on('click', this.click, this);
+            // cannot bind using backbone events change for some reasons, have to use jquery to setup the event
+            $('input[name="my-dropdown"]', this.el).on('change', $.proxy(this.onselect, this));
+        }
+);
