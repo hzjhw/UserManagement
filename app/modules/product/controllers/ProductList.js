@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/16
  */
 define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/product_list', 'template/product_item'],
+    'template/product_list', 'template/product_item', 'Est'],
   function (require, exports, module) {
-    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem, ProductCollection, listTemp, itemTemp;
+    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, ProductList, ProductItem, ProductCollection, listTemp, itemTemp;
 
     ProductModel = require('ProductModel');
     BaseCollection = require('BaseCollection');
@@ -15,7 +15,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/product_list');
     itemTemp = require('template/product_item');
+    Est = require('Est');
 
+    /**
+     * 集合类
+     */
     ProductCollection = BaseCollection.extend({
       url: global.API + '/product/list',
       model: ProductModel,
@@ -23,7 +27,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._initialize();
       }
     });
-
+    /**
+     * 单视图
+     */
     ProductItem = BaseItem.extend({
       tagName: 'tr',
       className: 'bui-grid-row',
@@ -53,7 +59,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._editField(options, this);
       }
     });
-
+    /**
+     * 列表视图
+     */
     ProductList = BaseList.extend({
       el: '#jhw-main',
       events: {
@@ -78,7 +86,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 添加产品对话框
       openAddDialog: function () {
-        var url = global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime();
+        var url = global.HOST + '/modules/product/product_detail.html?uId='
+          + Est.nextUid();
         this._detail({ title: '产品添加', url: url });
       }
     });
