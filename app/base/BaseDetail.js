@@ -47,24 +47,23 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        *
        * @method [protected] - _initModel
        * @param model
-       * @param context
+       * @param ctx
        * @author wyj 14.11.15
        */
-      _initModel: function (model, context) {
-        context.passId = Est.getUrlParam('id', window.location.href);
+      _initModel: function (model, ctx) {
+        ctx.passId = Est.getUrlParam('id', window.location.href);
         if (!Est.isEmpty(this.passId)) {
-          context.model = new model();
-          context.model.set('id', context.passId);
-          context.model.fetch()
-            .done(function () {
-              context.model.set('_isAdd', context._isAdd = false);
-              context.render()._resetIframe();
+          ctx.model = new model();
+          ctx.model.set('id', ctx.passId);
+          ctx.model.fetch().done(function () {
+            ctx.model.set('_isAdd', ctx._isAdd = false);
+            ctx.render()._resetIframe();
           });
         } else {
-          context.passId = new Date().getTime();
-          context.model = new model();
-          context.model.set('_isAdd', context._isAdd = true)
-          context.render()._resetIframe();
+          ctx.passId = new Date().getTime();
+          ctx.model = new model();
+          ctx.model.set('_isAdd', ctx._isAdd = true)
+          ctx.render()._resetIframe();
         }
       },
       /**

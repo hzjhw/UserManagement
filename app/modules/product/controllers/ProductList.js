@@ -32,28 +32,25 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .edit': 'editItem',
         'click .delete': '_del'
       },
+      // 初始化
       initialize: function () {
-        this._initialize({
-          template: itemTemp
-        });
+        this._initialize({ template: itemTemp });
       },
+      // 渲染
       render: function () {
         this._render();
       },
+      // 编辑产品
       editItem: function () {
-        var url = global.HOST + '/modules/product/product_detail.html?id=' +
-          this.model.id;
-        this._edit({
-          title: '产品修改',
-          url: url
-        });
+        var url = global.HOST + '/modules/product/product_detail.html?id='
+          + this.model.id;
+        var options = { title: '产品修改', url: url }
+        this._edit(options);
       },
+      // 编辑名称
       editName: function () {
-        this._editField({
-          title: '修改名称',
-          field: 'name',
-          target: '.name'
-        }, this);
+        var options = { title: '修改名称', field: 'name', target: '.name' };
+        this._editField(options, this);
       }
     });
 
@@ -63,6 +60,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click #toggle-all': '_toggleAllChecked',
         'click .product-add': 'openAddDialog'
       },
+      // 初始化
       initialize: function () {
         var options = {
           render: '#product-list-ul',
@@ -72,16 +70,18 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           item: ProductItem
         }
         this._initialize(options).then(function (context) {
+          // 加载分页
           context._initPagination(options);
+          // 加载数据
           context._load(options);
         });
       },
+      // 添加产品对话框
       openAddDialog: function () {
-        this._detail({
-          title: '产品添加',
-          url: global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
-        });
+        var url = global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime();
+        this._detail({ title: '产品添加', url: url });
       }
     });
+
     module.exports = ProductList;
   });
