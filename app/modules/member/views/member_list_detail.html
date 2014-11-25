@@ -4,9 +4,6 @@
 <div id="panel" class="" style="padding:10px;">
 <!--会员编辑-->
 <div>
-
-
-
     <div class="control-group">
         <label class="control-label"><s>*</s>用户名：</label>
         <div class="controls">
@@ -65,8 +62,8 @@
         <label class="control-label"><s>*</s>是否启用：</label>
         <div class="controls">
             <div id="s2">
-                <label><input type="radio" name="isAccountEnabled" value="01" {{#compare isAccountEnabled '===' '00'}}checked{{/compare}}>是</label>
-                <label><input type="radio" name="isAccountEnabled" value="00" {{#compare isAccountEnabled '===' '01'}}checked{{/compare}}>否</label>
+                <label><input type="radio" name="isAccountEnabled" value="00" {{#compare isAccountEnabled '===' '00'}}checked{{/compare}}>是</label>
+                <label><input type="radio" name="isAccountEnabled" value="01" {{#compare isAccountEnabled '===' '01'}}checked{{/compare}}>否</label>
             </div>
         </div>
     </div>
@@ -124,8 +121,8 @@
         <label class="control-label"><s>*</s>性别：</label>
         <div class="controls">
             <div id="s3">
-                <label><input type="radio" name="isAccountLocked" value="01" {{#compare isAccountLocked '===' '00'}}checked{{/compare}}>男</label>
-                <label><input type="radio" name="isAccountLocked" value="00" {{#compare isAccountLocked '===' '01'}}checked{{/compare}}>女</label>
+                <label><input type="radio" name="isAccountLocked" value="00" {{#compare isAccountLocked '===' '00'}}checked{{/compare}}>男</label>
+                <label><input type="radio" name="isAccountLocked" value="01" {{#compare isAccountLocked '===' '01'}}checked{{/compare}}>女</label>
             </div>
         </div>
     </div>

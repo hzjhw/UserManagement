@@ -174,14 +174,15 @@ define('template/register', function (require, exports, module){
 define('template/register_detail', function (require, exports, module){
   module.exports = require('modules/register/views/register_detail.html');
 });
+/* member */
 define('template/member_detail', function (require, exports, module){
-  module.exports = require('modules/member/views/member_detail.html');
+  module.exports = require('modules/member/views/member.html');
 });
 define('template/member_list', function (require, exports, module){
   module.exports = require('modules/member/views/member_list.html');
 });
 define('template/member_item', function (require, exports, module){
-  module.exports = require('modules/member/views/member_item.html');
+  module.exports = require('modules/member/views/member_rank_detail.html');
 });
 
 /** Backbone路由
@@ -195,8 +196,15 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       'product': 'product',
       'category/product': 'productCategory',
       'attributes': 'attributes',
+
+      //会员
       'member': 'member',
+      'member/:views/:member_list': 'member_list',
+      'member/:views/:member_rank': 'member_rank',
+      'member/:views/:member_attribute': 'member_attribute',
+
       '*other': 'default'
+
     },
     index: function () {
       seajs.use(['jquery', 'Main'], function (jquery, Main) {
@@ -231,11 +239,13 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       });
     },
 
+    //会员
     member: function (id) {
       seajs.use(['jquery', 'MemberList'], function (jquery, MemberList) {
         new MemberList();
       });
     },
+
 
     default: function (other) {
       //$(document.body).append("This route is not hanled.. you tried to access: " + other);

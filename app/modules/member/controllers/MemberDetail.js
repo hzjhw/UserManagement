@@ -72,10 +72,15 @@ define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'Bas
                 showTime: false
             });
 
-
+        // 表单初始化
         this._form('#J_Form')._validate()._init(function () {
           // 处理特殊字段
+          /*this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+            return item.get('name');
+          }).join(','));*/
+          console.log('10.memberDetail._form');
         });
+
         setTimeout(function () {
           ctx._resetIframe();
         }, 1000);
