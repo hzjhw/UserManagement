@@ -83,6 +83,7 @@ seajs.config({
 
    // member
     'MemberModel': 'models/MemberModel.js',
+    'MemberCategory': 'modules/member/controllers/MemberCategory.js',
     'MemberList': 'modules/member/controllers/MemberList.js',
     'MemberRank': 'modules/member/controllers/MemberRank.js',
     'MemberDetail': 'modules/member/controllers/MemberDetail.js'
@@ -194,8 +195,8 @@ define('template/member_rank_detail', function (require, exports, module){
 define('template/member_attribute', function (require, exports, module){
   module.exports = require('modules/member/views/member_attribute.html');
 });
-define('template/member_edit', function (require, exports, module){
-  module.exports = require('modules/member/member_edit.html');
+define('template/member_category', function (require, exports, module){
+  module.exports = require('modules/member/views/member_category.html');
 });
 /** Backbone路由
  * */
@@ -211,10 +212,6 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 
       //会员
       'member': 'member',
-      'member/:views/:member_list': 'member_list',
-      'member/:views/:member_rank': 'member_rank',
-      'member/:views/:member_attribute': 'member_attribute',
-      'member/:views/:member_edit': 'member_edit',
 
       '*other': 'default'
 
@@ -254,8 +251,8 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 
     //会员
     member: function (id) {
-      seajs.use(['jquery', 'MemberList'], function (jquery, MemberList) {
-        new MemberList();
+      seajs.use(['jquery', 'MemberCategory'], function (jquery, MemberCategory) {
+        new MemberCategory();
       });
     },
 
