@@ -48,6 +48,6 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
       }
 
     });
-    console.log('memberDetail.MemberModel');
+
     module.exports = MemberModel;
   });

@@ -84,6 +84,7 @@ seajs.config({
    // member
     'MemberModel': 'models/MemberModel.js',
     'MemberList': 'modules/member/controllers/MemberList.js',
+    'MemberRank': 'modules/member/controllers/MemberRank.js',
     'MemberDetail': 'modules/member/controllers/MemberDetail.js'
   },
 
@@ -175,16 +176,27 @@ define('template/register_detail', function (require, exports, module){
   module.exports = require('modules/register/views/register_detail.html');
 });
 /* member */
-define('template/member_detail', function (require, exports, module){
-  module.exports = require('modules/member/views/member.html');
+define('template/member', function (require, exports, module){
+  module.exports = require('modules/member/member.html');
 });
 define('template/member_list', function (require, exports, module){
   module.exports = require('modules/member/views/member_list.html');
 });
-define('template/member_item', function (require, exports, module){
+define('template/member_list_detail', function (require, exports, module){
+  module.exports = require('modules/member/views/member_list_detail.html');
+});
+define('template/member_rank', function (require, exports, module){
+  module.exports = require('modules/member/views/member_rank.html');
+});
+define('template/member_rank_detail', function (require, exports, module){
   module.exports = require('modules/member/views/member_rank_detail.html');
 });
-
+define('template/member_attribute', function (require, exports, module){
+  module.exports = require('modules/member/views/member_attribute.html');
+});
+define('template/member_edit', function (require, exports, module){
+  module.exports = require('modules/member/member_edit.html');
+});
 /** Backbone路由
  * */
 seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
@@ -202,6 +214,7 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       'member/:views/:member_list': 'member_list',
       'member/:views/:member_rank': 'member_rank',
       'member/:views/:member_attribute': 'member_attribute',
+      'member/:views/:member_edit': 'member_edit',
 
       '*other': 'default'
 

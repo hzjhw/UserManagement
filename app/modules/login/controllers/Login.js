@@ -14,6 +14,13 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail'
         BaseDetail = require('BaseDetail');
         template = require('template/login');
 
+
+      /**
+       * 列表视图
+       */
+
+
+
         Login = BaseDetail.extend({
             el: '#jhw-login',
             initialize: function () {
