@@ -11,10 +11,10 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
-    Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/category_product_list');
     itemTemp = require('template/category_product_item');
+    Est = require('Est');
 
     ProductCategoryCollection = BaseCollection.extend({
       url: global.API + '/category/product?pageSize=1000',
@@ -25,37 +25,31 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
     });
 
     ProductCategoryItem = BaseItem.extend({
-      tagName: 'tr',
-      className: 'bui-grid-row',
+      tagName: 'li',
+      className: 'cate-grid-row',
       events: {
         'click .name': 'editName',
         'click .delete': '_del',
         'click .edit': 'editItem'
       },
-
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
       },
-
       render: function () {
         this._render();
       },
-
       editItem: function () {
-        this._edit({
+        var options = {
           title: '产品分类修改',
           url: global.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
-        });
+        }
+        this._edit(options);
       },
-
       editName: function () {
-        this._editField({
-          title: '修改分类名称',
-          field: 'name',
-          target: '.name'
-        }, this);
+        var options = { title: '修改分类名称', field: 'name', target: '.name' };
+        this._editField(options, this);
       }
     });
 
@@ -65,7 +59,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
         'click #toggle-all': 'toggleAllChecked',
         'click .product-category-add': 'openAddDialog'
       },
-
       initialize: function () {
         var ctx = this;
         var thisOptions = {
@@ -94,11 +87,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
         });
         return this;
       },
-
       render: function () {
         this._addAll();
       },
-
       openAddDialog: function () {
         this._detail({
           title: '分类添加',
