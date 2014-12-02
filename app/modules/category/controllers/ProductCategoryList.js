@@ -30,15 +30,22 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
       events: {
         'click .name': 'editName',
         'click .delete': '_del',
-        'click .edit': 'editItem'
+        'click .edit': 'editItem',
+        'click .extend': 'extend'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
+        this.extend = false;
+        this.$sub = this.$('.cate-'+this.model.get('grade')+'-ul');
       },
       render: function () {
         this._render();
+      },
+      extend: function(){
+        this.extend = !this.extend;
+        this.$sub.show();
       },
       editItem: function () {
         var options = {

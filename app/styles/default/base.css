@@ -210,6 +210,9 @@ body .m0{margin:0}
 #jhw-product{
 
 }
+#product-list-ul .pro-list-name{
+    padding: 0 5px;
+}
 
 /* 产品分类 ************************************************************************************/
 #jhw-product-category{
@@ -263,7 +266,7 @@ body .m0{margin:0}
     width:32px;
 }
 .category-ul .gird-3{
-    width:32px;
+    width:20%;
 }
 .category-ul .gird-4{
     width:32px;

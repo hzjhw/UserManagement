@@ -102,7 +102,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
             }
           });
           d.addEventListener('close', function () {
-            if (!this.returnValue.length < 1) {
+            if (!this.returnValue.length < 1 && this.returnValue !==
+              context.model.previous(options.field)) {
               context.model._saveField({
                 'id': context.model.get('id'),
                 'name': this.returnValue
