@@ -55,7 +55,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 编辑名称
       editName: function () {
-        var options = { title: '修改名称', field: 'name', target: '.name' };
+        var options = { title: '修改名称', field: 'name', target: '.pro-list-name' };
         this._editField(options, this);
       }
     });

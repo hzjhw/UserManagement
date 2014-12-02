@@ -191,6 +191,12 @@ body .m0{margin:0}
 #J_Form{
     overflow:hidden;
 }
+#jhw .show_hide{
+    display:none;
+}
+#jhw .hover .show_hide{
+    display:inline-block;
+}
 /*列表*/
 .gird-td-checkbox{
     width:40px;

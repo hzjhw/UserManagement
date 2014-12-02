@@ -14,19 +14,38 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
 
     BaseItem = Backbone.View.extend({
       /**
-       * 初始化
+       * 初始化, 若该视图的子元素有hover选择符， 则自动为其添加鼠标经过显示隐藏事件
        *
        * @method [protected] - _initialize
+       * @param {Object} options [template: 模板字符串]
        * @author wyj 14.11.16
+       * @example
+       *    initialize: function () {
+              this._initialize({ template: itemTemp });
+            },
        */
       _initialize: function (options) {
+        var ctx = this;
         this.options = options || {};
-        if (options.template) this.template = HandlebarsHelper.compile(options.template);
+        // 编译模板
+        if (options.template)
+          this.template = HandlebarsHelper.compile(options.template);
+        // 绑定事件
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
+        // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
+        // hover事件
+        // this._hover = this.$('.hover');
+        this.$el.hover(function(){
+          //ctx._hover.show();
+          ctx.$el.addClass('hover');
+        }, function(){
+          //ctx._hover.hide();
+          ctx.$el.removeClass('hover');
+        });
       },
       /**
        * 设置模型类
@@ -82,7 +101,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        * 单个字段保存
        *
        * @method [protected] - _editField
-       * @param options
+       * @param options [title: 标题][field: 字段名][target: 选择符(对话框指向于哪个元素)]
        * @param context
        * @returns {ln.promise}
        * @author wyj 14.11.16
@@ -95,11 +114,14 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
           var d = dialog({
             title: options.title || '修改',
             content: '<input id="property-returnValue-demo" type="text" class="text" value="' + oldName + '" />',
-            ok: function () {
-              var value = $('#property-returnValue-demo').val();
-              this.close(value);
-              this.remove();
-            }
+            button: [{
+              value: '确定',
+              autofocus: true,
+              callback: function(){
+                var value = $('#property-returnValue-demo').val();
+                this.close(value);
+                this.remove();
+            }}]
           });
           d.addEventListener('close', function () {
             if (!this.returnValue.length < 1 && this.returnValue !==
@@ -113,7 +135,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
               resolve(context, this.returnValue);
             }
           });
-          d.show(context.$el.find(options.target || 'div').get(0));
+          d.show(context.$(options.target || 'div').get(0));
         });
       },
       /**
