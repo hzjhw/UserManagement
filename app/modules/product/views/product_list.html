@@ -1,19 +1,21 @@
 <div id="grid">
     <div class="bui-grid bui-simple-list bui-grid-width bui-grid-border bui-grid-strip bui-grid-hover bui-simple-list-hover">
-        <div class="bui-grid-tbar">
+        <div class="bui-grid-tbar" style="padding-bottom:5px;">
             <div class="bui-bar" role="toolbar" id="bar2">
-                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4" >
+                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button2" aria-pressed="false">
+                        <button type="button" class="button button-success product-add"><i class="icon-white icon-plus"></i>产品添加</button>
+                    </li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button1" >
-                        <button type="button" class="button button-small product-add"><i class="icon-plus"></i>添加</button>
+                        id="bar-item-button1" aria-pressed="false">
+                        <button type="button" class="button button-danger"><i class="icon-white icon-trash"></i>批量删除
+                        </button>
                     </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
-                        id="bar-item-button2">
-                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量删除</button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
-                        id="bar-item-button3">
-                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量转移分类</button>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button3" aria-pressed="false">
+                        <button type="button" class="button button-info"><i class="icon-white icon-resize-full"></i>批量转移分类
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -25,8 +27,12 @@
                     <tr>
                         <th class="bui-grid-hd grid-td-checkbox">
                             <div class="bui-grid-hd-inner">
-                                <div class="bui-grid-checkBox-container"><input id="toggle-all" type="checkbox" /></div>
+                                <div class="bui-grid-checkBox-container"><input id="toggle-all" type="checkbox"/></div>
                             </div>
+                        </th>
+                        <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
+                            style="width: 40px;">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title"></span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-picture">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品图片</span><span
@@ -36,7 +42,7 @@
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品标题</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-handle">
+                        <th class="bui-grid-hd grid-td-handle" style="border-left:none;">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
@@ -45,7 +51,7 @@
                 </table>
             </div>
         </div>
-        <div class="bui-grid-body">
+        <div class="bui-grid-body" style="height: 550px; overflow-y: auto;overflow-x:hidden;">
             <table cellspacing="0" cellpadding="0" class="bui-grid-table">
                 <tbody id="product-list-ul">
                 </tbody>

@@ -1131,7 +1131,6 @@ td.bui-grid-cell-empty, th.bui-grid-hd-empty {
     padding: 0 8px;
     display: block;
     min-height: 20px;
-    min-width: 25px
 }
 
 .bui-grid-table .bui-grid-error-cell .bui-grid-cell-text {
@@ -1287,7 +1286,9 @@ td.x-grid-rownumber {
     text-align: center;
     background-color: #f5f5f5
 }
-
+td.x-grid-rownumber{
+    width:40px;
+}
 .bui-ext-mask, .lp-el-mask, .lp-ext-mask {
     height: 100%;
     left: 0;
