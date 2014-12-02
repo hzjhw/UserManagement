@@ -66,9 +66,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         debug('1.ProductView._initialize');
         var options = options || {};
         var ctx = this;
-        this.dx = 0;
         this.views = [];
         this.$el.empty();
+        this.dx = 0;
         if (options.template)
           this.$el.append($(options.template));
         this.list = options.render ? $(options.render) : this.$el;
@@ -150,7 +150,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         this.item = itemView;
       },
       /**
-       * 初始化模型类
+       * 初始化模型类, 设置index索引
        *
        * @method [private] - _initModel
        * @param model

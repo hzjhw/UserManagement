@@ -37,6 +37,9 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
         // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
+        if (this.model.get('dx') % 2 === 0){
+          this.$el.addClass('bui-grid-row-even');
+        }
         // hover事件
         // this._hover = this.$('.hover');
         this.$el.hover(function(){
