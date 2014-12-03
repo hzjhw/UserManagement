@@ -42,38 +42,64 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 初始化
       initialize: function () {
+        var ctx = this;
         this._initialize({ template: itemTemp });
-      },
-      // 渲染
-      render: function () {
-        this._render({
-          after: function(options){
-            var options = options;
-            /*BaseUtils.initSelect({
-              render: '#attCate',
-              target: '#attCateHid',
-              items: options,
-              change: function (categoryId) {
-              }
-            });*/
+        this._onAfterRender = function () {
+          if (!global.productCategory) {
+            debug('categoryLoad');
+            BaseUtils.getProductCategory({
+              extend: true,
+              select: true
+            }).then(function (list) {
+              global.productCategory = list;
+              ctx.initSelect(list);
+            })
+          } else {
+            ctx.initSelect(global.productCategory);
           }
-        });
+        }
       },
-      // 编辑产品
+      render: function () {
+        this._render();
+      },
       editItem: function () {
         var url = global.HOST + '/modules/product/product_detail.html?id='
           + this.model.id;
-        var options = { title: '产品修改', url: url }
+        var options = {
+          title: '产品修改',
+          url: url
+        }
         this._edit(options);
       },
-      // 编辑名称
       editName: function () {
-        var options = { title: '修改名称', field: 'name', target: '.pro-list-name' };
+        var options = {
+          title: '修改名称',
+          field: 'name',
+          target: '.pro-list-name'
+        };
         this._editField(options, this);
       },
       editProdtype: function () {
-        var options = { title: '修改型号', field: 'prodtype', target: '.pro-list-prodtype' };
+        var options = {
+          title: '修改型号',
+          field: 'prodtype',
+          target: '.pro-list-prodtype'
+        };
         this._editField(options, this);
+      },
+      initSelect: function (list) {
+        var ctx = this;
+        BaseUtils.initSelect({
+          render: '#pro-cate-' + this.model.get('dx'),
+          target: '#model-category-' + this.model.get('dx'),
+          items: list,
+          change: function (categoryId) {
+            ctx.model._saveField({
+              id: ctx.model.get('id'),
+              category: categoryId
+            }, function(){}, ctx, true);
+          }
+        });
       }
     });
     /**
@@ -85,7 +111,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click #toggle-all': '_toggleAllChecked',
         'click .product-add': 'openAddDialog'
       },
-      // 初始化
       initialize: function () {
         var options = {
           render: '#product-list-ul',
@@ -94,42 +119,19 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           collection: ProductCollection,
           item: ProductItem
         }
-        this._initialize(options).then(function (context) {
-          // 加载分页
-          context._initPagination(options);
-          // 加载数据
-          context._load(options);
-        });
-        debug('ProductList.initialize end');
-       /* var ctx = this;
-        BaseUtils.getProductCategory({
-          select: true,
-          extend: true
-        }).then(function(list){
-          var options = {
-            render: '#product-list-ul',
-            template: listTemp,
-            model: ProductModel,
-            collection: ProductCollection,
-            item: ProductItem,
-            data:{
-              productCategory: list
-            }
-          }
-          ctx._initialize(options).then(function (context) {
-            // 加载分页
+        this._initialize(options)
+          .then(function (context) {
             context._initPagination(options);
-            // 加载数据
             context._load(options);
           });
-        });*/
-
       },
-      // 添加产品对话框
       openAddDialog: function () {
         var url = global.HOST + '/modules/product/product_detail.html?uId='
           + Est.nextUid();
-        this._detail({ title: '产品添加', url: url });
+        this._detail({
+          title: '产品添加',
+          url: url
+        });
       }
     });
 

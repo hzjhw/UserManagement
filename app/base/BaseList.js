@@ -203,7 +203,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
           data: this._data
         });
         itemView._setInitModel(this.initModel);
+        itemView._onBeforeRender();
         this.list.append(itemView._render().el);
+        itemView._onAfterRender();
         this.views.push(itemView);
       },
       /**

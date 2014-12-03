@@ -46,6 +46,7 @@ define('BaseUtils', ['jquery', 'Est', 'HandlebarsHelper'],
               $.ajax({
                 type: 'post',
                 url: global.API + '/category/product?pageSize=1000',
+                async: false,
                 data: {
                   _method: 'GET'
                 },

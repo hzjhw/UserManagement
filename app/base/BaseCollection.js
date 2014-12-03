@@ -121,8 +121,10 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
 
         return new Est.promise(function(resolve){
           return instance.fetch({success: function () {
+            debug('before');
             resolve(instance);
             context.collection._reset();
+            debug('collection reset end');
             context._empty();
           }});
         });

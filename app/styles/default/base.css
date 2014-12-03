@@ -204,6 +204,12 @@ body .m0{margin:0}
 .grid-td-picture{
     width:80px;
 }
+.grid-td-move{
+    width:47px;
+}
+.grid-td-category{
+    width:180px;
+}
 .grid-td-handle {
     width: 150px;
 }

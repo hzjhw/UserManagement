@@ -60,6 +60,30 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
         this.initModel = model;
       },
       /**
+       * 渲染前事件
+       *
+       * @method [protected] - _onBeforeRender
+       * @private
+       * @author wyj 14.12.3
+       */
+      _onBeforeRender: function(){
+        return new Est.promise(function(resolve){
+
+        });
+      },
+      /**
+       * 渲染后事件
+       *
+       * @method [protected] - _onAfterRender
+       * @private
+       * @author wyj 14.12.3
+       */
+      _onAfterRender: function(){
+        return new Est.promise(function(resolve){
+
+        });
+      },
+      /**
        * 渲染
        *
        * @method [protected] - _render
@@ -69,9 +93,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        */
       _render: function (options) {
         debug('11.ProductItem._render [item display]');
-        if (options && options.before) options.before.call(this, arguments);
         this.$el.html(this.template(this.model.toJSON()));
-        if (options && options.after) options.after.call(this, arguments);
         return this;
       },
       /**

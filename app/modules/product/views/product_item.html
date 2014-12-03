@@ -14,24 +14,34 @@
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner"><span class="" title="{{name}}"><span
-            class="pro-list-name">{{name}}</span><span class="x-icon x-icon-small x-icon-warning name show_hide pointer"
-                                                       style="vertical-align: middle;"><i
+    <div class="bui-grid-cell-inner"><span class=""><span
+            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{name}}">{{name}}</a></span><span
+            class="x-icon x-icon-small x-icon-info name show_hide pointer"
+            style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
 </td>
 <td class="bui-grid-cell grid-td-col2">
     <div class="bui-grid-cell-inner"><span class="" title="{{prodtype}}"><span
-            class="pro-list-prodtype">{{prodtype}}</span><span
-            class="x-icon x-icon-small x-icon-warning prodtype show_hide pointer"
+            class="pro-list-prodtype">{{prodtype}}</span>&nbsp;&nbsp;<span
+            class="x-icon x-icon-small x-icon-info prodtype show_hide pointer"
             style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
 </td>
-
-<td class="bui-grid-cell grid-td-col3">
+<td class="bui-grid-cell grid-td-category">
     <div class="bui-grid-cell-inner">
         <div id="pro-cate-{{dx}}">
             <input type="hidden" id="model-category-{{dx}}" value="{{category}}" name="category">
         </div>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-move">
+    <div class="bui-grid-cell-inner">
+        <span class="x-icon x-icon-small x-icon-info move-up pointer"
+              style="vertical-align: middle;"><i
+                class="icon icon-white icon-arrow-up pointer"></i></span>&nbsp;<span
+            class="x-icon x-icon-small x-icon-info move-down pointer"
+            style="vertical-align: middle;"><i
+            class="icon icon-white icon-arrow-down pointer"></i></span>
     </div>
 </td>
 
