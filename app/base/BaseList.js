@@ -66,9 +66,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         debug('1.ProductView._initialize');
         var options = options || {};
         var ctx = this;
+        this.dx = 0;
         this.views = [];
         this.$el.empty();
-        this.dx = 0;
         if (options.template)
           this.$el.append($(options.template));
         this._data = options.data;
@@ -77,6 +77,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         if (!this.collection){
           this.collection = new collection();
           this.listenTo(this.collection, 'change:checked', this.checkSelect);
+          //this.collection.on('moveUp', this.collection._moveUp);
+          //this.collection.on('moveDown', this.collection._moveDown);
         }
         this._initBind();
         this._initItemView(options.item, this);

@@ -38,7 +38,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .name': 'editName',
         'click .prodtype': 'editProdtype',
         'click .edit': 'editItem',
-        'click .delete': '_del'
+        'click .delete': '_del',
+        'click .move-up': '_moveUp',
+        'click .move-down': '_moveDown'
       },
       // 初始化
       initialize: function () {
