@@ -71,6 +71,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         this.dx = 0;
         if (options.template)
           this.$el.append($(options.template));
+        this._data = options.data;
         this.list = options.render ? $(options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
         if (!this.collection){
@@ -198,7 +199,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       _addOne: function (target) {
         target.set('dx', this.dx++);
         var itemView = new this.item({
-          model: target
+          model: target,
+          data: this._data
         });
         itemView._setInitModel(this.initModel);
         this.list.append(itemView._render().el);

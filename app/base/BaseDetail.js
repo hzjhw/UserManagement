@@ -4,13 +4,14 @@
  * @author yongjin<zjut_wyj@163.com> 2014.11.12
  */
 
-define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelper'],
+define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelper', 'BaseUtils'],
   function (require, exports, module) {
-    var BaseDetail, Backbone, Est, HandlebarsHelper;
+    var BaseDetail, Backbone, Est, HandlebarsHelper, BaseUtils;
 
     Backbone = require('backbone');
     Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
+    BaseUtils = require('BaseUtils');
 
     BaseDetail = Backbone.View.extend({
       /**
@@ -189,7 +190,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.15
        */
       _getProductCategory: function (options) {
-        return new Est.promise(function (topResolve, topReject) {
+        return BaseUtils.getProductCategory(options);
+        /*return new Est.promise(function (topResolve, topReject) {
           options.select = options ? options.select ? true : false : false;
           options.extend = options ? options.extend ? true : false : false;
           var getCategory = function () {
@@ -232,7 +234,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
             result.attributes.data.unshift({text: '请选择分类', value: '/'});
             topResolve(result.attributes.data);
           });
-        });
+        });*/
       },
       /**
        * 下拉框初始化
@@ -243,7 +245,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.15
        */
       _initSelect: function (options) {
-        return new Est.promise(function (resove, reject) {
+        return BaseUtils.initSelect(options);
+        /*return new Est.promise(function (resove, reject) {
           var container = {};
           var target = options.target || '#category';
           var render = options.render || '#s1';
@@ -265,7 +268,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
               resove(ev.item[itemId]);
             });
           })
-        });
+        });*/
       },
       /**
        * 时间选择
@@ -274,19 +277,20 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @param options [render 控件选择符] [showTime 是否显示时间]
        * @author wyj 14.11.19
        * @example
-       *    this.initDate({
+       *    this._initDate({
        *      render: '.calendar',
        *      showTime: false
        *    });
        */
       _initDate: function(options){
-        BUI.use('bui/calendar',function(Calendar){
+        return BaseUtils.initDate(options);
+        /*BUI.use('bui/calendar',function(Calendar){
           new Calendar.DatePicker({
             trigger:options.render || '.calendar',
             showTime:options.showTime || false,
             autoRender : true
           });
-        });
+        });*/
       },
       /**
        * 标签选择框
@@ -303,7 +307,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
                 });
        */
       _initCombox: function (options) {
-        return new Est.promise(function (resolve, reject) {
+        return BaseUtils.initCombox(options);
+        /*return new Est.promise(function (resolve, reject) {
           var container = {};
           var target = options.target || '#category';
           var render = options.render || '#s1';
@@ -320,13 +325,13 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
               items: items
             });
             container[render].render();
-           /*container[render].on('change', function (ev) {
+           *//*container[render].on('change', function (ev) {
               //$(target).val($(target)Est.trim(ev.item[itemId]));
               if (typeof options.change !== 'undefined')
                 options.change.call(this, ev.item[itemId]);
-            });*/
+            });*//*
           })
-        });
+        });*/
       },
       /**
        * 初始化编辑器

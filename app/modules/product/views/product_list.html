@@ -11,16 +11,21 @@
                                 class="icon-white icon-plus"></i>产品添加
                         </button>
                     </li>
+                    <li class="bui-bar-item-separator bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-separator1" role="separator"></li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
                         id="bar-item-button1" aria-pressed="false">
                         <button type="button" class="button button-danger"><i class="icon-white icon-trash"></i>批量删除
                         </button>
                     </li>
-                    <li class="bui-bar-item-separator bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-separator1" role="separator"></li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
                         id="bar-item-button3" aria-pressed="false">
                         <button type="button" class="button button-info"><i class="icon-white icon-resize-full"></i>批量转移分类
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button4" aria-pressed="false">
+                        <button type="button" class="button button-warning"><i class="icon-white icon-search"></i>筛选
                         </button>
                     </li>
                 </ul>
@@ -45,10 +50,18 @@
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-col1">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品名称 - 型号</span><span
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品名称 [型号]</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-handle" style="border-left:none;">
+                        <th class="bui-grid-hd grid-td-col2">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品型号</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-col3">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品分类</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
@@ -57,7 +70,7 @@
                 </table>
             </div>
         </div>
-        <div class="bui-grid-body" style="height: 580px; overflow-y: auto;overflow-x:hidden;">
+        <div class="bui-grid-body" style="max-height: 580px; overflow-y: scroll;overflow-x:hidden;">
             <table cellspacing="0" cellpadding="0" class="bui-grid-table">
                 <tbody id="product-list-ul">
                 </tbody>

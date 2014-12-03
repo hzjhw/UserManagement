@@ -38,6 +38,7 @@ seajs.config({
     'BaseDetail': 'base/BaseDetail.js',
     'BaseList': 'base/BaseList.js',
     'BaseRoot': 'base/BaseRoot',
+    'BaseUtils': 'base/BaseUtils',
 
     // common
     'Pagination': 'common/pagination/Pagination.js',

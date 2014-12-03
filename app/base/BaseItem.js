@@ -37,15 +37,15 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
         // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
-        if (this.model.get('dx') % 2 === 0){
+        if (this.model.get('dx') % 2 === 0) {
           this.$el.addClass('bui-grid-row-even');
         }
         // hover事件
         // this._hover = this.$('.hover');
-        this.$el.hover(function(){
+        this.$el.hover(function () {
           //ctx._hover.show();
           ctx.$el.addClass('hover');
-        }, function(){
+        }, function () {
           //ctx._hover.hide();
           ctx.$el.removeClass('hover');
         });
@@ -64,11 +64,14 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        *
        * @method [protected] - _render
        * @returns {BaseCollection}
+       * @param options [before: 渲染前方法][after: 渲染后方法]
        * @author wyj 14.11.18
        */
-      _render: function () {
+      _render: function (options) {
         debug('11.ProductItem._render [item display]');
+        if (options && options.before) options.before.call(this, arguments);
         this.$el.html(this.template(this.model.toJSON()));
+        if (options && options.after) options.after.call(this, arguments);
         return this;
       },
       /**
@@ -117,24 +120,27 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
           var d = dialog({
             title: options.title || '修改',
             content: '<input id="property-returnValue-demo" type="text" class="text" value="' + oldName + '" />',
-            button: [{
-              value: '确定',
-              autofocus: true,
-              callback: function(){
-                var value = $('#property-returnValue-demo').val();
-                this.close(value);
-                this.remove();
-            }}]
+            button: [
+              {
+                value: '确定',
+                autofocus: true,
+                callback: function () {
+                  var value = $('#property-returnValue-demo').val();
+                  this.close(value);
+                  this.remove();
+                }}
+            ]
           });
           d.addEventListener('close', function () {
+            var obj = {};
             if (!this.returnValue.length < 1 && this.returnValue !==
               context.model.previous(options.field)) {
-              context.model._saveField({
-                'id': context.model.get('id'),
-                'name': this.returnValue
-              }, function (keyValue, result) {
-                context.model.set(keyValue);
-              }, context);
+              obj['id'] = context.model.get('id');
+              obj[options.field] = this.returnValue;
+              context.model._saveField(obj,
+                function (keyValue, result) {
+                  context.model.set(keyValue);
+                }, context);
               resolve(context, this.returnValue);
             }
           });
@@ -155,7 +161,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
             title: '提示',
             content: '是否删除！',
             width: 150,
-            button: [{
+            button: [
+              {
                 value: '确定',
                 autofocus: true,
                 callback: function () {
