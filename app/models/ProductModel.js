@@ -12,9 +12,6 @@ define('ProductModel', ['jquery', 'BaseModel'],
     ProductModel = BaseModel.extend({
       baseId: 'productId',
       baseUrl: global.API + '/product/detail',
-      initialize: function(){
-        this._initialize();
-      },
       defaults: {
         photo: 'upload/g/g2/ggggfj/picture/2014/09/01/01bcc9d6-4790-403f-a546-eb97fc3aee31.jpg',
         photoId: 'Attach_0000000000000000000011056',
@@ -37,6 +34,9 @@ define('ProductModel', ['jquery', 'BaseModel'],
         tagMapStore: [],
         photo2: [],
         checked: false
+      },
+      initialize: function(){
+        this._initialize();
       },
       validate: function (attrs) {
         return this._validation(attrs, function(attrs){

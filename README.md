@@ -49,3 +49,33 @@
 - 各模块[必须]、方法前 标注自己的作者， 如： @author yongjin 2014.11.6
 - 修改别人的代码， 请通知原作者， 禁止私自修改[可以添加方法， 注明作者]
 - 功能模块完成后， 请附带demo.html
+
+### 框架文档
+1) BaseModel [模型类]
+ - defaults 默认值
+ - baseId ID标识符 如productId
+ - baseUrl 服务器交互地址
+ - initialize 实现父类_initialize
+ - validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel
+
+2) BaseCollection [集合]
+ - url 获取列表地址， 值可为方法，返回地址
+ - model 模型类
+ - initialize 初始化， 实现父类 _initialize方法
+
+3) BaseItem [单视图]
+ - tagName 
+ - className (可选)
+ - initialize 实现父类_initialize 参数: {template: 模板字符串} _onAfterRender (可选) ：渲染后执行的方法
+ - render 实现父类_render
+ 
+4) BaseList [列表视图]
+ - el 目标元素Id 当前项目为"#jhw-main"
+ - initialize 实现父类_initialize 
+   参数：{template: 字符串模板, render: 插入列表的元素选择符, collection: 集合, item: 单视图, model: 模型类}
+   返回值：promise 参数为context
+ - render 实现父类 _render
+ 
+5) BaseDetail [详细页]
+ - initialize 实现父类_initialize 参数：{template: 字符串模板, model: 模型类}
+ - render 实现父类 _render this._form('#J_Form')._validate()._init(function () {})

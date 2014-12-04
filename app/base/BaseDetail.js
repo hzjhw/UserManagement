@@ -191,50 +191,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        */
       _getProductCategory: function (options) {
         return BaseUtils.getProductCategory(options);
-        /*return new Est.promise(function (topResolve, topReject) {
-          options.select = options ? options.select ? true : false : false;
-          options.extend = options ? options.extend ? true : false : false;
-          var getCategory = function () {
-            return new Est.promise(function (resolve, reject) {
-              $.ajax({
-                type: 'post',
-                url: global.API + '/category/product?pageSize=1000',
-                data: {
-                  _method: 'GET'
-                },
-                success: function (result) {
-                  resolve(result);
-                }
-              });
-            });
-          }
-          getCategory().then(function (result) {
-            if (result.attributes) {
-              result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '01', {
-                categoryId: 'categoryId',// 分类ＩＤ
-                belongId: 'belongId',// 父类ＩＤ
-                childTag: 'cates', // 子分类集的字段名称
-                sortBy: 'sort', // 按某个字段排序
-                callback: function (item) {
-                  item.text = item.name;
-                  item.value = item.categoryId
-                }
-              });
-              if (options.select) {
-                result.attributes.data = Est.bulidSelectNode(result.attributes.data, 1, {
-                  name: 'text'
-                })
-              }
-              if (options.extend) {
-                result.attributes.data = Est.extendTree(result.attributes.data);
-              }
-            } else {
-              result.attributes.data = [];
-            }
-            result.attributes.data.unshift({text: '请选择分类', value: '/'});
-            topResolve(result.attributes.data);
-          });
-        });*/
       },
       /**
        * 下拉框初始化
@@ -246,29 +202,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        */
       _initSelect: function (options) {
         return BaseUtils.initSelect(options);
-        /*return new Est.promise(function (resove, reject) {
-          var container = {};
-          var target = options.target || '#category';
-          var render = options.render || '#s1';
-          var itemId = options.itemId || 'categoryId';
-          var width = options.width || '150';
-          var items = options.items || [];
-          BUI.use('bui/select', function (Select) {
-            container[render] = new Select.Select({
-              render: render,
-              valueField: target,
-              width: width,
-              items: items
-            });
-            container[render].render();
-            container[render].on('change', function (ev) {
-              $(target).val(Est.trim(ev.item[itemId]));
-              if (typeof options.change !== 'undefined')
-                options.change.call(this, ev.item[itemId]);
-              resove(ev.item[itemId]);
-            });
-          })
-        });*/
       },
       /**
        * 时间选择
@@ -284,13 +217,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        */
       _initDate: function(options){
         return BaseUtils.initDate(options);
-        /*BUI.use('bui/calendar',function(Calendar){
-          new Calendar.DatePicker({
-            trigger:options.render || '.calendar',
-            showTime:options.showTime || false,
-            autoRender : true
-          });
-        });*/
       },
       /**
        * 标签选择框
@@ -308,30 +234,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        */
       _initCombox: function (options) {
         return BaseUtils.initCombox(options);
-        /*return new Est.promise(function (resolve, reject) {
-          var container = {};
-          var target = options.target || '#category';
-          var render = options.render || '#s1';
-          var itemId = options.itemId || 'categoryId';
-          var width = options.width || '500';
-          var items = options.items || [];
-          BUI.use('bui/select', function (Select) {
-            container[render] = new Select.Combox({
-              render: render,
-              showTag: true,
-              valueField: target,
-              elCls: 'bui-tag-follow',
-              width: width,
-              items: items
-            });
-            container[render].render();
-           *//*container[render].on('change', function (ev) {
-              //$(target).val($(target)Est.trim(ev.item[itemId]));
-              if (typeof options.change !== 'undefined')
-                options.change.call(this, ev.item[itemId]);
-            });*//*
-          })
-        });*/
       },
       /**
        * 初始化编辑器
@@ -340,33 +242,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelp
        * @author wyj 14.11.15
        */
       _initEditor: function (options) {
-        seajs.use(['xheditor'], function (xheditor) {
-          function startEditor(obj) {
-            $(obj).xheditor(
-              {
-                tools: 'Preview,Fullscreen,Source,|,contact,abbccQQ,abbccMap,abbccLayout,abbccQrcode,|,Table,abbccImages,abbccFlash,Media,|,FontColor,BackColor,|,Align,Underline,Italic,Bold,|,FontSize,Fontface,|,Link,Unlink',
-                layerShadow: 2,
-                html5Upload: false,
-                upBtnText: '浏览',
-                upLinkExt: 'jpg,png,bmp',
-                upImgUrl: '/fileUpload/uploadByJson',
-                upFlashUrl: '/fileUpload/uploadByJson',
-                upMediaUrl: '/fileUpload/uploadByJson',
-                upFlashExt: "swf",
-                upMediaExt: 'wmv,avi,wma,mp3,mid',
-                linkTag: true,
-                internalScript: true,
-                inlineScript: true
-              });
-          }
-
-          $(function () {
-            $(options.render || '.ckeditor').each(function () {
-              startEditor($(this));
-            });
-
-          })
-        });
+        return BaseUtils.initEditor(options);
       },
       /**
        * 重置表单
