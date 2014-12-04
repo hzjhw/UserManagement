@@ -9,7 +9,7 @@ define('LoginModel', ['jquery', 'BaseModel'], function (require, exports, module
   BaseModel = require('BaseModel');
     LoginModel = BaseModel.extend({
     baseId: 'userId',
-    baseUrl: global.API + '/user/login',
+    baseUrl: CONST.API + '/user/login',
     defaults: {
       name: '未登录'
     }

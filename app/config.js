@@ -4,18 +4,21 @@
  * @author yongjin on 2014/7/18
  */
 
-
-window.global = {
+// 常量
+window.CONST = {
   HOST : 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
   SEP: '/',
+  ENTER_KEY: 13
+}
+window.APP = {
   debug: true
 }
 
 seajs.config({
 
   // Sea.js 的基础路径
-  base: global.HOST,
+  base: CONST.HOST,
 
   // 别名配置
   alias: {
@@ -92,7 +95,7 @@ seajs.config({
 
   // 路径配置
   paths: {
-    bui: global.HOST + '/vendor/bui'
+    bui: CONST.HOST + '/vendor/bui'
   },
 
   // 变量配置
@@ -394,7 +397,7 @@ if (!window.console) {
 }
 
 window.debug = function(str, options){
-  if (global.debug){
+  if (APP.debug){
     console.log(str);
   }
 }

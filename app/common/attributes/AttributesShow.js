@@ -23,7 +23,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
 
     collection = BaseCollection.extend({
       url: function () {
-        return global.API + '/attr/list/' + this.getCategoryId();
+        return CONST.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
       initialize: function(){

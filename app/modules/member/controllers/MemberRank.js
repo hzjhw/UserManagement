@@ -22,7 +22,7 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
      * 集合类
      */
     MemberRankCollection = BaseCollection.extend({
-      url: global.API + '/member/rank/list',
+      url: CONST.API + '/member/rank/list',
       model: MemberModel,
       initialize: function () {
         this._initialize();
@@ -49,7 +49,7 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       },
       // 编辑会员
       editItem: function () {
-        var url = global.HOST + '/modules/member/member_edit.html?rankId='
+        var url = CONST.HOST + '/modules/member/member_edit.html?rankId='
           + this.model.id;
         var options = { title: '会员修改', url: url }
         this._edit(options);
@@ -87,7 +87,7 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       },
       // 添加会员对话框
       openAddDialog: function () {
-        var url = global.HOST + '/modules/member/member_rank.html?uId='
+        var url = CONST.HOST + '/modules/member/member_rank.html?uId='
           + Est.nextUid();
         this._detail({ title: '会员等级添加', url: url });
       }

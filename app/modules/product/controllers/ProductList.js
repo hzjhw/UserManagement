@@ -22,7 +22,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
      * 集合类
      */
     ProductCollection = BaseCollection.extend({
-      url: global.API + '/product/list',
+      url: CONST.API + '/product/list',
       model: ProductModel,
       initialize: function () {
         this._initialize();
@@ -47,17 +47,17 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         this._initialize({ template: itemTemp });
         this._onAfterRender = function () {
-          if (!global.productCategory) {
+          if (!APP.productCategory) {
             debug('categoryLoad');
             BaseUtils.getProductCategory({
               extend: true,
               select: true
             }).then(function (list) {
-              global.productCategory = list;
+              APP.productCategory = list;
               ctx.initSelect(list);
             })
           } else {
-            ctx.initSelect(global.productCategory);
+            ctx.initSelect(APP.productCategory);
           }
         }
       },
@@ -65,7 +65,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._render();
       },
       editItem: function () {
-        var url = global.HOST + '/modules/product/product_detail.html?id='
+        var url = CONST.HOST + '/modules/product/product_detail.html?id='
           + this.model.id;
         var options = {
           title: '产品修改',
@@ -128,7 +128,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           });
       },
       openAddDialog: function () {
-        var url = global.HOST + '/modules/product/product_detail.html?uId='
+        var url = CONST.HOST + '/modules/product/product_detail.html?uId='
           + Est.nextUid();
         this._detail({
           title: '产品添加',

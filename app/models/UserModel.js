@@ -10,7 +10,7 @@ define('UserModel', ['jquery', 'BaseModel'], function (require, exports, module)
 
   UserModel = BaseModel.extend({
     baseId: 'userId',
-    baseUrl: global.API + '/user/info',
+    baseUrl: CONST.API + '/user/info',
     defaults: {
       name: '未登录'
     }

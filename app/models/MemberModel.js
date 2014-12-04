@@ -11,7 +11,7 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
     dialog = require('dialog');
 
     var MemberModel = BaseModel.extend({
-      baseUrl: global.API + '/member/detail',
+      baseUrl: CONST.API + '/member/detail',
       baseId: 'memberId',
       defaults: {
         username: '',

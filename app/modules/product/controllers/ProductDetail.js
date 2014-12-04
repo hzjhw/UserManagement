@@ -112,7 +112,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
             });
             /*$.ajax({
              type: 'get',
-             url: global.API + '/tag/product',
+             url: CONST.API + '/tag/product',
              success: function(result){
              var taglist = Est.pluck(result.attributes.data, 'name');
              Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){

@@ -10,7 +10,7 @@ define('RegisterModel', ['jquery', 'BaseModel'], function (require, exports, mod
   BaseModel = require('BaseModel');
   RegisterModel = BaseModel.extend({
     baseId: 'userId',
-    baseUrl: global.API + '/user/register',
+    baseUrl: CONST.API + '/user/register',
     defaults: {
       name: '未登录'
     }

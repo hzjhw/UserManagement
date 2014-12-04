@@ -17,7 +17,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
     Est = require('Est');
 
     ProductCategoryCollection = BaseCollection.extend({
-      url: global.API + '/category/product?pageSize=1000',
+      url: CONST.API + '/category/product?pageSize=1000',
       model: CategoryModel,
       initialize: function(){
         this._initialize();
@@ -50,7 +50,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
       editItem: function () {
         var options = {
           title: '产品分类修改',
-          url: global.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
+          url: CONST.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
         }
         this._edit(options);
       },
@@ -100,7 +100,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
       openAddDialog: function () {
         this._detail({
           title: '分类添加',
-          url: global.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
+          url: CONST.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
         });
       }
     });

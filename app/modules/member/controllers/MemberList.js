@@ -42,7 +42,7 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       editItem: function () {
         this._edit({
           title: '会员编辑',
-          url: global.HOST + '/modules/member/member.html?id=' + this.model.id
+          url: CONST.HOST + '/modules/member/member.html?id=' + this.model.id
         });
       },
 

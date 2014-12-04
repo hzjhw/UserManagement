@@ -45,7 +45,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
       editItem: function () {
         this._edit({
           title: '属性修改',
-          url: global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
+          url: CONST.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
         });
       },
 
@@ -84,7 +84,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
       openAddDialog: function () {
         this._detail({
           title: '属性添加',
-          url: global.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
+          url: CONST.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
         });
       }
     });

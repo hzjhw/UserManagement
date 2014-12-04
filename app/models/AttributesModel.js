@@ -21,7 +21,7 @@ define('AttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         name: "",
         state: '01'
       },
-      baseUrl: global.API + '/attr/detail',
+      baseUrl: CONST.API + '/attr/detail',
       baseId: 'attId'
     });
     module.exports = AttributesModel;

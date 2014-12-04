@@ -230,7 +230,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @example
        *    this._detail({
               title: '产品添加',
-              url: global.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
+              url: CONST.HOST + '/modules/product/product_detail.html?time=' + new Date().getTime()
             });
        */
       _detail: function (options) {

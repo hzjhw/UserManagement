@@ -11,7 +11,7 @@ define('TagModel', ['jquery', 'BaseModel'], function(require, exports, module){
 
     TagModel = BaseModel.extend({
       baseId: 'tagId',
-      url: global.API + '/tag/detail',
+      url: CONST.API + '/tag/detail',
       defaults: { }
     });
 

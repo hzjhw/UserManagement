@@ -45,7 +45,7 @@ define('BaseUtils', ['jquery', 'Est', 'HandlebarsHelper'],
             return new Est.promise(function (resolve, reject) {
               $.ajax({
                 type: 'post',
-                url: global.API + '/category/product?pageSize=1000',
+                url: CONST.API + '/category/product?pageSize=1000',
                 async: false,
                 data: {
                   _method: 'GET'

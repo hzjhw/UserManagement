@@ -22,7 +22,7 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
         belongId: null, // 父类ID
         type: '10' // 产品
       },
-      baseUrl: global.API + '/category/detail',
+      baseUrl: CONST.API + '/category/detail',
       baseId: 'categoryId'
     });
     module.exports = CategorytModel;

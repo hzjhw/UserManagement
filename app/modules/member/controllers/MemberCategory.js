@@ -22,7 +22,7 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
      * 集合类
      */
     MemberCollection = BaseCollection.extend({
-      url: global.API + '/member/list',
+      url: CONST.API + '/member/list',
       model: MemberModel,
       initialize: function () {
         this._initialize();
@@ -49,7 +49,7 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
       },
       // 编辑产品
       editItem: function () {
-        var url = global.HOST + '/modules/member/member_detail.html?id='
+        var url = CONST.HOST + '/modules/member/member_detail.html?id='
           + this.model.id;
         var options = { title: '会员编辑', url: url }
         this._edit(options);
@@ -83,7 +83,7 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
       },
       // 添加产品对话框
       openAddDialog: function () {
-        var url = global.HOST + '/modules/member/member_detail.html?uId='
+        var url = CONST.HOST + '/modules/member/member_detail.html?uId='
           + Est.nextUid();
         this._detail({ title: '产品添加', url: url });
       },
