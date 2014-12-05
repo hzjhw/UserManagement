@@ -97,17 +97,19 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       initSelect: function (list) {
         var ctx = this;
-        BaseUtils.initSelect({
-          render: '#pro-cate-' + this.model.get('dx'),
-          target: '#model-category-' + this.model.get('dx'),
-          items: list,
-          change: function (categoryId) {
-            ctx.model._saveField({
-              id: ctx.model.get('id'),
-              category: categoryId
-            }, ctx, {});
-          }
-        });
+        setTimeout(function(){
+          BaseUtils.initSelect({
+            render: '#pro-cate-' + ctx.model.get('dx'),
+            target: '#model-category-' + ctx.model.get('dx'),
+            items: list,
+            change: function (categoryId) {
+              ctx.model._saveField({
+                id: ctx.model.get('id'),
+                category: categoryId
+              }, ctx, {});
+            }
+          });
+        }, 50);
       }
     });
     /**

@@ -197,9 +197,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         model.set('dx', this.dx++);
         var itemView = new this.item({ model: model, data: this._data });
         itemView._setInitModel(this.initModel);
-        itemView._onBeforeRender();
         this.list.append(itemView._render().el);
-        itemView._onAfterRender();
         this.views.push(itemView);
       },
       /**
@@ -300,19 +298,24 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
       reorder: function (original_index, new_index, options) {
         if (new_index === original_index)
           return this
+        var tempObj = {}, nextObj = {};
         var temp = this.collection.at(original_index);
         var next = this.collection.at(new_index);
         // 互换dx
         var thisDx = temp.view.model.get('dx');
         var nextDx = next.view.model.get('dx');
-        temp.view.model.set('dx', nextDx);
-        next.view.model.set('dx', thisDx);
+        tempObj['dx'] = nextDx;
+        nextObj['dx'] = thisDx;
         // 互换sort值
         if (options.path) {
           var thisValue = temp.view.model.get(options.path);
           var nextValue = next.view.model.get(options.path);
-          temp.view.model.set(options.path, nextValue);
-          next.view.model.set(options.path, thisValue);
+          tempObj[options.path] = nextValue;
+          nextObj[options.path] = thisValue;
+        }
+        temp.view.model.set(tempObj);
+        next.view.model.set(nextObj);
+        if (options.success){
           options.success.call(this, temp, next);
         }
         // 交换model

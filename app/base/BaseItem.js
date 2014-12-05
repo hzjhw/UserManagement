@@ -88,12 +88,13 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
        *
        * @method [protected] - _render
        * @returns {BaseCollection}
-       * @param options [before: 渲染前方法][after: 渲染后方法]
        * @author wyj 14.11.18
        */
-      _render: function (options) {
+      _render: function () {
         debug('11.ProductItem._render [item display]');
+        this._onBeforeRender();
         this.$el.html(this.template(this.model.toJSON()));
+        this._onAfterRender();
         return this;
       },
       /**
