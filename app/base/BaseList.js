@@ -295,9 +295,18 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
           sort: model.get('sort')
         }, this, { async: false, hideTip: true});
       },
-      reorder: function (original_index, new_index, options) {
-        if (new_index === original_index)
-          return this
+      /**
+       * 交换位置
+       *
+       * @method [private] - _exchangeOrder
+       * @param original_index
+       * @param new_index
+       * @param options
+       * @returns {BaseList}
+       * @private
+       * @author wyj 14.12.5
+       */
+      _exchangeOrder: function (original_index, new_index, options) {
         var tempObj = {}, nextObj = {};
         var temp = this.collection.at(original_index);
         var next = this.collection.at(new_index);
@@ -340,7 +349,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         debug('_moveUp');
         var index = this.collection.indexOf(model);
         if (index === 0) return;
-        this.reorder(index, index - 1, {
+        this._exchangeOrder(index, index - 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
             if (thisNode.get('id') && nextNode.get('id')){
@@ -363,7 +372,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         var index = this.collection.indexOf(model);
         if (index === this.collection.models.length - 1)
           return;
-        this.reorder(index, index + 1, {
+        this._exchangeOrder(index, index + 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
            if (thisNode.get('id') && nextNode.get('id')){
