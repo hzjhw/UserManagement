@@ -37,7 +37,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
           });
         });
        */
-      _initialize: function(options){
+      _initialize: function (options) {
         return this._initCollection(options.collection, options);
       },
       /**
@@ -69,17 +69,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         this.dx = 0;
         this.views = [];
         this.$el.empty();
-        if (options.template)
-          this.$el.append($(options.template));
+        if (options.template) this.$el.append($(options.template));
         this._data = options.data;
         this.list = options.render ? $(options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
-        if (!this.collection){
-          this.collection = new collection();
-          this.listenTo(this.collection, 'change:checked', this.checkSelect);
-          //this.collection.on('moveUp', this.collection._moveUp);
-          //this.collection.on('moveDown', this.collection._moveDown);
-        }
+        if (!this.collection) this.collection = new collection;
         this._initBind();
         this._initItemView(options.item, this);
         this._initModel(options.model);
@@ -96,7 +90,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       _initPagination: function (options) {
         var ctx = this;
-        if (ctx.collection && ctx.collection.paginationModel){
+        if (ctx.collection && ctx.collection.paginationModel) {
           ctx.collection.paginationModel.on('reloadList', function (model) {
             ctx._load.call(ctx, options, model);
           });
@@ -116,7 +110,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
             options.beforeLoad.call(ctx.collection);
           if (ctx.collection.url) {
             ctx.collection._load(ctx.collection, ctx, model).then(function (result) {
-                resolve(result);
+              resolve(result);
             });
           }
         });
@@ -127,7 +121,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @author wyj 14.11.16
        */
       _initBind: function () {
-        if (this.collection){
+        if (this.collection) {
+          this.listenTo(this.collection, 'change:checked', this.checkSelect);
           this.collection.bind('add', this._addOne, this);
           this.collection.bind('reset', this._render, this);
         }
@@ -159,7 +154,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * @param model
        * @author wyj 14.11.20
        */
-      _initModel: function(model){
+      _initModel: function (model) {
         this.initModel = model;
       },
       /**
@@ -170,40 +165,37 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        */
       _empty: function () {
         debug('5.ProductView._empty');
-        if (this.collection){
+        if (this.collection) {
           var len = this.collection.length;
-          while (len > -1){
+          while (len > -1) {
             this.collection.remove(this.collection[len]);
             len--;
           }
         }
         // 设置当前页的起始索引， 如每页显示20条，第2页为20
-        if (this.collection.paginationModel){
+        if (this.collection.paginationModel) {
           this.dx = this.collection.paginationModel.get('pageSize') *
-            (this.collection.paginationModel.get('page') -1);
+            (this.collection.paginationModel.get('page') - 1);
         }
         //遍历views数组，并对每个view调用Backbone的remove
-        Est.each(this.views,function(view){
+        Est.each(this.views, function (view) {
           view.remove().off();
         })
         //清空views数组，此时旧的view就变成没有任何被引用的不可达对象了
         //垃圾回收器会回收它们
-        this.views =[];
+        this.views = [];
         //this.list.empty();
       },
       /**
        * 向视图添加元素
        *
        * @method [private] - _addOne
-       * @param target
+       * @param model
        * @author wyj 14.11.16
        */
-      _addOne: function (target) {
-        target.set('dx', this.dx++);
-        var itemView = new this.item({
-          model: target,
-          data: this._data
-        });
+      _addOne: function (model) {
+        model.set('dx', this.dx++);
+        var itemView = new this.item({ model: model, data: this._data });
         itemView._setInitModel(this.initModel);
         itemView._onBeforeRender();
         this.list.append(itemView._render().el);
@@ -290,6 +282,96 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         this.collection.each(function (product) {
           product.set('checked', checked);
         });
+      },
+      /**
+       * 保存sort值
+       *
+       * @method [private] - _saveSort
+       * @param model
+       * @private
+       * @author wyj 14.12.4
+       */
+      _saveSort: function (model) {
+        model._saveField({
+          id: model.get('id'),
+          sort: model.get('sort')
+        }, this, { async: false, hideTip: true});
+      },
+      reorder: function (original_index, new_index, options) {
+        if (new_index === original_index) return this
+        var temp = this.collection.at(original_index);
+        var next = this.collection.at(new_index);
+        // 若存在path， 替换值并保存
+        if (options.path) {
+          var thisValue = temp.view.model.get(options.path);
+          var nextValue = next.view.model.get(options.path);
+          temp.view.model.set(options.path, nextValue);
+          next.view.model.set(options.path, thisValue);
+          temp.view.model.set('dx', new_index);
+          next.view.model.set('dx', original_index);
+          options.success.call(this, temp, next);
+        }
+        // 交换位置
+        this.collection.models[new_index] = this.collection.models.splice(original_index, 1, this.collection.models[new_index])[0];
+        if (original_index < new_index) {
+          temp.view.$el.before(next.view.$el);
+          //this.collection.remove(temp);
+          //this.collection.add(temp, {at: new_index});
+          //this._addOne(temp, next);
+        } else {
+          temp.view.$el.after(next.view.$el);
+          //this.collection.remove(next);
+          //this.collection.add(next, {at: new_index});
+          //this._addOne(next, temp);
+        }
+        return this
+      },
+      /**
+       * 上移
+       *
+       * @method [public] - _moveUp
+       * @param index
+       * @private
+       * @author wyj 14.12.4
+       */
+      _moveUp: function (index) {
+        debug('_moveUp');
+        if (index === 0) return;
+        this.reorder(index, index - 1, {
+          path: 'sort',
+          success: function (thisNode, nextNode) {
+            this._saveSort(thisNode);
+            this._saveSort(nextNode);
+          }
+        });
+      },
+      /**
+       * 下移
+       *
+       * @method [public] - _moveDown
+       * @param index
+       * @private
+       * @author wyj 14.12.4
+       */
+      _moveDown: function (index) {
+        debug('_moveDown');
+        if (index === this.collection.models.length - 1)
+          return;
+        this.reorder(index, index + 1, {
+          path: 'sort',
+          success: function (thisNode, nextNode) {
+            this._saveSort(thisNode);
+            this._saveSort(nextNode);
+          }
+        });
+        /* Est.arrayExchange(this.collection.models, index, index + 1, {
+         column : 'attributes.sort',
+         callback : function(thisNode, nextNode){
+         ctx._saveSort(thisNode);
+         ctx._saveSort(nextNode);
+         ctx.reorder(index, index + 1);
+         }
+         });*/
       }
     });
 

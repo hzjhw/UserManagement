@@ -80,15 +80,22 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        *
        * @method [public] - saveField
        * @param keyValue
-       * @param callback
        * @param ctx
-       * @param async
+       * @param options [success: 成功回调][async: 是否异步]
        * @author wyj 14.11.16
+       * @example
+       *    this.model._saveField({
+              id: thisNode.get('id'),
+              sort: thisNode.get('sort')
+            }, ctx, { // ctx须初始化initModel
+            success: function(){},
+            async: false
+            });
        */
-      _saveField: function (keyValue, callback, ctx, async) {
-        var wait = async || true;
+      _saveField: function (keyValue, ctx, options) {
+        var wait = options.async || true;
         var newModel = new ctx.initModel({
-          id: ctx.model.get('id')
+          id: keyValue['id'] || ctx.model.get('id')
         });
         // 清空字段
         newModel.clear();
@@ -96,12 +103,16 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         newModel.set(keyValue);
         // 取消验证
         newModel.set('silent', true);
+        // 是否显示消息
+        if (options.hideTip){
+          newModel.hideTip = true;
+        }
         // 通知服务器执行修改单个字段操作
         newModel.set('editField', true);
         newModel.save(null, {
           success: function (model, result) {
-            if (typeof callback != 'undefined') {
-              callback.call(ctx, keyValue, result);
+            if (typeof options.callback != 'undefined') {
+              options.callback.call(ctx, keyValue, result);
             }
           }, wait: wait
         });

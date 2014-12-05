@@ -213,59 +213,48 @@ seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
       'product': 'product',
       'category/product': 'productCategory',
       'attributes': 'attributes',
-
-      //会员
       'member': 'member',
-
       '*other': 'default'
-
     },
     index: function () {
       seajs.use(['jquery', 'Main'], function (jquery, Main) {
-        new Main();
+        APP.main = new Main();
       });
     },
     login: function () {
       seajs.use(['jquery', 'Login'], function (jquery, Login) {
-        new Login();
+        APP.login = new Login();
       });
     },
     register: function () {
       seajs.use(['jquery', 'Register'], function (jquery, Register) {
-        new Register();
+        APP.register = new Register();
       });
     },
-    product: function (id) {
+    product: function () {
       seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
-        new ProductList();
+        APP.productList = new ProductList();
       });
     },
-
     productCategory: function () {
       seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
-        new ProductCategoryList();
+        APP.productCategoryList = new ProductCategoryList();
       });
     },
-
     attributes: function () {
       seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
-        new AttributesList();
+        APP.attributesList = new AttributesList();
       });
     },
-
-    //会员
-    member: function (id) {
+    member: function () {
       seajs.use(['jquery', 'MemberCategory'], function (jquery, MemberCategory) {
-        new MemberCategory();
+        APP.memberCategory = new MemberCategory();
       });
     },
-
-
-    default: function (other) {
+    default: function () {
       //$(document.body).append("This route is not hanled.. you tried to access: " + other);
 
     }
-
   });
   new router;
   Backbone.history.start();

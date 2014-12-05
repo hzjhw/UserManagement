@@ -39,8 +39,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .prodtype': 'editProdtype',
         'click .edit': 'editItem',
         'click .delete': '_del',
-        'click .move-up': '_moveUp',
-        'click .move-down': '_moveDown'
+        'click .move-up': 'moveUp',
+        'click .move-down': 'moveDown'
       },
       // 初始化
       initialize: function () {
@@ -63,6 +63,12 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       render: function () {
         this._render();
+      },
+      moveUp: function(){
+        APP.productList._moveUp(this.model.get('dx'));
+      },
+      moveDown: function(){
+        APP.productList._moveDown(this.model.get('dx'));
       },
       editItem: function () {
         var url = CONST.HOST + '/modules/product/product_detail.html?id='
@@ -99,7 +105,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             ctx.model._saveField({
               id: ctx.model.get('id'),
               category: categoryId
-            }, function(){}, ctx, true);
+            }, ctx, {});
           }
         });
       }

@@ -117,38 +117,6 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
         this.model.destroy();
       },
       /**
-       * 上移
-       *
-       * @method [protected] - _moveUp
-       * @author wyj 14.12.3
-       */
-      _moveUp: function(){
-        var ctx = this;
-        var index = this.model.get('dx');
-        if (index === 0) return;
-        Est.arrayExchange(this.models, index, index - 1, {
-          column : 'sort',
-          callback : function(thisNode, nextNode){
-            debug(thisNode);
-            //ctx.model.set();
-            //$scope.setSort(thisNode);
-            //$scope.setSort(nextNode);
-            //update_sort_by_id($scope, thisNode.product_id,thisNode.sort);
-            //update_sort_by_id($scope, nextNode.product_id, nextNode.sort, true);
-          }
-        });
-      },
-      /**
-       * 下移
-       *
-       * @method [protected] - _moveDown
-       * @private
-       * @author wyj 14.12.3
-       */
-      _moveDown: function(){
-
-      },
-      /**
        * checkbox选择框转换
        *
        * @method [protected] - _toggleChecked
@@ -191,10 +159,11 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
               context.model.previous(options.field)) {
               obj['id'] = context.model.get('id');
               obj[options.field] = this.returnValue;
-              context.model._saveField(obj,
-                function (keyValue, result) {
+              context.model._saveField(obj, context, {
+                success: function(keyValue, result){
                   context.model.set(keyValue);
-                }, context);
+                }
+              });
               resolve(context, this.returnValue);
             }
           });
