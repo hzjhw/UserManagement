@@ -58,17 +58,17 @@
 
     // 属性添加
     seajs.use(['jquery', 'AttributesAdd'], function(jquery, AttributesAdd){
-        var attributeAdd = new AttributesAdd({
+        APP.attributesAdd = new AttributesAdd({
             items: ['111', '222', '333']
         });
         $(".getItemsBtn").click(function(){
-            alert(attributeAdd.getItems()); // 获取数据
+            console.dir(APP.attributesAdd.getItems()); // 获取数据
         });
     });
 
     // 属性显示
     seajs.use(['jquery', 'AttributesShow'], function(jquery, AttributesShow){
-        var attributeShow = new AttributesShow({
+        APP.attributesShow = new AttributesShow({
             render: '#attributes-list',
             //items: ['111', '222', '333']
             categoryId: 'Category_00000000000000000008407'

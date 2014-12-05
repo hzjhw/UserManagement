@@ -298,31 +298,30 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
         }, this, { async: false, hideTip: true});
       },
       reorder: function (original_index, new_index, options) {
-        if (new_index === original_index) return this
+        if (new_index === original_index)
+          return this
         var temp = this.collection.at(original_index);
         var next = this.collection.at(new_index);
-        // 若存在path， 替换值并保存
+        // 互换dx
+        var thisDx = temp.view.model.get('dx');
+        var nextDx = next.view.model.get('dx');
+        temp.view.model.set('dx', nextDx);
+        next.view.model.set('dx', thisDx);
+        // 互换sort值
         if (options.path) {
           var thisValue = temp.view.model.get(options.path);
           var nextValue = next.view.model.get(options.path);
           temp.view.model.set(options.path, nextValue);
           next.view.model.set(options.path, thisValue);
-          temp.view.model.set('dx', new_index);
-          next.view.model.set('dx', original_index);
           options.success.call(this, temp, next);
         }
-        // 交换位置
+        // 交换model
         this.collection.models[new_index] = this.collection.models.splice(original_index, 1, this.collection.models[new_index])[0];
+        // 交换位置
         if (original_index < new_index) {
           temp.view.$el.before(next.view.$el);
-          //this.collection.remove(temp);
-          //this.collection.add(temp, {at: new_index});
-          //this._addOne(temp, next);
         } else {
           temp.view.$el.after(next.view.$el);
-          //this.collection.remove(next);
-          //this.collection.add(next, {at: new_index});
-          //this._addOne(next, temp);
         }
         return this
       },
@@ -330,18 +329,21 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * 上移
        *
        * @method [public] - _moveUp
-       * @param index
+       * @param model
        * @private
        * @author wyj 14.12.4
        */
-      _moveUp: function (index) {
+      _moveUp: function (model) {
         debug('_moveUp');
+        var index = this.collection.indexOf(model);
         if (index === 0) return;
         this.reorder(index, index - 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
-            this._saveSort(thisNode);
-            this._saveSort(nextNode);
+            if (thisNode.get('id') && nextNode.get('id')){
+              this._saveSort(thisNode);
+              this._saveSort(nextNode);
+            }
           }
         });
       },
@@ -349,29 +351,24 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
        * 下移
        *
        * @method [public] - _moveDown
-       * @param index
+       * @param model
        * @private
        * @author wyj 14.12.4
        */
-      _moveDown: function (index) {
+      _moveDown: function (model) {
         debug('_moveDown');
+        var index = this.collection.indexOf(model);
         if (index === this.collection.models.length - 1)
           return;
         this.reorder(index, index + 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
-            this._saveSort(thisNode);
-            this._saveSort(nextNode);
+           if (thisNode.get('id') && nextNode.get('id')){
+             this._saveSort(thisNode);
+             this._saveSort(nextNode);
+           }
           }
         });
-        /* Est.arrayExchange(this.collection.models, index, index + 1, {
-         column : 'attributes.sort',
-         callback : function(thisNode, nextNode){
-         ctx._saveSort(thisNode);
-         ctx._saveSort(nextNode);
-         ctx.reorder(index, index + 1);
-         }
-         });*/
       }
     });
 

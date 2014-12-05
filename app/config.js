@@ -11,6 +11,7 @@ window.CONST = {
   SEP: '/',
   ENTER_KEY: 13
 }
+// 所有实例化对象的容器
 window.APP = {
   debug: true
 }

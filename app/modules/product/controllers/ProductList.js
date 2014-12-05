@@ -65,10 +65,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._render();
       },
       moveUp: function(){
-        APP.productList._moveUp(this.model.get('dx'));
+        APP.productList._moveUp(this.model);
       },
       moveDown: function(){
-        APP.productList._moveDown(this.model.get('dx'));
+        APP.productList._moveDown(this.model);
       },
       editItem: function () {
         var url = CONST.HOST + '/modules/product/product_detail.html?id='

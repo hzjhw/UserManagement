@@ -43,7 +43,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
 
         // 绑定提交与验证
         this._form("#J_Form")._validate()._init(function () {
-          this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
+          this.model.set("attributeOptionList", Est.pluck(APP.attributesAdd.getItems(), 'value'))
         });
         return this;
       },
@@ -81,7 +81,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
           options.items = attributesOptionList;
           this.showAttribute();
         }
-        this.optionsInstance = new AttributesAdd(options);
+        APP.attributesAdd = new AttributesAdd(options);
       }
     });
 

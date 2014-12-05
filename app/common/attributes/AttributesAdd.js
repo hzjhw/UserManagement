@@ -33,7 +33,9 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       className: 'control-group',
       events: {
         'click .delete': '_del',
-        'change input': 'update'
+        'change input': 'update',
+        'click .move-up': 'moveUp',
+        'click .move-down': 'moveDown'
       },
       initialize: function () {
         this._initialize({
@@ -42,6 +44,12 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       },
       render: function () {
         this._render();
+      },
+      moveUp: function(){
+        APP.attributesAdd._moveUp(this.model);
+      },
+      moveDown: function(){
+        APP.attributesAdd._moveDown(this.model);
       },
       update: function () {
         this.model.set(this.$('input').attr("name"), this.$('input').val());
