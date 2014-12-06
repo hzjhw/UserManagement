@@ -159,6 +159,7 @@ label.checkbox { padding-left: 5px; }
 .grid-td-handle { width: 150px; }
 /*分页*/
 #pagination-container{ padding-top:5px; }
+#pagination-container .input-pageTo{padding:4px 0;width: 35px; margin: 0; text-align: center;}
 /*登录*/
 #login{}
 /* 编辑器 **************************************************************************************/
