@@ -36,19 +36,19 @@
 </td>
 <td class="bui-grid-cell grid-td-move">
     <div class="bui-grid-cell-inner">
-        <span class="x-icon x-icon-small x-icon-info move-up pointer"
-              style="vertical-align: middle;" title="上移 (若移动到上一页， 可以试着更改每页显示个数)"><i
-                class="icon icon-white icon-arrow-up pointer"></i></span>&nbsp;<span
-            class="x-icon x-icon-small x-icon-info move-down pointer"
+        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;" title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
+            <i class="icon icon-white icon-arrow-up pointer"></i>
+        </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
+        <span class="x-icon x-icon-small x-icon-info move-down pointer"
             style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
             class="icon icon-white icon-arrow-down pointer"></i></span>
+
     </div>
 </td>
 
 <td class="bui-grid-cell grid-td-handle">
     <div class="bui-grid-cell-inner">
-        <span class="bui-grid-cell-text"><a href="javascript:;" class="grid-command btn-edit edit">修改</a>/<a
-                href="javascript:;" class="grid-command btn-del delete"> 删除</a>
-        </span>
+        <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>修改</button>
+        <button type="button" class="button button-danger button-mini delete"><i class="icon-white icon-trash"></i>删除</button>
     </div>
 </td>

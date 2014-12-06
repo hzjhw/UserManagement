@@ -3543,7 +3543,7 @@ form h2, form h3 {
     padding: 4px 12px;
     line-height: 20px;
     text-decoration: none;
-    color: #428bca;
+    color: #2E9CBC;
     background-color: #fff;
     border: 1px solid #ddd;
     margin-left: -1px
@@ -3569,8 +3569,8 @@ form h2, form h3 {
 .pagination .active > a, .pagination .active > a:focus, .pagination .active > a:hover, .pagination .active > span, .pagination .active > span:focus, .pagination .active > span:hover {
     z-index: 2;
     color: #fff;
-    background-color: #428bca;
-    border-color: #428bca;
+    background-color: #5BC0DE;
+    border-color: #44ABC9;
     cursor: default
 }
 
