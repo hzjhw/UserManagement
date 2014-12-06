@@ -449,12 +449,12 @@ button, input, select, textarea {
 }
 
 a {
-    color: #428bca;
+    color: #0094BF;
     text-decoration: none
 }
 
 a:focus, a:hover {
-    color: #2a6496;
+    color: #47B8D9;
     text-decoration: underline
 }
 
