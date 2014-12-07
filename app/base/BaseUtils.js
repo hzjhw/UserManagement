@@ -4,11 +4,10 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/2
  */
 
-define('BaseUtils', ['jquery', 'Est', 'HandlebarsHelper'],
+define('BaseUtils', ['jquery', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var BaseUtils, Est, HandlebarsHelper;
+    var BaseUtils, HandlebarsHelper;
 
-    Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
 
     BaseUtils = {

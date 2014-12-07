@@ -3,13 +3,12 @@
  * @namespace AttributesDetail
  * @author yongjin on 2014/11/13
  */
-define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesAdd'],
+define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd'],
   function (require, exports, module) {
-    var AttributesDetail, AttributesModel, HandlebarsHelper, Est, BaseDetail, AttributesAdd;
+    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd;
 
     AttributesModel = require('AttributesModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     AttributesAdd = require('AttributesAdd');
 
@@ -43,7 +42,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
 
         // 绑定提交与验证
         this._form("#J_Form")._validate()._init(function () {
-          this.model.set("attributeOptionList", Est.pluck(APP.attributesAdd.getItems(), 'value'))
+          this.model.set("attributeOptionList", Est.pluck(app.getView('attributesAdd').getItems(), 'value'))
         });
         return this;
       },
@@ -81,7 +80,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
           options.items = attributesOptionList;
           this.showAttribute();
         }
-        APP.attributesAdd = new AttributesAdd(options);
+        app.addView('attributesAdd', new AttributesAdd(options));
       }
     });
 

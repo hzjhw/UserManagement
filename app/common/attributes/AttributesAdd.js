@@ -4,16 +4,15 @@
  * @author yongjin on 2014/11/13
  */
 
-define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est', 'template/attributes_option_template', 'template/attributes_option_item'],
+define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/attributes_option_template', 'template/attributes_option_item'],
   function (require, exports, module) {
-    var AttributesAdd, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, optionItem, optionTemp;
+    var AttributesAdd, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, optionItem, optionTemp;
 
     HandlebarsHelper = require('HandlebarsHelper');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
-    Est = require('Est');
     optionItem = require('template/attributes_option_item');
     optionTemp = require('template/attributes_option_template');
 
@@ -46,10 +45,10 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
         this._render();
       },
       moveUp: function(){
-        APP.attributesAdd._moveUp(this.model);
+        app.getView('attributesAdd')._moveUp(this.model);
       },
       moveDown: function(){
-        APP.attributesAdd._moveDown(this.model);
+        app.getView('attributesAdd')._moveDown(this.model);
       },
       update: function () {
         this.model.set(this.$('input').attr("name"), this.$('input').val());

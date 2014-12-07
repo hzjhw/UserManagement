@@ -3,13 +3,12 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog, Tag;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     template = require('template/product_detail');
     dialog = require('dialog');

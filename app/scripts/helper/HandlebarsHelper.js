@@ -4,11 +4,10 @@
  * @author yongjin on 2014/11/11
  */
 
-define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, module) {
-  var Handlebars, Est;
+define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
+  var Handlebars;
 
   Handlebars = require('handlebars');
-  Est = require('Est');
 
   /**
    * 分页

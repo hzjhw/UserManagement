@@ -4,13 +4,12 @@
  * @author jihui-wxw on 14-11-17
  */
 
-define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'Est', 'BaseDetail','template/register_detail'],
+define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail','template/register_detail'],
   function (require, exports, module) {
-    var Register, RegisterModel, HandlebarsHelper, Est, BaseDetail, template;
+    var Register, RegisterModel, HandlebarsHelper, BaseDetail, template;
 
     RegisterModel = require('RegisterModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     template = require('template/register_detail');
 

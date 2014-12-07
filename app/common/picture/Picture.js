@@ -3,9 +3,9 @@
  * @namespace Picture
  * @author yongjin on 2014/11/19
  */
-define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est', 'template/picture_view', 'template/picture_item'],
+define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/picture_view', 'template/picture_item'],
   function(require, exports, module){
-  var BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, Picture, model, item, collection, pictureView, pictureItem;
+  var BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Picture, model, item, collection, pictureView, pictureItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
@@ -14,7 +14,6 @@ define('Picture', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseLis
     HandlebarsHelper = require('HandlebarsHelper');
     pictureView = require('template/picture_view');
     pictureItem = require('template/picture_item');
-    Est = require('Est');
 
     model = BaseModel.extend({
       defaults: {

@@ -3,13 +3,12 @@
  * @namespace memberDetail
  * @author jihui-wxw on 2014/10/31
  */
-define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog','template/member_rank_detail','template/member_edit'],
+define('MemberDetail', ['jquery', 'MemberModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog','template/member_rank_detail','template/member_edit'],
   function (require, exports, module) {
-    var MemberDetail, MemberModel, HandlebarsHelper, Est, BaseDetail , AttributesShow, dialog , template;
+    var MemberDetail, MemberModel, HandlebarsHelper, BaseDetail , AttributesShow, dialog , template;
 
     MemberModel = require('MemberModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     template = require('template/member_rank_detail');
     //member_edit = require('template/member_edit');

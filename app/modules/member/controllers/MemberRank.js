@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/16
  */
 define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_rank', 'template/member_rank_detail', 'Est','template/member_edit'],
+    'template/member_rank', 'template/member_rank_detail','template/member_edit'],
   function (require, exports, module) {
-    var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, MemberRank, MemberRankDetail, MemberRankCollection, member_rank, member_rank_detail;
+    var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberRank, MemberRankDetail, MemberRankCollection, member_rank, member_rank_detail;
 
     MemberModel = require('MemberModel');
     BaseCollection = require('BaseCollection');
@@ -15,7 +15,6 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
     HandlebarsHelper = require('HandlebarsHelper');
     member_rank = require('template/member_rank');
     member_rank_detail = require('template/member_rank_detail');
-    Est = require('Est');
     //member_edit = require('template/member_edit');
 
     /**

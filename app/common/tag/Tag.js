@@ -4,17 +4,16 @@
  * @author yongjin on 2014/11/18
  */
 
-define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Est',
+define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
     'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
   function (require, exports, module) {
     var Tag, TagList, TagItem, BaseModel, BaseCollection, BaseItem, BaseList,
-      Est, model, collection, item, tagView, tagViewItem, tagPickerItem;
+       model, collection, item, tagView, tagViewItem, tagPickerItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
-    Est = require('Est');
     tagView = require('template/tag_view');
     tagViewItem = require('template/tag_view_item');
     tagPickerItem = require('template/tag_picker_item');

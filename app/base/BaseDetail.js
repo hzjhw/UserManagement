@@ -4,12 +4,11 @@
  * @author yongjin<zjut_wyj@163.com> 2014.11.12
  */
 
-define('BaseDetail', ['jquery', 'underscore', 'backbone', 'Est', 'HandlebarsHelper', 'BaseUtils'],
+define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'BaseUtils'],
   function (require, exports, module) {
-    var BaseDetail, Backbone, Est, HandlebarsHelper, BaseUtils;
+    var BaseDetail, Backbone, HandlebarsHelper, BaseUtils;
 
     Backbone = require('backbone');
-    Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseUtils = require('BaseUtils');
 

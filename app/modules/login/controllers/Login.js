@@ -4,13 +4,12 @@
  * @author jihui-wxw on 14-11-17
  */
 
-define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'Est', 'BaseDetail','template/login'],
+define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail','template/login'],
     function (require, exports, module) {
         var Login, LoginModel, HandlebarsHelper, Est, BaseDetail, template;
 
         LoginModel = require('LoginModel');
         HandlebarsHelper = require('HandlebarsHelper');
-        Est = require('Est');
         BaseDetail = require('BaseDetail');
         template = require('template/login');
 

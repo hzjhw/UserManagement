@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/16
  */
 define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/product_list', 'template/product_item', 'Est', 'BaseUtils'],
+    'template/product_list', 'template/product_item', 'BaseUtils'],
   function (require, exports, module) {
-    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, ProductList, ProductItem, ProductCollection, listTemp, itemTemp, BaseUtils;
+    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem, ProductCollection, listTemp, itemTemp, BaseUtils;
 
     ProductModel = require('ProductModel');
     BaseCollection = require('BaseCollection');
@@ -15,7 +15,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/product_list');
     itemTemp = require('template/product_item');
-    Est = require('Est');
     BaseUtils = require('BaseUtils');
 
     /**
@@ -47,17 +46,17 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         this._initialize({ template: itemTemp });
         this._onAfterRender = function () {
-          if (!APP.productCategory) {
+          if (!app.productCategory) {
             debug('categoryLoad');
             BaseUtils.getProductCategory({
               extend: true,
               select: true
             }).then(function (list) {
-              APP.productCategory = list;
+              app.productCategory = list;
               ctx.initSelect(list);
             })
           } else {
-            ctx.initSelect(APP.productCategory);
+            ctx.initSelect(app.productCategory);
           }
         }
       },
@@ -65,10 +64,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._render();
       },
       moveUp: function(){
-        APP.productList._moveUp(this.model);
+        app.getView('productList')._moveUp(this.model);
       },
       moveDown: function(){
-        APP.productList._moveDown(this.model);
+        app.getView('productList')._moveDown(this.model);
       },
       editItem: function () {
         var url = CONST.HOST + '/modules/product/product_detail.html?id='
@@ -109,7 +108,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
               }, ctx, {});
             }
           });
-        }, 50);
+        }, 100);
       }
     });
     /**

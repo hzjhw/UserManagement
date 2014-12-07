@@ -3,13 +3,12 @@
  * @namespace BaseItem
  * @author yongjin<zjut_wyj@163.com> 2014.11.11
  */
-define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'HandlebarsHelper'],
+define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var Backbone, dialog, BaseItem, Est, HandlebarsHelper;
+    var Backbone, dialog, BaseItem, HandlebarsHelper;
 
     Backbone = require('backbone');
     dialog = require('dialog');
-    Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
 
     BaseItem = Backbone.View.extend({
@@ -27,26 +26,27 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'Est', 'Handle
       _initialize: function (options) {
         var ctx = this;
         this.options = options || {};
+
         // 编译模板
         if (options.template)
           this.template = HandlebarsHelper.compile(options.template);
+
         // 绑定事件
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
+
         // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
         if (this.model.get('dx') % 2 === 0) {
           this.$el.addClass('bui-grid-row-even');
         }
+
         // hover事件
-        // this._hover = this.$('.hover');
         this.$el.hover(function () {
-          //ctx._hover.show();
           ctx.$el.addClass('hover');
         }, function () {
-          //ctx._hover.hide();
           ctx.$el.removeClass('hover');
         });
       },

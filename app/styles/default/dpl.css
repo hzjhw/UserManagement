@@ -449,7 +449,7 @@ button, input, select, textarea {
 }
 
 a {
-    color: #0094BF;
+    color: #2681C9;
     text-decoration: none
 }
 
@@ -1227,8 +1227,8 @@ a.badge:focus, a.badge:hover {
 
 .x-icon-info, .x-icon-question {
     color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da
+    background-color: #51AAF0;
+    border-color: #4694D1;
 }
 
 .open .dropdown-toggle.x-icon-info, .open .dropdown-toggle.x-icon-question, .x-icon-info.active, .x-icon-info:active, .x-icon-info:focus, .x-icon-info:hover, .x-icon-question.active, .x-icon-question:active, .x-icon-question:focus, .x-icon-question:hover {
@@ -2724,14 +2724,14 @@ table .span24 {
 
 .button-info {
     color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da
+    background-color: #51AAF0;
+    border-color: #4694D1;
 }
 
 .button-info.active, .button-info:active, .button-info:focus, .button-info:hover, .open .dropdown-toggle.button-info {
     color: #fff;
-    background-color: #31b0d5;
-    border-color: #269abc
+    background-color: #3F9FEB;
+    border-color: #4694D1;
 }
 
 .button-info.active, .button-info:active, .open .dropdown-toggle.button-info {
@@ -3561,7 +3561,7 @@ form h2, form h3 {
 }
 
 .pagination li > a:focus, .pagination li > a:hover, .pagination li > span:focus, .pagination li > span:hover {
-    color: #428bca;
+    color: #3388CB;
     background-color: #eee;
     border-color: #ddd
 }
@@ -3569,8 +3569,8 @@ form h2, form h3 {
 .pagination .active > a, .pagination .active > a:focus, .pagination .active > a:hover, .pagination .active > span, .pagination .active > span:focus, .pagination .active > span:hover {
     z-index: 2;
     color: #fff;
-    background-color: #5BC0DE;
-    border-color: #44ABC9;
+    background-color: #51AAF0;
+    border-color: #4694D1;
     cursor: default
 }
 

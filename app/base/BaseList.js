@@ -4,12 +4,11 @@
  * @author yongjin<zjut_wyj@163.com> 2014/11/12
  */
 
-define('BaseList', ['jquery', 'underscore', 'backbone', 'Est'],
+define('BaseList', ['jquery', 'underscore', 'backbone'],
   function (require, exports, module) {
-    var BaseList, Backbone, Est;
+    var BaseList, Backbone;
 
     Backbone = require('backbone');
-    Est = require('Est');
 
     BaseList = Backbone.View.extend({
       /**

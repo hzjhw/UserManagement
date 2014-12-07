@@ -4,14 +4,13 @@
  * @author yongjin<zjut_wyj@163.com> 2014/11/6
  */
 
-define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'Pagination', 'localStorage', 'Est'],
+define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel', 'Pagination', 'localStorage'],
   function (require, exports, module) {
-    var Backbone, BaseCollection, PaginationModel, Pagination, Est;
+    var Backbone, BaseCollection, PaginationModel, Pagination;
 
     Backbone = require('backbone');
     PaginationModel = require('PaginationModel');
     Pagination = require('Pagination');
-    Est = require('Est');
     //Backbone.localStorage = require('localStorage');
 
     BaseCollection = Backbone.Collection.extend({

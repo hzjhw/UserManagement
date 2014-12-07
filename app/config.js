@@ -3,19 +3,25 @@
  * @namespace config
  * @author yongjin on 2014/7/18
  */
-
-// 常量
+/**
+ * 全局常量
+ * */
 window.CONST = {
-  HOST : 'http://jihui88.com/member',
+  HOST: 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
   SEP: '/',
-  ENTER_KEY: 13
-}
-// 所有实例化对象的容器
-window.APP = {
-  debug: true
+  ENTER_KEY: 13,
+  DEBUG: true
 }
 
+/**
+ * 视图管理容器
+ * */
+window.app = new Application(CONST);
+
+/**
+ * seajs 配置
+ * */
 seajs.config({
 
   // Sea.js 的基础路径
@@ -27,7 +33,6 @@ seajs.config({
     'underscore': 'vendor/underscore/underscore-debug.js',
     'backbone': 'vendor/backbone/backbone-debug.js',
     'localStorage': 'vendor/backbone/backbone.localStorage-debug.js',
-    'Est': 'vendor/Est/Est.min.js',
     'dialog': 'vendor/artDialog_v6/dialog.js',
     'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js',
     'datetimepicker': 'vendor/jquery-datetimepicker/jquery.datetimepicker.js',
@@ -65,6 +70,7 @@ seajs.config({
     // register
     'RegisterModel': 'models/RegisterModel.js',
     'Register': 'modules/register/controllers/Register.js',
+
     // todo
     'TodoModel': 'demo/todo/models/TodoModel.js',
     'TodoView': 'demo/todo/views/TodoView.js',
@@ -86,7 +92,7 @@ seajs.config({
     'ProductList': 'modules/product/controllers/ProductList.js',
     'ProductDetail': 'modules/product/controllers/ProductDetail.js',
 
-   // member
+    // member
     'MemberModel': 'models/MemberModel.js',
     'MemberCategory': 'modules/member/controllers/MemberCategory.js',
     'MemberList': 'modules/member/controllers/MemberList.js',
@@ -118,276 +124,157 @@ seajs.config({
   charset: 'utf-8'
 });
 
-/** 注册模板*/
+/**
+ * 注册模板
+ * */
 define('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });
-define('template/product_item', function(require, exports, module){
-  module.exports = require('modules/product/views/product_item.html');;
+define('template/product_item', function (require, exports, module) {
+  module.exports = require('modules/product/views/product_item.html');
+  ;
 });
-define('template/product_list', function(require, exports, module){
+define('template/product_list', function (require, exports, module) {
   module.exports = require('modules/product/views/product_list.html');
 });
-define('template/pagination', function(require, exports, module){
+define('template/pagination', function (require, exports, module) {
   module.exports = require('common/pagination/pagination.html');
 });
-define('template/product_detail', function(require, exports, module){
+define('template/product_detail', function (require, exports, module) {
   module.exports = require('modules/product/views/product_detail.html');
 });
-define('template/attributes_show_item', function(require, exports, module){
+define('template/attributes_show_item', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_show_item.html');
 });
-define('template/category_product_item', function(require, exports, module){
+define('template/category_product_item', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_item.html');
 });
-define('template/category_product_list', function(require, exports, module){
+define('template/category_product_list', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_list.html');
 });
-define('template/attributes_item', function(require, exports, module){
+define('template/attributes_item', function (require, exports, module) {
   module.exports = require('modules/attributes/views/attributes_item.html');
 });
-define('template/attributes_list', function(require, exports, module){
+define('template/attributes_list', function (require, exports, module) {
   module.exports = require('modules/attributes/views/attributes_list.html');
 });
-define('template/tag_view', function(require, exports, module){
+define('template/tag_view', function (require, exports, module) {
   module.exports = require('common/tag/views/tag_view.html');
 });
-define('template/tag_view_item', function(require, exports, module){
+define('template/tag_view_item', function (require, exports, module) {
   module.exports = require('common/tag/views/tag_view_item.html');
 });
-define('template/tag_picker_item', function(require, exports, module){
+define('template/tag_picker_item', function (require, exports, module) {
   module.exports = require('common/tag/views/tag_picker_item.html');
 });
 
-define('template/picture_view', function(require, exports, module){
+define('template/picture_view', function (require, exports, module) {
   module.exports = require('common/picture/views/picture_view.html');
 });
-define('template/attributes_option_template', function(require, exports, module){
+define('template/attributes_option_template', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_option_template.html');
 });
-define('template/attributes_option_item', function(require, exports, module){
+define('template/attributes_option_item', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_option_item.html');
 });
 
-define('template/picture_item', function(require, exports, module){
+define('template/picture_item', function (require, exports, module) {
   module.exports = require('common/picture/views/picture_item.html');
 });
-define('template/login', function (require, exports, module){
+define('template/login', function (require, exports, module) {
   module.exports = require('modules/login/login.html');
 });
-define('template/register', function (require, exports, module){
+define('template/register', function (require, exports, module) {
   module.exports = require('modules/register/register.html');
 });
-define('template/register_detail', function (require, exports, module){
+define('template/register_detail', function (require, exports, module) {
   module.exports = require('modules/register/views/register_detail.html');
 });
 /* member */
-define('template/member', function (require, exports, module){
+define('template/member', function (require, exports, module) {
   module.exports = require('modules/member/member.html');
 });
-define('template/member_list', function (require, exports, module){
+define('template/member_list', function (require, exports, module) {
   module.exports = require('modules/member/views/member_list.html');
 });
-define('template/member_list_detail', function (require, exports, module){
+define('template/member_list_detail', function (require, exports, module) {
   module.exports = require('modules/member/views/member_list_detail.html');
 });
-define('template/member_rank', function (require, exports, module){
+define('template/member_rank', function (require, exports, module) {
   module.exports = require('modules/member/views/member_rank.html');
 });
-define('template/member_rank_detail', function (require, exports, module){
+define('template/member_rank_detail', function (require, exports, module) {
   module.exports = require('modules/member/views/member_rank_detail.html');
 });
-define('template/member_attribute', function (require, exports, module){
+define('template/member_attribute', function (require, exports, module) {
   module.exports = require('modules/member/views/member_attribute.html');
 });
-define('template/member_category', function (require, exports, module){
+define('template/member_category', function (require, exports, module) {
   module.exports = require('modules/member/views/member_category.html');
 });
-/** Backbone路由
+
+/**
+ * Backbone路由
  * */
-seajs.use(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
-  var router = Backbone.Router.extend({
-    routes: {
-      '': 'index',
-      'login': 'login',
-      'register': 'register',
-      'product': 'product',
-      'category/product': 'productCategory',
-      'attributes': 'attributes',
-      'member': 'member',
-      '*other': 'default'
-    },
-    index: function () {
-      seajs.use(['jquery', 'Main'], function (jquery, Main) {
-        APP.main = new Main();
-      });
-    },
-    login: function () {
-      seajs.use(['jquery', 'Login'], function (jquery, Login) {
-        APP.login = new Login();
-      });
-    },
-    register: function () {
-      seajs.use(['jquery', 'Register'], function (jquery, Register) {
-        APP.register = new Register();
-      });
-    },
-    product: function () {
-      seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
-        APP.productList = new ProductList();
-      });
-    },
-    productCategory: function () {
-      seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
-        APP.productCategoryList = new ProductCategoryList();
-      });
-    },
-    attributes: function () {
-      seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
-        APP.attributesList = new AttributesList();
-      });
-    },
-    member: function () {
-      seajs.use(['jquery', 'MemberCategory'], function (jquery, MemberCategory) {
-        APP.memberCategory = new MemberCategory();
-      });
-    },
-    default: function () {
-      //$(document.body).append("This route is not hanled.. you tried to access: " + other);
+seajs.use(['jquery', 'underscore', 'backbone'],
+  function ($, _, Backbone) {
+    var router = Backbone.Router.extend({
+      routes: {
+        '': 'index',
+        'login': 'login',
+        'register': 'register',
+        'product': 'product',
+        'category/product': 'productCategory',
+        'attributes': 'attributes',
+        'member': 'member',
+        '*other': 'default'
+      },
+      index: function () {
+        seajs.use(['jquery', 'Main'], function (jquery, Main) {
+          app.addView('main', new Main);
+        });
+      },
+      login: function () {
+        seajs.use(['jquery', 'Login'], function (jquery, Login) {
+          app.addView('login', new Login);
+        });
+      },
+      register: function () {
+        seajs.use(['jquery', 'Register'], function (jquery, Register) {
+          app.addView('register', new Register);
+        });
+      },
+      product: function () {
+        seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
+          app.addView('productList', new ProductList);
+        });
+      },
+      productCategory: function () {
+        seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
+          app.addView('productCategory', new ProductCategoryList);
+        });
+      },
+      attributes: function () {
+        seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
+          app.addView('attributesList', new AttributesList);
+        });
+      },
+      member: function () {
+        seajs.use(['jquery', 'MemberCategory'], function (jquery, MemberCategory) {
+          app.addView('memberCategory', new MemberCategory);
+        });
+      },
+      default: function () {
+        //$(document.body).append("This route is not hanled.. you tried to access: " + other);
 
-    }
+      }
+    });
+    new router;
+    Backbone.history.start();
   });
-  new router;
-  Backbone.history.start();
-});
 
-(function () {
-
-  /**
-   * Sea.js mini 2.3.0 | seajs.org/LICENSE.md
-   */
-  var define;
-  var require;
-  (function (global, undefined) {
-
-    /**
-     * util-lang.js - The minimal language enhancement
-     */
-
-    function isType(type) {
-      return function (obj) {
-        return {}.toString.call(obj) == "[object " + type + "]"
-      }
-    }
-
-    var isFunction = isType("Function")
-    /**
-     * module.js - The core of module loader
-     */
-
-    var cachedMods = {}
-
-    function Module() {
-    }
-
-    // Execute a module
-    Module.prototype.exec = function () {
-      var mod = this
-      // When module is executed, DO NOT execute it again. When module
-      // is being executed, just return `module.exports` too, for avoiding
-      // circularly calling
-      if (this.execed) {
-        return mod.exports
-      }
-      this.execed = true;
-
-      function require(id) {
-        return Module.get(id).exec()
-      }
-
-      // Exec factory
-      var factory = mod.factory
-      var exports = isFunction(factory) ? factory(require, mod.exports = {}, mod) : factory
-      if (exports === undefined) {
-        exports = mod.exports
-      }
-      // Reduce memory leak
-      delete mod.factory
-      mod.exports = exports
-      return exports
-    }
-    // Define a module
-    define = function (id, deps, factory) {
-      var meta = {
-        id: id,
-        deps: deps,
-        factory: factory
-      }
-      Module.save(meta)
-    }
-    // Save meta data to cachedMods
-    Module.save = function (meta) {
-      var mod = Module.get(meta.id)
-      mod.id = meta.id
-      mod.dependencies = meta.deps
-      mod.factory = meta.factory
-    }
-    // Get an existed module or create a new one
-    Module.get = function (id) {
-      return cachedMods[id] || (cachedMods[id] = new Module())
-    }
-    // Public API
-    require = function (id) {
-      var mod = Module.get(id)
-      if (!mod.execed) {
-        mod.exec()
-      }
-      return mod.exports
-    }
-  })(this);
-  define("bui/config", [], function (require, exports, module) {
-    //from seajs
-    var BUI = window.BUI = window.BUI || {};
-    BUI.use = seajs.use;
-    BUI.config = seajs.config;
-  });
-  require("bui/config");
-})();
-if (!window.console) {
-  console = (function (debug) {
-    var instance = null;
-
-    function Constructor() {
-      if (debug) {
-        this.div = document.createElement("console");
-        this.div.id = "console";
-        this.div.style.cssText = "filter:alpha(opacity=80);padding:10px;line-height:14px;position:absolute;right:0px;top:0px;width:30%;border:1px solid #ccc;background:#eee;";
-        document.body.appendChild(this.div);
-      }
-    }
-
-    Constructor.prototype = {
-      log: function (str) {
-        if (debug) {
-          var p = document.createElement("p");
-          p.innerHTML = str;
-          this.div.appendChild(p);
-        }
-      }
-    }
-    function getInstance() {
-      if (instance == null) {
-        instance = new Constructor();
-      }
-      return instance;
-    }
-
-    return getInstance();
-  })(false)
-}
-
-window.debug = function(str, options){
-  if (APP.debug){
+window.debug = function (str, options) {
+  if (CONST.DEBUG) {
     console.log(str);
   }
 }

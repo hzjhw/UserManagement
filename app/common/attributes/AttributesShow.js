@@ -4,16 +4,15 @@
  * @author yongjin on 2014/11/16
  */
 
-define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'Est', 'template/attributes_show_item'],
+define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/attributes_show_item'],
   function (require, exports, module) {
-    var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, Est, itemTemp;
+    var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
 
     HandlebarsHelper = require('HandlebarsHelper');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
-    Est = require('Est');
     itemTemp = require('template/attributes_show_item');
 
     model = BaseModel.extend({

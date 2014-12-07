@@ -3,12 +3,11 @@
  * @namespace Pagination
  * @author yongjin on 2014/11/6
  */
-define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'Est', 'template/pagination'],
+define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'template/pagination'],
   function (require, exports, module) {
-    var Backbone, Est, HandlebarsHelper, Pagination, template;
+    var Backbone, HandlebarsHelper, Pagination, template;
 
     Backbone = require('backbone');
-    Est = require('Est');
     HandlebarsHelper = require('HandlebarsHelper');
     template = require('template/pagination') || 'pagination.html[404]';
 

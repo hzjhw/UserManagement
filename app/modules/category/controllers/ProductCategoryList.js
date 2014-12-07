@@ -3,9 +3,9 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'Est', 'template/category_product_list', 'template/category_product_item'],
+define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item'],
   function (require, exports, module) {
-    var ProductCategoryList, ProductCategoryCollection, ProductCategoryItem, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Est, listTemp, itemTemp;
+    var ProductCategoryList, ProductCategoryCollection, ProductCategoryItem, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseCollection = require('BaseCollection');
@@ -14,7 +14,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseCollection', 'Bas
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/category_product_list');
     itemTemp = require('template/category_product_item');
-    Est = require('Est');
 
     ProductCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/product?pageSize=1000',

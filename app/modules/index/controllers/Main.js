@@ -20,27 +20,7 @@ define('Main', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'templat
     },
     initCombox: function(){
       var container = {};
-      BUI.use('bui/select', function (Select) {
-        container['#test1'] = new Select.Combox({
-          render: '#test1',
-          showTag: true,
-          valueField: '#value1',
-          elCls: 'bui-tag-follow',
-          width: 400,
-          items: ['1', '2']
-        });
-        container['#test1'].render();
-      })
 
-      BUI.use('bui/select', function (Select) {
-        var indexSelect = new Select.Select({
-          render: '#index-s1',
-          valueField: '#index-hide',
-          width: 400,
-          items: ['1', '2', '3', '4']
-        });
-        indexSelect.render();
-      })
     },
     render: function(){
       //this.$el.html(this.template({}));
