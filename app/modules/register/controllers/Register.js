@@ -23,18 +23,26 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         });
       },
       render: function () {
+        var ctx=this;
         console.log('4.Register.render');
         this._render();
-        this._form('#J_Form')._validate()._init(function(){
-
+        this._form('#J_Form')._validate()._init({
+           onAfterSave : function(response){
+             if(response.attributes.success == false ){
+               ctx.refreshCode();
+               return true;
+             }
+             ///window.location.href = '/member/modules/login/login.html';
+           }
         });
         return this;
       },
-
-      save: function(){
-        this._saveItem(function () {
-          window.location.href = '/member/index.html';
-        }, this);
+      events : {
+        'click .refreshCode': 'refreshCode'
+      },
+      refreshCode: function(){
+        var $verifyPic = this.$("#verifyPic");
+        $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
       }
 
     });

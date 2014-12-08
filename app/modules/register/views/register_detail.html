@@ -4,7 +4,7 @@
         <label class="control-label"><s>*</s>Email：</label>
         <div class="controls">
             <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{email:true,required : true}"
                    data-tip='{"text":"请输入Email","iconCls":"icon icon-user"}'>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <label class="control-label"><s>*</s>用户名</label>
         <div class="controls">
             <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{minlength:4,required : true}"
                    data-tip='{"text":"请输入用户名","iconCls":"icon icon-pencil"}'>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <label class="control-label"><s>*</s>密码</label>
         <div class="controls">
             <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{minlength:5,maxlength:16,required : true}"
                    data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'>
         </div>
     </div>
@@ -31,8 +31,20 @@
         <label class="control-label"><s>*</s>确认密码：</label>
         <div class="controls">
             <input id="model-rePassword" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{minlength:5,maxlength:16,required : true}"
                    data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}'>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>检证码</label>
+
+        <div class="controls">
+            <input id="model-randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入检证码"}'>
+            <img id="verifyPic" name="verifyPic" width="56" height="25" class="validete-num refreshCode" src="/veriImg" >
+            <a class="refreshCode" href="javascript:;">换一张？</a>
         </div>
     </div>
 

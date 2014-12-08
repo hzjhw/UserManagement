@@ -13,12 +13,9 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail','templ
         BaseDetail = require('BaseDetail');
         template = require('template/login');
 
-
       /**
        * 列表视图
        */
-
-
 
         Login = BaseDetail.extend({
             el: '#jhw-login',
@@ -30,20 +27,22 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail','templ
               });
             },
             render: function () {
+             var ctx=this;
                 console.log('4.Login.render');
                 this._render();
-                this._form('#J_Form')._validate()._init(function(){
-
+                this._form('#J_Form')._validate()._init({
+                  onAfterSave: function(response){
+                    if(response.attributes.success == false ){
+                      ctx.refreshCode();
+                      return true;
+                    }
+                    window.location.href = '/member/index.html';
+                  }
                 });
                 return this;
             },
             events : {
                 'click .refreshCode': 'refreshCode'
-            },
-            save: function(){
-                this._saveItem(function () {
-                    window.location.href = '/member/index.html';
-                }, this);
             },
             refreshCode: function(){
                 var $verifyPic = this.$("#verifyPic");
