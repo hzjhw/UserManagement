@@ -109,24 +109,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               itemId: ctx.model.get('id'),
               _isAdd: ctx._isAdd // 是否初始化标签列表
             });
-            /*$.ajax({
-             type: 'get',
-             url: CONST.API + '/tag/product',
-             success: function(result){
-             var taglist = Est.pluck(result.attributes.data, 'name');
-             Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
-             if (i !== 0) {
-             taglist.push(item.replace(/^\s*\|-/g, ''));
-             }
-             });
-             ctx.initCombox({
-             render: '#pro-tag',
-             target: '#model-taglist',
-             items: taglist
-             });
-             }
-             })*/
-
           });
 
         if (!ctx._isAdd) {
@@ -173,11 +155,17 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         // 表单初始化
-        this._form('#J_Form')._validate()._init(function () {
-          // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
-            return item.get('name');
-          }).join(','));
+        this._form('#J_Form')._validate()._init({
+          onBeforeSave: function(){
+            // 处理特殊字段
+            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+              return item.get('name');
+            }).join(','));
+          },
+          onAfterSave: function(response){
+
+          }
+
         });
 
         setTimeout(function () {

@@ -112,7 +112,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * 绑定提交按钮
        *
        * @method [protected] - _init
-       * @param callback
+       * @param options [onBeforeSave: 保存前方法] [onAfterSave: 保存后方法]
        * @author wyj 14.11.15
        * @example
        *      this._form('#J_Form')._validate()._init(function () {
@@ -122,7 +122,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
           }).join(','));
         });
        */
-      _init: function (callback) {
+      _init: function (options) {
         var ctx = this;
         $('#submit', this.el).on('click', function () {
           $("input, textarea, select", $(ctx.formSelector)).each(function () {
@@ -143,9 +143,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
               }
             }
           });
-          if (typeof callback !== 'undefined')
-            callback.call(ctx);
-          ctx._save();
+          if (typeof options.onBeforeSave !== 'undefined')
+            options.onBeforeSave.call(ctx);
+          ctx._save(options.onAfterSave
+            || function(){});
         });
       },
       /**
@@ -154,9 +155,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @method [protected] - _save
        * @author wyj 14.11.18
        */
-      _save: function(){
-        this._saveItem(function () {
-        });
+      _save: function(callback){
+        this._saveItem(callback);
       },
       /**
        * 保存表单
