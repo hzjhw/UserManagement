@@ -14,7 +14,6 @@ define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
     TopView = BaseView.extend({
       el: '#jhw-top',
       initialize: function () {
-        debugger
         var userModel = new UserModel();
         userModel.fetch({
           async:false,

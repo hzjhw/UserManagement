@@ -147,6 +147,16 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
 
           })
         });
+      },
+      logout: function(){
+        $.ajax({
+          type: 'GET',
+          async: false,
+          url: CONST.API + '/user/logout',
+          success: function(){
+            window.location.href = CONST.HOST + '/modules/login/login.html';
+          }
+        });
       }
     }
 
