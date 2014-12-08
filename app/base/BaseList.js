@@ -76,6 +76,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
         this._initBind();
         this._initItemView(options.item, this);
         this._initModel(options.model);
+        if (options.items) {
+          Est.each(options.items, function (item) {
+            this.collection.push(new ctx.initModel(item));
+          }, this);
+        }
         return new Est.promise(function (resolve) {
           resolve(ctx);
         });
@@ -99,14 +104,20 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
        * 获取集合数据
        *
        * @method [protected] - _load
-       * @param model
+       * @param options [beforeLoad: 载入前方法][page: 当前页][pageSize: 每页显示条数]
+       * @param model 分页模型类 或为全查必填
        * @author wyj 14.11.16
+       * @example
+       *
        */
       _load: function (options, model) {
         var ctx = this;
+        options = options || {};
         return new Est.promise(function (resolve, reject) {
-          if (options.beforeLoad)
-            options.beforeLoad.call(ctx.collection);
+          if (options.beforeLoad) options.beforeLoad.call(ctx.collection);
+          options.page && ctx.collection.paginationModel.set('page', options.page);
+          options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
+          if (options.page || options.pageSize) model = ctx.collection.paginationModel;
           if (ctx.collection.url) {
             ctx.collection._load(ctx.collection, ctx, model).then(function (result) {
               resolve(result);
@@ -133,8 +144,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
        * @author wyj 14.11.16
        */
       _render: function () {
-        debug('BaseList.render');
         this._addAll();
+        debug('BaseList._render');
       },
       /**
        * 初始化单个枚举视图
@@ -193,11 +204,13 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
        * @author wyj 14.11.16
        */
       _addOne: function (model) {
-        model.set('dx', this.dx++);
-        var itemView = new this.item({ model: model, data: this._data });
-        itemView._setInitModel(this.initModel);
-        this.list.append(itemView._render().el);
-        this.views.push(itemView);
+        if (!this.filter){
+          model.set('dx', this.dx++);
+          var itemView = new this.item({ model: model, data: this._data });
+          itemView._setInitModel(this.initModel);
+          this.list.append(itemView._render().el);
+          this.views.push(itemView);
+        }
       },
       /**
        * 添加所有元素， 相当于刷新视图
@@ -209,6 +222,27 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
         debug('ProductView._addAll');
         this._empty();
         this.collection.each(this._addOne, this);
+      },
+      /**
+       * 搜索
+       *
+       * @method [protected] - _search
+       * @param options
+       * @author wyj 14.12.8
+       * @example
+       *
+       */
+      _search: function(options){
+        var ctx = this;
+        this.filter = true;
+        this._load({ page: 1, pageSize: 5000 }).
+          then(function (result) {
+            ctx.filter = false;
+            if (options.filter){
+              options.filter(result);
+            }
+            debug(result);
+          });
       },
       /**
        * 弹出查看详细信息对话框

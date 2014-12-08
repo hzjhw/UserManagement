@@ -51,11 +51,15 @@
 - 功能模块完成后， 请附带demo.html
 
 ### 框架文档
+0) Application 容器
+ - addView('id', new Product()); // 向容器添加实例视图
+ - getView('id'); // 获取实例视图
+ 
 1) BaseModel [模型类]
- - defaults 默认值
- - baseId ID标识符 如productId
- - baseUrl 服务器交互地址
  - initialize 实现父类_initialize
+ - defaults (可选) 默认值
+ - baseId (可选) ID标识符 如productId
+ - baseUrl (可选) 服务器交互地址
  - validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel
 
 2) BaseCollection [集合]
@@ -66,16 +70,32 @@
 3) BaseItem [单视图]
  - tagName 
  - className (可选)
- - initialize 实现父类_initialize 参数: {template: 模板字符串} _onAfterRender (可选) ：渲染后执行的方法
+ - initialize 实现父类_initialize 
+   参数: {
+        template: 模板字符串
+   } 
+   _onAfterRender (可选) ：渲染后执行的方法
  - render 实现父类_render
  
 4) BaseList [列表视图]
  - el 目标元素Id 当前项目为"#jhw-main"
  - initialize 实现父类_initialize 
-   参数：{template: 字符串模板, render: 插入列表的元素选择符, collection: 集合, item: 单视图, model: 模型类}
+   参数：{
+        template: 字符串模板, 
+        render: 插入列表的元素选择符, 
+        collection: 集合, 
+        item: 单视图, 
+        model: 模型类, 
+        items: [](可选， 当无需url请求时)
+   }
    返回值：promise 参数为context
  - render 实现父类 _render
  
 5) BaseDetail [详细页]
- - initialize 实现父类_initialize 参数：{template: 字符串模板, model: 模型类}
- - render 实现父类 _render this._form('#J_Form')._validate()._init(function () {})
+ - initialize 实现父类_initialize 参数：
+    {
+        template: 字符串模板, 
+        model: 模型类
+    }
+ - render 实现父类 _render 
+   > this._form('#J_Form')._validate()._init(function () {})

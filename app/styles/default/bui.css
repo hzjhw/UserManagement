@@ -482,7 +482,7 @@
     white-space: nowrap
 }
 
-.bui-select-list .bui-list-item-hover {
+.bui-select-list .bui-list-item-hover, .bui-select-list .hover {
     text-decoration: none;
     color: #262626;
     background-color: #f5f5f5

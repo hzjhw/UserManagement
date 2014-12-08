@@ -58,6 +58,7 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 't
       },
       pageTo: function(){
         var page = Est.trim(this.$('.input-pageTo').val());
+        if (parseInt(page, 10) > this.model.get('totalPage') || parseInt(page, 10) < 1) return;
         if (Est.isEmpty(page)) return;
         this.model.set('page', page);
         this.model.trigger('reloadList', this.model);

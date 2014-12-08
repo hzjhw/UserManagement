@@ -56,6 +56,7 @@ seajs.config({
     'AttributesShow': 'common/attributes/AttributesShow.js',
     'Tag': 'common/tag/Tag.js',
     'Picture': 'common/picture/Picture.js',
+    'Select': 'common/select/Select.js',
 
     // index
     'TopView': 'modules/index/views/TopView.js',
@@ -152,6 +153,9 @@ define('template/category_product_item', function (require, exports, module) {
 define('template/category_product_list', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_list.html');
 });
+define('template/product_search', function(require, exports, module){
+  module.exports = require('modules/product/views/product_search.html');
+});
 define('template/attributes_item', function (require, exports, module) {
   module.exports = require('modules/attributes/views/attributes_item.html');
 });
@@ -212,7 +216,13 @@ define('template/member_attribute', function (require, exports, module) {
 define('template/member_category', function (require, exports, module) {
   module.exports = require('modules/member/views/member_category.html');
 });
-
+/*select*/
+define('template/select_list', function(require, exports, module){
+  module.exports = require('common/select/select_list.html');
+});
+define('template/select_item', function(require, exports, module){
+  module.exports = require('common/select/select_item.html');
+});
 /**
  * Backbone路由
  * */
@@ -251,7 +261,7 @@ seajs.use(['jquery', 'underscore', 'backbone'],
       },
       productCategory: function () {
         seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
-          app.addView('productCategory', new ProductCategoryList);
+          app.addView('productCategoryPage', new ProductCategoryList);
         });
       },
       attributes: function () {

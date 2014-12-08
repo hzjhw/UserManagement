@@ -111,8 +111,8 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         newModel.set('editField', true);
         newModel.save(null, {
           success: function (model, result) {
-            if (typeof options.callback != 'undefined') {
-              options.callback.call(ctx, keyValue, result);
+            if (typeof options.success != 'undefined') {
+              options.success.call(ctx, keyValue, result);
             }
           }, wait: wait
         });
