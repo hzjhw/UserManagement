@@ -74,12 +74,17 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @returns {BaseDetail}
        * @author wyj on 14.11.15
        * @example
-       *    this._form('#J_Form')._validate()._init(function () {
-          // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
-            return item.get('name');
-          }).join(','));
-        });
+       *    this._form('#J_Form')._validate()._init({
+              onBeforeSave: function(){
+                // 处理特殊字段
+                this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+                  return item.get('name');
+                }).join(','));
+              },
+              onAfterSave: function(response){
+
+              }
+            });
        */
       _form: function (formSelector) {
         this.formSelector = formSelector;
@@ -91,13 +96,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @method [protected] - _validate
        * @returns {BaseDetail}
        * @author wyj 14.11.15
-       * @example
-       *    this._form('#J_Form')._validate()._init(function () {
-          // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
-            return item.get('name');
-          }).join(','));
-        });
        */
       _validate: function () {
         var ctx = this;
@@ -114,13 +112,6 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @method [protected] - _init
        * @param options [onBeforeSave: 保存前方法] [onAfterSave: 保存后方法]
        * @author wyj 14.11.15
-       * @example
-       *      this._form('#J_Form')._validate()._init(function () {
-          // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function(item){
-            return item.get('name');
-          }).join(','));
-        });
        */
       _init: function (options) {
         var ctx = this;

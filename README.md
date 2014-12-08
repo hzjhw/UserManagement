@@ -98,4 +98,14 @@
         model: 模型类
     }
  - render 实现父类 _render 
-   > this._form('#J_Form')._validate()._init(function () {})
+   > this._form('#J_Form')._validate()._init({
+        onBeforeSave: function(){
+            // 处理特殊字段
+            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+                 return item.get('name');
+            }).join(','));
+        },
+        onAfterSave: function(response){
+        
+        }
+    })

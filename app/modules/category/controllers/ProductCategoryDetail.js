@@ -34,8 +34,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
               items: list
             });
           });
-        this._form('#J_Form')._validate()._init(function () {
-        });
+        this._form('#J_Form')._validate()._init({});
         return this;
       }
     });
