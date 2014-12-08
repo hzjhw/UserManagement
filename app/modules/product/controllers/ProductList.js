@@ -47,7 +47,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 初始化
       initialize: function () {
-        if (!app.hasData('productCategory')) {
+        if (!app.getData('productCategory')) {
           BaseUtils.getProductCategory({
             extend: true,
             select: true
@@ -172,7 +172,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       searchAdvance: function(){
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
-        if (!app.hasData('productCategory')) {
+        if (!app.getData('productCategory')) {
           BaseUtils.getProductCategory({
             extend: true,
             select: true
