@@ -3,37 +3,40 @@
  * @namespace TopView
  * @author yongjin on 2014/11/12
  */
-define('TopView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'UserModel'],
-    function(require, exports, module){
-        var TopView, Backbone, HandlebarsHelper, UserModel;
+define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
+  function (require, exports, module) {
+    var TopView, UserModel, BaseView, tempTop;
 
-        Backbone = require('backbone');
-        HandlebarsHelper = require('HandlebarsHelper');
-        UserModel = require('UserModel');
+    UserModel = require('UserModel');
+    BaseView = require('BaseView');
+    tempTop = require('template/layout_top');
 
-        TopView = Backbone.View.extend({
-            el: '#jhw-left-bar',
-            template: HandlebarsHelper.compile($("#left-bar-template").html()),
-            events: {
-                'click #product': 'toProduct'
-            },
-
-            initalize: function(){
-                var userModel = new UserModel();
-                userModel.fetch();
-                debug(this.model);
-            },
-
-            render: function(){
-                try{
-                    this.el.html(this.template(this.model.toJSON()));
-                }catch(e){
-                    console.error('TopView');
-                }
-                return this;
-            }
-
+    TopView = BaseView.extend({
+      el: '#jhw-top',
+      initialize: function () {
+        debugger
+        var userModel = new UserModel();
+        userModel.fetch({
+          async:false,
+          success: function(data){
+            app.setData('user', data.attributes);
+            debug(data);
+          }
         });
-
-        module.exports = TopView;
+        if (!app.getData('user')){
+          window.location.href = CONST.HOST + '/modules/login/login.html';
+          return false;
+        }
+        this._initialize({
+          template: tempTop,
+          data: userModel
+        });
+        this.render();
+      },
+      render: function () {
+        this._render();
+      }
     });
+
+    module.exports = TopView;
+  });

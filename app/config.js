@@ -129,6 +129,13 @@ seajs.config({
 /**
  * 注册模板
  * */
+
+define('template/layout_left', function(require, exports, module){
+  module.exports = require('modules/index/views/layout_left.html');
+});
+define('template/layout_top', function(require, exports, module){
+  module.exports = require('modules/index/views/layout_top.html');
+});
 define('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });

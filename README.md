@@ -56,6 +56,7 @@
  - getView('id'); // 获取实例视图
  
 2) BaseView 普通视图
+ - el: 目标元素Id 如 "#jhw-main"
  - initialize 实现父类_initialize
    参数：{
         template: 字符串模板，
@@ -86,7 +87,7 @@
  - render 实现父类_render
  
 6) BaseList [列表视图]
- - el 目标元素Id 当前项目为"#jhw-main"
+ - el 目标元素Id， 如 "#jhw-main"
  - initialize 实现父类_initialize 
    参数：{
         template: 字符串模板, 

@@ -19,6 +19,7 @@ define('Main', ['BaseView', 'template/main'], function(require, exports, module)
           src: 'images/main.jpg'
         }
       });
+      this.render();
     },
     render: function(){
       this._render();

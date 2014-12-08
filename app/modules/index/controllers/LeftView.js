@@ -4,43 +4,26 @@
  * @author yongjin on 2014/11/12
  */
 
-define('LeftView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'UserModel'],
-    function(require, exports, module){
-    var LeftView, Backbone, HandlebarsHelper, UserModel;
+define('LeftView', ['BaseView', 'template/layout_left'], function (require, exports, module) {
+  var LeftView, BaseView, leftTemp;
 
-        Backbone = require('backbone');
-        HandlebarsHelper = require('HandlebarsHelper');
-        UserModel = require('UserModel');
+  BaseView = require('BaseView');
+  leftTemp = require('template/layout_left');
 
-        LeftView = Backbone.View.extend({
-            el: '#jhw-left-bar',
-            template: HandlebarsHelper.compile($("#left-bar-template").html()),
-            events: {
-                'click #product': 'toProduct'
-            },
+  LeftView = BaseView.extend({
+    el: '#jhw-left-bar',
+    initialize: function () {
+      this._initialize({
+        template: leftTemp,
+        data: {}
+      });
+      this.render();
+    },
+    render: function () {
+      this._render();
+    }
 
-            initialize: function(){
-                var ctx = this;
-                this.model = new UserModel();
-                this.model.fetch({
-                    async: false
-                }).done(function(){
-                    //console.dir(ctx.model);
-                });
-                this.render();
+  });
 
-            },
-
-            render: function(){
-                try{
-                    this.$el.html(this.template(this.model.toJSON()));
-                }catch (e){
-                    console.error('LeftView.render');
-                }
-                return this;
-            }
-
-        });
-
-        module.exports = LeftView;
+  module.exports = LeftView;
 });
