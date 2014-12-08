@@ -41,6 +41,7 @@ seajs.config({
     'marionette': 'vendor/backbone/backbone.marionette.js',
     'handlebars': 'vendor/handlebars/handlebars-debug.js',
     'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
+    'BaseView': 'base/BaseView.js',
     'BaseCollection': 'base/BaseCollection.js',
     'BaseModel': 'base/BaseModel.js',
     'BaseItem': 'base/BaseItem.js',
@@ -59,8 +60,8 @@ seajs.config({
     'Select': 'common/select/Select.js',
 
     // index
-    'TopView': 'modules/index/views/TopView.js',
-    'LeftView': 'modules/index/views/LeftView.js',
+    'TopView': 'modules/index/controllers/TopView.js',
+    'LeftView': 'modules/index/controllers/LeftView.js',
     'Main': 'modules/index/controllers/Main.js',
 
     // user

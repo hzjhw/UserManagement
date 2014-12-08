@@ -3,27 +3,25 @@
  * @namespace Index
  * @author yongjin on 2014/11/18
  */
-define('Main', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'template/main'], function(require, exports, module){
-  var Main, Backbone, template, HandlebarsHelper;
+define('Main', ['BaseView', 'template/main'], function(require, exports, module){
+  var Main, BaseView, template;
 
-  Backbone = require('backbone');
-  HandlebarsHelper = require('HandlebarsHelper');
+  BaseView = require('BaseView');
   template = require('template/main');
 
 
-  Main = Backbone.View.extend({
+  Main = BaseView.extend({
     el: '#jhw-main',
-    template: HandlebarsHelper.compile(template),
     initialize: function(){
-      this.$el.html(this.template({}));
-      this.initCombox();
-    },
-    initCombox: function(){
-      var container = {};
-
+      this._initialize({
+        template: template,
+        data: {
+          src: 'images/main.jpg'
+        }
+      });
     },
     render: function(){
-      //this.$el.html(this.template({}));
+      this._render();
       return this;
     }
   });

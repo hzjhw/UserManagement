@@ -88,6 +88,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        */
       _form: function (formSelector) {
         this.formSelector = formSelector;
+        this.formElemnet = this.$(this.formSelector);
         return this;
       },
       /**
@@ -100,7 +101,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
       _validate: function () {
         var ctx = this;
         BUI.use('bui/form', function (Form) {
-          new Form.Form({
+          ctx.formValidate = new Form.Form({
             srcNode: ctx.formSelector
           }).render();
         });
@@ -115,10 +116,16 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        */
       _init: function (options) {
         var ctx = this;
+        var passed = true;
         $('#submit', this.el).on('click', function () {
+          passed = true; // 设置验证通过
+          ctx.formElemnet.submit();
           $("input, textarea, select", $(ctx.formSelector)).each(function () {
             var name, val, pass;
             name = $(this).attr('name');
+            if ($(this).hasClass('bui-form-field-error')){
+              passed = false;
+            }
             var modelId = $(this).attr('id');
             if (modelId && modelId.indexOf('model-') !== -1 && !Est.isEmpty(name)) {
               switch (this.type) {
@@ -136,8 +143,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
           });
           if (typeof options.onBeforeSave !== 'undefined')
             options.onBeforeSave.call(ctx);
-          ctx._save(options.onAfterSave
-            || function(){});
+          if (passed){
+            ctx._save(options.onAfterSave
+              || function(){});
+          }
         });
       },
       /**

@@ -21,8 +21,7 @@ define('TopView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'User
             initalize: function(){
                 var userModel = new UserModel();
                 userModel.fetch();
-                console.log(this.model);
-
+                debug(this.model);
             },
 
             render: function(){

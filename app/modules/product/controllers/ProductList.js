@@ -185,9 +185,18 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           ctx.searchDialog = dialog({
             id: 'search-dialog',
             title: '高级搜索',
-            width: 850,
+            width: 900,
             content: ctx.searchTemp({
-              productCategoryList: app.getData('productCategory')
+              productCategoryList: app.getData('productCategory'),
+              loginViewList: [
+                {text: '访问者可见', value: '1'},
+                {text: '登录后可见', value: '0'}
+              ],
+              adsList: [
+                {text: '广告产品', value: '2'},
+                {text: '是', value: '1'},
+                {text: '否', value: '0'}
+              ]
             }),
             button: [
               {

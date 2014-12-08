@@ -37,6 +37,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
         });
       },
       getProductCategory: function(options){
+        debug('getProductCategory');
         return new Est.promise(function (topResolve, topReject) {
           options.select = options ? options.select ? true : false : false;
           options.extend = options ? options.extend ? true : false : false;
