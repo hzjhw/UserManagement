@@ -64,22 +64,26 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _initCollection: function (collection, options) {
         debug('1.ProductView._initialize');
-        var options = options || {};
+        this.options = options || {};
         var ctx = this;
         this.dx = 0;
         this.collapsed = true;
         this.views = [];
         this.$el.empty();
-        if (options.template) this.$el.append($(options.template));
-        this._data = options.data;
-        this.list = options.render ? $(options.render) : this.$el;
+        if (this.options.template) this.$el.append($(this.options.template));
+        this._data = this.options.data;
+        this.list = this.options.render ? $(this.options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
         if (!this.collection) this.collection = new collection;
+        //TODO 分类过滤
+        if (this.options.subRender){
+          this.composite = true;
+        }
         this._initBind();
-        this._initItemView(options.item, this);
-        this._initModel(options.model);
-        if (options.items) {
-          Est.each(options.items, function (item) {
+        this._initItemView(this.options.item, this);
+        this._initModel(this.options.model);
+        if (this.options.items) {
+          Est.each(this.options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
           }, this);
         }
@@ -206,12 +210,37 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @author wyj 14.11.16
        */
       _addOne: function (model) {
-        if (!this.filter) {
+        var ctx = this;
+        if (!this.filter && !this.composite) {
           model.set('dx', this.dx++);
           var itemView = new this.item({ model: model, data: this._data });
           itemView._setInitModel(this.initModel);
           this.list.append(itemView._render().el);
           this.views.push(itemView);
+
+          if (model.get('children') && model.get('children').length > 0){
+            // Build child views, insert and render each
+            var tree = itemView.$('> ' + this.options.subRender), childView = null;
+            _.each(model._getChildren(ctx.collection), function(model) {
+              childView = new ctx.item({
+                model: model, data: ctx._data
+              });
+              childView._setInitModel(ctx.initModel);
+              tree.append(childView.$el);
+              childView._render();
+            });
+
+            /* Apply some extra styling to views with children */
+            if (childView)
+            {
+              // Add bootstrap plus/minus icon
+              this.$('> .node-collapse').prepend($('<i class="icon-plus"/>'));
+
+              // Fixup css on last item to improve look of tree
+              childView.$el.addClass('last-item').before($('<li/>').addClass('dummy-item'));
+            }
+          }
+
         }
       },
       /**
@@ -235,12 +264,12 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         if (this.collapsed)
         {
           this.$('> .node-collapse i').attr('class', 'icon-plus');
-          this.$('> .node-tree').slideUp(CONST.COLLAPSE_SPEED);
+          this.$('> ' + this.subRender).slideUp(CONST.COLLAPSE_SPEED);
         }
         else
         {
           this.$('> .node-collapse i').attr('class', 'icon-minus');
-          this.$('> .node-tree').slideDown(CONST.COLLAPSE_SPEED);
+          this.$('> ' + this.subRender).slideDown(CONST.COLLAPSE_SPEED);
         }
       },
       /**
@@ -303,6 +332,39 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           }
           if (pass) {
             ctx._addOne(item);
+          }
+        });
+      },
+      /**
+       * 过滤父级元素
+       *
+       * @method [protected] - _filterRoot
+       * @private
+       * @author wyj 14.12.9
+       */
+      _filterRoot: function(){
+        var ctx = this;
+        var temp = [];
+        ctx.composite = false;
+        Est.each(ctx.collection.models, function(item){
+          temp.push({
+            categoryId: item['attributes'][ctx.options.categoryId],
+            belongId: item['attributes'][ctx.options.parentId]
+          });
+        });
+        this.collection.each(function(model){
+          var i = temp.length;
+          while (i > 0){
+            var item = temp[i -1];
+            if (item[ctx.options.parentId] === model.get(ctx.options.categoryId)){
+              model.get('children').push(item[ctx.options.categoryId]);
+              temp.splice(i, 1);
+            }
+            i--;
+          }
+          // 添加父级元素
+          if (model.get('isroot') === '01'||  model.get(ctx.options.parentId) === ctx.options.parentValue){
+            ctx._addOne(model);
           }
         });
       },

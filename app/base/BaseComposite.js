@@ -31,10 +31,8 @@ define('BaseComposite', ['BaseCollection'], function (require, exports, module) 
       }
     },
     _load: function (instance, context, model) {
-      var ctx = this;
       return new Est.promise(function (resolve) {
         return instance.fetch({success: function () {
-          console.dir(ctx.collection);
           resolve(instance);
           context.collection._reset();
           context._empty();

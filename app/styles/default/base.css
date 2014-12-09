@@ -185,7 +185,18 @@ label.checkbox { padding-left: 5px; }
 #product-list-ul .pro-list-name{ padding: 0 5px; }
 #product-list-ul .hover{ background-color: #f5f5f5; }
 /* 产品分类 ************************************************************************************/
-#jhw-product-category{ }
+#jhw .jhw-product-category .cate-00{
+    margin-left:0px;
+}
+#jhw .jhw-product-category .cate-01{
+    margin-left:40px;
+}
+#jhw .jhw-product-category .cate-02{
+    margin-left:80px;
+}
+#jhw .jhw-product-category .cate-03{
+    margin-left:120px;
+}
 /* 新闻 ****************************************************************************************/
 #jhw-news{ }
 /* 新闻分类 ************************************************************************************/
@@ -202,6 +213,8 @@ label.checkbox { padding-left: 5px; }
 .cate-grid-cell-inner{ padding: 10px 5px; position: relative; overflow: hidden; }
 .category-ul .gird-checkbox{ width:32px; }
 .category-ul .gird-2{ width:32px; }
+/*
 .category-ul .gird-3{ width:20%; }
 .category-ul .gird-4{ width:32px; }
 .category-ul .gird-5{ width:32px; }
+*/

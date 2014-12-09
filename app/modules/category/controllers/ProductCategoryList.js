@@ -69,13 +69,20 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
         var options = {
           template: listTemp,
           render: '.category-ul',
-          subRender: '.cate-sub',
           item: ProductCategoryItem,
           model: CategoryModel,
-          collection: ProductCategoryCollection
+          collection: ProductCategoryCollection,
+
+          subRender: '.node-tree',
+          parentId: 'belongId',
+          categoryId: 'categoryId',
+          grade: '00',
+          parentValue: '/'
         };
         this._initialize(options).then(function (ctx) {
-          ctx._load(options);
+          ctx._load(options).then(function(result){
+            ctx._filterRoot();
+          });
         });
       },
       render: function () {

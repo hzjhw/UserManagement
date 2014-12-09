@@ -126,12 +126,11 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
        * 获取子模型
        * @returns {*}
        */
-      getChildren: function() {
+      _getChildren: function(collection) {
         return _.map(this.get('children'), function(ref) {
           // Lookup by ID in parent collection if string/num
           if (typeof(ref) == 'string' || typeof(ref) == 'number')
-            return this.collection.get(ref);
-
+            return collection.get(ref);
           // Else assume its a real object
           return ref;
         });
