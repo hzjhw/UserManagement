@@ -3,7 +3,7 @@
     <div class="control-group">
         <label class="control-label"><s>*</s>Email：</label>
         <div class="controls">
-            <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
+            <input id="model-email" name="valikey" value="{{email}}" type="text" class="input-large"
                    data-rules="{email:true,required : true}"
                    data-tip='{"text":"请输入Email","iconCls":"icon icon-user"}'>
         </div>
@@ -12,8 +12,8 @@
     <div class="control-group">
         <label class="control-label"><s>*</s>用户名</label>
         <div class="controls">
-            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
-                   data-rules="{minlength:4,required : true}"
+            <input id="model-username" name="valiValue" value="{{username}}" type="text" class="input-large"
+                   data-rules="{minlength:4,maxlength:13,regexp:/^[a-zA-Z\d]\w{2,11}[a-zA-Z\d]$/}" data-messages="{regexp:'用户名只能是字母（大小写敏感），数字，下划线，不能以下划线开头和结尾!'}"
                    data-tip='{"text":"请输入用户名","iconCls":"icon icon-pencil"}'>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <label class="control-label"><s>*</s>密码</label>
         <div class="controls">
             <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{minlength:5,maxlength:16,required : true}"
+                   data-rules="{minlength:6,maxlength:16}"
                    data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'>
         </div>
     </div>
@@ -31,7 +31,7 @@
         <label class="control-label"><s>*</s>确认密码：</label>
         <div class="controls">
             <input id="model-rePassword" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{minlength:5,maxlength:16,required : true}"
+                   data-rules="{minlength:6,maxlength:16,equalTo:'#model-password'}"
                    data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}'>
         </div>
     </div>
@@ -52,7 +52,7 @@
         <div class="form-actions span13 offset3">
             <button id="submit" type="button" class="button button-primary">确定</button>
             <button id="reset" type="reset" class="button">重置</button>
-            <button id="register" type="button" class="button"><a href="../login/login.html" class="register_a">登录</a></button>
+            <a href="../login/login.html"><button id="register" type="button" class="button">登录</button></a>
         </div>
     </div>
 </form>
