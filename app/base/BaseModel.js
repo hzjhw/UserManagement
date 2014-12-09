@@ -12,6 +12,9 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
 
     BaseModel = Backbone.Model.extend({
       baseId: '',
+      defaults: {
+        children: []
+      },
       /**
        * 初始化请求连接, 判断是否为新对象， 否自动加上ID
        *
@@ -117,6 +120,20 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
               options.success.call(ctx, keyValue, result);
             }
           }, wait: wait
+        });
+      },
+      /**
+       * 获取子模型
+       * @returns {*}
+       */
+      getChildren: function() {
+        return _.map(this.get('children'), function(ref) {
+          // Lookup by ID in parent collection if string/num
+          if (typeof(ref) == 'string' || typeof(ref) == 'number')
+            return this.collection.get(ref);
+
+          // Else assume its a real object
+          return ref;
         });
       },
       /**

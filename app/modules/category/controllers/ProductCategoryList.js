@@ -69,6 +69,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
         var options = {
           template: listTemp,
           render: '.category-ul',
+          subRender: '.cate-sub',
           item: ProductCategoryItem,
           model: CategoryModel,
           collection: ProductCategoryCollection
@@ -79,6 +80,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
       },
       render: function () {
         this._render();
+        //return this.el;
       },
       openAddDialog: function () {
         this._detail({

@@ -12,6 +12,7 @@ window.CONST = {
   DOMAIN: 'http://jihui88.com',
   SEP: '/',
   ENTER_KEY: 13,
+  COLLAPSE_SPEED: 50,
   DEBUG: true
 }
 

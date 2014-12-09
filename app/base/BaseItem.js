@@ -32,6 +32,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
           this.template = HandlebarsHelper.compile(options.template);
 
         // 绑定事件
+        this.model.bind('change:children', this.render, this);
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
@@ -95,6 +96,28 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
         this._onBeforeRender();
         this.$el.html(this.template(this.model.toJSON()));
         this._onAfterRender();
+
+        if (this.model.get('children').length > 0){
+          // Build child views, insert and render each
+          var tree = this.$('> .node-tree'), childView = null;
+          _.each(this.model.getChildren(), function(model) {
+            childView = new TreeView({
+              model: model
+            });
+            tree.append(childView.$el);
+            childView.render();
+          });
+
+          /* Apply some extra styling to views with children */
+          if (childView)
+          {
+            // Add bootstrap plus/minus icon
+            this.$('> .node-collapse').prepend($('<i class="icon-plus"/>'));
+
+            // Fixup css on last item to improve look of tree
+            childView.$el.addClass('last-item').before($('<li/>').addClass('dummy-item'));
+          }
+        }
         return this;
       },
       /**

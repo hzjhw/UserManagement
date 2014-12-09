@@ -67,6 +67,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var options = options || {};
         var ctx = this;
         this.dx = 0;
+        this.collapsed = true;
         this.views = [];
         this.$el.empty();
         if (options.template) this.$el.append($(options.template));
@@ -223,6 +224,24 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         debug('ProductView._addAll');
         this._empty();
         this.collection.each(this._addOne, this);
+      },
+      setupEvents: function() {
+        // Hack to get around event delegation not supporting ">" selector
+        var that = this;
+        this.$('> .node-collapse').click(function() { return that.toggleCollapse(); });
+      },
+      toggleCollapse: function() {
+        this.collapsed = !this.collapsed;
+        if (this.collapsed)
+        {
+          this.$('> .node-collapse i').attr('class', 'icon-plus');
+          this.$('> .node-tree').slideUp(CONST.COLLAPSE_SPEED);
+        }
+        else
+        {
+          this.$('> .node-collapse i').attr('class', 'icon-minus');
+          this.$('> .node-tree').slideDown(CONST.COLLAPSE_SPEED);
+        }
       },
       /**
        * 搜索
