@@ -16,7 +16,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
         'click #product-category-reset': 'reset'
       },
       initialize: function () {
-        debug(ProductCategoryDetail.initialize);
+        debug('ProductCategoryDetail.initialize');
         this._initialize({
           template: $("#product-category-detail-tpl").html(),
           model: CategoryModel

@@ -124,7 +124,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.11.16
        */
       _toggleChecked: function () {
-        this.$el.find(".toggle").attr("checked", this.model.get('checked'));
+        this.model.set('checked', !this.model.get('checked'));
       },
       /**
        * 单个字段保存

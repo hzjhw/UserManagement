@@ -4,11 +4,12 @@
  * @author yongjin<zjut_wyj@163.com> 2014/11/12
  */
 
-define('BaseList', ['jquery', 'underscore', 'backbone'],
+define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
   function (require, exports, module) {
-    var BaseList, Backbone;
+    var BaseList, Backbone, BaseUtils;
 
     Backbone = require('backbone');
+    BaseUtils = require('BaseUtils');
 
     BaseList = Backbone.View.extend({
       /**
@@ -204,7 +205,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
        * @author wyj 14.11.16
        */
       _addOne: function (model) {
-        if (!this.filter){
+        if (!this.filter) {
           model.set('dx', this.dx++);
           var itemView = new this.item({ model: model, data: this._data });
           itemView._setInitModel(this.initModel);
@@ -227,22 +228,64 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
        * 搜索
        *
        * @method [protected] - _search
-       * @param options
+       * @param array
+       * @param options [onBeforeAdd: 自定义过滤]
        * @author wyj 14.12.8
        * @example
-       *
+       *    this._search([
+       { key: 'name', value: this.searchKey },
+       {key: 'prodtype', value: this.searchProdtype} ,
+       {key: 'category', value: this.searchCategory},
+       {key: 'loginView', value: this.searchLoginView},
+       {key: 'ads', value: this.searchAds}
+       ], {onBeforeAdd: function(item){
+          if (pass && !Est.isEmpty(obj.value) &&
+              item.attributes[obj.key].indexOf(obj.value) === -1) {
+              ctx.collection.remove(item);
+              pass = false;
+              return false;
+            }
+       }});
        */
-      _search: function(options){
+      _search: function (array, options) {
         var ctx = this;
         this.filter = true;
-        this._load({ page: 1, pageSize: 5000 }).
-          then(function (result) {
-            ctx.filter = false;
-            if (options.filter){
-              options.filter(result);
+        options = options ||
+        {onBeforeAdd: function () {
+        }};
+        this._load({ page: 1, pageSize: 5000 }).then(function () {
+          ctx.filter = false;
+          ctx._filter(array, options);
+        });
+      },
+      /**
+       * 过滤
+       *
+       * @method [private] - _filter
+       * @param array
+       * @param options
+       * @private
+       * @author wyj 14.12.8
+       */
+      _filter: function (array, options) {
+        var ctx = this;
+        Est.each(ctx.collection.models, function (item) {
+          var pass = true;
+          Est.each(array, function (obj) {
+            if (pass && !Est.isEmpty(obj.value) && (!item.attributes[obj.key] ||
+              item.attributes[obj.key].indexOf(obj.value) === -1)) {
+              ctx.collection.remove(item);
+              pass = false;
+              return false;
             }
-            debug(result);
           });
+          if (pass && options.onBeforeAdd) {
+            options.onBeforeAdd.call(this, item);
+          }
+          if (pass) {
+            ctx._addOne(item);
+          }
+        });
       },
       /**
        * 弹出查看详细信息对话框
@@ -357,7 +400,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
         }
         temp.view.model.set(tempObj);
         next.view.model.set(nextObj);
-        if (options.success){
+        if (options.success) {
           options.success.call(this, temp, next);
         }
         // 交换model
@@ -385,7 +428,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
         this._exchangeOrder(index, index - 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
-            if (thisNode.get('id') && nextNode.get('id')){
+            if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
               this._saveSort(nextNode);
             }
@@ -408,12 +451,30 @@ define('BaseList', ['jquery', 'underscore', 'backbone'],
         this._exchangeOrder(index, index + 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
-           if (thisNode.get('id') && nextNode.get('id')){
-             this._saveSort(thisNode);
-             this._saveSort(nextNode);
-           }
+            if (thisNode.get('id') && nextNode.get('id')) {
+              this._saveSort(thisNode);
+              this._saveSort(nextNode);
+            }
           }
         });
+      },
+      /**
+       *  获取checkbox选中项
+       *
+       * @method [protected] - _getCheckboxIds
+       * @returns {*}
+       * @private
+       * @author wyj 14.12.8
+       */
+      _getCheckboxIds: function () {
+        var list = Est.pluck(Est.filter(this.collection.models, function (item) {
+          return item.attributes.checked;
+        }), 'id');
+        if (list.length === 0){
+          BaseUtils.tip('至少选择一项');
+          return;
+        }
+       return list;
       }
     });
 

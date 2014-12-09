@@ -72,7 +72,9 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         if (response.attributes) {
           response = response.attributes.data;
         }
-        response.id = response[ctx.baseId]; response.time = new Date().getTime();
+        response.id = response[ctx.baseId];
+        response.checked = false;
+        response.time = new Date().getTime();
         return response;
       },
       /**

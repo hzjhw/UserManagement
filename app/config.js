@@ -18,7 +18,15 @@ window.CONST = {
  * 视图管理容器
  * */
 window.app = new Application(CONST);
-
+app.setData('loginViewList', [
+  {text: '访问者可见', value: '1'},
+  {text: '登录后可见', value: '0'}
+]);
+app.setData('adsList', [
+  {text: '广告产品', value: '2'},
+  {text: '是', value: '1'},
+  {text: '否', value: '0'}
+]);
 /**
  * seajs 配置
  * */

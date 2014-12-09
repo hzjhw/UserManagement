@@ -36,10 +36,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       tagName: 'tr',
       className: 'bui-grid-row',
       events: {
+        'click .toggle': '_toggleChecked',
+        'click .delete': '_del',
         'click .name': 'editName',
         'click .prodtype': 'editProdtype',
         'click .edit': 'editItem',
-        'click .delete': '_del',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort',
@@ -121,7 +122,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click #toggle-all': '_toggleAllChecked',
         'click .product-add': 'openAddDialog',
         'click .btn-search': 'search',
-        'click .search-advance': 'searchAdvance'
+        'click .search-advance': 'searchAdvance',
+        'click .btn-batch-del': 'batchDel'
       },
       initialize: function () {
         var options = {
@@ -145,31 +147,24 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           url: url
         });
       },
-      search: function () {
-        var ctx = this;
-        this.searchKey = Est.trim(this.$('.search-text').val());
-        if (Est.isEmpty(this.searchKey)){
-          this.searchKey = null;
-          this._load();
-        }
-        this._search({
-          filter: function(){
-            if (ctx.searchKey){
-              Est.each(ctx.collection.models, function(item){
-                if (item.attributes.name.indexOf(ctx.searchKey) === -1){
-                  ctx.collection.remove(item);
-                } else{
-                  ctx._addOne(item);
-                }
-                debug(item);
-              });
-            }
-            debug(ctx.collection);
-          }
-        });
-        debug('search');
+      baseSearch: function () {
+        this._search([
+          { key: 'name', value: this.searchKey },
+          {key: 'prodtype', value: this.searchProdtype} ,
+          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
+          {key: 'loginView', value: this.searchLoginView},
+          {key: 'ads', value: this.searchAds === '2' ? '' : this.searchAds}
+        ], {});
       },
-      searchAdvance: function(){
+      search: function () {
+        this.searchKey = Est.trim(this.$('.search-text').val());
+        if (Est.isEmpty(this.searchKey)) {
+          this._load({ page: 1, pageSize: 16 });
+        } else {
+          this.baseSearch();
+        }
+      },
+      searchAdvance: function () {
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('productCategory')) {
@@ -188,21 +183,25 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             width: 900,
             content: ctx.searchTemp({
               productCategoryList: app.getData('productCategory'),
-              loginViewList: [
-                {text: '访问者可见', value: '1'},
-                {text: '登录后可见', value: '0'}
-              ],
-              adsList: [
-                {text: '广告产品', value: '2'},
-                {text: '是', value: '1'},
-                {text: '否', value: '0'}
-              ]
+              loginViewList: app.getData('loginViewList'),
+              adsList: app.getData('adsList'),
+              searchKey: ctx.searchKey,
+              searchProdtype: ctx.searchProdtype,
+              searchCategory: ctx.searchCategory,
+              searchAds: ctx.searchAds,
+              searchLoginView: ctx.searchLoginView
             }),
             button: [
               {
                 value: '搜索',
                 callback: function () {
-                  this.iframeNode.contentWindow.$("#submit").click();
+                  ctx.searchKey = $('input[name=searchKey]').val();
+                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
+                  ctx.searchCategory = $('select[name=searchCategory]').val();
+                  ctx.searchLoginView = $('select[name=searchLoginView]').val();
+                  ctx.searchAds = $('select[name=searchAds]').val();
+                  ctx.baseSearch();
+                  this.remove();
                   return false;
                 },
                 autofocus: true
@@ -220,6 +219,44 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             }
           }).show(this.$('.search-advance').get(0));
         });
+      },
+      // 批量隐藏
+      batchDisplay: function () {
+        var ctx = this;
+        if (this.checkboxIds = this._getCheckboxIds()) {
+          debug(this.checkboxIds);
+          /*$.ajax({
+           type: 'POST',
+           async: false,
+           url: CONST.API + '/product/batch/display',
+           data: {
+           ids: this.checkboxIds.join(',')
+           },
+           success: function(result){
+           BaseUtils.tip('删除成功');
+           ctx._load();
+           }
+           });*/
+        }
+      },
+      // 批量删除
+      batchDel: function () {
+        var ctx = this;
+        if (this.checkboxIds = this._getCheckboxIds()) {
+          debug(this.checkboxIds);
+          $.ajax({
+            type: 'POST',
+            async: false,
+            url: CONST.API + '/product/batch/del',
+            data: {
+              ids: this.checkboxIds.join(',')
+            },
+            success: function (result) {
+              BaseUtils.tip('删除成功');
+              ctx._load();
+            }
+          });
+        }
       }
     });
 

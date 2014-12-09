@@ -11,7 +11,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
     HandlebarsHelper = require('HandlebarsHelper');
 
     BaseUtils = {
-      initSelect: function(options){
+      initSelect: function (options) {
         return new Est.promise(function (resove, reject) {
           var container = {};
           var target = options.target || '#category';
@@ -36,7 +36,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           })
         });
       },
-      getProductCategory: function(options){
+      getProductCategory: function (options) {
         debug('getProductCategory');
         return new Est.promise(function (topResolve, topReject) {
           options.select = options ? options.select ? true : false : false;
@@ -84,16 +84,16 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           });
         });
       },
-      initDate: function(options){
-        BUI.use('bui/calendar',function(Calendar){
+      initDate: function (options) {
+        BUI.use('bui/calendar', function (Calendar) {
           new Calendar.DatePicker({
-            trigger:options.render || '.calendar',
-            showTime:options.showTime || false,
-            autoRender : true
+            trigger: options.render || '.calendar',
+            showTime: options.showTime || false,
+            autoRender: true
           });
         });
       },
-      initCombox: function(options){
+      initCombox: function (options) {
         return new Est.promise(function (resolve, reject) {
           var container = {};
           var target = options.target || '#category';
@@ -119,7 +119,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           })
         });
       },
-      initEditor: function(options){
+      initEditor: function (options) {
         seajs.use(['xheditor'], function (xheditor) {
           function startEditor(obj) {
             $(obj).xheditor(
@@ -148,12 +148,27 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           })
         });
       },
-      logout: function(){
+      tip: function (msg, options) {
+        options = options || {time: 1000, title: '提示信息：'}
+        seajs.use(['dialog-plus'], function (dialog) {
+          window.dialog = dialog;
+          window.tipsDialog = dialog({
+            id: 'tip-dialog',
+            title: options.title,
+            width: 200,
+            content: msg
+          }).show();
+          setTimeout(function () {
+            window.tipsDialog.close();
+          }, options.time);
+        });
+      },
+      logout: function () {
         $.ajax({
           type: 'GET',
           async: false,
           url: CONST.API + '/user/logout',
-          success: function(){
+          success: function () {
             window.location.href = CONST.HOST + '/modules/login/login.html';
           }
         });
