@@ -6,7 +6,7 @@
 
 define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail','template/register_detail'],
   function (require, exports, module) {
-    var Register, RegisterModel, HandlebarsHelper, BaseDetail, template;
+    var Register, RegisterModel, HandlebarsHelper, BaseDetail,template;
 
     RegisterModel = require('RegisterModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -32,7 +32,8 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
                ctx.refreshCode();
                return true;
              }
-             ///window.location.href = '/member/modules/login/login.html';
+             alert('请验证邮箱再登录!');
+             window.location.href = '/member/modules/login/login.html';
            }
         });
         return this;
