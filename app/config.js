@@ -9,6 +9,7 @@
 window.CONST = {
   HOST: 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
+  DOMAIN: 'http://jihui88.com',
   SEP: '/',
   ENTER_KEY: 13,
   DEBUG: true
@@ -57,6 +58,7 @@ seajs.config({
     'BaseList': 'base/BaseList.js',
     'BaseRoot': 'base/BaseRoot',
     'BaseUtils': 'base/BaseUtils',
+    'BaseComposite': 'base/BaseComposite',
 
     // common
     'Pagination': 'common/pagination/Pagination.js',
@@ -147,9 +149,11 @@ define('template/layout_top', function(require, exports, module){
 define('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });
+
+
+
 define('template/product_item', function (require, exports, module) {
   module.exports = require('modules/product/views/product_item.html');
-  ;
 });
 define('template/product_list', function (require, exports, module) {
   module.exports = require('modules/product/views/product_list.html');
@@ -160,9 +164,17 @@ define('template/pagination', function (require, exports, module) {
 define('template/product_detail', function (require, exports, module) {
   module.exports = require('modules/product/views/product_detail.html');
 });
+define('template/product_transfer', function(require, exports, module){
+  module.exports = require('modules/product/views/product_transfer.html');
+});
+define('template/product_sort', function(require, exports, module){
+  module.exports = require('modules/product/views/product_sort.html');
+});
+
 define('template/attributes_show_item', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_show_item.html');
 });
+
 define('template/category_product_item', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_item.html');
 });

@@ -149,7 +149,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
         });
       },
       tip: function (msg, options) {
-        options = options || {time: 1000, title: '提示信息：'}
+        options = options || {time: 2000, title: '提示信息：'}
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           window.tipsDialog = dialog({
@@ -162,6 +162,45 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             window.tipsDialog.close();
           }, options.time);
         });
+      },
+      /**
+       * 确认框， 比如删除操作
+       *
+       * @method [public] - comfirm
+       * @param options [title: 标题][content: 内容][success: 成功回调]
+       * @author wyj 14.12.8
+       * @example
+       *
+       */
+      comfirm: function(opts){
+        var options = {
+          title: '提示',
+          content:  '是否删除！',
+          success: function(){},
+          target: null
+        };
+        Est.extend(options, opts);
+        seajs.use(['dialog-plus'], function (dialog) {
+          dialog({
+            title: options.title,
+            content: options.content,
+            width: 150,
+            button: [
+              {
+                value: '确定',
+                autofocus: true,
+                callback: function () {
+                  options.success.call(this);
+                }},
+              {
+                value: '取消',
+                callback: function () {
+                  this.close();
+                }
+              }
+            ]
+          }).show(options.target);
+        })
       },
       logout: function () {
         $.ajax({

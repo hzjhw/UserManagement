@@ -85,6 +85,10 @@
    } 
    _onAfterRender (可选) ：渲染后执行的方法
  - render 实现父类_render
+ - events: {
+    'click .toggle': '_toggleChecked', // 全选
+    'click .delete': '_del', // 删除
+   }
  
 6) BaseList [列表视图]
  - el 目标元素Id， 如 "#jhw-main"
@@ -99,6 +103,9 @@
    }
    返回值：promise 参数为context
  - render 实现父类 _render
+ - events: {
+    'click #toggle-all': '_toggleAllChecked', // 选择框
+   }
  
 7) BaseDetail [详细页]
  - initialize 实现父类_initialize 参数：
@@ -118,3 +125,5 @@
         
         }
     })
+    
+8) BaseComposite [树]
