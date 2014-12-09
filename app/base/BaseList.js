@@ -87,8 +87,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             this.collection.push(new ctx.initModel(item));
           }, this);
         }
-        return new Est.promise(function (resolve) {
-          resolve(ctx);
+        this.$q = Est.promise;
+        return new this.$q(function (resolve) { resolve(ctx);
         });
       },
       /**
@@ -119,7 +119,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
       _load: function (options, model) {
         var ctx = this;
         options = options || {};
-        return new Est.promise(function (resolve, reject) {
+        return new this.$q(function (resolve, reject) {
           if (options.beforeLoad) options.beforeLoad.call(ctx.collection);
           options.page && ctx.collection.paginationModel.set('page', options.page);
           options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
@@ -227,9 +227,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
                 model: model, data: ctx._data
               });
               childView._setInitModel(ctx.initModel);
-              tree.append(childView.$el);
+              childView.setElement(itemView.$el)._render();
+              //tree.append(childView.$el);
+              //childView._render();
               ctx.views.push(childView);
-              childView._render();
             });
 
             /* Apply some extra styling to views with children */
