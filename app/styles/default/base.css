@@ -185,18 +185,17 @@ label.checkbox { padding-left: 5px; }
 #product-list-ul .pro-list-name{ padding: 0 5px; }
 #product-list-ul .hover{ background-color: #f5f5f5; }
 /* 产品分类 ************************************************************************************/
-#jhw .jhw-product-category .cate-00{
-    margin-left:0px;
-}
-#jhw .jhw-product-category .cate-01{
-    margin-left:40px;
-}
-#jhw .jhw-product-category .cate-02{
-    margin-left:80px;
-}
-#jhw .jhw-product-category .cate-03{
-    margin-left:120px;
-}
+#jhw .jhw-product-category .cate-00{ margin-left:0px; }
+#jhw .jhw-product-category .cate-01{ margin-left:24px; }
+#jhw .jhw-product-category .cate-01 .cate-grid-cell-inner { margin:0;padding:0; }
+#jhw .jhw-product-category .cate-02{ margin-left:48px; }
+#jhw .jhw-product-category .cate-02 .cate-grid-cell-inner { margin:0;padding:0; }
+#jhw .jhw-product-category .cate-03{ margin-left:72px; }
+#jhw .jhw-product-category .cate-03 .cate-grid-cell-inner { margin:0;padding:0; }
+#jhw .jhw-product-category .cate-04{ margin-left:96px; }
+#jhw .jhw-product-category .cate-04 .cate-grid-cell-inner { margin:0;padding:0; }
+#jhw .x-caret-sub{ border:none; width:40px; height: 40px; background: url(img/cate-sub.jpg) no-repeat scroll 3px -5px transparent; }
+#jhw .grid-td-cate-name{width:180px;text-align: center;}
 /* 新闻 ****************************************************************************************/
 #jhw-news{ }
 /* 新闻分类 ************************************************************************************/

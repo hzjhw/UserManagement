@@ -76,7 +76,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
           subRender: '.node-tree',
           parentId: 'belongId',
           categoryId: 'categoryId',
-          grade: '00',
+          grade: '01',
           parentValue: '/'
         };
         this._initialize(options).then(function (ctx) {

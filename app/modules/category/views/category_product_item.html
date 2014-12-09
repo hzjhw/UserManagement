@@ -1,22 +1,34 @@
-<div class="cate-gird gird-checkbox">
+<div class="cate-gird gird-checkbox" style="margin-right:20px;">
     <div class="cate-grid-cell-inner">
         <div class="bui-grid-checkBox-container">
             <span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
         </div>
     </div>
 </div>
-<div class="cate-gird gird-2 cate-{{grade}}">
+
+
+{{#compare isroot '===' '01'}}
+<div class="cate-gird gird-2 ">
     <div class="cate-grid-cell-inner">
-        {{#compare grade '===' '00'}}
-        <span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span>
-        {{else}}
-        <span class="x-caret x-caret-middle x-caret-sub x-caret-left-middle pointer node-collapse"></span>
-        {{/compare}}
+        <div class="x-grid-caret">
+            <span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span>
+        </div>
     </div>
 </div>
+{{else}}
+<div class="cate-gird gird-2 cate-{{grade}}">
+    <div class="cate-grid-cell-inner ">
+        <span class="x-caret x-caret-middle x-caret-sub x-caret-left-middle pointer node-collapse "></span>
+    </div>
+</div>
+{{/compare}}
+
+
 <div class="cate-gird gird-3">
-    <input name="name" value="{{name}}" type="text" class="input-middle" data-rules="{required : true}"
-           data-tip='{"text":"请输入分类名称"}'>是否父结点：{{isroot}} 父类ID{{belongId}} 当前ID{{categoryId}}
+    <div class="cate-grid-cell-inner">
+        <input name="name" value="{{name}}" type="text" class="input-middle" data-rules="{required : true}"
+               data-tip='{"text":"请输入分类名称"}'>是否父结点：{{isroot}} 父类ID{{belongId}} 当前ID{{categoryId}} 层级：{{grade}}
+    </div>
 </div>
 <ul class="cate-{{grade}}-ul  node-tree" style="clear:both;">
 

@@ -67,7 +67,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this.options = options || {};
         var ctx = this;
         this.dx = 0;
-        this.collapsed = true;
+        this.collapsed = false;
         this.views = [];
         this.$el.empty();
         if (this.options.template) this.$el.append($(this.options.template));
@@ -218,15 +218,17 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           this.list.append(itemView._render().el);
           this.views.push(itemView);
 
-          if (model.get('children') && model.get('children').length > 0){
+          if (this.options.subRender && model.get('children') && model.get('children').length > 0){
             // Build child views, insert and render each
             var tree = itemView.$('> ' + this.options.subRender), childView = null;
+            this._setupEvents();
             _.each(model._getChildren(ctx.collection), function(model) {
               childView = new ctx.item({
                 model: model, data: ctx._data
               });
               childView._setInitModel(ctx.initModel);
               tree.append(childView.$el);
+              ctx.views.push(childView);
               childView._render();
             });
 
@@ -239,8 +241,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
               // Fixup css on last item to improve look of tree
               childView.$el.addClass('last-item').before($('<li/>').addClass('dummy-item'));
             }
-          }
 
+          }
         }
       },
       /**
@@ -254,21 +256,36 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this._empty();
         this.collection.each(this._addOne, this);
       },
-      setupEvents: function() {
+      /**
+       * 绑定展开收缩事件
+       *
+       * @method [private] - _setupEvents
+       * @private
+       * @author wyj 14.12.9
+       */
+      _setupEvents: function() {
         // Hack to get around event delegation not supporting ">" selector
         var that = this;
-        this.$('> .node-collapse').click(function() { return that.toggleCollapse(); });
+        that._toggleCollapse()
+        this.$('> .node-collapse').click(function() { return that._toggleCollapse(); });
       },
-      toggleCollapse: function() {
+      /**
+       * 展开收缩
+       *
+       * @method [private] - _toggleCollapse
+       * @private
+       * @author wyj 14.12.9
+       */
+      _toggleCollapse: function() {
         this.collapsed = !this.collapsed;
         if (this.collapsed)
         {
-          this.$('> .node-collapse i').attr('class', 'icon-plus');
+          this.$('> .node-collapse').removeClass('x-caret-down');
           this.$('> ' + this.subRender).slideUp(CONST.COLLAPSE_SPEED);
         }
         else
         {
-          this.$('> .node-collapse i').attr('class', 'icon-minus');
+          this.$('> .node-collapse').addClass('x-caret-down');
           this.$('> ' + this.subRender).slideDown(CONST.COLLAPSE_SPEED);
         }
       },
@@ -354,6 +371,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         });
         this.collection.each(function(model){
           var i = temp.length;
+          model.get('children').length = 0;
           while (i > 0){
             var item = temp[i -1];
             if (item[ctx.options.parentId] === model.get(ctx.options.categoryId)){
@@ -363,7 +381,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             i--;
           }
           // 添加父级元素
-          if (model.get('isroot') === '01'||  model.get(ctx.options.parentId) === ctx.options.parentValue){
+          if (model.get('isroot') === '01'){
             ctx._addOne(model);
           }
         });

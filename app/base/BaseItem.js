@@ -32,7 +32,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
           this.template = HandlebarsHelper.compile(options.template);
 
         // 绑定事件
-        this.model.bind('change:children', this.render, this);
+        //this.model.bind('change:children', this.render, this);
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);

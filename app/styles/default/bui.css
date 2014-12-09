@@ -1220,7 +1220,11 @@ td.bui-grid-cell-empty {
     /*background: url(img/check_icon-100-100.gif) no-repeat 0 3px transparent;*/
     width: 13px;
     height: 20px;
-    display: inline-block
+    display: inline-block;
+    padding-top:8px;
+}
+.x-grid-caret{
+    padding-top:8px;
 }
 
 .x-grid-checkbox:hover {
