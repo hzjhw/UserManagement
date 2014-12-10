@@ -26,7 +26,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
               model: ProductModel
         });
        */
-      _initialize: function(options){
+      _initialize: function (options) {
         this.template = HandlebarsHelper.compile(options.template);
         this._initModel(options.model, this);
       },
@@ -37,7 +37,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @private
        * @author wyj 14.11.20
        */
-      _render: function(){
+      _render: function () {
         this.$el.html(this.template(this.model.toJSON()));
       },
       /**
@@ -123,7 +123,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
           $("input, textarea, select", $(ctx.formSelector)).each(function () {
             var name, val, pass;
             name = $(this).attr('name');
-            if ($(this).hasClass('bui-form-field-error')){
+            if ($(this).hasClass('bui-form-field-error')) {
               passed = false;
             }
             var modelId = $(this).attr('id');
@@ -143,9 +143,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
           });
           if (typeof options.onBeforeSave !== 'undefined')
             options.onBeforeSave.call(ctx);
-          if (passed){
+          if (passed) {
             ctx._save(options.onAfterSave
-              || function(){});
+              || function () {
+              });
           }
         });
       },
@@ -155,7 +156,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @method [protected] - _save
        * @author wyj 14.11.18
        */
-      _save: function(callback){
+      _save: function (callback) {
         this._saveItem(callback);
       },
       /**
@@ -214,7 +215,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        *      showTime: false
        *    });
        */
-      _initDate: function(options){
+      _initDate: function (options) {
         return BaseUtils.initDate(options);
       },
       /**
@@ -258,7 +259,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        */
       _resetIframe: function () {
         try {
-          if (window.detailDialog && window.detailDialog.height){
+          if (window.detailDialog && window.detailDialog.height) {
             window.detailDialog.height($(document).height());
             window.detailDialog.reset();
           }

@@ -23,6 +23,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       _initialize: function () {
         debug('2.BaseCollection._initialize');
+        this.$q = Est.promise;
         if (!this.paginationModel) {
           this.paginationModel = new PaginationModel;
         }
@@ -117,8 +118,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       _load: function (instance, context, model) {
         debug('4.BaseCollection._load');
         if (typeof model !== 'undefined') this._parseUrl(model);
-
-        return new Est.promise(function(resolve){
+        return new this.$q(function(resolve){
           return instance.fetch({success: function () {
             debug('before');
             resolve(instance);

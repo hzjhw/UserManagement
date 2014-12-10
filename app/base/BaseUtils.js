@@ -12,7 +12,8 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
 
     BaseUtils = {
       initSelect: function (options) {
-        return new Est.promise(function (resove, reject) {
+        this.$q = Est.promise;
+        return new this.$q(function (resove, reject) {
           var container = {};
           var target = options.target || '#category';
           var render = options.render || '#s1';
@@ -38,11 +39,12 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       },
       getProductCategory: function (options) {
         debug('getProductCategory');
-        return new Est.promise(function (topResolve, topReject) {
+        var $q = Est.promise;
+        return new $q(function (topResolve, topReject) {
           options.select = options ? options.select ? true : false : false;
           options.extend = options ? options.extend ? true : false : false;
           var getCategory = function () {
-            return new Est.promise(function (resolve, reject) {
+            return new $q(function (resolve, reject) {
               $.ajax({
                 type: 'post',
                 url: CONST.API + '/category/product?pageSize=1000',
@@ -94,7 +96,8 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
         });
       },
       initCombox: function (options) {
-        return new Est.promise(function (resolve, reject) {
+        var $q = Est.promise;
+        return new $q(function (resolve, reject) {
           var container = {};
           var target = options.target || '#category';
           var render = options.render || '#s1';
@@ -172,11 +175,12 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @example
        *
        */
-      comfirm: function(opts){
+      comfirm: function (opts) {
         var options = {
           title: '提示',
-          content:  '是否删除！',
-          success: function(){},
+          content: '是否删除！',
+          success: function () {
+          },
           target: null
         };
         Est.extend(options, opts);
