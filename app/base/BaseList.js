@@ -368,8 +368,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         ctx.composite = false;
         Est.each(ctx.collection.models, function(item){
           temp.push({
-            categoryId: item['attributes'][ctx.options.categoryId],
-            belongId: item['attributes'][ctx.options.parentId]
+            categoryId: item['attributes'][ctx._options.categoryId],
+            belongId: item['attributes'][ctx._options.parentId]
           });
         });
         this.collection.each(function(model){
@@ -377,8 +377,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           model.get('children').length = 0;
           while (i > 0){
             var item = temp[i -1];
-            if (item[ctx.options.parentId] === model.get(ctx.options.categoryId)){
-              model.get('children').push(item[ctx.options.categoryId]);
+            if (item[ctx._options.parentId] === model.get(ctx._options.categoryId)){
+              model.get('children').push(item[ctx._options.categoryId]);
               temp.splice(i, 1);
             }
             i--;

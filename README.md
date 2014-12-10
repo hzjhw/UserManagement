@@ -99,7 +99,13 @@
         collection: 集合, 
         item: 单视图, 
         model: 模型类, 
-        items: [](可选， 当无需url请求时)
+        items: [](可选， 当无需url请求时),
+        // 以下为树型列表时 需要的参数
+        subRender: '.node-tree', // 下级分类的容器选择符
+        parentId: 'belongId', // 分类 的父类ID
+        categoryId: 'categoryId', // 分类 的当前ID
+        grade: '01', // 分类 的层级
+        parentValue: '/' // 父分类的parentId值
    }
    返回值：promise 参数为thisCtx 当前list上下文
    example1: 
