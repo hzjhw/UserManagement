@@ -89,17 +89,16 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
     });
     TagList = BaseList.extend({
       initialize: function (options) {
-        var ctx = this;
         this.el = '#tag-list-picker';
         this._initialize({
           render: '#tag-list-picker-ul',
           collection: collection,
           item: TagItem,
           model: model
-        }).then(function (context) {
-          context._load({
-            beforeLoad: function () {
-              ctx.collection.setTagType(options.tagType || 'product');
+        }).then(function (baseListCtx) {
+          baseListCtx._load({
+            beforeLoad: function (baseCollection) {
+              baseCollection.setTagType(options.tagType || 'product');
             }
           });
         });
@@ -121,18 +120,20 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
         // 初始化容器
-        this._initialize({
+        var opts = {
           collection: collection,
           template: tagView,
           render: '#tag-list-ul',
           item: item,
           model: model
-        }).then(function (context) {
+        };
+        this._initialize(opts).
+          then(function (baseListCtx) {
           if (!options._isAdd) {
-            context._load({
-              beforeLoad: function () {
-                this.setItemId(options.itemId || null);
-                this.setTagType(options.tagType || 'product');
+            baseListCtx._load({
+              beforeLoad: function (baseCollection) {
+                baseCollection.setItemId(options.itemId || null);
+                baseCollection.setTagType(options.tagType || 'product');
               }
             });
           }

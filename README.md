@@ -102,6 +102,19 @@
         items: [](可选， 当无需url请求时)
    }
    返回值：promise 参数为context
+   example: 
+        this._initialize(opts).
+          then(function (baseListCtx) {
+              if (!options._isAdd) {
+                baseListCtx._load({
+                  beforeLoad: function (collection) {
+                    collection.setItemId(options.itemId || null);
+                    collection.setTagType(options.tagType || 'product');
+                  }
+                });
+              }
+            });
+        return this;
  - render 实现父类 _render
  - events: {
     'click #toggle-all': '_toggleAllChecked', // 选择框

@@ -64,27 +64,27 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _initCollection: function (collection, options) {
         debug('1.ProductView._initialize');
-        this.options = options || {};
+        this._options = options || {};
         var ctx = this;
         var $q = Est.promise;
         this.dx = 0;
         this.collapsed = false;
         this.views = [];
         this.$el.empty();
-        if (this.options.template) this.$el.append($(this.options.template));
-        this._data = this.options.data;
-        this.list = this.options.render ? $(this.options.render) : this.$el;
+        if (this._options.template) this.$el.append($(this._options.template));
+        this._data = this._options.data;
+        this.list = this._options.render ? $(this._options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
         if (!this.collection) this.collection = new collection;
         //TODO 分类过滤
-        if (this.options.subRender){
+        if (this._options.subRender){
           this.composite = true;
         }
         this._initBind();
-        this._initItemView(this.options.item, this);
-        this._initModel(this.options.model);
-        if (this.options.items) {
-          Est.each(this.options.items, function (item) {
+        this._initItemView(this._options.item, this);
+        this._initModel(this._options.model);
+        if (this._options.items) {
+          Est.each(this._options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
           }, this);
         }
@@ -122,7 +122,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var $q = Est.promise;
         options = options || {};
         return new $q(function (resolve, reject) {
-          if (options.beforeLoad) options.beforeLoad.call(ctx.collection);
+          if (options.beforeLoad) options.beforeLoad.call(ctx, ctx.collection);
           options.page && ctx.collection.paginationModel.set('page', options.page);
           options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
           if (options.page || options.pageSize) model = ctx.collection.paginationModel;
@@ -220,9 +220,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           this.list.append(itemView._render().el);
           this.views.push(itemView);
 
-          if (this.options.subRender && model.get('children') && model.get('children').length > 0){
+          if (this._options.subRender && model.get('children') && model.get('children').length > 0){
             // Build child views, insert and render each
-            var tree = itemView.$('> ' + this.options.subRender), childView = null;
+            var tree = itemView.$('> ' + this._options.subRender), childView = null;
             this._setupEvents();
             _.each(model._getChildren(ctx.collection), function(model) {
               childView = new ctx.item({

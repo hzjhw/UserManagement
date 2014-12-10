@@ -90,11 +90,11 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
             item: item,
             model: model
           }
-          this._initialize(opts).then(function (context) {
-            context._initPagination(opts);
-            context._load({
-              beforeLoad: function(){
-                this.setCategoryId(options.categoryId);
+          this._initialize(opts).then(function (baseListCtx) {
+            baseListCtx._initPagination(opts);
+            baseListCtx._load({
+              beforeLoad: function(collection){
+                collection.setCategoryId(options.categoryId);
               }
             });
           });
