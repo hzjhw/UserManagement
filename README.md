@@ -61,6 +61,7 @@
    参数：{
         template: 字符串模板，
         data: 对象数据
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    }
  - render 实现父类_render
 
@@ -82,6 +83,7 @@
  - initialize 实现父类_initialize 
    参数: {
         template: 模板字符串
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    } 
    _onAfterRender (可选) ：渲染后执行的方法
  - render 实现父类_render
@@ -96,6 +98,7 @@
    参数：{
         template: 字符串模板, 
         render: 插入列表的元素选择符, 
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
         collection: 集合, 
         item: 单视图, 
         model: 模型类, 
@@ -141,6 +144,7 @@
     {
         template: 字符串模板, 
         model: 模型类
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
     }
  - render 实现父类 _render 
    > this._form('#J_Form')._validate()._init({

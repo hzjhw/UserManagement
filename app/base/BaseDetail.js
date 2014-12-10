@@ -27,8 +27,10 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
         });
        */
       _initialize: function (options) {
+        this._options = options || {};
         this.template = HandlebarsHelper.compile(options.template);
         this._initModel(options.model, this);
+        if (this._options.enterRender) this._enterEvent();
       },
       /**
        * 渲染
@@ -39,6 +41,22 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        */
       _render: function () {
         this.$el.html(this.template(this.model.toJSON()));
+      },
+      /**
+       * 回车事件
+       *
+       * @method [protected] - _enterEvent
+       * @private
+       * @author wyj 14.12.10
+       */
+      _enterEvent: function () {
+        var ctx = this;
+        if (!this._options.enterRender) return;
+        this.$('input').keyup(function (e) {
+          if (e.keyCode === CONST.ENTER_KEY) {
+            ctx.$(ctx._options.enterRender).click();
+          }
+        });
       },
       /**
        * 初始化模型类 将自动判断是否有ID传递进来，

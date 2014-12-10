@@ -157,10 +157,12 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       initialize: function () {
         this._initialize({
           render: '#product-list-ul',
+          enterRender: '.btn-search',
           template: listTemp,
           model: ProductModel,
           collection: ProductCollection,
           item: ProductItem
+
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);

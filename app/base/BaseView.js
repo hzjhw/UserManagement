@@ -25,9 +25,11 @@ define('BaseView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper'],
        */
       _initialize: function(options){
         var model = Backbone.Model.extend({});
-        options.data = options.data || {};
-        this.template = HandlebarsHelper.compile(options.template);
-        this.model = new model(options.data);
+        this._options = options || {};
+        this._options.data = this._options.data || {};
+        this.template = HandlebarsHelper.compile(this._options.template);
+        this.model = new model(this._options.data);
+        if (this._options.enterRender) this._enterEvent();
         return this;
       },
       /**
@@ -39,6 +41,22 @@ define('BaseView', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper'],
        */
       _render: function(){
         this.$el.html(this.template(this.model.toJSON()));
+      },
+      /**
+       * 回车事件
+       *
+       * @method [protected] - _enterEvent
+       * @private
+       * @author wyj 14.12.10
+       */
+      _enterEvent: function () {
+        var ctx = this;
+        if (!this._options.enterRender) return;
+        this.$('input').keyup(function (e) {
+          if (e.keyCode === CONST.ENTER_KEY) {
+            ctx.$(ctx._options.enterRender).click();
+          }
+        });
       },
       /**
        * 重置对话框高度
