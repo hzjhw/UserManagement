@@ -25,7 +25,7 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
       render: function () {
        var ctx = this;
         this._render();
-        // 产品分类
+        // 新闻分类
         this._getNewsCategory({ select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({

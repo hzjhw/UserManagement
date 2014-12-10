@@ -108,7 +108,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           }
           getCategory().then(function (result) {
             if (result.attributes) {
-              result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '01', {
+              result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '00', {
                 categoryId: 'categoryId',// 分类ＩＤ
                 belongId: 'belongId',// 父类ＩＤ
                 childTag: 'cates', // 子分类集的字段名称

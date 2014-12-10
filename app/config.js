@@ -107,6 +107,11 @@ seajs.config({
     'ProductList': 'modules/product/controllers/ProductList.js',
     'ProductDetail': 'modules/product/controllers/ProductDetail.js',
 
+    // mews
+    'NewsModel': 'models/NewsModel.js',
+    'NewsList': 'modules/news/controllers/NewsList.js',
+    'NewsDetail': 'modules/news/controllers/NewsDetail.js',
+
     // member
     'MemberModel': 'models/MemberModel.js',
     'MemberCategory': 'modules/member/controllers/MemberCategory.js',
@@ -154,7 +159,6 @@ define('template/main', function (require, exports, module) {
 });
 
 
-
 define('template/product_item', function (require, exports, module) {
   module.exports = require('modules/product/views/product_item.html');
 });
@@ -173,6 +177,27 @@ define('template/product_transfer', function(require, exports, module){
 define('template/product_sort', function(require, exports, module){
   module.exports = require('modules/product/views/product_sort.html');
 });
+
+//news
+define('template/news_item', function (require, exports, module) {
+  module.exports = require('modules/news/views/news_item.html');
+});
+define('template/news_list', function (require, exports, module) {
+  module.exports = require('modules/news/views/news_list.html');
+});
+define('template/news_detail', function (require, exports, module) {
+  module.exports = require('modules/news/views/news_detail.html');
+});
+define('template/news_search', function(require, exports, module){
+  module.exports = require('modules/news/views/news_search.html');
+});
+define('template/news_sort', function(require, exports, module){
+  module.exports = require('modules/news/views/news_sort.html');
+});
+define('template/news_transfer', function(require, exports, module){
+  module.exports = require('modules/news/views/news_transfer.html');
+});
+
 
 define('template/attributes_show_item', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_show_item.html');
@@ -270,6 +295,7 @@ seajs.use(['jquery', 'underscore', 'backbone'],
         '': 'index',
         'product': 'product',
         'category/product': 'productCategory',
+        'news': 'news',
         'category/news': 'newsCategory',
         'attributes': 'attributes',
         'member': 'member',
@@ -298,6 +324,11 @@ seajs.use(['jquery', 'underscore', 'backbone'],
       productCategory: function () {
         seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
           app.addView('productCategoryPage', new ProductCategoryList);
+        });
+      },
+      news: function () {
+        seajs.use(['jquery', 'NewsList'], function (jquery, NewsList) {
+          app.addView('newsList', new NewsList);
         });
       },
       newsCategory: function () {
