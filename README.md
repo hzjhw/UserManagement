@@ -101,13 +101,12 @@
         model: 模型类, 
         items: [](可选， 当无需url请求时)
    }
-   返回值：promise 参数为context
-   example: 
-        this._initialize(opts).
-          then(function (baseListCtx) {
+   返回值：promise 参数为thisCtx 当前list上下文
+   example1: 
+        this._initialize({}).then(function (thisCtx) {
               if (!options._isAdd) {
-                baseListCtx._load({
-                  beforeLoad: function (collection) {
+                thisCtx._load({
+                  beforeLoad: function (collection) { // 载入数据前执行的方法
                     collection.setItemId(options.itemId || null);
                     collection.setTagType(options.tagType || 'product');
                   }
@@ -115,6 +114,17 @@
               }
             });
         return this;
+   example2:
+        this._initialize({
+             render: '#product-list-ul',
+             template: listTemp,
+             model: ProductModel,
+             collection: ProductCollection,
+             item: ProductItem
+           }).then(function (thisCtx) {
+             thisCtx._initPagination(thisCtx._options);
+             thisCtx._load(thisCtx._options);
+           });
  - render 实现父类 _render
  - events: {
     'click #toggle-all': '_toggleAllChecked', // 选择框

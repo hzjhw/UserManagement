@@ -5,7 +5,7 @@
  */
 define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Select', 'HandlebarsHelper',
     'template/product_list', 'template/product_item', 'BaseUtils', 'template/product_search', 'template/product_transfer',
-  'template/product_sort'],
+    'template/product_sort'],
   function (require, exports, module) {
     var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Select, ProductList, ProductItem,
       ProductCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp;
@@ -155,18 +155,16 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .btn-tool-sort': 'proSort'
       },
       initialize: function () {
-        var options = {
+        this._initialize({
           render: '#product-list-ul',
           template: listTemp,
           model: ProductModel,
           collection: ProductCollection,
           item: ProductItem
-        }
-        this._initialize(options)
-          .then(function (context) {
-            context._initPagination(options);
-            context._load(options);
-          });
+        }).then(function (thisCtx) {
+          thisCtx._initPagination(thisCtx._options);
+          thisCtx._load(thisCtx._options);
+        });
       },
       // 打开添加/修改对话框
       openAddDialog: function () {
@@ -319,7 +317,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         if (this.checkboxIds = this._getCheckboxIds()) {
           BaseUtils.comfirm({
-            success: function(){
+            success: function () {
               $.ajax({
                 type: 'POST',
                 async: false,
@@ -337,7 +335,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         }
       },
       // 排序
-      proSort: function(){
+      proSort: function () {
         var ctx = this;
         this.sortTemp = HandlebarsHelper.compile(sortTemp);
         seajs.use(['dialog-plus'], function (dialog) {
