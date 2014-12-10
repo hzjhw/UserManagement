@@ -12,8 +12,8 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
 
     BaseUtils = {
       initSelect: function (options) {
-        this.$q = Est.promise;
-        return new this.$q(function (resove, reject) {
+        var $q = Est.promise;
+        return new $q(function (resove, reject) {
           var container = {};
           var target = options.target || '#category';
           var render = options.render || '#s1';

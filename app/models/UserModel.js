@@ -9,11 +9,11 @@ define('UserModel', ['jquery', 'BaseModel'], function (require, exports, module)
   BaseModel = require('BaseModel');
 
   UserModel = BaseModel.extend({
-    baseId: 'userId',
-    baseUrl: CONST.API + '/user/info',
-    defaults: {
+    defaults: Est.extend({
       name: '未登录'
-    }
+    }, BaseModel.prototype.defaults),
+    baseId: 'userId',
+    baseUrl: CONST.API + '/user/info'
   });
 
   module.exports = UserModel;

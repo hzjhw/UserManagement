@@ -20,9 +20,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
     model = BaseModel.extend({
       baseId: 'tagId',
-      defaults: {
+      defaults: Est.extend({
         name: '默认标签'
-      },
+      }, BaseModel.prototype.defaults),
       url: function () {
         return CONST.API + '/tag/detail' + (model.itemId ? '/' + model.itemId : '') +
           (this.id ? '/' + this.id : '');
@@ -89,6 +89,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
     });
     TagList = BaseList.extend({
       initialize: function (options) {
+        var ctx = this;
         this.el = '#tag-list-picker';
         this._initialize({
           render: '#tag-list-picker-ul',
@@ -98,7 +99,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         }).then(function (context) {
           context._load({
             beforeLoad: function () {
-              this.setTagType(options.tagType || 'product');
+              ctx.collection.setTagType(options.tagType || 'product');
             }
           });
         });
@@ -127,11 +128,11 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           item: item,
           model: model
         }).then(function (context) {
-          if (!context.options._isAdd) {
+          if (!options._isAdd) {
             context._load({
               beforeLoad: function () {
-                this.setItemId(context.options.itemId || null);
-                this.setTagType(context.options.tagType || 'product');
+                this.setItemId(options.itemId || null);
+                this.setTagType(options.tagType || 'product');
               }
             });
           }
@@ -191,7 +192,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         if (!this.tagList) {
           var opts = Est.cloneDeep(this.options);
           opts.el = null;
-          this.tagList = new TagList(opts, this);
+          this.tagList = new TagList(opts);
         }
         this.$picker.css({
           left: this.$input.offset().left,

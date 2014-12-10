@@ -66,6 +66,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         debug('1.ProductView._initialize');
         this.options = options || {};
         var ctx = this;
+        var $q = Est.promise;
         this.dx = 0;
         this.collapsed = false;
         this.views = [];
@@ -87,8 +88,8 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             this.collection.push(new ctx.initModel(item));
           }, this);
         }
-        this.$q = Est.promise;
-        return new this.$q(function (resolve) { resolve(ctx);
+        return new $q(function (resolve) {
+          resolve(ctx);
         });
       },
       /**
@@ -118,8 +119,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _load: function (options, model) {
         var ctx = this;
+        var $q = Est.promise;
         options = options || {};
-        return new this.$q(function (resolve, reject) {
+        return new $q(function (resolve, reject) {
           if (options.beforeLoad) options.beforeLoad.call(ctx.collection);
           options.page && ctx.collection.paginationModel.set('page', options.page);
           options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
@@ -138,7 +140,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _initBind: function () {
         if (this.collection) {
-          this.listenTo(this.collection, 'change:checked', this.checkSelect);
+          //this.listenTo(this.collection, 'change:checked', this.checkSelect);
           this.collection.bind('add', this._addOne, this);
           this.collection.bind('reset', this._render, this);
         }

@@ -26,8 +26,6 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
       _initialize: function (options) {
         var ctx = this;
         this.options = options || {};
-        this.$q = Est.promise;
-
         // 编译模板
         if (options.template)
           this.template = HandlebarsHelper.compile(options.template);
@@ -69,7 +67,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.12.3
        */
       _onBeforeRender: function(){
-        return new this.$q(function(resolve){
+        return new Est.promise(function(resolve){
 
         });
       },
@@ -81,7 +79,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.12.3
        */
       _onAfterRender: function(){
-        return new this.$q(function(resolve){
+        return new Est.promise(function(resolve){
 
         });
       },
@@ -138,7 +136,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.11.16
        */
       _editField: function (options, context) {
-        return new this.$q(function (resolve, reject) {
+        var $q = Est.promise;
+        return new $q(function (resolve, reject) {
           //context.model.fetch();
           var dialog = require('dialog');
           var oldName = context.model.attributes[options.field];

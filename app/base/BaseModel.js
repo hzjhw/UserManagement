@@ -13,6 +13,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
     BaseModel = Backbone.Model.extend({
       baseId: '',
       defaults: {
+        checked: false,
         children: []
       },
       /**

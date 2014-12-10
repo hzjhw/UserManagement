@@ -11,7 +11,7 @@ define('AttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
     dialog = require('dialog');
 
     AttributesModel = BaseModel.extend({
-      defaults: {
+      defaults: Est.extend({
         attributeType: "text",
         categoryId: "0", // 必填
         isRequired: '00',
@@ -20,7 +20,7 @@ define('AttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         attributeOptionList: [],
         name: "",
         state: '01'
-      },
+      }, BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/attr/detail',
       baseId: 'attId'
     });

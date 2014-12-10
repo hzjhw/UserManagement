@@ -10,7 +10,6 @@ define('BaseComposite', ['BaseCollection'], function (require, exports, module) 
 
   BaseComposite = BaseCollection.extend({
     _initialize: function () {
-      this.$q = Est.promise;
       this._parseUrl();
     },
     parse: function (resp, xhr) {
@@ -32,7 +31,8 @@ define('BaseComposite', ['BaseCollection'], function (require, exports, module) 
       }
     },
     _load: function (instance, context, model) {
-      return new this.$q(function (resolve) {
+      var $q = Est.promise;
+      return new $q(function (resolve) {
         return instance.fetch({success: function () {
           resolve(instance);
           context.collection._reset();

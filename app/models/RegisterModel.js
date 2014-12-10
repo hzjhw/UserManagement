@@ -9,15 +9,15 @@ define('RegisterModel', ['jquery', 'BaseModel'], function (require, exports, mod
 
   BaseModel = require('BaseModel');
   RegisterModel = BaseModel.extend({
-    baseId: 'registerId',
-    baseUrl: CONST.API + '/user/register',
-    defaults: {
+    defaults: Est.extend({
       username: '',
       password: '',
       email: '',
       entName: '',
       randCode: ''
-    }
+    }, BaseModel.prototype.defaults),
+    baseId: 'registerId',
+    baseUrl: CONST.API + '/user/register'
   });
   module.exports = RegisterModel;
 });
