@@ -192,6 +192,9 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
       _getProductCategory: function (options) {
         return BaseUtils.getProductCategory(options);
       },
+      _getNewsCategory: function (options) {
+        return BaseUtils.getNewsCategory(options);
+      },
       /**
        * 下拉框初始化
        *

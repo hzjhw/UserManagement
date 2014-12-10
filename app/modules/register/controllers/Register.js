@@ -62,7 +62,6 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
             }
           }
         });
-
       },
       model_email : function(){
          var form=this;
@@ -72,7 +71,7 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
              dataType:'json',//默认为字符串
              callback : function(data){
              if(data.success){
-                 return '..';
+                 return '';
              }else{
                 return data.msg;
              }

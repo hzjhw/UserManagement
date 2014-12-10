@@ -94,6 +94,8 @@ seajs.config({
     'CategoryModel': 'models/CategoryModel.js',
     'ProductCategoryList': 'modules/category/controllers/ProductCategoryList.js',
     'ProductCategoryDetail': 'modules/category/controllers/ProductCategoryDetail.js',
+    'NewsCategoryList': 'modules/category/controllers/NewsCategoryList.js',
+    'NewsCategoryDetail': 'modules/category/controllers/NewsCategoryDetail.js',
 
     // attributes
     'AttributesModel': 'models/AttributesModel.js',
@@ -182,6 +184,12 @@ define('template/category_product_item', function (require, exports, module) {
 define('template/category_product_list', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_list.html');
 });
+define('template/category_news_item', function (require, exports, module) {
+  module.exports = require('modules/category/views/category_news_item.html');
+});
+define('template/category_news_list', function (require, exports, module) {
+  module.exports = require('modules/category/views/category_news_list.html');
+});
 define('template/product_search', function(require, exports, module){
   module.exports = require('modules/product/views/product_search.html');
 });
@@ -260,10 +268,9 @@ seajs.use(['jquery', 'underscore', 'backbone'],
     var router = Backbone.Router.extend({
       routes: {
         '': 'index',
-        'login': 'login',
-        'register': 'register',
         'product': 'product',
         'category/product': 'productCategory',
+        'category/news': 'newsCategory',
         'attributes': 'attributes',
         'member': 'member',
         '*other': 'default'
@@ -291,6 +298,11 @@ seajs.use(['jquery', 'underscore', 'backbone'],
       productCategory: function () {
         seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
           app.addView('productCategoryPage', new ProductCategoryList);
+        });
+      },
+      newsCategory: function () {
+        seajs.use(['jquery', 'NewsCategoryList'], function (jquery, NewsCategoryList) {
+          app.addView('newsCategoryPage', new NewsCategoryList);
         });
       },
       attributes: function () {
