@@ -53,7 +53,7 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
        */
       _parseUrl: function (model) {
         debug('7.BaseCollection._parseUrl');
-        var page = 1, pageSize = 1000;
+        var page = 1, pageSize = 5000;
         if (model && model.get('pageSize')){
           pageSize = model.get('pageSize');
           page = model.get('page');
@@ -117,8 +117,8 @@ define('BaseCollection', ['jquery', 'underscore', 'backbone', 'PaginationModel',
       _load: function (instance, context, model) {
         debug('4.BaseCollection._load');
         if (typeof model !== 'undefined') this._parseUrl(model);
-
-        return new Est.promise(function(resolve){
+        var $q = Est.promise;
+        return new $q(function(resolve){
           return instance.fetch({success: function () {
             debug('before');
             resolve(instance);

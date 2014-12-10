@@ -9,8 +9,10 @@
 window.CONST = {
   HOST: 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
+  DOMAIN: 'http://jihui88.com',
   SEP: '/',
   ENTER_KEY: 13,
+  COLLAPSE_SPEED: 50,
   DEBUG: true
 }
 
@@ -18,7 +20,15 @@ window.CONST = {
  * 视图管理容器
  * */
 window.app = new Application(CONST);
-
+app.setData('loginViewList', [
+  {text: '访问者可见', value: '1'},
+  {text: '登录后可见', value: '0'}
+]);
+app.setData('adsList', [
+  {text: '广告产品', value: '2'},
+  {text: '是', value: '1'},
+  {text: '否', value: '0'}
+]);
 /**
  * seajs 配置
  * */
@@ -49,6 +59,7 @@ seajs.config({
     'BaseList': 'base/BaseList.js',
     'BaseRoot': 'base/BaseRoot',
     'BaseUtils': 'base/BaseUtils',
+    'BaseComposite': 'base/BaseComposite',
 
     // common
     'Pagination': 'common/pagination/Pagination.js',
@@ -83,6 +94,8 @@ seajs.config({
     'CategoryModel': 'models/CategoryModel.js',
     'ProductCategoryList': 'modules/category/controllers/ProductCategoryList.js',
     'ProductCategoryDetail': 'modules/category/controllers/ProductCategoryDetail.js',
+    'NewsCategoryList': 'modules/category/controllers/NewsCategoryList.js',
+    'NewsCategoryDetail': 'modules/category/controllers/NewsCategoryDetail.js',
 
     // attributes
     'AttributesModel': 'models/AttributesModel.js',
@@ -139,9 +152,11 @@ define('template/layout_top', function(require, exports, module){
 define('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });
+
+
+
 define('template/product_item', function (require, exports, module) {
   module.exports = require('modules/product/views/product_item.html');
-  ;
 });
 define('template/product_list', function (require, exports, module) {
   module.exports = require('modules/product/views/product_list.html');
@@ -152,14 +167,28 @@ define('template/pagination', function (require, exports, module) {
 define('template/product_detail', function (require, exports, module) {
   module.exports = require('modules/product/views/product_detail.html');
 });
+define('template/product_transfer', function(require, exports, module){
+  module.exports = require('modules/product/views/product_transfer.html');
+});
+define('template/product_sort', function(require, exports, module){
+  module.exports = require('modules/product/views/product_sort.html');
+});
+
 define('template/attributes_show_item', function (require, exports, module) {
   module.exports = require('common/attributes/attributes_show_item.html');
 });
+
 define('template/category_product_item', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_item.html');
 });
 define('template/category_product_list', function (require, exports, module) {
   module.exports = require('modules/category/views/category_product_list.html');
+});
+define('template/category_news_item', function (require, exports, module) {
+  module.exports = require('modules/category/views/category_news_item.html');
+});
+define('template/category_news_list', function (require, exports, module) {
+  module.exports = require('modules/category/views/category_news_list.html');
 });
 define('template/product_search', function(require, exports, module){
   module.exports = require('modules/product/views/product_search.html');
@@ -239,10 +268,9 @@ seajs.use(['jquery', 'underscore', 'backbone'],
     var router = Backbone.Router.extend({
       routes: {
         '': 'index',
-        'login': 'login',
-        'register': 'register',
         'product': 'product',
         'category/product': 'productCategory',
+        'category/news': 'newsCategory',
         'attributes': 'attributes',
         'member': 'member',
         '*other': 'default'
@@ -270,6 +298,11 @@ seajs.use(['jquery', 'underscore', 'backbone'],
       productCategory: function () {
         seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
           app.addView('productCategoryPage', new ProductCategoryList);
+        });
+      },
+      newsCategory: function () {
+        seajs.use(['jquery', 'NewsCategoryList'], function (jquery, NewsCategoryList) {
+          app.addView('newsCategoryPage', new NewsCategoryList);
         });
       },
       attributes: function () {

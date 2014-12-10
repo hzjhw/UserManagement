@@ -26,12 +26,12 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
       _initialize: function (options) {
         var ctx = this;
         this.options = options || {};
-
         // 编译模板
         if (options.template)
           this.template = HandlebarsHelper.compile(options.template);
 
         // 绑定事件
+        //this.model.bind('change:children', this.render, this);
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
@@ -124,7 +124,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.11.16
        */
       _toggleChecked: function () {
-        this.$el.find(".toggle").attr("checked", this.model.get('checked'));
+        this.model.set('checked', !this.model.get('checked'));
       },
       /**
        * 单个字段保存
@@ -136,7 +136,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.11.16
        */
       _editField: function (options, context) {
-        return new Est.promise(function (resolve, reject) {
+        var $q = Est.promise;
+        return new $q(function (resolve, reject) {
           //context.model.fetch();
           var dialog = require('dialog');
           var oldName = context.model.attributes[options.field];

@@ -17,12 +17,15 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
     optionTemp = require('template/attributes_option_template');
 
     model = BaseModel.extend({
-      defaults: { key: '选项', value: '' }
+      defaults: Est.extend({
+        key: '选项',
+        value: ''
+      }, BaseModel.prototype.defaults)
     });
 
     collection = BaseCollection.extend({
       model: model,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -44,10 +47,10 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       render: function () {
         this._render();
       },
-      moveUp: function(){
+      moveUp: function () {
         app.getView('attributesAdd')._moveUp(this.model);
       },
-      moveDown: function(){
+      moveDown: function () {
         app.getView('attributesAdd')._moveDown(this.model);
       },
       update: function () {
@@ -82,7 +85,7 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
         }
         return this;
       },
-      render: function(){
+      render: function () {
         this._render();
       },
       add: function () {

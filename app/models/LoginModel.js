@@ -8,13 +8,13 @@ define('LoginModel', ['jquery', 'BaseModel'], function (require, exports, module
 
   BaseModel = require('BaseModel');
   LoginModel = BaseModel.extend({
-    baseId: 'loginId',
-    baseUrl: CONST.API + '/user/login',
-    defaults: {
+    defaults: Est.extend({
       username: '',
       password: '',
       randCode: ''
-    }
+    }, BaseModel.prototype.defaults),
+    baseId: 'loginId',
+    baseUrl: CONST.API + '/user/login'
   });
   module.exports = LoginModel;
 });

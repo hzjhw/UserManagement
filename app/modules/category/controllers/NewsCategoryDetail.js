@@ -1,24 +1,24 @@
 /**
  * @description 产品分类添加或修改视图
- * @namespace ProductCategoryDetail
+ * @namespace NewsCategoryDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
+define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
   function (require, exports, module) {
-    var ProductCategoryDetail, CategoryModel, BaseDetail;
+    var NewsCategoryDetail, CategoryModel, BaseDetail;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
 
-    ProductCategoryDetail = BaseDetail.extend({
+    NewsCategoryDetail = BaseDetail.extend({
       el: '#jhw-main',
       events: {
-        'click #product-category-reset': 'reset'
+        'click #news-category-reset': 'reset'
       },
       initialize: function () {
-        debug('ProductCategoryDetail.initialize');
+        debug('NewsCategoryDetail.initialize');
         this._initialize({
-          template: $("#product-category-detail-tpl").html(),
+          template: $("#news-category-detail-tpl").html(),
           model: CategoryModel
         });
       },
@@ -26,7 +26,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
        var ctx = this;
         this._render();
         // 产品分类
-        this._getProductCategory({ select: true, extend: true })
+        this._getNewsCategory({ select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',
@@ -39,6 +39,6 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
       }
     });
 
-    module.exports = ProductCategoryDetail;
+    module.exports = NewsCategoryDetail;
 
   });

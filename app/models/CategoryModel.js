@@ -11,7 +11,7 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
     dialog = require('dialog');
 
     CategorytModel = BaseModel.extend({
-      defaults: {
+      defaults: Est.extend({
         grade: '00', // 产品以00开头， 新闻以01开头
         isroot: '01', // 是否是根目录
         isdisplay: 1, // 是否显示
@@ -21,9 +21,12 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
         category: '/',
         belongId: null, // 父类ID
         type: '10' // 产品
-      },
+      }, BaseModel.prototype.defaults),
+      baseId: 'categoryId',
       baseUrl: CONST.API + '/category/detail',
-      baseId: 'categoryId'
+      initialize: function(){
+        this._initialize();
+      }
     });
     module.exports = CategorytModel;
   });

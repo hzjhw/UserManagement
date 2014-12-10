@@ -16,7 +16,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
     itemTemp = require('template/attributes_show_item');
 
     model = BaseModel.extend({
-      defaults: { key: '选项', value: '' },
+      defaults: Est.extend({ key: '选项', value: '' }, BaseModel.prototype.defaults),
       baseId: 'attId'
     });
 
