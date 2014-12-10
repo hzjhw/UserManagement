@@ -155,9 +155,17 @@ body .m0{margin:0}
 #jhw-main { float: left; width: 84%; padding-left: 1%;padding-right:1%;padding-top: 10px; background: #E8EFF7;min-height: 808px;}
 div#jhw-body { overflow: hidden; background: #3388CB; }
 #jhw .menu-index{background: url("img/menu-index.jpg") no-repeat scroll  center 10px transparent}
+#jhw .menu-index:hover{background: url("img/menu-index2.jpg") no-repeat scroll  center 10px #4094D7}
 #jhw .menu-login{background: url("img/menu-login.jpg") no-repeat scroll center 10px transparent}
+#jhw .menu-login:hover{background: url("img/menu-login2.jpg") no-repeat scroll center 10px #4094D7}
 #jhw .menu-member{background: url("img/menu-member.jpg") no-repeat scroll center 10px transparent}
+#jhw .menu-member:hover{background: url("img/menu-member2.jpg") no-repeat scroll center 10px #4094D7}
 #jhw .menu-product{background: url("img/menu-product.jpg") no-repeat scroll center 10px transparent}
+#jhw .menu-product:hover{background: url("img/menu-product2.jpg") no-repeat scroll center 10px #4094D7}
+#jhw .menu-category{background: url("img/menu-category.jpg") no-repeat scroll center 10px transparent}
+#jhw .menu-category:hover{background: url("img/menu-category2.jpg") no-repeat scroll center 10px #4094D7}
+#jhw .menu-attributes{background: url("img/menu-attributes.jpg") no-repeat scroll center 10px transparent}
+#jhw .menu-attributes:hover{background: url("img/menu-attributes2.jpg") no-repeat scroll center 10px #4094D7}
 /* 通用 ****************************************************************************************/
 #J_Form{ overflow:hidden; }
 #jhw .show_hide{ display:none; }
