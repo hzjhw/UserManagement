@@ -30,12 +30,12 @@ define('ProductCategoryList', ['jquery', 'CategoryModel','template/product_trans
       className: 'cate-grid-row',
       events: {
         'click .delete': '_del',
-        'click .name': 'editName',
         'click .edit': 'editItem',
         'click .btn-display': 'setDisplay',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort'
+        'change .input-sort': 'changeSort',
+        'change .pro-cate-name': 'editName'
       },
       initialize: function () {
         this._initialize({
@@ -46,6 +46,16 @@ define('ProductCategoryList', ['jquery', 'CategoryModel','template/product_trans
         this._render();
         return this;
       },
+      // 修改名称
+      editName: function () {
+        var name = Est.trim(this.$(".pro-cate-name").val());
+        if (Est.isEmpty(name)) return;
+        this.model._saveField({
+          id: this.model.get('id'),
+          name: name
+        }, this, { hideTip: true });
+      },
+      // 修改分类
       editItem: function () {
         var options = {
           title: '产品分类修改',
@@ -75,10 +85,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel','template/product_trans
           async: false,
           hideTip: true
         });
-      },
-      editName: function () {
-        var options = { title: '修改分类名称', field: 'name', target: '.name' };
-        this._editField(options, this);
       },
       // 上移
       moveUp: function () {

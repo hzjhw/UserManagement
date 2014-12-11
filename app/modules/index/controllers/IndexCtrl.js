@@ -5,6 +5,6 @@
  */
 seajs.use(['jquery', 'TopView', 'LeftView'],
   function (jquery, TopView, LeftView) {
-    app.addView('topView', new TopView);
-    app.addView('leftView', new LeftView);
+    app.addView('TopView', new TopView());
+    app.addView('LeftView', new LeftView());
   });

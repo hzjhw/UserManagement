@@ -72,7 +72,7 @@ Est.each(app.getTemplates(), function (value, key) {
  * */
 seajs.use(['jquery', 'underscore', 'backbone'],
   function ($, _, Backbone) {
-    var b_routes = { routes: { '': 'index'},default: function () {
+    var b_routes = { routes: { '': 'index'},defaults: function () {
       //$(document.body).append("This route is not hanled.. you tried to access: " + other);
     } };
     Est.each(app.getRoutes(), function (value, key) {
