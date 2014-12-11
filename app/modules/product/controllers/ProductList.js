@@ -3,11 +3,11 @@
  * @namespace ProductList
  * @author yongjin on 2014/11/16
  */
-define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Select', 'HandlebarsHelper',
+define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/product_list', 'template/product_item', 'BaseUtils', 'template/product_search', 'template/product_transfer',
     'template/product_sort'],
   function (require, exports, module) {
-    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Select, ProductList, ProductItem,
+    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem,
       ProductCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp;
 
     ProductModel = require('ProductModel');
@@ -19,7 +19,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     itemTemp = require('template/product_item');
     searchTemp = require('template/product_search');
     BaseUtils = require('BaseUtils');
-    Select = require('Select');
     transferTemp = require('template/product_transfer');
     sortTemp = require('template/product_sort');
 
