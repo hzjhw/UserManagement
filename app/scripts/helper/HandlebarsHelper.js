@@ -115,6 +115,16 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars.registerHelper('minus', function (num1, num2, opts) {
     return parseInt(num1, 10) - parseInt(num2, 10);
   });
+  /**
+   * 字符串截取
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *    {{cutByte name 5 end='...'}}
+   */
+  Handlebars.registerHelper('cutByte', function (str, len, options) {
+    return Est.cutByte(str, len, options.hash.end || '...');
+  });
 
   module.exports = Handlebars;
 

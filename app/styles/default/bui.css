@@ -1220,7 +1220,7 @@ td.bui-grid-cell-empty {
     overflow:hidden;
 }
 .bui-bar{height:100%;}
-.bui-grid-header-container{height:7%;}
+.bui-grid-header-container{height:6%;}
 
 .bui-grid-bbar {
     border: 1px solid #ddd;
