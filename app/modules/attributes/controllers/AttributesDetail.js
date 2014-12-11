@@ -42,11 +42,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
 
         // 绑定提交与验证
         this._form("#J_Form")._validate()._init(function () {
-<<<<<<< Updated upstream
           this.model.set("attributeOptionList", Est.pluck(app.getView('attributesAdd').getItems(), 'value'))
-=======
-          this.model.set("attributeOptionList", Est.pluck(APP.attributesAdd.getItems(), 'value'))
->>>>>>> Stashed changes
         });
         return this;
       },
@@ -84,11 +80,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
           options.items = attributesOptionList;
           this.showAttribute();
         }
-<<<<<<< Updated upstream
         app.addView('attributesAdd', new AttributesAdd(options));
-=======
-        APP.attributesAdd = new AttributesAdd(options);
->>>>>>> Stashed changes
       }
     });
 
