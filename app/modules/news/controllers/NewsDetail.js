@@ -101,12 +101,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
                 }, 500);
               }
             });
-            // 标签
-            ctx.tagInstance = new Tag({
-              el: '#tag-box',
-              itemId: ctx.model.get('id'),
-              _isAdd: ctx._isAdd // 是否初始化标签列表
-            });
+
           });
 
         if (!ctx._isAdd) {
@@ -138,7 +133,6 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           }
         });
 
-
         // 编辑器
         this._initEditor({
           render: '.content'
@@ -146,7 +140,6 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
 
         // 表单初始化
         this._form('#J_Form')._validate()._init({});
-
         setTimeout(function () {
           ctx._resetIframe();
         }, 1000);

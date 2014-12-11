@@ -28,14 +28,14 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         console.log('4.Register.render');
         this._render();
         this._form('#J_Form')._validate()._init({
-           onAfterSave : function(response){
-             if(response.attributes.success == false ){
-               ctx.refreshCode();
-               return true;
-             }
-             BaseUtils.tip('请验证邮箱后再登录!');
-             window.location.href = '/member/modules/login/login.html';
-           }
+          onAfterSave : function(response){
+            if(response.attributes.success == false ){
+              ctx.refreshCode();
+              return true;
+            }
+            BaseUtils.tip('请验证邮箱后再登录!');
+            window.location.href = '/member/modules/login/login.html';
+          }
         });
         return this;
       },
@@ -48,6 +48,35 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         var $verifyPic = this.$("#verifyPic");
         $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
       },
+      model_email : function(){
+       /* var form=this;
+        var bField = form.formValidate.getField('valikey');
+        bField.set('remote',{
+          url : CONST.API+"/user/validate?valiType=email",
+          dataType:'json',//默认为字符串
+          callback : function(data){
+            if(data.success){
+              return '';
+            }else{
+              return data.msg;
+            }
+          }
+        });*/
+        var  valiValue=$('#model-email').val();
+        $.ajax({
+          type: "get",
+          url: CONST.API + '/user/validate?valiType=email&valiValue='+valiValue,
+          dataType: "json",
+          success: function (data) {
+            if(data.success){
+              return $('.model-email').hide();
+            }else{
+              return $('.model-email').show();
+            }
+          }
+        });
+
+      },
       model_username : function(){
         var form=this;
         var bField = form.formValidate.getField('valiValue');
@@ -56,28 +85,12 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
           dataType:'json',//默认为字符串
           callback : function(data){
             if(data.success){
-              return '..';
+              return '';
             }else{
               return data.msg;
             }
           }
         });
-      },
-      model_email : function(){
-         var form=this;
-         var bField = form.formValidate.getField('valikey');
-         bField.set('remote',{
-             url : CONST.API+"/user/validate?valiType=email",
-             dataType:'json',//默认为字符串
-             callback : function(data){
-             if(data.success){
-                 return '';
-             }else{
-                return data.msg;
-             }
-             }
-         });
-
       }
     });
     module.exports = Register;

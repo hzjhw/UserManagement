@@ -203,7 +203,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this._search([
           { key: 'title', value: this.searchKey },
           {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
-          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
+          {key: 'type', value: this.searchCategory === '/' ? '' : this.searchCategory},
           {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
         ], {});
       },
@@ -233,7 +233,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           ctx.searchDialog = dialog({
             id: 'search-dialog',
             title: '高级搜索',
-            width: 900,
+            width: 600,
             content: ctx.searchTemp({
               newsCategoryList: app.getData('newsCategory'),
               loginViewList: app.getData('loginViewList'),

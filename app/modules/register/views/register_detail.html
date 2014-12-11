@@ -3,9 +3,12 @@
     <div class="control-group">
         <label class="control-label"><s>*</s>Email：</label>
         <div class="controls">
-            <input id="model-email" name="valikey" value="{{email}}" type="text" class="input-large"
+            <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
                    data-rules="{email:true,required : true}"
-                   data-tip='{"text":"请输入Email","iconCls":"icon icon-user"}'>
+                   data-tip='{"text":"请输入Email","iconCls":"icon icon-pencil"}'>
+            <span class="x-field-error model-email">
+                <span class="x-icon x-icon-mini x-icon-error">!</span><label class="x-field-error-text">该邮箱已经存在！</label>
+            </span>
         </div>
     </div>
 
@@ -14,7 +17,7 @@
         <div class="controls">
             <input id="model-username" name="valiValue" value="{{username}}" type="text" class="input-large"
                    data-rules="{minlength:4,maxlength:13,regexp:/^[a-zA-Z\d]\w{2,11}[a-zA-Z\d]$/}" data-messages="{regexp:'用户名只能是字母（大小写敏感），数字，下划线，不能以下划线开头和结尾!'}"
-                   data-tip='{"text":"请输入用户名","iconCls":"icon icon-pencil"}'>
+                   data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
         </div>
     </div>
 

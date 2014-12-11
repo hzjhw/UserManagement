@@ -1,5 +1,5 @@
 /**
- * @description 产品分类添加或修改视图
+ * @description 新闻分类添加或修改视图
  * @namespace NewsCategoryDetail
  * @author yongjin on 2014/10/31
  */
@@ -11,7 +11,7 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
     BaseDetail = require('BaseDetail');
 
     NewsCategoryDetail = BaseDetail.extend({
-      el: '#jhw-main',
+      el: '#jhw-panel-main',
       events: {
         'click #news-category-reset': 'reset'
       },

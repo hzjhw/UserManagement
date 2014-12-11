@@ -88,7 +88,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       },
       getNewsCategory: function (options) {
         debug('getNewsCategory');
-        return new Est.promise(function (topResolve, topReject) {
+        return new Est.promise(function (async, topReject) {
           options.select = options ? options.select ? true : false : false;
           options.extend = options ? options.extend ? true : false : false;
           var getCategory = function () {
