@@ -130,7 +130,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
               result.attributes.data = [];
             }
             result.attributes.data.unshift({text: '请选择分类', value: '/'});
-            topResolve(result.attributes.data);
+            async(result.attributes.data);
           });
         });
       },

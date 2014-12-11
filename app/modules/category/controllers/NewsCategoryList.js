@@ -77,8 +77,12 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
         });
       },
       editName: function () {
-        var options = { title: '修改分类名称', field: 'name', target: '.name' };
-        this._editField(options, this);
+        var name = Est.trim(this.$(".pro-cate-name").val());
+        if (Est.isEmpty(name)) return;
+        this.model._saveField({
+          id: this.model.get('id'),
+          name: name
+        }, this, { hideTip: true });
       },
       // 上移
       moveUp: function () {
@@ -117,9 +121,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
           grade: '01',
           parentValue: '/'
         }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options).then(function (collection) {
-            thisCtx._filterRoot();
-          });
+          thisCtx._load(thisCtx._options);
         });
       },
       openAddDialog: function () {
