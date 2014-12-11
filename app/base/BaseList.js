@@ -68,7 +68,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var ctx = this;
         var $q = Est.promise;
         this.dx = 0;
-        this.collapsed = false;
         this.views = [];
         this.$el.empty();
         if (this._options.template) this.$el.append($(this._options.template));
@@ -79,9 +78,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         if (!this.collection) this.collection = new collection;
         //TODO 分类过滤
         if (this._options.subRender) this.composite = true;
-        this._initBind();
         this._initItemView(this._options.item, this);
         this._initModel(this._options.model);
+        this._initBind();
         if (this._options.items)
           Est.each(this._options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
@@ -89,6 +88,81 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         return new $q(function (resolve) {
           resolve(ctx);
         });
+      },
+      /**
+       * 渲染视图
+       *
+       * @method [protected] - _render
+       * @author wyj 14.11.16
+       */
+      _render: function () {
+        this._addAll();
+        debug('BaseList._render');
+      },
+      /**
+       * 过滤父级元素
+       *
+       * @method [protected] - _filterRoot
+       * @private
+       * @author wyj 14.12.9
+       */
+      _filterRoot: function () {
+        var ctx = this;
+        var temp = [];
+        ctx.composite = false;
+        ctx.collection.comparator = function (model) {
+          return model.get('sort');
+        }
+        ctx.collection.sort();
+        Est.each(ctx.collection.models, function (item) {
+          temp.push({
+            categoryId: item['attributes'][ctx._options.categoryId],
+            belongId: item['attributes'][ctx._options.parentId]
+          });
+        });
+        this.collection.each(function (thisModel) {
+          var i = temp.length, _children = [];
+          while (i > 0) {
+            var item = temp[i - 1];
+            if (item[ctx._options.parentId] === thisModel.get(ctx._options.categoryId)) {
+              _children.push(item[ctx._options.categoryId]);
+              temp.splice(i, 1);
+            }
+            i--;
+          }
+          thisModel.set('children', _children);
+          // 添加父级元素
+          if (thisModel.get('isroot') === '01') {
+            ctx._addOne(thisModel);
+          }
+        });
+        debug(ctx.collection);
+      },
+      /**
+       * 向视图添加元素
+       *
+       * @method [private] - _addOne
+       * @param model
+       * @author wyj 14.11.16
+       */
+      _addOne: function (model) {
+        var ctx = this;
+        if (!this.filter && !this.composite) {
+          model.set('dx', this.dx++);
+          model.set('_options', {
+            _item: ctx._options.item,
+            _collection: ctx.collection,
+            _subRender: ctx._options.subRender,
+            _collapse: ctx._options.collapse
+          });
+          var itemView = new this.item({
+            model: model,
+            data: this._data
+          });
+          itemView._setInitModel(this.initModel);
+          this.list.append(itemView._render().el);
+          this.views.push(itemView);
+        }
       },
       /**
        * 初始化分页
@@ -120,14 +194,19 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var $q = Est.promise;
         options = options || {};
         return new $q(function (resolve, reject) {
-          if (options.beforeLoad) options.beforeLoad.call(ctx, ctx.collection);
+          if (options.beforeLoad) {
+            options.beforeLoad.call(ctx, ctx.collection);
+          }
           options.page && ctx.collection.paginationModel.set('page', options.page);
           options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
-          if (options.page || options.pageSize) model = ctx.collection.paginationModel;
+          if (options.page || options.pageSize) {
+            model = ctx.collection.paginationModel;
+          }
           if (ctx.collection.url) {
-            ctx.collection._load(ctx.collection, ctx, model).then(function (result) {
-              resolve(result);
-            });
+            ctx.collection._load(ctx.collection, ctx, model).
+              then(function (result) {
+                resolve(result);
+              });
           }
         });
       },
@@ -139,6 +218,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
       _initBind: function () {
         if (this.collection) {
           //this.listenTo(this.collection, 'change:checked', this.checkSelect);
+          //this.initModel.bind('change:children', this._render, this);
           this.collection.bind('add', this._addOne, this);
           this.collection.bind('reset', this._render, this);
         }
@@ -158,16 +238,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             ctx.$(ctx._options.enterRender).click();
           }
         });
-      },
-      /**
-       * 渲染视图
-       *
-       * @method [protected] - _render
-       * @author wyj 14.11.16
-       */
-      _render: function () {
-        this._addAll();
-        debug('BaseList._render');
       },
       /**
        * 初始化单个枚举视图
@@ -219,49 +289,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         //this.list.empty();
       },
       /**
-       * 向视图添加元素
-       *
-       * @method [private] - _addOne
-       * @param model
-       * @author wyj 14.11.16
-       */
-      _addOne: function (model) {
-        var ctx = this;
-        if (!this.filter && !this.composite) {
-          model.set('dx', this.dx++);
-          var itemView = new this.item({ model: model, data: this._data });
-          itemView._setInitModel(this.initModel);
-          this.list.append(itemView._render().el);
-          this.views.push(itemView);
-
-          if (this._options.subRender && model.get('children') && model.get('children').length > 0) {
-            // Build child views, insert and render each
-            var tree = itemView.$('> ' + this._options.subRender), childView = null;
-            this._setupEvents();
-            _.each(model._getChildren(ctx.collection), function (model) {
-              childView = new ctx.item({
-                model: model, data: ctx._data
-              });
-              childView._setInitModel(ctx.initModel);
-              childView.setElement(itemView.$el)._render();
-              //tree.append(childView.$el);
-              //childView._render();
-              ctx.views.push(childView);
-            });
-
-            /* Apply some extra styling to views with children */
-            if (childView) {
-              // Add bootstrap plus/minus icon
-              this.$('> .node-collapse').prepend($('<i class="icon-plus"/>'));
-
-              // Fixup css on last item to improve look of tree
-              childView.$el.addClass('last-item').before($('<li/>').addClass('dummy-item'));
-            }
-
-          }
-        }
-      },
-      /**
        * 添加所有元素， 相当于刷新视图
        *
        * @method [private] - _addAll
@@ -271,39 +298,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         debug('ProductView._addAll');
         this._empty();
         this.collection.each(this._addOne, this);
-      },
-      /**
-       * 绑定展开收缩事件
-       *
-       * @method [private] - _setupEvents
-       * @private
-       * @author wyj 14.12.9
-       */
-      _setupEvents: function () {
-        // Hack to get around event delegation not supporting ">" selector
-        var that = this;
-        that._toggleCollapse()
-        this.$('> .node-collapse').click(function () {
-          return that._toggleCollapse();
-        });
-      },
-      /**
-       * 展开收缩
-       *
-       * @method [private] - _toggleCollapse
-       * @private
-       * @author wyj 14.12.9
-       */
-      _toggleCollapse: function () {
-        this.collapsed = !this.collapsed;
-        if (this.collapsed) {
-          this.$('> .node-collapse').removeClass('x-caret-down');
-          this.$('> ' + this.subRender).slideUp(CONST.COLLAPSE_SPEED);
-        }
-        else {
-          this.$('> .node-collapse').addClass('x-caret-down');
-          this.$('> ' + this.subRender).slideDown(CONST.COLLAPSE_SPEED);
-        }
       },
       /**
        * 搜索
@@ -365,40 +359,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           }
           if (pass) {
             ctx._addOne(item);
-          }
-        });
-      },
-      /**
-       * 过滤父级元素
-       *
-       * @method [protected] - _filterRoot
-       * @private
-       * @author wyj 14.12.9
-       */
-      _filterRoot: function () {
-        var ctx = this;
-        var temp = [];
-        ctx.composite = false;
-        Est.each(ctx.collection.models, function (item) {
-          temp.push({
-            categoryId: item['attributes'][ctx._options.categoryId],
-            belongId: item['attributes'][ctx._options.parentId]
-          });
-        });
-        this.collection.each(function (model) {
-          var i = temp.length;
-          model.get('children').length = 0;
-          while (i > 0) {
-            var item = temp[i - 1];
-            if (item[ctx._options.parentId] === model.get(ctx._options.categoryId)) {
-              model.get('children').push(item[ctx._options.categoryId]);
-              temp.splice(i, 1);
-            }
-            i--;
-          }
-          // 添加父级元素
-          if (model.get('isroot') === '01') {
-            ctx._addOne(model);
           }
         });
       },

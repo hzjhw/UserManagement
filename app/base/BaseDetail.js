@@ -135,6 +135,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
       _init: function (options) {
         var ctx = this;
         var passed = true;
+        options = options || {};
         $('#submit', this.el).on('click', function () {
           passed = true; // 设置验证通过
           ctx.formElemnet.submit();

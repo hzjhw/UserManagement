@@ -26,28 +26,74 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
       _initialize: function (options) {
         var ctx = this;
         this._options = options || {};
-        // 编译模板
-        if (this._options.template)
+        this.collapsed = true;
+        if (this._options.template) {
           this.template = HandlebarsHelper.compile(this._options.template);
-
-        // 绑定事件
-        //this.model.bind('change:children', this.render, this);
+        }
         this.model.bind('reset', this.render, this);
         this.model.bind('change', this.render, this);
         this.model.bind('destroy', this.remove, this);
-
-        // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
-        if (this.model.get('dx') % 2 === 0)this.$el.addClass('bui-grid-row-even');
-
-        // hover事件
+        if (this.model.get('dx') % 2 === 0) {
+          this.$el.addClass('bui-grid-row-even');
+        }
         this.$el.hover(function () {
           ctx.$el.addClass('hover');
-        }, function () { ctx.$el.removeClass('hover'); });
-
-        // enter事件
+        }, function () {
+          ctx.$el.removeClass('hover');
+        });
         if (this._options.enterRender) this._enterEvent();
+      },
+      /**
+       * 渲染
+       *
+       * @method [protected] - _render
+       * @returns {BaseCollection}
+       * @author wyj 14.11.18
+       */
+      _render: function () {
+        debug('11.ProductItem._render [item display]');
+        this._onBeforeRender();
+        this.$el.html(this.template(this.model.toJSON()));
+        //TODO
+        var modelOptions = this.model.get('_options');
+        if (modelOptions._subRender && this.model.get('children') &&
+          this.model.get('children').length > 0) {
+          // Build child views, insert and render each
+          var ctx = this;
+          var childView = null;
+          var tree = this.$(modelOptions._subRender + ':first');
+          this._setupEvents(modelOptions);
+          _.each(this.model._getChildren(modelOptions._collection), function (newmodel) {
+            newmodel.set('_options', modelOptions);
+            childView = new modelOptions._item({
+              model: newmodel,
+              data: ctx._options._data
+            });
+            childView._setInitModel(ctx.initModel);
+            tree.append(childView.$el);
+            childView._render();
+          });
+          /* Apply some extra styling to views with children */
+          if (childView) {
+            // Add bootstrap plus/minus icon
+            //this.$('> .node-collapse').prepend($('<i class="icon-plus"/>'));
+            // Fixup css on last item to improve look of tree
+            //childView.$el.addClass('last-item').before($('<li/>').addClass('dummy-item'));
+          }
+        }
+        this._onAfterRender();
+        return this;
+      },
+      /**
+       * 设置模型类
+       * @method [private] - _setInitModel
+       * @param model
+       * @author wyj 14.11.20
+       */
+      _setInitModel: function (model) {
+        this.initModel = model;
       },
       /**
        * 回车事件
@@ -66,13 +112,37 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
         });
       },
       /**
-       * 设置模型类
-       * @method [private] - _setInitModel
-       * @param model
-       * @author wyj 14.11.20
+       * 绑定展开收缩事件
+       *
+       * @method [private] - _setupEvents
+       * @private
+       * @author wyj 14.12.9
        */
-      _setInitModel: function (model) {
-        this.initModel = model;
+      _setupEvents: function (opts) {
+        // Hack to get around event delegation not supporting ">" selector
+        var that = this;
+        that._toggleCollapse(opts)
+        this.$(opts._collapse + ':first').click(function () {
+          return that._toggleCollapse(opts);
+        });
+      },
+      /**
+       * 展开收缩
+       *
+       * @method [private] - _toggleCollapse
+       * @private
+       * @author wyj 14.12.9
+       */
+      _toggleCollapse: function (opts) {
+        this.collapsed = !this.collapsed;
+        if (this.collapsed) {
+          this.$(opts._collapse + ':first').removeClass('x-caret-down');
+          this.$(opts._subRender + ':first').slideUp(CONST.COLLAPSE_SPEED);
+        }
+        else {
+          this.$(opts._collapse + ':first').addClass('x-caret-down');
+          this.$(opts._subRender + ':first').slideDown(CONST.COLLAPSE_SPEED);
+        }
       },
       /**
        * 渲染前事件
@@ -81,8 +151,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @private
        * @author wyj 14.12.3
        */
-      _onBeforeRender: function(){
-        return new Est.promise(function(resolve){
+      _onBeforeRender: function () {
+        return new Est.promise(function (resolve) {
 
         });
       },
@@ -93,24 +163,10 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @private
        * @author wyj 14.12.3
        */
-      _onAfterRender: function(){
-        return new Est.promise(function(resolve){
+      _onAfterRender: function () {
+        return new Est.promise(function (resolve) {
 
         });
-      },
-      /**
-       * 渲染
-       *
-       * @method [protected] - _render
-       * @returns {BaseCollection}
-       * @author wyj 14.11.18
-       */
-      _render: function () {
-        debug('11.ProductItem._render [item display]');
-        this._onBeforeRender();
-        this.$el.html(this.template(this.model.toJSON()));
-        this._onAfterRender();
-        return this;
       },
       /**
        * 移除监听
@@ -177,7 +233,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
               obj['id'] = context.model.get('id');
               obj[options.field] = this.returnValue;
               context.model._saveField(obj, context, {
-                success: function(keyValue, result){
+                success: function (keyValue, result) {
                   context.model.set(keyValue);
                 }
               });

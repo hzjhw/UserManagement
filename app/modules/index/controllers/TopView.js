@@ -19,12 +19,17 @@ define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
           async:false,
           success: function(data){
             app.setData('user', data.attributes);
-            debug(data);
           }
         });
         if (!app.getData('user')){
           window.location.href = CONST.HOST + '/modules/login/login.html';
           return false;
+        } else{
+          $("#load").slideUp('slow');
+          $('#jhw-body').height($(window).height() - $('#jhw-top').height());
+          $(window).resize(function(){
+            $('#jhw-body').height($(window).height() - $('#jhw-top').height());
+          });
         }
         this._initialize({
           template: tempTop,

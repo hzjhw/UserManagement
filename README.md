@@ -49,6 +49,7 @@
 - 各模块[必须]、方法前 标注自己的作者， 如： @author yongjin 2014.11.6
 - 修改别人的代码， 请通知原作者， 禁止私自修改[可以添加方法， 注明作者]
 - 功能模块完成后， 请附带demo.html
+- 每星期六进行一次回归测试 (业务模块， 功能模块)
 
 ### 框架文档
 1) Application 容器
@@ -105,6 +106,7 @@
         items: [](可选， 当无需url请求时),
         // 以下为树型列表时 需要的参数
         subRender: '.node-tree', // 下级分类的容器选择符
+        collapse: 展开/收缩元素选择符
         parentId: 'belongId', // 分类 的父类ID
         categoryId: 'categoryId', // 分类 的当前ID
         grade: '01', // 分类 的层级
