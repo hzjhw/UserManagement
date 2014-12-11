@@ -64,30 +64,28 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _initCollection: function (collection, options) {
         debug('1.ProductView._initialize');
-        this.options = options || {};
+        this._options = options || {};
         var ctx = this;
         var $q = Est.promise;
         this.dx = 0;
         this.collapsed = false;
         this.views = [];
         this.$el.empty();
-        if (this.options.template) this.$el.append($(this.options.template));
-        this._data = this.options.data;
-        this.list = this.options.render ? $(this.options.render) : this.$el;
+        if (this._options.template) this.$el.append($(this._options.template));
+        this._data = this._options.data;
+        if (this._options.enterRender) this._enterEvent();
+        this.list = this._options.render ? $(this._options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
         if (!this.collection) this.collection = new collection;
         //TODO 分类过滤
-        if (this.options.subRender){
-          this.composite = true;
-        }
+        if (this._options.subRender) this.composite = true;
         this._initBind();
-        this._initItemView(this.options.item, this);
-        this._initModel(this.options.model);
-        if (this.options.items) {
-          Est.each(this.options.items, function (item) {
+        this._initItemView(this._options.item, this);
+        this._initModel(this._options.model);
+        if (this._options.items)
+          Est.each(this._options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
           }, this);
-        }
         return new $q(function (resolve) {
           resolve(ctx);
         });
@@ -122,7 +120,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var $q = Est.promise;
         options = options || {};
         return new $q(function (resolve, reject) {
-          if (options.beforeLoad) options.beforeLoad.call(ctx.collection);
+          if (options.beforeLoad) options.beforeLoad.call(ctx, ctx.collection);
           options.page && ctx.collection.paginationModel.set('page', options.page);
           options.pageSize && ctx.collection.paginationModel.set('pageSize', options.pageSize);
           if (options.page || options.pageSize) model = ctx.collection.paginationModel;
@@ -144,6 +142,22 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           this.collection.bind('add', this._addOne, this);
           this.collection.bind('reset', this._render, this);
         }
+      },
+      /**
+       * 回车事件
+       *
+       * @method [protected] - _enterEvent
+       * @private
+       * @author wyj 14.12.10
+       */
+      _enterEvent: function () {
+        var ctx = this;
+        if (!this._options.enterRender) return;
+        this.$('input').keyup(function (e) {
+          if (e.keyCode === CONST.ENTER_KEY) {
+            ctx.$(ctx._options.enterRender).click();
+          }
+        });
       },
       /**
        * 渲染视图
@@ -220,11 +234,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           this.list.append(itemView._render().el);
           this.views.push(itemView);
 
-          if (this.options.subRender && model.get('children') && model.get('children').length > 0){
+          if (this._options.subRender && model.get('children') && model.get('children').length > 0) {
             // Build child views, insert and render each
-            var tree = itemView.$('> ' + this.options.subRender), childView = null;
+            var tree = itemView.$('> ' + this._options.subRender), childView = null;
             this._setupEvents();
-            _.each(model._getChildren(ctx.collection), function(model) {
+            _.each(model._getChildren(ctx.collection), function (model) {
               childView = new ctx.item({
                 model: model, data: ctx._data
               });
@@ -236,8 +250,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             });
 
             /* Apply some extra styling to views with children */
-            if (childView)
-            {
+            if (childView) {
               // Add bootstrap plus/minus icon
               this.$('> .node-collapse').prepend($('<i class="icon-plus"/>'));
 
@@ -266,11 +279,13 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @private
        * @author wyj 14.12.9
        */
-      _setupEvents: function() {
+      _setupEvents: function () {
         // Hack to get around event delegation not supporting ">" selector
         var that = this;
         that._toggleCollapse()
-        this.$('> .node-collapse').click(function() { return that._toggleCollapse(); });
+        this.$('> .node-collapse').click(function () {
+          return that._toggleCollapse();
+        });
       },
       /**
        * 展开收缩
@@ -279,15 +294,13 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @private
        * @author wyj 14.12.9
        */
-      _toggleCollapse: function() {
+      _toggleCollapse: function () {
         this.collapsed = !this.collapsed;
-        if (this.collapsed)
-        {
+        if (this.collapsed) {
           this.$('> .node-collapse').removeClass('x-caret-down');
           this.$('> ' + this.subRender).slideUp(CONST.COLLAPSE_SPEED);
         }
-        else
-        {
+        else {
           this.$('> .node-collapse').addClass('x-caret-down');
           this.$('> ' + this.subRender).slideDown(CONST.COLLAPSE_SPEED);
         }
@@ -362,29 +375,29 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @private
        * @author wyj 14.12.9
        */
-      _filterRoot: function(){
+      _filterRoot: function () {
         var ctx = this;
         var temp = [];
         ctx.composite = false;
-        Est.each(ctx.collection.models, function(item){
+        Est.each(ctx.collection.models, function (item) {
           temp.push({
-            categoryId: item['attributes'][ctx.options.categoryId],
-            belongId: item['attributes'][ctx.options.parentId]
+            categoryId: item['attributes'][ctx._options.categoryId],
+            belongId: item['attributes'][ctx._options.parentId]
           });
         });
-        this.collection.each(function(model){
+        this.collection.each(function (model) {
           var i = temp.length;
           model.get('children').length = 0;
-          while (i > 0){
-            var item = temp[i -1];
-            if (item[ctx.options.parentId] === model.get(ctx.options.categoryId)){
-              model.get('children').push(item[ctx.options.categoryId]);
+          while (i > 0) {
+            var item = temp[i - 1];
+            if (item[ctx._options.parentId] === model.get(ctx._options.categoryId)) {
+              model.get('children').push(item[ctx._options.categoryId]);
               temp.splice(i, 1);
             }
             i--;
           }
           // 添加父级元素
-          if (model.get('isroot') === '01'){
+          if (model.get('isroot') === '01') {
             ctx._addOne(model);
           }
         });
@@ -572,11 +585,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         var list = Est.pluck(Est.filter(this.collection.models, function (item) {
           return item.attributes.checked;
         }), 'id');
-        if (list.length === 0){
+        if (list.length === 0) {
           BaseUtils.tip('至少选择一项');
           return;
         }
-       return list;
+        return list;
       }
     });
 

@@ -61,6 +61,7 @@
    参数：{
         template: 字符串模板，
         data: 对象数据
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    }
  - render 实现父类_render
 
@@ -82,6 +83,7 @@
  - initialize 实现父类_initialize 
    参数: {
         template: 模板字符串
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    } 
    _onAfterRender (可选) ：渲染后执行的方法
  - render 实现父类_render
@@ -96,12 +98,42 @@
    参数：{
         template: 字符串模板, 
         render: 插入列表的元素选择符, 
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
         collection: 集合, 
         item: 单视图, 
         model: 模型类, 
-        items: [](可选， 当无需url请求时)
+        items: [](可选， 当无需url请求时),
+        // 以下为树型列表时 需要的参数
+        subRender: '.node-tree', // 下级分类的容器选择符
+        parentId: 'belongId', // 分类 的父类ID
+        categoryId: 'categoryId', // 分类 的当前ID
+        grade: '01', // 分类 的层级
+        parentValue: '/' // 父分类的parentId值
    }
-   返回值：promise 参数为context
+   返回值：promise 参数为thisCtx 当前list上下文
+   example1: 
+        this._initialize({}).then(function (thisCtx) {
+              if (!options._isAdd) {
+                thisCtx._load({
+                  beforeLoad: function (collection) { // 载入数据前执行的方法
+                    collection.setItemId(options.itemId || null);
+                    collection.setTagType(options.tagType || 'product');
+                  }
+                });
+              }
+            });
+        return this;
+   example2:
+        this._initialize({
+             render: '#product-list-ul',
+             template: listTemp,
+             model: ProductModel,
+             collection: ProductCollection,
+             item: ProductItem
+           }).then(function (thisCtx) {
+             thisCtx._initPagination(thisCtx._options);
+             thisCtx._load(thisCtx._options);
+           });
  - render 实现父类 _render
  - events: {
     'click #toggle-all': '_toggleAllChecked', // 选择框
@@ -112,6 +144,7 @@
     {
         template: 字符串模板, 
         model: 模型类
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
     }
  - render 实现父类 _render 
    > this._form('#J_Form')._validate()._init({

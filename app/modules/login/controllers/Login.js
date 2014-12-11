@@ -23,7 +23,8 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail','templ
                 console.log('2.Login.initialize');
               this._initialize({
                 template: $('#login_template').html(),
-                model: LoginModel
+                model: LoginModel,
+                enterRender: '#submit'
               });
             },
             render: function () {

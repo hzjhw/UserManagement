@@ -66,7 +66,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
         'click .product-category-add': 'openAddDialog'
       },
       initialize: function () {
-        var options = {
+        this._initialize({
           template: listTemp,
           render: '.category-ul',
           item: ProductCategoryItem,
@@ -78,10 +78,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
           categoryId: 'categoryId',
           grade: '01',
           parentValue: '/'
-        };
-        this._initialize(options).then(function (ctx) {
-          ctx._load(options).then(function(result){
-            ctx._filterRoot();
+        }).then(function (thisCtx) {
+          thisCtx._load(thisCtx._options).then(function (collection) {
+            thisCtx._filterRoot();
           });
         });
       },

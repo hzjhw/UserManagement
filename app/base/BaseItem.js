@@ -25,10 +25,10 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        */
       _initialize: function (options) {
         var ctx = this;
-        this.options = options || {};
+        this._options = options || {};
         // 编译模板
-        if (options.template)
-          this.template = HandlebarsHelper.compile(options.template);
+        if (this._options.template)
+          this.template = HandlebarsHelper.compile(this._options.template);
 
         // 绑定事件
         //this.model.bind('change:children', this.render, this);
@@ -39,15 +39,30 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
         // 若存在当前视图， 则移除
         if (this.model.view) this.model.view.remove();
         this.model.view = this;
-        if (this.model.get('dx') % 2 === 0) {
-          this.$el.addClass('bui-grid-row-even');
-        }
+        if (this.model.get('dx') % 2 === 0)this.$el.addClass('bui-grid-row-even');
 
         // hover事件
         this.$el.hover(function () {
           ctx.$el.addClass('hover');
-        }, function () {
-          ctx.$el.removeClass('hover');
+        }, function () { ctx.$el.removeClass('hover'); });
+
+        // enter事件
+        if (this._options.enterRender) this._enterEvent();
+      },
+      /**
+       * 回车事件
+       *
+       * @method [protected] - _enterEvent
+       * @private
+       * @author wyj 14.12.10
+       */
+      _enterEvent: function () {
+        var ctx = this;
+        if (!this._options.enterRender) return;
+        this.$('input').keyup(function (e) {
+          if (e.keyCode === CONST.ENTER_KEY) {
+            ctx.$(ctx._options.enterRender).click();
+          }
         });
       },
       /**
