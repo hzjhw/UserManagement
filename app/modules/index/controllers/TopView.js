@@ -25,7 +25,7 @@ define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
           window.location.href = CONST.HOST + '/modules/login/login.html';
           return false;
         } else{
-          $("#load").slideUp('slow');
+          $("#load").hide();
           $('#jhw-body').height($(window).height() - $('#jhw-top').height());
           $(window).resize(function(){
             $('#jhw-body').height($(window).height() - $('#jhw-top').height());

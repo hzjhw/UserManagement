@@ -37,25 +37,24 @@
 <body>
 <!--<![endif]-->
 
-<div id="jhw-main"></div>
-
+<div id="jhw-panel-main"></div>
 <script type="text/template" id="product-category-detail-tpl">
-
     <div id="product-add-inner">
         <form id="J_Form" action="" class="form-horizontal">
+            <input type="hidden" id="model-type" name="type" value="10"/>
             <div class="control-group">
-                <label class="control-label">所属分类：</label>
-
+                <label class="control-label">上级分类：</label>
                 <div class="controls">
                     <div id="s1">
-                        <input type="hidden" id="model-category" value="{{category}}" name="category"
-                               data-rules="{required : true}">
+                        <input type="hidden" id="model-category" value="{{belongId}}" name="belongId">
                     </div>
+                     <span class="tips-info">
+                        <span class="x-icon x-icon-mini x-icon-info">!</span>
+                        <label class="tips-content">未选择分类表示添加的是顶级分类</label></span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label"><s>*</s>分类名称：</label>
-
                 <div class="controls">
                     <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
                            data-rules="{required : true}"

@@ -12,15 +12,8 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
 
     CategorytModel = BaseModel.extend({
       defaults: Est.extend({
-        grade: '00', // 产品以00开头， 新闻以01开头
-        isroot: '01', // 是否是根目录
-        isdisplay: 1, // 是否显示
         name: '',
-        sort: 1,
-        state: '01',
-        category: '/',
-        belongId: null, // 父类ID
-        type: '10' // 产品
+        belongId: '/'
       }, BaseModel.prototype.defaults),
       baseId: 'categoryId',
       baseUrl: CONST.API + '/category/detail',

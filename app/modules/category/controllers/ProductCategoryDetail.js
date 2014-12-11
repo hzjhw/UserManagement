@@ -11,7 +11,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
     BaseDetail = require('BaseDetail');
 
     ProductCategoryDetail = BaseDetail.extend({
-      el: '#jhw-main',
+      el: '#jhw-panel-main',
       events: {
         'click #product-category-reset': 'reset'
       },

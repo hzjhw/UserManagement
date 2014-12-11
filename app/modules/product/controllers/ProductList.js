@@ -211,7 +211,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           ctx.searchDialog = dialog({
             id: 'search-dialog',
             title: '高级搜索',
-            width: 900,
+            width: 600,
             content: ctx.searchTemp({
               productCategoryList: app.getData('productCategory'),
               loginViewList: app.getData('loginViewList'),
