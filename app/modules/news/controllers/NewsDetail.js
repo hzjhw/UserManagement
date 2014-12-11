@@ -134,9 +134,6 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           ],
           change : function(event){
             var addtime=parseFloat(ctx.model.get('addTime'))+parseFloat(event*60*60*24*1000);
-            /*       var d = new Date();
-             d.setTime(addtime);
-             var atime=(d).Format("yyyy-MM-dd");*/
             $("#model-addTime").val(Est.dateFormat(addtime, 'yyyy-MM-dd'));
           }
         });
@@ -144,7 +141,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
 
         // 编辑器
         this._initEditor({
-          render: '.ckeditor'
+          render: '.content'
         });
 
         // 表单初始化

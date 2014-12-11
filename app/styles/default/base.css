@@ -210,6 +210,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .grid-td-cate-name{width:180px;text-align: center;}
 /* 新闻 ****************************************************************************************/
 #jhw-news{ }
+#jhw-news .news-list-name{height: 30px; overflow: hidden; display: inline-block; line-height: 15px;}
 /* 新闻分类 ************************************************************************************/
 #jhw-news-category{ }
 /*标签*/
