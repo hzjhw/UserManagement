@@ -29,22 +29,16 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
       events: {
         'click .delete': '_del',
         'click .name': 'editName',
-        'click .edit': 'editItem',
-        'click .extend': 'extend'
+        'click .edit': 'editItem'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
-        this.extend = false;
-        this.$sub = this.$('.cate-' + this.model.get('grade') + '-ul');
       },
       render: function () {
         this._render();
-      },
-      extend: function () {
-        this.extend = !this.extend;
-        this.$sub.show();
+        return this;
       },
       editItem: function () {
         var options = {
@@ -65,7 +59,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog'
       },
-      initialize: function () {
+      render: function () {
+        this._render();
+        return this.el;
+      },
+      initialize: function (options) {
         this._initialize({
           template: listTemp,
           render: '.category-ul',
@@ -74,6 +72,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
           collection: ProductCategoryCollection,
 
           subRender: '.node-tree',
+          collapse: '.node-collapse',
           parentId: 'belongId',
           categoryId: 'categoryId',
           grade: '01',
@@ -83,10 +82,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'BaseComposite', 'Base
             thisCtx._filterRoot();
           });
         });
-      },
-      render: function () {
-        this._render();
-        //return this.el;
       },
       openAddDialog: function () {
         this._detail({

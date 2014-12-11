@@ -11,11 +11,8 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
     dialog = require('dialog');
 
     BaseModel = Backbone.Model.extend({
+      defaults: { checked: false, children: [] },
       baseId: '',
-      defaults: {
-        checked: false,
-        children: []
-      },
       /**
        * 初始化请求连接, 判断是否为新对象， 否自动加上ID
        *

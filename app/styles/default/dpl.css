@@ -1267,9 +1267,9 @@ a.badge:focus, a.badge:hover {
     line-height: 0;
 }
 
-.x-caret-down {
-    border-top: 4px solid #000;
-    border-bottom: 0
+#jhw .x-caret-down {
+    border: 6px solid transparent;
+    border-top: 6px solid #000;
 }
 
 .x-caret-up {
@@ -1281,7 +1281,9 @@ a.badge:focus, a.badge:hover {
     border-left: 4px solid #000;
     border-right: 0
 }
-
+#jhw .x-caret-left-gray{
+    border-left-color: #CBCBCB;
+}
 .x-caret-left-middle {
     border-left: 6px solid #000;
     border-right: 0;
