@@ -81,10 +81,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this._initItemView(this._options.item, this);
         this._initModel(this._options.model);
         this._initBind();
-        if (this._options.items)
+        if (this._options.items){
           Est.each(this._options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
           }, this);
+        }
         return new $q(function (resolve) {
           resolve(ctx);
         });
@@ -205,6 +206,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           if (ctx.collection.url) {
             ctx.collection._load(ctx.collection, ctx, model).
               then(function (result) {
+                if (ctx._options.subRender){
+                  ctx.composite = true;
+                  ctx._filterRoot();
+                }
                 resolve(result);
               });
           }
@@ -407,9 +412,15 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
             },
             onclose: function () {
+              if (ctx._options.subRender){ ctx.composite = true; }
               ctx.collection._load(ctx.collection, ctx).
                 then(function () {
-                  ctx._render();
+                  if (ctx._options.subRender){
+                    ctx.composite = true;
+                    ctx._filterRoot();
+                  } else{
+                    ctx._render();
+                  }
                 });
               this.remove();
               if (this.returnValue) {

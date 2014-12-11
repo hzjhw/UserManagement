@@ -249,7 +249,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        *  @method [protected] - _del
        *  @author wyj 14.11.16
        */
-      _del: function () {
+      _del: function (e) {
+        e.stopImmediatePropagation();
         debug('1.BaseItem._del');
         var context = this;
         seajs.use(['dialog-plus'], function (dialog) {

@@ -3,9 +3,9 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery', 'CategoryModel','template/product_transfer', 'BaseUtils','BaseComposite', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item'],
+define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils', 'BaseComposite', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item'],
   function (require, exports, module) {
-    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils,CategoryModel, BaseComposite, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils, CategoryModel, BaseComposite, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseComposite = require('BaseComposite');
@@ -123,9 +123,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel','template/product_trans
           grade: '01',
           parentValue: '/'
         }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options).then(function (collection) {
-            thisCtx._filterRoot();
-          });
+          thisCtx._load(thisCtx._options);
         });
       },
       openAddDialog: function () {
