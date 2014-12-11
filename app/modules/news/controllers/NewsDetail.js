@@ -18,7 +18,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
     NewsDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #news-reset': 'reset'
+        'click #news-reset': 'reset',
+        'click #isImagenews' : 'check_img_news'
       },
       initialize: function () {
         debug('2.NewsDetail.initialize');
@@ -44,7 +45,6 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             children: [
               {title: '常规', value: '1', selected: true},
               {title: '新闻内容', value: '2'},
-              {title: '新闻标签', value: '5'},
               {title: '搜索引擎优化', value: '6'}
             ]
           });
@@ -115,37 +115,32 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
 
         // 产品属性
         this._initSelect({
-          render: '#s2',
+          render: '#s3',
           width: 100,
-          target: '#model-loginView',
+          itemId:'value',
+          target: '#dateselect',
           items: [
-            {text: '访问者可见', value: '1'},
-            {text: '登录后可见', value: '0'}
-          ]
+            {text: '0', value: '0'},
+            {text: '1', value: '1'},
+            {text: '2', value: '2'},
+            {text: '3', value: '3'},
+            {text: '4', value: '4'},
+            {text: '5', value: '5'},
+            {text: '6', value: '6'},
+            {text: '7', value: '7'},
+            {text: '8', value: '8'},
+            {text: '9', value: '9'},
+            {text: '10', value: '10'}
+          ],
+          change : function(event){
+            var addtime=parseFloat(ctx.model.get('addTime'))+parseFloat(event*60*60*24*1000);
+            /*       var d = new Date();
+             d.setTime(addtime);
+             var atime=(d).Format("yyyy-MM-dd");*/
+            $("#model-addTime").val(Est.dateFormat(addtime, 'yyyy-MM-dd'));
+          }
         });
 
-        this._initSelect({
-          render: '#s2',
-          width: 100,
-          target: '#model-ads',
-          items: [
-            {text: '广告产品', value: '2'},
-            {text: '是', value: '1'},
-            {text: '否', value: '0'}
-          ]
-        });
-
-        this._initSelect({
-          render: '#weightUnit',
-          width: 100,
-          target: '#model-weightUnit',
-          itemId: 'value',
-          items: [
-            {text: '克', value: 'g'},
-            {text: '千克', value: 'kg'},
-            {text: '吨', value: 't'}
-          ]
-        });
 
         // 编辑器
         this._initEditor({
@@ -153,18 +148,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         });
 
         // 表单初始化
-        this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
-            // 处理特殊字段
-            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
-              return item.get('name');
-            }).join(','));
-          },
-          onAfterSave: function(response){
-
-          }
-
-        });
+        this._form('#J_Form')._validate()._init({});
 
         setTimeout(function () {
           ctx._resetIframe();
@@ -182,6 +166,9 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         } else{
           this.attributes.reload(categoryId);
         }
+      },
+      check_img_news : function(){
+
       }
     });
 
