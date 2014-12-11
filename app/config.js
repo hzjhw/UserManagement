@@ -11,9 +11,17 @@ window.CONST = {
   API: 'http://jihui88.com/rest/api',
   DOMAIN: 'http://jihui88.com',
   SEP: '/',
+<<<<<<< Updated upstream
   ENTER_KEY: 13,
   COLLAPSE_SPEED: 50,
   DEBUG: true
+=======
+  ENTER_KEY: 13
+}
+// 所有实例化对象的容器
+window.APP = {
+  debug: true
+>>>>>>> Stashed changes
 }
 
 /**

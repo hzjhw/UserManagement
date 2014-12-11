@@ -47,11 +47,19 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
       render: function () {
         this._render();
       },
+<<<<<<< Updated upstream
       moveUp: function () {
         app.getView('attributesAdd')._moveUp(this.model);
       },
       moveDown: function () {
         app.getView('attributesAdd')._moveDown(this.model);
+=======
+      moveUp: function(){
+        APP.attributesAdd._moveUp(this.model);
+      },
+      moveDown: function(){
+        APP.attributesAdd._moveDown(this.model);
+>>>>>>> Stashed changes
       },
       update: function () {
         this.model.set(this.$('input').attr("name"), this.$('input').val());

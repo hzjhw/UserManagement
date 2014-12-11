@@ -446,6 +446,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           sort: model.get('sort')
         }, this, { async: false, hideTip: true});
       },
+<<<<<<< Updated upstream
       /**
        * 交换位置
        *
@@ -467,6 +468,13 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         tempObj['dx'] = nextDx;
         nextObj['dx'] = thisDx;
         // 互换sort值
+=======
+      reorder: function (original_index, new_index, options) {
+        if (new_index === original_index)
+          return this
+        var temp = this.collection.at(original_index);
+        var next = this.collection.at(new_index);
+>>>>>>> Stashed changes
         if (options.path) {
           var thisValue = temp.view.model.get(options.path);
           var nextValue = next.view.model.get(options.path);
@@ -478,7 +486,10 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         if (options.success) {
           options.success.call(this, temp, next);
         }
+<<<<<<< Updated upstream
         // 交换model
+=======
+>>>>>>> Stashed changes
         this.collection.models[new_index] = this.collection.models.splice(original_index, 1, this.collection.models[new_index])[0];
         // 交换位置
         if (original_index < new_index) {
@@ -503,7 +514,11 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this._exchangeOrder(index, index - 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
+<<<<<<< Updated upstream
             if (thisNode.get('id') && nextNode.get('id')) {
+=======
+            if (thisNode.get('id') && nextNode.get('id')){
+>>>>>>> Stashed changes
               this._saveSort(thisNode);
               this._saveSort(nextNode);
             }
@@ -526,6 +541,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this._exchangeOrder(index, index + 1, {
           path: 'sort',
           success: function (thisNode, nextNode) {
+<<<<<<< Updated upstream
             if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
               this._saveSort(nextNode);
@@ -550,6 +566,14 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           return;
         }
         return list;
+=======
+           if (thisNode.get('id') && nextNode.get('id')){
+             this._saveSort(thisNode);
+             this._saveSort(nextNode);
+           }
+          }
+        });
+>>>>>>> Stashed changes
       }
     });
 

@@ -58,15 +58,28 @@
 
     // 属性添加
     seajs.use(['jquery', 'AttributesAdd'], function(jquery, AttributesAdd){
+<<<<<<< Updated upstream
         app.addView('attributesAdd',new AttributesAdd({ items: ['111', '222', '333'] }));
         $(".getItemsBtn").click(function(){
             console.dir(app.getView('attributesAdd').getItems()); // 获取数据
+=======
+        APP.attributesAdd = new AttributesAdd({
+            items: ['111', '222', '333']
+        });
+        $(".getItemsBtn").click(function(){
+            console.dir(APP.attributesAdd.getItems()); // 获取数据
+>>>>>>> Stashed changes
         });
     });
 
     // 属性显示
     seajs.use(['jquery', 'AttributesShow'], function(jquery, AttributesShow){
+<<<<<<< Updated upstream
         app.addView('attributesShow', new AttributesShow({ render: '#attributes-list',
+=======
+        APP.attributesShow = new AttributesShow({
+            render: '#attributes-list',
+>>>>>>> Stashed changes
             //items: ['111', '222', '333']
             categoryId: 'Category_00000000000000000008407'
         }));

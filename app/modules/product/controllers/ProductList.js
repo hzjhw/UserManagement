@@ -68,6 +68,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       render: function () {
         this._render();
       },
+<<<<<<< Updated upstream
       // 修改排序
       changeSort: function () {
         var ctx = this;
@@ -88,6 +89,13 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         }, ctx, {success: function () {
           ctx.model.set('category', category);
         }});
+=======
+      moveUp: function(){
+        APP.productList._moveUp(this.model);
+      },
+      moveDown: function(){
+        APP.productList._moveDown(this.model);
+>>>>>>> Stashed changes
       },
       // 编辑产品
       editItem: function () {
