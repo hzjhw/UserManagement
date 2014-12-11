@@ -102,7 +102,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog',
         'click .btn-batch-del': 'batchDel',
-        'click .btn-batch-category': 'batchCategory'
+        'click .btn-batch-category': 'batchCategory',
+        'click .btn-batch-collapse': 'btachCollapse',
+        'click .btn-batch-extend': 'btachExtend'
       },
       render: function () {
         this._render();
@@ -153,6 +155,15 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
             }
           });
         }
+      },
+      btachCollapse: function(){
+        this.$('.node-tree').hide();
+        this.$('.x-caret-left').removeClass('x-caret-down');
+      },
+      btachExtend: function(){
+        this.$('.node-tree').show();
+        this.$('.x-caret-left').addClass('x-caret-down');
+        this.$('.x-caret-left-gray').removeClass('x-caret-down');
       },
       // 批量转移分类
       batchCategory: function (category) {

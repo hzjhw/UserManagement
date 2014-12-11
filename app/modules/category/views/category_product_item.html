@@ -30,13 +30,15 @@
                 <span class="x-caret x-caret-middle x-caret-sub cate-{{grade}} x-caret-left-middle pointer node-collapse "></span>
             {{/compare}}
         {{/compare}}
-        <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">isroot:{{isroot}};grade:{{grade}};dx: {{dx}}
+        <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">
     </div>
 </div>
 
 <div class="cate-grid grid-td-picture">
     <div class="cate-grid-cell-inner">
-        分类图片
+        <span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
+            <i class="icon icon-white icon-plus-mini pointer"></i>
+        </span> 添加图片
     </div>
 </div>
 <div class="cate-grid grid-td-time">
@@ -70,5 +72,9 @@
         </button>
     </div>
 </div>
-
+<div class="cate-grid grid-td-handle">
+    <div class="cate-grid-cell-inner">
+        isroot:{{isroot}};grade:{{grade}};dx: {{dx}}
+    </div>
+</div>
 <ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"> </ul>
