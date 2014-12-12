@@ -94,11 +94,13 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       // 上移
       moveUp: function (e) {
         e.stopImmediatePropagation();
+        this.collapsed = true;
         app.getView('productCategoryPage')._moveUp(this.model);
       },
       // 下移
       moveDown: function (e) {
         e.stopImmediatePropagation();
+        this.collapsed = true;
         app.getView('productCategoryPage')._moveDown(this.model);
       }
     });

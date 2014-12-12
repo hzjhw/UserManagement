@@ -30,7 +30,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',
-              target: '#model-category',
+              target: '#model-belongId',
               items: list
             });
           });

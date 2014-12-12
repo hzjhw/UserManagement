@@ -146,7 +146,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
               passed = false;
             }
             var modelId = $(this).attr('id');
-            if (modelId && modelId.indexOf('model-') !== -1 && !Est.isEmpty(name)) {
+            if (modelId && modelId.indexOf('model') !== -1 && !Est.isEmpty(name)) {
               switch (this.type) {
                 case 'radio':
                   val = $(this).is(":checked") ? $(this).val() : pass = true;
@@ -156,7 +156,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
                   break;
               }
               if (!pass) {
-                ctx.model.set(name, val);
+                ctx.model.set(modelId.replace(/^model\d?-(.+)$/g, "$1"), val);
               }
             }
           });
