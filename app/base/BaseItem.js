@@ -27,6 +27,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
         var ctx = this;
         this._options = options || {};
         this.collapsed = true;
+        this.model.stopCollapse = false;
         if (this._options.template) {
           this.template = HandlebarsHelper.compile(this._options.template);
         }
@@ -134,6 +135,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @author wyj 14.12.9
        */
       _toggleCollapse: function (opts) {
+        if (this.model.stopCollapse) return;
         this.collapsed = !this.collapsed;
         if (this.collapsed) {
           this.$(opts._collapse + ':first').removeClass('x-caret-down');

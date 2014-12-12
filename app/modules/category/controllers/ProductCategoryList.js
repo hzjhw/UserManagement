@@ -64,34 +64,41 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this._edit(options);
       },
       // 修改排序
-      changeSort: function () {
+      changeSort: function (e) {
+        e.stopImmediatePropagation();
         var ctx = this;
         var sort = this.$('.input-sort').val();
+        this.model.stopCollapse = true;
         this.model._saveField({ id: this.model.get('id'), sort: sort
         }, ctx, { success: function () {
           ctx.model.set('sort', sort);
+          ctx.model.stopCollapse = false;
         }, hideTip: true
         });
       },
       // 显示/隐藏
-      setDisplay: function () {
+      setDisplay: function (e) {
+        e.stopImmediatePropagation();
+        this.model.stopCollapse = true;
         this.model.set('isdisplay', this.model.get('isdisplay') === '1' ? '0' : '1');
         this.model._saveField({
           id: this.model.get('id'),
           isdisplay: this.model.get('isdisplay')
         }, this, { // ctx须初始化initModel
-          success: function () {
-          },
+          success: function () { },
           async: false,
           hideTip: true
         });
+        this.model.stopCollapse = false;
       },
       // 上移
-      moveUp: function () {
+      moveUp: function (e) {
+        e.stopImmediatePropagation();
         app.getView('productCategoryPage')._moveUp(this.model);
       },
       // 下移
-      moveDown: function () {
+      moveDown: function (e) {
+        e.stopImmediatePropagation();
         app.getView('productCategoryPage')._moveDown(this.model);
       }
     });

@@ -81,7 +81,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         this._initItemView(this._options.item, this);
         this._initModel(this._options.model);
         this._initBind();
-        if (this._options.items){
+        if (this._options.items) {
           Est.each(this._options.items, function (item) {
             this.collection.push(new ctx.initModel(item));
           }, this);
@@ -126,7 +126,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           while (i > 0) {
             var item = temp[i - 1];
             if (item[ctx._options.parentId] === thisModel.get(ctx._options.categoryId)) {
-              _children.push(item[ctx._options.categoryId]);
+              _children.unshift(item[ctx._options.categoryId]);
               temp.splice(i, 1);
             }
             i--;
@@ -206,7 +206,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           if (ctx.collection.url) {
             ctx.collection._load(ctx.collection, ctx, model).
               then(function (result) {
-                if (ctx._options.subRender){
+                if (ctx._options.subRender) {
                   ctx.composite = true;
                   ctx._filterRoot();
                 }
@@ -412,13 +412,15 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
             },
             onclose: function () {
-              if (ctx._options.subRender){ ctx.composite = true; }
+              if (ctx._options.subRender) {
+                ctx.composite = true;
+              }
               ctx.collection._load(ctx.collection, ctx).
                 then(function () {
-                  if (ctx._options.subRender){
+                  if (ctx._options.subRender) {
                     ctx.composite = true;
                     ctx._filterRoot();
-                  } else{
+                  } else {
                     ctx._render();
                   }
                 });
@@ -486,9 +488,6 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         }
         temp.view.model.set(tempObj);
         next.view.model.set(nextObj);
-        if (options.success) {
-          options.success.call(this, temp, next);
-        }
         // 交换model
         this.collection.models[new_index] = this.collection.models.splice(original_index, 1, this.collection.models[new_index])[0];
         // 交换位置
@@ -496,6 +495,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           temp.view.$el.before(next.view.$el);
         } else {
           temp.view.$el.after(next.view.$el);
+        }
+        if (options.success) {
+          options.success.call(this, temp, next);
         }
         return this
       },
@@ -509,14 +511,34 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _moveUp: function (model) {
         debug('_moveUp');
-        var index = this.collection.indexOf(model);
-        if (index === 0) return;
-        this._exchangeOrder(index, index - 1, {
+        var first = this.collection.indexOf(model);
+        var last, parentId;
+        var result = [];
+        if (this._options.subRender) {
+          parentId = model.get('belongId');
+          this.collection.each(function (thisModel) {
+            if (parentId === thisModel.get('belongId')) {
+              result.push(thisModel);
+            }
+          });
+          //TODO 找出下一个元素的索引值
+          var thisDx = Est.findIndex(result, function (item) {
+            return item.get('id') === model.get('id');
+          });
+          if (thisDx === 0) return;
+          last = this.collection.indexOf(result[thisDx - 1]);
+        } else {
+          if (first === 0) return;
+          last = first - 1;
+        }
+        model.stopCollapse = true;
+        this._exchangeOrder(first, last, {
           path: 'sort',
           success: function (thisNode, nextNode) {
             if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
               this._saveSort(nextNode);
+              model.stopCollapse = false;
             }
           }
         });
@@ -531,15 +553,34 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _moveDown: function (model) {
         debug('_moveDown');
-        var index = this.collection.indexOf(model);
-        if (index === this.collection.models.length - 1)
-          return;
-        this._exchangeOrder(index, index + 1, {
+        var first = this.collection.indexOf(model);
+        var last, parentId;
+        var result = [];
+        if (this._options.subRender) {
+          parentId = model.get('belongId');
+          this.collection.each(function (thisModel) {
+            if (parentId === thisModel.get('belongId')) {
+              result.push(thisModel);
+            }
+          });
+          //TODO 找出上一个元素的索引值
+          var thisDx = Est.findIndex(result, function (item) {
+            return item.get('id') === model.get('id');
+          });
+          if (thisDx === result.length -1) return;
+          last = this.collection.indexOf(result[thisDx + 1]);
+        } else {
+          if (first === this.collection.models.length - 1) return;
+          last = first + 1;
+        }
+        model.stopCollapse = true;
+        this._exchangeOrder(first, last, {
           path: 'sort',
           success: function (thisNode, nextNode) {
             if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
               this._saveSort(nextNode);
+              model.stopCollapse = false;
             }
           }
         });
