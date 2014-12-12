@@ -73,10 +73,14 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
         });
       },
       moveUp: function () {
-        app.getView('attributesList')._moveUp(this.model);
+        app.getView('attributesList')._setOption({
+          sortField: 'orderList'
+        })._moveUp(this.model);
       },
       moveDown: function () {
-        app.getView('attributesList')._moveDown(this.model);
+        app.getView('attributesList')._setOption({
+          sortField: 'orderList'
+        })._moveDown(this.model);
       }
     });
 

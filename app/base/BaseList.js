@@ -75,6 +75,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         if (this._options.enterRender) this._enterEvent();
         this.list = this._options.render ? $(this._options.render) : this.$el;
         this.allCheckbox = this.$('#toggle-all')[0];
+        this._options.sortField = 'sort'; // 排序字段名称
         if (!this.collection) this.collection = new collection;
         //TODO 分类过滤
         if (this._options.subRender) this.composite = true;
@@ -387,7 +388,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           var buttons = [];
-          if (!options.hideSaveBtn){
+          if (!options.hideSaveBtn) {
             buttons.push({
               value: '保存',
               callback: function () {
@@ -398,7 +399,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
               autofocus: true
             });
           }
-          if (!options.hideResetBtn){
+          if (!options.hideResetBtn) {
             buttons.push({
               value: '重置',
               callback: function () {
@@ -462,10 +463,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @author wyj 14.12.4
        */
       _saveSort: function (model) {
-        model._saveField({
-          id: model.get('id'),
-          sort: model.get('sort')
-        }, this, { async: false, hideTip: true});
+        var sortOpt = { id: model.get('id') }
+        sortOpt[this._options.sortField || 'sort'] = model.get(this._options.sortField);
+        model._saveField(sortOpt, this, { async: false, hideTip: true});
       },
       /**
        * 交换位置
@@ -541,7 +541,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         }
         model.stopCollapse = true;
         this._exchangeOrder(first, last, {
-          path: 'sort',
+          path: this.sortField || 'sort',
           success: function (thisNode, nextNode) {
             if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
@@ -575,7 +575,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           var thisDx = Est.findIndex(result, function (item) {
             return item.get('id') === model.get('id');
           });
-          if (thisDx === result.length -1) return;
+          if (thisDx === result.length - 1) return;
           last = this.collection.indexOf(result[thisDx + 1]);
         } else {
           if (first === this.collection.models.length - 1) return;
@@ -583,7 +583,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         }
         model.stopCollapse = true;
         this._exchangeOrder(first, last, {
-          path: 'sort',
+          path: this._options.sortField,
           success: function (thisNode, nextNode) {
             if (thisNode.get('id') && nextNode.get('id')) {
               this._saveSort(thisNode);
@@ -610,6 +610,21 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
           return;
         }
         return list;
+      },
+      /**
+       * 设置参数
+       *
+       * @method [protected] - _setOption
+       * @param obj
+       * @returns {BaseList}
+       * @private
+       * @author wyj 14.12.12
+       * @example
+       *
+       */
+      _setOption: function(obj){
+        Est.extend(this._options, obj);
+        return this;
       }
     });
 
