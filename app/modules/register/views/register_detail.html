@@ -15,9 +15,12 @@
     <div class="control-group">
         <label class="control-label"><s>*</s>用户名</label>
         <div class="controls">
-            <input id="model-username" name="valiValue" value="{{username}}" type="text" class="input-large"
+            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
                    data-rules="{minlength:4,maxlength:13,regexp:/^[a-zA-Z\d]\w{2,11}[a-zA-Z\d]$/}" data-messages="{regexp:'用户名只能是字母（大小写敏感），数字，下划线，不能以下划线开头和结尾!'}"
                    data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
+            <span class="x-field-error model-username">
+                <span class="x-icon x-icon-mini x-icon-error">!</span><label class="x-field-error-text">该用户名已经存在！</label>
+            </span>
         </div>
     </div>
 

@@ -78,16 +78,16 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
 
       },
       model_username : function(){
-        var form=this;
-        var bField = form.formValidate.getField('valiValue');
-        bField.set('remote',{
-          url : CONST.API+"/user/validate?valiType=username",
-          dataType:'json',//默认为字符串
-          callback : function(data){
+        var  valiValue=$('#model-username').val();
+        $.ajax({
+          type: "get",
+          url: CONST.API + '/user/validate?valiType=username&valiValue='+valiValue,
+          dataType: "json",
+          success: function (data) {
             if(data.success){
-              return '';
+              return $('.model-username').hide();
             }else{
-              return data.msg;
+              return $('.model-username').show();
             }
           }
         });
