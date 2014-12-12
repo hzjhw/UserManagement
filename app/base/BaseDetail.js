@@ -131,11 +131,8 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
                 url: options.url,
                 dataType: 'json',
                 callback: function(data){
-                  if(data.success){
-                    return '';
-                  }else{
-                    return data.msg;
-                  }
+                  if(data.success){ return '';
+                  }else{ return data.msg; }
                 }
               });
             });
@@ -298,14 +295,7 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @author wyj 14.11.16
        */
       _resetIframe: function () {
-        try {
-          if (window.detailDialog && window.detailDialog.height) {
-            window.detailDialog.height($(document).height());
-            window.detailDialog.reset();
-          }
-        } catch (e) {
-          console.error('【error】: BaseDetail.resetIframe' + e);
-        }
+        BaseUtils.resetIframe();
       },
       /**
        * 移除模型类

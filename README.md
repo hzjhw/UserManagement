@@ -52,9 +52,13 @@
 - 每星期六进行一次回归测试 (业务模块， 功能模块)
 
 ### 框架文档
-1) Application 容器
- - addView('id', new Product()); // 向容器添加实例视图
- - getView('id'); // 获取实例视图
+1) Application 容器: 管理所有的视图、模块、模板、数据、路由
+ - app.addView('id', new Product()); // 向容器添加实例视图
+ - app.getView('id'); // 获取实例视图
+ - app.addTemplate('name', function(require, exports, module){...}) //添加模板
+ - app.setData('name', {}); // 添加数据
+ - app.addRoute('name', function(){}); // 添加路由
+ - app.addModule('ProductList', 'modules/product/controllers/ProductList.js'); // 添加模块
  
 2) BaseView 普通视图
  - el: 目标元素Id 如 "#jhw-main"
@@ -109,11 +113,11 @@
         collapse: 展开/收缩元素选择符
         parentId: 'belongId', // 分类 的父类ID
         categoryId: 'categoryId', // 分类 的当前ID
-        grade: '01', // 分类 的层级
+        grade: '01', // 分类 的层级 [产品：00][新闻：01]
         parentValue: '/' // 父分类的parentId值
    }
    返回值：promise 参数为thisCtx 当前list上下文
-   example1: 
+   example1: 载入数据前执行的方法
         this._initialize({}).then(function (thisCtx) {
               if (!options._isAdd) {
                 thisCtx._load({
@@ -157,8 +161,12 @@
             }).join(','));
         },
         onAfterSave: function(response){
-        
         }
     })
+    // 添加远程验证
+    this._form('#J_Form')._validate({
+        url: CONST.API + '/user/validate',
+        fields: ['vali-username', 'vali-email'] // 注意， 字段前加vali-
+    })._init({});
     
 8) BaseComposite [树]

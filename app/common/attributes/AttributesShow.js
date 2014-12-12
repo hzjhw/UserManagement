@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/16
  */
 
-define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/attributes_show_item'],
+define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/attributes_show_item'],
   function (require, exports, module) {
-    var AttributesShow, model, item, collection, HandlebarsHelper, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
+    var AttributesShow, model, item, collection, HandlebarsHelper, BaseUtils, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
 
     HandlebarsHelper = require('HandlebarsHelper');
     BaseCollection = require('BaseCollection');
@@ -14,6 +14,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
     itemTemp = require('template/attributes_show_item');
+    BaseUtils = require('BaseUtils');
 
     model = BaseModel.extend({
       defaults: Est.extend({ key: '选项', value: '' }, BaseModel.prototype.defaults),
@@ -81,6 +82,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
                 fields.element = item.element.substring(1, item.element.length - 1);
                 context.collection.push(new model(fields));
               }, this);
+            BaseUtils.resetIframe();
             });
         }
         else {
@@ -96,10 +98,18 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
               beforeLoad: function(collection){
                 collection.setCategoryId(options.categoryId);
               }
+            }).then(function(){
+              BaseUtils.initDate({
+                render: '.calendar',
+                showTime: false
+              });
+              BaseUtils.resetIframe();
             });
           });
         }
-        return this;
+      },
+      render: function(){
+        this._render();
       },
       add: function () {
         this.collection.push(new model());
@@ -113,8 +123,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseI
       },
       reload: function(categoryId){
         this._load({
-          beforeLoad: function(){
-            this.setCategoryId(categoryId);
+          beforeLoad: function(collection){
+            collection.setCategoryId(categoryId);
           }
         });
       },

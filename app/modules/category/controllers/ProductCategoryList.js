@@ -59,6 +59,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       editItem: function () {
         var options = {
           title: '产品分类修改',
+          height: 250,
           url: CONST.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
         }
         this._edit(options);

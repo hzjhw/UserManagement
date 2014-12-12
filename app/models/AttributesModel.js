@@ -16,7 +16,6 @@ define('AttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         categoryId: "0", // 必填
         isRequired: '00',
         isEnabled: '01',
-        orderList: 0,
         attributeOptionList: [],
         name: "",
         state: '01'

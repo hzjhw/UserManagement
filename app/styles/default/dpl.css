@@ -3300,7 +3300,9 @@ input, select, textarea {
 input.input-normal, select.input-normal, textarea.input-normal {
     width: 140px
 }
-
+input.input-mini, select.input-mini, textarea.input-mini{
+    width: 40px
+}
 input.input-small, select.input-small, textarea.input-small {
     width: 80px
 }

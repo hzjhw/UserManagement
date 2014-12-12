@@ -263,6 +263,21 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             window.location.href = CONST.HOST + '/modules/login/login.html';
           }
         });
+      },
+      /**
+       * 重置对话框高度
+       * @method [protected] - _resetIframe
+       * @author wyj 14.11.16
+       */
+      resetIframe: function () {
+        try {
+          if (window.detailDialog && window.detailDialog.height) {
+            window.detailDialog.height($(document).height());
+            window.detailDialog.reset();
+          }
+        } catch (e) {
+          console.error('【error】: BaseDetail.resetIframe' + e);
+        }
       }
     }
 

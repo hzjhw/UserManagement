@@ -156,6 +156,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             _subRender: ctx._options.subRender,
             _collapse: ctx._options.collapse
           });
+          //app.setData('maxSort', model.get('dx') + 1);
           var itemView = new this.item({
             model: model,
             data: this._data
@@ -381,35 +382,42 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        */
       _detail: function (options) {
         debug('1.BaseList._detail');
+        options = options || {};
         var ctx = this;
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
+          var buttons = [];
+          if (!options.hideSaveBtn){
+            buttons.push({
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                return false;
+              },
+              autofocus: true
+            });
+          }
+          if (!options.hideResetBtn){
+            buttons.push({
+              value: '重置',
+              callback: function () {
+                this.iframeNode.contentWindow.$("#reset").click();
+                return false;
+              }
+            });
+          }
+          buttons.push({ value: '关闭' });
           window.detailDialog = dialog({
             id: 'detail-dialog',
             title: options.title || '详细信息',
+            height: options.height || 'auto',
             width: 850,
             url: options.url || '',
-            button: [
-              {
-                value: '保存',
-                callback: function () {
-                  this.title('正在提交..');
-                  this.iframeNode.contentWindow.$("#submit").click();
-                  return false;
-                },
-                autofocus: true
-              },
-              {
-                value: '重置',
-                callback: function () {
-                  this.iframeNode.contentWindow.$("#reset").click();
-                  return false;
-                }
-              },
-              { value: '关闭' }
-            ],
+            button: buttons,
             oniframeload: function () {
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+              //this.iframeNode.contentWindow.maxSort = app.getData('maxSort');
             },
             onclose: function () {
               if (ctx._options.subRender) {

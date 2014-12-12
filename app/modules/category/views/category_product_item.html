@@ -46,7 +46,11 @@
         {{dateFormat addTime 'yyyy-MM-dd'}}
     </div>
 </div>
-
+<div class="cate-grid grid-td-attributes">
+    <div class="cate-grid-cell-inner">
+        <a href="#/attributes?id={{categoryId}}" class="btn-attributes">属性设置</a>
+    </div>
+</div>
 <div class="cate-grid grid-td-display">
     <div class="cate-grid-cell-inner">
         <a href="javascript:;" class="btn-display">{{#compare isdisplay '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
@@ -74,7 +78,7 @@
 </div>
 <div class="cate-grid">
     <div class="cate-grid-cell-inner">
-        isroot:{{isroot}};grade:{{grade}};dx: {{dx}} belongId:{{belongId}}
+        <!--isroot:{{isroot}};grade:{{grade}};dx: {{dx}} belongId:{{belongId}}-->
     </div>
 </div>
 <ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"> </ul>

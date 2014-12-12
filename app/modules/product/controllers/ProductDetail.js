@@ -67,7 +67,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                   {
                     value: '更换',
                     callback: function () {
-                      ctx.showAttributes(categoryId, items);
+                      ctx.showAttributes(categoryId, []);
                     }},
                   {
                     value: '保留',
