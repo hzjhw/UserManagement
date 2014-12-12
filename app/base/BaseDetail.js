@@ -114,14 +114,32 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        *
        * @method [protected] - _validate
        * @returns {BaseDetail}
+       * @param options [url: 远程验证地址][fields{Array}: 字段名称]
        * @author wyj 14.11.15
        */
-      _validate: function () {
+      _validate: function (options) {
         var ctx = this;
+        options = options || {};
         BUI.use('bui/form', function (Form) {
           ctx.formValidate = new Form.Form({
             srcNode: ctx.formSelector
           }).render();
+          if (options.url && options.fields){
+            Est.each(options.fields, function(field){
+              app.setData(field, ctx.formValidate.getField(field));
+              app.getData(field).set('remote', {
+                url: options.url,
+                dataType: 'json',
+                callback: function(data){
+                  if(data.success){
+                    return '';
+                  }else{
+                    return data.msg;
+                  }
+                }
+              });
+            });
+          }
         });
         return this;
       },
