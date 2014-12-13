@@ -499,7 +499,7 @@
 
     // Return an object containing all the attributes that have changed, or
     // false if there are no changed attributes. Useful for determining what
-    // parts of a view need to be updated and/or what attributes need to be
+    // parts of a views need to be updated and/or what attributes need to be
     // persisted to the server. Unset attributes will be set to undefined.
     // You can also pass an attributes object to diff against the model,
     // determining if there *would be* a change.
@@ -1151,7 +1151,7 @@
   // Cached regex to split keys for `delegate`.
   var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
-  // List of view options to be merged as properties.
+  // List of views options to be merged as properties.
   var viewOptions = ['model', 'collection', 'el', 'id', 'attributes', 'className', 'tagName'];
 
   // Set up all inheritable **Backbone.View** properties and methods.
@@ -1161,7 +1161,7 @@
     tagName: 'div',
 
     // jQuery delegate for element lookup, scoped to DOM elements within the
-    // current view. This should be prefered to global lookups where possible.
+    // current views. This should be prefered to global lookups where possible.
     $: function(selector) {
       return this.$el.find(selector);
     },
@@ -1170,14 +1170,14 @@
     // initialization logic.
     initialize: function(){},
 
-    // **render** is the core function that your view should override, in order
+    // **render** is the core function that your views should override, in order
     // to populate its element (`this.el`), with the appropriate HTML. The
     // convention is for **render** to always return `this`.
     render: function() {
       return this;
     },
 
-    // Remove this view from the DOM. Note that the view isn't present in the
+    // Remove this views from the DOM. Note that the views isn't present in the
     // DOM by default, so calling this method may be a no-op.
     remove: function() {
       this.$el.remove();
@@ -1196,7 +1196,7 @@
       return el;
     },
 
-    // Change the view's element (`this.el` property), including event
+    // Change the views's element (`this.el` property), including event
     // re-delegation.
     setElement: function(element, delegate) {
       if (this.$el) this.undelegateEvents();
@@ -1216,7 +1216,7 @@
     //       'click .open':       function(e) { ... }
     //     }
     //
-    // pairs. Callbacks will be bound to the view, with `this` set properly.
+    // pairs. Callbacks will be bound to the views, with `this` set properly.
     // Uses event delegation for efficiency.
     // Omitting the selector binds the event to `this.el`.
     // This only works for delegate-able events: not `focus`, `blur`, and
@@ -1240,7 +1240,7 @@
       }
     },
 
-    // Clears all callbacks previously bound to the view with `delegateEvents`.
+    // Clears all callbacks previously bound to the views with `delegateEvents`.
     // You usually don't need to use this, but may wish to if you have multiple
     // Backbone views attached to the same DOM element.
     undelegateEvents: function() {
@@ -1249,7 +1249,7 @@
 
     // Performs the initial configuration of a View with a set of options.
     // Keys with special meaning *(model, collection, id, className)*, are
-    // attached directly to the view.
+    // attached directly to the views.
     _configure: function(options) {
       if (this.options) options = _.extend({}, this.options, options);
       for (var i = 0, l = viewOptions.length; i < l; i++) {
@@ -1283,7 +1283,7 @@
     return child;
   };
 
-  // Set up inheritance for the model, collection, and view.
+  // Set up inheritance for the model, collection, and views.
   Model.extend = Collection.extend = Router.extend = View.extend = extend;
 
   // Backbone.sync

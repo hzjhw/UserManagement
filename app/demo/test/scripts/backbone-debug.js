@@ -360,7 +360,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
             },
             // Return an object containing all the attributes that have changed, or
             // false if there are no changed attributes. Useful for determining what
-            // parts of a view need to be updated and/or what attributes need to be
+            // parts of a views need to be updated and/or what attributes need to be
             // persisted to the server. Unset attributes will be set to undefined.
             // You can also pass an attributes object to diff against the model,
             // determining if there *would be* a change.
@@ -894,7 +894,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
         // DOM. This might be a single item, an entire list, a sidebar or panel, or
         // even the surrounding frame which wraps your whole app. Defining a chunk of
         // UI as a **View** allows you to define your DOM events declaratively, without
-        // having to worry about render order ... and makes it easy for the view to
+        // having to worry about render order ... and makes it easy for the views to
         // react to specific changes in the state of your models.
         // Creating a Backbone.View creates its initial element outside of the DOM,
         // if an existing element is not provided...
@@ -908,34 +908,34 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
         };
         // Cached regex to split keys for `delegate`.
         var delegateEventSplitter = /^(\S+)\s*(.*)$/;
-        // List of view options to be merged as properties.
+        // List of views options to be merged as properties.
         var viewOptions = [ "model", "collection", "el", "id", "attributes", "className", "tagName", "events" ];
         // Set up all inheritable **Backbone.View** properties and methods.
         _.extend(View.prototype, Events, {
             // The default `tagName` of a View's element is `"div"`.
             tagName: "div",
             // jQuery delegate for element lookup, scoped to DOM elements within the
-            // current view. This should be preferred to global lookups where possible.
+            // current views. This should be preferred to global lookups where possible.
             $: function(selector) {
                 return this.$el.find(selector);
             },
             // Initialize is an empty function by default. Override it with your own
             // initialization logic.
             initialize: function() {},
-            // **render** is the core function that your view should override, in order
+            // **render** is the core function that your views should override, in order
             // to populate its element (`this.el`), with the appropriate HTML. The
             // convention is for **render** to always return `this`.
             render: function() {
                 return this;
             },
-            // Remove this view by taking the element out of the DOM, and removing any
+            // Remove this views by taking the element out of the DOM, and removing any
             // applicable Backbone.Events listeners.
             remove: function() {
                 this.$el.remove();
                 this.stopListening();
                 return this;
             },
-            // Change the view's element (`this.el` property), including event
+            // Change the views's element (`this.el` property), including event
             // re-delegation.
             setElement: function(element, delegate) {
                 if (this.$el) this.undelegateEvents();
@@ -954,7 +954,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
             //       'click .open':       function(e) { ... }
             //     }
             //
-            // pairs. Callbacks will be bound to the view, with `this` set properly.
+            // pairs. Callbacks will be bound to the views, with `this` set properly.
             // Uses event delegation for efficiency.
             // Omitting the selector binds the event to `this.el`.
             // This only works for delegate-able events: not `focus`, `blur`, and
@@ -978,7 +978,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
                 }
                 return this;
             },
-            // Clears all callbacks previously bound to the view with `delegateEvents`.
+            // Clears all callbacks previously bound to the views with `delegateEvents`.
             // You usually don't need to use this, but may wish to if you have multiple
             // Backbone views attached to the same DOM element.
             undelegateEvents: function() {
@@ -1407,7 +1407,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
             child.__super__ = parent.prototype;
             return child;
         };
-        // Set up inheritance for the model, collection, router, view and history.
+        // Set up inheritance for the model, collection, router, views and history.
         Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
         // Throw an error when a URL is needed, and none is supplied.
         var urlError = function() {

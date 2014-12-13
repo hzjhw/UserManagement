@@ -327,7 +327,7 @@ define('bui/overlay/dialog',['bui/overlay/overlay'],function (require) {
     }
 
   },{
-    xclass:'dialog-view'
+    xclass:'dialog-views'
   });
 
   /**

@@ -3809,7 +3809,7 @@ define('bui/base',['bui/observable'],function(require){
  * @ignore
  */
 
-define('bui/component',['bui/component/manage','bui/component/uibase','bui/component/view','bui/component/controller'],function (require) {
+define('bui/component',['bui/component/manage','bui/component/uibase','bui/component/views','bui/component/controller'],function (require) {
   /**
    * @class BUI.Component
    * <p>
@@ -3822,7 +3822,7 @@ define('bui/component',['bui/component/manage','bui/component/uibase','bui/compo
   BUI.mix(Component,{
     Manager : require('bui/component/manage'),
     UIBase : require('bui/component/uibase'),
-    View : require('bui/component/view'),
+    View : require('bui/component/views'),
     Controller : require('bui/component/controller')
   });
 
@@ -7347,7 +7347,7 @@ define('bui/component/uibase/tpl',function () {
 
   /**
    * @private
-   * 控件模板扩展类的渲染类(view)
+   * 控件模板扩展类的渲染类(views)
    * @class BUI.Component.UIBase.TplView
    */
   function tplView () {
@@ -9207,7 +9207,7 @@ define('bui/component/uibase/bindable',function(){
  * copied by dxq613@gmail.com
  * @ignore
  */
-define('bui/component/view',['bui/component/manage','bui/component/uibase'],function(require){
+define('bui/component/views',['bui/component/manage','bui/component/uibase'],function(require){
 
   var win = window,
     Manager = require('bui/component/manage'),
@@ -10101,11 +10101,11 @@ define('bui/component/loader',['bui/util'],function (require) {
  */
 
 
-define('bui/component/controller',['bui/component/uibase','bui/component/manage','bui/component/view','bui/component/loader'],function(require){
+define('bui/component/controller',['bui/component/uibase','bui/component/manage','bui/component/views','bui/component/loader'],function(require){
     'use strict';
     var UIBase = require('bui/component/uibase'),
         Manager = require('bui/component/manage'),
-        View = require('bui/component/view'),
+        View = require('bui/component/views'),
         Loader = require('bui/component/loader'),
         wrapBehavior = BUI.wrapBehavior,
         getWrapBehavior = BUI.getWrapBehavior;
@@ -10159,12 +10159,12 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
 
         c = BUI.Component.create(c, self);
         c.setInternal('parent', self);
-        // set 通知 view 也更新对应属性
+        // set 通知 views 也更新对应属性
         c.set('render', contentEl);
         c.set('elBefore', renderBefore);
         // 如果 parent 也没渲染，子组件 create 出来和 parent 节点关联
         // 子组件和 parent 组件一起渲染
-        // 之前设好属性，view ，logic 同步还没 bind ,create 不是 render ，还没有 bindUI
+        // 之前设好属性，views ，logic 同步还没 bind ,create 不是 render ，还没有 bindUI
         c.create(undefined);
         return c;
     }
@@ -10188,7 +10188,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
 
         attrs = self.getAttrs();
 
-        // 整理属性，对纯属于 view 的属性，添加 getter setter 直接到 view
+        // 整理属性，对纯属于 views 的属性，添加 getter setter 直接到 views
         for (attrName in attrs) {
             if (attrs.hasOwnProperty(attrName)) {
                 attrCfg = attrs[attrName];
@@ -10205,14 +10205,14 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                     /*self.on('after' + BUI.ucfirst(attrName) + 'Change',
                         wrapperViewSetter(attrName));
                     */
-                    // 逻辑层读值直接从 view 层读
-                    // 那么如果存在默认值也设置在 view 层
+                    // 逻辑层读值直接从 views 层读
+                    // 那么如果存在默认值也设置在 views 层
                     // 逻辑层不要设置 getter
                     //attrCfg.getter = wrapperViewGetter(attrName);
                 }
             }
         }
-        // does not autoRender for view
+        // does not autoRender for views
         delete cfg.autoRender;
         cfg.ksComponentCss = getComponentCss(self);
         return new Render(cfg);
@@ -10310,7 +10310,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                 self.set('id',self.getNextUniqueId());
             }
             Manager.addComponent(self.get('id'),self);
-            // initialize view
+            // initialize views
             var view = constructView(self);
             self.setInternal('view', view);
             self.__view = view;
@@ -10327,7 +10327,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
             return BUI.guid(xclass);
         },
         /**
-         * From UIBase. Constructor(or get) view object to create ui elements.
+         * From UIBase. Constructor(or get) views object to create ui elements.
          * @protected
          *
          */
@@ -10336,14 +10336,14 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                 //el,
                 view = self.get('view');
             view.create(undefined);
-            //el = view.getKeyEventTarget();
+            //el = views.getKeyEventTarget();
             /*if (!self.get('allowTextSelection')) {
                 //el.unselectable(undefined);
             }*/
         },
 
         /**
-         * From UIBase. Call view object to render ui elements.
+         * From UIBase. Call views object to render ui elements.
          * @protected
          *
          */

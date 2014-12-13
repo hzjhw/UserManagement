@@ -102,7 +102,7 @@ this.model.fetch();
 
 // #2
 // This will work, but you have to call bindAll to make sure 'this' refers
-// to the view in render() when it's called (so this.model works).
+// to the views in render() when it's called (so this.model works).
 _.bindAll(this, "render");
 this.model.fetch({
     success: _thisView.render
@@ -224,7 +224,7 @@ addBook: function(e){
     this.collection.add( new app.Book( formData ) );
 }
 
-// remove view
+// remove views
 events: {
     'click .delete': 'deleteBook'
 }

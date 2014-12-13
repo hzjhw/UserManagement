@@ -49,7 +49,7 @@
                     lazyInit: true,
                     closeOnDateSelect:true,
 
-                    // Proxy the callback function to retain view scope
+                    // Proxy the callback function to retain views scope
                     onChangeDateTime: $.proxy(this.changeDate, this)
                 });
             },
@@ -72,7 +72,7 @@
             }
         });
 
-// Composite view
+// Composite views
         var movieCompView = Marionette.CompositeView.extend({
             template: "#movie-list",
             itemViewContainer: ".panel-body",

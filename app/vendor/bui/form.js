@@ -1799,7 +1799,7 @@ define('bui/form/plainfield',['bui/form/basefield'],function (require) {
       value : {}
     }
   },{
-    xclass : 'form-field-plain-view'
+    xclass : 'form-field-plain-views'
   });
 
   /**
@@ -3618,7 +3618,7 @@ define('bui/form/form',['bui/common','bui/form/fieldcontainer'],function (requir
       action : {}
     }
   },{
-    xclass: 'form-view'
+    xclass: 'form-views'
   });
 
   /**

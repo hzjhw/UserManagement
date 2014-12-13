@@ -113,7 +113,7 @@
         this.model.each(function(contact, element, index, list) {
           contact.view.$el.toggle(contact.filter(query));
         });
-        // this.model.last().view.$el.trigger("click")
+        // this.model.last().views.$el.trigger("click")
       },
 
       active: function(item) {

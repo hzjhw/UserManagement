@@ -54,7 +54,7 @@ define('bui/menu/menuitem',['bui/common'],function(require){
     ATTRS : {
     }
   },{
-    xclass:'menu-item-view'
+    xclass:'menu-item-views'
   });
 
   /**

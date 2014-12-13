@@ -14,7 +14,8 @@ define('NewsModel', ['jquery', 'BaseModel'],
         category: "/",
         viewsum: 0,
         imagenews: "02",
-        topnews: "02"
+        topnews: "02",
+        addTime: new Date().getTime()
       }, BaseModel.prototype.defaults),
       baseId: 'newsId',
       baseUrl: CONST.API + '/news/detail',

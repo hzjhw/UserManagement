@@ -1660,7 +1660,7 @@ define('bui/tree/treemenu',['bui/common','bui/list','bui/tree/treemixin','bui/tr
       return BUI.substitute(itemTpl,item);
     }
   },{
-    xclass : 'tree-menu-view'
+    xclass : 'tree-menu-views'
   });
 
   /**

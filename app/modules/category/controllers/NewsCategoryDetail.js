@@ -1,7 +1,7 @@
 /**
  * @description 新闻分类添加或修改视图
  * @namespace NewsCategoryDetail
- * @author yongjin on 2014/10/31
+ * @author jihui-wxw on 2014/12/10
  */
 define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
   function (require, exports, module) {

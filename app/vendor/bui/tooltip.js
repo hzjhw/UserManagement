@@ -93,7 +93,7 @@ define('bui/tooltip/tip',['bui/common','bui/overlay'],function (require) {
       alignType : {}
     }
   },{
-    xclass : 'tooltip-view'
+    xclass : 'tooltip-views'
   });
   
   /**

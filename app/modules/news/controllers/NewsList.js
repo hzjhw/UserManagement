@@ -46,8 +46,6 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .btn-display': 'setDisplay',
         'change .pro-category': 'changeCategory',
         'click .btn-topnews': 'setTopnews',
-
-
         'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'click .prodtype': 'editProdtype',
