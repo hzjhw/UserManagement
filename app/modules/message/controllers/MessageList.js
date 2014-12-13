@@ -57,7 +57,8 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           + this.model.toJSON().messageId;
         var options = {
           title: '留言信息',
-          url: url
+          url: url,
+          reload: true
         }
         this._edit(options);
       },

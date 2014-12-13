@@ -28,7 +28,7 @@ define('MessageModel', ['jquery', 'BaseModel'],
         type: "05",
         content: ""
       }, BaseModel.prototype.defaults),
-      baseId: 'productId',
+      baseId: 'messageId',
       baseUrl: CONST.API + '/message/detail',
       initialize: function () {
         this._initialize();
