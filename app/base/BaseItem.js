@@ -26,8 +26,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
       _initialize: function (options) {
         var ctx = this;
         this._options = options || {};
-        this.collapsed = true;
         this.model.stopCollapse = false;
+        this.collapsed = true;
         if (this._options.template) {
           this.template = HandlebarsHelper.compile(this._options.template);
         }
@@ -39,6 +39,8 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
         if (this.model.get('dx') % 2 === 0) {
           this.$el.addClass('bui-grid-row-even');
         }
+        this.$el.addClass('_item_el_' +
+          this.model.get('id').replace(/^[^1-9]+/, ""));
         this.$el.hover(function () {
           ctx.$el.addClass('hover');
         }, function () {
@@ -198,6 +200,30 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        */
       _toggleChecked: function () {
         this.model.set('checked', !this.model.get('checked'));
+        if (this.model.get('checked')){
+          this._itemActive({
+            add: true
+          });
+        } else { this.$el.removeClass('item-active'); }
+      },
+      /**
+       * 添加当前ITEM的CLASS为item-active
+       *
+       * @method [protected] - _itemActive
+       * @param options [add: true 是否为添加模式]
+       * @private
+       * @author wyj 14.12.13
+       */
+      _itemActive: function(options){
+        options = options || {};
+        var list = app.getData('itemActiveList');
+        if (!options.add){
+          Est.each(list, function(selecter){
+            $('.' + selecter).removeClass('item-active');
+          }); list.length = 0;
+        }
+        this.$el.addClass('item-active');
+        list.push(this.$el.attr('class').replace(/^.*(_item_el_.+?)\s+.*$/g, "$1"));
       },
       /**
        * 单个字段保存
@@ -281,45 +307,49 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * 修改模型类
        *
        * @method [protected] - _edit
-       * @param options
+       * @param options [title: 标题][width: 宽度][height: 高度]
+       *                [url: 地址][reload: 关闭后是否重新从服务器获取数据][close: 关闭回调方法]
+       *                [hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮]
        * @author wyj 14.11.16
        */
       _edit: function (options) {
         debug('1.BaseItem._edit');
         var ctx = this;
+        this.itemActive();
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
-
+          var buttons = [];
+          if (!options.hideSaveBtn) buttons.push({
+            value: '保存',
+            callback: function () {
+              this.title('正在提交..');
+              this.iframeNode.contentWindow.$("#submit").click();
+              return false;
+            },
+            autofocus: true
+          });
+          if (!options.hideResetBtn) buttons.push({
+            value: '重置',
+            callback: function () {
+              this.iframeNode.contentWindow.$("#reset").click();
+              return false;
+            }
+          });
+          buttons.push({ value: '关闭' });
           window.detailDialog = dialog({
             id: 'edit-dialog',
             title: options.title || '提示',
             width: options.width || 850,
             height: options.height || 'auto',
             url: options.url,
-            button: [
-              {
-                value: '保存',
-                callback: function () {
-                  this.title('正在提交..');
-                  this.iframeNode.contentWindow.$("#submit").click();
-                  return false;
-                },
-                autofocus: true
-              },
-              {
-                value: '重置',
-                callback: function () {
-                  this.iframeNode.contentWindow.$("#reset").click();
-                  return false;
-                }
-              },
-              { value: '关闭' }
-            ],
+            button: buttons,
             oniframeload: function () {
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
             },
             onclose: function () {
               ctx.model.set(Est.cloneDeep(window.model));
+              if (options.reload) ctx.model.fetch();
+              if (options.close) options.close.call(this);
               this.remove();
               window.model = {};
             }

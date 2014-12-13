@@ -26,7 +26,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         return CONST.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       },
       setCategoryId: function (categoryId) {
@@ -71,45 +71,44 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         'click .getItemsBtn': 'getItems'
       },
       initialize: function (options) {
+        var ctx = this;
         this.options = options || {};
         if (options.items) {
           this._initialize({
             render: options.render,
             item: item, model: model, collection: collection
           }).then(function (context) {
-              Est.each(options.items, function (item) {
-                var fields = item.productAttribute;
-                fields.element = item.element.substring(1, item.element.length - 1);
-                context.collection.push(new model(fields));
-              }, this);
-            BaseUtils.resetIframe();
-            });
+            ctx.itemRender(options, context);
+            ctx.after();
+          });
         }
         else {
-          var opts = {
+          this._initialize({
             render: options.render,
             collection: collection,
             item: item,
             model: model
-          }
-          this._initialize(opts).then(function (baseListCtx) {
-            baseListCtx._initPagination(opts);
+          }).then(function (baseListCtx) {
+            baseListCtx._initPagination(baseListCtx._options);
             baseListCtx._load({
-              beforeLoad: function(collection){
+              beforeLoad: function (collection) {
                 collection.setCategoryId(options.categoryId);
               }
-            }).then(function(){
-              BaseUtils.initDate({
-                render: '.calendar',
-                showTime: false
-              });
-              BaseUtils.resetIframe();
+            }).then(function () {
+              ctx.after();
             });
           });
         }
       },
-      render: function(){
+      render: function () {
         this._render();
+      },
+      itemRender: function (options, context) {
+        Est.each(options.items, function (item) {
+          var fields = item.productAttribute;
+          fields.element = item.element.substring(1, item.element.length - 1);
+          context.collection.push(new model(fields));
+        }, this);
       },
       add: function () {
         this.collection.push(new model());
@@ -121,12 +120,22 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         this.collection.pop();
         this.render();
       },
-      reload: function(categoryId){
+      reload: function (categoryId) {
+        var ctx = this;
         this._load({
-          beforeLoad: function(collection){
+          beforeLoad: function (collection) {
             collection.setCategoryId(categoryId);
           }
+        }).then(function () {
+          ctx.after();
         });
+      },
+      after: function () {
+        BaseUtils.initDate({
+          render: '.calendar',
+          showTime: false
+        });
+        BaseUtils.resetIframe();
       },
       getItems: function () {
         // 转换成[{key: '', value: ''}, ... ] 数组格式

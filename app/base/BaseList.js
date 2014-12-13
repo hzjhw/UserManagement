@@ -273,6 +273,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @author wyj 14.11.16
        */
       _empty: function () {
+        this.dx = 0;
         debug('5.ProductView._empty');
         if (this.collection) {
           var len = this.collection.length;
@@ -288,7 +289,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
         }
         //遍历views数组，并对每个view调用Backbone的remove
         Est.each(this.views, function (view) {
-          view.remove().off();
+          view.off().remove();
         })
         //清空views数组，此时旧的view就变成没有任何被引用的不可达对象了
         //垃圾回收器会回收它们
@@ -373,7 +374,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * 弹出查看详细信息对话框
        *
        * @method [protected] - _detail
-       * @param options
+       * @param options [title: 标题][width: 宽度][height: 高度][url: 地址][hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮]
        * @author wyj 14.11.16
        * @example
        *    this._detail({
@@ -413,7 +414,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             id: 'detail-dialog',
             title: options.title || '详细信息',
             height: options.height || 'auto',
-            width: 850,
+            width: options.width || 850,
             url: options.url || '',
             button: buttons,
             oniframeload: function () {
@@ -622,7 +623,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * @example
        *
        */
-      _setOption: function(obj){
+      _setOption: function (obj) {
         Est.extend(this._options, obj);
         return this;
       }

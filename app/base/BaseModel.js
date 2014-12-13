@@ -51,6 +51,7 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
           if (response.success) {
             buttons.push({ value: '继续添加', callback: function () {
               ctx.set('id', null);
+              ctx.set(ctx.baseId, null);
             }});
             buttons.push({ value: '确定', callback: function () {
               if (typeof window.detailDialog != 'undefined') {
@@ -100,17 +101,12 @@ define('BaseModel', ['jquery', 'underscore', 'backbone', 'dialog'],
         var newModel = new ctx.initModel({
           id: keyValue['id'] || ctx.model.get('id')
         });
-        // 清空字段
         newModel.clear();
-        // 赋值
         newModel.set(keyValue);
-        // 取消验证
         newModel.set('silent', true);
-        // 是否显示消息
         if (options.hideTip){
           newModel.hideTip = true;
         }
-        // 通知服务器执行修改单个字段操作
         newModel.set('editField', true);
         newModel.save(null, {
           success: function (model, result) {

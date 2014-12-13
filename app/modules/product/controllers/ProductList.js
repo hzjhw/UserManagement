@@ -131,10 +131,12 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 上移
       moveUp: function () {
+        this._itemActive();
         app.getView('productList')._moveUp(this.model);
       },
       // 下移
       moveDown: function () {
+        this._itemActive();
         app.getView('productList')._moveDown(this.model);
       }
     });

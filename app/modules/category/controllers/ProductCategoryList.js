@@ -95,12 +95,14 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       // 上移
       moveUp: function (e) {
         e.stopImmediatePropagation();
+        this._itemActive();
         this.collapsed = true;
         app.getView('productCategoryPage')._moveUp(this.model);
       },
       // 下移
       moveDown: function (e) {
         e.stopImmediatePropagation();
+        this._itemActive();
         this.collapsed = true;
         app.getView('productCategoryPage')._moveDown(this.model);
       }
@@ -141,6 +143,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       openAddDialog: function () {
         this._detail({
           title: '分类添加',
+          height: 250,
           url: CONST.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
         });
       },
