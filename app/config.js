@@ -48,12 +48,12 @@ seajs.config({
 
   // 映射配置
   map: [
-    [/lib\/(.*).js/, 'dist/lib/$1-min.js'], //['.js', '-min.js'] ,
-    ['.js', '.js?20141105']
+    [/lib\/(.*).js/, 'dist/lib/$1.js'], //['.js', '-min.js'] ,
+    ['.js', '.js?' + new Date().getTime()]
   ],
 
   // 调试模式
-  debug: true,
+  debug: false,
 
   // 文件编码
   charset: 'utf-8'
