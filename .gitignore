@@ -6,6 +6,8 @@ node_modules/
 bower_components/
 app/bower_components
 app/src/*.js
+app/config.local.js
+app/custom.js
 gulpfile.js
 package.json
 *.iml
