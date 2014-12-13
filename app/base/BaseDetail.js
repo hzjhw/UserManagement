@@ -40,7 +40,9 @@ define('BaseDetail', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'B
        * @author wyj 14.11.20
        */
       _render: function () {
+        app.getEvet('before') && app.getEvet('before').call(this);
         this.$el.html(this.template(this.model.toJSON()));
+        app.getEvet('after') && app.getEvet('after').call(this);
       },
       /**
        * 回车事件
