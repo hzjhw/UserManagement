@@ -5,7 +5,9 @@ npm-debug.log
 node_modules/
 bower_components/
 app/bower_components
-app/lib/*.js
+app/src/*.js
+gulpfile.js
+package.json
 *.iml
 *.swp
 /.tmp/
