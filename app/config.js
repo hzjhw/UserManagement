@@ -25,15 +25,15 @@ seajs.config({
     'marionette': 'vendor/backbone/backbone.marionette.js',
     'handlebars': 'vendor/handlebars/handlebars-debug.js',
     'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
-    'BaseView': 'base/BaseView.js',
-    'BaseCollection': 'base/BaseCollection.js',
-    'BaseModel': 'base/BaseModel.js',
-    'BaseItem': 'base/BaseItem.js',
-    'BaseDetail': 'base/BaseDetail.js',
-    'BaseList': 'base/BaseList.js',
-    'BaseRoot': 'base/BaseRoot',
-    'BaseUtils': 'base/BaseUtils',
-    'BaseComposite': 'base/BaseComposite'
+    'BaseView': 'lib/BaseView.js',
+    'BaseCollection': 'lib/BaseCollection.js',
+    'BaseModel': 'lib/BaseModel.js',
+    'BaseItem': 'lib/BaseItem.js',
+    'BaseDetail': 'lib/BaseDetail.js',
+    'BaseList': 'lib/BaseList.js',
+    'BaseRoot': 'lib/BaseRoot',
+    'BaseUtils': 'lib/BaseUtils',
+    'BaseComposite': 'lib/BaseComposite'
   }, app.getModules()),
 
   // 路径配置
