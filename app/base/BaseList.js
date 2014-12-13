@@ -374,7 +374,9 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
        * 弹出查看详细信息对话框
        *
        * @method [protected] - _detail
-       * @param options [title: 标题][width: 宽度][height: 高度][url: 地址][hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮]
+       * @param options [title: 标题][width: 宽度][height: 高度]
+       *                [url: 地址][hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮]
+       *                [oniframeload: 页面载入后回调， 参数为window对象]
        * @author wyj 14.11.16
        * @example
        *    this._detail({
@@ -419,7 +421,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             button: buttons,
             oniframeload: function () {
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
-              this.iframeNode.contentWindow.app = window.app;
+              options.oniframeload && options.oniframeload.call(this, this.iframeNode.contentWindow);
               //this.iframeNode.contentWindow.maxSort = app.getData('maxSort');
             },
             onclose: function () {
