@@ -309,7 +309,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
        * @method [protected] - _edit
        * @param options [title: 标题][width: 宽度][height: 高度]
        *                [url: 地址][reload: 关闭后是否重新从服务器获取数据][close: 关闭回调方法]
-       *                [hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮]
+       *                [hideSaveBtn: 隐藏保存按钮][hideResetBtn: 隐藏重置按钮][oniframeload: 页面载入后回调]
        * @author wyj 14.11.16
        */
       _edit: function (options) {
@@ -345,6 +345,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
             button: buttons,
             oniframeload: function () {
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+              options.oniframeload && options.oniframeload.call(this, this.iframeNode.contentWindow);
             },
             onclose: function () {
               ctx.model.set(Est.cloneDeep(window.model));
