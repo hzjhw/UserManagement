@@ -2,7 +2,7 @@
  * @descr
  * iption MessageList
  * @namespace MessageList
- * @author yongjin on 2014/11/16
+ * @author wxw on 2014/12/12
  */
 define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/message_list', 'template/message_item', 'BaseUtils'],
@@ -51,29 +51,20 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       render: function () {
         this._render();
       },
-      // 编辑产品
+      // 查看留言
       editItem: function () {
         var url = CONST.HOST + '/modules/message/message_detail.html?id='
           + this.model.toJSON().messageId;
         var options = {
           title: '留言信息',
           url: url,
-          reload: true
+          reload: true,
+          oniframeload: function(win){
+            win.app = app;
+            app.getView('messageDetail').setType('view');
+          }
         }
         this._edit(options);
-      },
-      // 显示/隐藏
-      isrecvState: function () {
-        this.model.set('recvState', this.model.get('recvState') === '00' ? '01' : '00');
-        this.model._saveField({
-          id: this.model.get('id'),
-          recvState: this.model.get('recvState')
-        }, this, { // ctx须初始化initModel
-          success: function () {
-          },
-          async: false,
-          hideTip: true
-        });
       }
     });
     /**
@@ -91,6 +82,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         'click .btn-batch-category': 'batchCategory'
       },
       initialize: function () {
+        this.editItem = true;
         this._initialize({
           render: '#message-list-ul',
           enterRender: '.btn-search',
@@ -109,7 +101,11 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           + Est.nextUid();
         this._detail({
           title: '留言信息',
-          url: url
+          url: url,
+          oniframeload: function(win){
+            win.app = app;
+            app.getView('messageDetail').setType('edit');
+          }
         });
       },
       // 搜索基础方法
