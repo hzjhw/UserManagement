@@ -419,6 +419,7 @@ define('BaseList', ['jquery', 'underscore', 'backbone', 'BaseUtils'],
             button: buttons,
             oniframeload: function () {
               this.iframeNode.contentWindow.detailDialog = window.detailDialog;
+              this.iframeNode.contentWindow.app = window.app;
               //this.iframeNode.contentWindow.maxSort = app.getData('maxSort');
             },
             onclose: function () {
