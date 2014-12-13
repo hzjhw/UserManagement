@@ -315,7 +315,7 @@ define('BaseItem', ['jquery', 'underscore', 'backbone', 'dialog', 'HandlebarsHel
       _edit: function (options) {
         debug('1.BaseItem._edit');
         var ctx = this;
-        this.itemActive();
+        this._itemActive();
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           var buttons = [];
