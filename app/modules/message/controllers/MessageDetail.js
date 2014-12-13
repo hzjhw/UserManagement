@@ -30,39 +30,18 @@ define('MessageDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDeta
       render: function () {
         debug('4.MessageDetail.render');
         var ctx = this;
-
-        this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
-          .join(","));
         this._render();
-
-        // 表单初始化
+        // 表单初始
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){
-            // 处理特殊字段
-            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
-              return item.get('name');
-            }).join(','));
           },
           onAfterSave: function(response){
           }
         });
-
         setTimeout(function () {
           ctx._resetIframe();
         }, 1000);
-
         return this;
-      },
-      showAttributes: function(categoryId, items){
-        if (!this.attributes){
-          this.attributes = new AttributesShow({
-            render: '#attributes-list',
-            categoryId: categoryId,
-            items: items
-          });
-        } else{
-          this.attributes.reload(categoryId);
-        }
       }
     });
 

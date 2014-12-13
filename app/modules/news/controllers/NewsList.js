@@ -202,7 +202,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           { key: 'title', value: this.searchKey },
           {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
           {key: 'type', value: this.searchCategory === '/' ? '' : this.searchCategory},
-          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
+          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory}
         ], {});
       },
       // 简单搜索
@@ -313,7 +313,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             }).show(this.$('.btn-batch-category').get(0));
           })
         }
-      },
+      }
 
     });
 
