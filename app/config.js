@@ -19,8 +19,6 @@ seajs.config({
     'localStorage': 'vendor/backbone/backbone.localStorage-debug.js',
     'dialog': 'vendor/artDialog_v6/dialog.js',
     'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js',
-    'datetimepicker': 'vendor/jquery-datetimepicker/jquery.datetimepicker.js',
-    'DatetimePicker': 'common/datetimepicker/scripts/DatetimePicker.js',
     'xheditor': 'vendor/xheditor/xheditor.js',
     'marionette': 'vendor/backbone/backbone.marionette.js',
     'handlebars': 'vendor/handlebars/handlebars-debug.js',
