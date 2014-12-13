@@ -48,13 +48,12 @@ seajs.config({
 
   // 映射配置
   map: [
-    //[/bui\/(.*).js/, 'bui/$1-min.js'], //['.js', '-min.js'] ,仅bui目录下使用-min.js
-    ['http://example.com/js/app/', 'http://localhost/js/app/'],
+    [/base\/(.*).js/, 'dist/base/$1-min.js'], //['.js', '-min.js'] ,
     ['.js', '.js?20141105']
   ],
 
   // 调试模式
-  debug: true,
+  debug: false,
 
   // 文件编码
   charset: 'utf-8'
