@@ -67,6 +67,7 @@
  - el: 目标元素Id 如 "#jhw-main"
  - initialize 实现父类_initialize
    参数：{
+        viewId: 'productList'
         template: 字符串模板，
         data: 对象数据
         enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
@@ -75,8 +76,8 @@
 
 3) BaseModel [模型类]
  - initialize 实现父类_initialize
- - defaults (可选) 默认值
- - baseId (可选) ID标识符 如productId
+ - defaults (可选) 默认值  如 Est.extend({}, BaseModel.prototype.defaults);
+ - baseId (可选) ID标识符 如 productId
  - baseUrl (可选) 服务器交互地址
  - validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel
 
@@ -88,17 +89,24 @@
 5) BaseItem [单视图]
  - tagName 
  - className (可选)
+ - events: {
+     'click .toggle': '_toggleChecked', // 全选
+     'click .edit': '_edit', // 编辑
+     'click .delete': '_del', // 删除
+     'click .move-up': '_moveUp', // 上移
+     'click .move-down': '_moveDown', // 下移
+     'change .input-sort': '_saveSort' // 保存sort 注： 当字段不为sort时， 此方法不适用， 参照AttributesList中的changeSort方法
+    }
  - initialize 实现父类_initialize 
    参数: {
+        viewId: 实例视图ID  如：productList
         template: 模板字符串
+        detailPage: 修改页面地址
         enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    } 
-   _onAfterRender (可选) ：渲染后执行的方法
+    _onAfterRender (可选) ：渲染后执行的方法
  - render 实现父类_render
- - events: {
-    'click .toggle': '_toggleChecked', // 全选
-    'click .delete': '_del', // 删除
-   }
+
  
 6) BaseList [列表视图]
  - el 目标元素Id， 如 "#jhw-main"
@@ -147,6 +155,12 @@
  - events: {
     'click #toggle-all': '_toggleAllChecked', // 选择框
    }
+   
+   // 重要方法
+   - _setOption 设置配置
+     app.getView('attributesList')._setOption({
+             sortField: 'orderList'
+           })._moveUp(this.model);
  
 7) BaseDetail [详细页]
  - initialize 实现父类_initialize 参数：
@@ -173,3 +187,5 @@
     })._init({});
     
 8) BaseComposite [树]
+
+

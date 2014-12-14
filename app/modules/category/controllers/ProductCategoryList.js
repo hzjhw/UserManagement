@@ -39,7 +39,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       },
       initialize: function () {
         this._initialize({
-          template: itemTemp
+          template: itemTemp,
+          viewId: 'productCategoryList'
         });
       },
       render: function () {

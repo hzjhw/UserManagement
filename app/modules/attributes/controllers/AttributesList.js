@@ -35,26 +35,22 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
+        'click .edit': '_edit',
         'click .delete': '_del',
+        'click .move-up': '_moveUp',
+        'click .move-down': '_moveDown',
         'click .name': 'editName',
-        'click .edit': 'editItem',
-        'click .move-up': 'moveUp',
-        'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort'
       },
       initialize: function () {
         this._initialize({
-          template: itemTemp
+          template: itemTemp,
+          itemId: 'attributesList',
+          detailPage: CONST.HOST + '/modules/attributes/attributes_detail.html'
         });
       },
       render: function () {
         this._render();
-      },
-      editItem: function () {
-        this._edit({
-          title: '属性修改',
-          url: CONST.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
-        });
       },
       editName: function () {
         this._editField({
@@ -87,7 +83,7 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
     AttributesList = BaseList.extend({
       el: '#jhw-main',
       events: {
-        'click #toggle-all': 'toggleAllChecked',
+        'click #toggle-all': '_toggleAllChecked',
         'click .attributes-add': 'openAddDialog',
         'click .attributes-show': 'attributesShow'
       },

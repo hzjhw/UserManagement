@@ -40,42 +40,34 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
+        'click .edit': '_edit',
         'click .delete': '_del',
+        'click .move-up': '_moveUp',
+        'click .move-down': '_moveDown',
+        'change .input-sort': '_saveSort',
         'click .btn-display': 'setDisplay',
         'click .name': 'editName',
         'click .prodtype': 'editProdtype',
-        'click .edit': 'editItem',
-        'click .move-up': 'moveUp',
-        'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort',
         'change .pro-category': 'changeCategory'
       },
       // 初始化
       initialize: function () {
         if (!app.getData('productCategory')) {
-          BaseUtils.getProductCategory({
-            extend: true,
-            select: true
+          BaseUtils.getProductCategory({ extend: true, select: true
           }).then(function (list) {
             app.setData('productCategory', list);
           })
         }
         this.model.set('productCategoryList', app.getData('productCategory'));
-        this._initialize({ template: itemTemp });
+        this._initialize({
+          template: itemTemp ,
+          viewId: 'productList',
+          detailPage: CONST.HOST + '/modules/product/product_detail.html'
+        });
       },
       // 渲染文档
       render: function () {
         this._render();
-      },
-      // 修改排序
-      changeSort: function () {
-        var ctx = this;
-        var sort = this.$('.input-sort').val();
-        this.model._saveField({ id: this.model.get('id'), sort: sort
-        }, ctx, { success: function () {
-          ctx.model.set('sort', sort);
-        }, hideTip: true
-        });
       },
       // 修改分类
       changeCategory: function () {
@@ -88,24 +80,13 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           ctx.model.set('category', category);
         }});
       },
-      // 编辑产品
-      editItem: function () {
-        var url = CONST.HOST + '/modules/product/product_detail.html?id='
-          + this.model.id;
-        var options = {
-          title: '产品修改',
-          url: url
-        }
-        this._edit(options);
-      },
       // 修改名称
       editName: function () {
-        var options = {
+        this._editField({
+          target: '.pro-list-name',
           title: '修改名称',
-          field: 'name',
-          target: '.pro-list-name'
-        };
-        this._editField(options, this);
+          field: 'name'
+        }, this);
       },
       // 显示/隐藏
       setDisplay: function () {
@@ -122,22 +103,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 修改型号
       editProdtype: function () {
-        var options = {
+        this._editField({
+          target: '.pro-list-prodtype',
           title: '修改型号',
-          field: 'prodtype',
-          target: '.pro-list-prodtype'
-        };
-        this._editField(options, this);
-      },
-      // 上移
-      moveUp: function () {
-        this._itemActive();
-        app.getView('productList')._moveUp(this.model);
-      },
-      // 下移
-      moveDown: function () {
-        this._itemActive();
-        app.getView('productList')._moveDown(this.model);
+          field: 'prodtype'
+        }, this);
       }
     });
     /**
