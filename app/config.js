@@ -46,7 +46,7 @@ seajs.config({
 
   // 映射配置
   map: [
-    [/lib\/(.*).js/, 'src/$1.js'], //['.js', '-min.js'] ,
+    [/lib\/(.*).js/, 'base/$1.js'], //['.js', '-min.js'] ,
     ['.js', '.js?141213']
   ],
 

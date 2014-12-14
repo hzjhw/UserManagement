@@ -32,15 +32,18 @@
 
 ### 说明
 - config.js [配置模块路径、模板与路由与全局变量]
-- base文件夹 [所有模块的父类]
+- config.local.js [本地配置文件， 此文件未加入到版本管理中]
 - common文件夹 [功能模块，如分页、标签、属性列表、图片库等]
+- doc [文档]
+- images [存放图片， 样式中background:url()中的url图片地址存放到styles/default/img文件夹中， 且为相对地址]
+- lib文件夹 [所有模块的父类]
 - models文件夹 [所有模型类]
 - modules [业务模块， 如产品管理、新闻管理、分类管理等]
 - scripts [包含所有帮助类与起始脚本， 如：handlebars模板引擎帮助类]
 - styles [所有样式文件]
 - swf [所有flash文件 如：复制粘贴组件， 上传组件]
 - vendor [所有第三方插件]
-- doc [前端工具类库帮助文档 如：each pluck clone等]
+- doc [帮助文档 如：工具库each pluck clone, 框架类BaseList、BaseItem等]
 - test [供测试调试用]
 - dist [发布到服务器的文件夹， 合并压缩JS、css后的最终代码]
 
