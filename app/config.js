@@ -29,9 +29,8 @@ seajs.config({
     'BaseItem': 'lib/BaseItem.js',
     'BaseDetail': 'lib/BaseDetail.js',
     'BaseList': 'lib/BaseList.js',
-    'BaseRoot': 'lib/BaseRoot',
-    'BaseUtils': 'lib/BaseUtils',
-    'BaseComposite': 'lib/BaseComposite'
+    'BaseUtils': 'lib/BaseUtils.js',
+    'BaseComposite': 'lib/BaseComposite.js'
   }, app.getModules()),
 
   // 路径配置
@@ -46,13 +45,13 @@ seajs.config({
 
   // 映射配置
   map: [
-    [/lib\/(.*).js/, 'base/$1.js'], //['.js', '-min.js'] ,
-    ['.js', '.js?141213']
+    [/lib\/(.*).js/, CONST.LIB_FORDER + '/$1.js'], //['.js', '-min.js'] ,
+    [ /^(.*\.(?:css|js))(.*)$/i, '$1?' + CONST.APP_VERSION]
   ],
 
   // 调试模式
-  debug: typeof seajs_debug === 'undefined' ? false :
-    seajs_debug,
+  debug: Est.typeOf(CONST.DEBUG_SEAJS) === 'undefined' ? false :
+    CONST.DEBUG_SEAJS,
 
   // 文件编码
   charset: 'utf-8'
@@ -87,7 +86,6 @@ seajs.use(['jquery', 'underscore', 'backbone'],
  * 调试
  * */
 window.debug = function (str, options) {
-  if (CONST.DEBUG) {
+  if (CONST.DEBUG_CONSOLE)
     console.log(str);
-  }
 }

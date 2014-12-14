@@ -39,7 +39,7 @@
 <script type="text/javascript" src="../../scripts/app.js"></script>
 <script type="text/javascript">
     seajs.use(['jquery', 'ProductDetail'], function(jquery, ProductDetail){
-        new ProductDetail();
+        app.addView('productDetail', new ProductDetail());
     });
 </script>
 </body>
