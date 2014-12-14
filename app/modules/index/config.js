@@ -10,7 +10,7 @@ app.addModule('Main', 'modules/index/controllers/Main.js');
 
 app.addRoute('index', function () {
   seajs.use(['jquery', 'Main'], function (jquery, Main) {
-    app.addView('main', new Main);
+    app.addView('main', new Main());
   });
 });
 

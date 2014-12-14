@@ -78,7 +78,7 @@ seajs.use(['jquery', 'underscore', 'backbone'],
       b_routes[fnName] = value;
     });
     var router = Backbone.Router.extend(b_routes);
-    new router;
+    new router();
     Backbone.history.start();
   });
 
@@ -88,4 +88,4 @@ seajs.use(['jquery', 'underscore', 'backbone'],
 window.debug = function (str, options) {
   if (CONST.DEBUG_CONSOLE)
     console.log(str);
-}
+};

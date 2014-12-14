@@ -15,7 +15,7 @@ app.addModule('ProductDetail', 'modules/product/controllers/ProductDetail.js');
  * */
 app.addRoute('product', function(){
   seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
-    app.addView('productList', new ProductList);
+    app.addView('productList', new ProductList());
   });
 });
 

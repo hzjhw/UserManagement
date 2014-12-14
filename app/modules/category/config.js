@@ -22,11 +22,11 @@ app.addTemplate('template/category_news_list', function (require, exports, modul
 });
 app.addRoute('category/news', function () {
   seajs.use(['jquery', 'NewsCategoryList'], function (jquery, NewsCategoryList) {
-    app.addView('newsCategoryPage', new NewsCategoryList);
+    app.addView('newsCategoryPage', new NewsCategoryList());
   });
 });
 app.addRoute('category/product', function () {
   seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
-    app.addView('productCategoryPage', new ProductCategoryList);
+    app.addView('productCategoryPage', new ProductCategoryList());
   });
 });

@@ -16,7 +16,7 @@ app.addModule('Register', 'modules/register/controllers/Register.js');
 
  app.addRoute('register', function(){
   seajs.use(['jquery', 'Register'], function (jquery, Register) {
-    app.addView('register', new Register);
+    app.addView('register', new Register());
   });
 });
 

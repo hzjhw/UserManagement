@@ -15,7 +15,7 @@ app.addModule('MessageDetail', 'modules/message/controllers/MessageDetail.js');
  * */
 app.addRoute('message', function(){
   seajs.use(['jquery', 'MessageList'], function (jquery, MessageList) {
-    app.addView('messageList', new MessageList);
+    app.addView('messageList', new MessageList());
   });
 });
 

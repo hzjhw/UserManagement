@@ -11,7 +11,7 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
     BaseDetail = require('BaseDetail');
 
     NewsCategoryDetail = BaseDetail.extend({
-      el: '#jhw-panel-main',
+      el: '#jhw-detail',
       events: {
         'click #news-category-reset': 'reset'
       },

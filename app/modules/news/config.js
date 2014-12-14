@@ -16,7 +16,7 @@ app.addModule('NewsDetail', 'modules/news/controllers/NewsDetail.js');
  * */
 app.addRoute('news', function(){
   seajs.use(['jquery', 'NewsList'], function (jquery, NewsList) {
-    app.addView('newsList', new NewsList);
+    app.addView('newsList', new NewsList());
   });
 });
 

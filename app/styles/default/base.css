@@ -173,6 +173,7 @@ div#jhw-body { overflow: hidden; background: #3388CB; }
 #jhw input.input-sort{ width: 35px;margin:0;padding:0;text-align: center; }
 #jhw .auto-width{width:auto;}
 #jhw #load{position:absolute;width:100%;height:100%;z-index:99999999;top:2px;left:0;background:#fff;}
+#jhw #jhw-detail{padding:5px 3px;}
 /*列表*/
 label.checkbox { padding-left: 5px; }
 .grid-td-checkbox{ width:40px; }

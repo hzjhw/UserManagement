@@ -13,7 +13,7 @@ app.addModule('Login', 'modules/login/controllers/Login.js');
  * */
 app.addRoute('login', function(){
   seajs.use(['jquery', 'Login'], function (jquery, Login) {
-    app.addView('login', new Login);
+    app.addView('login', new Login());
   });
 });
 

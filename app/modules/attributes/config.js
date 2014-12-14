@@ -5,7 +5,7 @@
  */
 app.addRoute('attributes', function () {
   seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
-    app.addView('attributesList', new AttributesList);
+    app.addView('attributesList', new AttributesList());
   });
 });
 app.addModule('AttributesDetail', 'modules/attributes/controllers/AttributesDetail.js');
