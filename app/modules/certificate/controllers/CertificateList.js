@@ -138,18 +138,11 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       searchAdvance: function () {
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
-        if (!app.getData('certificateCategory')) {
-          BaseUtils.certificateList({
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.setData('certificateCategory', list);
-          })
-        }
+
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
-            id: 'search-dialog',
+            id: 'search-cert-dialog',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({
@@ -157,27 +150,22 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
               loginViewList: app.getData('loginViewList'),
               adsList: app.getData('adsList'),
               searchKey: ctx.searchKey,
-              searchProdtype: ctx.searchProdtype,
-              searchCategory: ctx.searchCategory,
-              searchAds: ctx.searchAds,
-              searchLoginView: ctx.searchLoginView
+              searchOrganize: ctx.searchOrganize,
+              searchType: ctx.searchType,
+              certificateList:app.getData('certificateList')
             }),
             button: [
               {
                 value: '搜索',
                 callback: function () {
                   ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
-                  ctx.searchCategory = $('select[name=searchCategory]').val();
-                  ctx.searchLoginView = $('select[name=searchLoginView]').val();
-                  ctx.searchAds = $('select[name=searchAds]').val();
+                  ctx.searchOrganize = $('input[name=searchOrganize]').val();
+                  ctx.searchType = $('select[name=searchType]').val();
                   ctx._search({
                     filter: [
                       {key: 'name', value: ctx.searchKey },
-                      {key: 'prodtype', value: ctx.searchProdtype} ,
-                      {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
-                      {key: 'loginView', value: ctx.searchLoginView},
-                      {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+                      {key: 'organize', value: ctx.searchOrganize} ,
+                      {key: 'type', value: ctx.searchType}
                     ]
                   });
                   this.remove();

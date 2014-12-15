@@ -5,7 +5,6 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  * @namespace local
  * @author yongjin<zjut_wyj@163.com> 2014/12/13
  */
-CONST.DEBUG_LOCAL = true
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
 CONST.LIB_FORDER = typeof CONST.DEBUG_LOCAL === 'undefined' ? 'lib' : 'base';

@@ -229,7 +229,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
-            id: 'search-dialog',
+            id: 'search-news-dialog',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({
