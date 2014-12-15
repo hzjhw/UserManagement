@@ -136,15 +136,15 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars.registerHelper('certType', function (str, options) {
     var result = '';
     switch (str){
-      case '00':
-        result = '一般证书'; break;
       case '01':
         result = '基本证书'; break;
       case '02':
-        result = '税务证书'; break;
+        result = '一般证书'; break;
       case '03':
-        result = '荣誉证书'; break;
+        result = '税务证书'; break;
       case '04':
+        result = '荣誉证书'; break;
+      case '05':
         result = '其它证书'; break;
     }
     return result;
