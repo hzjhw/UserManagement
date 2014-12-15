@@ -10,17 +10,22 @@
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span id="model-title"class="pro-list-title" title="{{title}}">{{title}}</span>
+        <span id="model-title" class="pro-list-title" title="{{title}}">{{title}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner">
-        <span id="model-fromName"class="pro-list-fromName" title="{{fromName}}">{{fromName}}</span>
+        <span id="model-fromName" class="pro-list-fromName" title="{{fromName}}">{{fromName}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text">
-        <a href="javascript:;" class="btn-recvState">{{#compare recvState '==' '00'}}未读{{else}}已读{{/compare}}</a></span></div>
+        <a href="javascript:;" class="btn-recvState">{{#compare recvState '==' '00'}}<span
+                class="x-icon x-icon-small x-icon-warning pointer" style="vertical-align: middle;">
+            <i class="icon icon-white icon-folder-close pointer"></i>
+        </span>&nbsp;&nbsp;<span style="color:#F0AD4E;">未读</span>{{else}}<span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
+            <i class="icon icon-white icon-folder-open pointer"></i>
+        </span>&nbsp;&nbsp;已读{{/compare}}</a></span></div>
 </td>
 
 <td class="bui-grid-cell grid-td-picture">
@@ -33,15 +38,14 @@
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-      <span class="pro-list-ip" title="{{ip}}">{{ip}}</span>
+        <span class="pro-list-ip" title="{{ip}}">{{ip}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-category">
     <div class="bui-grid-cell-inner">
-        <span  id="model-addTime" class="btn-addTime">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
+        <span id="model-addTime" class="btn-addTime">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
     </div>
 </td>
-
 
 
 <td class="bui-grid-cell grid-td-handle">

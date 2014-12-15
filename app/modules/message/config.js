@@ -9,6 +9,7 @@
 app.addModule('MessageModel', 'models/MessageModel.js');
 app.addModule('MessageList', 'modules/message/controllers/MessageList.js');
 app.addModule('MessageDetail', 'modules/message/controllers/MessageDetail.js');
+app.addModule('MessageBindModel', 'models/MessageBindModel.js');
 
 /**
  * 路由

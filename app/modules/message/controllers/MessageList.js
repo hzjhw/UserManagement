@@ -5,10 +5,10 @@
  * @author wxw on 2014/12/12
  */
 define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email'],
+    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email', 'MessageBindModel'],
   function (require, exports, module) {
     var MessageModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MessageList, MessageItem,
-      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp;
+      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel;
 
     MessageModel = require('MessageModel');
     BaseCollection = require('BaseCollection');
@@ -19,6 +19,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
     itemTemp = require('template/message_item');
     BaseUtils = require('BaseUtils');
     emailTemp = require('template/message_email');
+    MessageBindModel = require('MessageBindModel');
 
 
     /**
@@ -127,17 +128,27 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         }
       },
       // 邮箱绑定
-      emailBind: function(){
-        BaseUtils.iframeDialog({
-          title: '邮箱绑定',
-          content: '',
-          success: function(){
-
-          }
+      emailBind: function () {
+        var model = new MessageBindModel();
+        var template = HandlebarsHelper.compile(emailTemp)
+        model.fetch().then(function () {
+          BaseUtils.dialog({
+            title: '邮箱绑定',
+            content: template(model.toJSON()),
+            target: '.btn-email-bind',
+            width: 380,
+            success: function () {
+              model.set('state', $('input[name=state]').val());
+              model.set('key', $('input[name=key]').val());
+              model.save().then(function(){
+              });
+              this.close();
+            }
+          });
         });
       },
       // 黑名单
-      blackList: function(){
+      blackList: function () {
         BaseUtils.iframeDialog({
           title: '黑名单',
           url: CONST.DOMAIN + '/user/blacklist/view',
