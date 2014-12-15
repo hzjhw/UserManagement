@@ -168,7 +168,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
-            id: 'search-dialog',
+            id: 'search-dialog-product',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({

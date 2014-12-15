@@ -8,12 +8,14 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
 CONST.DEBUG_LOCAL = true
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-<<<<<<< Updated upstream
 CONST.LIB_FORDER = typeof CONST.DEBUG_LOCAL === 'undefined' ? 'lib' : 'base';
-=======
-CONST.LIB_FORDER = 'lib';
->>>>>>> Stashed changes
 CONST.APP_VERSION = '20141215';
+/**
+ * @description config
+ * @namespace config
+ * @author yongjin<zjut_wyj@163.com> 2014/12/15
+ */
+app.addRoute();
 /**
  * @description config
  * @namespace config
@@ -65,8 +67,11 @@ app.addRoute('category/product', function () {
     app.addView('productCategoryPage', new ProductCategoryList());
   });
 });
-
-/**certificate*/
+/**
+ * @description config
+ * @namespace config
+ * @author wxw<zjut_wyj@163.com> 2014/12/15
+ */
 /**
  * 模块
  * */
@@ -104,7 +109,6 @@ app.addTemplate('template/certificate_sort', function(require, exports, module){
 app.addTemplate('template/certificate_search', function (require, exports, module) {
   module.exports = require('modules/certificate/views/certificate_search.html');
 });
-
 /**
  * @description config
  * @namespace config
