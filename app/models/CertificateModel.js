@@ -13,7 +13,7 @@ define('CertificateModel', ['jquery', 'BaseModel'],
       defaults: Est.extend({
         domain: null,
         organize: "",
-        addTime: (new Date()).getTime(),
+        addTime: new Date().getTime(),
         attList: null,
         certificateId: "",
         name: "",
