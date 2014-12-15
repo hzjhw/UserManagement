@@ -7,8 +7,8 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  */
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.LIB_FORDER = 'base';
-CONST.APP_VERSION = '20141213';
+CONST.LIB_FORDER = 'lib';
+CONST.APP_VERSION = '20141215';
 /**
  * @description config
  * @namespace config

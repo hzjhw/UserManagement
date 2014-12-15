@@ -83,6 +83,7 @@
 
 4) BaseCollection [集合]
  - url 获取列表地址， 值可为方法，返回地址
+ - batchDel: 批量删除url
  - model 模型类
  - initialize 初始化， 实现父类 _initialize方法
 
@@ -101,7 +102,7 @@
    参数: {
         viewId: 实例视图ID  如：productList
         template: 模板字符串
-        detailPage: 修改页面地址
+        detail: 修改或添加页面地址
         enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    } 
     _onAfterRender (可选) ：渲染后执行的方法
@@ -118,6 +119,8 @@
         collection: 集合, 
         item: 单视图, 
         model: 模型类, 
+        detail: 添加页面url地址
+        filter: [ {key: 'name', value: this.searchKey }] // 过滤结果
         items: [](可选， 当无需url请求时),
         // 以下为树型列表时 需要的参数
         subRender: '.node-tree', // 下级分类的容器选择符
@@ -154,6 +157,8 @@
  - render 实现父类 _render
  - events: {
     'click #toggle-all': '_toggleAllChecked', // 选择框
+    'click .btn-batch-del': '_batchDel', // 批量删除
+    'click .product-add': '_detail' // 添加页面
    }
    
    // 重要方法

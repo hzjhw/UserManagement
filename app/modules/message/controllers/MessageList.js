@@ -25,6 +25,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
      */
     MessageCollection = BaseCollection.extend({
       url: CONST.API + '/message/list',
+      batchDel: CONST.API + '/message/batch/del',
       model: MessageModel,
       initialize: function () {
         this._initialize();
@@ -45,7 +46,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       },
       // 初始化
       initialize: function () {
-        this._initialize({ template: itemTemp ,model : MessageModel});
+        this._initialize({ template: itemTemp, model: MessageModel});
       },
       // 渲染文档
       render: function () {
@@ -59,7 +60,8 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           title: '留言信息',
           url: url,
           reload: true,
-          oniframeload: function(win){
+          padding: 0,
+          oniframeload: function (win) {
             win.app = app;
             app.getView('messageDetail').setType('view');
           }
@@ -74,10 +76,10 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
+        'click .btn-batch-del': '_batchDel',
         'click .message-add': 'openAddDialog',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
-        'click .btn-batch-del': 'batchDel',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category': 'batchCategory'
       },
@@ -102,7 +104,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         this._detail({
           title: '留言信息',
           url: url,
-          oniframeload: function(win){
+          oniframeload: function (win) {
             win.app = app;
             app.getView('messageDetail').setType('edit');
           }
@@ -121,28 +123,6 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           this._load({ page: 1, pageSize: 16 });
         } else {
           this.baseSearch();
-        }
-      },
-      // 批量删除
-      batchDel: function () {
-        var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.comfirm({
-            success: function () {
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/message/batch/del',
-                data: {
-                  ids: ctx.checkboxIds.join(',')
-                },
-                success: function (result) {
-                  BaseUtils.tip('删除成功');
-                  ctx._load();
-                }
-              });
-            }
-          });
         }
       }
     });

@@ -27,6 +27,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
      */
     ProductCollection = BaseCollection.extend({
       url: CONST.API + '/product/list',
+      batchDel: CONST.API + '/product/batch/del',
       model: ProductModel,
       initialize: function () {
         this._initialize();
@@ -60,9 +61,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         }
         this.model.set('productCategoryList', app.getData('productCategory'));
         this._initialize({
-          template: itemTemp ,
+          template: itemTemp,
           viewId: 'productList',
-          detailPage: CONST.HOST + '/modules/product/product_detail.html'
+          detail: CONST.HOST + '/modules/product/product_detail.html'
         });
       },
       // 渲染文档
@@ -86,7 +87,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           target: '.pro-list-name',
           title: '修改名称',
           field: 'name'
-        }, this);
+        });
       },
       // 显示/隐藏
       setDisplay: function () {
@@ -107,7 +108,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           target: '.pro-list-prodtype',
           title: '修改型号',
           field: 'prodtype'
-        }, this);
+        });
       }
     });
     /**
@@ -117,10 +118,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .product-add': 'openAddDialog',
+        'click .btn-batch-del': '_batchDel',
+        'click .product-add': '_detail',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
-        'click .btn-batch-del': 'batchDel',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-tool-sort': 'proSort'
@@ -132,30 +133,12 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           template: listTemp,
           model: ProductModel,
           collection: ProductCollection,
-          item: ProductItem
+          item: ProductItem,
+          detail: CONST.HOST + '/modules/product/product_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
         });
-      },
-      // 打开添加/修改对话框
-      openAddDialog: function () {
-        var url = CONST.HOST + '/modules/product/product_detail.html?uId='
-          + Est.nextUid();
-        this._detail({
-          title: '产品添加',
-          url: url
-        });
-      },
-      // 搜索基础方法
-      baseSearch: function () {
-        this._search([
-          { key: 'name', value: this.searchKey },
-          {key: 'prodtype', value: this.searchProdtype} ,
-          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
-          {key: 'loginView', value: this.searchLoginView},
-          {key: 'ads', value: this.searchAds === '2' ? '' : this.searchAds}
-        ], {});
       },
       // 简单搜索
       search: function () {
@@ -163,7 +146,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         if (Est.isEmpty(this.searchKey)) {
           this._load({ page: 1, pageSize: 16 });
         } else {
-          this.baseSearch();
+          this._search({
+            filter: [
+              {key: 'name', value: this.searchKey }
+            ]
+          });
         }
       },
       // 高级搜索
@@ -203,7 +190,15 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
                   ctx.searchCategory = $('select[name=searchCategory]').val();
                   ctx.searchLoginView = $('select[name=searchLoginView]').val();
                   ctx.searchAds = $('select[name=searchAds]').val();
-                  ctx.baseSearch();
+                  ctx._search({
+                    filter: [
+                      {key: 'name', value: ctx.searchKey },
+                      {key: 'prodtype', value: ctx.searchProdtype} ,
+                      {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
+                      {key: 'loginView', value: ctx.searchLoginView},
+                      {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+                    ]
+                  });
                   this.remove();
                   return false;
                 },
@@ -268,43 +263,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 批量隐藏
       batchDisplay: function () {
-        var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          $.ajax({
-            type: 'POST',
-            async: false,
-            url: CONST.API + '/product/batch/display',
-            data: {
-              ids: this.checkboxIds.join(',')
-            },
-            success: function (result) {
-              BaseUtils.tip('批量隐藏成功');
-              ctx._load();
-            }
-          });
-        }
-      },
-      // 批量删除
-      batchDel: function () {
-        var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.comfirm({
-            success: function () {
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/product/batch/del',
-                data: {
-                  ids: ctx.checkboxIds.join(',')
-                },
-                success: function (result) {
-                  BaseUtils.tip('删除成功');
-                  ctx._load();
-                }
-              });
-            }
-          });
-        }
+        this._batch({
+          url: CONST.API + '/product/batch/display',
+          tip: '批量隐藏成功'
+        });
       },
       // 排序
       proSort: function () {
