@@ -8,7 +8,11 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
 CONST.DEBUG_LOCAL = true
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
+<<<<<<< Updated upstream
 CONST.LIB_FORDER = typeof CONST.DEBUG_LOCAL === 'undefined' ? 'lib' : 'base';
+=======
+CONST.LIB_FORDER = 'lib';
+>>>>>>> Stashed changes
 CONST.APP_VERSION = '20141215';
 /**
  * @description config
@@ -61,6 +65,46 @@ app.addRoute('category/product', function () {
     app.addView('productCategoryPage', new ProductCategoryList());
   });
 });
+
+/**certificate*/
+/**
+ * 模块
+ * */
+app.addModule('CertificateModel', 'models/CertificateModel.js');
+app.addModule('CertificateList', 'modules/certificate/controllers/CertificateList.js');
+app.addModule('CertificateDetail', 'modules/certificate/controllers/CertificateDetail.js');
+
+/**
+ * 路由
+ * */
+app.addRoute('certificate', function(){
+  seajs.use(['jquery', 'CertificateList'], function (jquery, CertificateList) {
+    app.addView('certificateList', new CertificateList());
+  });
+});
+
+/**
+ * 模板
+ * */
+app.addTemplate('template/certificate_item', function (require, exports, module) {
+  module.exports = require('modules/certificate/views/certificate_item.html');
+});
+app.addTemplate('template/certificate_list', function (require, exports, module) {
+  module.exports = require('modules/certificate/views/certificate_list.html');
+});
+app.addTemplate('template/certificate_detail', function (require, exports, module) {
+  module.exports = require('modules/certificate/views/certificate_detail.html');
+});
+app.addTemplate('template/certificate_transfer', function(require, exports, module){
+  module.exports = require('modules/certificate/views/certificate_transfer.html');
+});
+app.addTemplate('template/certificate_sort', function(require, exports, module){
+  module.exports = require('modules/certificate/views/certificate_sort.html');
+});
+app.addTemplate('template/certificate_search', function (require, exports, module) {
+  module.exports = require('modules/certificate/views/certificate_search.html');
+});
+
 /**
  * @description config
  * @namespace config
