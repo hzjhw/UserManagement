@@ -147,7 +147,9 @@ body .m0{margin:0}
 #jhw #jhw-top-left{float: left; width: 14%;text-align: center; margin-right: 1%;background:#3388CB;height:100%;font-size: 18px; color: #fff; line-height: 58px;}
 #jhw #jhw-top-right{float:left;padding-right: 1%; width: 84%;height:100%;}
 #jhw .jhw-top-l{float:left;height:100%;width:300px;background:  url(img/jhw-top-l.jpg) no-repeat scroll top left #fff;}
-#jhw .jhw-top-r{float:right;height:100%;width:500px;background:  url(img/top-right.jpg) no-repeat scroll top right #fff;}
+#jhw .jhw-top-l p.welcome {color:#585858;margin:0;padding-left:75px;padding-top:18px}
+#jhw .jhw-top-r{float:right;height:100%;width:500px;background:  url(img/ttop-right.jpg) no-repeat scroll top right #fff;text-align:right;}
+#jhw .jhw-top-r a{color:#585858;margin-left:15px;padding-left:20px;}
 #jhw-left-bar{ float: left; width: 14%;text-align: center;height:100%;overflow-y: auto;overflow-x: hidden;}
 #jhw-left-bar ul{border-top: 1px solid #2A74AE;}
 #jhw-left-bar a, #jhw-left-bar a:link{color:#fff;font-size:14px;display: block; height: 30px; padding-top: 70px; width: 100%;}
@@ -162,10 +164,15 @@ div#jhw-body { overflow: hidden; background: #3388CB; }
 #jhw .menu-product{background: url("img/menu-product.png") no-repeat scroll center 10px transparent}
 #jhw .menu-news{background: url("img/menu-news.png") no-repeat scroll center 10px transparent}
 #jhw .menu-static{background: url("img/menu-static.png") no-repeat scroll center 10px transparent}
-#jhw .menu-customer{background: url("img/menu-customer.png") no-repeat scroll center 10px transparent}
+#jhw .menu-message{background: url("img/menu-message.png") no-repeat scroll center 10px transparent}
 #jhw .menu-tool{background: url("img/menu-tool.png") no-repeat scroll center 10px transparent}
 #jhw .menu-category{background: url("img/menu-category.png") no-repeat scroll center 10px transparent}
 #jhw .menu-attributes{background: url("img/menu-attributes.png") no-repeat scroll center 10px transparent}
+#jhw .top-index{background: url("img/top-index.jpg") no-repeat left center transparent}
+#jhw .top-message{background: url("img/top-message.jpg") no-repeat left center transparent}
+#jhw .top-tool{background: url("img/top-tool.jpg") no-repeat left center transparent}
+#jhw .top-member{background: url("img/top-member.jpg") no-repeat left center transparent}
+#jhw .top-login{background: url("img/top-login.jpg") no-repeat left center transparent}
 /* 通用 ****************************************************************************************/
 #J_Form{ overflow:hidden; }
 #jhw .show_hide{ display:none; }

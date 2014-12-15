@@ -3,16 +3,20 @@
  * @namespace TopView
  * @author yongjin on 2014/11/12
  */
-define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
+define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top'],
   function (require, exports, module) {
-    var TopView, UserModel, BaseView, tempTop;
+    var TopView, UserModel, BaseView, BaseUtils, tempTop;
 
     UserModel = require('UserModel');
     BaseView = require('BaseView');
     tempTop = require('template/layout_top');
+    BaseUtils = require('BaseUtils');
 
     TopView = BaseView.extend({
       el: '#jhw-top',
+      events: {
+        'click .top-login': 'logout'
+      },
       initialize: function () {
         var userModel = new UserModel();
         userModel.fetch({
@@ -39,6 +43,9 @@ define('TopView', ['BaseView', 'UserModel', 'template/layout_top'],
       },
       render: function () {
         this._render();
+      },
+      logout: function(){
+        BaseUtils.logout();
       }
     });
 
