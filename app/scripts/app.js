@@ -7,7 +7,7 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  */
 CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
-CONST.DEBUG_CONSOLE = true;git
+CONST.DEBUG_CONSOLE = true;
 CONST.APP_VERSION = '20141215';
 /**
  * @description config
