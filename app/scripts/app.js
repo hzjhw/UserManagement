@@ -7,7 +7,7 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  */
 CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
-CONST.DEBUG_CONSOLE = true;
+CONST.DEBUG_CONSOLE = true;git
 CONST.APP_VERSION = '20141215';
 /**
  * @description config
@@ -333,47 +333,41 @@ app.addTemplate('template/product_search', function (require, exports, module) {
   module.exports = require('modules/product/views/product_search.html');
 });
 /**
- * @description config
- * @namespace config
- * @author Administrator on 14-12-15
+ * @description config-recruit
+ * @namespace config-recruit
+ * @author wxw on 14-12-15
  */
 
 /**
  * 模块
  * */
-app.addModule('ProductModel', 'models/ProductModel.js');
-app.addModule('ProductList', 'modules/product/controllers/ProductList.js');
-app.addModule('ProductDetail', 'modules/product/controllers/ProductDetail.js');
+app.addModule('RecruitModel', 'models/RecruitModel.js');
+app.addModule('RecruitList', 'modules/recruit/controllers/RecruitList.js');
+app.addModule('RecruitDetail', 'modules/recruit/controllers/RecruitDetail.js');
 
 /**
  * 路由
  * */
-app.addRoute('product', function(){
-  seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
-    app.addView('productList', new ProductList());
+app.addRoute('recruit', function(){
+  seajs.use(['jquery', 'RecruitList'], function (jquery, RecruitList) {
+    app.addView('recruitList', new RecruitList());
   });
 });
 
 /**
  * 模板
  * */
-app.addTemplate('template/product_item', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_item.html');
+app.addTemplate('template/recruit_item', function (require, exports, module) {
+  module.exports = require('modules/recruit/views/recruit_item.html');
 });
-app.addTemplate('template/product_list', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_list.html');
+app.addTemplate('template/recruit_list', function (require, exports, module) {
+  module.exports = require('modules/recruit/views/recruit_list.html');
 });
-app.addTemplate('template/product_detail', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_detail.html');
+app.addTemplate('template/recruit_detail', function (require, exports, module) {
+  module.exports = require('modules/recruit/views/recruit_detail.html');
 });
-app.addTemplate('template/product_transfer', function(require, exports, module){
-  module.exports = require('modules/product/views/product_transfer.html');
-});
-app.addTemplate('template/product_sort', function(require, exports, module){
-  module.exports = require('modules/product/views/product_sort.html');
-});
-app.addTemplate('template/product_search', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_search.html');
+app.addTemplate('template/recruit_search', function (require, exports, module) {
+  module.exports = require('modules/recruit/views/recruit_search.html');
 });
 /**
  * @description config
