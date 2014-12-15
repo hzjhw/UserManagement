@@ -31,3 +31,6 @@ app.addTemplate('template/message_list', function (require, exports, module) {
 app.addTemplate('template/message_detail', function (require, exports, module) {
   module.exports = require('modules/message/views/message_detail.html');
 });
+app.addTemplate('template/message_email', function(require, exports, module){
+  module.exports = require('modules/message/views/message_email.html');
+});

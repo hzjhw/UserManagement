@@ -5,10 +5,10 @@
  * @author wxw on 2014/12/12
  */
 define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/message_list', 'template/message_item', 'BaseUtils'],
+    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email'],
   function (require, exports, module) {
     var MessageModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MessageList, MessageItem,
-      MessageCollection, listTemp, itemTemp, BaseUtils;
+      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp;
 
     MessageModel = require('MessageModel');
     BaseCollection = require('BaseCollection');
@@ -18,6 +18,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
     listTemp = require('template/message_list');
     itemTemp = require('template/message_item');
     BaseUtils = require('BaseUtils');
+    emailTemp = require('template/message_email');
 
 
     /**
@@ -63,7 +64,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           padding: 0,
           oniframeload: function (win) {
             win.app = app;
-            app.getView('messageDetail').setType('view');
+            //app.getView('messageDetail').setType('view');
           }
         }
         this._edit(options);
@@ -81,7 +82,9 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
-        'click .btn-batch-category': 'batchCategory'
+        'click .btn-batch-category': 'batchCategory',
+        'click .btn-email-bind': 'emailBind',
+        'click .btn-blacklist': 'blackList'
       },
       initialize: function () {
         this.editItem = true;
@@ -110,20 +113,36 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           }
         });
       },
-      // 搜索基础方法
-      baseSearch: function () {
-        this._search([
-          { key: 'title', value: this.searchKey }
-        ], {});
-      },
       // 简单搜索
       search: function () {
         this.searchKey = Est.trim(this.$('.search-text').val());
         if (Est.isEmpty(this.searchKey)) {
           this._load({ page: 1, pageSize: 16 });
         } else {
-          this.baseSearch();
+          this._search({
+            filter: [
+              {key: 'title', value: this.searchKey }
+            ]
+          });
         }
+      },
+      // 邮箱绑定
+      emailBind: function(){
+        BaseUtils.iframeDialog({
+          title: '邮箱绑定',
+          content: '',
+          success: function(){
+
+          }
+        });
+      },
+      // 黑名单
+      blackList: function(){
+        BaseUtils.iframeDialog({
+          title: '黑名单',
+          url: CONST.DOMAIN + '/user/blacklist/view',
+          width: 500
+        });
       }
     });
 
