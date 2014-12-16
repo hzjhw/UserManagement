@@ -43,7 +43,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
     });
 
     AlbumList = BaseList.extend({
-      el: '#jhw-main',
+      el: '.album_left',
       events: {
         'click #toggle-all': '_toggleAllChecked', // 选择框
         'click .product-add': '_detail' // 添加页面
