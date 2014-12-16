@@ -265,6 +265,11 @@ label.checkbox { padding-left: 5px; }
 .cate-grid-cell-inner{ padding: 10px 5px; position: relative; overflow: hidden; }
 .category-ul .gird-checkbox{ width:32px; }
 .category-ul .gird-2{ width:32px; }
+/*相册*/
+#jhw .album-sub{padding-left:23px;}
+#jhw .album-cate-ul li{padding-top:8px;}
+#jhw .album_left{float:left;}
+#jhw .album_left li{padding-left: 10px; padding-right: 10px;}
 /*
 .category-ul .gird-3{ width:20%; }
 .category-ul .gird-4{ width:32px; }
