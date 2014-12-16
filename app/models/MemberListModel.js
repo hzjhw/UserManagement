@@ -1,22 +1,19 @@
 /**
  * @description 会员模型类
- * @namespace MemberModel
+ * @namespace MemberListModel
  * @author jihui-wxw on 2014/10/31
  */
-define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'],
+define('MemberListModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'],
   function (require, exports, module) {
     var dialog, BaseModel;
 
     BaseModel = require('BaseModel');
     dialog = require('dialog');
 
-    var MemberModel = BaseModel.extend({
+    var MemberListModel = BaseModel.extend({
       defaults: Est.extend({
         username: '',
         password: '',
-        safeQuestion: null,
-        safeAnswer: null,
-        deposit: '',
         isAccountEnabled: "00",
         isAccountLocked: "00",
         loginFailureCount: 0,
@@ -38,7 +35,7 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
         point: '',
         enterpriseId: '',
         email: '',
-        addTime: '',
+        addTime: new Date().getTime(),
         updateTime: '',
         memberId: '',
         cellphone: '',
@@ -48,5 +45,5 @@ define('MemberModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'
       baseId: 'memberId'
     });
 
-    module.exports = MemberModel;
+    module.exports = MemberListModel;
   });

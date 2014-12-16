@@ -1,11 +1,7 @@
 /**
  * @description 新闻分类列表视图
  * @namespace NewsCategoryList
-<<<<<<< Updated upstream
- * @author yongjin on 2014/10/31
-=======
- * @author jihui-wxw on 2014/12/10
->>>>>>> Stashed changes
+ * @author wxw on 2014/12/12
  */
 define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 'BaseUtils','BaseComposite', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
   function (require, exports, module) {

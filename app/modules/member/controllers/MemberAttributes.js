@@ -3,7 +3,7 @@
  * @namespace ProductList
  * @author yongjin on 2014/11/16
  */
-define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
+define('MemberAttributes', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/member_category','template/member_list','template/member_rank','template/member_attribute'],
   function (require, exports, module) {
     var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberCategory, Memberlist
@@ -24,8 +24,8 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
     /**
      * 集合类
      */
-    MemberRankCollection = BaseCollection.extend({
-      url: CONST.API + '/member/rank/list',
+    MemberAttribute = BaseCollection.extend({
+      url: CONST.API + '/member/attr/list',
       model: MemberModel,
       initialize: function () {
         this._initialize();
@@ -99,7 +99,7 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
     /**
      * 列表视图
      */
-    MemberRank = BaseList.extend({
+    MemberAttributes = BaseList.extend({
       el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
@@ -117,7 +117,7 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
           enterRender: '.btn-search',
           template: listTemp,
           model: ProductModel,
-          collection: MemberRankCollection,
+          collection: ProductCollection,
           item: ProductItem,
           detail: CONST.HOST + '/modules/product/product_detail.html'
         }).then(function (thisCtx) {
@@ -178,5 +178,5 @@ define('MemberRank', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       }
     });
 
-    module.exports = MemberRank;
+    module.exports = MemberAttributes;
   });

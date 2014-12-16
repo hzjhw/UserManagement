@@ -1,24 +1,43 @@
 /**
  * @description config
  * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
+ * @author wxw<zjut_wyj@163.com> 2014/12/11
  */
 /**
  * 模块
  * */
-app.addModule('MemberModel', 'models/MemberModel.js');
+app.addModule('MemberListModel', 'models/MemberListModel.js');
+app.addModule('MemberRankModel', 'models/MemberRankModel.js');
+app.addModule('MemberAttributeModel', 'models/MemberAttributeModel.js');
 app.addModule('MemberList', 'modules/member/controllers/MemberList.js');
-app.addModule('MemberDetail', 'modules/member/controllers/MemberDetail.js');
-app.addModule('MemberCategory', 'modules/member/controllers/MemberCategory.js');
 app.addModule('MemberRank', 'modules/member/controllers/MemberRank.js');
+app.addModule('MemberDetail', 'modules/member/controllers/MemberAttributes.js');
 
 /**
  * 路由
  * */
-app.addRoute('message', function(){
-  seajs.use(['jquery', 'MemberCategory'], function (jquery, MemberCategory) {
-    app.addView('memberCategory', new MemberCategory());
-  });
+app.addRoute('member', function(){
+  seajs.use(['jquery', 'BaseView', 'MemberList', 'template/member_category'],
+    function (jquery, BaseView, MemberList, categoryTemp) {
+      var Panel = BaseView.extend({
+        el: '#jhw-main',
+        events: {
+        },
+        initialize: function(){
+          this._initialize({
+            template: categoryTemp
+          });
+        },
+        render: function(){
+          this._render();
+        }
+      });
+      var panel = new Panel();
+      panel.on('after', function(){
+        this.memberList = app.addView('memberList', new MemberList());
+      });
+      panel.render();
+    });
 });
 
 /**
@@ -33,6 +52,9 @@ app.addTemplate('template/member_list', function (require, exports, module) {
 });
 app.addTemplate('template/member_list_detail', function (require, exports, module) {
   module.exports = require('modules/member/views/member_list_detail.html');
+});
+app.addTemplate('template/member_list_item', function (require, exports, module) {
+  module.exports = require('modules/member/views/member_list_item.html');
 });
 app.addTemplate('template/member_rank', function (require, exports, module) {
   module.exports = require('modules/member/views/member_rank.html');
