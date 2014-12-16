@@ -111,6 +111,11 @@
  
 6) BaseList [列表视图]
  - el 目标元素Id， 如 "#jhw-main"
+ - events: {
+     'click #toggle-all': '_toggleAllChecked', // 选择框
+     'click .btn-batch-del': '_batchDel', // 批量删除
+     'click .product-add': '_detail' // 添加页面
+   }
  - initialize 实现父类_initialize 
    参数：{
         template: 字符串模板, 
@@ -122,13 +127,13 @@
         detail: 添加页面url地址
         filter: [ {key: 'name', value: this.searchKey }] // 过滤结果
         items: [](可选， 当无需url请求时),
-        // 以下为树型列表时 需要的参数
+        // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
         subRender: '.node-tree', // 下级分类的容器选择符
-        collapse: 展开/收缩元素选择符
+        collapse: '.node-collapse' 展开/收缩元素选择符
         parentId: 'belongId', // 分类 的父类ID
         categoryId: 'categoryId', // 分类 的当前ID
-        grade: '01', // 分类 的层级 [产品：00][新闻：01]
         parentValue: '/' // 父分类的parentId值
+        extend: true // false收缩 true为展开
    }
    返回值：promise 参数为thisCtx 当前list上下文
    example1: 载入数据前执行的方法
@@ -155,11 +160,7 @@
              thisCtx._load(thisCtx._options);
            });
  - render 实现父类 _render
- - events: {
-    'click #toggle-all': '_toggleAllChecked', // 选择框
-    'click .btn-batch-del': '_batchDel', // 批量删除
-    'click .product-add': '_detail' // 添加页面
-   }
+
    
    // 重要方法
    - _setOption 设置配置
