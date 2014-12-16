@@ -22,20 +22,25 @@ app.addRoute('album', function () {
     var Panel = BaseView.extend({
       el: '#jhw-main',
       events: {
+        'click .btn-search': 'search'
       },
       initialize: function(){
         this._initialize({
-          template: panelTemp
+          template: panelTemp,
+          enterRender: '.btn-search'
         });
       },
       render: function(){
         this._render();
+      },
+      search: function(){
+        app.getView('photoList').search();
       }
     });
       var panel = new Panel();
       panel.on('after', function(){
         this.albumList = app.addView('albumList', new AlbumList());
-        this.photoList = app.addView('photoList', new PhotoList());
+        this.photoList = app.addView('photoList', new PhotoList({itemId: 'all'}));
       });
       panel.render();
   });

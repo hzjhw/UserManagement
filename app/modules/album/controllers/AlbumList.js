@@ -29,7 +29,8 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       events: {
         'click .delete': '_del',
         'click .move-up': '_moveUp',
-        'click .move-down': '_moveDown'
+        'click .move-down': '_moveDown',
+        'click .album-name': 'loadPhoto'
       },
       initialize: function(){
         this._initialize({
@@ -39,6 +40,9 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       },
       render: function(){
         this._render();
+      },
+      loadPhoto: function(){
+        app.getView('photoList').reLoad(this.model.get('albumId'));
       }
     });
 

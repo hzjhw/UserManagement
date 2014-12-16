@@ -73,6 +73,13 @@
         enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    }
  - render 实现父类_render
+ - 使用：
+    var panel = new Panel();
+          panel.on('after', function(){ // 视图渲染后回调方法， 相应有个before方法
+            this.albumList = app.addView('albumList', new AlbumList());
+            this.photoList = app.addView('photoList', new PhotoList());
+          });
+          panel.render(); // 渲染
 
 3) BaseModel [模型类]
  - initialize 实现父类_initialize

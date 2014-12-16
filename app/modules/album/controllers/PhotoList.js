@@ -15,15 +15,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
     PhotoModel = require('PhotoModel');
 
     PhotoCollecton = BaseCollection.extend({
-      url: function () {
-        var end = '';
-        if (!Est.isEmpty(this.itemId)) {
-          end = '/img/' + this.itemId + '/list';
-        } else {
-          end = '/img/list';
-        }
-        return CONST.API + '/album/attr' + end;
-      },
+      url: CONST.API + '/album/attr/list',
       initialize: function () {
         this._initialize();
       },
@@ -36,7 +28,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       tagName: 'div',
       className: 'item ui-widget-content',
       events: {
-
+        'click .toggle': '_toggleChecked'
       },
       initialize: function () {
         this._initialize({
@@ -51,21 +43,37 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
     PhotoList = BaseList.extend({
       el: '.album_right',
       events: {
-
+        'click #toggle-all': 'toggleAllChecked', // 选择框
+        'click .btn-batch-del': '_batchDel', // 批量删除
+        'click .product-add': '_detail' // 添加页面
       },
       initialize: function () {
         this._initialize({
           template: listTemp,
-          render: '.album_right',
+          render: '.photo-list',
           collection: PhotoCollecton,
           model: PhotoModel,
           item: PhotoItem
         }).then(function (thisCtx) {
+          thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
         });
       },
       render: function () {
         this._render();
+      },
+      toggleAllChecked: function () {
+        var checked = this.allCheckbox.checked;
+        this._toggleAllChecked();
+        if (!checked) {
+          this.$('.item').removeClass('item-active');
+        } else {
+          this.$('.item').addClass('item-active');
+        }
+      },
+      reLoad: function (id) {
+        this.collection.setItemId(id);
+        this._load(this._options);
       }
     });
 
