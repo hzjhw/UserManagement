@@ -5,7 +5,7 @@
  */
 define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'template/photo_list', 'template/photo_item'],
   function (require, exports, module) {
-    var PhotoList, PhotoCollectoin, PhotoItem, BaseCollection, BaseItem,PhotoModel,  BaseList, listTemp, itemTemp;
+    var PhotoList, PhotoCollectoin, PhotoItem, BaseCollection, BaseItem, PhotoModel, BaseList, listTemp, itemTemp;
 
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -15,31 +15,35 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
     PhotoModel = require('PhotoModel');
 
     PhotoCollecton = BaseCollection.extend({
-      url: function(){
+      url: function () {
         var end = '';
-        if (!Est.isEmpty(this.itemId)) end = '/' + this.itemId;
-       return CONST.API + '/album/attr' + end;
+        if (!Est.isEmpty(this.itemId)) {
+          end = '/img/' + this.itemId + '/list';
+        } else {
+          end = '/img/list';
+        }
+        return CONST.API + '/album/attr' + end;
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       },
-      setItemId : function(itemId){
+      setItemId: function (itemId) {
         this.itemId = itemId;
       }
     });
 
     PhotoItem = BaseItem.extend({
       tagName: 'div',
-      className: '.photo-container',
+      className: 'item ui-widget-content',
       events: {
 
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           template: itemTemp
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });
@@ -49,16 +53,18 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       events: {
 
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           template: listTemp,
           render: '.album_right',
           collection: PhotoCollecton,
           model: PhotoModel,
           item: PhotoItem
+        }).then(function (thisCtx) {
+          thisCtx._load(thisCtx._options);
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });
