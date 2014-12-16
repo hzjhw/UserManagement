@@ -9,29 +9,22 @@
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner"><span class="">{{username}}</span></div>
+    <div class="bui-grid-cell-inner"><span class="">{{name}}</span></div>
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-       <span class="">{{memberRank.name}}</span>
+       <span class="">{{preferentialScale}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{email}}</span>
+        <span class="">{{point}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{dateFormat addTime 'yyyy-MM-dd'}}</span>
-    </div>
-</td>
-
-
-<td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner">
-        <span  class="">{{#compare isAccountEnabled '==' '01'}}不正常{{else}}正常{{/compare}}</span>
+        <span class="">{{#compare isDefault '==' '00'}}默认{{else}}不默认{{/compare}}</span>
     </div>
 </td>
 

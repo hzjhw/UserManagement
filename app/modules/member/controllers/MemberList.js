@@ -1,21 +1,20 @@
 /**
  * @description MemberList
  * @namespace MemberList
- * @author WXW on 2014/12/16
+ * @author wxw on 2014/12/16
  */
 define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/member_category','template/member_list','template/member_list_item'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
-      , MemberList , memberCategory, memberList, memberListItem ,MemberListItem;
+      , MemberList, memberList, memberListItem ,MemberListItem;
 
     MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
-    //三分类
-    memberCategory = require('template/member_category');
+
     memberList = require('template/member_list');
     memberListItem = require('template/member_list_item');
     /**
@@ -59,7 +58,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .member-add': '_detail',
+        'click .memberList-add': '_detail',
         'click .btn-search': 'search'
       },
       initialize: function () {
@@ -91,7 +90,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
             ]
           });
         }
-      },
+      }
     });
 
     module.exports = MemberList;

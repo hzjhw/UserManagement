@@ -9,32 +9,37 @@
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner"><span class="">{{username}}</span></div>
+    <div class="bui-grid-cell-inner"><span class="">{{name}}</span></div>
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-       <span class="">{{memberRank.name}}</span>
+       <span class="">{{attributeType}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{email}}</span>
+        <span class="">{{#compare isEnabled '==' '00'}}是{{else}}是{{/compare}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{dateFormat addTime 'yyyy-MM-dd'}}</span>
+        <span class="">{{#compare isRequired '==' '00'}}是{{else}}是{{/compare}}</span>
     </div>
 </td>
 
-
-<td class="bui-grid-cell grid-td-col1">
+<td class="bui-grid-cell grid-td-move">
     <div class="bui-grid-cell-inner">
-        <span  class="">{{#compare isAccountEnabled '==' '01'}}不正常{{else}}正常{{/compare}}</span>
+        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
+              title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
+            <i class="icon icon-white icon-arrow-up pointer"></i>
+        </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
+        <span class="x-icon x-icon-small x-icon-info move-down pointer"
+              style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
+                class="icon icon-white icon-arrow-down pointer"></i></span>
+
     </div>
 </td>
-
 <td class="bui-grid-cell grid-td-handle">
     <div class="bui-grid-cell-inner">
         <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>修改

@@ -3,14 +3,14 @@
  * @namespace MemberModel
  * @author jihui-wxw on 2014/10/31
  */
-define('MemberAttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'],
+define('MemberAttributeModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseModel'],
   function (require, exports, module) {
     var dialog, BaseModel;
 
     BaseModel = require('BaseModel');
     dialog = require('dialog');
 
-    var MemberAttributesModel = BaseModel.extend({
+    var MemberAttributeModel = BaseModel.extend({
       defaults: Est.extend({
         enterpriseId: "",
         attId: "",
@@ -29,5 +29,5 @@ define('MemberAttributesModel', ['jquery', 'underscore', 'backbone', 'dialog', '
       baseId: 'attId'
     });
 
-    module.exports = MemberAttributesModel;
+    module.exports = MemberAttributeModel;
   });

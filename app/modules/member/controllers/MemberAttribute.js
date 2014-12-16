@@ -1,28 +1,28 @@
 /**
- * @description MemberRank
- * @namespace MemberRank
+ * @description MemberAttribute
+ * @namespace MemberAttribute
  * @author wxw on 2014/12/16
  */
-define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_rank','template/member_rank_item'],
+define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
+    'template/member_category','template/member_attribute','template/member_attribute_item'],
   function (require, exports, module) {
-    var MemberRankModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberRankCollection
-      , MemberRank , memberRank, memberRankItem ,MemberRankItem;
+    var MemberAttributeModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberAttributeCollection
+      , MemberAttribute , memberAttribute, memberAttributeItem ,MemberAttributeItem;
 
-    MemberRankModel = require('MemberRankModel');
+    MemberAttributeModel = require('MemberAttributeModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
     //分类
-    memberRank = require('template/member_rank');
-    memberRankItem = require('template/member_rank_item');
+    memberAttribute = require('template/member_attribute');
+    memberAttributeItem = require('template/member_attribute_item');
     /**
      * 集合类
      */
-    MemberRankCollection = BaseCollection.extend({
-      url: CONST.API + '/member/rank/list',
-      model: MemberRankModel,
+    MemberAttributeCollection = BaseCollection.extend({
+      url: CONST.API + '/member/attr/list',
+      model: MemberAttributeModel,
       initialize: function () {
         this._initialize();
       }
@@ -30,7 +30,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
     /**
      * 单视图
      */
-    MemberRankItem = BaseItem.extend({
+    MemberAttributeItem = BaseItem.extend({
       tagName: 'tr',
       className: 'bui-grid-row',
       events: {
@@ -41,7 +41,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       // 初始化
       initialize: function () {
         this._initialize({
-          template: memberRankItem,
+          template: memberAttributeItem,
           detail: CONST.HOST + '/modules/member/member_detail.html'
         });
       },
@@ -53,22 +53,21 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
     /**
      * 列表视图
      */
-    MemberRank = BaseList.extend({
+    MemberAttribute = BaseList.extend({
       el: '#member-data-ul',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .memberRank-add': '_detail',
-        'click .btn-search': 'search'
+        'click .memberAttribute-add': '_detail'
       },
       initialize: function () {
         this._initialize({
           render: '#member-list-ul',
           enterRender: '.btn-search',
-          template: memberRank,
-          model: MemberRankModel,
-          collection: MemberRankCollection,
-          item: MemberRankItem,
+          template: memberAttribute,
+          model: MemberAttributeModel,
+          collection: MemberAttributeCollection,
+          item: MemberAttributeItem,
           detail: CONST.HOST + '/modules/member/member_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
@@ -77,21 +76,8 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       },
       render : function(){
         this._render();
-      },
-      // 简单搜索
-      search: function () {
-        this.searchKey = Est.trim(this.$('.search-text').val());
-        if (Est.isEmpty(this.searchKey)) {
-          this._load({ page: 1, pageSize: 16 });
-        } else {
-          this._search({
-            filter: [
-              {key: 'name', value: this.searchKey }
-            ]
-          });
-        }
       }
     });
 
-    module.exports = MemberRank;
+    module.exports = MemberAttribute;
   });
