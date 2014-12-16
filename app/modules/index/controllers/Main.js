@@ -3,7 +3,7 @@
  * @namespace Index
  * @author yongjin on 2014/11/18
  */
-define('Main', ['BaseView', 'template/main'], function(require, exports, module){
+define('Main', ['BaseView', 'UserModel', 'template/main'], function(require, exports, module){
   var Main, BaseView, template;
 
   BaseView = require('BaseView');
@@ -15,9 +15,7 @@ define('Main', ['BaseView', 'template/main'], function(require, exports, module)
     initialize: function(){
       this._initialize({
         template: template,
-        data: {
-          src: 'images/main.jpg'
-        }
+        data: app.getData('user')
       });
       this.render();
     },
