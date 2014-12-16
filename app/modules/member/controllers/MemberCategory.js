@@ -3,10 +3,12 @@
  * @namespace MemberCategory
  * @author jihui-wxw on 14-12-1
  */
-define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper','template/member_category','template/member_list','template/member_rank'],
+define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
+    'template/member_category','template/member_list','template/member_rank','template/attribute'],
   function (require, exports, module) {
-    var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberCategory, MemberCollection
-      , membercategory, memberlist, memberrank;
+    var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberCategory
+      , MemberList, MemberRank, MemberAttribute
+      , memberCategory, memberList, memberRank,memberAttribute;
 
     MemberModel = require('MemberModel');
     BaseCollection = require('BaseCollection');
@@ -14,15 +16,31 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
     //三分类
-    membercategory = require('template/member_category');
-    memberlist = require('template/member_list');
-    memberrank = require('template/member_rank');
+    memberCategory = require('template/member_category');
+    memberList = require('template/member_list');
+    memberRank = require('template/member_rank');
+    memberAttribute = require('template/member_attribute');
+
 
     /**
      * 集合类
      */
-    MemberCollection = BaseCollection.extend({
+    MemberList = BaseCollection.extend({
       url: CONST.API + '/member/list',
+      model: MemberModel,
+      initialize: function () {
+        this._initialize();
+      }
+    });
+    MemberRank = BaseCollection.extend({
+      url: CONST.API + '/member/rank/list',
+      model: MemberModel,
+      initialize: function () {
+        this._initialize();
+      }
+    });
+    MemberAttribute = BaseCollection.extend({
+      url: CONST.API + '/member/attr/list',
       model: MemberModel,
       initialize: function () {
         this._initialize();
@@ -63,15 +81,15 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
     /**
      * 三个列表视图
      */
-    MemberCategory = BaseList.extend({
+    MemberList = BaseList.extend({
       el: '#jhw-main',
       // 初始化
       initialize: function () {
         var options = {
           render: '#member-category',
-          template: membercategory,
+          template: memberCategory,
           model: MemberModel,
-          collection: MemberCollection,
+          collection: MemberList,
           item: Memberlist
         }
         this._initialize(options).then(function (context) {
@@ -83,7 +101,7 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
       },
       // 添加产品对话框
       openAddDialog: function () {
-        var url = CONST.HOST + '/modules/member/member_detail.html?uId='
+        var url = CONST.HOST + '/modules/member/member_list_detail.html?uId='
           + Est.nextUid();
         this._detail({ title: '产品添加', url: url });
       },
@@ -92,6 +110,6 @@ define('MemberCategory', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem',
         'click #member_rank': 'member_rank'
       }
     });
-    module.exports = MemberCategory;
+    module.exports = MemberList;
 
   })

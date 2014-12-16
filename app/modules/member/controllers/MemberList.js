@@ -42,7 +42,7 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       editItem: function () {
         this._edit({
           title: '会员编辑',
-          url: CONST.HOST + '/modules/member/member.html?id=' + this.model.id
+          url: CONST.HOST + '/modules/member/member_detail.html?id=' + this.model.id
         });
       },
 
@@ -82,7 +82,7 @@ define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'Ba
       openAddDialog: function () {
         this._detail({
           title: '会员添加',
-          url: 'http://jihui88.com/member/modules/member/member.html?time=' + new Date().getTime()
+          url: 'http://jihui88.com/member/modules/member/member_detail.html?time=' + new Date().getTime()
         });
       }
     });
