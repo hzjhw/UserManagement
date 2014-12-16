@@ -266,7 +266,7 @@ label.checkbox { padding-left: 5px; }
 .category-ul .gird-checkbox{ width:32px; }
 .category-ul .gird-2{ width:32px; }
 /*相册*/
-#jhw .album-sub{padding-left:23px;}
+#jhw .album-sub{padding-left:15px;}
 #jhw .album-cate-ul li{padding-top:8px;}
 #jhw .album_left{float:left;width:15%;}
 #jhw .album_left li{padding-left: 10px; padding-right: 10px;}
@@ -276,15 +276,15 @@ label.checkbox { padding-left: 5px; }
 #jhw .pic-container .item { float: left; width: 160px; height: 193px; border: 2px solid #f0f0f0; background-color: #fff; margin: 10px 20px 10px 0; cursor: pointer; }
 #jhw .pic-container .item.hover{border-color:#d1d1d1;}
 #jhw .pic-container .item.item-active { border-color: #79b24f; }
-.pic-container .image { width: 160px; height: 160px; position: relative; }
-.pic-container .image .img-container { width: 160px; height: 160px; display: table-cell; vertical-align: middle; text-align: center; }
-.pic-container .image .img-name { position: absolute; bottom: -33px; padding: 0 4px; height: 35px; line-height:18px;color: #454545; width: 152px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
-.pic-container .item.item-active .image .img-name{background-color: #79b24f; color: #fff; line-height: 35px;}
-.pic-container .image .qout { visibility: hidden; position: absolute; right: -1px; top: 1px; width: 33px; height: 33px; background-position: -172px -270px; }.pic-container .image .handle { position: absolute; bottom: -30px; padding-left: 14px; height: 30px; width: 146px; margin: 0; background-color: #000; background-color: rgba(0,0,0,0.8); -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
-.pic-container .image .handle li { float: left; width: 34px; text-align: center; height: 30px; margin-right: 14px; line-height: 27px; }
-.pic-container .item.hover .handle { bottom: 0; }
-.pic-container .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
-.pic-container .photo-tool .bui-grid-checkBox-container{text-align: left;padding-top:8px;}
+#jhw .pic-container .image { width: 160px; height: 160px; position: relative; }
+#jhw .pic-container .image .img-container { width: 160px; height: 160px; display: table-cell; vertical-align: middle; text-align: center; }
+#jhw .pic-container .image .img-name { position: absolute; bottom: -33px; padding: 0 4px; height: 35px; line-height:18px;color: #454545; width: 152px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+#jhw .pic-container .item.item-active .image .img-name{background-color: #79b24f; color: #fff; line-height: 35px;}
+#jhw .pic-container .image .qout { visibility: hidden; position: absolute; right: -1px; top: 1px; width: 33px; height: 33px; background-position: -172px -270px; }.pic-container .image .handle { position: absolute; bottom: -30px; padding-left: 14px; height: 30px; width: 146px; margin: 0; background-color: #000; background-color: rgba(0,0,0,0.8); -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+#jhw .pic-container .image .handle li { float: left; width: 34px; text-align: center; height: 30px; margin-right: 14px; line-height: 27px; }
+#jhw .pic-container .item.hover .handle { bottom: 0; }
+#jhw .pic-container .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
+#jhw .pic-container .photo-tool .bui-grid-checkBox-container{text-align: left;padding-top:8px;}
 /*
 .category-ul .gird-3{ width:20%; }
 .category-ul .gird-4{ width:32px; }
