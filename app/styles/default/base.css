@@ -206,10 +206,26 @@ label.checkbox { padding-left: 5px; }
 
 /* 首页 ****************************************************************************************/
 #jhw .jhw-panel .main{padding-left:9px;width:1046px;}
+#jhw .module01{float:left;width:608px;}
 #jhw .module01 .bodyContTitle{background:url(img/module01-line.jpg) repeat-x bottom;}
-#jhw .module01 .bodyContTitle span{color:#646464;float:left;width:134px;height:38px;line-height:38px;background:#fff;border:1px solid #e7e7e7;}
-#jhw .module01 .bodyContContent {clear:both;background:#fafafa;}
-#jhw .module03 .mokuai{color:#fff;display:inline-block;margin-right:17px;width:226px;height:110px;text-decoration:none;cursor:pointer;text-align:right;}
+#jhw .module01 .bodyContTitle span{color:#646464;display:inline-block;width:134px;height:38px;line-height:38px;background:#fff;border:1px solid #e7e7e7;text-align:center;}
+#jhw .module01 .bodyContContent{clear:both;background:#fafafa;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;padding:12px 0 16px 15px;height:160px;}
+#jhw .module01 .bodyContContent02{display:none;}
+#jhw .module02{float:left;padding-left:15px;width:330px;}
+#jhw .module02 .mokuai001 img{float:left;margin-right:12px;}
+#jhw .module02 .mokuai001 p{margin:0;line-height:21px;}
+#jhw .module02 .mokuai001 .nihao{padding-top:2px;}
+#jhw .module02 .mokuai001 .jhwhy{display:inline-block;color:#fff;height:18px;line-height:18px;width:79px;background:#fcaf00;text-align:center;margin:6px 0;}
+#jhw .module02 .mokuai002{clear:both;padding-top:5px;border-bottom:1px solid #eaeaea;}
+#jhw .module02 .mokuai002 p{margin:0;line-height:20px;}
+#jhw .module02 .mokuai002 p .num{color:#fe4b09;}
+#jhw .module02 .mokuai003{float:left;padding-top:8px;width:222px;}
+#jhw .module02 .mokuai003 .gongju{float:left;margin-right:8px;}
+#jhw .module02 .mokuai003 p{margin:0;line-height:20px;}
+#jhw .module02 .mokuai003 p.one{font-weight:bold;}
+#jhw .module02 .mokuai004{float:left;padding-top:8px;width:107px;border-left:1px solid #eaeaea;}
+#jhw .module03 {clear:both;}
+#jhw .module03 .mokuai{color:#fff;display:inline-block;margin-right:14px;width:226px;height:110px;text-decoration:none;cursor:pointer;text-align:right;}
 #jhw .module03 .mokuai .num{display:inline-block;margin-top:25px;font-size:14px;padding-right:15px;}
 #jhw .module03 .mokuai p{font-size:18px;font-family:"微软雅黑";padding-right:15px;margin-bottom:8px;height:34px;line-height:34px;}
 #jhw .module03 .mokuai .ckxq{height:22px;line-height:22px;padding-left:18px;text-align:left;}
