@@ -11,15 +11,16 @@ define('RecruitModel', ['jquery', 'BaseModel'],
 
     RecruitModel = BaseModel.extend({
       defaults: Est.extend({
-        title: "recruit",
+        title: "",
+        sort: 1,
         duty: "",
-        sum: "1",
+        sum: "",
         state: "01",
         type: null,
         content: "",
         addTime: new Date().getTime()
       }, BaseModel.prototype.defaults),
-      baseId: 'recruitId',
+      baseId: 'jobId',
       baseUrl: CONST.API + '/job/detail',
       initialize: function () {
         this._initialize();

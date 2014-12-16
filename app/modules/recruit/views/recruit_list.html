@@ -5,58 +5,16 @@
                 <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
                     <li class="bui-bar-item bui-inline-block" aria-disabled="false" id="bar-item1" aria-pressed="false">
                         <label class="checkbox" for="toggle-all">全选</label></li>
-                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" aria-pressed="false">
-                        <input type="text" class="control-text search-query search-text">&nbsp;
-                        <button type="button" class="button btn-search">搜索</button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button4" aria-pressed="false">
-                        <button type="button" class="button button-warning search-advance"><i
-                                class="icon-white icon-search"></i>高级搜索
-                        </button>
-                    </li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
                         aria-disabled="false" id="bar-item-button2" aria-pressed="false">
-                        <button type="button" class="button button-success product-add"><i
-                                class="icon-white icon-plus"></i>产品添加
+                        <button type="button" class="button button-success recruit-add"><i
+                                class="icon-white icon-plus"></i>招聘添加
                         </button>
                     </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button9" aria-pressed="false">
-                        <a href="#/category/product">
-                            <button type="button" class="button button-info"><i
-                                    class="icon-white icon-th-list"></i>分类管理
-                            </button>
-                        </a>
-                    </li>
-                    <li class=" bui-bar-item bui-bar-item-separator bui-inline-block" aria-disabled="false"
-                        id="bar-item-separator1" role="separator"></li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button7" aria-pressed="false">
-                        <button type="button" class="button btn-tool-sort">排序
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button3" aria-pressed="false">
-                        <button type="button" class="button btn-batch-category"></i>批量转移分类
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button6" aria-pressed="false">
-                        <button type="button" class="button btn-batch-import">批量导入
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button5" aria-pressed="false">
-                        <button type="button" class="button btn-batch-display">批量隐藏
-                        </button>
-                    </li>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button1" aria-pressed="false">
-                        <button type="button" class="button button-danger btn-batch-del"><i
-                                class="icon-white icon-trash"></i>批量删除
-                        </button>
+                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" aria-pressed="false">
+                        <label class="checkbox" for="toggle-all">标题</label>&nbsp;<input type="text" class="control-text search-query search-title">&nbsp;
+                        <label class="checkbox" for="toggle-all">职务</label>&nbsp;<input type="text" class="control-text search-query search-duty">&nbsp;
+                        <button type="button" class="button btn-search">搜索</button>
                     </li>
                 </ul>
             </div>
@@ -75,24 +33,24 @@
                             style="width: 40px;">
                             <div class="bui-grid-hd-inner center"><span>序号</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-picture">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品图片</span><span
+                        <th class="bui-grid-hd grid-td-col2">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-col1">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品名称</span><span
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">职务</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品型号</span><span
+                        <th class="bui-grid-hd grid-td-picture">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">招聘人数</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-display">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">显示/隐藏</span><span
+                        <th class="bui-grid-hd grid-td-picture">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">添加时间</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-category">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品分类</span><span
+                        <th class="bui-grid-hd grid-td-picture">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">状态</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-move">
@@ -110,7 +68,7 @@
         </div>
         <div class="bui-grid-body">
             <table cellspacing="0" cellpadding="0" class="bui-grid-table">
-                <tbody id="product-list-ul">
+                <tbody id="recruit-list-ul">
                 </tbody>
             </table>
         </div>

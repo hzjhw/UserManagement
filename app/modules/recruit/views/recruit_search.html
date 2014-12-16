@@ -17,25 +17,4 @@
             </select>
         </div>
     </div>
-    <div class="control-group">
-
-        <label class="control-label">是否登录可见：</label>
-        <div class="controls">
-            <select name="searchLoginView" class="text pro-category" >
-                {{#each loginViewList}}
-                <option value="{{value}}" {{#compare value '===' ../searchLoginView}}selected{{/compare}}>{{text}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <label class="control-label">是否广告产品：</label>
-        <div class="controls">
-            <select name="searchAds" class="text pro-category" >
-                {{#each adsList}}
-                <option value="{{value}}" {{#compare value '===' ../searchAds}}selected{{/compare}}>{{text}}</option>
-                {{/each}}
-            </select>
-        </div>
-
-
-    </div>
 </form>

@@ -7,45 +7,38 @@
 <td class="x-grid-rownumber  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
     <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">{{add dx 1}}</span></div>
 </td>
-<td class="bui-grid-cell grid-td-picture">
-    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text"><img
-            src="http://img.taobao.com/bao/uploaded/i1/TB1G_rSFVXXXXa7XVXXXXXXXXXX_!!0-item_pic.jpg_sum.jpg" width="52"
-            height="52"></span></div>
+<td class="bui-grid-cell grid-td-col2">
+    <div class="bui-grid-cell-inner">
+    <span class="pro-list-title"><a href="javascript:;" class="underline" target="_blank" title="{{title}}">{{cutByte title 80 end='...'}}</a></span><span
+                class="x-icon x-icon-small x-icon-info title show_hide pointer"
+                style="vertical-align: middle;">
+        <i class="icon icon-white icon-edit pointer"></i>
+    </span>
+    </div>
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner"><span class=""><span
-            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{name}}">{{cutByte name 80 end='...'}}</a></span><span
-            class="x-icon x-icon-small x-icon-info name show_hide pointer"
+            class="pro-list-duty"><a href="javascript:;" class="underline" target="_blank" title="{{duty}}">{{duty}}</a></span><span
+            class="x-icon x-icon-small x-icon-info duty show_hide pointer"
             style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
 </td>
-<td class="bui-grid-cell grid-td-col2">
-    <div class="bui-grid-cell-inner"><span class="" title="{{prodtype}}"><span
-            class="pro-list-prodtype">{{prodtype}}</span>&nbsp;&nbsp;<span
-            class="x-icon x-icon-small x-icon-info prodtype show_hide pointer"
+<td class="bui-grid-cell grid-td-picture">
+    <div class="bui-grid-cell-inner"><span class="" title="{{sum}}"><span
+            class="pro-list-sum">{{sum}}</span>&nbsp;&nbsp;<span
+            class="x-icon x-icon-small x-icon-info sum show_hide pointer"
             style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
 </td>
-<td class="bui-grid-cell grid-td-display">
+<td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner">
-        <a href="javascript:;" class="btn-display">{{#compare isdisplay '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
+        <span class="btn-addTime">{{dateFormat addTime 'yyyy-MM-dd'}}</span>
     </div>
 </td>
-<td class="bui-grid-cell grid-td-category">
+<td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner">
-        <div id="pro-cate-{{dx}}">
-            <!--<input type="hidden" id="model-category-{{dx}}" value="{{category}}" name="category">-->
-            <select name="category" class="text pro-category" value="{{category}}">
-                {{#each productCategoryList}}
-                <option value="{{value}}" {{#compare value '===' ../category}}selected{{/compare}}>{{text}}</option>
-                {{/each}}
-            </select>
-            <!--<div class="bui-select" aria-disabled="false" tabindex="0" hidefocus="true" aria-pressed="false" style="width: 150px;">
-                <input type="text" readonly="readonly" class="bui-select-input" style="width: 100px;">
-                <span class="x-icon x-icon-normal"><i class="icon icon-caret icon-caret-down"></i></span>
-            </div>-->
-        </div>
+        <span class="btn-display">{{#compare state '==' '01'}}通过审核{{else}}未审核{{/compare}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-move">
