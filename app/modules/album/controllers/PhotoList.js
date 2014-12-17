@@ -72,6 +72,12 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       reLoad: function (id) {
         this.collection._setItemId(id);
         this._load(this._options);
+      },
+      search: function (searchKey) {
+        this._search({
+          filter: [
+            { key: 'filename', value: searchKey }
+          ]});
       }
     });
 

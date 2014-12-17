@@ -51,7 +51,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       el: '.album_left',
       events: {
         'click #toggle-all': '_toggleAllChecked', // 选择框
-        'click .product-add': '_detail' // 添加页面
+        'click .album-add': '_detail' // 添加页面
       },
       initialize: function(){
         this._initialize({
@@ -61,6 +61,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
           model: AlbumModel,
           item: AlbumItem,
           checkAppend: false,
+          detail: CONST.HOST + '/modules/album/album_detail.html',
 
           subRender: '.album-sub',
           collapse: '.node-collapse',

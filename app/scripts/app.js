@@ -5,7 +5,7 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  * @namespace local
  * @author yongjin<zjut_wyj@163.com> 2014/12/13
  */
-CONST.LIB_FORDER = 'lib';
+CONST.LIB_FORDER = 'base';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
 CONST.APP_VERSION = '20141216';
@@ -24,38 +24,38 @@ app.addTemplate('template/album_list', function (require, exports, module) {
 app.addTemplate('template/album_item', function (require, exports, module) {
   module.exports = require('modules/album/views/album_item.html');
 });
-app.addTemplate('template/album_panel', function(require, exports, module){
+app.addTemplate('template/album_panel', function (require, exports, module) {
   module.exports = require('modules/album/views/album_panel.html');
 });
 app.addRoute('album', function () {
   seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel'],
     function (jquery, BaseView, AlbumList, PhotoList, panelTemp) {
 
-    var Panel = BaseView.extend({
-      el: '#jhw-main',
-      events: {
-        'click .btn-search': 'search'
-      },
-      initialize: function(){
-        this._initialize({
-          template: panelTemp,
-          enterRender: '.btn-search'
-        });
-      },
-      render: function(){
-        this._render();
-      },
-      search: function(){
-        app.getView('photoList').search();
-      }
-    });
+      var Panel = BaseView.extend({
+        el: '#jhw-main',
+        events: {
+          'click .btn-search': 'search'
+        },
+        initialize: function () {
+          this._initialize({
+            template: panelTemp,
+            enterRender: '.btn-search'
+          });
+        },
+        render: function () {
+          this._render();
+        },
+        search: function () {
+          app.getView('photoList').search(this.$('.search-text').val());
+        }
+      });
       var panel = new Panel();
-      panel.on('after', function(){
+      panel.on('after', function () {
         this.albumList = app.addView('albumList', new AlbumList());
         this.photoList = app.addView('photoList', new PhotoList());
       });
       panel.render();
-  });
+    });
 });
 
 
@@ -161,32 +161,6 @@ app.addTemplate('template/certificate_sort', function(require, exports, module){
 app.addTemplate('template/certificate_search', function (require, exports, module) {
   module.exports = require('modules/certificate/views/certificate_search.html');
 });
-/**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
- */
-app.addModule('UserModel', 'models/UserModel.js');
-app.addModule('TopView', 'modules/index/controllers/TopView.js');
-app.addModule('LeftView', 'modules/index/controllers/LeftView.js');
-app.addModule('Main', 'modules/index/controllers/Main.js');
-
-app.addRoute('index', function () {
-  seajs.use(['jquery', 'Main'], function (jquery, Main) {
-    app.addView('main', new Main());
-  });
-});
-
-app.addTemplate('template/layout_left', function (require, exports, module) {
-  module.exports = require('modules/index/views/layout_left.html');
-});
-app.addTemplate('template/layout_top', function (require, exports, module) {
-  module.exports = require('modules/index/views/layout_top.html');
-});
-app.addTemplate('template/main', function (require, exports, module) {
-  module.exports = require('modules/index/views/main.html');
-});
-
 /**
  * @description config
  * @namespace config
@@ -506,6 +480,32 @@ app.addTemplate('template/register_detail', function (require, exports, module) 
   module.exports = require('modules/register/views/register_detail.html');
 });
 
+
+/**
+ * @description config
+ * @namespace config
+ * @author yongjin<zjut_wyj@163.com> 2014/12/11
+ */
+app.addModule('UserModel', 'models/UserModel.js');
+app.addModule('TopView', 'modules/index/controllers/TopView.js');
+app.addModule('LeftView', 'modules/index/controllers/LeftView.js');
+app.addModule('Main', 'modules/index/controllers/Main.js');
+
+app.addRoute('index', function () {
+  seajs.use(['jquery', 'Main'], function (jquery, Main) {
+    app.addView('main', new Main());
+  });
+});
+
+app.addTemplate('template/layout_left', function (require, exports, module) {
+  module.exports = require('modules/index/views/layout_left.html');
+});
+app.addTemplate('template/layout_top', function (require, exports, module) {
+  module.exports = require('modules/index/views/layout_top.html');
+});
+app.addTemplate('template/main', function (require, exports, module) {
+  module.exports = require('modules/index/views/main.html');
+});
 
 /**
  * @description config

@@ -292,7 +292,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .album_left{float:left;width:15%;height:100%;}
 #jhw .album_left li{padding-left: 10px; padding-right: 10px;}
 #jhw .album_right{float:left; width:84%;height: 100%;padding-left:1%;background:#F0F0F0;}
-
+#jhw .album-cate-ul{padding-right:15px;}
 
 #jhw .pic-container .item { float: left; width: 160px; height: 193px; border: 2px solid #f0f0f0; background-color: #fff; margin: 10px 20px 10px 0; cursor: pointer; }
 #jhw .pic-container .item.hover{border-color:#d1d1d1;}
