@@ -30,7 +30,6 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
       render: function () {
         debug('4.MemberDetail.render');
         var ctx = this;
-
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();

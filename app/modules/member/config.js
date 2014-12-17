@@ -17,6 +17,7 @@ app.addModule('MemberRankDetail', 'modules/member/controllers/MemberRankDetail.j
 app.addModule('MemberAttribute', 'modules/member/controllers/MemberAttribute.js');
 app.addModule('MemberAttributeDetail', 'modules/member/controllers/MemberAttributeDetail.js');
 
+
 /**
  * 路由
  * */
@@ -61,11 +62,11 @@ app.addRoute('member', function(){
  * 模板
  * */
 
-app.addTemplate('template/member', function (require, exports, module) {
-  module.exports = require('modules/member/member_detail.html');
-});
 app.addTemplate('template/member_category', function(require, exports, module){
   module.exports = require('modules/member/views/member_category.html');
+});
+app.addTemplate('template/member_search', function(require, exports, module){
+  module.exports = require('modules/member/views/member_search.html');
 });
 //member_list
 app.addTemplate('template/member_list', function (require, exports, module) {

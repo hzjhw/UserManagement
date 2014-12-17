@@ -42,7 +42,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       initialize: function () {
         this._initialize({
           template: memberRankItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_rank_detail.html'
         });
       },
       // 渲染文档
@@ -58,7 +58,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .memberRank-add': '_detail',
+        'click .member-rank-add': '_detail',
         'click .btn-search': 'search'
       },
       initialize: function () {
@@ -69,7 +69,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
           model: MemberRankModel,
           collection: MemberRankCollection,
           item: MemberRankItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_rank_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
@@ -77,19 +77,6 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       },
       render : function(){
         this._render();
-      },
-      // 简单搜索
-      search: function () {
-        this.searchKey = Est.trim(this.$('.search-text').val());
-        if (Est.isEmpty(this.searchKey)) {
-          this._load({ page: 1, pageSize: 16 });
-        } else {
-          this._search({
-            filter: [
-              {key: 'name', value: this.searchKey }
-            ]
-          });
-        }
       }
     });
 

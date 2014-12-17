@@ -4,17 +4,17 @@
  * @author wxw on 2014/12/16
  */
 define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_list','template/member_list_item'],
+    'template/member_category','template/member_list','template/member_list_item','template/member_search'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
-      , MemberList, memberList, memberListItem ,MemberListItem;
+      , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp;
 
     MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
-
+    searchTemp = require('template/member_search');
     memberList = require('template/member_list');
     memberListItem = require('template/member_list_item');
     /**
@@ -42,7 +42,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       initialize: function () {
         this._initialize({
           template: memberListItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_list_detail.html'
         });
       },
       // 渲染文档
@@ -58,8 +58,9 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .memberList-add': '_detail',
-        'click .btn-search': 'search'
+        'click .member-list-add': '_detail',
+        'click .btn-search': 'search',
+        'click .search-advance': 'searchAdvance'
       },
       initialize: function () {
         this._initialize({
@@ -69,7 +70,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           model: MemberListModel,
           collection: MemberListCollection,
           item: MemberListItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_list_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
@@ -86,11 +87,59 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
         } else {
           this._search({
             filter: [
-              {key: 'name', value: this.searchKey }
+              {key: 'username', value: this.searchKey }
             ]
           });
         }
-      }
+      },
+      // 高级搜索
+      searchAdvance: function () {
+        var ctx = this;
+        this.searchTemp = HandlebarsHelper.compile(searchTemp);
+        seajs.use(['dialog-plus'], function (dialog) {
+          window.dialog = dialog;
+          ctx.searchDialog = dialog({
+            id: 'search-dialog-product',
+            title: '高级搜索',
+            width: 600,
+            content: ctx.searchTemp({
+              productCategoryList: app.getData('productCategory'),
+              loginViewList: app.getData('loginViewList'),
+              adsList: app.getData('adsList'),
+              searchKey: ctx.searchKey,
+              searchProdtype: ctx.searchProdtype
+            }),
+            button: [
+              {
+                value: '搜索',
+                callback: function () {
+                  ctx.searchKey = $('input[name=searchKey]').val();
+                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
+                  ctx._search({
+                    filter: [
+                      {key: 'username', value: ctx.searchKey },
+                      {key: 'memberRank.name', value: ctx.searchProdtype} ,
+                    ]
+                  });
+                  this.remove();
+                  return false;
+                },
+                autofocus: true
+              },
+              { value: '关闭' }
+            ],
+            oniframeload: function () {
+              this.iframeNode.contentWindow.searchDialog = ctx.searchDialog;
+            },
+            onclose: function () {
+              this.remove();
+              if (this.returnValue) {
+                $('#value').html(this.returnValue);
+              }
+            }
+          }).show(this.$('.search-advance').get(0));
+        });
+      },
     });
 
     module.exports = MemberList;

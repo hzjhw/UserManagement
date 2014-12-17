@@ -13,8 +13,9 @@ define('MemberRankModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
     var MemberRankModel = BaseModel.extend({
       defaults: Est.extend({
         enterpriseId: "",
+        preferentialScale:'0',
         addTime: new Date().getTime(),
-        isDefault: "01",
+        isDefault: "00",
         rankId: "",
         name: ""
       }, BaseModel.prototype.defaults),

@@ -1,26 +1,53 @@
-<tr>
-    <td class="bui-grid-cell grid-td-checkbox">
-        <div class="bui-grid-cell-inner">
-            <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
+<div id="memberList-add-inner">
+    <form id="J_Form" action="" class="form-horizontal">
+        <div id="tab"></div>
+        <div id="panel" class="" style="padding:10px;">
+            <!--会员编辑-->
+            <div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>等级名称：</label>
+                    <div class="controls">
+                        <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                               data-rules="{required : true}" data-tip='{"text":"请等级名称","iconCls":"icon icon-user"}'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>优惠百分比：</label>
+                    <div class="controls">
+                        <input id="model-preferentialScale" name="preferentialScale" value="{{parseInt preferentialScale}}" type="text" class="input-large"
+                               data-rules="{required : true}"
+                               data-tip='{"text":"优惠百分比","iconCls":"icon icon-pencil"}'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>所需积分：</label>
+                    <div class="controls">
+                        <input id="model-point" name="point" value="{{point}}" type="text" class="input-large"
+                               data-rules="{required : true}"
+                               data-tip='{"text":"请输入积分","iconCls":"icon icon-pencil"}'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>是否默认：</label>
+                    <div class="controls">
+                        <div id="s2">
+                            <label><input id="model-isDefault" type="radio" name="isDefault" value="00" {{#compare isDefault '===' '00'}}checked{{/compare}}>否</label>
+                            <label><input id="model1-isDefault" type="radio" name="isDefault" value="01" {{#compare isDefault '===' '01'}}checked{{/compare}}>是</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row actions-bar hide" >
+                    <div class="form-actions span13 offset3">
+                        <button id="submit" type="button" class="button button-primary">保存</button>
+                        <button id="reset" type="reset" class="button">重置</button>
+                        <button id="black" type="reset" class="button">返回</button>
+                    </div>
+                </div>
+
+
             </div>
+
         </div>
-    </td>
-
-    <td class="bui-grid-cell grid-td-col1">
-        <div class="bui-grid-cell-inner"><span class="name" title="{{name}}">[{{add dx 1}}] {{name}}</span></div>
-    </td>
-    <td class="bui-grid-cell grid-td-col1">
-        <div class="bui-grid-cell-inner"><span class="preferentialScale" title="{{preferentialScale}}">[{{add dx 1}}] {{preferentialScale}}</span></div>
-    </td>
-    <td class="bui-grid-cell grid-td-col1">
-        <div class="bui-grid-cell-inner"><span class="point" title="{{point}}">[{{add dx 1}}] {{point}}</span></div>
-    </td>
-    <td class="bui-grid-cell grid-td-col1">
-        <div class="bui-grid-cell-inner"><span class="isDefault" title="{{isDefault}}">[{{add dx 1}}] {{isDefault}}</span></div>
-    </td>
-
-    <td class="bui-grid-cell grid-td-col2">
-        <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text "><a href="javascript:;" class="edit">修改</a>丨<a
-                href="javascript:;" class="delete">删除</a></span></div>
-    </td>
-</tr>
+    </form>
+</div>

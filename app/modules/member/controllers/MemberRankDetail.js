@@ -1,21 +1,21 @@
 /**
- * @description MemberListDetail
- * @namespace MemberListDetail
+ * @description MemberRankDetail
+ * @namespace MemberRankDetail
  * @author wxw on 14-12-16
  */
-define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/member_list_detail'],
+define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/member_rank_detail'],
   function (require, exports, module) {
-    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var MemberRankDetail, MemberRankModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
 
-    MemberListModel = require('MemberListModel');
+    MemberRankModel = require('MemberRankModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
-    template = require('template/member_list_detail');
+    template = require('template/member_rank_detail');
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
 
-    MemberListDetail = BaseDetail.extend({
+    MemberRankDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
         'click #member-reset': 'reset'
@@ -24,13 +24,11 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         debug('2.MemberDetail.initialize');
         this._initialize({
           template : template,
-          model: MemberListModel
+          model: MemberRankModel
         });
       },
       render: function () {
-        debug('4.MemberDetail.render');
         var ctx = this;
-
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();
@@ -56,7 +54,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
       showAttributes: function(categoryId, items){
         if (!this.attributes){
           this.attributes = new AttributesShow({
-            render: '#attributes-list',
+            render: '#attribute-list',
             categoryId: categoryId,
             items: items
           });
@@ -66,6 +64,6 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
       }
     });
 
-    module.exports = MemberListDetail;
+    module.exports = MemberRankDetail;
 
   });

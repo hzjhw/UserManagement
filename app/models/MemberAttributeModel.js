@@ -19,10 +19,7 @@ define('MemberAttributeModel', ['jquery', 'underscore', 'backbone', 'dialog', 'B
         isRequired: "01",
         isEnabled: "01",
         attributeOptionStore: "['男','女']",
-        attributeOptionList: [
-          "男",
-          "女"
-        ],
+        attributeOptionList: [ ],
         name: "性别"
       }, BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/member/attr/detail',

@@ -150,6 +150,16 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return result;
   });
 
+  /**
+   * 返回整数
+   * @author wxw
+   * @time 2014-12-16
+   * @example
+   *
+   */
+  Handlebars.registerHelper('parseInt', function (result, options) {
+    return parseInt(result);
+  });
   module.exports = Handlebars;
 
 });

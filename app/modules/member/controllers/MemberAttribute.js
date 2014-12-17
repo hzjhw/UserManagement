@@ -42,7 +42,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       initialize: function () {
         this._initialize({
           template: memberAttributeItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
         });
       },
       // 渲染文档
@@ -58,7 +58,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .memberAttribute-add': '_detail'
+        'click .member-attr-add': '_detail'
       },
       initialize: function () {
         this._initialize({
@@ -68,7 +68,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
           model: MemberAttributeModel,
           collection: MemberAttributeCollection,
           item: MemberAttributeItem,
-          detail: CONST.HOST + '/modules/member/member_detail.html'
+          detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);

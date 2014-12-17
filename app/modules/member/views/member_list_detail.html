@@ -5,10 +5,10 @@
 <!--会员编辑-->
 <div>
     <div class="control-group">
-        <label class="control-label">用户名：</label>
+        <label class="control-label"><s>*</s>用户名：</label>
         <div class="controls">
   <!--          <span id="model-username" name="username" class="model-username input-large" >{{username}}</span>-->
-            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large" readonly="readonly"
+            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
                    data-rules="{required : true}" data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
         </div>
     </div>
@@ -26,7 +26,7 @@
         <label class="control-label"><s>*</s>确认密码：</label>
         <div class="controls">
             <input id="model-rePassword" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{minlength:6,maxlength:16,equalTo:'#model-password'}"
                    data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}'>
         </div>
     </div>
@@ -94,47 +94,7 @@
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label">手机：</label>
-        <div class="controls">
-            <input id="model-cellphone" name="cellphone" value="{{cellphone}}" type="text" class="input-large"
-                   data-tip='{"text":"请输入手机","iconCls":"icon icon-pencil"}'>
-        </div>
-    </div>
 
-    <div class="control-group">
-        <label class="control-label">电话：</label>
-        <div class="controls">
-            <input id="model-phone" name="phone" value="{{phone}}" type="text" class="input-large"
-                   data-tip='{"text":"请输入电话","iconCls":"icon icon-pencil"}'>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label">联系地址：</label>
-        <div class="controls">
-            <input id="model-add" name="add" value="{{add}}" type="text" class="input-large"
-                   data-tip='{"text":"请输入联系地址","iconCls":"icon icon-pencil"}'>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label">联系QQ：</label>
-        <div class="controls">
-            <input id="model-qq" name="qq" value="{{qq}}" type="text" class="input-large"
-                   data-tip='{"text":"请输入联系QQ","iconCls":"icon icon-pencil"}'>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label"><s>*</s>性别：</label>
-        <div class="controls">
-            <div id="s3">
-                <label><input type="radio" name="isAccountLocked" value="00" {{#compare isAccountLocked '===' '00'}}checked{{/compare}}>男</label>
-                <label><input type="radio" name="isAccountLocked" value="01" {{#compare isAccountLocked '===' '01'}}checked{{/compare}}>女</label>
-            </div>
-        </div>
-    </div>
 
     <div class="row actions-bar hide" >
         <div class="form-actions span13 offset3">

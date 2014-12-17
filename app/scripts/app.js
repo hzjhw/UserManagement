@@ -277,7 +277,7 @@ app.addRoute('member', function(){
  * */
 
 app.addTemplate('template/member', function (require, exports, module) {
-  module.exports = require('modules/member/member_detail.html');
+  module.exports = require('modules/member/member_rank_detail.html');
 });
 app.addTemplate('template/member_category', function(require, exports, module){
   module.exports = require('modules/member/views/member_category.html');
