@@ -5,120 +5,11 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  * @namespace local
  * @author yongjin<zjut_wyj@163.com> 2014/12/13
  */
-CONST.LIB_FORDER = 'base';
+CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
 CONST.APP_VERSION = '20141216';
 
-/**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/15
- */
-
-app.addModule('AlbumList', 'modules/album/controllers/AlbumList.js');
-app.addModule('AlbumModel', 'models/AlbumModel.js');
-app.addTemplate('template/album_list', function (require, exports, module) {
-  module.exports = require('modules/album/views/album_list.html');
-});
-app.addTemplate('template/album_item', function (require, exports, module) {
-  module.exports = require('modules/album/views/album_item.html');
-});
-app.addTemplate('template/album_panel', function (require, exports, module) {
-  module.exports = require('modules/album/views/album_panel.html');
-});
-app.addRoute('album', function () {
-  seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel'],
-    function (jquery, BaseView, AlbumList, PhotoList, panelTemp) {
-
-      var Panel = BaseView.extend({
-        el: '#jhw-main',
-        events: {
-          'click .btn-search': 'search'
-        },
-        initialize: function () {
-          this._initialize({
-            template: panelTemp,
-            enterRender: '.btn-search'
-          });
-        },
-        render: function () {
-          this._render();
-        },
-        search: function () {
-          app.getView('photoList').search(this.$('.search-text').val());
-        }
-      });
-      var panel = new Panel();
-      panel.on('after', function () {
-        this.albumList = app.addView('albumList', new AlbumList());
-        this.photoList = app.addView('photoList', new PhotoList());
-      });
-      panel.render();
-    });
-});
-
-
-app.addModule('PhotoList', 'modules/album/controllers/PhotoList.js');
-app.addModule('PhotoModel', 'models/PhotoModel.js');
-app.addTemplate('template/photo_list', function (require, exports, module) {
-  module.exports = require('modules/album/views/photo_list.html');
-});
-app.addTemplate('template/photo_item', function (require, exports, module) {
-  module.exports = require('modules/album/views/photo_item.html');
-});
-
-/**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
- */
-app.addRoute('attributes', function () {
-  seajs.use(['jquery', 'AttributesList'], function (jquery, AttributesList) {
-    app.addView('attributesList', new AttributesList());
-  });
-});
-app.addModule('AttributesDetail', 'modules/attributes/controllers/AttributesDetail.js');
-app.addModule('AttributesList', 'modules/attributes/controllers/AttributesList.js');
-app.addModule('AttributesModel', 'models/AttributesModel.js');
-app.addTemplate('template/attributes_item', function (require, exports, module) {
-  module.exports = require('modules/attributes/views/attributes_item.html');
-});
-app.addTemplate('template/attributes_list', function (require, exports, module) {
-  module.exports = require('modules/attributes/views/attributes_list.html');
-});
-/**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
- */
-app.addModule('ProductCategoryList', 'modules/category/controllers/ProductCategoryList.js');
-app.addModule('ProductCategoryDetail', 'modules/category/controllers/ProductCategoryDetail.js');
-app.addModule('NewsCategoryList', 'modules/category/controllers/NewsCategoryList.js');
-app.addModule('NewsCategoryDetail', 'modules/category/controllers/NewsCategoryDetail.js');
-app.addModule('CategoryModel', 'models/CategoryModel.js');
-app.addTemplate('template/category_product_item', function (require, exports, module) {
-  module.exports = require('modules/category/views/category_product_item.html');
-});
-app.addTemplate('template/category_product_list', function (require, exports, module) {
-  module.exports = require('modules/category/views/category_product_list.html');
-});
-app.addTemplate('template/category_news_item', function (require, exports, module) {
-  module.exports = require('modules/category/views/category_news_item.html');
-});
-app.addTemplate('template/category_news_list', function (require, exports, module) {
-  module.exports = require('modules/category/views/category_news_list.html');
-});
-app.addRoute('category/news', function () {
-  seajs.use(['jquery', 'NewsCategoryList'], function (jquery, NewsCategoryList) {
-    app.addView('newsCategoryPage', new NewsCategoryList());
-  });
-});
-app.addRoute('category/product', function () {
-  seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
-    app.addView('productCategoryPage', new ProductCategoryList());
-  });
-});
 /**
  * @description config
  * @namespace config
@@ -206,6 +97,7 @@ app.addModule('MemberRankDetail', 'modules/member/controllers/MemberRankDetail.j
 app.addModule('MemberAttribute', 'modules/member/controllers/MemberAttribute.js');
 app.addModule('MemberAttributeDetail', 'modules/member/controllers/MemberAttributeDetail.js');
 
+
 /**
  * 路由
  * */
@@ -250,11 +142,11 @@ app.addRoute('member', function(){
  * 模板
  * */
 
-app.addTemplate('template/member', function (require, exports, module) {
-  module.exports = require('modules/member/member_rank_detail.html');
-});
 app.addTemplate('template/member_category', function(require, exports, module){
   module.exports = require('modules/member/views/member_category.html');
+});
+app.addTemplate('template/member_search', function(require, exports, module){
+  module.exports = require('modules/member/views/member_search.html');
 });
 //member_list
 app.addTemplate('template/member_list', function (require, exports, module) {
@@ -370,48 +262,6 @@ app.addTemplate('template/news_search', function (require, exports, module) {
 });
 
 /**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
- */
-/**
- * 模块
- * */
-app.addModule('ProductModel', 'models/ProductModel.js');
-app.addModule('ProductList', 'modules/product/controllers/ProductList.js');
-app.addModule('ProductDetail', 'modules/product/controllers/ProductDetail.js');
-
-/**
- * 路由
- * */
-app.addRoute('product', function(){
-  seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
-    app.addView('productList', new ProductList());
-  });
-});
-
-/**
- * 模板
- * */
-app.addTemplate('template/product_item', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_item.html');
-});
-app.addTemplate('template/product_list', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_list.html');
-});
-app.addTemplate('template/product_detail', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_detail.html');
-});
-app.addTemplate('template/product_transfer', function(require, exports, module){
-  module.exports = require('modules/product/views/product_transfer.html');
-});
-app.addTemplate('template/product_sort', function(require, exports, module){
-  module.exports = require('modules/product/views/product_sort.html');
-});
-app.addTemplate('template/product_search', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_search.html');
-});
-/**
  * @description config-recruit
  * @namespace config-recruit
  * @author wxw on 14-12-15
@@ -480,32 +330,6 @@ app.addTemplate('template/register_detail', function (require, exports, module) 
   module.exports = require('modules/register/views/register_detail.html');
 });
 
-
-/**
- * @description config
- * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
- */
-app.addModule('UserModel', 'models/UserModel.js');
-app.addModule('TopView', 'modules/index/controllers/TopView.js');
-app.addModule('LeftView', 'modules/index/controllers/LeftView.js');
-app.addModule('Main', 'modules/index/controllers/Main.js');
-
-app.addRoute('index', function () {
-  seajs.use(['jquery', 'Main'], function (jquery, Main) {
-    app.addView('main', new Main());
-  });
-});
-
-app.addTemplate('template/layout_left', function (require, exports, module) {
-  module.exports = require('modules/index/views/layout_left.html');
-});
-app.addTemplate('template/layout_top', function (require, exports, module) {
-  module.exports = require('modules/index/views/layout_top.html');
-});
-app.addTemplate('template/main', function (require, exports, module) {
-  module.exports = require('modules/index/views/main.html');
-});
 
 /**
  * @description config
