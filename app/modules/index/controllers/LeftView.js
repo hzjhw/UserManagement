@@ -37,12 +37,12 @@ define('LeftView', ['BaseView', 'BaseUtils', 'template/layout_left'], function (
             var ssa=$("#jhw-left-bar").height()-$("#jhw-left-bar ul").height()
             $("#jhw-left-bar .top-more").show();
             $("#jhw-left-bar .bottom-more").hide();
-            $("#jhw-left-bar ul").animate({"top":ssa + 'px'});
+            $("#jhw-left-bar ul").animate({"top":ssa + 'px'}, 'fast');
         });
         $("#jhw-left-bar .top-more").mouseover(function(){
             $("#jhw-left-bar .bottom-more").show();
             $("#jhw-left-bar .top-more").hide();
-            $("#jhw-left-bar ul").animate({"top":"0"});
+            $("#jhw-left-bar ul").animate({"top":"0"}, 'fast');
         });
     })
   module.exports = LeftView;

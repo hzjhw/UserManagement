@@ -27,11 +27,6 @@
             style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
 </td>
-<td class="bui-grid-cell grid-td-display">
-    <div class="bui-grid-cell-inner">
-        <a href="javascript:;" class="btn-display">{{#compare isdisplay '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
-    </div>
-</td>
 <td class="bui-grid-cell grid-td-category">
     <div class="bui-grid-cell-inner">
         <div id="pro-cate-{{dx}}">
@@ -46,6 +41,16 @@
                 <span class="x-icon x-icon-normal"><i class="icon icon-caret icon-caret-down"></i></span>
             </div>-->
         </div>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-col2">
+    <div class="bui-grid-cell-inner">
+        <input name="addTime" value="{{dateFormat addTime 'yyyy-MM-dd'}}" type="text" class="calendar" style="border:none">
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-display">
+    <div class="bui-grid-cell-inner">
+        <a href="javascript:;" class="btn-display">{{#compare isdisplay '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-move">

@@ -27,6 +27,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       tagName: 'li',
       className: 'cate-grid-row',
       events: {
+        'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
@@ -59,6 +60,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
           collection: AlbumCollection,
           model: AlbumModel,
           item: AlbumItem,
+          checkAppend: false,
 
           subRender: '.album-sub',
           collapse: '.node-collapse',
