@@ -10,7 +10,7 @@ define('PhotoModel', ['BaseModel'], function(require, exports, module){
 
   PhotoModel = BaseModel.extend({
     baseId: '',
-    bsseUrl: '',
+    bsseUrl: '/',
     defaults:Est.extend({
 
     }, BaseModel.prototype.defaults),

@@ -30,7 +30,7 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
       BaseUtils.initSelect({
         render: '#s1',
         target: '#model-parentId',
-        list: BaseUtils.getAlbumList({
+        items: BaseUtils.getAlbumList({
           extend: true,
           select: true
         })

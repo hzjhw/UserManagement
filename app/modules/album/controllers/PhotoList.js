@@ -25,7 +25,10 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       tagName: 'div',
       className: 'item ui-widget-content',
       events: {
-        'click .toggle': '_toggleChecked'
+        'click .toggle': '_toggleChecked',
+        'click .delete': '_del',
+        'click .copy-pic': 'copy',
+        'click .copy-link': 'copyLink'
       },
       initialize: function () {
         this._initialize({
@@ -34,6 +37,12 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       },
       render: function () {
         this._render();
+      },
+      copy: function(){
+
+      },
+      copyLink: function(){
+
       }
     });
 
