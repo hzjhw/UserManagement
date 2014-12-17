@@ -7,6 +7,10 @@
 app.addModule('AlbumList', 'modules/album/controllers/AlbumList.js');
 app.addModule('AlbumModel', 'models/AlbumModel.js');
 app.addModule('AlbumDetail', 'modules/album/controllers/AlbumDetail.js');
+app.addModule('iframetransport', 'vendor/file-upload/jquery.iframe-transport.js');
+app.addModule('ZeroClipboard', 'vendor/zeroclipboard/ZeroClipboard.js');
+app.addModule('ui-widget', 'vendor/file-upload/jquery.ui.widget.js');
+app.addModule('fileupload', 'vendor/file-upload/jquery.fileupload.js');
 app.addTemplate('template/album_list', function (require, exports, module) {
   module.exports = require('modules/album/views/album_list.html');
 });
@@ -27,9 +31,12 @@ app.addTemplate('template/photo_item', function (require, exports, module) {
 app.addTemplate('template/album_detail', function(require, exports, module){
   module.exports = require('modules/album/views/album_detail.html');
 });
+app.addTemplate('template/photo_copy', function(require, exports, module){
+  module.exports = require('modules/album/views/photo_copy.html');
+});
 app.addRoute('album', function () {
-  seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel'],
-    function (jquery, BaseView, AlbumList, PhotoList, panelTemp) {
+  seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel', 'fileupload', 'iframetransport'],
+    function (jquery, BaseView, AlbumList, PhotoList, panelTemp, fileupload, iframetransport) {
 
       var Panel = BaseView.extend({
         el: '#jhw-main',
@@ -45,6 +52,28 @@ app.addRoute('album', function () {
         },
         render: function () {
           this._render();
+          this.$('#fileupload').fileupload({
+            url: CONST.DOMAIN + '/commonutil/uploadUtil2',
+            dataType: 'json',
+            fail: function (ev, data) {
+              if (data.jqXHR) {
+                alert('Server-error:\n\n' + data.jqXHR.responseText);
+              }
+            },
+            done: function (e, data) {
+              /*$.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name).appendTo('#files');
+              });*/
+            },
+            progressall: function (e, data) {
+              var progress = parseInt(data.loaded / data.total * 100, 10);
+              $('#progress .progress-bar').css(
+                'width',
+                  progress + '%'
+              );
+            }
+          }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
         },
         search: function () {
           app.getView('photoList').search(this.$('.search-text').val());

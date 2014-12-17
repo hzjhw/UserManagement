@@ -290,9 +290,12 @@ label.checkbox { padding-left: 5px; }
 #jhw .album-sub{padding-left:15px;}
 #jhw .album-cate-ul li{padding-top:8px;}
 #jhw .album_left{float:left;width:15%;height:100%;}
-#jhw .album_left li{padding-left: 10px; padding-right: 10px;}
-#jhw .album_right{float:left; width:84%;height: 100%;padding-left:1%;background:#F0F0F0;}
+#jhw .album_left li{padding-left: 10px; padding-right: 0px;}
+#jhw .album_right{float:left; width:84%;height: 100%;padding-left:1%;background: #F8F8F8; box-shadow: 0px 0px 31px #F0F0F0 inset;}
 #jhw .album-cate-ul{padding-right:15px;}
+#jhw .album-cate-ul .cate-grid-row{position:relative;}
+#jhw .album-cate-ul .album-tool{position:absolute;top: 0; right: 0px; z-index: 99999;display:none;}
+#jhw .album-cate-ul .hover .album-tool{display:block;}
 
 #jhw .pic-container .item { float: left; width: 160px; height: 193px; border: 2px solid #f0f0f0; background-color: #fff; margin: 10px 20px 10px 0; cursor: pointer; }
 #jhw .pic-container .item.hover{border-color:#d1d1d1;}
@@ -306,7 +309,10 @@ label.checkbox { padding-left: 5px; }
 #jhw .pic-container .item.hover .handle { bottom: 0; }
 #jhw .pic-container .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
 #jhw .pic-container .photo-tool .bui-grid-checkBox-container{text-align: left;padding-top:8px;}
-/*
+/*相册*/
+#jhw .btn-pic-add{position:relative;}
+#jhw #fileupload{position: absolute; top: 0; right: 0; margin: 0; opacity: 0; -ms-filter: 'alpha(opacity=0)'; font-size: 200px; direction: ltr; cursor: pointer;}
+ /*
 .category-ul .gird-3{ width:20%; }
 .category-ul .gird-4{ width:32px; }
 .category-ul .gird-5{ width:32px; }

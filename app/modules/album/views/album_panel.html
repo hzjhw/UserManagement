@@ -9,8 +9,9 @@
                     </li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
                         aria-disabled="false" id="bar-item-button2" aria-pressed="false">
-                        <button type="button" class="button button-success product-add"><i
+                        <button type="button" class="button button-success btn-pic-add"><i
                                 class="icon-white icon-download-alt"></i>上传图片
+                            <input  id="fileupload" type="file" name="files[]" multiple>
                         </button>
                     </li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
@@ -24,12 +25,20 @@
                     <li class=" bui-bar-item bui-bar-item-separator bui-inline-block" aria-disabled="false"
                         id="bar-item-separator1" role="separator"></li>
                     </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                   <!-- <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
                         id="bar-item-button1" aria-pressed="false">
                         <button type="button" class="button button-danger btn-batch-del"><i
                                 class="icon-white icon-trash"></i>批量删除
                         </button>
+                    </li>-->
+                    <li  aria-disabled="false"
+                        id="bar-item-button10" aria-pressed="false">
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div id="files" class="files"></div>
                     </li>
+
                 </ul>
             </div>
         </div>

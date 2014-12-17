@@ -3,9 +3,9 @@
  * @namespace PhotoList
  * @author yongjin<zjut_wyj@163.com> 2014/12/16
  */
-define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'template/photo_list', 'template/photo_item'],
+define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper', 'PhotoModel', 'BaseUtils','template/photo_list', 'template/photo_item', 'template/photo_copy'],
   function (require, exports, module) {
-    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel, BaseList, listTemp, itemTemp;
+    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel,HandlebarsHelper, BaseList, listTemp, itemTemp, BaseUtils, copyDetail;
 
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -13,9 +13,13 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
     listTemp = require('template/photo_list');
     itemTemp = require('template/photo_item');
     PhotoModel = require('PhotoModel');
+    BaseUtils = require('BaseUtils');
+    copyDetail = require('template/photo_copy');
+    HandlebarsHelper = require('HandlebarsHelper');
 
     PhotoCollection = BaseCollection.extend({
       url: CONST.API + '/album/attr/list',
+      model: PhotoModel,
       initialize: function () {
         this._initialize();
       }
@@ -27,6 +31,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       events: {
         'click .toggle': '_toggleChecked',
         'click .delete': '_del',
+        'click .img-name': 'editName',
         'click .copy-pic': 'copy',
         'click .copy-link': 'copyLink'
       },
@@ -38,7 +43,29 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
       render: function () {
         this._render();
       },
-      copy: function(){
+      editName: function (e) {
+        e.stopImmediatePropagation();
+        this._editField({
+          target: '.img-name',
+          title: '修改名称',
+          field: 'filename'
+        });
+      },
+      copy: function(e){
+        e.stopImmediatePropagation();
+        if (!this.copyDetail)
+            this.copyDetail = HandlebarsHelper.compile(copyDetail);
+        BaseUtils.dialog({
+          title: '复制图片',
+          width: 800,
+          content: this.copyDetail({
+            filename: this.model.get('filename'),
+            serverPath: this.model.get('serverPath')
+          }),
+          load: function(target){
+
+          }
+        });
 
       },
       copyLink: function(){

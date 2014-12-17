@@ -160,6 +160,33 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars.registerHelper('parseInt', function (result, options) {
     return parseInt(result);
   });
+
+  /**
+   * 返回全局常量
+   * @author wyj 14.12.17
+   */
+  Handlebars.registerHelper('CONST', function(name, options){
+    return CONST[name];
+  });
+
+  /**
+   * 图片尺寸
+   * @author wyj
+   * @time 2014-03-31
+   */
+  Handlebars.registerHelper('picUrl', function (src, number, opts) {
+    var url = src;
+    if (arguments.length < 3) {
+      return number.hash.baseUrl + src || 'upload/no-pic.jpg';
+    }
+    if (src == null || src.length == 0){
+      return "";
+    }
+    var url2 = url.substring(url.lastIndexOf(".") + 1, url.length);
+    url = url.substring(0, url.lastIndexOf(".")) + "_" + number + "." + url2;
+    return url ? (opts.hash.baseUrl + url) : '';
+  });
+
   module.exports = Handlebars;
 
 });

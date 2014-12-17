@@ -31,12 +31,21 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
-        'click .album-name': 'loadPhoto'
+        'click .album-name': 'loadPhoto',
+        'click .edit': 'editName'
       },
       initialize: function(){
         this._initialize({
           viewId: 'albumList',
           template: itemTemp
+        });
+      },
+      editName: function(e){
+        e.stopImmediatePropagation();
+        this._editField({
+          target: '.album-name',
+          title: '修改相册名称',
+          field: 'name'
         });
       },
       render: function(){

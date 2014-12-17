@@ -9,8 +9,8 @@ define('PhotoModel', ['BaseModel'], function(require, exports, module){
   BaseModel = require('BaseModel');
 
   PhotoModel = BaseModel.extend({
-    baseId: '',
-    bsseUrl: '/',
+    baseId: 'attId',
+    baseUrl: CONST.API + '/album/attr/img/detail',
     defaults:Est.extend({
 
     }, BaseModel.prototype.defaults),
