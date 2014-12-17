@@ -5,7 +5,7 @@
  */
 define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'template/photo_list', 'template/photo_item'],
   function (require, exports, module) {
-    var PhotoList, PhotoCollectoin, PhotoItem, BaseCollection, BaseItem, PhotoModel, BaseList, listTemp, itemTemp;
+    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel, BaseList, listTemp, itemTemp;
 
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -14,13 +14,10 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
     itemTemp = require('template/photo_item');
     PhotoModel = require('PhotoModel');
 
-    PhotoCollecton = BaseCollection.extend({
+    PhotoCollection = BaseCollection.extend({
       url: CONST.API + '/album/attr/list',
       initialize: function () {
         this._initialize();
-      },
-      setItemId: function (itemId) {
-        this.itemId = itemId;
       }
     });
 
@@ -51,10 +48,11 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
         this._initialize({
           template: listTemp,
           render: '.photo-list',
-          collection: PhotoCollecton,
+          collection: PhotoCollection,
           model: PhotoModel,
           item: PhotoItem
         }).then(function (thisCtx) {
+          thisCtx.collection._setItemId('all');
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
         });
@@ -72,7 +70,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'PhotoModel', 'te
         }
       },
       reLoad: function (id) {
-        this.collection.setItemId(id);
+        this.collection._setItemId(id);
         this._load(this._options);
       }
     });

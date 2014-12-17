@@ -37,7 +37,7 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top'],
         }
         this._initialize({
           template: tempTop,
-          data: userModel
+          data: app.getData('user')
         });
         this.render();
       },

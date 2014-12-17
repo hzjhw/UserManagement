@@ -40,7 +40,7 @@ app.addRoute('album', function () {
       var panel = new Panel();
       panel.on('after', function(){
         this.albumList = app.addView('albumList', new AlbumList());
-        this.photoList = app.addView('photoList', new PhotoList({itemId: 'all'}));
+        this.photoList = app.addView('photoList', new PhotoList());
       });
       panel.render();
   });

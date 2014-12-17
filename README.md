@@ -132,6 +132,7 @@ git操作历史
         item: 单视图, 
         model: 模型类, 
         detail: 添加页面url地址
+        checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
         filter: [ {key: 'name', value: this.searchKey }] // 过滤结果
         items: [](可选， 当无需url请求时),
         // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)

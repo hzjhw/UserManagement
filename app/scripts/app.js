@@ -9,6 +9,7 @@ CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
 CONST.APP_VERSION = '20141216';
+
 /**
  * @description config
  * @namespace config
@@ -51,7 +52,7 @@ app.addRoute('album', function () {
       var panel = new Panel();
       panel.on('after', function(){
         this.albumList = app.addView('albumList', new AlbumList());
-        this.photoList = app.addView('photoList', new PhotoList({itemId: 'all'}));
+        this.photoList = app.addView('photoList', new PhotoList());
       });
       panel.render();
   });
@@ -223,19 +224,26 @@ app.addTemplate('template/login', function (require, exports, module) {
 app.addModule('MemberListModel', 'models/MemberListModel.js');
 app.addModule('MemberRankModel', 'models/MemberRankModel.js');
 app.addModule('MemberAttributeModel', 'models/MemberAttributeModel.js');
+
 app.addModule('MemberList', 'modules/member/controllers/MemberList.js');
+app.addModule('MemberListDetail', 'modules/member/controllers/MemberListDetail.js');
 app.addModule('MemberRank', 'modules/member/controllers/MemberRank.js');
-app.addModule('MemberDetail', 'modules/member/controllers/MemberAttributes.js');
+app.addModule('MemberRankDetail', 'modules/member/controllers/MemberRankDetail.js');
+app.addModule('MemberAttribute', 'modules/member/controllers/MemberAttribute.js');
+app.addModule('MemberAttributeDetail', 'modules/member/controllers/MemberAttributeDetail.js');
 
 /**
  * 路由
  * */
 app.addRoute('member', function(){
-  seajs.use(['jquery', 'BaseView', 'MemberList', 'template/member_category'],
-    function (jquery, BaseView, MemberList, categoryTemp) {
+  seajs.use(['jquery', 'BaseView', 'MemberList','MemberRank','MemberAttribute', 'template/member_category'],
+    function (jquery, BaseView, MemberList, MemberRank, MemberAttribute, categoryTemp) {
       var Panel = BaseView.extend({
         el: '#jhw-main',
         events: {
+          'click #listClick' : 'listClick',
+          'click #rankClick' : 'rankClick' ,
+          'click #attributeClick' : 'attributeClick'
         },
         initialize: function(){
           this._initialize({
@@ -244,7 +252,17 @@ app.addRoute('member', function(){
         },
         render: function(){
           this._render();
+        },
+        listClick :function(){
+          this.memberList = app.addView('memberList', new MemberList());
+        },
+        rankClick :function(){
+          this.memberRank = app.addView('memberRank', new MemberRank());
+        },
+        attributeClick :function(){
+          this.memberAttribute = app.addView('memberAttribute', new MemberAttribute());
         }
+
       });
       var panel = new Panel();
       panel.on('after', function(){
@@ -261,6 +279,10 @@ app.addRoute('member', function(){
 app.addTemplate('template/member', function (require, exports, module) {
   module.exports = require('modules/member/member_detail.html');
 });
+app.addTemplate('template/member_category', function(require, exports, module){
+  module.exports = require('modules/member/views/member_category.html');
+});
+//member_list
 app.addTemplate('template/member_list', function (require, exports, module) {
   module.exports = require('modules/member/views/member_list.html');
 });
@@ -270,21 +292,27 @@ app.addTemplate('template/member_list_detail', function (require, exports, modul
 app.addTemplate('template/member_list_item', function (require, exports, module) {
   module.exports = require('modules/member/views/member_list_item.html');
 });
+//member_rank
 app.addTemplate('template/member_rank', function (require, exports, module) {
   module.exports = require('modules/member/views/member_rank.html');
 });
 app.addTemplate('template/member_rank_detail', function(require, exports, module){
   module.exports = require('modules/member/views/member_rank_detail.html');
 });
+app.addTemplate('template/member_rank_item', function (require, exports, module) {
+  module.exports = require('modules/member/views/member_rank_item.html');
+});
+//member_attribute
 app.addTemplate('template/member_attribute', function(require, exports, module){
   module.exports = require('modules/member/views/member_attribute.html');
 });
 app.addTemplate('template/member_attribute_detail', function(require, exports, module){
   module.exports = require('modules/member/views/member_attribute_detail.html');
 });
-app.addTemplate('template/member_category', function(require, exports, module){
-  module.exports = require('modules/member/views/member_category.html');
+app.addTemplate('template/member_attribute_item', function (require, exports, module) {
+  module.exports = require('modules/member/views/member_attribute_item.html');
 });
+
 /**
  * @description config
  * @namespace config
