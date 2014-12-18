@@ -14,12 +14,12 @@
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-       <span class="">{{attributeType}}</span>
+       <span class="">{{memberAttr attributeType}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{#compare isDefault '==' '00'}}
+        <span class="">{{#compare isRequired '==' '00'}}
             <span class="x-icon x-icon-small x-icon-success"><i class="icon  icon-ok-mini icon-white"></i></span>{{else}}
             <span class="x-icon x-icon-small x-icon-error"><i class="icon  icon-remove-mini icon-white"></i></span>{{/compare}}
         </span>
@@ -27,7 +27,7 @@
 </td>
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="">{{#compare isDefault '==' '00'}}
+        <span class="">{{#compare isEnabled '==' '00'}}
             <span class="x-icon x-icon-small x-icon-success"><i class="icon  icon-ok-mini icon-white"></i></span>{{else}}
             <span class="x-icon x-icon-small x-icon-error"><i class="icon  icon-remove-mini icon-white"></i></span>{{/compare}}
         </span>

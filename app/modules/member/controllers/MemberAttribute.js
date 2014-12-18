@@ -35,7 +35,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del'
       },
       // 初始化
@@ -44,6 +44,11 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
           template: memberAttributeItem,
           detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
         });
+      },
+      edit:function(){
+        this._edit({
+          height: 300
+        })
       },
       // 渲染文档
       render: function () {
@@ -58,7 +63,8 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .member-attr-add': '_detail'
+        'click .member-attr-add': 'detail'
+
       },
       initialize: function () {
         this._initialize({
@@ -76,6 +82,11 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       },
       render : function(){
         this._render();
+      },
+      detail : function(){
+        this._detail({
+          height:300
+        })
       }
     });
 
