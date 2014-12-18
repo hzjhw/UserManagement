@@ -838,7 +838,7 @@ seajs.require = function(id) {
 
 
 /**
- * main.js - The configuration for the loader
+ * config.js - The configuration for the loader
  */
 
 var BASE_RE = /^(.+?\/)(\?\?)?(seajs\/)+/

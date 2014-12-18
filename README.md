@@ -31,7 +31,7 @@ git操作历史
 - 清空stash[git stash clear]
 
 ### 说明
-- main.js [配置模块路径、模板与路由与全局变量]
+- config.js [配置模块路径、模板与路由与全局变量]
 - config.local.js [本地配置文件， 此文件未加入到版本管理中]
 - common文件夹 [功能模块，如分页、标签、属性列表、图片库等]
 - doc [文档]

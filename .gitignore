@@ -3,7 +3,7 @@
 *.iml
 *.swp
 /.tmp/
-/main.js
+/config.js
 /uploads
 /logs
 /dist
