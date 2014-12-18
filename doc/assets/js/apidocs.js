@@ -151,7 +151,7 @@ pjax.initLineNumbers = function () {
         container = pjax.get('container'),
         hasLines, node;
 
-    // Add ids for each line number in the file source views.
+    // Add ids for each line number in the file source view.
     container.all('.linenums>li').each(function (lineNode, index) {
         lineNode.set('id', 'l' + (index + 1));
         lineNode.addClass('file-line');
