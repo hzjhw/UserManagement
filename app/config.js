@@ -3,6 +3,7 @@
  * @namespace config
  * @author yongjin on 2014/7/18
  */
+
 /**
  * seajs 配置
  * */

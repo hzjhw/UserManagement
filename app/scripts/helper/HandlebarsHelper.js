@@ -177,14 +177,14 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars.registerHelper('picUrl', function (src, number, opts) {
     var url = src;
     if (arguments.length < 3) {
-      return number.hash.baseUrl + src || 'upload/no-pic.jpg';
+      return src || 'upload/no-pic.jpg';
     }
     if (src == null || src.length == 0){
       return "";
     }
     var url2 = url.substring(url.lastIndexOf(".") + 1, url.length);
     url = url.substring(0, url.lastIndexOf(".")) + "_" + number + "." + url2;
-    return url ? (opts.hash.baseUrl + url) : '';
+    return url ? url : '';
   });
 
   module.exports = Handlebars;

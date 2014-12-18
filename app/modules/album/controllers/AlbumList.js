@@ -27,11 +27,10 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       tagName: 'li',
       className: 'cate-grid-row',
       events: {
-        'click .toggle': '_toggleChecked',
+        'click .toggle': 'itemClick',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
-        'click .album-name': 'loadPhoto',
         'click .edit': 'editName'
       },
       initialize: function(){
@@ -39,6 +38,11 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
           viewId: 'albumList',
           template: itemTemp
         });
+      },
+      itemClick: function(e){
+        e.stopImmediatePropagation();
+        this.loadPhoto();
+        this._toggleChecked();
       },
       editName: function(e){
         e.stopImmediatePropagation();
@@ -52,18 +56,19 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
         this._render();
       },
       loadPhoto: function(){
-        app.getView('photoList').reLoad(this.model.get('albumId'));
+        app.setData('curAlbumId', this.model.get('albumId'));
+        app.getView('albumList').doClickFn(this.model.get('albumId'));
       }
     });
 
     AlbumList = BaseList.extend({
-      el: '.album_left',
       events: {
         'click #toggle-all': '_toggleAllChecked', // 选择框
         'click .album-add': '_detail' // 添加页面
       },
       initialize: function(){
         this._initialize({
+          instance: 'albumList',
           template: listTemp,
           render: '.album-cate-ul',
           collection: AlbumCollection,
@@ -83,6 +88,10 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       },
       render: function(){
         this._render();
+      },
+      doClickFn: function(albumId){
+        this.options.callback &&
+        this.options.callback.call(this, albumId);
       }
     });
 

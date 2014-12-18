@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+    </script>
+    <meta charset="UTF-8">
+    <title>相册管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="../../styles/default/base.css"/>
+    <link href="../../styles/default/dpl.css" rel="stylesheet">
+    <link href="../../styles/default/bui.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <link href="http://g.tbcdn.cn/fi/bui/css/dpl-min.css" rel="stylesheet">
+    <link href="http://g.tbcdn.cn/fi/bui/css/bui-min.css" rel="stylesheet">
+    <![endif]-->
+    <!--[if IE6]>
+    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+    <![endif]-->
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+    <style>
+        .up-modal .modal-subTitle { margin-top: 0px; background: #FAFAFA; padding: 10px 15px 10px 15px; line-height: 27px; }
+        .up-modal .location-label { float: left; }
+        .breadcrumb { padding: 0 22px; margin: 0; list-style: none; background-color: #f5f5f5; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
+        .up-modal .breadcrumb { float: left; width: 380px; padding: 0 22px 0 10px; background-color: transparent; border: none; }
+        .breadcrumb>li { display: inline-block; text-shadow: 0 1px 0 #fff; }
+        .up-modal .location-change { position: relative; float: left; }
+        .btn { display: inline-block; padding: 3px 12px; margin-bottom: 0; font-size: 12px; font-weight: normal; line-height: 20px; text-align: center; vertical-align: middle; cursor: pointer; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; }
+        .icon-local { background-image: url("http://gtms03.alicdn.com/tps/i3/T10moYFwlcXXbtZ_ga-204-618.png"); background-repeat: no-repeat; }
+        .up-modal .location-change .pos-icon { width: 16px; height: 16px; display: inline-block; line-height: 15px; margin: 3px 6px 0 0; vertical-align: text-top; float: left; background-position: -192px -80px; }
+        .btn-default { border-color: #ccc; background-color: #fff; color: #333; }
+        .up-modal .tree-box { display: none; position: absolute; right: 0; top: 27px; height: 220px; width: 569px; overflow: auto; background-color: #fff; border: 1px solid #c8c8c8; z-index: 1; }
+        .up-modal .setting { padding: 0 15px 10px 15px; }
+        .up-modal .setting>div { float: left; }
+        .up-modal .setting .is-water, .up-modal .setting .is-protect { margin-right: 10px; }
+        label { display: block; margin-bottom: 5px; }
+        .up-modal .up-tips { margin: 0 15px 20px; padding: 10px; background-color: #FAFAFA; }
+        .up-modal .up-tips .little { float: left; }
+        .up-modal .up-tips ul { float: left; }
+        .up-modal .up-tips ul li { text-align: left; }
+        .upload-container{ padding: 10px 15px 10px 15px;height: 90px; }
+        #J_UpTree{padding-left:5px;}
+    </style>
+</head>
+<!--[if IE 6]>
+<body class="ie6" id="jhw"><![endif]-->
+<!--[if IE 7]>
+<body class="ie7" id="jhw"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8" id="jhw"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9" id="jhw"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10" id="jhw"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11" id="jhw"><![endif]-->
+<!--[if !IE]>-->
+<body id="jhw">
+<!--<![endif]-->
+<div id="jhw-detail" class="up-modal">
+    <div class="modal-subTitle clearfix">
+        <div class="location-label">当前位置:</div>
+        <div class="breadcrumb">默认相册</div>
+        <div class="location-change">
+            <button class="btn btn-default show-tree"><i class="icon-local pos-icon"></i>修改位置</button>
+            <div class="tree-box" style="display: none;">
+                <div id="J_UpTree" class="ztree">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--上传按钮-->
+<div class="upload-container">
+    <span id="spanSWFUploadButton"></span>
+    <div id="uploadProcess"></div>
+    <ul id="showNewUploadFileContent"
+        class="showFilesContent startToUpload" style="position: relative;">
+    </ul>
+</div>
+    <!--选项设置-->
+    <div class="setting clearfix" id="J_UpSetting">
+        <div class="is-protect">
+            <label>
+                <input type="checkbox" id="J_IsProtectUp" checked="checked"> 上传为非防盗链图片
+            </label>
+        </div>
+        <div class="is-water">
+            <label>
+                <input type="checkbox" id="J_IsWater">添加水印
+            </label>
+        </div>
+        <div class="is-resize">
+            <label>
+                <input type="checkbox" id="J_IsResize">图片宽度调整
+            </label>
+            <div class="size my-dropdown" style="display: none;">
+                <div class="dropdown" id="J_Resize">
+                    <a class="dropdown-toggle" data-type="620" data-spm-anchor-id="a1z28.7093685.0.0"><span>手机图片</span><i class="drop-icon"></i></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a role="menuitem" data-type="620" class="noqouted">手机图片</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" data-type="800" class="qouted">800px</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" data-type="640" class="noqouted">640px</a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" data-type="0" class="all">自定义</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="user-size" style="display:none;">
+                <input type="number" id="J_UserSize" step="10" value="0">px
+            </div>
+        </div>
+    </div>
+
+    <!--小提示-->
+    <div class="up-tips clearfix">
+        <div class="little">小提示:&nbsp;</div>
+        <ul>
+            <li>1. 图片单张大小支持3M以下, 超过系统会自动压缩</li>
+            <li>2. 自动压缩和宽度调整可能会使图片失真</li>
+            <li>3. 支持的图片格式: jpg、jpeg、png、gif</li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../../vendor/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../modules/upload/swfupload.js"></script>
+<script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../const.js"></script>
+<script type="text/javascript" src="../../config.local.js"></script>
+<script type="text/javascript" src="../../modules/album/main.js"></script>
+<script type="text/javascript" src="../../common/pagination/config.js"></script>
+<script type="text/javascript" src="../../config.js"></script>
+
+<script type="text/javascript">
+var uploadCallback = uploadCallback || function(){
+    console.log('success');
+}
+$(function(){
+    var albumId = Est.getUrlParam('albumId', window.location.href);
+    var username = Est.getUrlParam('username', window.location.href);
+    var auto = Est.getUrlParam('auto', window.location.href);
+    if (Est.isEmpty(albumId))
+        albumId = '';
+    var bulidNav = function(id){
+        if (id) albumId = id;
+        var breadcrumb = [];
+        Est.each(Est.bulidBreakNav(app.getData('albumList'), 'albumId', albumId, 'name', 'parentId'), function(item){
+            breadcrumb.push(item.name);
+        });
+        if (breadcrumb.length > 0){
+            $('.breadcrumb').html(breadcrumb.join(' > '));
+        }
+    }
+
+    seajs.use(['AlbumList', 'BaseUtils'], function(AlbumList, BaseUtils){
+        app.addView('albumList', new AlbumList({
+            el: '#J_UpTree',
+            callback: function(albumId){
+                bulidNav(albumId);
+                $('.show-tree').click();
+            }
+        }));
+        if (!app.getData('albumList')){
+            app.setData('albumList', BaseUtils.getAlbumList());
+        }
+       bulidNav();
+    });
+
+    $('.show-tree').toggle(function(){
+        $('.tree-box').show('fast');
+    }, function(){
+        $('.tree-box').hide('fast');
+    });
+
+
+
+
+
+    var options = {};
+    function fileQueueError(file, errorCode, message) {
+        try {
+            var imageName = "error.gif";
+            var errorName = "";
+            if (errorCode === SWFUpload.errorCode_QUEUE_LIMIT_EXCEEDED) {
+                errorName = "上传图片不能超过" + option.file_upload_limit + "张.";
+            }
+
+            if (errorName !== "") {
+                alert(errorName);
+                return;
+            }
+
+            switch (errorCode) {
+                case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                    alert("上传文件字符大小不能为0");
+                    break;
+                case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+                    alert("文件过大，最大为2M");
+                    break;
+                case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+                case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+                default:
+                    alert(message);
+                    break;
+            }
+
+            //addImage("images/" + imageName);
+
+        } catch (ex) {
+            this.debug(ex);
+        }
+
+    }
+
+    function fileDialogComplete(numFilesSelected, numFilesQueued) {
+        try {
+            if (numFilesQueued > 0) {
+                this.startUpload();
+            }
+        } catch (ex) {
+            this.debug(ex);
+        }
+    }
+
+    function uploadProgress(file, bytesLoaded) {
+
+        try {
+            var percent = Math.ceil((bytesLoaded / file.size) * 100);
+
+            var progress = new FileProgress(file, "uploadProcess");
+            progress.setProgress(percent);
+            if (percent === 100) {
+                progress.setStatus("创建缩略图...");
+                progress.toggleCancel(false, this);
+            } else {
+                progress.setStatus("上传中...");
+                progress.toggleCancel(true, this);
+            }
+        } catch (ex) {
+            this.debug(ex);
+        }
+    }
+
+    function uploadSuccess(file, serverData) {
+        try {
+            var progress = new FileProgress(file, this.customSettings.upload_target);
+            var l = serverData.length;
+            var s = serverData.substring(1, l - 34);
+            var id = serverData.substring(l - 33, l - 1);
+            $("#" + this.customSettings.upload_target).removeClass("startToUpload");
+            addImage(s.replace(/\\/g, ""), id, file.name);
+
+            progress.setStatus("缩略图生成完毕.");
+            progress.toggleCancel(true);
+
+
+        } catch (ex) {
+            this.debug(ex);
+        }
+    }
+
+    function uploadComplete(file) {
+        try {
+            /*  I want the next upload to continue automatically so I'll call startUpload here */
+            if (this.getStats().files_queued > 0) {
+                this.startUpload();
+            } else {
+                var progress = new FileProgress(file, this.customSettings.upload_target);
+                progress.setComplete();
+                progress.setStatus("所有图片上传完毕.");
+                progress.toggleCancel(false);
+                top.$('#pagination-container .reload').click();
+            }
+        } catch (ex) {
+            this.debug(ex);
+        }
+    }
+
+    function uploadError(file, errorCode, message) {
+        var imageName = "error.gif";
+        var progress;
+        try {
+            switch (errorCode) {
+                case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
+                    try {
+                        progress = new FileProgress(file, this.customSettings.upload_target);
+                        progress.setCancelled();
+                        progress.setStatus("取消");
+                        progress.toggleCancel(false);
+                    }
+                    catch (ex1) {
+                        this.debug(ex1);
+                    }
+                    break;
+                case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+                    try {
+                        progress = new FileProgress(file, this.customSettings.upload_target);
+                        progress.setCancelled();
+                        progress.setStatus("停止");
+                        progress.toggleCancel(true);
+                    }
+                    catch (ex2) {
+                        this.debug(ex2);
+                    }
+                case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
+                    imageName = "uploadlimit.gif";
+                    break;
+                default:
+                    alert(message);
+                    break;
+            }
+            $("#" + this.customSettings.upload_target).removeClass("startToUpload");
+            addImage("images/" + imageName);
+
+        } catch (ex3) {
+            this.debug(ex3);
+        }
+
+    }
+    function addEventHandler(oTarget, sEventType, fnHandler) {
+        if (oTarget.addEventListener) {
+            oTarget.addEventListener(sEventType, fnHandler, false);
+        } else if (oTarget.attachEvent) {
+            oTarget.attachEvent("on" + sEventType, fnHandler);
+        } else {
+            oTarget["on" + sEventType] = fnHandler;
+        }
+    }
+
+    function createImage(src, id, option) {
+        var container = document.createElement("li");
+        container.setAttribute("id", id);
+
+        //设置选中
+        if (typeof(option.isCheck) != 'undefined' && option.isCheck == true)
+            $(container).addClass("isCheck ");
+
+        //绑定事件
+        if (typeof(option.type) != 'undefined' && option.type == 1) {
+            addEventHandler(container, "click", function () {
+                addPic(container, id);
+            });
+        }
+
+        //功能按钮
+        var checkImg = "<div class='fnicon'> </div>";
+        var $checkImg = $(checkImg);
+        $(container).append($checkImg);
+        addEventHandler($($checkImg).get(0), "click", function () {
+            removePic($($checkImg).get(0), id);
+        });
+
+        var containerSpan = document.createElement("span");
+        container.appendChild(containerSpan);
+
+        //文件名称
+        var fileNameDiv = document.createElement("div");
+        fileNameDiv.setAttribute("class", "fileName");
+        if ("fileName" in option) {
+            fileNameDiv.innerHTML = option.fileName;
+        }
+        container.appendChild(fileNameDiv);
+
+
+        if (typeof(option.type) != 'undefined' && option.type == 2) {
+            addEventHandler(checkImg, "click", function () {
+                removePic(checkImg, id);
+            });
+        }
+
+        //图片
+        var newImg = document.createElement("img");
+        containerSpan.appendChild(newImg);
+        /*if (newImg.filters) {
+         try {
+         newImg.filters.item("DXImageTransform.Microsoft.Alpha").opacity = 0;
+         } catch (e) {
+         // If it is not set initially, the browser will throw an error.  This will set it if it is not set yet.
+         newImg.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=' + 0 + ')';
+         }
+         } else {
+         newImg.style.opacity = 0;
+         }*/
+
+        newImg.onload = function () {
+            //fadeIn(newImg, 0);
+            var imgW, imgH;
+            imgW = newImg.width
+            imgH = newImg.height;
+
+            if (imgW > imgH) {
+                newImg.setAttribute("width", "78");
+            } else {
+                newImg.setAttribute("height", "80");
+            }
+
+        };
+        newImg.src = src;
+        return container;
+    }
+
+    function addImage(src, id, name) {
+        var checkFlag = true;
+        if ((maxPicLength - choiceLength) == 0) {
+            checkFlag = false;
+        }
+        uploadFilesList.push(createImage(src, id, {type: 1, isCheck: checkFlag, fileName: name}));
+
+        //存储结果
+        resFilesList.unshift({
+            id: id,
+            serverPath: src,
+            isCheck: checkFlag,
+            belongId: $("#albumId").val(),
+            fileName: name
+        });
+
+        //向上传页面添加图片
+        document.getElementById("showNewUploadFileContent").appendChild(
+                createImage(src, id, {type: 1, isCheck: checkFlag, fileName: name}));
+        //向选择页添加图片
+        if (checkFlag) {
+            document.getElementById("choiceFileList").appendChild(createImage(src, id, {type: 2, isCheck: true, fileName: name}));
+            $("#choiceFileList").sortable();
+            reBindChoiceFileList();
+            choiceLength++;
+        }
+        //向资源库添加图片
+        pageOption2.FILTER_RESULT = resFilesList;
+        showResFilesList();
+    }
+
+    function fadeIn(element, opacity) {
+        var reduceOpacityBy = 5;
+        var rate = 30;	// 15 fps
+
+
+        if (opacity < 100) {
+            opacity += reduceOpacityBy;
+            if (opacity > 100) {
+                opacity = 100;
+            }
+
+            if (element.filters) {
+                try {
+                    element.filters.item("DXImageTransform.Microsoft.Alpha").opacity = opacity;
+                } catch (e) {
+                    // If it is not set initially, the browser will throw an error.  This will set it if it is not set yet.
+                    element.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=' + opacity + ')';
+                }
+            } else {
+                element.style.opacity = opacity / 100;
+            }
+        }
+
+        if (opacity < 100) {
+            setTimeout(function () {
+                fadeIn(element, opacity);
+            }, rate);
+        }
+    }
+
+
+    /* ******************************************
+     *	FileProgress Object
+     *	Control object for displaying file info
+     * ****************************************** */
+
+    function FileProgress(file, targetID) {
+        this.fileProgressID = "divFileProgress";
+
+        this.fileProgressWrapper = document.getElementById(this.fileProgressID);
+        if (!this.fileProgressWrapper) {
+            this.fileProgressWrapper = document.createElement("div");
+            this.fileProgressWrapper.className = "progressWrapper";
+            this.fileProgressWrapper.id = this.fileProgressID;
+
+            this.fileProgressElement = document.createElement("div");
+            this.fileProgressElement.className = "progressContainer";
+
+            var progressCancel = document.createElement("a");
+            progressCancel.className = "progressCancel";
+            progressCancel.href = "#";
+            progressCancel.style.visibility = "hidden";
+            progressCancel.appendChild(document.createTextNode(" "));
+
+            var progressText = document.createElement("div");
+            progressText.className = "progressName";
+            progressText.appendChild(document.createTextNode(file.name));
+
+            var progressBar = document.createElement("div");
+            progressBar.className = "progressBarInProgress";
+
+            var progressStatus = document.createElement("div");
+            progressStatus.className = "progressBarStatus";
+            progressStatus.innerHTML = "&nbsp;";
+
+            this.fileProgressElement.appendChild(progressCancel);
+            this.fileProgressElement.appendChild(progressText);
+            this.fileProgressElement.appendChild(progressStatus);
+            this.fileProgressElement.appendChild(progressBar);
+
+            this.fileProgressWrapper.appendChild(this.fileProgressElement);
+
+            document.getElementById(targetID).appendChild(this.fileProgressWrapper);
+            fadeIn(this.fileProgressWrapper, 0);
+
+        } else {
+            this.fileProgressElement = this.fileProgressWrapper.firstChild;
+            this.fileProgressElement.childNodes[1].firstChild.nodeValue = file.name;
+        }
+
+        this.height = this.fileProgressWrapper.offsetHeight;
+
+    }
+    FileProgress.prototype.setProgress = function (percentage) {
+        this.fileProgressElement.style.display = "display";
+        this.fileProgressElement.className = "progressContainer green";
+        this.fileProgressElement.childNodes[3].className = "progressBarInProgress";
+        this.fileProgressElement.childNodes[3].style.width = percentage + "%";
+    };
+    FileProgress.prototype.setComplete = function () {
+        this.fileProgressElement.className = "progressContainer blue";
+        this.fileProgressElement.childNodes[3].className = "progressBarComplete";
+        this.fileProgressElement.childNodes[3].style.width = "";
+        this.fileProgressElement.style.display = "block";
+    };
+    FileProgress.prototype.setError = function () {
+        this.fileProgressElement.className = "progressContainer red";
+        this.fileProgressElement.childNodes[3].className = "progressBarError";
+        this.fileProgressElement.childNodes[3].style.width = "";
+
+    };
+    FileProgress.prototype.setCancelled = function () {
+        this.fileProgressElement.className = "progressContainer";
+        this.fileProgressElement.childNodes[3].className = "progressBarError";
+        this.fileProgressElement.childNodes[3].style.width = "";
+
+    };
+    FileProgress.prototype.setStatus = function (status) {
+        this.fileProgressElement.childNodes[2].innerHTML = status;
+    };
+
+    FileProgress.prototype.toggleCancel = function (show, swfuploadInstance) {
+        this.fileProgressElement.childNodes[0].style.visibility = show ? "visible" : "hidden";
+        if (swfuploadInstance) {
+            var fileID = this.fileProgressID;
+            this.fileProgressElement.childNodes[0].onclick = function () {
+                swfuploadInstance.cancelUpload(fileID);
+                return false;
+            };
+        }
+    };
+    var swfOptions = {
+        // Backend Settings
+        upload_url: CONST.DOMAIN + '/commonutil/uploadUtil2',
+        post_params: {
+            "username": username,
+            "id": albumId
+        },
+
+        // File Upload Settings
+        file_size_limit: "2MB", // 2MB
+        file_types: "*.jpg;*.gif;*.jpeg;*.png;*.bmp",
+        file_types_description: "JPG Images",
+        file_upload_limit: "12",
+
+        // Event Handler Settings - these functions as defined in Handlers.js
+        // The handlers are not part of SWFUpload but are part of my website and
+        // control how
+        // my website reacts to the SWFUpload events.
+        file_queue_error_handler: fileQueueError,
+        file_dialog_complete_handler: fileDialogComplete,
+        file_dialog_start_handler: function(){},
+        upload_progress_handler: uploadProgress,
+        upload_error_handler: uploadError,
+        upload_success_handler: uploadSuccess,
+        upload_complete_handler: uploadComplete,
+
+        // Button Settings
+        button_image_url: "../../modules/upload/images/swfuploadbtn3.png",
+        button_placeholder_id: options && options.id || "spanSWFUploadButton",
+        button_width: 71,
+        button_height: 23,
+        button_text: '',
+        button_text_style: '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
+        button_text_top_padding: 0,
+        button_text_left_padding: 18,
+        button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+        button_cursor: SWFUpload.CURSOR.HAND,
+
+        // Flash Settings
+
+        custom_settings: {
+            upload_target: "showNewUploadFileContent"
+        },
+        use_query_string: true,
+        // Debug Settings
+        debug: false
+    };
+    var swfu = new SWFUpload(swfOptions);
+    if (auto){
+        setTimeout(function(){
+            $('.swfupload').click();
+        }, 100);
+    }
+})
+</script>
+</body>
+</html>

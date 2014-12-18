@@ -31,6 +31,7 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         render: '#s1',
         target: '#model-parentId',
         items: BaseUtils.getAlbumList({
+          tree: true,
           extend: true,
           select: true
         })

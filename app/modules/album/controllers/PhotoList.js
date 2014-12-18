@@ -3,9 +3,9 @@
  * @namespace PhotoList
  * @author yongjin<zjut_wyj@163.com> 2014/12/16
  */
-define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper', 'PhotoModel', 'BaseUtils','template/photo_list', 'template/photo_item', 'template/photo_copy'],
+define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper', 'PhotoModel', 'BaseUtils','template/photo_list', 'template/photo_item', 'ZeroClipboard', 'template/photo_copy'],
   function (require, exports, module) {
-    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel,HandlebarsHelper, BaseList, listTemp, itemTemp, BaseUtils, copyDetail;
+    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel,HandlebarsHelper, BaseList, listTemp, itemTemp, BaseUtils, copyDetail, ZeroClipboard;
 
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -56,17 +56,19 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper'
         if (!this.copyDetail)
             this.copyDetail = HandlebarsHelper.compile(copyDetail);
         BaseUtils.dialog({
+          id: 'copyDialog',
           title: '复制图片',
           width: 800,
           content: this.copyDetail({
             filename: this.model.get('filename'),
             serverPath: this.model.get('serverPath')
-          }),
-          load: function(target){
-
+          })
+        });
+        BaseUtils.initCopy('#photo-copy-dialog', {
+          success: function(){
+            window.copyDialog.close();
           }
         });
-
       },
       copyLink: function(){
 
