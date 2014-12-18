@@ -31,7 +31,7 @@ seajs.config({
     'BaseDetail': 'lib/BaseDetail.js',
     'BaseList': 'lib/BaseList.js',
     'BaseUtils': 'lib/BaseUtils.js',
-    'BaseService': 'lib/BaseService.js',
+    'BaseService': 'scripts/service/BaseService.js',
     'BaseComposite': 'lib/BaseComposite.js'
   }, app.getModules()),
 

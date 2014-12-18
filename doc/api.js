@@ -7,7 +7,6 @@ YUI.add("yuidoc-meta", function(Y) {
         "BaseItem",
         "BaseList",
         "BaseModel",
-        "BaseService",
         "BaseUtils",
         "BaseView",
         "Est - 工具类库"
