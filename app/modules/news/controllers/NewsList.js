@@ -5,10 +5,10 @@
  */
 define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Select', 'HandlebarsHelper',
     'template/news_list', 'template/news_item', 'BaseUtils', 'template/news_search', 'template/news_transfer',
-    'template/news_sort','bui/calendar'],
+    'template/news_sort', 'bui/calendar', 'BaseService'],
   function (require, exports, module) {
     var NewsModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Select, NewsList, NewsItem,
-      NewsCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp, buiCalendar;
+      NewsCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, BaseService;
 
     NewsModel = require('NewsModel');
     BaseCollection = require('BaseCollection');
@@ -21,8 +21,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
     BaseUtils = require('BaseUtils');
     Select = require('Select');
     transferTemp = require('template/news_transfer');
-    sortTemp = require('template/news_sort');
-    buiCalendar=require('bui/calendar');
+    BaseService = require('BaseService');
 
 
     /**
@@ -58,7 +57,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       // 初始化
       initialize: function () {
         if (!app.getData('newsCategory')) {
-          BaseUtils.getNewsCategory({
+          BaseService.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -92,7 +91,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           category: category
         }, ctx, {success: function () {
           ctx.model.set('category', category);
-        },hideTip:true});
+        }, hideTip: true});
       },
       // 编辑产品
       editItem: function () {
@@ -219,7 +218,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('newsCategory')) {
-          BaseUtils.getNewsCategory({
+          BaseService.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {

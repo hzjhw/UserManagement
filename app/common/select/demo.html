@@ -47,6 +47,7 @@
     // 选择框
     seajs.use(['jquery', 'Select', 'BaseUtils'], function (jquery, Select, BaseUtils) {
         BaseUtils.getProductCategory({
+            tree: true,
             select: true,
             extend: true
         }).then(function (list) {

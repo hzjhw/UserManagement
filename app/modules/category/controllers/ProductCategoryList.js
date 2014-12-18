@@ -184,6 +184,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         var ctx = this;
         if (!app.getData('productCategory')) {
           BaseUtils.getProductCategory({
+            tree: true,
             extend: true,
             select: true
           }).then(function (list) {

@@ -26,7 +26,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
        var ctx = this;
         this._render();
         // 产品分类
-        this._getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',

@@ -161,7 +161,7 @@ $(function(){
         }
     }
 
-    seajs.use(['AlbumList', 'BaseUtils'], function(AlbumList, BaseUtils){
+    seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
         app.addView('albumList', new AlbumList({
             el: '#J_UpTree',
             callback: function(albumId){
@@ -170,7 +170,7 @@ $(function(){
             }
         }));
         if (!app.getData('albumList')){
-            app.setData('albumList', BaseUtils.getAlbumList());
+            app.setData('albumList', BaseService.getAlbumList());
         }
        bulidNav();
     });

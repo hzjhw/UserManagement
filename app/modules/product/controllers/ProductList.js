@@ -5,9 +5,9 @@
  */
 define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/product_list', 'template/product_item', 'BaseUtils', 'template/product_search', 'template/product_transfer',
-    'template/product_sort'],
+    'template/product_sort', 'BaseService'],
   function (require, exports, module) {
-    var ProductModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem,
+    var ProductModel, BaseCollection, BaseService, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem,
       ProductCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp;
 
     ProductModel = require('ProductModel');
@@ -21,6 +21,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     BaseUtils = require('BaseUtils');
     transferTemp = require('template/product_transfer');
     sortTemp = require('template/product_sort');
+    BaseService = require('BaseService');
 
     /**
      * 集合类
@@ -54,7 +55,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       // 初始化
       initialize: function () {
         if (!app.getData('productCategory')) {
-          BaseUtils.getProductCategory({ extend: true, select: true
+          BaseService.getProductCategory({ tree: true, extend: true, select: true
           }).then(function (list) {
             app.setData('productCategory', list);
           })
@@ -158,7 +159,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('productCategory')) {
-          BaseUtils.getProductCategory({
+          BaseService.getProductCategory({
+            tree: true,
             extend: true,
             select: true
           }).then(function (list) {

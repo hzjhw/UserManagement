@@ -56,7 +56,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         // 产品分类
-        this._getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ tree: true,select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',

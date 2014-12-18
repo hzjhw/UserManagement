@@ -56,11 +56,8 @@ app.addRoute('album', function () {
           this._render();
         },
         picUpload: function(){
-          var doResult = function(){
-
-          }
+          var doResult = function(){ }
           BaseUtils.openUpload({
-            title: '上传图片',
             albumId: app.getData('curAlbumId'),
             username: app.getData('user').username,
             auto: true,

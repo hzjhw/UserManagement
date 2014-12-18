@@ -3,14 +3,15 @@
  * @namespace TopView
  * @author yongjin on 2014/11/12
  */
-define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top'],
+define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 'BaseService'],
   function (require, exports, module) {
-    var TopView, UserModel, BaseView, BaseUtils, tempTop;
+    var TopView, UserModel, BaseView, BaseUtils, tempTop, BaseService;
 
     UserModel = require('UserModel');
     BaseView = require('BaseView');
     tempTop = require('template/layout_top');
     BaseUtils = require('BaseUtils');
+    BaseService = require('BaseService');
 
     TopView = BaseView.extend({
       el: '#jhw-top',
@@ -45,7 +46,7 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top'],
         this._render();
       },
       logout: function(){
-        BaseUtils.logout();
+        BaseService.logout();
       }
     });
 
