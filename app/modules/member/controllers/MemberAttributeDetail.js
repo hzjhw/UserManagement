@@ -28,26 +28,8 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
           model: MemberAttributeModel
         });
       },
-/*      render: function () {
-        var ctx = this;
-        this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
-          .join(","));
-        this._render();
-        // 表单初始化
-        this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
-            // 处理特殊字段
-          },
-          onAfterSave: function(response){
-          }
-        });
-        setTimeout(function () {
-          ctx._resetIframe();
-        }, 1000);
-        return this;
-      },*/
       render: function () {
-        this.categoryId = Est.getUrlParam('categoryId', window.location.href);
+        this.categoryId = Est.getUrlParam('id', window.location.href);
         this.model.set('categoryId',this.categoryId);
         this._render();
         this.attributeSelect();
@@ -60,17 +42,6 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
         });
         return this;
       },
-/*      showAttribute: function(categoryId, items){
-        if (!this.attribute){
-          this.attribute = new AttributeShow({
-            render: '#attribute-list',
-            categoryId: categoryId,
-            items: items
-          });
-        } else{
-          this.attribute.reload(categoryId);
-        }
-      },*/
       showAttribute: function () {
         $("#multi-attribute").show();
       },

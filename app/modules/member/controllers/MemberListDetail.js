@@ -27,6 +27,41 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           model: MemberListModel
         });
       },
+      getMemberRankCategory: function (options) {
+        debug('getMemberCategory');
+        var $q = Est.promise;
+        return new $q(function (topResolve, topReject) {
+          options.select = options ? options.select ? true : false : false;
+          options.extend = options ? options.extend ? true : false : false;
+          var getCategory = function () {
+            return new $q(function (resolve, reject) {
+              $.ajax({
+                type: 'post',
+                url: CONST.API + '/member/rank/list',
+                async: false,
+                data: {
+                  _method: 'GET'
+                },
+                success: function (result) {
+                  resolve(result);
+                }
+              });
+            });
+          };
+          getCategory().then(function (result) {
+            if (result.attributes) {
+              Est.each(result.attributes.data,function(item){
+                item.text=item.name;
+                item.value=item.rankId;
+              })
+            } else {
+              result.attributes.data = [];
+            }
+            result.attributes.data.unshift({text: '请选择分类', value: '/'});
+            topResolve(result.attributes.data);
+          });
+        });
+      },
       render: function () {
         debug('4.MemberDetail.render');
         var ctx = this;
@@ -42,12 +77,53 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           onAfterSave: function(response){
           }
         });
+        // 会员分类
+       this.getMemberRankCategory({ select: true, extend: true }
+        ).then(function (list) {
+            ctx._initSelect({
+              render: '#s1',
+              target: '#model-memberRank',
+              items: list,
+              change: function (categoryId) {
+                var buttons = [
+                  {
+                    value: '更换',
+                    callback: function () {
+                      ctx.showAttributes(categoryId, []);
+                    }},
+                  {
+                    value: '保留',
+                    autofocus: true,
+                    callback: function () {
+                      this.close();
+                    }
+                  }
+                ];
+                if (!ctx._isAdd) {
+                  dialog({
+                    title: '提示',
+                    content: '更换分类将更改产品属性选项， 点击“保留”只更改分类， 不更改属性！',
+                    width: 250,
+                    button: buttons
+                  }).show($("#s1").get(0));
+                } else {
+                  ctx.showAttributes(categoryId);
+                }
+              }
+            });
+          });
+/*
+        if (!ctx._isAdd) {
+          ctx.showAttributes(ctx.model.get('category'), ctx.model.get('productAttributeMapStore'));
+        }
+*/
 
         setTimeout(function () {
           ctx._resetIframe();
         }, 1000);
         return this;
       },
+
       showAttributes: function(categoryId, items){
         if (!this.attribute){
           this.attribute = new AttributesShow({

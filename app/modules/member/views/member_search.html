@@ -7,7 +7,7 @@
         <label class="control-label">会员等级：</label>
         <div class="controls">
             <select name="searchCategory" class="text pro-category" >
-                {{#each productCategoryList}}
+                {{#each memberCategoryList}}
                 <option value="{{value}}" {{#compare value '===' ../searchCategory}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
