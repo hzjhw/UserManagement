@@ -65,7 +65,6 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           padding: 0,
           oniframeload: function (win) {
             win.app = app;
-            //app.getView('messageDetail').setType('view');
           }
         }
         this._edit(options);

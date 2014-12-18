@@ -99,26 +99,25 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
-            id: 'search-dialog-product',
+            id: 'search-dialog',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({
-              productCategoryList: app.getData('productCategory'),
-              loginViewList: app.getData('loginViewList'),
-              adsList: app.getData('adsList'),
-              searchKey: ctx.searchKey,
-              searchProdtype: ctx.searchProdtype
+              memberCategoryList: [{
+                text: '白金',
+                value: '白金'
+              }]
             }),
             button: [
               {
                 value: '搜索',
                 callback: function () {
                   ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
+                  ctx.searchMemberRank = $('input[name=searchMemberRank]').val();
                   ctx._search({
                     filter: [
                       {key: 'username', value: ctx.searchKey },
-                      {key: 'memberRank.name', value: ctx.searchProdtype} ,
+                      {key: 'memberRank.name', value: ctx.searchMemberRank}
                     ]
                   });
                   this.remove();
@@ -139,7 +138,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
             }
           }).show(this.$('.search-advance').get(0));
         });
-      },
+      }
     });
 
     module.exports = MemberList;

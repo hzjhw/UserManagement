@@ -236,7 +236,6 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
               loginViewList: app.getData('loginViewList'),
               adsList: app.getData('adsList'),
               searchKey: ctx.searchKey,
-              searchProdtype: ctx.searchProdtype,
               searchCategory: ctx.searchCategory,
               searchAds: ctx.searchAds,
               searchLoginView: ctx.searchLoginView
