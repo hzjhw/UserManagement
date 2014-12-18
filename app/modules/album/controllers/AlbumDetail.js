@@ -29,6 +29,9 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         var ctx = this;
         this._render();
         // 产品分类
+        if (window.parentId){
+          this.$('#model-parentId').val(window.parentId);
+        }
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-parentId',

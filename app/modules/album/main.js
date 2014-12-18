@@ -58,6 +58,7 @@ app.addRoute('album', function () {
         picUpload: function(){
           var doResult = function(){ }
           BaseUtils.openUpload({
+            id: 'uploadDialog',
             albumId: app.getData('curAlbumId'),
             username: app.getData('user').username,
             auto: true,
@@ -70,7 +71,9 @@ app.addRoute('album', function () {
           app.getView('photoList').search(this.$('.search-text').val());
         },
         albumAdd: function(){
-          app.getView('albumList')._detail();
+          app.getView('albumList')._detail({
+            end: '&parentId=' + app.getData('curAlbumId')
+          });
         }
       });
       var panel = new Panel();

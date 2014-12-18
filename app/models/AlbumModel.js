@@ -12,7 +12,7 @@ define('AlbumModel', ['BaseModel'], function(require, exports, module){
     defaults: Est.extend({
       belongId: '/',
       blongType: 'AP',
-      name: '默认相册',
+      name: '',
       state: "01"
     }, BaseModel.prototype.defaults),
     baseId: 'albumId',

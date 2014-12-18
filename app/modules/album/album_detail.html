@@ -46,6 +46,7 @@
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
     seajs.use(['jquery', 'AlbumDetail'], function(jquery, AlbumDetail){
+        window.parentId = Est.getUrlParam('parentId', window.location.href);
         app.addView('albumDetail', new AlbumDetail());
     });
 </script>

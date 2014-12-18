@@ -167,6 +167,8 @@ $(function(){
             callback: function(albumId){
                 bulidNav(albumId);
                 $('.show-tree').click();
+                top.app && top.app.setData('curAlbumId', albumId);
+                top.$('#pagination-container .reload').click();
             }
         }));
         if (!app.getData('albumList')){
@@ -279,6 +281,7 @@ $(function(){
                 progress.setStatus("所有图片上传完毕.");
                 progress.toggleCancel(false);
                 top.$('#pagination-container .reload').click();
+                top.uploadDialog && top.uploadDialog.close().remove();
             }
         } catch (ex) {
             this.debug(ex);
