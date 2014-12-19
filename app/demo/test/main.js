@@ -31,14 +31,11 @@ var categoryDefaults = {
 
 
 // 模型类
+// 模型类
 var UserModel = Backbone.Model.extend({
-<<<<<<< HEAD
-    url: 'http://jihui88.com/rest/api/paymentconfig/detail', // 请求地址
+    url: 'http://jihui88.com/rest/api/member/detail', // 请求地址
     defaults: {
-        name: '未登录'
-=======
-    baseId: 'productId', // 主键标识 [修改]
-    baseUrl: 'http://jihui88.com/rest/api/category/detail', // 请求地址 [修改]
+        name: '未登录',
     defaults: productDefaults, // 默认值 [修改]
     url: function () {
         var base = this.baseUrl;
@@ -55,9 +52,8 @@ var UserModel = Backbone.Model.extend({
         }
         response.id = response[ctx.baseId];
         return response;
->>>>>>> bbd02685396412f187515ffe87eb82422d8576aa
     }
-});
+}});
 var view = Backbone.View.extend({
     el: '#container',
     template: _.template($("#form-template").html()),
@@ -73,7 +69,6 @@ var view = Backbone.View.extend({
         this.$el.html(this.template(this.model.toJSON));
         return this;
     },
-<<<<<<< HEAD
     submit: function(){
         var ctx = this;
 		this.model.set('name', '111');
@@ -85,12 +80,6 @@ var view = Backbone.View.extend({
             ctx.model.set($(this).attr('name'), $(this).val());
         });
 
-=======
-    // 保存
-    submit: function () {
-        // 设置值
-        this.model.set('name', 'test');
->>>>>>> bbd02685396412f187515ffe87eb82422d8576aa
         // 保存模型类
         this.model.save(null, {
             wait: true,
