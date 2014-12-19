@@ -281,7 +281,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l58"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:58</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l60"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:60</code></a>
         
         </p>
 
@@ -329,14 +329,30 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.openUpload({
-             albumId: app.getData(&#39;curAlbumId&#39;),
-             username: app.getData(&#39;user&#39;).username,
-             auto: true,
-             oniframeload: function(){
-               this.iframeNode.contentWindow.uploadCallback = doResult;
-             }
-         });</p>
+                <pre class="code prettyprint"><code> // 图片添加
+ BaseUtils.openUpload({
+  albumId: app.getData(&#39;curAlbumId&#39;),
+  username: app.getData(&#39;user&#39;).username,
+  auto: true,
+  oniframeload: function(){
+    this.iframeNode.contentWindow.uploadCallback = doResult;
+  }
+ });
+ // 图片替换
+ BaseUtils.openUpload({
+   id: &#39;replaceDialog&#39; + id,
+   title: &#39;图片替换&#39;,
+   albumId: app.getData(&#39;curAlbumId&#39;),
+   username: app.getData(&#39;user&#39;).username,
+   replace: true,
+   attId: this.model.get(&#39;attId&#39;),
+   oniframeload: function () {
+     this.iframeNode.contentWindow.uploadCallback = function (file) {
+     ctx.model.set(&#39;uploadTime&#39;, new Date().getTime());
+     window[&#39;replaceDialog&#39; + id].close().remove();
+     };
+   }
+ });</code></pre>
 
             </div>
         </div>
@@ -392,7 +408,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l337"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:337</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l363"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:363</code></a>
         
         </p>
 
@@ -454,11 +470,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p> BaseUtils.initCopy(&#39;#photo-copy-dialog&#39;, {
-         success: function(){
-           window.copyDialog.close();
-         }
-       });</p>
+                <pre class="code prettyprint"><code>   BaseUtils.initCopy(&#39;#photo-copy-dialog&#39;, {
+      success: function(){
+        window.copyDialog.close();
+      }
+    });</code></pre>
 
             </div>
         </div>
@@ -508,7 +524,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l221"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:221</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l241"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:241</code></a>
         
         </p>
 
@@ -556,14 +572,14 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.comfirm({
-     title: &#39;提示&#39;,
-     target: this.$(&#39;.name&#39;).get(0),
-     content: &#39;是否删除?&#39;,
-     success: function(){
-       ...
-     }
-   });</p>
+                <pre class="code prettyprint"><code> BaseUtils.comfirm({
+   title: &#39;提示&#39;,
+   target: this.$(&#39;.name&#39;).get(0),
+   content: &#39;是否删除?&#39;,
+   success: function(){
+     ...
+   }
+ });</code></pre>
 
             </div>
         </div>
@@ -613,7 +629,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l289"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:289</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l309"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:309</code></a>
         
         </p>
 
@@ -661,22 +677,22 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.dialog({
-             id: &#39;copyDialog&#39;,
-             title: &#39;复制图片&#39;,
-             target: &#39;.btn-email-bind&#39;,
-             width: 800,
-             content: this.copyDetail({
-               filename: this.model.get(&#39;filename&#39;),
-               serverPath: this.model.get(&#39;serverPath&#39;)
-             }),
-             load: function(){
-               ...
-             },
-             success: function(){
-               this.close();
-             }
-       });</p>
+                <pre class="code prettyprint"><code> BaseUtils.dialog({
+    id: &#39;copyDialog&#39;,
+    title: &#39;复制图片&#39;,
+    target: &#39;.btn-email-bind&#39;,
+    width: 800,
+    content: this.copyDetail({
+      filename: this.model.get(&#39;filename&#39;),
+      serverPath: this.model.get(&#39;serverPath&#39;)
+    }),
+    load: function(){
+      ...
+    },
+    success: function(){
+      this.close();
+    }
+  });</code></pre>
 
             </div>
         </div>
@@ -726,7 +742,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l378"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:378</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l406"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:406</code></a>
         
         </p>
 
@@ -774,14 +790,14 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.iframeDialog({
-             title: &#39;黑名单&#39;,
-             url: CONST.DOMAIN + &#39;/user/blacklist/view&#39;,
-             width: 500,
-             target: &#39;.name&#39;,
-             success: function(){
-             }
-           });</p>
+                <pre class="code prettyprint"><code> BaseUtils.iframeDialog({
+    title: &#39;黑名单&#39;,
+    url: CONST.DOMAIN + &#39;/user/blacklist/view&#39;,
+    width: 500,
+    target: &#39;.name&#39;,
+    success: function(){
+    }
+  });</code></pre>
 
             </div>
         </div>
@@ -821,7 +837,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l268"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:268</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l288"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:288</code></a>
         
         </p>
 
@@ -845,7 +861,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.resetIframe(dialog);</p>
+                <pre class="code prettyprint"><code> BaseUtils.resetIframe(dialog);</code></pre>
 
             </div>
         </div>
@@ -901,7 +917,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l193"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:193</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l213"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:213</code></a>
         
         </p>
 
@@ -963,10 +979,10 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.tip(&#39;提示&#39;, {
-     time: 1000,
-     title: &#39;温馨提示&#39;
-   });</p>
+                <pre class="code prettyprint"><code> BaseUtils.tip(&#39;提示内容&#39;, {
+   time: 1000,
+   title: &#39;温馨提示&#39;
+ });</code></pre>
 
             </div>
         </div>
@@ -1020,7 +1036,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l111"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:111</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l131"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:131</code></a>
         
         </p>
 
@@ -1079,12 +1095,12 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.initCombox({
-                   render: &#39;#tag&#39;,
-                   target: &#39;#model-tag&#39;,
-                   itemId: &#39;categoryId&#39;
-                   items: [ &#39;选项一&#39;, &#39;选项二&#39;, &#39;选项三&#39;, &#39;选项四&#39; ]
-               });</p>
+                <pre class="code prettyprint"><code> BaseUtils.initCombox({
+    render: &#39;#tag&#39;,
+    target: &#39;#model-tag&#39;,
+    itemId: &#39;categoryId&#39;
+      items: [ &#39;选项一&#39;, &#39;选项二&#39;, &#39;选项三&#39;, &#39;选项四&#39; ]
+  });</code></pre>
 
             </div>
         </div>
@@ -1134,7 +1150,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l90"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:90</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l110"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:110</code></a>
         
         </p>
 
@@ -1182,10 +1198,10 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.initDate({
-             render: &#39;.calendar&#39;,
-             showTime: false
-           });</p>
+                <pre class="code prettyprint"><code> BaseUtils.initDate({
+    render: &#39;.calendar&#39;,
+    showTime: false
+  });</code></pre>
 
             </div>
         </div>
@@ -1235,7 +1251,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l153"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:153</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l173"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:173</code></a>
         
         </p>
 
@@ -1282,9 +1298,9 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.initEditor({
-     render: &#39;.ckeditor&#39;
-   });</p>
+                <pre class="code prettyprint"><code> BaseUtils.initEditor({
+   render: &#39;.ckeditor&#39;
+ });</code></pre>
 
             </div>
         </div>
@@ -1399,14 +1415,16 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   BaseUtils.initSelect({
-             render: &#39;#s1&#39;,
-             target: &#39;#model-parentId&#39;,
-             items: [],
-             change: function(changeId){
-               console.log(changeId);
-             }
-           });</p>
+                <pre class="code prettyprint"><code> BaseUtils.initSelect({
+    render: &#39;#s1&#39;,
+    target: &#39;#model-parentId&#39;,
+    items: [],
+    change: function(changeId){
+      console.log(changeId);
+    }
+  }).then(function(itemId){
+     console.log(itemId);
+  });</code></pre>
 
             </div>
         </div>

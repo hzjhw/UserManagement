@@ -1,113 +1,156 @@
-<form id="photo-copy-dialog" name="form" class="form-horizontal ng-scope ng-pristine ng-valid" role="form" novalidate="">
+<form id="photo-copy-dialog" name="form" class="form-horizontal ng-scope ng-pristine ng-valid" role="form"
+      novalidate="">
     <div class="modal-body">
-        <div class="control-group">
-            <label class="control-label">原图尺寸：</label>
+        <div class="body-l">
+            <div class="control-group">
+                <label class="control-label">原图尺寸：</label>
 
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{serverPath}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp;
-                &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{serverPath}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label"> 800*800 </label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 3}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp; &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 3}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label"> 500*500 </label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 7}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp; &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 7}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label"> 300*300 </label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 4}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp; &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 4}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label"> 160*160 </label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp; &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">80*80</label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 8}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
-                &nbsp; &nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 8}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">40*40</label>
-
-            <div class="controls">
-                <button type="button" clipboard=""
-                        data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 6}}' alt='{{filename}}'>"
-                        class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
-                </button>
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{serverPath}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
                     &nbsp;&nbsp;
-                <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 6}}"
-                        class="button button-info">
-                    <i class="icon-white  icon-hand-up"></i>复制链接
-                </button>
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{serverPath}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{serverPath}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制代码
+                    </button>
+                </div>
             </div>
+
+            <div class="control-group">
+                <label class="control-label"> 800*800 </label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 3}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 3}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 3}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制代码
+                    </button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> 500*500 </label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 7}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 7}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 7}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制代码
+                    </button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> 300*300 </label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 4}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 4}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 4}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> 160*160 </label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">80*80</label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 8}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 8}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 8}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">40*40</label>
+
+                <div class="controls">
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 6}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard="" data-clipboard-text="{{CONST 'PIC_URL'}}/{{picUrl serverPath 6}}"
+                            class="button button-info">
+                        <i class="icon-white  icon-hand-up"></i>复制链接
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" clipboard=""
+                            data-clipboard-text="<img src='{{CONST 'PIC_URL'}}/{{picUrl serverPath 6}}' alt='{{filename}}'>"
+                            class="button button-info"><i class="icon-white  icon-hand-up"></i>复制图片
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="body-r up-tips">
+            <div class="little">小提示:&nbsp;</div>
+            <ul>
+                <li>1. 复制图片： 可以直接在编辑器视图界面粘贴</li>
+                <li>2. 复制链接： 图片的链接地址</li>
+                <li>3. 复制代码： 方便开发人员复制&lt;img&gt;代码</li>
+            </ul>
         </div>
     </div>
 </form>

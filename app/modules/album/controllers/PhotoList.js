@@ -3,9 +3,9 @@
  * @namespace PhotoList
  * @author yongjin<zjut_wyj@163.com> 2014/12/16
  */
-define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper', 'PhotoModel', 'BaseUtils','template/photo_list', 'template/photo_item', 'ZeroClipboard', 'template/photo_copy'],
+define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'PhotoModel', 'BaseUtils', 'template/photo_list', 'template/photo_item', 'ZeroClipboard', 'template/photo_copy'],
   function (require, exports, module) {
-    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel,HandlebarsHelper, BaseList, listTemp, itemTemp, BaseUtils, copyDetail, ZeroClipboard;
+    var PhotoList, PhotoCollection, PhotoItem, BaseCollection, BaseItem, PhotoModel, HandlebarsHelper, BaseList, listTemp, itemTemp, BaseUtils, copyDetail, ZeroClipboard;
 
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -33,7 +33,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper'
         'click .delete': '_del',
         'click .img-name': 'editName',
         'click .copy-pic': 'copy',
-        'click .copy-link': 'copyLink'
+        'click .pic-replace': 'replace'
       },
       initialize: function () {
         this._initialize({
@@ -51,13 +51,32 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper'
           field: 'filename'
         });
       },
-      copy: function(e){
+      replace: function (e) {
         e.stopImmediatePropagation();
-        if (!this.copyDetail)
-            this.copyDetail = HandlebarsHelper.compile(copyDetail);
+        var id = this.model.get('id');
+        var ctx = this;
+        BaseUtils.openUpload({
+          id: 'replaceDialog' + id,
+          title: '图片替换',
+          albumId: app.getData('curAlbumId'),
+          username: app.getData('user').username,
+          replace: true,
+          attId: this.model.get('attId'),
+          oniframeload: function () {
+            this.iframeNode.contentWindow.uploadCallback = function (file) {
+              ctx.model.set('uploadTime', new Date().getTime());
+              window['replaceDialog' + id].close().remove();
+            };
+          }
+        });
+      },
+      copy: function (e) {
+        e.stopImmediatePropagation();
+        if (!this.copyDetail) this.copyDetail = HandlebarsHelper.compile(copyDetail);
+        var dialogId = 'copy' + this.model.get('id');
         BaseUtils.dialog({
-          id: 'copyDialog',
-          title: '复制图片',
+          id: 'copy' + dialogId,
+          title: '图片复制',
           width: 800,
           content: this.copyDetail({
             filename: this.model.get('filename'),
@@ -65,13 +84,10 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList','HandlebarsHelper'
           })
         });
         BaseUtils.initCopy('#photo-copy-dialog', {
-          success: function(){
-            window.copyDialog.close();
+          success: function () {
+            window['copy' + dialogId].close().remove();
           }
         });
-      },
-      copyLink: function(){
-
       }
     });
 

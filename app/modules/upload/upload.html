@@ -22,7 +22,7 @@
     <![endif]-->
     <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
     <style>
-        .up-modal .modal-subTitle { margin-top: 0px; background: #FAFAFA; padding: 10px 15px 10px 15px; line-height: 27px; }
+        .up-modal .modal-subTitle { margin-top: 0px; background: #FAFAFA; padding: 10px 15px 10px 13px; line-height: 27px; }
         .up-modal .location-label { float: left; }
         .breadcrumb { padding: 0 22px; margin: 0; list-style: none; background-color: #f5f5f5; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
         .up-modal .breadcrumb { float: left; width: 380px; padding: 0 22px 0 10px; background-color: transparent; border: none; }
@@ -37,12 +37,13 @@
         .up-modal .setting>div { float: left; }
         .up-modal .setting .is-water, .up-modal .setting .is-protect { margin-right: 10px; }
         label { display: block; margin-bottom: 5px; }
-        .up-modal .up-tips { margin: 0 15px 20px; padding: 10px; background-color: #FAFAFA; }
+        .up-modal .up-tips { margin: 0 15px 20px; padding: 10px; background-color: #FAFAFA; line-height:22px;}
         .up-modal .up-tips .little { float: left; }
         .up-modal .up-tips ul { float: left; }
         .up-modal .up-tips ul li { text-align: left; }
         .upload-container{ padding: 10px 15px 10px 15px;height: 90px; }
         #J_UpTree{padding-left:5px;}
+        #J_UpSetting input{vertical-align: middle;}
     </style>
 </head>
 <!--[if IE 6]>
@@ -126,8 +127,8 @@
         <div class="little">小提示:&nbsp;</div>
         <ul>
             <li>1. 图片单张大小支持3M以下, 超过系统会自动压缩</li>
-            <li>2. 自动压缩和宽度调整可能会使图片失真</li>
-            <li>3. 支持的图片格式: jpg、jpeg、png、gif</li>
+            <li>2. 支持的图片格式: jpg、jpeg、png、gif</li>
+            <li>3. 自动压缩和宽度调整可能会使图片失真</li>
         </ul>
     </div>
 </div>
@@ -148,6 +149,8 @@ $(function(){
     var albumId = Est.getUrlParam('albumId', window.location.href);
     var username = Est.getUrlParam('username', window.location.href);
     var auto = Est.getUrlParam('auto', window.location.href);
+    var replace = Est.getUrlParam('replace', window.location.href);
+    var attId = Est.getUrlParam('attId', window.location.href);
     if (Est.isEmpty(albumId))
         albumId = '';
     var bulidNav = function(id){
@@ -276,10 +279,12 @@ $(function(){
             if (this.getStats().files_queued > 0) {
                 this.startUpload();
             } else {
+                var statusTip = replace === '01' ? "图片替换完成" : "所有图片上传完毕.";
                 var progress = new FileProgress(file, this.customSettings.upload_target);
                 progress.setComplete();
-                progress.setStatus("所有图片上传完毕.");
+                progress.setStatus(statusTip);
                 progress.toggleCancel(false);
+                uploadCallback.call(this, arguments);
                 top.$('#pagination-container .reload').click();
                 top.uploadDialog && top.uploadDialog.close().remove();
             }
@@ -568,14 +573,16 @@ $(function(){
         upload_url: CONST.DOMAIN + '/commonutil/uploadUtil2',
         post_params: {
             "username": username,
-            "id": albumId
+            "id": albumId,
+            "replace": replace,
+            "attId": attId
         },
 
         // File Upload Settings
         file_size_limit: "2MB", // 2MB
         file_types: "*.jpg;*.gif;*.jpeg;*.png;*.bmp",
         file_types_description: "JPG Images",
-        file_upload_limit: "20",
+        file_upload_limit: replace === '01' ? '1' : "20",
 
         // Event Handler Settings - these functions as defined in Handlers.js
         // The handlers are not part of SWFUpload but are part of my website and
