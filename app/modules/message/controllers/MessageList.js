@@ -94,7 +94,8 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           template: listTemp,
           model: MessageModel,
           collection: MessageCollection,
-          item: MessageItem
+          item: MessageItem,
+          pagination: true
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);

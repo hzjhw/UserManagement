@@ -104,6 +104,7 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
           model: RecruitModel,
           collection: RecruitCollection,
           item: RecruitItem,
+          pagination: true,
           detail: CONST.HOST + '/modules/recruit/recruit_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);

@@ -104,7 +104,8 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           render: '.photo-list',
           collection: PhotoCollection,
           model: PhotoModel,
-          item: PhotoItem
+          item: PhotoItem,
+          pagination: true
         }).then(function (thisCtx) {
           thisCtx.collection._setItemId('all');
           thisCtx._initPagination(thisCtx._options);
@@ -128,10 +129,14 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
         this._load(this._options);
       },
       search: function (searchKey) {
-        this._search({
-          filter: [
-            { key: 'filename', value: searchKey }
-          ]});
+        if (Est.isEmpty(searchKey)) {
+          this._load({ page: 1, pageSize: 16 });
+        } else {
+          this._search({
+            filter: [
+              { key: 'filename', value: searchKey }
+            ]});
+        }
       }
     });
 

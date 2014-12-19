@@ -9,6 +9,7 @@ app.addModule('AlbumModel', 'models/AlbumModel.js');
 app.addModule('AlbumDetail', 'modules/album/controllers/AlbumDetail.js');
 app.addModule('PhotoList', 'modules/album/controllers/PhotoList.js');
 app.addModule('PhotoModel', 'models/PhotoModel.js');
+app.addModule('PhotoSelect', 'modules/album/controllers/PhotoSelect.js');
 app.addModule('iframetransport', 'vendor/file-upload/jquery.iframe-transport.js');
 app.addModule('ZeroClipboard', 'vendor/zeroclipboard/ZeroClipboard.js');
 app.addModule('ui-widget', 'vendor/file-upload/jquery.ui.widget.js');
@@ -34,6 +35,12 @@ app.addTemplate('template/album_detail', function(require, exports, module){
 });
 app.addTemplate('template/photo_copy', function(require, exports, module){
   module.exports = require('modules/album/views/photo_copy.html');
+});
+app.addTemplate('template/photo_select_item', function(require, exports, module){
+  module.exports = require('modules/album/views/photo_select_item.html');
+});
+app.addTemplate('template/photo_select_list', function(require, exports, module){
+  module.exports = require('modules/album/views/photo_select_list.html');
 });
 app.addRoute('album', function () {
   seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel', 'BaseUtils'],

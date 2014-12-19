@@ -132,6 +132,7 @@ git操作历史
         collection: 集合, 
         item: 单视图, 
         model: 模型类, 
+        pagination: true,
         detail: 添加页面url地址
         checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
         filter: [ {key: 'name', value: this.searchKey }] // 过滤结果

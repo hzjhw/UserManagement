@@ -22,10 +22,47 @@
     <![endif]-->
     <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
     <style>
+        /* 上传*/
+        /* -----------------------------------------------
+            BASIC ELEMENTS
+           ----------------------------------------------- */
+        /* -- Text Styles ------------------------------- */
+        .swfupload code { display: block; background:#edffb8 none repeat scroll 0%; border-color:#b2da3a; border-style:solid; border-width:1px 0; font-size: 1em; margin: 1em 0pt; overflow:auto; padding: 0.3em 0.4em; white-space:pre; }
+        /* -- Form Styles ------------------------------- */
+        .swfupload form { margin: 0; padding: 0; }
+        .swfupload  div.fieldset { border:  1px solid #afe14c; margin: 10px 0; padding: 20px 10px; }
+        .swfupload div.fieldset span.legend { position: relative; background-color: #FFF; padding: 3px; top: -30px; font: 700 14px Arial, Helvetica, sans-serif; color: #73b304; }
+        .swfupload div.flash { width: 375px; margin: 10px 5px; border-color: #D9E4FF; -moz-border-radius-topleft : 5px; -webkit-border-top-left-radius : 5px; -moz-border-radius-topright : 5px; -webkit-border-top-right-radius : 5px; -moz-border-radius-bottomleft : 5px; -webkit-border-bottom-left-radius : 5px; -moz-border-radius-bottomright : 5px; -webkit-border-bottom-right-radius : 5px; }
+        .swfupload button, .swfupload input,.swfupload  select,.swfupload  textarea { border-width: 1px; margin-bottom: 10px; padding: 2px 3px; }
+        .swfupload input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
+        .swfupload label { width: 150px; text-align: right; display:block; margin-right: 5px; }
+        .swfupload #btnSubmit { margin: 0 0 0 155px ; }
+        /* -- Table Styles ------------------------------- */
+        .swfupload td { font: 10pt Helvetica, Arial, sans-serif; vertical-align: top; }
+        .swfupload .progressWrapper { width: 357px; overflow: hidden; }
+        .swfupload .progressContainer { margin: 5px; padding: 4px; border: solid 1px #E8E8E8; background-color: #F7F7F7; overflow: hidden; }
+        /* Message */
+        .swfupload .message { margin: 1em 0; padding: 10px 20px; border: solid 1px #FFDD99; background-color: #FFFFCC; overflow: hidden; }
+        /* Error */
+        .swfupload .red { border: solid 1px #B50000; background-color: #FFEBEB; }
+        /* Current */
+        .swfupload .green { border: solid 1px #DDF0DD; background-color: #EBFFEB; }
+        /* Complete */
+        .swfupload .swfupload .blue { border: solid 1px #CEE2F2; background-color: #F0F5FF; }
+        .swfupload .progressName { font-size: 8pt; font-weight: 700; color: #555; width: 323px; height: 14px; text-align: left; white-space: nowrap; overflow: hidden; }
+        .swfupload .progressBarInProgress, .swfupload .progressBarComplete, .swfupload .progressBarError { font-size: 0; width: 0%; height: 2px; background-color: blue; margin-top: 2px; }
+        .swfupload .progressBarComplete { width: 100%; background-color: green; visibility: hidden; }
+        .swfupload .progressBarError { width: 100%; background-color: red; visibility: hidden; }
+        .swfupload .progressBarStatus { margin-top: 2px; width: 337px; font-size: 7pt; font-family: Arial; text-align: left; white-space: nowrap; }
+        .swfupload a.progressCancel { font-size: 0; display: block; height: 14px; width: 14px; background-image: url(img/cancelbutton.gif); background-repeat: no-repeat; background-position: -14px 0px; float: right; }
+        .swfupload a.progressCancel:hover { background-position: 0px 0px; }
+        .swfupload .swfupload{width:50px;height:20px; background-color: #dfdfdf;}
+        /* -- SWFUpload Object Styles ------------------------------- */
+        .swfupload .swfupload { vertical-align: top; }
         .up-modal .modal-subTitle { margin-top: 0px; background: #FAFAFA; padding: 10px 15px 10px 13px; line-height: 27px; }
         .up-modal .location-label { float: left; }
         .breadcrumb { padding: 0 22px; margin: 0; list-style: none; background-color: #f5f5f5; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
-        .up-modal .breadcrumb { float: left; width: 380px; padding: 0 22px 0 10px; background-color: transparent; border: none; }
+        .up-modal .breadcrumb { float: left; width: 480px; padding: 0 22px 0 10px; background-color: transparent; border: none; }
         .breadcrumb>li { display: inline-block; text-shadow: 0 1px 0 #fff; }
         .up-modal .location-change { position: relative; float: left; }
         .btn { display: inline-block; padding: 3px 12px; margin-bottom: 0; font-size: 12px; font-weight: normal; line-height: 20px; text-align: center; vertical-align: middle; cursor: pointer; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; }
@@ -41,9 +78,29 @@
         .up-modal .up-tips .little { float: left; }
         .up-modal .up-tips ul { float: left; }
         .up-modal .up-tips ul li { text-align: left; }
-        .upload-container{ padding: 10px 15px 10px 15px;height: 90px; }
+        .upload-container{ padding: 10px 15px 10px 15px;height: 170px; }
+        .upload-container .upload-left ,.upload-container .upload-right{ float: left; width: 50%; overflow: hidden; }
         #J_UpTree{padding-left:5px;}
         #J_UpSetting input{vertical-align: middle;}
+
+        /*资源库*/
+        div#pic-source { position: absolute; top: 0; left: 0; z-index: 90000; background: #fff; width: 98%; height: 100%; padding: 1%; padding-top: 0;}
+        .source-back{height:32px;padding-bottom: 3px;}
+        div#pic-source-album { float: left; width: 128px; overflow: hidden; }
+        div#pic-source-list { float: left; width: 540px; }
+
+        #jhw #pic-source-list .photo-list .item { float: left; width: 64px; height: 78px; border: 2px solid #EDEDED; background-color: #fff; box-shadow: 2px 2px 6px #E2E2E2; margin: 0px 20px 10px 0; cursor: pointer; overflow: hidden; }
+        #jhw .photo-list .image { width: 64px; height: 78px; position: relative; }
+        #jhw .photo-list .image .img-container { width: 64px; height: 64px; display: table-cell; vertical-align: middle; text-align: center; }
+        #jhw .photo-list img { vertical-align: middle; }
+        #jhw .photo-list .image .img-name { position: absolute; bottom: -17px; padding: 0 4px; height: 35px; line-height: 18px; color: #454545; width: 58px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+        .pagination li.page-start, .pagination li.page-end, .pagination li.page-info, .pagination li.page-per-page, .pagination li.page-refresh{display:none;}
+        #jhw #pic-source-list .photo-list .item.item-active { border-color: #79b24f; }
+        #jhw .photo-list .item.item-active .image .img-name { background-color: #79b24f; color: #fff; line-height: 20px; }
+        #jhw #pic-source-list .photo-list .item.hover { border-color: #d1d1d1; }
+        #jhw #pic-source-list .photo-list .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 22px; }
+
+        #jhw #pic-source-album .album-cate-ul{padding-left:4px;}
     </style>
 </head>
 <!--[if IE 6]>
@@ -61,7 +118,22 @@
 <!--[if !IE]>-->
 <body id="jhw">
 <!--<![endif]-->
-<div id="jhw-detail" class="up-modal">
+<div id="jhw-detail" class="up-modal" style="position:relative;">
+
+    <div id="pic-source" style="display:none;">
+        <div class="source-back">
+            <button id="source-back" type="button" class="button button-info"><i
+                    class="icon-white icon-share-alt"></i>返回上传界面
+            </button>
+            <input type="text" class="control-text search-query search-text">&nbsp;
+            <button type="button" class="button btn-search">搜索</button>
+        </div>
+        <div id="pic-source-album">
+        </div>
+        <div id="pic-source-list">
+        </div>
+    </div>
+
     <div class="modal-subTitle clearfix">
         <div class="location-label">当前位置:</div>
         <div class="breadcrumb">默认相册</div>
@@ -75,11 +147,19 @@
     </div>
     <!--上传按钮-->
 <div class="upload-container">
-    <span id="spanSWFUploadButton"></span>
-    <div id="uploadProcess"></div>
-    <ul id="showNewUploadFileContent"
-        class="showFilesContent startToUpload" style="position: relative;">
-    </ul>
+    <div class="upload-left">
+        <span id="spanSWFUploadButton"></span>
+        <div id="uploadProcess"></div>
+        <ul id="showNewUploadFileContent"
+            class="showFilesContent startToUpload" style="position: relative;">
+        </ul>
+    </div>
+   <div class="upload-right">
+       <button id="btn-source" type="button" class="button button-info"><i
+               class="icon-white icon-folder-open"></i> 我的资源库
+       </button>
+
+   </div>
 </div>
     <!--选项设置-->
     <div class="setting clearfix" id="J_UpSetting">
@@ -163,32 +243,70 @@ $(function(){
             $('.breadcrumb').html(breadcrumb.join(' > '));
         }
     }
-
-    seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
-        app.addView('albumList', new AlbumList({
-            el: '#J_UpTree',
-            callback: function(albumId){
-                bulidNav(albumId);
-                $('.show-tree').click();
-                top.app && top.app.setData('curAlbumId', albumId);
-                top.$('#pagination-container .reload').click();
-            }
-        }));
-        if (!app.getData('albumList')){
-            app.setData('albumList', BaseService.getAlbumList());
+    function showAlbumList(){
+        if ($('#J_UpTree').size() === 0){
+            $('.tree-box').append('<div id="J_UpTree" class="ztree"> </div >');
         }
-       bulidNav();
-    });
+        seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
+            removeView('albumList');
+            app.addView('albumList', new AlbumList({
+                el: '#J_UpTree',
+                callback: function(albumId){
+                    bulidNav(albumId);
+                    $('.show-tree').click();
+                    top.app && top.app.setData('curAlbumId', albumId);
+                    top.$('#pagination-container .reload').click();
+                }
+            }));
+            if (!app.getData('albumList')){
+                app.setData('albumList', BaseService.getAlbumList());
+            }
+            bulidNav();
+        });
+    }
 
+    showAlbumList();
     $('.show-tree').toggle(function(){
+        if (!app.getView('albumList')){ showAlbumList(); }
         $('.tree-box').show('fast');
     }, function(){
         $('.tree-box').hide('fast');
     });
+    function removeView(id){
+        var view = app.getView(id);
+        view  && view.remove();
+        app.addView(id, null);
+    }
+    $('#btn-source').click(function(){
+        $('#pic-source').show('fast');
+        removeView('albumList');
+        seajs.use(['AlbumList', 'PhotoSelect'], function(AlbumList, PhotoSelect){
+            app.addView('albumList', new AlbumList({
+                el: '#pic-source-album',
+                instance: 'albumList',
+                callback: function(albumId){
+                    app.getView('picSource').reLoad(albumId);
+                    //bulidNav(albumId);
+                    //$('.show-tree').click();
+                    //top.app && top.app.setData('curAlbumId', albumId);
+                    //top.$('#pagination-container .reload').click();
+                }
+            }));
+            app.addView('picSource', new PhotoSelect({
+                el: '#pic-source-list',
+                callback: function(picSrc){
 
+                }
+            }));
+        })
+    });
 
-
-
+    $('#source-back').click(function(){
+        $('#pic-source').hide('fast');
+    });
+    $('.btn-search').click(function(){
+        app.getView('picSource').search($('.search-text').val());
+    });
 
     var options = {};
     function fileQueueError(file, errorCode, message) {
