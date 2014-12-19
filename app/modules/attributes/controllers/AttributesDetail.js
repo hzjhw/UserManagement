@@ -3,18 +3,17 @@
  * @namespace AttributesDetail
  * @author yongjin on 2014/11/13
  */
-define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesAdd'],
+define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd'],
   function (require, exports, module) {
-    var AttributesDetail, AttributesModel, HandlebarsHelper, Est, BaseDetail, AttributesAdd;
+    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd;
 
     AttributesModel = require('AttributesModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     AttributesAdd = require('AttributesAdd');
 
     AttributesDetail = BaseDetail.extend({
-      el: '#jhw-main',
+      el: '#jhw-detail',
       events: {
         'click #reset': 'reset'
       },
@@ -25,25 +24,16 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         });
       },
       render: function () {
-        var ctx = this;
+        this.categoryId = Est.getUrlParam('categoryId', window.location.href);
+        this.model.set('categoryId',this.categoryId);
         this._render();
-        // 产品分类
-        this._getProductCategory({ select: true, extend: true })
-          .then(function (list) {
-            ctx._initSelect({
-              render: '#s1',
-              target: '#model-categoryId',
-              items: list
-            });
-          });
-        // 属性选择框
         this.attributeSelect();
-        // 属性选项
         this.attributeRender();
-
-        // 绑定提交与验证
-        this._form("#J_Form")._validate()._init(function () {
-          this.model.set("attributeOptionList", Est.pluck(this.optionsInstance.getItems(), 'value'))
+        this._form("#J_Form")._validate({})._init({
+          onBeforeSave: function () {
+            this.model.set("attributeOptionList",
+              Est.pluck(app.getView('attributesAdd').getItems(), 'value'));
+          }
         });
         return this;
       },
@@ -51,6 +41,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
         $("#multi-attribute").show();
       },
       attributeSelect: function () {
+        var ctx = this;
         this._initSelect({
           render: '#s2',
           target: '#model-attributeType',
@@ -69,6 +60,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
           } else {
             $("#multi-attribute").hide();
           }
+          ctx._resetIframe();
         });
       },
       attributeRender: function () {
@@ -81,7 +73,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Es
           options.items = attributesOptionList;
           this.showAttribute();
         }
-        this.optionsInstance = new AttributesAdd(options);
+        app.addView('attributesAdd', new AttributesAdd(options));
       }
     });
 

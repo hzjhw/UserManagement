@@ -20,8 +20,7 @@
     <!--[if IE6]>
     <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
     <![endif]-->
-
-    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
 </head>
 <!--[if IE 7]>
 <body class="ie7"><![endif]-->
@@ -47,31 +46,21 @@
 
 <!--显示属性-->
 <div id="attributes-list"></div>
-
 <div>
     <a href="javascript:;" class="getItemsBtn">获取ITEMS</a>
 </div>
-
-<script type="text/javascript" src="../../scripts/base.js"></script>
-<script type="text/javascript" src="../../config.js"></script>
+<script type="text/javascript" src="../../scripts/app.js"></script>
 <script type="text/javascript">
-
     // 属性添加
-    seajs.use(['jquery', 'AttributesAdd'], function(jquery, AttributesAdd){
-        var attributeAdd = new AttributesAdd({
-            items: ['111', '222', '333']
+    seajs.use(['jquery', 'AttributesAdd'], function (jquery, AttributesAdd) {
+        app.addView('attributesAdd', new AttributesAdd({ items: ['111', '222', '333'] }));
+        $(".getItemsBtn").click(function () {
+            console.dir(app.getView('attributesAdd').getItems()); // 获取数据
         });
-        $(".getItemsBtn").click(function(){
-            alert(attributeAdd.getItems()); // 获取数据
-        });
-    });
 
-    // 属性显示
-    seajs.use(['jquery', 'AttributesShow'], function(jquery, AttributesShow){
-        var attributeShow = new AttributesShow({
-            render: '#attributes-list',
-            //items: ['111', '222', '333']
-            categoryId: 'Category_00000000000000000008407'
+        // 属性显示
+        seajs.use(['jquery', 'AttributesShow'], function (jquery, AttributesShow) {
+            app.addView('attributesShow', new AttributesShow({ render: '#attributes-list', categoryId: 'Category_00000000000000000008407'}));
         });
     });
 </script>

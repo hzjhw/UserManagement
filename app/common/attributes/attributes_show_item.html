@@ -5,6 +5,26 @@
 </div>
 {{/compare}}
 
+{{#compare attributeType '===' 'number'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <input id="model-{{../attId}}" name="{{../attId}}" value="{{../element}}" type="text" class="input-mini">
+</div>
+{{/compare}}
+{{#compare attributeType '===' 'date'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <input id="model-{{../attId}}" name="{{../attId}}" value="{{../element}}" type="text" class="calendar">
+</div>
+{{/compare}}
+
+{{#compare attributeType '===' 'alphaint'}}
+<label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
+<div class="controls">
+    <input id="model-{{../attId}}" name="{{../attId}}" value="{{../element}}" type="text" class="input-large">
+</div>
+{{/compare}}
+
 {{#compare attributeType '===' 'select'}}
 <label class="control-label">{{#compare ../isRequired '===' '01'}}<s>*</s>{{/compare}}{{../name}}：</label>
 <div class="controls">

@@ -11,19 +11,15 @@ define('CategoryModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMode
     dialog = require('dialog');
 
     CategorytModel = BaseModel.extend({
-      defaults: {
-        grade: '00', // 产品以00开头， 新闻以01开头
-        isroot: '01', // 是否是根目录
-        isdisplay: 1, // 是否显示
+      defaults: Est.extend({
         name: '',
-        sort: 1,
-        state: '01',
-        category: '/',
-        belongId: null, // 父类ID
-        type: '10' // 产品
-      },
-      baseUrl: global.API + '/category/detail',
-      baseId: 'categoryId'
+        belongId: '/'
+      }, BaseModel.prototype.defaults),
+      baseId: 'categoryId',
+      baseUrl: CONST.API + '/category/detail',
+      initialize: function(){
+        this._initialize();
+      }
     });
     module.exports = CategorytModel;
   });

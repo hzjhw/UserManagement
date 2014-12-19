@@ -3,9 +3,9 @@
  * @namespace CategoryAttrView
  * @author yongjin on 2014/11/13
  */
-define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/attributes_list', 'template/attributes_item'],
+define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/attributes_list', 'template/attributes_item'],
   function (require, exports, module) {
-    var AttributesModel, BaseCollection, AttributesCollection, AttributesItem, BaseItem, HandlebarsHelper, AttributesList, BaseList, listTemp, itemTemp;
+    var AttributesModel, BaseCollection, AttributesCollection, AttributesShow, AttributesItem, BaseItem, HandlebarsHelper, AttributesList, BaseList, listTemp, itemTemp;
 
     AttributesModel = require('AttributesModel');
     BaseCollection = require('BaseCollection');
@@ -14,9 +14,16 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/attributes_list');
     itemTemp = require('template/attributes_item');
+    AttributesShow = require('AttributesShow');
 
     AttributesCollection = BaseCollection.extend({
-      url: 'http://jihui88.com/rest/api/attr/list',
+      url: function(){
+        var url = CONST.API + '/attr/list';
+        if (Est.isEmpty(app.getData('attrCategoryId'))){
+          return url;
+        }
+        return CONST.API + '/attr/list/' + app.getData('attrCategoryId');
+      },
       model: AttributesModel,
       initialize: function(){
         this._initialize();
@@ -27,64 +34,89 @@ define('AttributesList', ['jquery', 'AttributesModel', 'BaseCollection', 'BaseIt
       tagName: 'tr',
       className: 'bui-grid-row',
       events: {
-        'click .name': 'editName',
+        'click .toggle': '_toggleChecked',
+        'click .edit': '_edit',
         'click .delete': '_del',
-        'click .edit': 'editItem'
+        'click .move-up': '_moveUp',
+        'click .move-down': '_moveDown',
+        'click .name': 'editName',
+        'change .input-sort': 'changeSort'
       },
-
       initialize: function () {
         this._initialize({
-          template: itemTemp
+          template: itemTemp,
+          itemId: 'attributesList',
+          detail: CONST.HOST + '/modules/attributes/attributes_detail.html'
         });
       },
-
       render: function () {
         this._render();
       },
-
-      editItem: function () {
-        this._edit({
-          title: '属性修改',
-          url: global.HOST + '/modules/attributes/attributes_detail.html?id=' + this.model.id
-        });
-      },
-
       editName: function () {
         this._editField({
           title: '修改属性名称',
           field: 'name',
           target: '.name'
         }, this);
+      },
+      changeSort: function () {
+        var ctx = this;
+        var sort = this.$('.input-sort').val();
+        this.model._saveField({ id: this.model.get('id'), orderList: sort
+        }, ctx, { success: function () {
+          ctx.model.set('orderList', sort);
+        }, hideTip: true
+        });
+      },
+      moveUp: function () {
+        app.getView('attributesList')._setOption({
+          sortField: 'orderList'
+        })._moveUp(this.model);
+      },
+      moveDown: function () {
+        app.getView('attributesList')._setOption({
+          sortField: 'orderList'
+        })._moveDown(this.model);
       }
     });
 
     AttributesList = BaseList.extend({
       el: '#jhw-main',
       events: {
-        'click #toggle-all': 'toggleAllChecked',
-        'click #attributes-add': 'openAddDialog'
+        'click #toggle-all': '_toggleAllChecked',
+        'click .attributes-add': 'openAddDialog',
+        'click .attributes-show': 'attributesShow'
       },
       initialize: function () {
-        var opts = {
+        //app.addView('attributesShow', new AttributesShow({ render: '#attributes-list-ul', categoryId:Est.getUrlParam('id', window.location.href)}));
+        app.setData('attrCategoryId', Est.getUrlParam('id', window.location.href));
+        this._initialize({
           template: listTemp,
           render: '#attributes-list-ul',
           item: AttributesItem,
           model: AttributesModel,
           collection: AttributesCollection
-        };
-        this._initialize(opts).then(function(context){
-          context._initPagination(opts);
-          context._load(opts);
+        }).then(function(thisCtx){
+          thisCtx._initPagination(thisCtx._options);
+          thisCtx._load(thisCtx._options);
         });
-        return this;
       },
       render: function () {
-        this._addAll();
+        this._render();
+      },
+      attributesShow: function(){
+        this._detail({
+          title: '效果浏览',
+          url: CONST.HOST + '/modules/attributes/attributes_show.html?categoryId=' + app.getData('attrCategoryId'),
+          hideSaveBtn: true,
+          hideResetBtn: true
+        });
       },
       openAddDialog: function () {
         this._detail({
           title: '属性添加',
-          url: global.HOST + '/modules/attributes/attributes_detail.html?time=' + new Date().getTime()
+          height: 300,
+          url: CONST.HOST + '/modules/attributes/attributes_detail.html?categoryId=' + app.getData('attrCategoryId')
         });
       }
     });

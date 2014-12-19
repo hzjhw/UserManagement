@@ -3809,7 +3809,7 @@ define('bui/base',['bui/observable'],function(require){
  * @ignore
  */
 
-define('bui/component',['bui/component/manage','bui/component/uibase','bui/component/view','bui/component/controller'],function (require) {
+define('bui/component',['bui/component/manage','bui/component/uibase','bui/component/views','bui/component/controller'],function (require) {
   /**
    * @class BUI.Component
    * <p>
@@ -3822,7 +3822,7 @@ define('bui/component',['bui/component/manage','bui/component/uibase','bui/compo
   BUI.mix(Component,{
     Manager : require('bui/component/manage'),
     UIBase : require('bui/component/uibase'),
-    View : require('bui/component/view'),
+    View : require('bui/component/views'),
     Controller : require('bui/component/controller')
   });
 
@@ -7347,7 +7347,7 @@ define('bui/component/uibase/tpl',function () {
 
   /**
    * @private
-   * \u63a7\u4ef6\u6a21\u677f\u6269\u5c55\u7c7b\u7684\u6e32\u67d3\u7c7b(view)
+   * \u63a7\u4ef6\u6a21\u677f\u6269\u5c55\u7c7b\u7684\u6e32\u67d3\u7c7b(views)
    * @class BUI.Component.UIBase.TplView
    */
   function tplView () {
@@ -9207,7 +9207,7 @@ define('bui/component/uibase/bindable',function(){
  * copied by dxq613@gmail.com
  * @ignore
  */
-define('bui/component/view',['bui/component/manage','bui/component/uibase'],function(require){
+define('bui/component/views',['bui/component/manage','bui/component/uibase'],function(require){
 
   var win = window,
     Manager = require('bui/component/manage'),
@@ -10101,11 +10101,11 @@ define('bui/component/loader',['bui/util'],function (require) {
  */
 
 
-define('bui/component/controller',['bui/component/uibase','bui/component/manage','bui/component/view','bui/component/loader'],function(require){
+define('bui/component/controller',['bui/component/uibase','bui/component/manage','bui/component/views','bui/component/loader'],function(require){
     'use strict';
     var UIBase = require('bui/component/uibase'),
         Manager = require('bui/component/manage'),
-        View = require('bui/component/view'),
+        View = require('bui/component/views'),
         Loader = require('bui/component/loader'),
         wrapBehavior = BUI.wrapBehavior,
         getWrapBehavior = BUI.getWrapBehavior;
@@ -10159,7 +10159,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
 
         c = BUI.Component.create(c, self);
         c.setInternal('parent', self);
-        // set \u901a\u77e5 view \u4e5f\u66f4\u65b0\u5bf9\u5e94\u5c5e\u6027
+        // set \u901a\u77e5 views \u4e5f\u66f4\u65b0\u5bf9\u5e94\u5c5e\u6027
         c.set('render', contentEl);
         c.set('elBefore', renderBefore);
         // \u5982\u679c parent \u4e5f\u6ca1\u6e32\u67d3\uff0c\u5b50\u7ec4\u4ef6 create \u51fa\u6765\u548c parent \u8282\u70b9\u5173\u8054
@@ -10188,7 +10188,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
 
         attrs = self.getAttrs();
 
-        // \u6574\u7406\u5c5e\u6027\uff0c\u5bf9\u7eaf\u5c5e\u4e8e view \u7684\u5c5e\u6027\uff0c\u6dfb\u52a0 getter setter \u76f4\u63a5\u5230 view
+        // \u6574\u7406\u5c5e\u6027\uff0c\u5bf9\u7eaf\u5c5e\u4e8e views \u7684\u5c5e\u6027\uff0c\u6dfb\u52a0 getter setter \u76f4\u63a5\u5230 views
         for (attrName in attrs) {
             if (attrs.hasOwnProperty(attrName)) {
                 attrCfg = attrs[attrName];
@@ -10205,14 +10205,14 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                     /*self.on('after' + BUI.ucfirst(attrName) + 'Change',
                         wrapperViewSetter(attrName));
                     */
-                    // \u903b\u8f91\u5c42\u8bfb\u503c\u76f4\u63a5\u4ece view \u5c42\u8bfb
-                    // \u90a3\u4e48\u5982\u679c\u5b58\u5728\u9ed8\u8ba4\u503c\u4e5f\u8bbe\u7f6e\u5728 view \u5c42
+                    // \u903b\u8f91\u5c42\u8bfb\u503c\u76f4\u63a5\u4ece views \u5c42\u8bfb
+                    // \u90a3\u4e48\u5982\u679c\u5b58\u5728\u9ed8\u8ba4\u503c\u4e5f\u8bbe\u7f6e\u5728 views \u5c42
                     // \u903b\u8f91\u5c42\u4e0d\u8981\u8bbe\u7f6e getter
                     //attrCfg.getter = wrapperViewGetter(attrName);
                 }
             }
         }
-        // does not autoRender for view
+        // does not autoRender for views
         delete cfg.autoRender;
         cfg.ksComponentCss = getComponentCss(self);
         return new Render(cfg);
@@ -10310,7 +10310,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                 self.set('id',self.getNextUniqueId());
             }
             Manager.addComponent(self.get('id'),self);
-            // initialize view
+            // initialize views
             var view = constructView(self);
             self.setInternal('view', view);
             self.__view = view;
@@ -10327,7 +10327,7 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
             return BUI.guid(xclass);
         },
         /**
-         * From UIBase. Constructor(or get) view object to create ui elements.
+         * From UIBase. Constructor(or get) views object to create ui elements.
          * @protected
          *
          */
@@ -10336,14 +10336,14 @@ define('bui/component/controller',['bui/component/uibase','bui/component/manage'
                 //el,
                 view = self.get('view');
             view.create(undefined);
-            //el = view.getKeyEventTarget();
+            //el = views.getKeyEventTarget();
             /*if (!self.get('allowTextSelection')) {
                 //el.unselectable(undefined);
             }*/
         },
 
         /**
-         * From UIBase. Call view object to render ui elements.
+         * From UIBase. Call views object to render ui elements.
          * @protected
          *
          */
@@ -14941,7 +14941,7 @@ define('bui/overlay/dialog',['bui/overlay/overlay'],function (require) {
     }
 
   },{
-    xclass:'dialog-view'
+    xclass:'dialog-views'
   });
 
   /**
@@ -16328,7 +16328,7 @@ define('bui/list/domlist',['bui/common'],function (require) {
     setItemSelectedStatus : function(item,selected,element){
       var _self = this;
       element = element || _self.findElement(item);
-      //_self.get('view').setItemSelected(item,selected,element);
+      //_self.get('views').setItemSelected(item,selected,element);
       _self.setItemStatus(item,'selected',selected,element);
       //_self.afterSelected(item,selected,element);
     },
@@ -16902,7 +16902,7 @@ define('bui/list/simplelist',['bui/common','bui/list/domlist','bui/list/keynav',
       }
     }
   },{
-    xclass:'simple-list-view'
+    xclass:'simple-list-views'
   });
 
   /**
@@ -16971,7 +16971,7 @@ define('bui/list/simplelist',['bui/common','bui/list/domlist','bui/list/keynav',
         }else{
           _self.setItemStatus(item,'hover',true,element);
         }
-        /*_self.get('view').setElementHover(element,true);*/
+        /*_self.get('views').setElementHover(element,true);*/
 
       }).delegate('.'+itemCls,'mouseout',function(ev){
         if(_self.get('disabled')){ //\u63a7\u4ef6\u7981\u7528\u540e\uff0c\u963b\u6b62\u4e8b\u4ef6
@@ -19569,7 +19569,7 @@ define('bui/form/plainfield',['bui/form/basefield'],function (require) {
       value : {}
     }
   },{
-    xclass : 'form-field-plain-view'
+    xclass : 'form-field-plain-views'
   });
 
   /**
@@ -21388,7 +21388,7 @@ define('bui/form/form',['bui/common','bui/form/fieldcontainer'],function (requir
       action : {}
     }
   },{
-    xclass: 'form-view'
+    xclass: 'form-views'
   });
 
   /**
@@ -24332,7 +24332,7 @@ define('bui/menu/menuitem',['bui/common'],function(require){
     ATTRS : {
     }
   },{
-    xclass:'menu-item-view'
+    xclass:'menu-item-views'
   });
 
   /**
@@ -25753,7 +25753,7 @@ define('bui/tab/navtab',['bui/common','bui/menu'],function(require){
       forceFit : {}
     }
   },{
-    xclass : 'nav-tab-view',
+    xclass : 'nav-tab-views',
     priority:0
   });
   /**
@@ -26318,7 +26318,7 @@ define('bui/tab/tabitem',['bui/common'],function (require) {
    */
   var itemView = Component.View.extend([UIBase.ListItemView],{
   },{
-    xclass:'tab-item-view'
+    xclass:'tab-item-views'
   });
 
 
@@ -26445,7 +26445,7 @@ define('bui/tab/tabpanelitem',['bui/common','bui/tab/tabitem','bui/tab/panelitem
       titleEl.text(v);
     }
   },{
-    xclass:'tab-panel-item-view'
+    xclass:'tab-panel-item-views'
   });
 
 
@@ -30753,7 +30753,7 @@ define('bui/grid/simplegrid',['bui/common','bui/list'],function(require) {
      */
     showData : function(data){
       this.clearData();
-      //this.get('view').showData(data);
+      //this.get('views').showData(data);
       this.set('items',data);
     },
     /**
@@ -31453,13 +31453,13 @@ define('bui/grid/header',['bui/common','bui/grid/column'],function(require) {
       }
     }
   },{
-    xclass : 'header-view'
+    xclass : 'header-views'
   });
   /**
    * Container which holds headers and is docked at the top or bottom of a Grid.
    * The HeaderContainer drives resizing/moving/hiding of columns within the GridView.
    * As headers are hidden, moved or resized,
-   * the header container is responsible for triggering changes within the view.
+   * the header container is responsible for triggering changes within the views.
    * If you are not in the writing plugins, don't direct manipulation this control.
    * @class BUI.Grid.Header
    * @protected
@@ -32330,7 +32330,7 @@ define('bui/grid/grid',['bui/common','bui/mask','bui/toolbar','bui/list','bui/gr
       emptyEl : {}
     }
   },{
-    xclass : 'grid-view'
+    xclass : 'grid-views'
   });
 
   /**
@@ -38053,7 +38053,7 @@ define('bui/tree/treemenu',['bui/common','bui/list','bui/tree/treemixin','bui/tr
       return BUI.substitute(itemTpl,item);
     }
   },{
-    xclass : 'tree-menu-view'
+    xclass : 'tree-menu-views'
   });
 
   /**
@@ -38250,7 +38250,7 @@ define('bui/tooltip/tip',['bui/common','bui/overlay'],function (require) {
       alignType : {}
     }
   },{
-    xclass : 'tooltip-view'
+    xclass : 'tooltip-views'
   });
   
   /**

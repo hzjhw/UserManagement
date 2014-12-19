@@ -11,12 +11,12 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
     BaseDetail = require('BaseDetail');
 
     ProductCategoryDetail = BaseDetail.extend({
-      el: '#jhw-main',
+      el: '#jhw-detail',
       events: {
         'click #product-category-reset': 'reset'
       },
       initialize: function () {
-        debug(ProductCategoryDetail.initialize);
+        debug('ProductCategoryDetail.initialize');
         this._initialize({
           template: $("#product-category-detail-tpl").html(),
           model: CategoryModel
@@ -26,16 +26,15 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
        var ctx = this;
         this._render();
         // 产品分类
-        this._getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',
-              target: '#model-category',
+              target: '#model-belongId',
               items: list
             });
           });
-        this._form('#J_Form')._validate()._init(function () {
-        });
+        this._form('#J_Form')._validate()._init({});
         return this;
       }
     });

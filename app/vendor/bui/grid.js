@@ -230,7 +230,7 @@ define('bui/grid/simplegrid',['bui/common','bui/list'],function(require) {
      */
     showData : function(data){
       this.clearData();
-      //this.get('view').showData(data);
+      //this.get('views').showData(data);
       this.set('items',data);
     },
     /**
@@ -930,13 +930,13 @@ define('bui/grid/header',['bui/common','bui/grid/column'],function(require) {
       }
     }
   },{
-    xclass : 'header-view'
+    xclass : 'header-views'
   });
   /**
    * Container which holds headers and is docked at the top or bottom of a Grid.
    * The HeaderContainer drives resizing/moving/hiding of columns within the GridView.
    * As headers are hidden, moved or resized,
-   * the header container is responsible for triggering changes within the view.
+   * the header container is responsible for triggering changes within the views.
    * If you are not in the writing plugins, don't direct manipulation this control.
    * @class BUI.Grid.Header
    * @protected
@@ -1807,7 +1807,7 @@ define('bui/grid/grid',['bui/common','bui/mask','bui/toolbar','bui/list','bui/gr
       emptyEl : {}
     }
   },{
-    xclass : 'grid-view'
+    xclass : 'grid-views'
   });
 
   /**

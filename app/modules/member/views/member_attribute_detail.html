@@ -1,0 +1,54 @@
+<div id="memberAttribute-add-inner">
+    <form id="J_Form" action="" class="form-horizontal">
+        <!--属性分类-->
+        <div class="control-group">
+            <input type="hidden" id="model-categoryId" value="{{categoryId}}" name="categoryId">
+        </div>
+        <!--属性名称-->
+        <div class="control-group">
+            <label class="control-label"><s>*</s>属性名称：</label>
+            <div class="controls">
+                <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                       data-rules="{required : true}"
+                       data-tip='{"text":"请输入属性名称","iconCls":"icon icon-pencil"}'/>
+            </div>
+        </div>
+        <!--属性类型-->
+        <div class="control-group">
+            <label class="control-label">属性类型：</label>
+            <div class="controls">
+                <div id="s2">
+                    <input type="hidden" id="model-attributeType" value="{{attributeType}}" name="attributeType">
+                </div>
+            </div>
+        </div>
+
+        <!--多选属性-->
+        <div id="multi-attribute" style="display:none;">
+        </div>
+
+        <!--是否必填-->
+        <div class="control-group">
+            <label class="control-label">是否必填：</label>
+            <div class="controls">
+                <label><input type="radio" id="model-isRequired" name="isRequired" value="01" {{#compare isRequired '===' '01'}}checked{{/compare}}>是</label>
+                <label><input type="radio" id="model2-isRequired" name="isRequired" value="00" {{#compare isRequired '===' '00'}}checked{{/compare}}>否</label>
+            </div>
+        </div>
+        <!--是否启用-->
+        <div class="control-group">
+            <label class="control-label">是否启用：</label>
+            <div class="controls">
+                <label><input type="radio" id="model-isEnabled" name="isEnabled" value="01" {{#compare isEnabled '===' '01'}}checked{{/compare}}>是</label>
+                <label><input type="radio" id="model2-isEnabled" name="isEnabled" value="00" {{#compare isEnabled '===' '00'}}checked{{/compare}}>否</label>
+            </div>
+        </div>
+        <!--保存重置-->
+        <div class="row actions-bar" style="display:none;">
+            <div class="form-actions span13 offset3">
+                <button id="submit" type="button" class="button button-primary">保存</button>
+                <button id="reset" type="reset" class="button">重置</button>
+            </div>
+        </div>
+    </form>
+</div>

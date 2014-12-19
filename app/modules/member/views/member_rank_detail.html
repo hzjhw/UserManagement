@@ -1,0 +1,53 @@
+<div id="memberList-add-inner">
+    <form id="J_Form" action="" class="form-horizontal">
+        <div id="tab"></div>
+        <div id="panel" class="" style="padding:10px;">
+            <!--会员编辑-->
+            <div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>等级名称：</label>
+                    <div class="controls">
+                        <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                               data-rules="{required : true}" data-tip='{"text":"请等级名称","iconCls":"icon icon-user"}'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>优惠百分比：</label>
+                    <div class="controls">
+                        <input id="model-preferentialScale" name="preferentialScale" value="{{parseInt preferentialScale}}" type="text" class="input-large"
+                               data-rules="{required : true}"
+                               data-tip='{"text":"优惠百分比","iconCls":"icon icon-pencil"}'> %
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>所需积分：</label>
+                    <div class="controls">
+                        <input id="model-point" name="point" value="{{point}}" type="text" class="input-large"
+                               data-rules="{required : true}"
+                               data-tip='{"text":"请输入积分","iconCls":"icon icon-pencil"}'>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>是否默认：</label>
+                    <div class="controls">
+                        <div id="s2">
+                            <label><input id="model-isDefault" type="radio" name="isDefault" value="00" {{#compare isDefault '===' '00'}}checked{{/compare}}>否</label>
+                            <label><input id="model1-isDefault" type="radio" name="isDefault" value="01" {{#compare isDefault '===' '01'}}checked{{/compare}}>是</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row actions-bar hide" >
+                    <div class="form-actions span13 offset3">
+                        <button id="submit" type="button" class="button button-primary">保存</button>
+                        <button id="reset" type="reset" class="button">重置</button>
+                        <button id="black" type="reset" class="button">返回</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -685,7 +685,7 @@ define('bui/tab/navtab',['bui/common','bui/menu'],function(require){
       forceFit : {}
     }
   },{
-    xclass : 'nav-tab-view',
+    xclass : 'nav-tab-views',
     priority:0
   });
   /**
@@ -1250,7 +1250,7 @@ define('bui/tab/tabitem',['bui/common'],function (require) {
    */
   var itemView = Component.View.extend([UIBase.ListItemView],{
   },{
-    xclass:'tab-item-view'
+    xclass:'tab-item-views'
   });
 
 
@@ -1377,7 +1377,7 @@ define('bui/tab/tabpanelitem',['bui/common','bui/tab/tabitem','bui/tab/panelitem
       titleEl.text(v);
     }
   },{
-    xclass:'tab-panel-item-view'
+    xclass:'tab-panel-item-views'
   });
 
 

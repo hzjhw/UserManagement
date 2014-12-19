@@ -4,7 +4,7 @@
  * @author yongjin on 2014/10/31
  */
 seajs.use(['jquery', 'TopView', 'LeftView'],
-    function (jquery, TopView, LeftView) {
-        new TopView();
-        new LeftView();
-    });
+  function (jquery, TopView, LeftView) {
+    app.addView('TopView', new TopView());
+    app.addView('LeftView', new LeftView());
+  });

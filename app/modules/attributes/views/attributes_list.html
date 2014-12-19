@@ -1,19 +1,39 @@
-<div id="grid">
-    <div class="bui-grid bui-simple-list bui-grid-width bui-grid-border bui-grid-strip bui-grid-hover bui-simple-list-hover">
+<div id="grid" class="jhw-panel">
+    <div class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
         <div class="bui-grid-tbar">
             <div class="bui-bar" role="toolbar" id="bar2">
-                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4" >
+                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" id="bar-item1" aria-pressed="false">
+                        <label class="checkbox" for="toggle-all">全选</label></li>
+                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" aria-pressed="false">
+                        <input type="text" class="control-text search-query search-text">&nbsp;
+                        <button type="button" class="button btn-search">搜索</button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button2" aria-pressed="false">
+                        <button type="button" class="button button-success attributes-add"><i
+                                class="icon-white icon-plus"></i>属性添加
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button9" aria-pressed="false">
+                        <button type="button" class="button button-info attributes-show"><i
+                                class="icon-white icon-zoom-in"></i>浏览效果
+                        </button>
+                    </li>
+                    <li class=" bui-bar-item bui-bar-item-separator bui-inline-block" aria-disabled="false"
+                        id="bar-item-separator1" role="separator"></li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button1" >
-                        <button id="attributes-add" type="button" class="button button-small"><i class="icon-plus"></i>添加属性</button>
+                        id="bar-item-button6" aria-pressed="false">
+                        <a href="#/category/product"><button type="button" class="button button-warning"><i
+                                class="icon-white icon-arrow-left"></i>返回
+                        </button></a>
                     </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
-                        id="bar-item-button2">
-                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量删除</button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block"
-                        id="bar-item-button3">
-                        <button type="button" class="button button-small"><i class="icon-remove"></i>批量转移分类</button>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button1" aria-pressed="false">
+                        <button type="button" class="button button-danger btn-batch-del"><i
+                                class="icon-white icon-trash"></i>批量删除
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -23,16 +43,24 @@
                 <table cellspacing="0" class="bui-grid-table" cellpadding="0">
                     <thead>
                     <tr>
-                        <th class="bui-grid-hd gird-td-checkbox">
+                        <th class="bui-grid-hd grid-td-checkbox">
                             <div class="bui-grid-hd-inner">
-                                <div class="bui-grid-checkBox-container"><input id="toggle-all" type="checkbox" /></div>
+                                <div class="bui-grid-checkBox-container"><input type="checkbox" id="toggle-all"></div>
                             </div>
                         </th>
+                        <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
+                            style="width: 40px;">
+                            <div class="bui-grid-hd-inner center"><span>序号</span></div>
+                        </th>
                         <th class="bui-grid-hd grid-td-col1">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">属性名称</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-col2">
+                        <th class="bui-grid-hd grid-td-move">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">移序</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
@@ -47,7 +75,6 @@
                 </tbody>
             </table>
         </div>
-        <div style="display:none" class="bui-grid-bbar"></div>
+        <div id="pagination-container"></div>
     </div>
 </div>
-<div id="pagination-container"></div>

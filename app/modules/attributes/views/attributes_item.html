@@ -1,13 +1,36 @@
-<td class="bui-grid-cell gird-td-checkbox">
+<td class="bui-grid-cell grid-td-checkbox">
     <div class="bui-grid-cell-inner">
         <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
         </div>
     </div>
 </td>
-<td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner"><span class="name" title="{{name}}">[{{add dx 1}}] {{name}}</span></div>
+<td class="x-grid-rownumber  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
+    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">{{add dx 1}}</span></div>
 </td>
-<td class="bui-grid-cell grid-td-col2">
-    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text "><a href="javascript:;" class="edit">修改</a>丨<a
-            href="javascript:;" class="delete">删除</a></span></div>
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner"><span class=""><span
+            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{name}}">{{cutByte name 80 end='...'}}</a></span><span
+            class="x-icon x-icon-small x-icon-info name show_hide pointer"
+            style="vertical-align: middle;"><i
+            class="icon icon-white icon-edit pointer"></i></span></span></div>
+</td>
+<td class="bui-grid-cell grid-td-move">
+    <div class="bui-grid-cell-inner">
+        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
+              title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
+            <i class="icon icon-white icon-arrow-up pointer"></i>
+        </span>&nbsp;<input type="text" class="control-text input-sort" value="{{orderList}}">
+        <span class="x-icon x-icon-small x-icon-info move-down pointer"
+              style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
+                class="icon icon-white icon-arrow-down pointer"></i></span>
+    </div>
+</td>
+
+<td class="bui-grid-cell grid-td-handle">
+    <div class="bui-grid-cell-inner">
+        <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>修改
+        </button>
+        <button type="button" class="button button-danger button-mini delete"><i class="icon-white icon-trash"></i>删除
+        </button>
+    </div>
 </td>

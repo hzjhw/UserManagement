@@ -3,13 +3,12 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, Est, BaseDetail, template, AttributesShow, dialog, Tag;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
-    Est = require('Est');
     BaseDetail = require('BaseDetail');
     template = require('template/product_detail');
     dialog = require('dialog');
@@ -57,7 +56,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         });
 
         // 产品分类
-        this._getProductCategory({ select: true, extend: true })
+        this._getProductCategory({ tree: true,select: true, extend: true })
           .then(function (list) {
             ctx._initSelect({
               render: '#s1',
@@ -68,7 +67,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
                   {
                     value: '更换',
                     callback: function () {
-                      ctx.showAttributes(categoryId, items);
+                      ctx.showAttributes(categoryId, []);
                     }},
                   {
                     value: '保留',
@@ -110,24 +109,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
               itemId: ctx.model.get('id'),
               _isAdd: ctx._isAdd // 是否初始化标签列表
             });
-            /*$.ajax({
-             type: 'get',
-             url: global.API + '/tag/product',
-             success: function(result){
-             var taglist = Est.pluck(result.attributes.data, 'name');
-             Est.each(Est.pluck(Est.cloneDeep(list), 'text'), function(item, i){
-             if (i !== 0) {
-             taglist.push(item.replace(/^\s*\|-/g, ''));
-             }
-             });
-             ctx.initCombox({
-             render: '#pro-tag',
-             target: '#model-taglist',
-             items: taglist
-             });
-             }
-             })*/
-
           });
 
         if (!ctx._isAdd) {
@@ -174,11 +155,17 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'Est', 'B
         });
 
         // 表单初始化
-        this._form('#J_Form')._validate()._init(function () {
-          // 处理特殊字段
-          this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
-            return item.get('name');
-          }).join(','));
+        this._form('#J_Form')._validate()._init({
+          onBeforeSave: function(){
+            // 处理特殊字段
+            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+              return item.get('name');
+            }).join(','));
+          },
+          onAfterSave: function(response){
+
+          }
+
         });
 
         setTimeout(function () {

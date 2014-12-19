@@ -1,89 +1,145 @@
 /**
  * @description MemberList
  * @namespace MemberList
- * @author jihui-wxw on 2014/11/16
+ * @author wxw on 2014/12/16
  */
-define('MemberList', ['jquery', 'MemberModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper','template/member_list','template/member_item'],
+define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
+    'template/member_category','template/member_list','template/member_list_item','template/member_search'],
   function (require, exports, module) {
-    var MemberModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberList, MemberItem, MemberCollection, listTemp, itemTemp;
+    var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
+      , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp;
 
-    MemberModel = require('MemberModel');
+    MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
-    listTemp = require('template/member_list');
-    itemTemp = require('template/member_item');
-
-    MemberCollection = BaseCollection.extend({
-      url: 'http://jihui88.com/rest/api/member/list',
-      model: MemberModel
+    searchTemp = require('template/member_search');
+    memberList = require('template/member_list');
+    memberListItem = require('template/member_list_item');
+    /**
+     * 集合类
+     */
+    MemberListCollection = BaseCollection.extend({
+      url: CONST.API + '/member/list',
+      model: MemberListModel,
+      initialize: function () {
+        this._initialize();
+      }
     });
-
-    MemberItem = BaseItem.extend({
-      tagName: 'li',
+    /**
+     * 单视图
+     */
+    MemberListItem = BaseItem.extend({
+      tagName: 'tr',
+      className: 'bui-grid-row',
       events: {
-        'click .name': 'editName',
-        'click .edit': 'editItem',
+        'click .toggle': '_toggleChecked',
+        'click .edit': '_edit',
         'click .delete': '_del'
+      },
+      // 初始化
+      initialize: function () {
+        this._initialize({
+          template: memberListItem,
+          detail: CONST.HOST + '/modules/member/member_list_detail.html'
+        });
+      },
+      // 渲染文档
+      render: function () {
+        this._render();
+      }
+    });
+    /**
+     * 列表视图
+     */
+    MemberList = BaseList.extend({
+      el: '#member-data-ul',
+      events: {
+        'click #toggle-all': '_toggleAllChecked',
+        'click .btn-batch-del': '_batchDel',
+        'click .member-list-add': '_detail',
+        'click .btn-search': 'search',
+        'click .search-advance': 'searchAdvance'
       },
       initialize: function () {
         this._initialize({
-          template : itemTemp,
-          model :BaseItem
-        });
-      },
-      render: function () {
-        this._render();
-      },
-      editItem: function () {
-        this._edit({
-          title: '会员编辑',
-          url: global.HOST + '/modules/member/member_detail.html?id=' + this.model.id
-        });
-      },
-
-      editName: function () {
-        this._editField({
-          title: '修改名称',
-          field: 'name',
-          target: '.name'
-        }, this);
-      }
-
-    });
-
-    MemberList = BaseList.extend({
-      el: '#jhw-main',
-      events: {
-        'click #toggle-all': 'toggleAllChecked',
-        'click .member-add': 'openAddDialog'
-      },
-      initialize: function () {
-
-        var options ={
-          template: listTemp,
           render: '#member-list-ul',
-          item: MemberItem,
-          model: MemberModel,
-          collection: MemberCollection
-        }
-        this._initialize(options).then(function (context) {
-          context._initPagination(options);
-          context._load(options);
+          enterRender: '.btn-search',
+          template: memberList,
+          model: MemberListModel,
+          collection: MemberListCollection,
+          item: MemberListItem,
+          detail: CONST.HOST + '/modules/member/member_list_detail.html'
+        }).then(function (thisCtx) {
+          thisCtx._initPagination(thisCtx._options);
+          thisCtx._load(thisCtx._options);
         });
-      return this;
       },
-      render:function(){
+      render : function(){
         this._render();
-        return this;
       },
-      openAddDialog: function () {
-        this._detail({
-          title: '会员添加',
-          url: 'http://jihui88.com/member/modules/member/member_detail.html?time=' + new Date().getTime()
+      // 简单搜索
+      search: function () {
+        this.searchKey = Est.trim(this.$('.search-text').val());
+        if (Est.isEmpty(this.searchKey)) {
+          this._load({ page: 1, pageSize: 16 });
+        } else {
+          this._search({
+            filter: [
+              {key: 'username', value: this.searchKey }
+            ]
+          });
+        }
+      },
+      // 高级搜索
+      searchAdvance: function () {
+        var ctx = this;
+        this.searchTemp = HandlebarsHelper.compile(searchTemp);
+        seajs.use(['dialog-plus'], function (dialog) {
+          window.dialog = dialog;
+          ctx.searchDialog = dialog({
+            id: 'search-dialog',
+            title: '高级搜索',
+            width: 600,
+            content: ctx.searchTemp({
+              memberCategoryList: [{
+                text: '白金',
+                value: '白金'
+              }]
+            }),
+            button: [
+              {
+                value: '搜索',
+                callback: function () {
+                  ctx.searchKey = $('input[name=searchKey]').val();
+                  ctx.searchMemberRank = $('input[name=searchMemberRank]').val();
+                  ctx._search({
+                    filter: [
+                      {key: 'username', value: ctx.searchKey },
+                      {key: 'memberRank.name', value: ctx.searchMemberRank}
+                    ]
+                  });
+                  this.remove();
+                  return false;
+                },
+                autofocus: true
+              },
+              { value: '关闭' }
+            ],
+            oniframeload: function () {
+              this.iframeNode.contentWindow.searchDialog = ctx.searchDialog;
+            },
+            onclose: function () {
+              this.remove();
+              if (this.returnValue) {
+                $('#value').html(this.returnValue);
+              }
+            }
+          }).show(this.$('.search-advance').get(0));
         });
       }
     });
+
     module.exports = MemberList;
   });

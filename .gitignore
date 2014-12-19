@@ -1,10 +1,5 @@
 .DS_Store
-npm-debug.log
 .idea/
-.settings
-node_modules/
-bower_components/
-app/bower_components
 *.iml
 *.swp
 /.tmp/
@@ -12,3 +7,13 @@ app/bower_components
 /uploads
 /logs
 /dist
+.settings
+npm-debug.log
+node_modules/
+bower_components/
+app/src/*.js
+app/base/*.js
+app/config.local.js
+gulpfile.js
+package.json
+

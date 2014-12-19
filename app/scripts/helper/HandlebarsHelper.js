@@ -4,11 +4,10 @@
  * @author yongjin on 2014/11/11
  */
 
-define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, module) {
-  var Handlebars, Est;
+define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
+  var Handlebars;
 
   Handlebars = require('handlebars');
-  Est = require('Est');
 
   /**
    * 分页
@@ -116,7 +115,96 @@ define('HandlebarsHelper', ['handlebars', 'Est'], function (require, exports, mo
   Handlebars.registerHelper('minus', function (num1, num2, opts) {
     return parseInt(num1, 10) - parseInt(num2, 10);
   });
+  /**
+   * 字符串截取
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *    {{cutByte name 5 end='...'}}
+   */
+  Handlebars.registerHelper('cutByte', function (str, len, options) {
+    return Est.cutByte(str, len, options.hash.end || '...');
+  });
 
+  /**
+   * 证书分类
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *
+   */
+  Handlebars.registerHelper('certType', function (str, options) {
+    var result = '';
+    switch (str){
+      case '01':
+        result = '基本证书'; break;
+      case '02':
+        result = '一般证书'; break;
+      case '03':
+        result = '税务证书'; break;
+      case '04':
+        result = '荣誉证书'; break;
+      case '05':
+        result = '其它证书'; break;
+    }
+    return result;
+  });
+
+  /**
+   * 返回整数
+   * @author wxw
+   * @time 2014-12-16
+   * @example
+   *
+   */
+  Handlebars.registerHelper('parseInt', function (result, options) {
+    return parseInt(result);
+  });
+
+  /**
+   * 返回全局常量
+   * @author wyj 14.12.17
+   */
+  Handlebars.registerHelper('CONST', function(name, options){
+    return CONST[name];
+  });
+
+  /**
+   * 图片尺寸
+   * @author wyj
+   * @time 2014-03-31
+   */
+  Handlebars.registerHelper('picUrl', function (src, number, opts) {
+    var url = src;
+    if (arguments.length < 3) {
+      return src || 'upload/no-pic.jpg';
+    }
+    if (src == null || src.length == 0){
+      return "";
+    }
+    var url2 = url.substring(url.lastIndexOf(".") + 1, url.length);
+    url = url.substring(0, url.lastIndexOf(".")) + "_" + number + "." + url2;
+    return url ? url : '';
+  });
+
+  Handlebars.registerHelper('memberAttr', function (str, options) {
+    var result = '';
+    switch (str){
+      case 'text':
+        result = '文本'; break;
+      case 'number':
+        result = '数字'; break;
+      case 'alphaint':
+        result = '字母'; break;
+      case 'select':
+        result = '单选项'; break;
+      case 'checkbox':
+        result = '多选项'; break;
+      case 'date':
+        result = '日期'; break;
+    }
+    return result;
+  });
   module.exports = Handlebars;
 
 });

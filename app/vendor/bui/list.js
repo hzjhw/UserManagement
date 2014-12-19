@@ -830,7 +830,7 @@ define('bui/list/domlist',['bui/common'],function (require) {
     setItemSelectedStatus : function(item,selected,element){
       var _self = this;
       element = element || _self.findElement(item);
-      //_self.get('view').setItemSelected(item,selected,element);
+      //_self.get('views').setItemSelected(item,selected,element);
       _self.setItemStatus(item,'selected',selected,element);
       //_self.afterSelected(item,selected,element);
     },
@@ -1404,7 +1404,7 @@ define('bui/list/simplelist',['bui/common','bui/list/domlist','bui/list/keynav',
       }
     }
   },{
-    xclass:'simple-list-view'
+    xclass:'simple-list-views'
   });
 
   /**
@@ -1473,7 +1473,7 @@ define('bui/list/simplelist',['bui/common','bui/list/domlist','bui/list/keynav',
         }else{
           _self.setItemStatus(item,'hover',true,element);
         }
-        /*_self.get('view').setElementHover(element,true);*/
+        /*_self.get('views').setElementHover(element,true);*/
 
       }).delegate('.'+itemCls,'mouseout',function(ev){
         if(_self.get('disabled')){ //控件禁用后，阻止事件

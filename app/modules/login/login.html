@@ -20,35 +20,30 @@
     <!--[if IE6]>
     <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
     <![endif]-->
-
     <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 </head>
 <body>
 <div id="jhw-login"></div>
-
 <script type="text/template" id="login_template">
     <form id="J_Form" action="" class="form-horizontal">
         <div class="control-group">
             <label class="control-label"><s>*</s>用户名</label>
-
             <div class="controls">
                 <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
-                       data-rules="{required : true}"
-                       data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
+                       data-rules="{required : true}" data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
             </div>
         </div>
+
         <div class="control-group">
             <label class="control-label"><s>*</s>密码</label>
-
             <div class="controls">
-                <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
-                       data-rules="{required : true}"
+                <input id="model-password" name="password" value="{{password}}" type="password" class="input-large" data-rules="{required : true}"
                        data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'>
             </div>
         </div>
+
         <div class="control-group">
             <label class="control-label"><s>*</s>检证码</label>
-
             <div class="controls">
                 <input id="model-randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
                        data-rules="{required : true}"
@@ -57,24 +52,26 @@
                 <a class="refreshCode" href="javascript:;">换一张？</a>
             </div>
         </div>
+
         <div class="row actions-bar" >
             <div class="form-actions span13 offset3">
                 <button id="submit" type="button" class="button button-primary">确定</button>
                 <button id="reset" type="reset" class="button">重置</button>
+                <a href="../register/register.html"><button id="login" type="button" class="button">注册</button></a>
             </div>
         </div>
     </form>
 </script>
-
-
 <script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../const.js"></script>
+<script type="text/javascript" src="../../config.local.js"></script>
+<script type="text/javascript" src="../../modules/login/main.js"></script>
+<script type="text/javascript" src="../../common/pagination/config.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
-
     seajs.use(['jquery', 'Login'], function(jquery, Login){
         new Login();
     });
-
 </script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+<div id="message-send-inner">
+<form id="J_Form" action="" class="form-horizontal">
+<div id="tab"></div>
+<div id="panel" class="" style="padding:10px;">
+<!--常规-->
+<div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>发件人：</label>
+        <div class="controls">
+            <input id="model-fromName" class="message-fromName" type="text" title="{{fromName}}">{{fromName}}</input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>时  间：</label>
+        <div class="controls">
+            <input id="model-addTime" class="message-addTime" type="text" title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">标  题：</label>
+        <div class="controls">
+            <input id="model-title" class="message-title"  type="text" title="{{title}}">{{title}}</input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">联系电话：</label>
+        <div class="controls">
+            <input id="model-fromPhone" class="message-fromPhone"  type="text" title="{{fromPhone}}">{{fromPhone}}</input>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><s>*</s>电子邮箱：</label>
+        <div class="controls">
+            <input id="model-fromEmail" class="message-fromEmail" type="text" title="{{fromEmail}}" >{{fromEmail}}</input>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>留言内容：</label>
+        <div class="controls">
+            <span id="model-content" class="content" >{{content}}</span>
+        </div>
+    </div>
+
+    <div class="row actions-bar" style="display:none;">
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">保存</button>
+            <button id="reset" type="reset" class="button">重置</button>
+        </div>
+    </div>
+
+
+</div>
+</div>
+</form>
+</div>

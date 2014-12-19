@@ -49,13 +49,13 @@ var Marionette = (function(global, Backbone, _){
       // Container Methods
       // -----------------
       _.extend(Container.prototype, {
-        // Add a view to this container. Stores the view
+        // Add a views to this container. Stores the views
         // by `cid` and makes it searchable by the model
         // cid (and model itself). Optionally specify
-        // a custom key to store an retrieve the view.
+        // a custom key to store an retrieve the views.
         add: function(view, customIndex) {
           var viewCid = view.cid;
-          // store the view
+          // store the views
           this._views[viewCid] = view;
           // index it by model
           if (view.model) {
@@ -68,19 +68,19 @@ var Marionette = (function(global, Backbone, _){
           this._updateLength();
           return this;
         },
-        // Find a view by the model that was attached to
+        // Find a views by the model that was attached to
         // it. Uses the model's `cid` to find it.
         findByModel: function(model) {
           return this.findByModelCid(model.cid);
         },
-        // Find a view by the `cid` of the model that was attached to
-        // it. Uses the model's `cid` to find the view `cid` and
-        // retrieve the view using it.
+        // Find a views by the `cid` of the model that was attached to
+        // it. Uses the model's `cid` to find the views `cid` and
+        // retrieve the views using it.
         findByModelCid: function(modelCid) {
           var viewCid = this._indexByModel[modelCid];
           return this.findByCid(viewCid);
         },
-        // Find a view by a custom indexer.
+        // Find a views by a custom indexer.
         findByCustom: function(index) {
           var viewCid = this._indexByCustom[index];
           return this.findByCid(viewCid);
@@ -90,11 +90,11 @@ var Marionette = (function(global, Backbone, _){
         findByIndex: function(index) {
           return _.values(this._views)[index];
         },
-        // retrieve a view by its `cid` directly
+        // retrieve a views by its `cid` directly
         findByCid: function(cid) {
           return this._views[cid];
         },
-        // Remove a view
+        // Remove a views
         remove: function(view) {
           var viewCid = view.cid;
           // delete model index
@@ -108,19 +108,19 @@ var Marionette = (function(global, Backbone, _){
               return true;
             }
           }, this);
-          // remove the view from the container
+          // remove the views from the container
           delete this._views[viewCid];
           // update the length
           this._updateLength();
           return this;
         },
-        // Call a method on every view in the container,
+        // Call a method on every views in the container,
         // passing parameters to the call method one at a
         // time, like `function.call`.
         call: function(method) {
           this.apply(method, _.tail(arguments));
         },
-        // Apply a method on every view in the container,
+        // Apply a method on every views in the container,
         // passing parameters to the call method one at a
         // time, like `function.apply`.
         apply: function(method, args) {
@@ -617,19 +617,19 @@ Marionette.triggerMethod = (function(){
 // DOMRefresh
 // ----------
 //
-// Monitor a view's state, and after it has been rendered and shown
+// Monitor a views's state, and after it has been rendered and shown
 // in the DOM, trigger a "dom:refresh" event every time it is
 // re-rendered.
 
 Marionette.MonitorDOMRefresh = (function(documentElement){
-  // track when the view has been shown in the DOM,
+  // track when the views has been shown in the DOM,
   // using a Marionette.Region (or by other means of triggering "show")
   function handleShow(view){
     view._isShown = true;
     triggerDOMRefresh(view);
   }
 
-  // track when the view has been rendered
+  // track when the views has been rendered
   function handleRender(view){
     view._isRendered = true;
     triggerDOMRefresh(view);
@@ -941,12 +941,12 @@ _.extend(Marionette.Region, {
 
 _.extend(Marionette.Region.prototype, Backbone.Events, {
 
-  // Displays a backbone view instance inside of the region.
+  // Displays a backbone views instance inside of the region.
   // Handles calling the `render` method for you. Reads content
   // directly from the `el` attribute. Also calls an optional
-  // `onShow` and `close` method on your view, just after showing
-  // or just before closing the view, respectively.
-  // The `preventClose` option can be used to prevent a view from being destroyed on show.
+  // `onShow` and `close` method on your views, just after showing
+  // or just before closing the views, respectively.
+  // The `preventClose` option can be used to prevent a views from being destroyed on show.
   show: function(view, options){
     this.ensureEl();
 
@@ -955,7 +955,7 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
     var isDifferentView = view !== this.currentView;
     var preventClose =  !!showOptions.preventClose;
 
-    // only close the view if we don't want to preventClose and the view is different
+    // only close the views if we don't want to preventClose and the views is different
     var _shouldCloseView = !preventClose && isDifferentView;
 
     if (_shouldCloseView) {
@@ -1000,14 +1000,14 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
     return Marionette.$(selector);
   },
 
-  // Override this method to change how the new view is
+  // Override this method to change how the new views is
   // appended to the `$el` that the region is managing
   open: function(view){
     this.$el.empty().append(view.el);
   },
 
-  // Close the current view, if there is one. If there is no
-  // current view, it does nothing and returns immediately.
+  // Close the current views, if there is one. If there is no
+  // current views, it does nothing and returns immediately.
   close: function(){
     var view = this.currentView;
     if (!view || view.isClosed){ return; }
@@ -1021,16 +1021,16 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
     delete this.currentView;
   },
 
-  // Attach an existing view to the region. This
-  // will not call `render` or `onShow` for the new view,
+  // Attach an existing views to the region. This
+  // will not call `render` or `onShow` for the new views,
   // and will not replace the current HTML for the `el`
   // of the region.
   attachView: function(view){
     this.currentView = view;
   },
 
-  // Reset the region by closing any existing view and
-  // clearing out the cached `$el`. The next time a view
+  // Reset the region by closing any existing views and
+  // clearing out the cached `$el`. The next time a views
   // is shown via this region, the region will re-query the
   // DOM for the region's `el`.
   reset: function(){
@@ -1286,13 +1286,13 @@ Marionette.Renderer = {
 // Marionette.View
 // ---------------
 
-// The core view type that other Marionette views extend from.
+// The core views type that other Marionette views extend from.
 Marionette.View = Backbone.View.extend({
 
   constructor: function(options){
     _.bindAll(this, "render");
 
-    // this exposes view options to the view initializer
+    // this exposes views options to the views initializer
     // this is a backfill since backbone removed the assignment
     // of this.options
     // at some point however this may be removed
@@ -1319,8 +1319,8 @@ Marionette.View = Backbone.View.extend({
   // events=>function references/names to a hash of events=>function references
   normalizeMethods: Marionette.normalizeMethods,
 
-  // Get the template for this view
-  // instance. You can set a `template` attribute in the view
+  // Get the template for this views
+  // instance. You can set a `template` attribute in the views
   // definition or pass a `template: "whatever"` parameter in
   // to the constructor options.
   getTemplate: function(){
@@ -1347,7 +1347,7 @@ Marionette.View = Backbone.View.extend({
     return Marionette.normalizeUIKeys(hash, ui);
   },
 
-  // Configure `triggers` to forward DOM events to view
+  // Configure `triggers` to forward DOM events to views
   // events. `triggers: {"click .foo": "do:foo"}`
   configureTriggers: function(){
     if (!this.triggers) { return; }
@@ -1410,11 +1410,11 @@ Marionette.View = Backbone.View.extend({
 
     var combinedEvents = {};
 
-    // look up if this view has behavior events
+    // look up if this views has behavior events
     var behaviorEvents = _.result(this, 'behaviorEvents') || {};
     var triggers = this.configureTriggers();
 
-    // behavior events will be overriden by view events and or triggers
+    // behavior events will be overriden by views events and or triggers
     _.extend(combinedEvents, behaviorEvents, events, triggers);
 
     Backbone.View.prototype.delegateEvents.call(this, combinedEvents);
@@ -1433,10 +1433,10 @@ Marionette.View = Backbone.View.extend({
   // Internal method, handles the `show` event.
   onShowCalled: function(){},
 
-  // Default `close` implementation, for removing a view from the
+  // Default `close` implementation, for removing a views from the
   // DOM and unbinding it. Regions will call this method
-  // for you. You can specify an `onClose` method in your view to
-  // add custom code that is called after the view is closed.
+  // for you. You can specify an `onClose` method in your views to
+  // add custom code that is called after the views is closed.
   close: function(){
     if (this.isClosed) { return; }
 
@@ -1458,17 +1458,17 @@ Marionette.View = Backbone.View.extend({
     // unbind UI elements
     this.unbindUIElements();
 
-    // remove the view from the DOM
+    // remove the views from the DOM
     this.remove();
   },
 
-  // This method binds the elements specified in the "ui" hash inside the view's code with
+  // This method binds the elements specified in the "ui" hash inside the views's code with
   // the associated jQuery selectors.
   bindUIElements: function(){
     if (!this.ui) { return; }
 
     // store the ui hash in _uiBindings so they can be reset later
-    // and so re-rendering the view will be able to find the bindings
+    // and so re-rendering the views will be able to find the bindings
     if (!this._uiBindings){
       this._uiBindings = this.ui;
     }
@@ -1504,8 +1504,8 @@ Marionette.View = Backbone.View.extend({
 // Item View
 // ---------
 
-// A single item view implementation that contains code for rendering
-// with underscore.js templates, serializing the view's model or collection,
+// A single item views implementation that contains code for rendering
+// with underscore.js templates, serializing the views's model or collection,
 // and calling several methods on extended views, such as `onRender`.
 Marionette.ItemView = Marionette.View.extend({
 
@@ -1515,12 +1515,12 @@ Marionette.ItemView = Marionette.View.extend({
     Marionette.View.prototype.constructor.apply(this, arguments);
   },
 
-  // Serialize the model or collection for the view. If a model is
+  // Serialize the model or collection for the views. If a model is
   // found, `.toJSON()` is called. If a collection is found, `.toJSON()`
   // is also called, but is used to populate an `items` array in the
   // resulting data. If both are found, defaults to the model.
-  // You can override the `serializeData` method in your own view
-  // definition, to provide custom serialization for your view's data.
+  // You can override the `serializeData` method in your own views
+  // definition, to provide custom serialization for your views's data.
   serializeData: function(){
     var data = {};
 
@@ -1534,9 +1534,9 @@ Marionette.ItemView = Marionette.View.extend({
     return data;
   },
 
-  // Render the view, defaulting to underscore.js templates.
-  // You can override this in your view definition to provide
-  // a very specific rendering for your view. In general, though,
+  // Render the views, defaulting to underscore.js templates.
+  // You can override this in your views definition to provide
+  // a very specific rendering for your views. In general, though,
   // you should override the `Marionette.Renderer` object to
   // change how Marionette renders views.
   render: function(){
@@ -1576,10 +1576,10 @@ Marionette.ItemView = Marionette.View.extend({
 // Collection View
 // ---------------
 
-// A view that iterates over a Backbone.Collection
+// A views that iterates over a Backbone.Collection
 // and renders an individual ItemView for each model.
 Marionette.CollectionView = Marionette.View.extend({
-  // used as the prefix for item view events
+  // used as the prefix for item views events
   // that are forwarded through the collectionview
   itemViewEventPrefix: "itemview",
 
@@ -1626,7 +1626,7 @@ Marionette.CollectionView = Marionette.View.extend({
     }
   },
 
-  // Configured the initial events that the collection view
+  // Configured the initial events that the collection views
   // binds to.
   _initialEvents: function(){
     if (this.collection){
@@ -1672,7 +1672,7 @@ Marionette.CollectionView = Marionette.View.extend({
 
   // Render the collection of items. Override this method to
   // provide your own implementation of a render function for
-  // the collection view.
+  // the collection views.
   render: function(){
     this.isClosed = false;
     this.triggerBeforeRender();
@@ -1700,7 +1700,7 @@ Marionette.CollectionView = Marionette.View.extend({
   },
 
   // Internal method to loop through each item in the
-  // collection view and show it
+  // collection views and show it
   showCollection: function(){
     var ItemView;
     this.collection.each(function(item, index){
@@ -1709,7 +1709,7 @@ Marionette.CollectionView = Marionette.View.extend({
     }, this);
   },
 
-  // Internal method to show an empty view in place of
+  // Internal method to show an empty views in place of
   // a collection of item views, when the collection is
   // empty
   showEmptyView: function(){
@@ -1723,7 +1723,7 @@ Marionette.CollectionView = Marionette.View.extend({
   },
 
   // Internal method to close an existing emptyView instance
-  // if one exists. Called when a collection view has been
+  // if one exists. Called when a collection views has been
   // rendered empty, and then an item is added to the collection.
   closeEmptyView: function(){
     if (this._showingEmptyView){
@@ -1732,7 +1732,7 @@ Marionette.CollectionView = Marionette.View.extend({
     }
   },
 
-  // Retrieve the empty view type
+  // Retrieve the empty views type
   getEmptyView: function(){
     return Marionette.getOption(this, "emptyView");
   },
@@ -1750,8 +1750,8 @@ Marionette.CollectionView = Marionette.View.extend({
     return itemView;
   },
 
-  // Render the child item's view and add it to the
-  // HTML for the collection view.
+  // Render the child item's views and add it to the
+  // HTML for the collection views.
   addItemView: function(item, ItemView, index){
     // get the itemViewOptions if any were specified
     var itemViewOptions = Marionette.getOption(this, "itemViewOptions");
@@ -1759,23 +1759,23 @@ Marionette.CollectionView = Marionette.View.extend({
       itemViewOptions = itemViewOptions.call(this, item, index);
     }
 
-    // build the view
+    // build the views
     var view = this.buildItemView(item, ItemView, itemViewOptions);
 
-    // set up the child view event forwarding
+    // set up the child views event forwarding
     this.addChildViewEventForwarding(view);
 
-    // this view is about to be added
+    // this views is about to be added
     this.triggerMethod("before:item:added", view);
 
-    // Store the child view itself so we can properly
+    // Store the child views itself so we can properly
     // remove and/or close it later
     this.children.add(view);
 
     // Render it and show it
     this.renderItemView(view, index);
 
-    // call the "show" method if the collection view
+    // call the "show" method if the collection views
     // has already been shown
     if (this._isShown && !this.isBuffering){
       if (_.isFunction(view.triggerMethod)) {
@@ -1785,18 +1785,18 @@ Marionette.CollectionView = Marionette.View.extend({
       }
     }
 
-    // this view was added
+    // this views was added
     this.triggerMethod("after:item:added", view);
 
     return view;
   },
 
-  // Set up the child view event forwarding. Uses an "itemview:"
+  // Set up the child views event forwarding. Uses an "itemview:"
   // prefix in front of all forwarded events.
   addChildViewEventForwarding: function(view){
     var prefix = Marionette.getOption(this, "itemViewEventPrefix");
 
-    // Forward all child item view events through the parent,
+    // Forward all child item views events through the parent,
     // prepending "itemview:" to the event name
     this.listenTo(view, "all", function(){
       var args = slice.call(arguments);
@@ -1824,7 +1824,7 @@ Marionette.CollectionView = Marionette.View.extend({
     return this.itemEvents;
   },
 
-  // render the item view
+  // render the item views
   renderItemView: function(view, index) {
     view.render();
     this.appendHtml(this, view, index);
@@ -1836,17 +1836,17 @@ Marionette.CollectionView = Marionette.View.extend({
     return new ItemViewType(options);
   },
 
-  // get the child view by item it holds, and remove it
+  // get the child views by item it holds, and remove it
   removeItemView: function(item){
     var view = this.children.findByModel(item);
     this.removeChildView(view);
     this.checkEmpty();
   },
 
-  // Remove the child view and close it
+  // Remove the child views and close it
   removeChildView: function(view){
 
-    // shut down the child view properly,
+    // shut down the child views properly,
     // including events that the collection has from it
     if (view){
       // call 'close' or 'remove', depending on which is found
@@ -1866,7 +1866,7 @@ Marionette.CollectionView = Marionette.View.extend({
     return !this.collection || this.collection.length === 0;
   },
 
-  // If empty, show the empty view
+  // If empty, show the empty views
   checkEmpty: function (){
     if (this.isEmpty(this.collection)){
       this.showEmptyView();
@@ -1914,7 +1914,7 @@ Marionette.CollectionView = Marionette.View.extend({
     Marionette.View.prototype.close.apply(this, arguments);
   },
 
-  // Close the child views that this collection view
+  // Close the child views that this collection views
   // is holding on to, if any
   closeChildren: function(){
     this.children.each(function(child){
@@ -1929,7 +1929,7 @@ Marionette.CollectionView = Marionette.View.extend({
 
 // Used for rendering a branch-leaf, hierarchical structure.
 // Extends directly from CollectionView and also renders an
-// an item view as `modelView`, for the top leaf
+// an item views as `modelView`, for the top leaf
 Marionette.CompositeView = Marionette.CollectionView.extend({
 
   // Setting up the inheritance chain which allows changes to
@@ -1938,12 +1938,12 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
     Marionette.CollectionView.prototype.constructor.apply(this, arguments);
   },
 
-  // Configured the initial events that the composite view
+  // Configured the initial events that the composite views
   // binds to. Override this method to prevent the initial
   // events, or to add your own initial events.
   _initialEvents: function(){
 
-    // Bind only after composite view is rendered to avoid adding child views
+    // Bind only after composite views is rendered to avoid adding child views
     // to nonexistent itemViewContainer
     this.once('render', function () {
       if (this.collection){
@@ -1969,9 +1969,9 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
     return itemView;
   },
 
-  // Serialize the collection for the view.
-  // You can override the `serializeData` method in your own view
-  // definition, to provide custom serialization for your view's data.
+  // Serialize the collection for the views.
+  // You can override the `serializeData` method in your own views
+  // definition, to provide custom serialization for your views's data.
   serializeData: function(){
     var data = {};
 
@@ -1983,7 +1983,7 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
   },
 
   // Renders the model once, and the collection once. Calling
-  // this again will tell the model's view to re-render itself
+  // this again will tell the model's views to re-render itself
   // but the collection will not re-render.
   render: function(){
     this.isRendered = true;
@@ -2015,7 +2015,7 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
   },
 
   // Render an individual model, if we have one, as
-  // part of a composite view (branch / leaf). For example:
+  // part of a composite views (branch / leaf). For example:
   // a treeview.
   renderModel: function(){
     var data = {};
@@ -2035,8 +2035,8 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
 
   // Appends the `el` of itemView instances to the specified
   // `itemViewContainer` (a jQuery selector). Override this method to
-  // provide custom logic of how the child item view instances have their
-  // HTML appended to the composite view instance.
+  // provide custom logic of how the child item views instances have their
+  // HTML appended to the composite views instance.
   appendHtml: function(compositeView, itemView, index){
     if (compositeView.isBuffering) {
       compositeView.elBuffer.appendChild(itemView.el);
@@ -2095,9 +2095,9 @@ Marionette.CompositeView = Marionette.CollectionView.extend({
 // Used for managing application layouts, nested layouts and
 // multiple regions within an application or sub-application.
 //
-// A specialized view type that renders an area of HTML and then
+// A specialized views type that renders an area of HTML and then
 // attaches `Region` instances to the specified `regions`.
-// Used for composite view management and sub-application areas.
+// Used for composite views management and sub-application areas.
 Marionette.Layout = Marionette.ItemView.extend({
   regionType: Marionette.Region,
 
@@ -2136,7 +2136,7 @@ Marionette.Layout = Marionette.ItemView.extend({
     return Marionette.ItemView.prototype.render.apply(this, arguments);
   },
 
-  // Handle closing regions, and then close the view itself.
+  // Handle closing regions, and then close the views itself.
   close: function () {
     if (this.isClosed){ return; }
     this.regionManager.close();
@@ -2233,17 +2233,17 @@ Marionette.Layout = Marionette.ItemView.extend({
 
 Marionette.Behavior = (function(_, Backbone){
   function Behavior(options, view){
-    // Setup reference to the view.
+    // Setup reference to the views.
     // this comes in handle when a behavior
     // wants to directly talk up the chain
-    // to the view.
+    // to the views.
     this.view = view;
     this.defaults = _.result(this, "defaults") || {};
     this.options  = _.extend({}, this.defaults, options);
 
-    // proxy behavior $ method to the view
+    // proxy behavior $ method to the views
     // this is useful for doing jquery DOM lookups
-    // scoped to behaviors view.
+    // scoped to behaviors views.
     this.$ = function() {
       return this.view.$.apply(this.view, arguments);
     };
@@ -2286,13 +2286,13 @@ Marionette.Behavior = (function(_, Backbone){
 Marionette.Behaviors = (function(Marionette, _) {
 
   function Behaviors(view) {
-    // Behaviors defined on a view can be a flat object literal
+    // Behaviors defined on a views can be a flat object literal
     // or it can be a function that returns an object.
     this.behaviors = Behaviors.parseBehaviors(view, _.result(view, 'behaviors'));
 
-    // Wraps several of the view's methods
+    // Wraps several of the views's methods
     // calling the methods first on each behavior
-    // and then eventually calling the method on the view.
+    // and then eventually calling the method on the views.
     Behaviors.wrap(view, this.behaviors, [
       'bindUIElements', 'unbindUIElements',
       'delegateEvents', 'undelegateEvents',
@@ -2305,8 +2305,8 @@ Marionette.Behaviors = (function(Marionette, _) {
     setElement: function(setElement, behaviors) {
       setElement.apply(this, _.tail(arguments, 2));
 
-      // proxy behavior $el to the view's $el.
-      // This is needed because a view's $el proxy
+      // proxy behavior $el to the views's $el.
+      // This is needed because a views's $el proxy
       // is not set until after setElement is called.
       _.each(behaviors, function(b) {
         b.$el = this.$el;
@@ -2318,7 +2318,7 @@ Marionette.Behaviors = (function(Marionette, _) {
       close.apply(this, args);
 
       // Call close on each behavior after
-      // closing down the view.
+      // closing down the views.
       // This unbinds event listeners
       // that behaviors have registerd for.
       _.invoke(behaviors, 'close', args);
@@ -2375,7 +2375,7 @@ Marionette.Behaviors = (function(Marionette, _) {
         // Construct an internal UI hash first using
         // the views UI hash and then the behaviors UI hash.
         // This allows the user to use UI hash elements
-        // defined in the parent view as well as those
+        // defined in the parent views as well as those
         // defined in the given behavior.
         var ui = _.extend({}, viewUI, behaviorUI);
 
@@ -2430,9 +2430,9 @@ Marionette.Behaviors = (function(Marionette, _) {
       return _.isFunction(Behaviors.behaviorsLookup) ? Behaviors.behaviorsLookup.apply(this, arguments)[key] : Behaviors.behaviorsLookup[key];
     },
 
-    // Maps over a view's behaviors. Performing
+    // Maps over a views's behaviors. Performing
     // a lookup on each behavior and the instantiating
-    // said behavior passing its options and view.
+    // said behavior passing its options and views.
     parseBehaviors: function(view, behaviors){
       return _.map(behaviors, function(options, key){
         var BehaviorClass = Behaviors.getBehaviorClass(options, key);
@@ -2440,11 +2440,11 @@ Marionette.Behaviors = (function(Marionette, _) {
       });
     },
 
-    // wrap view internal methods so that they delegate to behaviors.
+    // wrap views internal methods so that they delegate to behaviors.
     // For example, onClose should trigger close on all of the behaviors and then close itself.
     // i.e.
     //
-    // view.delegateEvents = _.partial(methods.delegateEvents, view.delegateEvents, behaviors);
+    // views.delegateEvents = _.partial(methods.delegateEvents, views.delegateEvents, behaviors);
     wrap: function(view, behaviors, methodNames) {
       _.each(methodNames, function(methodName) {
         view[methodName] = _.partial(methods[methodName], view[methodName], behaviors);

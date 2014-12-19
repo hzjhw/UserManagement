@@ -42,17 +42,17 @@ define('bui/imgview/imgview',['bui/common','bui/toolbar','bui/imgview/viewconten
 
       // 根据viewContent的配置项，生成viewContent
       var viewContent = new ViewContent(BUI.mix(_self.get('viewContent'),{
-        elCls: "ui-img-view-content"
+        elCls: "ui-img-views-content"
       }));
       // 生成底下的toolBar
       var toolBar = new Toolbar.Bar({
-        elCls: "ui-img-view-toolbar",
+        elCls: "ui-img-views-toolbar",
         children: _self.get('commands'),
         itemTpl: '<a data-cmd="{cmd}" href="javascript:;">{text}</a>'
       });
       // 生成右边的previewList
       var previewList = new PreviewList({
-        elCls: "ui-img-view-mini-wrap"
+        elCls: "ui-img-views-mini-wrap"
       })
 
       children.push(viewContent);
@@ -69,7 +69,7 @@ define('bui/imgview/imgview',['bui/common','bui/toolbar','bui/imgview/viewconten
         el = _self.get('el');
 
       viewContent.get('el').append('<a class="paintPrev J_paintPrev" href="#"></a><a class="paintNext J_paintNext" href="#"></a>')
-      el.addClass("img-view-controls-wrap");
+      el.addClass("img-views-controls-wrap");
     },
     bindUI: function(){
       // 绑定工具栏事件，包括左右
@@ -298,7 +298,7 @@ define('bui/imgview/imgview',['bui/common','bui/toolbar','bui/imgview/viewconten
         }
       },
       elCls:{
-        value: "ui-img-view-wrap"
+        value: "ui-img-views-wrap"
       },
       /**
        * 图片变换后出发的事件
@@ -1097,7 +1097,7 @@ define('bui/imgview/viewcontent',['bui/common','bui/graphic'],function (r) {
         value: 100
       },
       elCls: {
-        value: "ui-view-content"
+        value: "ui-views-content"
       },
       /**
        * 是否可以拖动,默认为true

@@ -250,7 +250,7 @@ define('bui/uploader/button/base', ['bui/common', './filter'], function(require)
     ATTRS: {
     }
   },{
-    xclass: 'uploader-button-view'
+    xclass: 'uploader-button-views'
   });
 
 

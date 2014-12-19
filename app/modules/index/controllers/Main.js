@@ -3,50 +3,42 @@
  * @namespace Index
  * @author yongjin on 2014/11/18
  */
-define('Main', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 'template/main'], function(require, exports, module){
-  var Main, Backbone, template, HandlebarsHelper;
+define('Main', ['BaseView', 'UserModel', 'template/main'], function(require, exports, module){
+  var Main, BaseView, template;
 
-  Backbone = require('backbone');
-  HandlebarsHelper = require('HandlebarsHelper');
+  BaseView = require('BaseView');
   template = require('template/main');
 
 
-  Main = Backbone.View.extend({
+  Main = BaseView.extend({
     el: '#jhw-main',
-    template: HandlebarsHelper.compile(template),
     initialize: function(){
-      this.$el.html(this.template({}));
-      this.initCombox();
-    },
-    initCombox: function(){
-      var container = {};
-      BUI.use('bui/select', function (Select) {
-        container['#test1'] = new Select.Combox({
-          render: '#test1',
-          showTag: true,
-          valueField: '#value1',
-          elCls: 'bui-tag-follow',
-          width: 400,
-          items: ['1', '2']
-        });
-        container['#test1'].render();
-      })
-
-      BUI.use('bui/select', function (Select) {
-        var indexSelect = new Select.Select({
-          render: '#index-s1',
-          valueField: '#index-hide',
-          width: 400,
-          items: ['1', '2', '3', '4']
-        });
-        indexSelect.render();
-      })
+      this._initialize({
+        template: template,
+        data: app.getData('user')
+      });
+      this.render();
     },
     render: function(){
-      //this.$el.html(this.template({}));
+      this._render();
       return this;
     }
   });
 
   module.exports = Main;
 });
+$(function(){
+    $("#jhw .module01 .bodyContTitle span.zxgg").css({"color":"#646464","background":"#fafafa","border-bottom":"1px solid #fafafa"});
+    $("#jhw .module01 .bodyContTitle span.zxgg").mouseover(function(){
+        $("#jhw .module01 .bodyContContent01").show();
+        $("#jhw .module01 .bodyContContent02").hide();
+        $("#jhw .module01 .bodyContTitle span.zxgg").css({"color":"#646464","background":"#fafafa","border-bottom":"1px solid #fafafa"});
+        $("#jhw .module01 .bodyContTitle span.czzn").css({"color":"#646464","background":"#fff","border":"1px solid #e7e7e7"});
+    });
+    $("#jhw .module01 .bodyContTitle span.czzn").mouseover(function(){
+        $("#jhw .module01 .bodyContContent02").show();
+        $("#jhw .module01 .bodyContContent01").hide();
+        $("#jhw .module01 .bodyContTitle span.czzn").css({"color":"#646464","background":"#fafafa","border-bottom":"1px solid #fafafa"});
+        $("#jhw .module01 .bodyContTitle span.zxgg").css({"color":"#646464","background":"#fff","border":"1px solid #e7e7e7"});
+    });
+})

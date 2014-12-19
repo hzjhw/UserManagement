@@ -1,4 +1,6 @@
-<ul class="pagination" id="pagination-ul"  style="float:left;margin-top:0px;" currentPage="{{page}}">
+<ul class="pagination" id="pagination-ul"  style="float:right;margin-top:0px;" currentPage="{{page}}">
+    <li class="bui-bar-item bui-inline-block {{#compare page '===' 1}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
+        id="pageFirst" data-page="1"><a href="javascript:;">首页</a></li>
     <li class="bui-bar-item bui-inline-block {{#compare page '===' 1}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
         id="prev" data-page="{{minus page 1}}"><a href="javascript:;">上一页</a></li>
 
@@ -7,6 +9,14 @@
     {{/pagination}}
     <li class="bui-bar-item bui-inline-block {{#compare page '===' totalPage}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
         id="next" data-page="{{add page 1}}"><a href="javascript:;">下一页</a></li>
+    <li class="bui-bar-item bui-inline-block {{#compare page '===' totalPage}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
+        id="pageLast" data-page="{{totalPage}}"><a href="javascript:;">尾页</a></li>
+    <li class="bui-bar-item-text bui-bar-item bui-inline-block bui-bar-item-text-hover bui-bar-item-hover" style="line-height: 30px; padding-left: 10px;"
+        id=""><input type="text" class="input-pageTo control-text" style="padding:4px 0;" value="{{page}}"> <button type="button" class="button button-info pageTo">GO
+    </button></li>
+    <li class="bui-bar-item-text bui-bar-item bui-inline-block bui-bar-item-text-hover bui-bar-item-hover" style="line-height: 30px; padding-left: 10px;">
+        <button type="button" class="button button-info reload"><i class="icon-white icon-repeat"></i>刷新
+        </button></li>
    <!-- <li class="bui-bar-item bui-inline-block danaiPageNum" aria-disabled="true"
         id="test" data-page="55"><a href="javascript:;">55</a></li>-->
     <li class="bui-bar-item bui-inline-block">

@@ -2031,7 +2031,7 @@ define('bui/layout/viewport',['bui/common'],function (require) {
 			 */
 		}
 	},{
-		xclass : 'view-port'
+		xclass : 'views-port'
 	});
 
 	return Viewport;
