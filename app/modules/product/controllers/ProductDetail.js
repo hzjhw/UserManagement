@@ -3,9 +3,9 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag', 'PicturePick'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +14,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    PicturePick = require('PicturePick');
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -91,6 +92,18 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                 }
               }
             });
+
+            // 产品图片
+            app.addView('picturePick', new PicturePick({
+              el: '#picture-pick',
+              viewId: 'picturePick',
+              _isAdd: true, // 是否为添加模式
+              items: [{id: 'aaa', serverPath: 'upload/u/u4/user02/picture/2014/12/18/aa9c98ab-737f-4e87-a9f4-edb93ab507a3.jpg'},
+                {id: 'bbb',
+                  serverPath: 'upload/u/u4/user02/picture/2014/12/18/24be6cae-6b6c-46a5-99db-369248ba4f01.jpg'},
+                {id: 'ccc',serverPath: 'upload/u/u4/user02/picture/2014/12/18/9b740f4c-63ed-4543-a623-ef1df57d7185.jpg'}] // 初始化数据
+            }));
+
             // 属性
             ctx._initSelect({
               render: '#attCate',
