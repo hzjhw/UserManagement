@@ -55,7 +55,32 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             ctx._resetIframe();
           });
         });
-
+// 产品图片
+        var pic_list = [];
+        if (!this._isAdd){
+          var server_pic_list = JSON.parse(this.model.get('productImageListStore'));
+          Est.each(server_pic_list, function(item){
+            pic_list.push({
+              attId: item.id,
+              serverPath: item.sourceProductImagePath,
+              title: '重新上传',
+              hasPic: true,
+              isAddBtn: false
+            });
+          });
+          pic_list.push({
+            attId: '',
+              serverPath: CONST.PIC_NONE,
+            title: '上传图片',
+            isAddBtn: true
+          });
+        }
+        app.addView('picturePick', new PicturePick({
+          el: '#picture-pick',
+          viewId: 'picturePick',
+          _isAdd: true, // 是否为添加模式
+          items: pic_list // 初始化数据
+        }));
         // 产品分类
         this._getProductCategory({ tree: true,select: true, extend: true })
           .then(function (list) {
@@ -92,18 +117,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                 }
               }
             });
-
-            // 产品图片
-            app.addView('picturePick', new PicturePick({
-              el: '#picture-pick',
-              viewId: 'picturePick',
-              _isAdd: true, // 是否为添加模式
-              items: [{id: 'aaa', serverPath: 'upload/u/u4/user02/picture/2014/12/18/aa9c98ab-737f-4e87-a9f4-edb93ab507a3.jpg'},
-                {id: 'bbb',
-                  serverPath: 'upload/u/u4/user02/picture/2014/12/18/24be6cae-6b6c-46a5-99db-369248ba4f01.jpg'},
-                {id: 'ccc',serverPath: 'upload/u/u4/user02/picture/2014/12/18/9b740f4c-63ed-4543-a623-ef1df57d7185.jpg'}] // 初始化数据
-            }));
-
             // 属性
             ctx._initSelect({
               render: '#attCate',
@@ -174,6 +187,13 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
               return item.get('name');
             }).join(','));
+            var photos = app.getView('picturePick').getItems();
+            if (photos.length > 0){
+              this.model.set('photo', photos[0]['serverPath']);
+              this.model.set('photoId', photos[0]['attId']);
+              photos.splice(0, 1);
+              this.model.set('photo2',JSON.stringify(photos).replace(/attId/g, 'id').replace(/serverPath/g, 'src'));
+            }
           },
           onAfterSave: function(response){
 

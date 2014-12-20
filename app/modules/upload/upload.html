@@ -233,7 +233,9 @@ var username = Est.getUrlParam('username', window.location.href);
 var auto = Est.getUrlParam('auto', window.location.href);
 var replace = Est.getUrlParam('replace', window.location.href);
 var attId = Est.getUrlParam('attId', window.location.href);
+var uploadType = Est.getUrlParam('uploadType', window.location.href);
 var result = [];
+var options = {};
 if (Est.isEmpty(albumId))
     albumId = '';
 var bulidNav = function(id){
@@ -246,17 +248,12 @@ var bulidNav = function(id){
         $('.breadcrumb').html(breadcrumb.join(' > '));
     }
 }
-function removeView(id){
-    var view = app.getView(id);
-    view  && view.remove();
-    app.addView(id, null);
-}
 function showAlbumList(){
     if ($('#J_UpTree').size() === 0){
         $('.tree-box').append('<div id="J_UpTree" class="ztree"> </div >');
     }
     seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
-        removeView('albumList');
+        if (app.getView('albumList')) app.removeView('albumList');
         app.addView('albumList', new AlbumList({
             el: '#J_UpTree',
             callback: function(albumId){
@@ -283,7 +280,10 @@ $(function(){
     $('#btn-source').click(function(){
         $('#pic-source').show('fast');
         seajs.use(['AlbumList', 'PhotoSelect'], function(AlbumList, PhotoSelect){
-            if (app.getView('albumList')) removeView('albumList');
+            if (app.getView('albumList')) app.removeView('albumList');
+            /*if ($('#pic-source-album').size() === 0){
+                $('<div id="pic-source-album" class="ztree"> </div >').after($('.source-back'));
+            }*/
             app.addView('albumList', new AlbumList({
                 el: '#pic-source-album',
                 instance: 'albumList',
@@ -303,6 +303,11 @@ $(function(){
             }));
         })
     });
+    if (uploadType === 'sourceUpload'){
+        $('#btn-source').click();
+    }else {
+        $('.swfupload').click();
+    }
     $('#source-back').click(function(){
         $('#pic-source').hide('fast');
     });
@@ -310,7 +315,7 @@ $(function(){
         app.getView('picSource').search($('.search-text').val());
     });
 })
-var options = {};
+
 function fileQueueError(file, errorCode, message) {
     try {
         var imageName = "error.gif";
@@ -702,7 +707,6 @@ var swfOptions = {
         "replace": replace,
         "attId": attId
     },
-
     // File Upload Settings
     file_size_limit: "2MB", // 2MB
     file_types: "*.jpg;*.gif;*.jpeg;*.png;*.bmp",
