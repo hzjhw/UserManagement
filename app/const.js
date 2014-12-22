@@ -12,6 +12,7 @@ var CONST = {
   DOMAIN: 'http://jihui88.com',
   PIC_URL: 'http://192.168.1.99:8111',
   SEP: '/',
+  PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',
   ENTER_KEY: 13,
   COLLAPSE_SPEED: 50,
   ENTER_KEY: 13

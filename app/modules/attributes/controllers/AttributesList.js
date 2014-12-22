@@ -95,7 +95,8 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
           render: '#attributes-list-ul',
           item: AttributesItem,
           model: AttributesModel,
-          collection: AttributesCollection
+          collection: AttributesCollection,
+          pagination: true
         }).then(function(thisCtx){
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);

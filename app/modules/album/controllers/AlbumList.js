@@ -42,7 +42,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       itemClick: function(e){
         e.stopImmediatePropagation();
         this.loadPhoto();
-        this._toggleChecked();
+        this._toggleChecked(e);
       },
       editName: function(e){
         e.stopImmediatePropagation();
@@ -57,7 +57,9 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       },
       loadPhoto: function(){
         app.setData('curAlbumId', this.model.get('albumId'));
-        app.getView('albumList').doClickFn(this.model.get('albumId'));
+        if (app.getView('albumList')){
+          app.getView('albumList').doClickFn(this.model.get('albumId'));
+        }
       }
     });
 
@@ -68,7 +70,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
       },
       initialize: function(){
         this._initialize({
-          instance: 'albumList',
+          instance: this.options['instance'] || 'albumList',
           template: listTemp,
           render: '.album-cate-ul',
           collection: AlbumCollection,

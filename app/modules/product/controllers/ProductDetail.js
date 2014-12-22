@@ -3,9 +3,9 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag', 'PicturePick'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +14,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    PicturePick = require('PicturePick');
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -54,7 +55,32 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             ctx._resetIframe();
           });
         });
-
+// 产品图片
+        var pic_list = [];
+        if (!this._isAdd){
+          var server_pic_list = JSON.parse(this.model.get('productImageListStore'));
+          Est.each(server_pic_list, function(item){
+            pic_list.push({
+              attId: item.id,
+              serverPath: item.sourceProductImagePath,
+              title: '重新上传',
+              hasPic: true,
+              isAddBtn: false
+            });
+          });
+          pic_list.push({
+            attId: '',
+              serverPath: CONST.PIC_NONE,
+            title: '上传图片',
+            isAddBtn: true
+          });
+        }
+        app.addView('picturePick', new PicturePick({
+          el: '#picture-pick',
+          viewId: 'picturePick',
+          _isAdd: true, // 是否为添加模式
+          items: pic_list // 初始化数据
+        }));
         // 产品分类
         this._getProductCategory({ tree: true,select: true, extend: true })
           .then(function (list) {
@@ -161,6 +187,13 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
               return item.get('name');
             }).join(','));
+            var photos = app.getView('picturePick').getItems();
+            if (photos.length > 0){
+              this.model.set('photo', photos[0]['serverPath']);
+              this.model.set('photoId', photos[0]['attId']);
+              photos.splice(0, 1);
+              this.model.set('photo2',JSON.stringify(photos).replace(/attId/g, 'id').replace(/serverPath/g, 'src'));
+            }
           },
           onAfterSave: function(response){
 

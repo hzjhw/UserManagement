@@ -115,6 +115,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           model: CertificateModel,
           collection: CertificateCollection,
           item: CertificateItem,
+          pagination: true,
           detail: CONST.HOST + '/modules/certificate/certificate_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);

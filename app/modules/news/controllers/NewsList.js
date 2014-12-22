@@ -178,7 +178,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           template: listTemp,
           model: NewsModel,
           collection: NewsCollection,
-          item: NewsItem
+          item: NewsItem,
+          pagination: true
         }
         this._initialize(options)
           .then(function (context) {
