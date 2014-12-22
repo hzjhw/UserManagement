@@ -78,8 +78,14 @@ define('PhotoSelect', ['PhotoModel', 'BaseCollection', 'BaseList', 'BaseItem', '
         this._load(this._options);
       },
       getItems: function(){
-        var result = Est.pluck(this.collection.models, function(item){
-          return item.attributes.serverPath;
+        var result = [];
+        Est.each(this.collection.models, function(item){
+          if (item.get('checked')){
+            result.push({
+              attId: item.get('attId'),
+              serverPath: item.get('serverPath')
+            });
+          }
         });
         return result;
       },

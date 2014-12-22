@@ -128,15 +128,16 @@ git操作历史
    参数：{
         template: 字符串模板, 
         render: 插入列表的元素选择符, 
-        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
-        collection: 集合, 
-        item: 单视图, 
         model: 模型类, 
-        pagination: true,
-        detail: 添加页面url地址
-        checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
-        filter: [ {key: 'name', value: this.searchKey }] // 过滤结果
+        collection: 集合, 
+        item: this.options.items || [], //单视图
+        // 
         items: [](可选， 当无需url请求时),
+        checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
+        enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
+        pagination: true, // 是否显示分页
+        detail: 添加页面url地址
+        filter: [ {key: 'name', value: this.searchKey }] // 过滤结果
         // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
         subRender: '.node-tree', // 下级分类的容器选择符
         collapse: '.node-collapse' 展开/收缩元素选择符

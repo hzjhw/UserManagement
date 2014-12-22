@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    
+    <meta charset="UTF-8">
+    <title>产品管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    
+
+</head>
+
+<body>
+
+<script type="text/javascript" src="http://jihui88.com/js/jquery.js"></script>
+<script>
+function savePic(fId){
+	$(".save_btn"+fId).hide();
+	$("#form"+fId).ajaxSubmit({
+		type : "post",
+		success:function(responseText, statusText, xhr, $form){
+			alert(statusText);
+		},error:function(result){
+			alert(result);
+		}
+	})
+	return false;
+	//top.toAlert('${productId}');
+}
+$(function(){
+	jQuery.ajax( {
+            type : 'POST',
+            contentType : 'application/json',
+            url : 'http://jihui88.com/rest/api/product/detail',
+            data : {},
+            success : function(data) {
+              alert("新增成功！");
+            },
+            error : function(XMLHttpRequest,textStatus,errorThrown) {
+               alert(XMLHttpRequest.status+"---"+XMLHttpRequest.readyState+"----"+textStatus);
+               
+            }
+        });
+	
+})
+</script>
+
+</body>
+</html>

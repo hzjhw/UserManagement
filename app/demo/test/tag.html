@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>backbone test</title>
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="scripts/underscore.js"></script>
+    <script src="scripts/backbone.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+</div>
+
+<script type="text/template" id="form-template">
+	
+
+	<form method="post" action="" class="validate" id="addMember">
+			<table class="inputTable">
+				<tbody><tr>
+					<th>
+						用户名:
+					</th>
+					<td>
+							<input type="text" class="formText {required: true, minlength: 2, maxlength: 20, username: true, remote: 'member!checkUsername.action', messages: {remote: '用户名已存在!'}} valid" name="name">
+							<label class="requireField">*</label>
+					</td>
+				</tr>
+				
+			
+				<tr>
+					<th>
+						E-mail:
+					</th>
+					<td>
+						<input type="text" value="" class="formText {required: true, email: true}" name="type">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+												
+			</tbody></table>
+			<div class="row actions-bar">
+            <div class="form-actions span13 offset3">
+                <button id="submit" type="button" class="button button-primary">保存</button>
+                <button id="reset" type="reset" class="button">重置</button>
+            </div>
+        </div>
+		</form>
+   
+</script>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
