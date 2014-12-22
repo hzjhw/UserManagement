@@ -234,22 +234,21 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             width: 600,
             content: ctx.searchTemp({
               newsCategoryList: app.getData('newsCategory'),
-              loginViewList: app.getData('loginViewList'),
-              adsList: app.getData('adsList'),
+              newsTypeList: app.getData('newsType'),
+              newsStateList: app.getData('newsState'),
               searchKey: ctx.searchKey,
               searchCategory: ctx.searchCategory,
-              searchAds: ctx.searchAds,
-              searchLoginView: ctx.searchLoginView
+              searchState: ctx.searchState,
+              searchTypeView: ctx.searchTypeView
             }),
             button: [
               {
                 value: '搜索',
                 callback: function () {
                   ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
+                  ctx.searchState = $('select[name=searchState]').val();
                   ctx.searchCategory = $('select[name=searchCategory]').val();
-                  ctx.searchLoginView = $('select[name=searchLoginView]').val();
-                  ctx.searchAds = $('select[name=searchAds]').val();
+                  ctx.searchTypeView = $('select[name=searchTypeView]').val();
                   ctx.baseSearch();
                   this.remove();
                   return false;
