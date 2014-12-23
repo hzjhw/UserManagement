@@ -74,7 +74,8 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           this.model.set('serverPath', result[0]['serverPath']);
           this.model.set('title', '重新上传');
           this.model.set('isAddBtn', false);
-          if (!this.model.get('hasPic')){
+          if (!this.model.get('hasPic') && !Est.isEmpty(this._options.max) &&
+            (app.getView('PicturePick').getItems().length < this._options.max)){
             this.model.set('hasPic', true);
             console.log(this.model);
             app.getView(this._options.viewId).append(new model({
@@ -90,6 +91,9 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
       picUploadSource: function(){
         this.picUpload('sourceUpload');
       },
+      setMax: function(num){
+        this._options.max = num;
+      },
       render: function(){
         this._render();
       }
@@ -104,6 +108,9 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
             title: '上传图片',
             isAddBtn: true
           });
+        }
+        if (!this.options.max){
+          this.options.max = 20;
         }
         this._initialize({
           collection: collection,

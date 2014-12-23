@@ -82,7 +82,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           el: '#picture-pick',
           viewId: 'picturePick',
           _isAdd: true, // 是否为添加模式
-          items: pic_list // 初始化数据
+          items: pic_list, // 初始化数据
+          max: 1
         }));
         // 产品分类
         BaseService.getProductCategory({ tree: true,select: true, extend: true })
