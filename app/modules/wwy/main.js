@@ -23,7 +23,7 @@ app.addRoute('wwy', function(){
 app.addRoute('wwy_mobile/:id', function(id){
     seajs.use(['jquery', 'WwyMobileList'], function (jquery, WwyMobileList) {
         var wwyMobileList = new WwyMobileList({
-          wyId: id
+            wyId:id
         });
         app.addView('WwyMobileList', wwyMobileList);
     });

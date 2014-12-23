@@ -23,11 +23,17 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
      * 集合类
      */
     WwyCollection = BaseCollection.extend({
-      url: CONST.API + '/wwy/mobile/list/'+model.get("wyId"),
+      url: CONST.API + '/wwy/mobile/list/'+app.getData("wyId"),
       model: WwyModel,
       initialize: function () {
         this._initialize();
-      }
+      },
+        setWyId: function (wyId) {
+            this.wyId = wyId;
+        },
+        getWyId: function () {
+            return this.wyId;
+        }
     });
     /**
      * 单视图
@@ -62,8 +68,8 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
         'click .btn-search': 'search',
         'click .btn-blacklist': 'blackList'
       },
-      initialize: function () {
-        alert(this.defaults.wyId);
+      initialize: function (options) {
+        this.options = options || {};
         this.editItem = true;
         this._initialize({
           render: '#wwy-mobile-list-ul',
@@ -72,7 +78,13 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
           model: WwyModel,
           collection: WwyCollection,
           item: WwyMobileItem
-        }).then(function (thisCtx) {
+        }).then(function (baseListCtx) {
+                baseListCtx._initPagination(baseListCtx._options);
+                baseListCtx._load({
+                    beforeLoad: function (collection) {
+                        collection.setWyId(options.wyId);
+                    }
+                })}).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
         });
