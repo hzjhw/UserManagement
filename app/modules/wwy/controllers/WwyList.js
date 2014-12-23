@@ -5,10 +5,10 @@
  * @author wxw on 2014/12/12
  */
 define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/wwy_list','template/wwy_detail', 'template/wwy_item', 'BaseUtils', 'WwyBindModel'],
+    'template/wwy_list','template/wwy_detail', 'template/wwy_item', 'BaseUtils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyList, WwyItem,
-      WwyCollection, listTemp, itemTemp, BaseUtils, WwyBindModel;
+      WwyCollection, listTemp, itemTemp, BaseUtils;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -18,7 +18,6 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
     listTemp = require('template/wwy_list');
     itemTemp = require('template/wwy_item');
     BaseUtils = require('BaseUtils');
-    WwyBindModel = require('WwyBindModel');
 
 
     /**
@@ -77,7 +76,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .showqrcode': 'showQrcode',
-        'click .message-add': 'openAddDialog',
+        'click .wwy-add': 'openAddDialog',
         'click .btn-search': 'search',
         'click .btn-blacklist': 'blackList'
       },
