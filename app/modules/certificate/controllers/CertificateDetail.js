@@ -4,9 +4,10 @@
  * @author wxw on 14-12-15
  */
 
-define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/certificate_detail', 'Tag'],
+define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
+    'dialog', 'template/certificate_detail', 'Tag', 'BaseUtils'],
   function (require, exports, module) {
-    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
 
     CertificateModel = require('CertificateModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,6 +16,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    BaseUtils = require('BaseUtils');
 
     CertificateDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -37,7 +39,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         this._render();
 
         // 证书分类
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-type',
               items: app.getData('certificateList')
@@ -52,7 +54,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         });
 
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
         return this;
       }

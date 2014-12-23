@@ -3,9 +3,10 @@
  * @namespace ProductDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/product_detail', 'Tag', 'PicturePick'],
+define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
+    'dialog', 'template/product_detail', 'Tag', 'PicturePick', 'BaseService', 'BaseUtils'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick, BaseService, BaseUtils;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,6 +16,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
     PicturePick = require('PicturePick');
+    BaseService = require('BaseService');
+    BaseUtils = require('BaseUtils');
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -52,7 +55,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             ]
           });
           tab.on('selectedchange', function (ev) {
-            ctx._resetIframe();
+            BaseUtils.resetIframe();
           });
         });
 // 产品图片
@@ -82,9 +85,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           items: pic_list // 初始化数据
         }));
         // 产品分类
-        this._getProductCategory({ tree: true,select: true, extend: true })
+        BaseService.getProductCategory({ tree: true,select: true, extend: true })
           .then(function (list) {
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-category',
               items: list,
@@ -118,14 +121,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               }
             });
             // 属性
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#attCate',
               target: '#attCateHid',
               items: list,
               change: function (categoryId) {
                 ctx.showAttributes(categoryId);
                 setTimeout(function () {
-                  ctx._resetIframe();
+                  BaseUtils.resetIframe();
                 }, 500);
               }
             });
@@ -142,7 +145,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         }
 
         // 产品属性
-        this._initSelect({
+        BaseUtils.initSelect({
           render: '#s2',
           width: 100,
           target: '#model-loginView',
@@ -152,7 +155,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           ]
         });
 
-        this._initSelect({
+        BaseUtils.initSelect({
           render: '#s2',
           width: 100,
           target: '#model-ads',
@@ -163,7 +166,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           ]
         });
 
-        this._initSelect({
+        BaseUtils.initSelect({
           render: '#weightUnit',
           width: 100,
           target: '#model-weightUnit',
@@ -176,7 +179,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         // 编辑器
-        this._initEditor({
+        BaseUtils.initEditor({
           render: '.ckeditor'
         });
 
@@ -202,7 +205,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
 
         return this;

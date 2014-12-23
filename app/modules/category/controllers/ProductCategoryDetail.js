@@ -3,12 +3,14 @@
  * @namespace ProductCategoryDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
+define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils'],
   function (require, exports, module) {
-    var ProductCategoryDetail, CategoryModel, BaseDetail;
+    var ProductCategoryDetail, CategoryModel, BaseDetail, BaseService, BaseUtils;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
+    BaseService = require('BaseService');
+    BaseUtils = require('BaseUtils');
 
     ProductCategoryDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -23,12 +25,11 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
         });
       },
       render: function () {
-       var ctx = this;
         this._render();
         // 产品分类
-        this._getProductCategory({ tree: true, select: true, extend: true })
+        BaseService.getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-belongId',
               items: list

@@ -3,9 +3,10 @@
  * @namespace NewsDetail
  * @author jihui-wxw on 2014/12/10
  */
-define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/news_detail', 'Tag'],
+define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog',
+    'template/news_detail', 'Tag', 'BaseService', 'BaseUtils'],
   function (require, exports, module) {
-    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseService, BaseUtils;
 
     NewsModel = require('NewsModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +15,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    BaseService = require('BaseService');
+    BaseUtils = require('BaseUtils');
 
     NewsDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -49,14 +52,14 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             ]
           });
           tab.on('selectedchange', function (ev) {
-            ctx._resetIframe();
+            BaseUtils.resetIframe();
           });
         });
 
         // 新闻分类
-        this._getNewsCategory({ select: true, extend: true })
+        BaseService.getNewsCategory({ select: true, extend: true })
           .then(function (list) {
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-category',
               items: list,
@@ -90,14 +93,14 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               }
             });
             // 属性
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#attCate',
               target: '#attCateHid',
               items: list,
               change: function (categoryId) {
                 ctx.showAttributes(categoryId);
                 setTimeout(function () {
-                  ctx._resetIframe();
+                  BaseUtils.resetIframe();
                 }, 500);
               }
             });
@@ -109,7 +112,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         }
 
         // 产品属性
-        this._initSelect({
+        BaseUtils.initSelect({
           render: '#s3',
           width: 100,
           itemId:'value',
@@ -141,7 +144,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         // 表单初始化
         this._form('#J_Form')._validate()._init({});
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
 
         return this;

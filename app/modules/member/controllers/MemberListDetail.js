@@ -3,9 +3,10 @@
  * @namespace MemberListDetail
  * @author wxw on 14-12-16
  */
-define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/member_list_detail'],
+define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail',
+    'dialog', 'template/member_list_detail', 'BaseUtils'],
   function (require, exports, module) {
-    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
 
     MemberListModel = require('MemberListModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +15,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    BaseUtils = require('BaseUtils');
 
     MemberListDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -80,7 +82,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         // 会员分类
        this.getMemberRankCategory({ select: true, extend: true }
         ).then(function (list) {
-            ctx._initSelect({
+            BaseUtils._initSelect({
               render: '#s1',
               target: '#model-memberRank',
               items: list,
@@ -119,7 +121,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
 */
 
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
         return this;
       },
