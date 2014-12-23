@@ -382,20 +382,24 @@ function uploadProgress(file, bytesLoaded) {
 
 function uploadSuccess(file, serverData) {
     try {
+        if (Est.isEmpty(serverData)){
+            alert('服务器上未返回数据！');
+        }
         var progress = new FileProgress(file, this.customSettings.upload_target);
         var l = serverData.length;
-        var s = serverData.substring(1, l - 34);
-        var id = serverData.substring(l - 33, l - 1);
+        //var s = serverData.substring(1, l - 34);
+        //var id = serverData.substring(l - 33, l - 1);
         $("#" + this.customSettings.upload_target).removeClass("startToUpload");
-        addImage(s.replace(/\\/g, ""), id, file.name);
+        //addImage(s.replace(/\\/g, ""), id, file.name);
 
         progress.setStatus("缩略图生成完毕.");
         progress.toggleCancel(true);
         serverData = serverData.split(',');
         if (serverData.length === 2){
             result.push({
-                attId: serverData[0],
-                serverPath: serverData[1]
+                attId: serverData[1].replace(/\"/g, ''),
+                serverPath: serverData[0].replace(/\"/g, '').replace(/\\\//g, "/")
+                        .replace(/^.+(upload.*?)/g, "$1").replace('_5', '')
             });
         }
     } catch (ex) {

@@ -63,7 +63,8 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           replace: true,
           attId: this.model.get('attId'),
           oniframeload: function () {
-            this.iframeNode.contentWindow.uploadCallback = function (file) {
+            this.iframeNode.contentWindow.uploadCallback = function (result) {
+              debugger
               ctx.model.set('uploadTime', new Date().getTime());
               window['replaceDialog' + id].close().remove();
             };

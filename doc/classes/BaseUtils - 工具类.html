@@ -332,7 +332,7 @@
                 <pre class="code prettyprint"><code> // 图片添加
  BaseUtils.openUpload({
   albumId: app.getData(&#39;curAlbumId&#39;),
-  username: app.getData(&#39;user&#39;).username,
+  username: app.getData(&#39;user&#39;).username, // 必填
   auto: true,
   oniframeload: function(){
     this.iframeNode.contentWindow.uploadCallback = doResult;
@@ -342,12 +342,12 @@
  BaseUtils.openUpload({
    id: &#39;replaceDialog&#39; + id,
    title: &#39;图片替换&#39;,
-   albumId: app.getData(&#39;curAlbumId&#39;),
-   username: app.getData(&#39;user&#39;).username,
-   replace: true,
-   attId: this.model.get(&#39;attId&#39;),
+   albumId: app.getData(&#39;curAlbumId&#39;), // 必填
+   username: app.getData(&#39;user&#39;).username, // 必填
+   replace: true, // 必填
+   attId: this.model.get(&#39;attId&#39;), // 必填
    oniframeload: function () {
-     this.iframeNode.contentWindow.uploadCallback = function (file) {
+     this.iframeNode.contentWindow.uploadCallback = function (results) { // results返回结果
      ctx.model.set(&#39;uploadTime&#39;, new Date().getTime());
      window[&#39;replaceDialog&#39; + id].close().remove();
      };
