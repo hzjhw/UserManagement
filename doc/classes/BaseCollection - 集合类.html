@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BaseModel</title>
+    <title>BaseCollection - 集合类</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -47,15 +47,15 @@
             
                 <li><a href="../classes/BaseDetail - 详细页.html">BaseDetail - 详细页</a></li>
             
-                <li><a href="../classes/BaseItem.html">BaseItem</a></li>
+                <li><a href="../classes/BaseItem - 集合中的单个视图.html">BaseItem - 集合中的单个视图</a></li>
             
-                <li><a href="../classes/BaseList.html">BaseList</a></li>
+                <li><a href="../classes/BaseList - 列表视图.html">BaseList - 列表视图</a></li>
             
-                <li><a href="../classes/BaseModel.html">BaseModel</a></li>
+                <li><a href="../classes/BaseModel - 模型类.html">BaseModel - 模型类</a></li>
             
-                <li><a href="../classes/BaseUtils.html">BaseUtils</a></li>
+                <li><a href="../classes/BaseUtils - 工具类.html">BaseUtils - 工具类</a></li>
             
-                <li><a href="../classes/BaseView.html">BaseView</a></li>
+                <li><a href="../classes/BaseView - 普通视图.html">BaseView - 普通视图</a></li>
             
                 <li><a href="../classes/Est - 工具类库.html">Est - 工具类库</a></li>
             
@@ -98,7 +98,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BaseModel Class</h1>
+                        <h1>BaseCollection - 集合类 Class</h1>
 <div class="box meta">
     
 
@@ -106,7 +106,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:1</code></a>
+            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:1</code></a>
         </div>
     
 
@@ -118,13 +118,12 @@
 
 
 <div class="box intro">
-    <p>基础模型类</p>
+    <p>集合类</p>
 <ul>
-<li>initialize 实现父类_initialize</li>
-<li>defaults (可选) 默认值  如 Est.extend({}, BaseModel.prototype.defaults);</li>
-<li>baseId (可选) ID标识符 如 productId</li>
-<li>baseUrl (可选) 服务器交互地址</li>
-<li>validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel</li>
+<li>url 获取列表地址， 值可为方法，返回地址</li>
+<li>batchDel: 批量删除url</li>
+<li>model 模型类</li>
+<li>initialize 初始化， 实现父类 _initialize方法</li>
 </ul>
 
 </div>
@@ -154,21 +153,49 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_[private] - _getChildren">[private] - _getChildren</a>
+                                <a href="#method_[private] - _empty">[private] - _empty</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[private] - parse">[private] - parse</a>
+                                <a href="#method_[private] - _load">[private] - _load</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[private] - url">[private] - url</a>
+                                <a href="#method_[private] - _paginationRender">[private] - _paginationRender</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[private] - _parse">[private] - _parse</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[private] - _parsePagination">[private] - _parsePagination</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[private] - _parseUrl">[private] - _parseUrl</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[private] - constructor">[private] - constructor</a>
 
                                 
                                 
@@ -181,22 +208,8 @@
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_[public] - _saveField">[public] - _saveField</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[public] - _toggle">[public] - _toggle</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method private">
-                                <a href="#method_[public] - _validate">[public] - _validate</a>
+                                <a href="#method_[public] - _setItemId">[public] - _setItemId</a>
 
                                 
                                 
@@ -218,17 +231,13 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_[private] - _getChildren" class="method item">
-    <h3 class="name"><code>[private] - _getChildren</code></h3>
+                    <div id="method_[private] - _empty" class="method item">
+    <h3 class="name"><code>[private] - _empty</code></h3>
 
     
         <span class="paren">()</span>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
     
 
     
@@ -254,7 +263,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l130"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:130</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l166"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:166</code></a>
         
         </p>
 
@@ -265,32 +274,20 @@
     </div>
 
     <div class="description">
-        <p>获取子模型</p>
+        <p>清空列表</p>
 
     </div>
 
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"></span>:
-                    
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_[private] - parse" class="method item">
-    <h3 class="name"><code>[private] - parse</code></h3>
+                    <div id="method_[private] - _load" class="method item">
+    <h3 class="name"><code>[private] - _load</code></h3>
 
     
         <div class="args">
@@ -298,13 +295,19 @@
             
                 <li class="arg">
                     
-                        <code>response</code>
+                        <code>instance</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>context</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>model</code>
                     
                 </li>
             
@@ -314,7 +317,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"></span>
+            <span class="type">ln.promise</span>
         </span>
     
 
@@ -341,7 +344,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l48"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:48</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l120"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:120</code></a>
         
         </p>
 
@@ -352,7 +355,7 @@
     </div>
 
     <div class="description">
-        <p>过滤结果, 并提示信息对话框, 若不想提示信息可以设置hideTip为true</p>
+        <p>加载列表</p>
 
     </div>
 
@@ -364,7 +367,221 @@
             
                 <li class="param">
                     
-                        <code class="param-name">response</code>
+                        <code class="param-name">instance</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>实例对象</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>上下文</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">model</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>模型类</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">ln.promise</span>:
+                    
+                    <p>返回promise</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> if (this.collection.url){
+        this.collection._load(this.collection, this, model)
+            .then(function(result){
+                resolve(result);
+            });
+    }</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[private] - _paginationRender" class="method item">
+    <h3 class="name"><code>[private] - _paginationRender</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l104"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:104</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染分页</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _parse" class="method item">
+    <h3 class="name"><code>[private] - _parse</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>resp</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>xhr</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">attributes.data | </span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l50"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:50</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>处理url 与 分页</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">resp</code>
                         <span class="type">Object</span>
                     
 
@@ -379,7 +596,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
+                        <code class="param-name">xhr</code>
                         <span class="type">Object</span>
                     
 
@@ -403,7 +620,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type"></span>:
+                        <span class="type">attributes.data | </span>:
                     
                 
             </div>
@@ -414,17 +631,23 @@
 </div>
 
                 
-                    <div id="method_[private] - url" class="method item">
-    <h3 class="name"><code>[private] - url</code></h3>
+                    <div id="method_[private] - _parsePagination" class="method item">
+    <h3 class="name"><code>[private] - _parsePagination</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>resp</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
     
 
     
@@ -450,7 +673,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l23"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:23</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l87"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:87</code></a>
         
         </p>
 
@@ -461,24 +684,211 @@
     </div>
 
     <div class="description">
-        <p>初始化请求连接, 判断是否为新对象， 否自动加上ID</p>
+        <p>设置分页模型类</p>
 
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">resp</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
 
-            <div class="returns-description">
+    
+</div>
+
                 
+                    <div id="method_[private] - _parseUrl" class="method item">
+    <h3 class="name"><code>[private] - _parseUrl</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
                     
-                        <span class="type"></span>:
+                        <code>model</code>
                     
-                
-            </div>
+                </li>
+            
+            </ul><span class="paren">)</span>
         </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l67"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:67</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>处理url地址， 加上分页参数</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">model</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - constructor" class="method item">
+    <h3 class="name"><code>[private] - constructor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l24"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:24</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>传递options进来</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
     
 
     
@@ -517,7 +927,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l36"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:36</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l35"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:35</code></a>
         
         </p>
 
@@ -528,7 +938,7 @@
     </div>
 
     <div class="description">
-        <p>模型类初始化</p>
+        <p>初始化</p>
 
     </div>
 
@@ -549,8 +959,8 @@
 </div>
 
                 
-                    <div id="method_[public] - _saveField" class="method item">
-    <h3 class="name"><code>[public] - _saveField</code></h3>
+                    <div id="method_[public] - _setItemId" class="method item private">
+    <h3 class="name"><code>[public] - _setItemId</code></h3>
 
     
         <div class="args">
@@ -558,224 +968,7 @@
             
                 <li class="arg">
                     
-                        <code>keyValue</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ctx</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l92"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:92</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>保存模型类</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">keyValue</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ctx</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[success: 成功回调][async: 是否异步]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   this.model._saveField({
-     id: thisNode.get(&#39;id&#39;),
-     sort: thisNode.get(&#39;sort&#39;)
-   }, ctx, { // ctx须初始化initModel
-     success: function(){}, // 保存成功回调
-     async: false, // 是否同步
-     hideTip: false // 是否隐藏提示
-   });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[public] - _toggle" class="method item">
-    <h3 class="name"><code>[public] - _toggle</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l146"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:146</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>设置checkbox选择框状态</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> this.model._toggle();</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[public] - _validate" class="method item private">
-    <h3 class="name"><code>[public] - _validate</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>attributes</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
+                        <code>itemId</code>
                     
                 </li>
             
@@ -810,7 +1003,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l157"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:157</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseCollection.js.html#l152"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseCollection.js:152</code></a>
         
         </p>
 
@@ -821,7 +1014,7 @@
     </div>
 
     <div class="description">
-        <p>预处理验证， 若模型类里有silent=true字段，则取消验证</p>
+        <p>设置itemId</p>
 
     </div>
 
@@ -833,22 +1026,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">attributes</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
+                        <code class="param-name">itemId</code>
                         <span class="type">Object</span>
                     
 
@@ -872,13 +1050,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>   validate: function (attrs) {
-     return this._validation(attrs, function (attrs) {
-       if (!attrs.sort || attrs.sort &lt; 0) {
-       this.validateMsg = &quot;sort不能为空&quot;;
-     }
-    });</code></pre>
-<p>}</p>
+                <pre class="code prettyprint"><code>   this._setItemId(&#39;Category00000000000000000032&#39;);</code></pre>
 
             </div>
         </div>

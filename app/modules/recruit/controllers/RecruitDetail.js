@@ -4,9 +4,10 @@
  * @author wxw on 14-12-15
  */
 
-define('RecruitDetail', ['jquery', 'RecruitModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/recruit_detail', 'Tag'],
+define('RecruitDetail', ['jquery', 'RecruitModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
+    'dialog', 'template/recruit_detail', 'Tag', 'BaseUtils'],
   function (require, exports, module) {
-    var RecruitDetail, RecruitModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var RecruitDetail, RecruitModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
 
     RecruitModel = require('RecruitModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,6 +16,7 @@ define('RecruitDetail', ['jquery', 'RecruitModel', 'HandlebarsHelper', 'BaseDeta
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    BaseUtils = require('BaseUtils');
 
     RecruitDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -50,7 +52,7 @@ define('RecruitDetail', ['jquery', 'RecruitModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
         return this;
       },

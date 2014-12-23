@@ -3,9 +3,10 @@
  * @namespace MemberRankDetail
  * @author wxw on 14-12-16
  */
-define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/member_rank_detail'],
+define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'BaseDetail',
+    'dialog', 'template/member_rank_detail', 'BaseUtils'],
   function (require, exports, module) {
-    var MemberRankDetail, MemberRankModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag;
+    var MemberRankDetail, MemberRankModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
 
     MemberRankModel = require('MemberRankModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +15,7 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    BaseUtils = require('BaseUtils');
 
     MemberRankDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -47,7 +49,7 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
         });
 
         setTimeout(function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }, 1000);
         return this;
       },

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BaseUtils</title>
+    <title>BaseDetail - 详细页</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -53,7 +53,7 @@
             
                 <li><a href="../classes/BaseModel - 模型类.html">BaseModel - 模型类</a></li>
             
-                <li><a href="../classes/BaseUtils.html">BaseUtils</a></li>
+                <li><a href="../classes/BaseUtils - 工具类.html">BaseUtils - 工具类</a></li>
             
                 <li><a href="../classes/BaseView - 普通视图.html">BaseView - 普通视图</a></li>
             
@@ -98,7 +98,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BaseUtils Class</h1>
+                        <h1>BaseDetail - 详细页 Class</h1>
 <div class="box meta">
     
 
@@ -106,7 +106,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:1</code></a>
+            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:1</code></a>
         </div>
     
 
@@ -118,7 +118,11 @@
 
 
 <div class="box intro">
-    <p>基础工具类</p>
+    <p>详细页</p>
+<ul>
+<li>initialize 实现父类_initialize</li>
+<li>render 实现父类 _render</li>
+</ul>
 
 </div>
 
@@ -147,77 +151,84 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_[上传] - initUpload">[上传] - initUpload</a>
+                                <a href="#method_[private] - _close">[private] - _close</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[private] - _enterEvent">[private] - _enterEvent</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[复制] - initCopy">[复制] - initCopy</a>
+                                <a href="#method_[private] - _initModel">[private] - _initModel</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[对话框] - comfirm">[对话框] - comfirm</a>
+                                <a href="#method_[private] - _remove">[private] - _remove</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[对话框] - dialog">[对话框] - dialog</a>
+                                <a href="#method_[private] - _reset">[private] - _reset</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[对话框] - iframeDialog">[对话框] - iframeDialog</a>
+                                <a href="#method_[private] - _save">[private] - _save</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[对话框] - resetIframe">[对话框] - resetIframe</a>
+                                <a href="#method_[private] - _saveItem">[private] - _saveItem</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[protected] - _initialize">[protected] - _initialize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[protected] - _render">[protected] - _render</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[对话框] - tip">[对话框] - tip</a>
+                                <a href="#method_[public] - _form">[public] - _form</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[表单] - initCombox">[表单] - initCombox</a>
+                                <a href="#method_[public] - _init">[public] - _init</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[表单] - initDate">[表单] - initDate</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[表单] - initEditor">[表单] - initEditor</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[表单] - initSelect">[表单] - initSelect</a>
+                                <a href="#method_[public] - _validate">[public] - _validate</a>
 
                                 
                                 
@@ -239,574 +250,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_[上传] - initUpload" class="method item">
-    <h3 class="name"><code>[上传] - initUpload</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l60"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:60</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>图片上传</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[render:　选择符][context: 上下文]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> // 图片添加
- BaseUtils.openUpload({
-  albumId: app.getData(&#39;curAlbumId&#39;),
-  username: app.getData(&#39;user&#39;).username,
-  auto: true,
-  oniframeload: function(){
-    this.iframeNode.contentWindow.uploadCallback = doResult;
-  }
- });
- // 图片替换
- BaseUtils.openUpload({
-   id: &#39;replaceDialog&#39; + id,
-   title: &#39;图片替换&#39;,
-   albumId: app.getData(&#39;curAlbumId&#39;),
-   username: app.getData(&#39;user&#39;).username,
-   replace: true,
-   attId: this.model.get(&#39;attId&#39;),
-   oniframeload: function () {
-     this.iframeNode.contentWindow.uploadCallback = function (file) {
-     ctx.model.set(&#39;uploadTime&#39;, new Date().getTime());
-     window[&#39;replaceDialog&#39; + id].close().remove();
-     };
-   }
- });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[复制] - initCopy" class="method item">
-    <h3 class="name"><code>[复制] - initCopy</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selecter</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l364"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:364</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化复制按钮</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selecter</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   BaseUtils.initCopy(&#39;#photo-copy-dialog&#39;, {
-      success: function(){
-        window.copyDialog.close();
-      }
-    });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[对话框] - comfirm" class="method item">
-    <h3 class="name"><code>[对话框] - comfirm</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>opts</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l242"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:242</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>确认框， 比如删除操作</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">opts</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[title: 标题][content: 内容][success: 成功回调]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.comfirm({
-   title: &#39;提示&#39;,
-   target: this.$(&#39;.name&#39;).get(0),
-   content: &#39;是否删除?&#39;,
-   success: function(){
-     ...
-   }
- });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[对话框] - dialog" class="method item">
-    <h3 class="name"><code>[对话框] - dialog</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l310"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:310</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>对话框</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[title: ][width: ][height: ][target: ][success: 确定按钮回调]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.dialog({
-    id: &#39;copyDialog&#39;,
-    title: &#39;复制图片&#39;,
-    target: &#39;.btn-email-bind&#39;,
-    width: 800,
-    content: this.copyDetail({
-      filename: this.model.get(&#39;filename&#39;),
-      serverPath: this.model.get(&#39;serverPath&#39;)
-    }),
-    load: function(){
-      ...
-    },
-    success: function(){
-      this.close();
-    }
-  });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[对话框] - iframeDialog" class="method item">
-    <h3 class="name"><code>[对话框] - iframeDialog</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l407"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:407</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>打开iframe对话框</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[url: &#39;&#39;] [title: 标题][width: ][height: ][success: 确定按钮成功回调方法][target:　绑定到对象]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.iframeDialog({
-    title: &#39;黑名单&#39;,
-    url: CONST.DOMAIN + &#39;/user/blacklist/view&#39;,
-    width: 500,
-    target: &#39;.name&#39;,
-    success: function(){
-    }
-  });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[对话框] - resetIframe" class="method item">
-    <h3 class="name"><code>[对话框] - resetIframe</code></h3>
+                    <div id="method_[private] - _close" class="method item">
+    <h3 class="name"><code>[private] - _close</code></h3>
 
     
         <span class="paren">()</span>
@@ -837,7 +282,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l289"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:289</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l270"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:270</code></a>
         
         </p>
 
@@ -848,7 +293,7 @@
     </div>
 
     <div class="description">
-        <p>重置对话框高度</p>
+        <p>移除所有绑定的事件</p>
 
     </div>
 
@@ -857,20 +302,68 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
+</div>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.resetIframe(dialog);</code></pre>
+                
+                    <div id="method_[private] - _enterEvent" class="method item private">
+    <h3 class="name"><code>[private] - _enterEvent</code></h3>
 
-            </div>
-        </div>
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l58"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:58</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>回车事件</p>
+
+    </div>
+
+    
+
+    
+
     
 </div>
 
                 
-                    <div id="method_[对话框] - tip" class="method item">
-    <h3 class="name"><code>[对话框] - tip</code></h3>
+                    <div id="method_[private] - _initModel" class="method item">
+    <h3 class="name"><code>[private] - _initModel</code></h3>
 
     
         <div class="args">
@@ -878,13 +371,13 @@
             
                 <li class="arg">
                     
-                        <code>msg</code>
+                        <code>model</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>ctx</code>
                     
                 </li>
             
@@ -917,7 +410,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l214"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:214</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l74"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:74</code></a>
         
         </p>
 
@@ -928,7 +421,9 @@
     </div>
 
     <div class="description">
-        <p>提示信息</p>
+        <p>初始化模型类 将自动判断是否有ID传递进来，
+若存在则从服务器端获取详细内容
+若为添加， 则在ctx 与模型类里设置 _isAdd = true</p>
 
     </div>
 
@@ -940,7 +435,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">msg</code>
+                        <code class="param-name">model</code>
                         <span class="type">Object</span>
                     
 
@@ -955,7 +450,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
+                        <code class="param-name">ctx</code>
                         <span class="type">Object</span>
                     
 
@@ -975,41 +470,19 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.tip(&#39;提示内容&#39;, {
-   time: 1000,
-   title: &#39;温馨提示&#39;
- });</code></pre>
-
-            </div>
-        </div>
-    
 </div>
 
                 
-                    <div id="method_[表单] - initCombox" class="method item">
-    <h3 class="name"><code>[表单] - initCombox</code></h3>
+                    <div id="method_[private] - _remove" class="method item">
+    <h3 class="name"><code>[private] - _remove</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
+        <span class="paren">()</span>
     
 
     
         <span class="returns-inline">
-            <span class="type">Est.promise</span>
+            <span class="type">BaseDetail</span>
         </span>
     
 
@@ -1036,7 +509,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l132"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:132</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l257"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:257</code></a>
         
         </p>
 
@@ -1047,33 +520,10 @@
     </div>
 
     <div class="description">
-        <p>初始化多标签</p>
+        <p>移除模型类</p>
 
     </div>
 
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
@@ -1083,7 +533,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Est.promise</span>:
+                        <span class="type">BaseDetail</span>:
                     
                 
             </div>
@@ -1091,25 +541,121 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
+</div>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initCombox({
-    render: &#39;#tag&#39;,
-    target: &#39;#model-tag&#39;,
-    itemId: &#39;categoryId&#39;
-      items: [ &#39;选项一&#39;, &#39;选项二&#39;, &#39;选项三&#39;, &#39;选项四&#39; ]
-  });</code></pre>
+                
+                    <div id="method_[private] - _reset" class="method item">
+    <h3 class="name"><code>[private] - _reset</code></h3>
 
-            </div>
-        </div>
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l249"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:249</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>重置表单</p>
+
+    </div>
+
+    
+
+    
+
     
 </div>
 
                 
-                    <div id="method_[表单] - initDate" class="method item">
-    <h3 class="name"><code>[表单] - initDate</code></h3>
+                    <div id="method_[private] - _save" class="method item">
+    <h3 class="name"><code>[private] - _save</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l218"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:218</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>保存结果</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _saveItem" class="method item">
+    <h3 class="name"><code>[private] - _saveItem</code></h3>
 
     
         <div class="args">
@@ -1117,7 +663,13 @@
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>callback</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>context</code>
                     
                 </li>
             
@@ -1150,7 +702,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l111"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:111</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l227"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:227</code></a>
         
         </p>
 
@@ -1161,7 +713,7 @@
     </div>
 
     <div class="description">
-        <p>初始化日期选择器</p>
+        <p>保存表单</p>
 
     </div>
 
@@ -1173,15 +725,29 @@
             
                 <li class="param">
                     
-                        <code class="param-name">options</code>
+                        <code class="param-name">callback</code>
                         <span class="type">Object</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>[render: 选择符][showTime: true/false 是否显示时间]</p>
+                         
+                    </div>
 
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
                     </div>
 
                     
@@ -1194,23 +760,11 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initDate({
-    render: &#39;.calendar&#39;,
-    showTime: false
-  });</code></pre>
-
-            </div>
-        </div>
-    
 </div>
 
                 
-                    <div id="method_[表单] - initEditor" class="method item">
-    <h3 class="name"><code>[表单] - initEditor</code></h3>
+                    <div id="method_[protected] - _initialize" class="method item private">
+    <h3 class="name"><code>[protected] - _initialize</code></h3>
 
     
         <div class="args">
@@ -1230,6 +784,8 @@
 
     
 
+    
+        <span class="flag private">private</span>
     
 
     
@@ -1251,7 +807,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l174"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:174</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l21"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:21</code></a>
         
         </p>
 
@@ -1262,7 +818,7 @@
     </div>
 
     <div class="description">
-        <p>初始化编辑器</p>
+        <p>初始化</p>
 
     </div>
 
@@ -1298,8 +854,11 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initEditor({
-   render: &#39;.ckeditor&#39;
+                <pre class="code prettyprint"><code> this._initialize({
+    template : template, // 字符串模板
+    model: ProductModel, // 模型类
+    // 可选
+    enterRender: &#39;#submit&#39; // 执行回车后的按钮点击的元素选择符
  });</code></pre>
 
             </div>
@@ -1308,8 +867,74 @@
 </div>
 
                 
-                    <div id="method_[表单] - initSelect" class="method item">
-    <h3 class="name"><code>[表单] - initSelect</code></h3>
+                    <div id="method_[protected] - _render" class="method item private">
+    <h3 class="name"><code>[protected] - _render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l42"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   this._render();</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _form" class="method item">
+    <h3 class="name"><code>[public] - _form</code></h3>
 
     
         <div class="args">
@@ -1317,7 +942,7 @@
             
                 <li class="arg">
                     
-                        <code>options</code>
+                        <code>formSelector</code>
                     
                 </li>
             
@@ -1327,7 +952,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Est.promise</span>
+            <span class="type">BaseDetail</span>
         </span>
     
 
@@ -1354,7 +979,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l14"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:14</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l100"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:100</code></a>
         
         </p>
 
@@ -1365,7 +990,132 @@
     </div>
 
     <div class="description">
-        <p>初始化选择框</p>
+        <p>form包装器， 传递表单选择符</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">formSelector</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>选择器</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">BaseDetail</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   this._form(&#39;#J_Form&#39;)._validate()._init({
+     onBeforeSave: function(){
+       // 处理特殊字段
+       this.model.set(&#39;taglist&#39;, Est.map(ctx.tagInstance.collection.models, function (item) {
+         return item.get(&#39;name&#39;);
+       }).join(&#39;,&#39;));
+     },
+     onAfterSave : function(response){
+        if(response.attributes.success == false ){
+           ctx.refreshCode();
+           return true;
+        }
+       BaseUtils.tip(&#39;请验证邮箱后再登录!&#39;);
+       window.location.href = &#39;/member/modules/login/login.html&#39;;
+     }
+   });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _init" class="method item">
+    <h3 class="name"><code>[public] - _init</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l169"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:169</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>绑定提交按钮</p>
 
     </div>
 
@@ -1384,8 +1134,112 @@
                     
 
                     <div class="param-description">
-                        <p>[target: &#39;#category&#39;  input元素选择符][render: &#39;#s1&#39; 渲染到哪个DIV下]
-[itemId: &#39;value&#39; 相应ID][width: 宽度][items: [] 列表][change: 选项改变回调方法]</p>
+                        <p>[onBeforeSave: 保存前方法] [onAfterSave: 保存后方法]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   this._form()._validate()._init({
+       onBeforeSave: function(){},
+       onAfterSave: function(){}
+   });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _validate" class="method item">
+    <h3 class="name"><code>[public] - _validate</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">BaseDetail</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l130"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:130</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>启用表单验证</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[url: 远程验证地址][fields: 字段名称]</p>
 
                     </div>
 
@@ -1403,7 +1257,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Est.promise</span>:
+                        <span class="type">BaseDetail</span>:
                     
                 
             </div>
@@ -1415,16 +1269,10 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initSelect({
-    render: &#39;#s1&#39;,
-    target: &#39;#model-parentId&#39;,
-    items: [],
-    change: function(changeId){
-      console.log(changeId);
-    }
-  }).then(function(itemId){
-     console.log(itemId);
-  });</code></pre>
+                <pre class="code prettyprint"><code>   this._form(&#39;#J_Form&#39;)._validate({
+       url: CONST.API + &#39;/user/validate&#39;,
+       fields: [&#39;vali-username&#39;, &#39;vali-email&#39;] // 注意， 字段前加vali-
+   });</code></pre>
 
             </div>
         </div>
