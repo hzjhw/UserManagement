@@ -27,25 +27,51 @@
                             <div class="bui-grid-hd-inner center"><span>序号</span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-col1">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-picture">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">手机</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-picture">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">转自</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-picture">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">转发数</span><span
+                        {{#compare  msgctrl 'indexOf' '1'}}
+                            <th class="bui-grid-hd grid-td-col1">
+                                <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">姓名</span><span
+                                        class="bui-grid-sort-icon">&nbsp;</span></div>
+                            </th>
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '2'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">手机</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-picture">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">最后日期</span><span
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '3'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">email</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '4'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">内容</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '5'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">电话</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '6'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">公司名称</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        {{/compare}}
+                        {{#compare  msgctrl 'indexOf' '7'}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">职务</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        {{/compare}}
                     </tr>
                     </thead>
                 </table>
@@ -53,7 +79,7 @@
         </div>
         <div class="bui-grid-body">
             <table cellspacing="0" cellpadding="0" class="bui-grid-table">
-                <tbody id="wwy-mobile-list-ul">
+                <tbody id="wwy-message-list-ul">
                 </tbody>
             </table>
         </div>

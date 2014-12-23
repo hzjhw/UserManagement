@@ -8,7 +8,7 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
     'template/wwy_mobile_list', 'template/wwy_mobile_item', 'BaseUtils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyItem,
-      WwyCollection, listTemp, itemTemp, BaseUtils,wyId;
+        WwyMobileCollection, listTemp, itemTemp, BaseUtils,wyId;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -22,8 +22,10 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
     /**
      * 集合类
      */
-    WwyCollection = BaseCollection.extend({
-      url: CONST.API + '/wwy/mobile/list/'+app.getData("wyId"),
+    WwyMobileCollection = BaseCollection.extend({
+        url: function () {
+            return CONST.API +  '/wwy/mobile/list/'+this.getWyId()
+        },
       model: WwyModel,
       initialize: function () {
         this._initialize();
@@ -58,15 +60,8 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
      */
     WwyMobileList = BaseList.extend({
       el: '#jhw-main',
-      defaults : {
-        "wyId":"44444"
-      },
       events: {
-        'click #toggle-all': '_toggleAllChecked',
-        'click .showqrcode': 'showQrcode',
-        'click .wwy-add': 'openAddDialog',
-        'click .btn-search': 'search',
-        'click .btn-blacklist': 'blackList'
+        'click #toggle-all': '_toggleAllChecked'
       },
       initialize: function (options) {
         this.options = options || {};
@@ -76,7 +71,7 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
           enterRender: '.btn-search',
           template: listTemp,
           model: WwyModel,
-          collection: WwyCollection,
+          collection: WwyMobileCollection,
           item: WwyMobileItem
         }).then(function (baseListCtx) {
                 baseListCtx._initPagination(baseListCtx._options);

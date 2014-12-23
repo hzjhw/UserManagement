@@ -11,7 +11,9 @@ app.addModule('WwyList', 'modules/wwy/controllers/WwyList.js');
 app.addModule('WwyDetail', 'modules/wwy/controllers/WwyDetail.js');
 
 app.addModule('WwyMobileList', 'modules/wwy/controllers/WwyMobileList.js');
+app.addModule('WwyMessageList', 'modules/wwy/controllers/WwyMessageList.js');
 
+app.addModule('WwyMessageModel', 'models/WwyMessageModel.js');
 /**
  * 路由
  * */
@@ -26,6 +28,14 @@ app.addRoute('wwy_mobile/:id', function(id){
             wyId:id
         });
         app.addView('WwyMobileList', wwyMobileList);
+    });
+});
+app.addRoute('wwy_message/:id', function(id){
+    seajs.use(['jquery', 'WwyMessageList'], function (jquery, WwyMessageList) {
+        var wwyMessageList = new WwyMessageList({
+            wyId:id
+        });
+        app.addView('WwyMessageList', wwyMessageList);
     });
 });
 /**
@@ -46,4 +56,10 @@ app.addTemplate('template/wwy_mobile_item', function (require, exports, module) 
 });
 app.addTemplate('template/wwy_mobile_list', function (require, exports, module) {
     module.exports = require('modules/wwy/views/wwy_mobile_list.html');
+});
+app.addTemplate('template/wwy_message_item', function (require, exports, module) {
+    module.exports = require('modules/wwy/views/wwy_message_item.html');
+});
+app.addTemplate('template/wwy_message_list', function (require, exports, module) {
+    module.exports = require('modules/wwy/views/wwy_message_list.html');
 });
