@@ -128,9 +128,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .btn-tool-sort': 'proSort'
       },
       initialize: function () {
-        this.options.args = {
-          name: '111'
-        }
         this._initialize({
           render: '#product-list-ul',
           enterRender: '.btn-search',
@@ -139,6 +136,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           collection: ProductCollection,
           item: ProductItem,
           pagination: true,
+          args: {
+            name: '111'
+          },
           detail: CONST.HOST + '/modules/product/product_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
