@@ -7,7 +7,7 @@ r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.column,s(o,r.column)),c(o,r
  */
 CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
-CONST.DEBUG_CONSOLE = true;
+CONST.DEBUG_CONSOLE = false;
 CONST.APP_VERSION = '20141216';
 
 /**
@@ -173,7 +173,7 @@ Est.each(app.getTemplates(), function (value, key) {
  * */
 seajs.use(['jquery', 'underscore', 'backbone'],
   function ($, _, Backbone) {
-    var b_routes = { routes: { '': 'index'},defaults: function () {
+    var b_routes = { routes: { '': 'index'}, defaults: function () {
       //$(document.body).append("This route is not hanled.. you tried to access: " + other);
     } };
     Est.each(app.getRoutes(), function (value, key) {
@@ -188,13 +188,27 @@ seajs.use(['jquery', 'underscore', 'backbone'],
 
 /**
  * 调试
+ *
+ * @method debug
+ * @param str
+ * @param options
+ * @author wyj 14.12.24
+ * @example
+ *   debug('test');
+ *   debug('test', {
+ *    type: 'error' // 打印红色字体
+ *   });
+ *   debug(function(){
+ *     return 'test';
+ *   });
  * */
 window.debug = function (str, options) {
-  if (CONST.DEBUG_CONSOLE){
-    if (options && options.type && options.type === 'error'){
-      console.error(str);
-    } else{
-      console.log(str);
+  var opts, msg;
+  if (CONST.DEBUG_CONSOLE) {
+    opts = Est.extend({ type: 'console' }, options);
+    msg = Est.typeOf(str) === 'function' ? str() : str;
+    if (!Est.isEmpty(msg)) {
+      return opts.type === 'error' ? console.error(msg) : console.log(msg);
     }
   }
 };
