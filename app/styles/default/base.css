@@ -214,6 +214,11 @@ label.checkbox { padding-left: 5px; }
 #jhw .module01 .bodyContTitle span{color:#646464;display:inline-block;width:134px;height:38px;line-height:38px;background:#fff;border:1px solid #e7e7e7;text-align:center;}
 #jhw .module01 .bodyContContent{clear:both;background:#fafafa;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;padding:12px 0 16px 15px;height:160px;}
 #jhw .module01 .bodyContContent02{display:none;}
+#jhw .module01 .notice{float:left;padding:0 10px;width:164px;height:158px;background:#fff;border:1px solid #e7e7e7;}
+#jhw .module01 .notice p{margin:0;}
+#jhw .module01 .notice p.time{color:#000;}
+#jhw .module01 .notice p.biaoti{color:#ff4400;}
+#jhw .module01 .notice002,#jhw .module01 .notice003{margin-left:10px;}
 #jhw .module02{float:left;padding-left:15px;width:330px;margin-bottom:15px;}
 #jhw .module02 .mokuai001 img{float:left;margin-right:12px;}
 #jhw .module02 .mokuai001 p{margin:0;line-height:21px;}
@@ -247,6 +252,9 @@ label.checkbox { padding-left: 5px; }
 #jhw .module04 .mokuai{float:left;padding-left:7px;width:310px;border:1px solid #dfdfdf;}
 #jhw .module04 .mokuai .wdsp{color:#000;font-weight:bold;}
 #jhw .module04 .mokuai .yuansu{float:left;}
+#jhw .module04 .mokuai .yuansu001{padding-left:29px;padding-right:28px;}
+#jhw .module04 .mokuai .yuansu002{padding-left:29px;padding-right:28px;}
+#jhw .module04 .mokuai .yuansu003{padding-left:29px;}
 #jhw .module04 .mokuai .num{color:#0164ca;}
 /* 产品 ****************************************************************************************/
 #jhw-product{ }
@@ -263,14 +271,14 @@ label.checkbox { padding-left: 5px; }
 #jhw .jhw-category-product .cate-04{ margin:0 0 0  46px;padding:0;}
 #jhw .jhw-category-product .cate-04 .x-caret-down{border:none;}
 
-#jhw .jhw-category-news .cate-01{ margin-left:0px; }
+#jhw .jhw-category-news .cate-01{ margin-left:0px;}
 #jhw .jhw-category-news .cate-02{ margin:0 0 0 -22px; padding:0;}
 #jhw .jhw-category-news .cate-02 .x-caret-down{border:none;}
 #jhw .jhw-category-news .cate-03{ margin:0 0 0 0px; padding:0;}
 #jhw .jhw-category-news .cate-03 .x-caret-down{border:none;}
-#jhw .jhw-category-news .cate-04{ margin:0 0 0  22px; padding:0;}
+#jhw .jhw-category-news .cate-04{ margin:0 0 0 22px; padding:0;}
 #jhw .jhw-category-news .cate-04 .x-caret-down{border:none;}
-#jhw .jhw-category-news .cate-05{ margin:0 0 0  46px;padding:0;}
+#jhw .jhw-category-news .cate-05{ margin:0 0 0 46px;padding:0;}
 #jhw .jhw-category-news .cate-05 .x-caret-down{border:none;}
 
 #jhw .x-caret-sub{ border: none; width: 40px; vertical-align: middle; height: 40px; background: url(img/cate-sub.jpg) no-repeat scroll 18px -1px transparent;}
