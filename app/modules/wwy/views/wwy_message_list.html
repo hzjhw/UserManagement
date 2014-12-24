@@ -24,54 +24,58 @@
                         </th>
                         <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
                             style="width: 40px;">
-                            <div class="bui-grid-hd-inner center"><span>序号</span></div>
+                            <div class="bui-grid-hd-inner center"><span>序号 </span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">转自</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        {{#compare  msgctrl 'indexOf' '1'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '1'}}
                             <th class="bui-grid-hd grid-td-col1">
                                 <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">姓名</span><span
                                         class="bui-grid-sort-icon">&nbsp;</span></div>
                             </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '2'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '2'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">手机</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '3'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '3'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">email</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '4'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '4'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">内容</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '5'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '5'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">电话</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '6'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '6'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">公司名称</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
-                        {{#compare  msgctrl 'indexOf' '7'}}
+                        {{#compare  _options._args.msgctrl 'indexOf' '7'}}
                         <th class="bui-grid-hd grid-td-col1">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">职务</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         {{/compare}}
+                        <th class="bui-grid-hd grid-td-col1">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
                     </tr>
                     </thead>
                 </table>

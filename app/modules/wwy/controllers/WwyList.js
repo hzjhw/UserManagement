@@ -108,12 +108,16 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
         });
       },
         // 查看二维码
-        showQrcode: function () {
+        showQrcode: function (e) {
             var url = CONST.HOST + '/modules/wwy/views/wwy_qrcode.html?id='
-                + Est.nextUid();
+                + $(e.srcElement).attr("wyId");
             this._detail({
                 title: '查看二维码',
                 url: url,
+                width:300,
+                height:300,
+                hideSaveBtn: true,
+                hideResetBtn: true,
                 oniframeload: function (win) {
                     win.app = app;
                    // app.getView('wwyDetail').setType('edit');

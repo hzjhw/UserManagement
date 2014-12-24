@@ -28,6 +28,7 @@
 <!--<![endif]-->
 <div id="jhw-detail" style="padding-top:5px;"></div>
 <script type="text/javascript" src="../../../vendor/jquery/jquery-1.10.2.js"></script>
+<div class="wwy_qrcode"></div>
 <script type="text/javascript">
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
@@ -37,8 +38,8 @@
     var arg = GetQueryString('id');
     arg = arg.replace(/[^1-9]/g,"");
     var urlpath = "http://www.jihui88.com/wwy/info?arg="+arg;
-    //$(".wwy_qrcode").html(urlpath);
+   var img = '<img src="http://qr.liantu.com/api.php?w=250&text="'+urlpath+'">';
+    $(".wwy_qrcode").html(img);
 </script>
-<div class="wwy_qrcode"></div>
 </body>
 </html>

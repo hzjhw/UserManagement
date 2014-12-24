@@ -3,9 +3,9 @@
  * @namespace WwyDetail
  * @author yongjin on 2014/10/31
  */
-define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/wwy_detail'],
+define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',"BaseUtils", 'dialog', 'template/wwy_detail'],
   function (require, exports, module) {
-    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog;
+    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog,BaseUtils;
 
     WwyModel = require('WwyModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -13,6 +13,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
     template = require('template/wwy_detail');
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
+      BaseUtils = require('BaseUtils');
 
     WwyDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -46,7 +47,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
                   ]
               });
               tab.on('selectedchange', function (ev) {
-                  ctx._resetIframe();
+                  BaseUtils.resetIframe();
               });
           });
           // 编辑器

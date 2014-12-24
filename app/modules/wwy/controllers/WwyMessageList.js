@@ -47,7 +47,8 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
             tagName: 'tr',
             className: 'bui-grid-row',
             events: {
-                'click .toggle': '_toggleChecked'
+                'click .toggle': '_toggleChecked',
+                'click .delete': '_del'
             },
             // 初始化
             initialize: function () {
@@ -75,16 +76,16 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
                 detail.fetch({
                     sync: true
                 }).then(function(result){
-                        ctx.options.args = {
-                            msgctrl:detail.msgctrl
-                        }
                         ctx._initialize({
                             render: '#wwy-message-list-ul',
                             enterRender: '.btn-search',
                             template: listTemp,
                             model: WwyMessageModel,
                             collection: WwyMessageCollection,
-                            item: WwyMessageItem
+                            item: WwyMessageItem,
+                            args: {
+                                msgctrl:detail.get("msgctrl")
+                            }
                         }).then(function (baseListCtx) {
                                 baseListCtx._initPagination(baseListCtx._options);
                                 baseListCtx._load({
