@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script type="text/javascript" src="http://jihui88.com/js/jquery.js"></script>
+<script>
+$(function(){
+	$(".submitL").click(function(){
+		$.ajax({
+		url:"http://jihui88.com/rest/shop/member/login",
+		type:"POST",
+		data:{
+			username:$(".username").val(),
+			password:$(".password").val(),
+			randCode:$(".randCode").val(),
+			enterpriseId:$(".entId").val()
+		},
+		success:function(result){
+			alert(result);
+		}
+	})
+	})
+	
+})
+</script>
+企业ID:<input type="text" class="entId" value="Enterp_0000000000000000000000039"/>用户名:<input type="text" class="username" value="ggggfj"/>密码:<input type="text" class="password" value="123456"/>验证码:<input type="text"  class="randCode">
+						<label class="requireField"><img width="56" height="25" src="/veriImg" valign="bottom" name="verifyPic" id="verifyPic" class="validate-num"></label>
+						<input type="button" class="submitL" value="登陆"/>
+ </body>
+</html>
