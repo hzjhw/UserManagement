@@ -23,7 +23,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
 
     collection = BaseCollection.extend({
       url: function () {
-        return CONST.API + '/attr/list/' + this.getCategoryId();
+        return this.getUrl() ||
+          CONST.API + '/attr/list/' + this.getCategoryId();
       },
       model: model,
       initialize: function () {
@@ -34,6 +35,12 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
       },
       getCategoryId: function () {
         return this.categoryId;
+      },
+      setUrl: function (url) {
+        this.attUrl = url;
+      },
+      getUrl: function () {
+        return this.attUrl;
       }
     });
 
@@ -93,6 +100,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             baseListCtx._load({
               beforeLoad: function (collection) {
                 collection.setCategoryId(options.categoryId);
+                baseListCtx.options.url &&
+                collection.setUrl(baseListCtx.options.url);
               }
             }).then(function () {
               ctx.after();

@@ -4,9 +4,9 @@
  * @author wxw on 14-12-16
  */
 define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHelper', 'BaseDetail', 'dialog',
-    'template/member_attribute_detail','AttributesAdd'],
+    'template/member_attribute_detail','AttributesAdd', 'BaseUtils'],
   function (require, exports, module) {
-    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag,AttributesAdd;
+    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag,AttributesAdd, BaseUtils;
 
     MemberAttributeModel = require('MemberAttributeModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,6 +15,7 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
     dialog = require('dialog');
     Tag = require('Tag');
     AttributesAdd =require('AttributesAdd');
+    BaseUtils = require('BaseUtils');
 
     MemberAttributeDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -47,7 +48,7 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
       },
       attributeSelect: function () {
         var ctx = this;
-        this._initSelect({
+        BaseUtils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
           itemId: 'value',
@@ -65,14 +66,14 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
           } else {
             $("#multi-attribute").hide();
           }
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         });
       },
       attributeRender: function () {
         var ctx = this;
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute', add: function () {
-          ctx._resetIframe();
+          BaseUtils.resetIframe();
         }};
         if (attributesOptionList && attributesOptionList.length > 0) {
           options.items = attributesOptionList;

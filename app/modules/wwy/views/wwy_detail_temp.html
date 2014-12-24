@@ -1,0 +1,234 @@
+<div id="wwy-add-inner ">
+<form id="J_Form" action="" class="form-horizontal ">
+<div id="tab"></div>
+<div id="panel" class="" style="padding:10px;">
+<!--常规-->
+<div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>页面版式：</label>
+        <div class="controls">
+            <label><input id="model-type" type="radio" name="wwyType" value="00" {{#compare
+                wwytype '==='
+                '00'}}checked{{/compare}}>普通模式</label>
+            <label><input id="model2-type" type="radio" name="wwyType" value="01" {{#compare
+                wwytype '==='
+                '01'}}checked{{/compare}}>翻屏模式</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <div id="wwytype01-cont"
+             class="wwytype00-cont wwytype01-cont multi-fieldline pic-list-01  clearfix"
+             style="{{#compare  wwytype '===' '00'}}display:none;{{/compare}}">
+            <div class="music-warp clean">
+                <div class="c1">
+                    <span class="star"></span>音乐地址：
+                </div>
+                <div class="c2">
+                    <input name="music" type="text" class="text"
+                           style="width: 300px;" onblur="saveMusic(this)"
+                           placeholder="请输入音乐网址">
+                </div>
+            </div>
+            <div class="fieldline clearfix">
+                <div class="c1">
+                    <span class="star"></span>隐藏分享：
+                </div>
+                <div class="c2">
+                    <input type="checkbox" class="wwyhidsharecheckbox"
+                           onclick="saveResult()" name="wwyhidsharecheckbox" value="00"
+                           id="wwyhidsharecheckbox"> <label
+                        for="wwyhidsharecheckbox">隐藏分享</label><input type="checkbox"
+                                                                     class="wwyhidzfcheckbox" onclick="saveResult()"
+                                                                     name="wwyhidzfcheckbox" value="00" id="wwyhidzfcheckbox">
+                    <label for="wwyhidzfcheckbox">隐藏转发</label>
+                </div>
+                <div class="c3"></div>
+            </div>
+            <div class="c1">
+                <span class="star"></span>添加图片：
+            </div>
+            <div class="c2" style="width: 580px;">
+                <ul class="wwy-img-ul">
+                    <li>
+                        <div class="wwy-img">
+                            <img width="96" class="pic-main" height="96"
+                                 src="/images/nophoto.jpg" style="display: block;"> <input
+                                type="hidden" name="pic1" id="pic1" class="picSrcInput" />
+                            <div style="text-align: center; line-height: 23px;">
+                                <a id="various3"
+                                   href="/common/picUpload/upload.jsp?callbackFn=setPic&valueId=pic1&pn=1"
+                                   class="pic-main-a">选择图片</a>
+
+                                <!-- <a href="javascript:;" class="extendToolBtn" title="设置图片是否可替换， 刮刮卡效果等">设置</a> -->
+
+                            </div>
+
+                            <div class="operator" style="display: none;">
+                                <a href="javascript:;" onclick="moveLeft(this)"
+                                   class="moveLeft">左移</a> <a href="javascript:;"
+                                                              onclick="moveRight(this)" class="moveRight">右移</a> <a
+                                    href="javascript:;" onclick="removePic(this)"
+                                    class="removePic">删除</a>
+                            </div>
+                        </div>
+                        <div class="extendTool" style="">
+                            <div>
+                                <input class="can-be-replace" onclick="saveResult()"
+                                       type="checkbox" title="被转发时， 这张图片是否可被替换"></input> <label
+                                    for="">设置被转发时， 转发者是否可以将此图片替换掉</label>
+                            </div>
+                            <div>
+                                <input class="is-guagua" onclick="setGuagua(this)"
+                                       type="checkbox" title="设置为刮刮卡图片， 只能设置一张"></input> <label
+                                    for="">设置是否将此图片作为刮刮卡的封面</label>
+                            </div>
+                            <div class="pic-href">
+                                图片链接： <input type="text" onblur="saveResult()"
+                                             name="picHref" class="picHref" />&nbsp;&nbsp;<input
+                                    type="checkbox" name="hrefBlank" class="hrefBlank"
+                                    onclick="saveResult()"></input><label>打开新窗口</label>
+                            </div>
+                            <div class="video-container">
+                                <div class="extendTool-video">
+                                    视频地址： <input type="text" class="text" placeholder="视频地址"
+                                                 onchange="saveResult(this)" name="video"> <br>
+                                    视频封面图片：<a id="various3" class="video-pic-a"
+                                              href="/common/picUpload/upload.jsp?callbackFn=setVideoPic&valueId=video-pic-hid&pn=1">选择图片</a>
+                                    <a href="javascript:;" onclick="removeVideoPic(this)">移除</a>
+                                </div>
+                                <div class="video-pic">
+                                    <input type="hidden" class="videoPic" id="video-pic-hid"
+                                           name="videoPic" /> <img width="40" class="video-pic"
+                                                                   height="40" src="/images/nophoto.jpg"
+                                                                   style="display: block;">
+                                </div>
+                            </div>
+                            <div class="add-container">
+                                添加内容： <input type="button" class="btn" value="添加"
+                                             onclick="openWyyAddDialog(this)" /> <input type="hidden"
+                                                                                        name=append />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>活动标题：</label>
+        <div class="controls">
+            <input id="model-title" name="title" value="{{title}}" type="text" class="input-middle">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>活动手机：</label>
+        <div class="controls">
+            <input id="model-phone" name="phone" value="{{phone}}" type="text" class="input-middle">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>转发控制：</label>
+        <div class="controls">
+            <label><input id="model-isforwoard" type="radio" name="isforwoard" value="0" {{#compare
+                isforwoard '==='
+                '0'}}checked{{/compare}}>关闭</label>
+            <label><input id="model2-isforwoard" type="radio" name="isforwoard" value="1" {{#compare
+                isforwoard '==='
+                '1'}}checked{{/compare}}>开启</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>留言控制：</label>
+        <div class="controls msgctrl">
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-1" value="1" {{#compare  msgctrl 'indexOf' '1'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-1">姓名</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-2" value="2" {{#compare  msgctrl 'indexOf' '2'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-2">手机</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-3" value="3" {{#compare  msgctrl 'indexOf' '3'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-3">email</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-4" value="4" {{#compare  msgctrl 'indexOf' '4'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-4">内容</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-5" value="5" {{#compare  msgctrl 'indexOf' '5'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-5">电话</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-6" value="6" {{#compare  msgctrl 'indexOf' '6'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-6">公司名称</label>
+                <input type="checkbox" onclick="ctrlmsg(this)" id="msgctrl-7" value="7" {{#compare  msgctrl 'indexOf' '7'}}checked{{/compare}} name="msgctrl">
+                <label class="checkboxLabel" for="msgctrl-7">职务</label>
+                <input type="hidden" value="" name="__multiselect_msgctrl" id="__multiselect_newsForm_msgctrl"></div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>显示留言：</label>
+        <div class="controls">
+                <input type="radio" value="0" id="newsForm_showmsg0" {{#compare  showmsg '===' '0'}}checked{{/compare}} name="showmsg"><label for="newsForm_showmsg0">关闭</label>
+                <input type="radio" value="1" id="newsForm_showmsg1" {{#compare  showmsg '===' '1'}}checked{{/compare}} name="showmsg"><label for="newsForm_showmsg1">开启</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>留言显示项：</label>
+        <div class="controls showmsgctrl">
+            {{#compare  msgctrl 'indexOf' '1'}} <input type="checkbox"  id="msgctrl-11" value="1"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-11">姓名</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '2'}}<input type="checkbox"  id="msgctrl-22" value="2"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-22">手机</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '3'}} <input type="checkbox"  id="msgctrl-33" value="3"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-33">email</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '4'}}<input type="checkbox"  id="msgctrl-44" value="4"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-44">内容</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '5'}}<input type="checkbox"  id="msgctrl-55" value="5"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-55">电话</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '6'}}<input type="checkbox"  id="msgctrl-66" value="6"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-66">公司名称</label>{{/compare}}
+            {{#compare  msgctrl 'indexOf' '7'}}<input type="checkbox"  id="msgctrl-77" value="7"  name="msgctrl">
+            <label class="checkboxLabel" for="msgctrl-77">职务</label>{{/compare}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>内容：</label>
+        <div class="controls">
+            <textarea id="model-content" name="content" class="ckeditor content text" rows="12"
+                      cols="95" style="width: 100%;height:250px;">{{content}}</textarea>
+        </div>
+    </div>
+    <div class="row actions-bar" style="display:none;">
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">保存</button>
+            <button id="reset" type="reset" class="button">重置</button>
+        </div>
+    </div>
+</div>
+    <!--分享参数-->
+    <div class="hide" style="margin: -10px;">
+        <div class="control-group">
+            <label class="control-label"><s>*</s>分享标题：</label>
+            <div class="controls">
+                <input id="model-sharetitle" name="sharetitle" value="{{sharetitle}}" type="text" class="input-middle">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>分享描述：</label>
+            <div class="controls">
+                <input id="model-sharedesc" name="sharedesc" value="{{sharedesc}}" type="text" class="input-middle">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>分享图片：</label>
+            <div class="controls">
+                <img src="http://img.jihui88.com/${sharepic}" id="showPic"
+                     style="width: 108px; height: 80px;" />
+                <input type="text" value="">
+            </div>
+        </div>
+    </div>
+    <!--其它参数-->
+    <div class="hide" style="margin: -10px;">
+        <div class="control-group">
+            <label class="control-label"><s>*</s>head css/js 内容：</label>
+            <div class="controls">
+                <textarea id="model-hstr" name="hstr" class="hstr text" rows="12"
+                          cols="95" style="width: 100%;height:250px;">{{hstr}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</div>

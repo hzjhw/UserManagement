@@ -69,6 +69,9 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
         case '||':
           return (v1 || v2) ? options.fn(this) :
             options.inverse(this);
+         case 'indexOf':
+           return (v1.indexOf(v2)>-1) ? options.fn(this) :
+                  options.inverse(this);
         default:
           return options.inverse(this);
       }
@@ -76,16 +79,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
       console.log('【Errow】: hbs.compare v1=' + v1 + ';v2=' + v2 + e);
     }
   });
-    /**
-     * 审核状态转换
-     */
-    Handlebars.registerHelper("statetran",function(value){
-        if(value==00){
-            return "未审核";
-        }else if(value==01){
-            return "已审核";
-        }
-    });
+
   /**
    * 时间格式化
    * @author wyj

@@ -1,0 +1,72 @@
+<td class="bui-grid-cell grid-td-checkbox">
+    <div class="bui-grid-cell-inner">
+        <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
+        </div>
+    </div>
+</td>
+<td class="x-grid-rownumber  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
+    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">{{add dx 1}}</span></div>
+</td>
+
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-title" class="pro-list-title" title="{{oldmobile}}">{{fromMobile}}</span>
+    </div>
+</td>
+{{#compare  _options._args.msgctrl 'indexOf' '1'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-name" class="pro-list-title">{{name}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '2'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-mobile" class="pro-list-title">{{mobile}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '3'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-email" class="pro-list-title">{{email}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '4'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-content" class="pro-list-title" >{{content}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '5'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-phone" class="pro-list-title" >{{phone}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '6'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-entName" class="pro-list-title" >{{entName}}</span>
+    </div>
+</td>
+{{/compare}}
+{{#compare  _options._args.msgctrl 'indexOf' '7'}}
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-job" class="pro-list-title" >{{job}}</span>
+    </div>
+</td>
+{{/compare}}
+<td class="bui-grid-cell grid-td-handle">
+    <div class="bui-grid-cell-inner">
+        <button type="button" class="button button-danger button-mini delete"><i class="icon-white icon-trash"></i>删除
+        </button>
+    </div>
+</td>
+
+

@@ -76,7 +76,9 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
         });
       },
       render : function(){
-        this._render();
+        this._render({
+          height:300
+        });
       }
     });
 

@@ -136,6 +136,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           collection: ProductCollection,
           item: ProductItem,
           pagination: true,
+          args: {
+            name: ''
+          },
           detail: CONST.HOST + '/modules/product/product_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);

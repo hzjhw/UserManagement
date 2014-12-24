@@ -104,6 +104,7 @@
         #pic-source-list{ height: 85%; }
         .photo-list-container{height:100%;}
         #jhw #pic-source-album .album-tool { display: none; }
+        #jhw #btn-source{display:block;background: url(images/resource.jpg) no-repeat scroll 0 0 transparent;width:150px;height:150px;cursor:pointer;margin-top:-8px;}
     </style>
 </head>
 <!--[if IE 6]>
@@ -158,10 +159,9 @@
         </ul>
     </div>
    <div class="upload-right">
-       <button id="btn-source" type="button" class="button button-info"><i
-               class="icon-white icon-folder-open"></i> 我的资源库
-       </button>
-
+       <div id="btn-source">
+           &nbsp;
+       </div>
    </div>
 </div>
     <!--选项设置-->
@@ -382,20 +382,24 @@ function uploadProgress(file, bytesLoaded) {
 
 function uploadSuccess(file, serverData) {
     try {
+        if (Est.isEmpty(serverData)){
+            alert('服务器上未返回数据！');
+        }
         var progress = new FileProgress(file, this.customSettings.upload_target);
         var l = serverData.length;
-        var s = serverData.substring(1, l - 34);
-        var id = serverData.substring(l - 33, l - 1);
+        //var s = serverData.substring(1, l - 34);
+        //var id = serverData.substring(l - 33, l - 1);
         $("#" + this.customSettings.upload_target).removeClass("startToUpload");
-        addImage(s.replace(/\\/g, ""), id, file.name);
+        //addImage(s.replace(/\\/g, ""), id, file.name);
 
         progress.setStatus("缩略图生成完毕.");
         progress.toggleCancel(true);
         serverData = serverData.split(',');
         if (serverData.length === 2){
             result.push({
-                attId: serverData[0],
-                serverPath: serverData[1]
+                attId: serverData[1].replace(/\"/g, ''),
+                serverPath: serverData[0].replace(/\"/g, '').replace(/\\\//g, "/")
+                        .replace(/^.+(upload.*?)/g, "$1").replace('_5', '')
             });
         }
     } catch (ex) {

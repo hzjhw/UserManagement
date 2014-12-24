@@ -190,6 +190,11 @@ seajs.use(['jquery', 'underscore', 'backbone'],
  * 调试
  * */
 window.debug = function (str, options) {
-  if (CONST.DEBUG_CONSOLE)
-    console.log(str);
+  if (CONST.DEBUG_CONSOLE){
+    if (options && options.type && options.type === 'error'){
+      console.error(str);
+    } else{
+      console.log(str);
+    }
+  }
 };

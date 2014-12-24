@@ -113,7 +113,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
                 value: '搜索',
                 callback: function () {
                   ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchMemberRank = $('input[name=searchMemberRank]').val();
+                  ctx.searchMemberRank = $('select[name=searchMemberRank]').val();
                   ctx._search({
                     filter: [
                       {key: 'username', value: ctx.searchKey },

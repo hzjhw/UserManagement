@@ -35,7 +35,7 @@
         <label class="control-label"><s>*</s>E-mail：</label>
         <div class="controls">
             <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
-                   data-rules="{required : true}"
+                   data-rules="{email:true,required : true}"
                    data-tip='{"text":"请输入积分","iconCls":"icon icon-pencil"}'>
         </div>
     </div>
@@ -94,7 +94,11 @@
         </div>
     </div>
 
+    <div id="member-attr">
+        <div id="attributes-list">
 
+        </div>
+    </div>
 
     <div class="row actions-bar hide" >
         <div class="form-actions span13 offset3">

@@ -41,11 +41,11 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="../classes/BaseCollection.html">BaseCollection</a></li>
+                <li><a href="../classes/BaseCollection - 集合类.html">BaseCollection - 集合类</a></li>
             
-                <li><a href="../classes/BaseComposite.html">BaseComposite</a></li>
+                <li><a href="../classes/BaseComposite - 树集合类.html">BaseComposite - 树集合类</a></li>
             
-                <li><a href="../classes/BaseDetail.html">BaseDetail</a></li>
+                <li><a href="../classes/BaseDetail - 详细页.html">BaseDetail - 详细页</a></li>
             
                 <li><a href="../classes/BaseItem.html">BaseItem</a></li>
             
@@ -120,13 +120,11 @@
 <div class="box intro">
     <p>基础模型类</p>
 <ul>
-<li>initialize 实现父类_initialize<ul>
+<li>initialize 实现父类_initialize</li>
 <li>defaults (可选) 默认值  如 Est.extend({}, BaseModel.prototype.defaults);</li>
 <li>baseId (可选) ID标识符 如 productId</li>
 <li>baseUrl (可选) 服务器交互地址</li>
 <li>validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel</li>
-</ul>
-</li>
 </ul>
 
 </div>
@@ -183,22 +181,22 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_[public] - _saveField">[public] - _saveField</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[public] - _toggle">[public] - _toggle</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method private">
-                                <a href="#method_[protected] - _validate">[protected] - _validate</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[public] - saveField">[public] - saveField</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[public] - toggle">[public] - toggle</a>
+                                <a href="#method_[public] - _validate">[public] - _validate</a>
 
                                 
                                 
@@ -256,7 +254,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l127"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:127</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l130"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:130</code></a>
         
         </p>
 
@@ -343,7 +341,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l46"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:46</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l48"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:48</code></a>
         
         </p>
 
@@ -539,122 +537,20 @@
     
 
     
-</div>
+        <div class="example">
+            <h4>Example:</h4>
 
-                
-                    <div id="method_[protected] - _validate" class="method item private">
-    <h3 class="name"><code>[protected] - _validate</code></h3>
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this._initialize();</code></pre>
 
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>attributes</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>callback</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
+            </div>
         </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l152"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:152</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>预处理验证， 若模型类里有silent=true字段，则取消验证</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">attributes</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">callback</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
     
 </div>
 
                 
-                    <div id="method_[public] - saveField" class="method item">
-    <h3 class="name"><code>[public] - saveField</code></h3>
+                    <div id="method_[public] - _saveField" class="method item">
+    <h3 class="name"><code>[public] - _saveField</code></h3>
 
     
         <div class="args">
@@ -707,7 +603,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l90"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:90</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l92"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:92</code></a>
         
         </p>
 
@@ -785,13 +681,14 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   this.model._saveField({
-             id: thisNode.get(&#39;id&#39;),
-             sort: thisNode.get(&#39;sort&#39;)
-           }, ctx, { // ctx须初始化initModel
-           success: function(){},
-           async: false
-           });</p>
+                <pre class="code prettyprint"><code>   this.model._saveField({
+     id: thisNode.get(&#39;id&#39;),
+     sort: thisNode.get(&#39;sort&#39;)
+   }, ctx, { // ctx须初始化initModel
+     success: function(){}, // 保存成功回调
+     async: false, // 是否同步
+     hideTip: false // 是否隐藏提示
+   });</code></pre>
 
             </div>
         </div>
@@ -799,8 +696,8 @@
 </div>
 
                 
-                    <div id="method_[public] - toggle" class="method item">
-    <h3 class="name"><code>[public] - toggle</code></h3>
+                    <div id="method_[public] - _toggle" class="method item">
+    <h3 class="name"><code>[public] - _toggle</code></h3>
 
     
         <span class="paren">()</span>
@@ -831,7 +728,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l143"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:143</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l146"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:146</code></a>
         
         </p>
 
@@ -842,7 +739,7 @@
     </div>
 
     <div class="description">
-        <p>checkbox选择框</p>
+        <p>设置checkbox选择框状态</p>
 
     </div>
 
@@ -850,6 +747,141 @@
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this.model._toggle();</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _validate" class="method item private">
+    <h3 class="name"><code>[public] - _validate</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attributes</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>callback</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l157"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:157</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>预处理验证， 若模型类里有silent=true字段，则取消验证</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attributes</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">callback</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   validate: function (attrs) {
+     return this._validation(attrs, function (attrs) {
+       if (!attrs.sort || attrs.sort &lt; 0) {
+       this.validateMsg = &quot;sort不能为空&quot;;
+     }
+    });</code></pre>
+<p>}</p>
+
+            </div>
+        </div>
     
 </div>
 

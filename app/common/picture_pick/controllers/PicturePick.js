@@ -50,9 +50,6 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
       },
       picUpload: function(type){
         var ctx = this;
-        var doResult = function(result){
-          alert(result.length);
-        }
         type = type || 'local';
         BaseUtils.openUpload({
           id: 'uploadDialog',
@@ -61,29 +58,28 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           username: app.getData('user') && app.getData('user').username,
           auto: true,
           oniframeload: function(){
-            this.iframeNode.contentWindow.uploadCallback = doResult;
+            this.iframeNode.contentWindow.uploadCallback = function(result){
+              ctx.addItems(result);
+            };
           },
           success: function(){
             var result = this.iframeNode.contentWindow.app.getView('picSource').getItems();
-            console.log(result);
-            if (result.length > 0){
-              ctx.model.set('attId', result[0]['attId']);
-              ctx.model.set('serverPath', result[0]['serverPath']);
-              ctx.model.set('title', '重新上传');
-              ctx.model.set('isAddBtn', false);
-              if (!ctx.model.get('hasPic')){
-                ctx.model.set('hasPic', true);
-                console.log(ctx.model);
-                app.getView(ctx._options.viewId).append(new model({
-                  serverPath: CONST.PIC_NONE,
-                  attId: '',
-                  title: '上传图片',
-                  isAddBtn: true
-                }));
-              }
-            }
+            ctx.addItems(result);
           }
         });
+      },
+      addItems: function(result){
+        if (result.length > 0){
+          this.model.set('attId', result[0]['attId']);
+          this.model.set('serverPath', result[0]['serverPath']);
+          this.model.set('title', '重新上传');
+          this.model.set('isAddBtn', false);
+          if (!this.model.get('hasPic')){
+            this.model.set('hasPic', true);
+            app.getView(this._options.viewId).addOne();
+          }
+        }
+        window['uploadDialog'].close().remove();
       },
       picUploadSource: function(){
         this.picUpload('sourceUpload');
@@ -95,14 +91,6 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
 
     PicturePick = BaseList.extend({
       initialize: function(){
-        if (this.options.items.length === 0){
-          this.options.items.push({
-            attId: '',
-            serverPath: CONST.PIC_NONE,
-            title: '上传图片',
-            isAddBtn: true
-          });
-        }
         this._initialize({
           collection: collection,
           model: model,
@@ -110,7 +98,20 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           template: listTemp,
           checkAppend: false,
           render: this.options.render || '.photo-list'
+        }).then(function(thisCtx){
+          if (thisCtx.collection.models.length === 1 ||
+            !thisCtx.options._isAdd){
+            thisCtx.addOne();
+          }
         });
+      },
+      addOne: function(){
+        this.collection.push(new model({
+          serverPath: CONST.PIC_NONE,
+          attId: '',
+          title: '上传图片',
+          isAddBtn: true
+        }));
       },
       render: function(){
         this._render();

@@ -15,25 +15,25 @@
 </td>
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner">
-        <span id="model-fromName" class="pro-list-fromName" title="0">{{clickCount}}</span>
+        <span id="model-fromName" class="pro-list-fromName" title="0"><a href="index.html#/wwy_mobile/{{wyId}}">{{clickCount}}</a></span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text">
-        {{msgCount}}</span></div>
+        <a href="index.html#/wwy_message/{{wyId}}">{{msgCount}}</a></span></div>
 </td>
 
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner">
         <span class="pro-list-type">
-        {{statetran state}}
+        {{#compare state '===' '01'}}已审核{{/compare}}{{#compare state '===' '00'}}未审核{{/compare}}
         </span>
     </div>
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
     <div class="bui-grid-cell-inner">
-        <span class="pro-list-ip" title=""><a href="javascript:;" class="showqrcode">查看</a></span>
+        <span class="pro-list-ip" title=""><a href="javascript:;" wyId="{{wyId}}" class="showqrcode">查看</a></span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-category">
@@ -47,7 +47,7 @@
     <div class="bui-grid-cell-inner">
         <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>查看
         </button>
-        <button type="button" class="button button-danger button-mini delete"><i class="icon-white icon-trash"></i>删除
+        <button type="button" class="button button-gray button-mini delete"><i class=" icon-trash"></i>删除
         </button>
     </div>
 </td>

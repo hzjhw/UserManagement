@@ -1362,7 +1362,8 @@ a.badge:focus, a.badge:hover {
     vertical-align: text-top;
     background-image: url(img/sprite-469-300.png);
     background-position: 14px 14px;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    margin-right:2px;
 }
 
 [class*=" icon-mini"], [class^=icon-mini] {
@@ -2750,6 +2751,13 @@ table .span24 {
     background-color: #fff
 }
 
+.button-gray{
+    color: #908F8F;
+    background-color: #E8E8E8;
+    border-color: #C4C4C4;
+}
+
+
 .button-warning {
     color: #fff;
     background-color: #f0ad4e;
@@ -3370,7 +3378,8 @@ input.calendar-time {
     margin-left: 10px;
     float: left;
     display: inline;
-    height: 48px
+    height: 48px;
+    line-height:30px;
 }
 
 .form-horizontal input[class*=span], .form-horizontal select[class*=span] {

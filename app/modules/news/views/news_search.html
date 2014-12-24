@@ -17,16 +17,16 @@
 
         <label class="control-label">新闻类型：</label>
         <div class="controls">
-            <select name="searchLoginView" class="text pro-category" >
-                {{#each loginViewList}}
+            <select name="searchTypeView" class="text pro-category" >
+                {{#each newsTypeList}}
                 <option value="{{value}}" {{#compare value '===' ../searchLoginView}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
         </div>
         <label class="control-label">新闻状态：</label>
         <div class="controls">
-            <select name="searchAds" class="text pro-category" >
-                {{#each adsList}}
+            <select name="searchState" class="text pro-category" >
+                {{#each newsStateList}}
                 <option value="{{value}}" {{#compare value '===' ../searchAds}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>

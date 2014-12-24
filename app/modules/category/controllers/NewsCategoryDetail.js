@@ -3,12 +3,14 @@
  * @namespace NewsCategoryDetail
  * @author jihui-wxw on 2014/12/10
  */
-define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
+define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils'],
   function (require, exports, module) {
-    var NewsCategoryDetail, CategoryModel, BaseDetail;
+    var NewsCategoryDetail, CategoryModel, BaseDetail, BaseUtils, BaseService;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
+    BaseService = require('BaseService');
+    BaseUtils = require('BaseUtils');
 
     NewsCategoryDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -26,9 +28,9 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail'],
        var ctx = this;
         this._render();
         // 新闻分类
-        this._getNewsCategory({ select: true, extend: true })
+        BaseService.getNewsCategory({ select: true, extend: true })
           .then(function (list) {
-            ctx._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-category',
               items: list

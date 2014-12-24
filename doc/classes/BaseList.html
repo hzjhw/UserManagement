@@ -41,21 +41,21 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="../classes/BaseCollection.html">BaseCollection</a></li>
+                <li><a href="../classes/BaseCollection - 集合类.html">BaseCollection - 集合类</a></li>
             
-                <li><a href="../classes/BaseComposite.html">BaseComposite</a></li>
+                <li><a href="../classes/BaseComposite - 树集合类.html">BaseComposite - 树集合类</a></li>
             
-                <li><a href="../classes/BaseDetail.html">BaseDetail</a></li>
+                <li><a href="../classes/BaseDetail - 详细页.html">BaseDetail - 详细页</a></li>
             
-                <li><a href="../classes/BaseItem.html">BaseItem</a></li>
+                <li><a href="../classes/BaseItem - 集合中的单个视图.html">BaseItem - 集合中的单个视图</a></li>
             
                 <li><a href="../classes/BaseList.html">BaseList</a></li>
             
-                <li><a href="../classes/BaseModel.html">BaseModel</a></li>
+                <li><a href="../classes/BaseModel - 模型类.html">BaseModel - 模型类</a></li>
             
                 <li><a href="../classes/BaseUtils.html">BaseUtils</a></li>
             
-                <li><a href="../classes/BaseView.html">BaseView</a></li>
+                <li><a href="../classes/BaseView - 普通视图.html">BaseView - 普通视图</a></li>
             
                 <li><a href="../classes/Est - 工具类库.html">Est - 工具类库</a></li>
             
@@ -120,65 +120,17 @@
 <div class="box intro">
     <p>基础列表视图</p>
 <ul>
-<li>el 目标元素Id， 如 &quot;#jhw-main&quot;<ul>
+<li>el 目标元素Id， 如 &quot;#jhw-main&quot;</li>
 <li>events: {
-&#39;click #toggle-all&#39;: &#39;_toggleAllChecked&#39;, // 选择框
-&#39;click .btn-batch-del&#39;: &#39;_batchDel&#39;, // 批量删除
-&#39;click .product-add&#39;: &#39;_detail&#39; // 添加页面
+  &#39;click #toggle-all&#39;: &#39;_toggleAllChecked&#39;, // 选择框
+  &#39;click .btn-batch-del&#39;: &#39;_batchDel&#39;, // 批量删除
+  &#39;click .product-add&#39;: &#39;_detail&#39; // 添加页面
 }</li>
-<li>initialize 实现父类_initialize
-参数：{
-  template: 字符串模板,
-  render: 插入列表的元素选择符,
-  enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
-  collection: 集合,
-  item: 单视图,
-  model: 模型类,
-  detail: 添加页面url地址
-  checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
-  filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
-  items: <a href="可选， 当无需url请求时"></a>,
-  // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
-  subRender: &#39;.node-tree&#39;, // 下级分类的容器选择符
-  collapse: &#39;.node-collapse&#39; 展开/收缩元素选择符
-  parentId: &#39;belongId&#39;, // 分类 的父类ID
-  categoryId: &#39;categoryId&#39;, // 分类 的当前ID
-  parentValue: &#39;/&#39; // 父分类的parentId值
-  extend: true // false收缩 true为展开
-}
-返回值：promise 参数为thisCtx 当前list上下文
-example1: 载入数据前执行的方法
-this._initialize({}).then(function (thisCtx) {<pre class="code prettyprint"><code>    if (!options._isAdd) {
-      thisCtx._load({
-        beforeLoad: function (collection) { // 载入数据前执行的方法
-          collection.setItemId(options.itemId || null);
-          collection.setTagType(options.tagType || &#39;product&#39;);
-        }
-      });
-    }
-  });</code></pre>
-return this;
-example2:
-this._initialize({<pre class="code prettyprint"><code>   render: &#39;#product-list-ul&#39;,
-   template: listTemp,
-   model: ProductModel,
-   collection: ProductCollection,
-   item: ProductItem
- }).then(function (thisCtx) {
-   thisCtx._initPagination(thisCtx._options);
-   thisCtx._load(thisCtx._options);
- });</code></pre>
-</li>
-<li>render 实现父类 _render</li>
-</ul>
-</li>
-</ul>
-<p>// 重要方法</p>
-<ul>
-<li>_setOption 设置配置
-app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint"><code>      sortField: &#39;orderList&#39;
-    })._moveUp(this.model);</code></pre>
-</li>
+<li>initialize 实现父类_initialize</li>
+<li>实例化
+  app.setView(&#39;productList&#39;, new ProductList({<pre class="code prettyprint"><code> viewId: &#39;productList&#39;,
+ items: []</code></pre>
+   }));</li>
 </ul>
 
 </div>
@@ -229,6 +181,20 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                             </li>
                         
                             <li class="index-item method private">
+                                <a href="#method_[private] - _batchDel">[private] - _batchDel</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[private] - _enterEvent">[private] - _enterEvent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
                                 <a href="#method_[private] - _exchangeOrder">[private] - _exchangeOrder</a>
 
                                 
@@ -242,8 +208,22 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                                 
                             </li>
                         
+                            <li class="index-item method private">
+                                <a href="#method_[private] - _filterRoot">[private] - _filterRoot</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method">
                                 <a href="#method_[private] - _initBind">[private] - _initBind</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[private] - _initCollection">[private] - _initCollection</a>
 
                                 
                                 
@@ -263,13 +243,6 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_[private] - _initPagination">[private] - _initPagination</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method private">
                                 <a href="#method_[private] - _saveSort">[private] - _saveSort</a>
 
@@ -278,56 +251,14 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_[private] - _toggleAllChecked">[private] - _toggleAllChecked</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[private] - constructor">[private] - constructor</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[protected] - _batchDel">[protected] - _batchDel</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[protected] - _detail">[protected] - _detail</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[protected] - _empty">[protected] - _empty</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[protected] - _enterEvent">[protected] - _enterEvent</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[protected] - _filterRoot">[protected] - _filterRoot</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[protected] - _getCheckboxIds">[protected] - _getCheckboxIds</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[protected] - _initCollection">[protected] - _initCollection</a>
 
                                 
                                 
@@ -341,13 +272,6 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[protected] - _load">[protected] - _load</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
                                 <a href="#method_[protected] - _render">[protected] - _render</a>
 
                                 
@@ -355,21 +279,35 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[protected] - _search">[protected] - _search</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[protected] - _setOption">[protected] - _setOption</a>
+                                <a href="#method_[public] - _detail">[public] - _detail</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[protected] - _toggleAllChecked">[protected] - _toggleAllChecked</a>
+                                <a href="#method_[public] - _empty">[public] - _empty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[public] - _getCheckboxIds">[public] - _getCheckboxIds</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[public] - _initPagination">[public] - _initPagination</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[public] - _load">[public] - _load</a>
 
                                 
                                 
@@ -384,6 +322,20 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                         
                             <li class="index-item method private">
                                 <a href="#method_[public] - _moveUp">[public] - _moveUp</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[public] - _search">[public] - _search</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_[public] - _setOption">[public] - _setOption</a>
 
                                 
                                 
@@ -437,7 +389,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l390"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:390</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l372"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:372</code></a>
         
         </p>
 
@@ -502,7 +454,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l224"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:224</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l190"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:190</code></a>
         
         </p>
 
@@ -592,7 +544,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l725"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:725</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l718"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:718</code></a>
         
         </p>
 
@@ -631,6 +583,164 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _batchDel" class="method item private">
+    <h3 class="name"><code>[private] - _batchDel</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l745"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:745</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>批量删除</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this._batchDel({
+   url: CONST.API + &#39;/message/batch/del&#39;
+ });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[private] - _enterEvent" class="method item private">
+    <h3 class="name"><code>[private] - _enterEvent</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l304"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:304</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>回车事件</p>
+
+    </div>
+
     
 
     
@@ -699,7 +809,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l581"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:581</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l568"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:568</code></a>
         
         </p>
 
@@ -837,7 +947,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l436"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:436</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l418"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:418</code></a>
         
         </p>
 
@@ -898,6 +1008,63 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
+                    <div id="method_[private] - _filterRoot" class="method item private">
+    <h3 class="name"><code>[private] - _filterRoot</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l149"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:149</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>过滤父级元素</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_[private] - _initBind" class="method item">
     <h3 class="name"><code>[private] - _initBind</code></h3>
 
@@ -930,7 +1097,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l311"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:311</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l291"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:291</code></a>
         
         </p>
 
@@ -941,12 +1108,141 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     </div>
 
     <div class="description">
-        <p>绑定事件， 如果添加事件， 重置事件</p>
+        <p>绑定事件， 如添加事件， 重置事件</p>
 
     </div>
 
     
 
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _initCollection" class="method item">
+    <h3 class="name"><code>[private] - _initCollection</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>collection</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">ln.promise</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l80"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:80</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化集合类</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">collection</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>对应的collection集合类， 如ProductCollection</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[beforeLoad: 加载数据前执行] [item: 集合单个视图] [model: 模型类]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">ln.promise</span>:
+                    
+                    <p>返回promise对象</p>
+
+                
+            </div>
+        </div>
     
 
     
@@ -995,7 +1291,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l340"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:340</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l320"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:320</code></a>
         
         </p>
 
@@ -1083,7 +1379,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l350"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:350</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l330"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:330</code></a>
         
         </p>
 
@@ -1107,94 +1403,6 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
                 <li class="param">
                     
                         <code class="param-name">model</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_[private] - _initPagination" class="method item">
-    <h3 class="name"><code>[private] - _initPagination</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l253"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:253</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化分页</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
                         <span class="type">Object</span>
                     
 
@@ -1261,7 +1469,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l568"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:568</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l555"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:555</code></a>
         
         </p>
 
@@ -1299,6 +1507,61 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
             </ul>
         </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _toggleAllChecked" class="method item">
+    <h3 class="name"><code>[private] - _toggleAllChecked</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l543"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:543</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>全选checkbox选择框</p>
+
+    </div>
+
     
 
     
@@ -1349,7 +1612,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l75"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:75</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l29"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:29</code></a>
         
         </p>
 
@@ -1395,8 +1658,8 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
-                    <div id="method_[protected] - _batchDel" class="method item private">
-    <h3 class="name"><code>[protected] - _batchDel</code></h3>
+                    <div id="method_[protected] - _initialize" class="method item">
+    <h3 class="name"><code>[protected] - _initialize</code></h3>
 
     
         <div class="args">
@@ -1416,8 +1679,6 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 
     
 
-    
-        <span class="flag private">private</span>
     
 
     
@@ -1439,7 +1700,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l752"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:752</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l40"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:40</code></a>
         
         </p>
 
@@ -1450,7 +1711,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     </div>
 
     <div class="description">
-        <p>批量删除</p>
+        <p>初始化</p>
 
     </div>
 
@@ -1486,9 +1747,35 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   this._batchDel({
-         url: CONST.API + &#39;/message/batch/del&#39;
-       });</p>
+                <pre class="code prettyprint"><code> this._initialize({
+   viewId: &#39;&#39;, viewId  视图身份标识， 以供上移下移等更多功能使用
+   template: 字符串模板,
+   render: 插入列表的元素选择符,
+   model: 模型类,
+   collection: 集合,
+   item: this.options.items || [], //单视图
+   // 以下为可选
+   items: [](可选， 当无需url请求时),
+   checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
+   enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
+   pagination: true, // 是否显示分页
+   detail: 添加页面url地址
+   filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
+   // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
+   subRender: &#39;.node-tree&#39;, // 下级分类的容器选择符
+   collapse: &#39;.node-collapse&#39; 展开/收缩元素选择符
+   parentId: &#39;belongId&#39;, // 分类 的父类ID
+   categoryId: &#39;categoryId&#39;, // 分类 的当前ID
+   parentValue: &#39;/&#39; // 父分类的parentId值
+   extend: true // false收缩 true为展开
+  }).then(function (thisCtx) {
+   thisCtx._initPagination(options);
+   thisCtx._load({
+     beforeLoad: function(collection){
+       this.setCategoryId(options.categoryId);
+     }
+   });
+ });</code></pre>
 
             </div>
         </div>
@@ -1496,8 +1783,71 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
-                    <div id="method_[protected] - _detail" class="method item">
-    <h3 class="name"><code>[protected] - _detail</code></h3>
+                    <div id="method_[protected] - _render" class="method item">
+    <h3 class="name"><code>[protected] - _render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l136"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:136</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染视图</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _detail" class="method item">
+    <h3 class="name"><code>[public] - _detail</code></h3>
 
     
         <div class="args">
@@ -1538,7 +1888,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l474"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:474</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l456"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:456</code></a>
         
         </p>
 
@@ -1588,10 +1938,15 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   this._detail({
-             title: &#39;产品添加&#39;,
-             url: CONST.HOST + &#39;/modules/product/product_detail.html?time=&#39; + new Date().getTime()
-           });</p>
+                <pre class="code prettyprint"><code> this._detail({
+   title: &#39;产品添加&#39;,
+   url: CONST.HOST + &#39;/modules/product/product_detail.html?time=&#39; + new Date().getTime(),
+   hideSaveBtn: true,
+   hideResetBtn: true,
+   end: &#39;&#39;, // url 后附加内容 如： &#39;$attId=&#39; + attId
+   oniframeload: function(win){
+   }
+ });</code></pre>
 
             </div>
         </div>
@@ -1599,8 +1954,8 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
-                    <div id="method_[protected] - _empty" class="method item">
-    <h3 class="name"><code>[protected] - _empty</code></h3>
+                    <div id="method_[public] - _empty" class="method item">
+    <h3 class="name"><code>[public] - _empty</code></h3>
 
     
         <span class="paren">()</span>
@@ -1631,7 +1986,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l360"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:360</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l340"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:340</code></a>
         
         </p>
 
@@ -1651,125 +2006,20 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     
 
     
-</div>
+        <div class="example">
+            <h4>Example:</h4>
 
-                
-                    <div id="method_[protected] - _enterEvent" class="method item private">
-    <h3 class="name"><code>[protected] - _enterEvent</code></h3>
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this._empty();</code></pre>
 
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l324"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:324</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>回车事件</p>
-
-    </div>
-
-    
-
-    
-
+            </div>
+        </div>
     
 </div>
 
                 
-                    <div id="method_[protected] - _filterRoot" class="method item private">
-    <h3 class="name"><code>[protected] - _filterRoot</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l183"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:183</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>过滤父级元素</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_[protected] - _getCheckboxIds" class="method item private">
-    <h3 class="name"><code>[protected] - _getCheckboxIds</code></h3>
+                    <div id="method_[public] - _getCheckboxIds" class="method item private">
+    <h3 class="name"><code>[public] - _getCheckboxIds</code></h3>
 
     
         <span class="paren">()</span>
@@ -1806,7 +2056,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l707"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:707</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l698"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:698</code></a>
         
         </p>
 
@@ -1838,151 +2088,11 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     
 
     
-</div>
-
-                
-                    <div id="method_[protected] - _initCollection" class="method item">
-    <h3 class="name"><code>[protected] - _initCollection</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>collection</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">ln.promise</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l112"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化集合类</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">collection</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>对应的collection集合类， 如ProductCollection</p>
-
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[beforeLoad: 加载数据前执行] [item: 集合单个视图] [model: 模型类]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">ln.promise</span>:
-                    
-                    <p>返回promise对象</p>
-
-                
-            </div>
-        </div>
-    
-
-    
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>  this._initCollection(ProductCollection, {
-             template: viewTemp,
-             render: &#39;#product-list-ul&#39;,
-             item: ProductItem, // item
-             model: ProductModel // model,
-             beforeLoad: function(){ // 加载数据前执行
-               this.setCategoryId(options.categoryId); // this 指向collection
-             }
-          }).then(function (options) {
-             ctx.initPagination(options); // pagination init
-             ctx.load(options); // data load
-         });</code></pre>
+                <pre class="code prettyprint"><code>this._getCheckboxIds(); =&gt; [&#39;id1&#39;, &#39;id2&#39;, &#39;id3&#39;, ...]</code></pre>
 
             </div>
         </div>
@@ -1990,8 +2100,8 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
-                    <div id="method_[protected] - _initialize" class="method item">
-    <h3 class="name"><code>[protected] - _initialize</code></h3>
+                    <div id="method_[public] - _initPagination" class="method item">
+    <h3 class="name"><code>[public] - _initPagination</code></h3>
 
     
         <div class="args">
@@ -2032,7 +2142,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l86"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:86</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l222"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:222</code></a>
         
         </p>
 
@@ -2043,7 +2153,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     </div>
 
     <div class="description">
-        <p>初始化</p>
+        <p>初始化分页</p>
 
     </div>
 
@@ -2079,21 +2189,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   var options = {
-         render: &#39;#product-list-ul&#39;,
-         template: listTemp,
-         model: ProductModel,
-         collection: ProductCollection,
-         item: ProductItem
-       }
-      this._initialize(options).then(function (context) {
-         context._initPagination(options);
-         context._load({
-             beforeLoad: funciton(){
-               this.setCategoryId(options.categoryId);
-             }
-         });
-       });</p>
+                <pre class="code prettyprint"><code>   thisCtx._initPagination(thisCtx._options);</code></pre>
 
             </div>
         </div>
@@ -2101,8 +2197,8 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 </div>
 
                 
-                    <div id="method_[protected] - _load" class="method item">
-    <h3 class="name"><code>[protected] - _load</code></h3>
+                    <div id="method_[public] - _load" class="method item">
+    <h3 class="name"><code>[public] - _load</code></h3>
 
     
         <div class="args">
@@ -2149,7 +2245,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l268"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:268</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l240"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:240</code></a>
         
         </p>
 
@@ -2213,367 +2309,18 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             <h4>Example:</h4>
 
             <div class="example-content">
-                
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[protected] - _render" class="method item">
-    <h3 class="name"><code>[protected] - _render</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l172"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:172</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>渲染视图</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_[protected] - _search" class="method item">
-    <h3 class="name"><code>[protected] - _search</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>array</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l401"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:401</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>搜索</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">array</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[onBeforeAdd: 自定义过滤]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <p>   this._search({
-   filter: [
-             { key: &#39;name&#39;, value: this.searchKey },
-             {key: &#39;prodtype&#39;, value: this.searchProdtype} ,
-             {key: &#39;category&#39;, value: this.searchCategory},
-             {key: &#39;loginView&#39;, value: this.searchLoginView},
-             {key: &#39;ads&#39;, value: this.searchAds}
-           ],
-           onBeforeAdd: function(item){
-                 if (pass &amp;&amp; !Est.isEmpty(obj.value) &amp;&amp;
-                   item.attributes[obj.key].indexOf(obj.value) === -1) {
-                   ctx.collection.remove(item);
-                   pass = false;
-                   return false;
-                 }
-      }});</p>
+                <pre class="code prettyprint"><code>   baseListCtx._load({
+     beforeLoad: function (collection) {
+       collection.setCategoryId(options.categoryId);
+     },
+     page: 1,
+     pageSize: 16
+   }).then(function () {
+     ctx.after();
+   });</code></pre>
 
             </div>
         </div>
-    
-</div>
-
-                
-                    <div id="method_[protected] - _setOption" class="method item private">
-    <h3 class="name"><code>[protected] - _setOption</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>obj</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="../classes/BaseList.html" class="crosslink">BaseList</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l775"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:775</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>设置参数</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">obj</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="../classes/BaseList.html" class="crosslink">BaseList</a></span>:
-                    
-                
-            </div>
-        </div>
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[protected] - _toggleAllChecked" class="method item">
-    <h3 class="name"><code>[protected] - _toggleAllChecked</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l556"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:556</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>全选checkbox选择框</p>
-
-    </div>
-
-    
-
-    
-
     
 </div>
 
@@ -2622,7 +2369,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l665"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:665</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l656"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:656</code></a>
         
         </p>
 
@@ -2712,7 +2459,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l623"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:623</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l610"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:610</code></a>
         
         </p>
 
@@ -2723,7 +2470,7 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
     </div>
 
     <div class="description">
-        <p>上移</p>
+        <p>上移, 默认以sort为字段进行上移操作， 如果字段不为sort， 则需重载并设置options</p>
 
     </div>
 
@@ -2754,6 +2501,268 @@ app.getView(&#39;attributesList&#39;)._setOption({<pre class="code prettyprint">
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> app.getView(&#39;attributesList&#39;)._setOption({
+   sortField: &#39;orderList&#39;
+ })._moveUp(this.model);</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _search" class="method item">
+    <h3 class="name"><code>[public] - _search</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>array</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l383"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:383</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>搜索</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">array</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>[onBeforeAdd: 自定义过滤]</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this._search({
+   filter: [
+    {key: &#39;name&#39;, value: this.searchKey },
+    {key: &#39;prodtype&#39;, value: this.searchProdtype} ,
+    {key: &#39;category&#39;, value: this.searchCategory},
+    {key: &#39;loginView&#39;, value: this.searchLoginView},
+    {key: &#39;ads&#39;, value: this.searchAds}
+    ],
+   onBeforeAdd: function(item){
+     if (pass &amp;&amp; !Est.isEmpty(obj.value) &amp;&amp;
+      item.attributes[obj.key].indexOf(obj.value) === -1) {
+      ctx.collection.remove(item);
+      pass = false;
+      return false;
+    }
+  }});</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[public] - _setOption" class="method item private">
+    <h3 class="name"><code>[public] - _setOption</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>obj</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/BaseList.html" class="crosslink">BaseList</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l768"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:768</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>设置参数</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">obj</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/BaseList.html" class="crosslink">BaseList</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> app.getView(&#39;categoryList&#39;)._setOption({
+   sortField: &#39;orderList&#39;
+ })._moveUp(this.model);</code></pre>
+
+            </div>
+        </div>
     
 </div>
 
