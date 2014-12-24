@@ -3378,7 +3378,8 @@ input.calendar-time {
     margin-left: 10px;
     float: left;
     display: inline;
-    height: 48px
+    height: 48px;
+    line-height:30px;
 }
 
 .form-horizontal input[class*=span], .form-horizontal select[class*=span] {

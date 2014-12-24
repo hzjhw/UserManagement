@@ -11,7 +11,10 @@ define('WwyModel', ['jquery', 'BaseModel'],
 
     WwyModel = BaseModel.extend({
       defaults: Est.extend({
-        title: "",
+        title: '',
+        showmsg: '0',
+        isforwoard: '0',
+        ltyType: '0',
         addTime: new Date().getTime()
       }, BaseModel.prototype.defaults),
       baseId: 'wyId',

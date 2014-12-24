@@ -14,6 +14,7 @@ app.addModule('WwyMobileList', 'modules/wwy/controllers/WwyMobileList.js');
 app.addModule('WwyMessageList', 'modules/wwy/controllers/WwyMessageList.js');
 
 app.addModule('WwyMessageModel', 'models/WwyMessageModel.js');
+app.addModule('WwyPicturePick', 'modules/wwy/controllers/WwyPicturePick.js');
 /**
  * 路由
  * */
@@ -62,4 +63,10 @@ app.addTemplate('template/wwy_message_item', function (require, exports, module)
 });
 app.addTemplate('template/wwy_message_list', function (require, exports, module) {
     module.exports = require('modules/wwy/views/wwy_message_list.html');
+});
+app.addTemplate('template/wwy_picture_pick_list', function(require, exports, module){
+  module.exports = require('modules/wwy/views/picture_pick_item.html');
+});
+app.addTemplate('template/wwy_picture_pick_item', function(require, exports, module){
+  module.exports = require('modules/wwy/views/picture_pick_item.html');
 });

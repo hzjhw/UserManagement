@@ -5,7 +5,7 @@
  * @author wxw on 2014/12/12
  */
 define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/wwy_list','template/wwy_detail', 'template/wwy_item', 'BaseUtils'],
+    'template/wwy_list', 'template/wwy_detail', 'template/wwy_item', 'BaseUtils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyList, WwyItem,
       WwyCollection, listTemp, itemTemp, BaseUtils;
@@ -76,7 +76,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .showqrcode': 'showQrcode',
-        'click .wwy-add': 'openAddDialog',
+        'click .wwy-add': '_detail',
         'click .btn-search': 'search',
         'click .btn-blacklist': 'blackList'
       },
@@ -88,7 +88,8 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           template: listTemp,
           model: WwyModel,
           collection: WwyCollection,
-          item: WwyItem
+          item: WwyItem,
+          detail: CONST.HOST + '/modules/wwy/wwy_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
@@ -107,23 +108,23 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           }
         });
       },
-        // 查看二维码
-        showQrcode: function (e) {
-            var url = CONST.HOST + '/modules/wwy/views/wwy_qrcode.html?id='
-                + $(e.srcElement).attr("wyId");
-            this._detail({
-                title: '查看二维码',
-                url: url,
-                width:300,
-                height:300,
-                hideSaveBtn: true,
-                hideResetBtn: true,
-                oniframeload: function (win) {
-                    win.app = app;
-                   // app.getView('wwyDetail').setType('edit');
-                }
-            });
-        },
+      // 查看二维码
+      showQrcode: function (e) {
+        var url = CONST.HOST + '/modules/wwy/views/wwy_qrcode.html?id='
+          + $(e.srcElement).attr("wyId");
+        this._detail({
+          title: '查看二维码',
+          url: url,
+          width: 300,
+          height: 300,
+          hideSaveBtn: true,
+          hideResetBtn: true,
+          oniframeload: function (win) {
+            win.app = app;
+            // app.getView('wwyDetail').setType('edit');
+          }
+        });
+      },
       // 简单搜索
       search: function () {
         this.searchKey = Est.trim(this.$('.search-text').val());

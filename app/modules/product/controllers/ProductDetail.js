@@ -27,7 +27,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
       initialize: function () {
         debug('2.ProductDetail.initialize');
         this._initialize({
-          template : template,
+          template: template,
           model: ProductModel
         });
       },
@@ -39,30 +39,25 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           .join(","));
         this._render();
 
-        BUI.use(['bui/tab', 'bui/mask'], function (Tab) {
-          var tab = new Tab.TabPanel({
-            render: '#tab',
-            elCls: 'nav-tabs',
-            panelContainer: '#panel',
-            autoRender: true,
-            children: [
-              {title: '常规', value: '1', selected: true},
-              {title: '产品描述', value: '2'},
-              {title: '产品属性', value: '3'},
-              {title: '商城属性', value: '4'},
-              {title: '产品标签', value: '5'},
-              {title: '搜索引擎优化', value: '6'}
-            ]
-          });
-          tab.on('selectedchange', function (ev) {
-            BaseUtils.resetIframe();
-          });
+        BaseUtils.initTab({
+          render: '#tab',
+          elCls: 'nav-tabs',
+          panelContainer: '#panel',
+          autoRender: true,
+          children: [
+            {title: '常规', value: '1', selected: true},
+            {title: '产品描述', value: '2'},
+            {title: '产品属性', value: '3'},
+            {title: '商城属性', value: '4'},
+            {title: '产品标签', value: '5'},
+            {title: '搜索引擎优化', value: '6'}
+          ]
         });
-// 产品图片
+        // 产品图片
         var pic_list = [];
-        if (!this._isAdd){
+        if (!this._isAdd) {
           var server_pic_list = JSON.parse(this.model.get('productImageListStore'));
-          Est.each(server_pic_list, function(item){
+          Est.each(server_pic_list, function (item) {
             pic_list.push({
               attId: item.id,
               serverPath: item.sourceProductImagePath,
@@ -72,6 +67,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             });
           });
         }
+        if (Est.isEmpty(PicturePick)){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
         app.addView('picturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'picturePick',
@@ -80,7 +76,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           max: 9
         }));
         // 产品分类
-        BaseService.getProductCategory({ tree: true,select: true, extend: true })
+        BaseService.getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
             BaseUtils.initSelect({
               render: '#s1',
@@ -180,20 +176,20 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
 
         // 表单初始化
         this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
+          onBeforeSave: function () {
             // 处理特殊字段
             this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
               return item.get('name');
             }).join(','));
             var photos = app.getView('picturePick').getItems();
-            if (photos.length > 0){
+            if (photos.length > 0) {
               this.model.set('photo', photos[0]['serverPath']);
               this.model.set('photoId', photos[0]['attId']);
               photos.splice(0, 1);
-              this.model.set('photo2',JSON.stringify(photos).replace(/attId/g, 'id').replace(/serverPath/g, 'src'));
+              this.model.set('photo2', JSON.stringify(photos).replace(/attId/g, 'id').replace(/serverPath/g, 'src'));
             }
           },
-          onAfterSave: function(response){
+          onAfterSave: function (response) {
 
           }
 
@@ -205,14 +201,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
 
         return this;
       },
-      showAttributes: function(categoryId, items){
-        if (!this.attributes){
+      showAttributes: function (categoryId, items) {
+        if (!this.attributes) {
           this.attributes = new AttributesShow({
             render: '#attributes-list',
             categoryId: categoryId,
             items: items
           });
-        } else{
+        } else {
           this.attributes.reload(categoryId);
         }
       }
