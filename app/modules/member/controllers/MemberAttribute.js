@@ -36,7 +36,8 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       events: {
         'click .toggle': '_toggleChecked',
         'click .edit': 'edit',
-        'click .delete': '_del'
+        'click .delete': '_del',
+        'click .member-attr-add': 'detail'
       },
       // 初始化
       initialize: function () {
@@ -62,8 +63,8 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       el: '#member-data-ul',
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .btn-batch-del': '_batchDel',
-        'click .member-attr-add': 'detail'
+        'click .member-attr-add': '_detail',
+        'click .btn-batch-del': '_batchDel'
 
       },
       initialize: function () {

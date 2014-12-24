@@ -34,10 +34,6 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();
-        // 编辑器
-        this._initEditor({
-          render: '.ckeditor'
-        });
 
         // 表单初始化
         this._form('#J_Form')._validate()._init({
@@ -48,9 +44,6 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
           }
         });
 
-        setTimeout(function () {
-          BaseUtils.resetIframe();
-        }, 1000);
         return this;
       },
       showAttributes: function(categoryId, items){

@@ -42,14 +42,14 @@ app.setData('certificateList', [
   {text: '其它证书', value: '05'}
 ]);
 app.setData('newsType', [
-  {text: '全部', value: '00'},
+  {text: '全部', value: ''},
   {text: '图片新闻', value: '01'},
   {text: '一般新闻', value: '02'},
   {text: '置顶新闻', value: '03'},
   {text: '滚动新闻', value: '04'}
 ]);
 app.setData('newsState', [
-  {text: '全部', value: '00'},
+  {text: '全部', value: ''},
   {text: '显示', value: '01'},
   {text: '隐藏', value: '02'},
   {text: '审核中', value: '03'},

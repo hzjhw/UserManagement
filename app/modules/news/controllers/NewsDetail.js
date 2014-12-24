@@ -4,9 +4,9 @@
  * @author jihui-wxw on 2014/12/10
  */
 define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog',
-    'template/news_detail', 'Tag', 'BaseService', 'BaseUtils'],
+    'template/news_detail', 'Tag', 'BaseService', 'BaseUtils','PicturePick'],
   function (require, exports, module) {
-    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseService, BaseUtils;
+    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseService, BaseUtils,PicturePick;
 
     NewsModel = require('NewsModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,6 +15,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
+    PicturePick = require('PicturePick');
     BaseService = require('BaseService');
     BaseUtils = require('BaseUtils');
 
@@ -48,14 +49,41 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             children: [
               {title: '常规', value: '1', selected: true},
               {title: '新闻内容', value: '2'},
-              {title: '搜索引擎优化', value: '6'}
+              {title: '搜索引擎优化', value: '3'}
             ]
           });
           tab.on('selectedchange', function (ev) {
             BaseUtils.resetIframe();
           });
         });
+// 图片
+        var pic_list = [];
+        if (!this._isAdd){
+          var server_pic_list = JSON.parse(this.model.get('picPath'));
+          Est.each(server_pic_list, function(item){
+            pic_list.push({
+              attId: item.id,
+              serverPath: item.sourceProductImagePath,
+              title: '重新上传',
+              hasPic: true,
+              isAddBtn: false
+            });
+          });
 
+          pic_list.push({
+            attId: '',
+            serverPath: CONST.PIC_NONE,
+            title: '上传图片',
+            isAddBtn: true
+          });
+        }
+        app.addView('picturePick', new PicturePick({
+          el: '#picture-pick',
+          viewId: 'picturePick',
+          _isAdd: true, // 是否为添加模式
+          items: pic_list, // 初始化数据
+          max: 1
+        }));
         // 新闻分类
         BaseService.getNewsCategory({ select: true, extend: true })
           .then(function (list) {
@@ -137,8 +165,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         });
 
         // 编辑器
-        this._initEditor({
-          render: '.content'
+        BaseUtils.initEditor({
+          render: '.ckeditor'
         });
 
         // 表单初始化

@@ -246,10 +246,19 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
                 value: '搜索',
                 callback: function () {
                   ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchState = $('select[name=searchState]').val();
                   ctx.searchCategory = $('select[name=searchCategory]').val();
                   ctx.searchTypeView = $('select[name=searchTypeView]').val();
-                  ctx.baseSearch();
+                  ctx.searchState = $('select[name=searchState]').val();
+                  //ctx.baseSearch();
+                  ctx._search({
+                    filter: [
+                      {key: 'name', value: ctx.searchKey },
+                      {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
+                      {key: 'imagenews', value: ctx.searchTypeView} ,
+                      {key: 'loginView', value: ctx.searchLoginView},
+                      {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+                    ]
+                  });
                   this.remove();
                   return false;
                 },
