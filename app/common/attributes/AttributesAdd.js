@@ -64,8 +64,20 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
         'click .option-add': 'add',
         'click .option-remove': 'remove'
       },
-      initialize: function (options) {
-        this.options = options || {};
+      initialize: function () {
+        if (this.options.items){
+          var items = Est.cloneDeep(this.options.items);
+          this.options.items = function(){
+            var result = [];
+            Est.each(items, function(item){
+              result.push({
+                key: '选项',
+                value: item
+              });
+            });
+            return result;
+          }
+        }
         this._initialize({
           template: optionTemp,
           collection: collection,
@@ -73,16 +85,8 @@ define('AttributesAdd', ['jquery', 'HandlebarsHelper', 'BaseCollection', 'BaseIt
           render: '#attributes-container',
           model: model
         });
-        if (options.items) {
-          Est.each(options.items, function (item) {
-            this.collection.push(new model({
-              key: '选项',
-              value: item
-            }));
-          }, this);
-        } else {
+        if (!this.options.items)
           this.add();
-        }
         return this;
       },
       render: function () {

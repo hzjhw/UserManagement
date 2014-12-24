@@ -71,19 +71,13 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               isAddBtn: false
             });
           });
-          pic_list.push({
-            attId: '',
-              serverPath: CONST.PIC_NONE,
-            title: '上传图片',
-            isAddBtn: true
-          });
         }
         app.addView('picturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'picturePick',
-          _isAdd: true, // 是否为添加模式
+          _isAdd: this._isAdd, // 是否为添加模式
           items: pic_list, // 初始化数据
-          max: 1
+          max: 9
         }));
         // 产品分类
         BaseService.getProductCategory({ tree: true,select: true, extend: true })

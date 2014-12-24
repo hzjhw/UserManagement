@@ -74,25 +74,15 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           this.model.set('serverPath', result[0]['serverPath']);
           this.model.set('title', '重新上传');
           this.model.set('isAddBtn', false);
-          if (!this.model.get('hasPic') && !Est.isEmpty(this._options.max) &&
-            (app.getView('PicturePick').getItems().length < this._options.max)){
+          if (!this.model.get('hasPic')){
             this.model.set('hasPic', true);
-            console.log(this.model);
-            app.getView(this._options.viewId).append(new model({
-              serverPath: CONST.PIC_NONE,
-              attId: '',
-              title: '上传图片',
-              isAddBtn: true
-            }));
+            app.getView(this._options.viewId).addOne();
           }
         }
         window['uploadDialog'].close().remove();
       },
       picUploadSource: function(){
         this.picUpload('sourceUpload');
-      },
-      setMax: function(num){
-        this._options.max = num;
       },
       render: function(){
         this._render();
@@ -101,17 +91,6 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
 
     PicturePick = BaseList.extend({
       initialize: function(){
-        if (this.options.items.length === 0){
-          this.options.items.push({
-            attId: '',
-            serverPath: CONST.PIC_NONE,
-            title: '上传图片',
-            isAddBtn: true
-          });
-        }
-        if (!this.options.max){
-          this.options.max = 20;
-        }
         this._initialize({
           collection: collection,
           model: model,
@@ -119,7 +98,20 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           template: listTemp,
           checkAppend: false,
           render: this.options.render || '.photo-list'
+        }).then(function(thisCtx){
+          if (thisCtx.collection.models.length === 1 ||
+            !thisCtx.options._isAdd){
+            thisCtx.addOne();
+          }
         });
+      },
+      addOne: function(){
+        this.collection.push(new model({
+          serverPath: CONST.PIC_NONE,
+          attId: '',
+          title: '上传图片',
+          isAddBtn: true
+        }));
       },
       render: function(){
         this._render();

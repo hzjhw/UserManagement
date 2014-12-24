@@ -137,7 +137,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           item: ProductItem,
           pagination: true,
           args: {
-            name: '111'
+            name: ''
           },
           detail: CONST.HOST + '/modules/product/product_detail.html'
         }).then(function (thisCtx) {

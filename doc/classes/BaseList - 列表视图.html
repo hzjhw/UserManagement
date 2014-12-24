@@ -161,6 +161,20 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
+                                <a href="#method_[override] - _initialize">[override] - _initialize</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[override] - _render">[override] - _render</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[private] - _addAll">[private] - _addAll</a>
 
                                 
@@ -266,20 +280,6 @@
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[protected] - _initialize">[protected] - _initialize</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[protected] - _render">[protected] - _render</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
                                 <a href="#method_[public] - _detail">[public] - _detail</a>
 
                                 
@@ -356,6 +356,195 @@
         
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_[override] - _initialize" class="method item">
+    <h3 class="name"><code>[override] - _initialize</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l42"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:42</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> this._initialize({
+   viewId: &#39;&#39;, viewId  视图身份标识， 以供上移下移等更多功能使用
+   template: 字符串模板,
+   render: 插入列表的元素选择符,
+   model: 模型类,
+   collection: 集合,
+   item: this.options.items || [], //单视图
+   // 以下为可选
+   items: [](可选， 当无需url请求时), items可为function形式传递
+   data: {}, // 附加的数据 此数据在BaseList BaseItem视图中可以获取  其中BaseList中为{{name}} ;  BaseItem中为{{_options._data.name}}
+   checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
+   enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
+   pagination: true, // 是否显示分页
+   detail: 添加页面url地址
+   filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
+   // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
+   subRender: &#39;.node-tree&#39;, // 下级分类的容器选择符
+   collapse: &#39;.node-collapse&#39; 展开/收缩元素选择符
+   parentId: &#39;belongId&#39;, // 分类 的父类ID
+   categoryId: &#39;categoryId&#39;, // 分类 的当前ID
+   parentValue: &#39;/&#39; // 父分类的parentId值
+   extend: true // false收缩 true为展开
+  }).then(function (thisCtx) {
+   thisCtx._initPagination(options);
+   thisCtx._load({
+     beforeLoad: function(collection){
+       this.setCategoryId(options.categoryId);
+     }
+   });
+ });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_[override] - _render" class="method item">
+    <h3 class="name"><code>[override] - _render</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l145"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:145</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>渲染视图</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                
+            </div>
+        </div>
+    
+</div>
 
                 
                     <div id="method_[private] - _addAll" class="method item">
@@ -455,7 +644,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l200"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:200</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l199"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:199</code></a>
         
         </p>
 
@@ -1043,7 +1232,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l159"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:159</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l158"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:158</code></a>
         
         </p>
 
@@ -1655,195 +1844,6 @@
 
     
 
-    
-</div>
-
-                
-                    <div id="method_[protected] - _initialize" class="method item">
-    <h3 class="name"><code>[protected] - _initialize</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l42"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:42</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> this._initialize({
-   viewId: &#39;&#39;, viewId  视图身份标识， 以供上移下移等更多功能使用
-   template: 字符串模板,
-   render: 插入列表的元素选择符,
-   model: 模型类,
-   collection: 集合,
-   item: this.options.items || [], //单视图
-   // 以下为可选
-   items: [](可选， 当无需url请求时),
-   args: {}, // 附加的参数 此参数在BaseList BaseItem视图中可以获取  {{_options._args.name}}
-   checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
-   enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
-   pagination: true, // 是否显示分页
-   detail: 添加页面url地址
-   filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
-   // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
-   subRender: &#39;.node-tree&#39;, // 下级分类的容器选择符
-   collapse: &#39;.node-collapse&#39; 展开/收缩元素选择符
-   parentId: &#39;belongId&#39;, // 分类 的父类ID
-   categoryId: &#39;categoryId&#39;, // 分类 的当前ID
-   parentValue: &#39;/&#39; // 父分类的parentId值
-   extend: true // false收缩 true为展开
-  }).then(function (thisCtx) {
-   thisCtx._initPagination(options);
-   thisCtx._load({
-     beforeLoad: function(collection){
-       this.setCategoryId(options.categoryId);
-     }
-   });
- });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[protected] - _render" class="method item">
-    <h3 class="name"><code>[protected] - _render</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l146"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:146</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>渲染视图</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                
-            </div>
-        </div>
     
 </div>
 
