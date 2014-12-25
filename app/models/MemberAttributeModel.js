@@ -21,9 +21,13 @@ define('MemberAttributeModel', ['jquery', 'underscore', 'backbone', 'dialog', 'B
         attributeOptionStore: "['男','女']",
         attributeOptionList: [ ],
         name: "性别"
-      }, BaseModel.prototype.defaults),
+      },
+      BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/member/attr/detail',
-      baseId: 'attId'
+      baseId: 'attId',
+      initialize: function () {
+        this._initialize();
+      }
     });
 
     module.exports = MemberAttributeModel;

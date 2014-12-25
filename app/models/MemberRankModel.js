@@ -20,7 +20,10 @@ define('MemberRankModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         name: ""
       }, BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/member/rank/detail',
-      baseId: 'rankId'
+      baseId: 'rankId',
+      initialize: function () {
+        this._initialize();
+      }
     });
 
     module.exports = MemberRankModel;

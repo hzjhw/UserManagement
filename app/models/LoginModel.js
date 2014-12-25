@@ -14,7 +14,10 @@ define('LoginModel', ['jquery', 'BaseModel'], function (require, exports, module
       randCode: ''
     }, BaseModel.prototype.defaults),
     baseId: 'loginId',
-    baseUrl: CONST.API + '/user/login'
+    baseUrl: CONST.API + '/user/login',
+    initialize: function () {
+      this._initialize();
+    }
   });
   module.exports = LoginModel;
 });

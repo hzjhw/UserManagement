@@ -70,6 +70,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           model: MemberListModel,
           collection: MemberListCollection,
           item: MemberListItem,
+          pagination: true,
           detail: CONST.HOST + '/modules/member/member_list_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);

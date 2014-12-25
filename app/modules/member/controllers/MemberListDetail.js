@@ -4,18 +4,34 @@
  * @author wxw on 14-12-16
  */
 define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail',
-    'dialog', 'template/member_list_detail', 'BaseUtils'],
+    'dialog', 'template/member_list_detail', 'BaseUtils','MemberAttributeModel','BaseCollection','MemberAttributesShow'],
   function (require, exports, module) {
-    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
+    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, MemberAttributesShow, dialog, Tag, BaseUtils
+      ,MemberAttrModel,BaseCollection,attrCollection;
 
     MemberListModel = require('MemberListModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/member_list_detail');
     dialog = require('dialog');
-    AttributesShow = require('AttributesShow');
+    MemberAttributesShow = require('MemberAttributesShow');
     Tag = require('Tag');
     BaseUtils = require('BaseUtils');
+    BaseCollection = require('BaseCollection');
+    MemberAttrModel = require('MemberAttrModel');
+    attrCollection = BaseCollection.extend({
+      url:CONST.API + '/member/attr/list/',
+      model: MemberAttrModel,
+      initialize: function () {
+        this._initialize();
+      },
+      getName: function () {
+        return this.name;
+      },
+      getAttributeType: function () {
+        return this.attributeType;
+      }
+    });
 
     MemberListDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -74,7 +90,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         // 表单初始化
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){
-            // 处理特殊字段
+            ctx.model.set('attributeOptionList',ctx.attribute.getItems().join(","))
           },
           onAfterSave: function(response){
           }
@@ -82,7 +98,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         // 会员分类
        this.getMemberRankCategory({ select: true, extend: true }
         ).then(function (list) {
-            BaseUtils._initSelect({
+            BaseUtils.initSelect({
               render: '#s1',
               target: '#model-memberRank',
               items: list,
@@ -119,18 +135,21 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           ctx.showAttributes(ctx.model.get('category'), ctx.model.get('productAttributeMapStore'));
         }
 */
-
+        if (!ctx._isAdd) {
+          ctx.showAttributes(ctx.model.get('memberAttributeMapStore'));
+        }else{
+          ctx.showAttributes();
+        }
         setTimeout(function () {
           BaseUtils.resetIframe();
         }, 1000);
         return this;
       },
 
-      showAttributes: function(categoryId, items){
+      showAttributes: function(items){
         if (!this.attribute){
-          this.attribute = new AttributesShow({
+          this.attribute = new MemberAttributesShow({
             render: '#attribute-list',
-            categoryId: categoryId,
             items: items
           });
         } else{

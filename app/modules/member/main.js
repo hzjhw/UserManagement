@@ -17,6 +17,7 @@ app.addModule('MemberRankDetail', 'modules/member/controllers/MemberRankDetail.j
 app.addModule('MemberAttribute', 'modules/member/controllers/MemberAttribute.js');
 app.addModule('MemberAttributeDetail', 'modules/member/controllers/MemberAttributeDetail.js');
 
+app.addModule('MemberAttributesShow', 'modules/member/controllers/MemberAttributesShow.js');
 
 /**
  * 路由

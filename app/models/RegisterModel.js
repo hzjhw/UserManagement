@@ -17,7 +17,10 @@ define('RegisterModel', ['jquery', 'BaseModel'], function (require, exports, mod
       randCode: ''
     }, BaseModel.prototype.defaults),
     baseId: 'registerId',
-    baseUrl: CONST.API + '/user/register'
+    baseUrl: CONST.API + '/user/register',
+    initialize: function () {
+      this._initialize();
+    }
   });
   module.exports = RegisterModel;
 });

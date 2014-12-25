@@ -23,7 +23,7 @@ define('MemberListModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         loginDate: '',
         passwordRecoverKey: null,
         memberRank: {
-          rankId: '',
+          rankId: '/',
           preferentialScale: '',
           point: '',
           enterpriseId: '',
@@ -40,9 +40,13 @@ define('MemberListModel', ['jquery', 'underscore', 'backbone', 'dialog', 'BaseMo
         memberId: '',
         cellphone: '',
         phone: ''
-      }, BaseModel.prototype.defaults),
+      },
+       BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/member/detail',
-      baseId: 'memberId'
+      baseId: 'memberId',
+      initialize: function () {
+        this._initialize();
+      }
     });
 
     module.exports = MemberListModel;

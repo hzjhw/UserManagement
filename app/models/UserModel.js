@@ -13,7 +13,10 @@ define('UserModel', ['jquery', 'BaseModel'], function (require, exports, module)
       name: '未登录'
     }, BaseModel.prototype.defaults),
     baseId: 'userId',
-    baseUrl: CONST.API + '/user/info'
+    baseUrl: CONST.API + '/user/info',
+    initialize: function () {
+      this._initialize();
+    }
   });
 
   module.exports = UserModel;
