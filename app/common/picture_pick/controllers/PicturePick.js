@@ -33,7 +33,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
 
     item = BaseItem.extend({
       tagName: 'div',
-      className: 'item',
+      className: 'pic-item item',
       events: {
         'click .delete': '_del', // 删除
         'click .move-up': '_moveUp', // 上移
@@ -99,7 +99,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           checkAppend: false,
           render: this.options.render || '.photo-list'
         }).then(function(thisCtx){
-          if (thisCtx.collection.models.length === 1 ||
+          if (thisCtx.collection.models.length === 0 ||
             !thisCtx.options._isAdd){
             thisCtx.addOne();
           }
@@ -112,6 +112,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           title: '上传图片',
           isAddBtn: true
         }));
+        BaseUtils.resetIframe();
       },
       render: function(){
         this._render();

@@ -2,234 +2,287 @@
 <form id="J_Form" action="" class="form-horizontal">
 <div id="tab"></div>
 <div id="panel" class="" style="padding:10px;">
-    <!--常规-->
-    <div class="hide">
-        <!--<div class="control-group">
-            <label class="control-label">页面版式：</label>
+<!--常规-->
+<div class="">
+    <!--<div class="control-group">
+        <label class="control-label">页面版式：</label>
 
-            <div class="controls">
-                <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
-                       data-rules="{required : true}"
-                       data-tip='{"text":"请输入产品名称","iconCls":"icon icon-pencil"}'>
-            </div>
-        </div>-->
-
-        <div class="control-group">
-            <label class="control-label"><s>*</s>活动标题：</label>
-
-            <div class="controls">
-                <input id="model-title" name="title" value="{{title}}" type="text" class="input-large"
-                       title="此处为活动标题,放在留言上面,如:立即写下你的口号，赢取4999元现金大奖！"
-                       data-rules="{required : true}" data-tip='{"text":"请输入活动标题"}'>
-            </div>
+        <div class="controls">
+            <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入产品名称","iconCls":"icon icon-pencil"}'>
         </div>
+    </div>-->
 
-        <div class="control-group">
-            <label class="control-label"><s>*</s>活动手机：</label>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>活动标题：</label>
 
-            <div class="controls">
-                <input id="model-phone" name="phone" value="{{phone}}" type="text" title="用户可以在微传单上点击号码直接拨打此手机"
-                       data-rules="{required : true}"
-                       data-tip='{"text":"请输入活动标题"}' class="input-middle">
-            </div>
+        <div class="controls">
+            <input id="model-title" name="title" value="{{title}}" type="text" class="input-large"
+                   title="此处为活动标题,放在留言上面,如:立即写下你的口号，赢取4999元现金大奖！"
+                   data-rules="{required : true}" data-tip='{"text":"请输入活动标题"}'>
         </div>
-        <div class="control-group">
-            <label class="control-label"><s>*</s>活动内容：</label>
+    </div>
 
-            <div class="controls control-row-auto">
-                <textarea id="model-content" name="content" class="ckeditor content text" rows="12"
-                          cols="95" style="width: 100%;height:250px;">{{content}}</textarea>
-            </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>活动手机：</label>
+
+        <div class="controls">
+            <input id="model-phone" name="phone" value="{{phone}}" type="text" title="用户可以在微传单上点击号码直接拨打此手机"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入活动标题"}' class="input-middle">
         </div>
-        <div class="row actions-bar" style="display:none;">
-            <div class="form-actions span13 offset3">
-                <button id="submit" type="button" class="button button-primary">保存</button>
-                <button id="reset" type="reset" class="button">重置</button>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>活动内容：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-content" name="content" class="ckeditor content text" rows="12"
+                      cols="95" style="width: 100%;height:250px;">{{content}}</textarea>
+        </div>
+    </div>
+    <div class="row actions-bar" style="display:none;">
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">保存</button>
+            <button id="reset" type="reset" class="button">重置</button>
+        </div>
+    </div>
+</div>
+<!--转发控制-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">转发控制：</label>
+
+        <div class="controls">
+            <label><input id="model-isforwoard" type="radio" name="isforwoard" value="0" {{#compare
+                isforwoard '==='
+                '0'}}checked{{/compare}}>关闭</label>
+            <label><input id="model2-isforwoard" type="radio" name="isforwoard" value="1" {{#compare
+                isforwoard '==='
+                '1'}}checked{{/compare}}>开启</label>
+            &nbsp;&nbsp;&nbsp;
+            控制微传单上是否有转发功能
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">转发说明：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-forwoardcontent" name="forwoardcontent" class="ckeditor content text"
+                      rows="12"
+                      cols="95" style="width: 100%;height:250px;">{{forwoardcontent}}</textarea>
+        </div>
+    </div>
+</div>
+<!--留言控制-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">显示留言：</label>
+
+        <div class="controls">
+            <input type="radio" value="0" name="showmsg" id="model-showmsg" {{#compare showmsg '==='
+            '0'}}checked{{/compare}}
+            name="showmsg"><label for="model-showmsg">关闭</label>
+            <input type="radio" value="1" name="showmsg" id="model2-showmsg" {{#compare showmsg '==='
+            '1'}}checked{{/compare}}
+            name="showmsg"><label for="model2-showmsg">开启</label>
+            &nbsp;&nbsp;&nbsp;
+            控制微传单上是否有留言显示
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">显示项：</label>
+
+        <div class="controls">
+            <label class="checkboxLabel" for="msgctrl-1">
+                <input type="checkbox" class="msgShow" id="msgctrl-1" value="1" {{#compare msgctrl 'indexOf'
+                '1'}}checked{{/compare}} name="msgctrl">
+                姓名
+            </label>
+            <label class="checkboxLabel" for="msgctrl-2">
+                <input type="checkbox" class="msgShow" id="msgctrl-2" value="2" {{#compare msgctrl 'indexOf'
+                '2'}}checked{{/compare}} name="msgctrl">
+                手机
+            </label>
+            <label class="checkboxLabel" for="msgctrl-3">
+                <input type="checkbox" class="msgShow" id="msgctrl-3" value="3" {{#compare msgctrl 'indexOf'
+                '3'}}checked{{/compare}} name="msgctrl">
+                email
+            </label>
+            <label class="checkboxLabel" for="msgctrl-4">
+                <input type="checkbox" class="msgShow" id="msgctrl-4" value="4" {{#compare msgctrl 'indexOf'
+                '4'}}checked{{/compare}} name="msgctrl">
+                内容
+            </label>
+            <label class="checkboxLabel" for="msgctrl-5">
+                <input type="checkbox" class="msgShow" id="msgctrl-5" value="5" {{#compare msgctrl 'indexOf'
+                '5'}}checked{{/compare}} name="msgctrl">
+                电话
+            </label>
+            <label class="checkboxLabel" for="msgctrl-6">
+                <input type="checkbox" class="msgShow" id="msgctrl-6" value="6" {{#compare msgctrl 'indexOf'
+                '6'}}checked{{/compare}} name="msgctrl">
+                公司名称
+            </label>
+            <label class="checkboxLabel" for="msgctrl-7">
+                <input type="checkbox" class="msgShow" id="msgctrl-7" value="7" {{#compare msgctrl 'indexOf'
+                '7'}}checked{{/compare}} name="msgctrl">
+                职务
+            </label>
+        </div>
+    </div>
+</div>
+<!--页面版式-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">显示图片：</label>
+
+        <div class="controls">
+            <label><input id="model3-wwytype" type="radio" name="wwytype" value="09" {{#compare
+                wwytype '===' '09'}}checked{{/compare}}>关闭</label>
+            <label><input id="model-wwytype" type="radio" name="wwytype" value="00" {{#compare
+                wwytype '===' '00'}}checked{{/compare}}>普通模式</label>
+            <label><input id="model2-wwytype" type="radio" name="wwytype" value="01" {{#compare
+                wwytype '===' '01'}}checked{{/compare}}>翻屏模式</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">显示图片：</label>
+
+        <div class="controls control-row-auto">
+            <div id="wwy-picture-pick"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">音乐地址：</label>
+
+        <div class="controls">
+            <input id="model-music" name="music" value="{{music}}" type="text" class="input-large"
+                   data-tip='{"text":"请输入音乐地址"}'>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">隐藏设置：</label>
+
+        <div class="controls">
+            <label><input id="model-hidShare" type="checkbox" name="hidShare" {{#if
+                hidShare}}checked{{/if}}>隐藏分享</label>
+            <label><input id="model2-hidZf" type="checkbox" name="hidZf" {{#if hidZf}}checked{{/if}}>隐藏转发</label>
+        </div>
+    </div>
+</div>
+<!-- 抽奖控制-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">显示抽奖：</label>
+
+        <div class="controls">
+            <label><input id="model3-ltyType" type="radio" name="ltyType" value="0" {{#compare
+                ltyType '===' '0'}}checked{{/compare}}>关闭</label>
+            <label><input id="model-ltyType" type="radio" name="ltyType" value="1" {{#compare
+                ltyType '===' '1'}}checked{{/compare}}>刮刮卡</label>
+            <label><input id="model2-ltyType" type="radio" name="ltyType" value="2" {{#compare
+                ltyType '===' '2'}}checked{{/compare}}>转盘</label>
+            <label><input id="model4-ltyType" type="radio" name="ltyType" value="3" {{#compare
+                ltyType '===' '3'}}checked{{/compare}}>摇一摇</label>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">奖品设置：</label>
+
+        <div class="controls control-row-auto">
+            <div class="lty-container bui-simple-grid bui-grid-border" style="width:700px;">
+                <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="bui-grid-hd" width="42">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">序号</span></div>
+                        </th>
+                        <th class="bui-grid-hd ">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">奖品名称</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="70">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">概率</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="80">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">等级</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="50">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">数量</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="50">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">剩余</span></div>
+                        </th>
+                        <th class="bui-grid-hd ">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">中奖描述</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="100">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">奖品图片</span></div>
+                        </th>
+                        <th class="bui-grid-hd " width="42">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span></div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="lty-tbody">
+                    </tbody>
+
+                    <tfoot>
+                    <tr>
+                        <td colspan="8"><a href="javascript:;" class="lty-add" style="padding-left:10px;">添加选项</a><span
+                                class="right">提示： 奖品名称、中奖概率及数量不能为空。<a href="javascript:;"
+                                                                      class="lty-show">示例展示</a></span></td>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
-    <!--转发控制-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label">转发控制：</label>
 
-            <div class="controls">
-                <label><input id="model-isforwoard" type="radio" name="isforwoard" value="0" {{#compare
-                    isforwoard '==='
-                    '0'}}checked{{/compare}}>关闭</label>
-                <label><input id="model2-isforwoard" type="radio" name="isforwoard" value="1" {{#compare
-                    isforwoard '==='
-                    '1'}}checked{{/compare}}>开启</label>
-                &nbsp;&nbsp;&nbsp;
-                控制微传单上是否有转发功能
-            </div>
+</div>
+<!--分享参数-->
+<div class="hide">
+    <div class="control-group">
+        <label class="control-label">分享标题：</label>
+
+        <div class="controls">
+            <input id="model-sharetitle" name="sharetitle" value="{{sharetitle}}" type="text"
+                   class="input-middle">
         </div>
-        <div class="control-group">
-            <label class="control-label">转发说明：</label>
+    </div>
+    <div class="control-group">
+        <label class="control-label">分享描述：</label>
 
-            <div class="controls control-row-auto">
-                <textarea id="model-forwoardcontent" name="forwoardcontent" class="ckeditor content text"
-                          rows="12"
-                          cols="95" style="width: 100%;height:250px;">{{forwoardcontent}}</textarea>
+        <div class="controls">
+            <input id="model-sharedesc" name="sharedesc" value="{{sharedesc}}" type="text"
+                   class="input-middle">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">分享图片：</label>
+
+        <div class="controls control-row-auto">
+            <div id="picture-pick" class="left"></div>
+            <div class="right" style="margin-left:20px;height: 218px; background-color: #EFEBEF;">
+                <img src="{{CONST 'HOST'}}/modules/wwy/images/sharedesc.png" id="showPic"
+                     style="width:400px; "/>
             </div>
         </div>
     </div>
-    <!--留言控制-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label">显示留言：</label>
+</div>
+<!--其它参数-->
+<div class="hide" style="">
+    <div class="control-group">
+        <label class="control-label">head css/js 内容：</label>
 
-            <div class="controls">
-                <input type="radio" value="0" name="showmsg" id="model-showmsg" {{#compare showmsg '==='
-                '0'}}checked{{/compare}}
-                name="showmsg"><label for="model-showmsg">关闭</label>
-                <input type="radio" value="1" name="showmsg" id="model2-showmsg" {{#compare showmsg '==='
-                '1'}}checked{{/compare}}
-                name="showmsg"><label for="model2-showmsg">开启</label>
-                &nbsp;&nbsp;&nbsp;
-                控制微传单上是否有留言显示
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">显示项：</label>
-
-            <div class="controls">
-                <label class="checkboxLabel" for="msgctrl-1">
-                    <input type="checkbox" class="msgShow" id="msgctrl-1" value="1" {{#compare msgctrl 'indexOf'
-                    '1'}}checked{{/compare}} name="msgctrl">
-                    姓名
-                </label>
-                <label class="checkboxLabel" for="msgctrl-2">
-                    <input type="checkbox" class="msgShow" id="msgctrl-2" value="2" {{#compare msgctrl 'indexOf'
-                    '2'}}checked{{/compare}} name="msgctrl">
-                    手机
-                </label>
-                <label class="checkboxLabel" for="msgctrl-3">
-                    <input type="checkbox" class="msgShow" id="msgctrl-3" value="3" {{#compare msgctrl 'indexOf'
-                    '3'}}checked{{/compare}} name="msgctrl">
-                    email
-                </label>
-                <label class="checkboxLabel" for="msgctrl-4">
-                    <input type="checkbox" class="msgShow" id="msgctrl-4" value="4" {{#compare msgctrl 'indexOf'
-                    '4'}}checked{{/compare}} name="msgctrl">
-                    内容
-                </label>
-                <label class="checkboxLabel" for="msgctrl-5">
-                    <input type="checkbox" class="msgShow" id="msgctrl-5" value="5" {{#compare msgctrl 'indexOf'
-                    '5'}}checked{{/compare}} name="msgctrl">
-                    电话
-                </label>
-                <label class="checkboxLabel" for="msgctrl-6">
-                    <input type="checkbox" class="msgShow" id="msgctrl-6" value="6" {{#compare msgctrl 'indexOf'
-                    '6'}}checked{{/compare}} name="msgctrl">
-                    公司名称
-                </label>
-                <label class="checkboxLabel" for="msgctrl-7">
-                    <input type="checkbox" class="msgShow" id="msgctrl-7" value="7" {{#compare msgctrl 'indexOf'
-                    '7'}}checked{{/compare}} name="msgctrl">
-                    职务
-                </label>
-            </div>
+        <div class="controls control-row-auto">
+            <textarea id="model-hstr" name="hstr" class="hstr text" rows="12"
+                      cols="95" style="width: 100%;height:250px;">{{hstr}}</textarea>
         </div>
     </div>
-    <!--页面版式-->
-    <div >
-        <div class="control-group">
-            <label class="control-label">显示图片：</label>
-
-            <div class="controls">
-                <label><input id="model3-wwytype" type="radio" name="wwytype" value="09" {{#compare
-                    wwytype '===' '09'}}checked{{/compare}}>关闭</label>
-                <label><input id="model-wwytype" type="radio" name="wwytype" value="00" {{#compare
-                    wwytype '===' '00'}}checked{{/compare}}>普通模式</label>
-                <label><input id="model2-wwytype" type="radio" name="wwytype" value="01" {{#compare
-                    wwytype '===' '01'}}checked{{/compare}}>翻屏模式</label>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">显示图片：</label>
-            <div class="controls control-row-auto">
-                <div id="wwy-picture-pick"></div>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">音乐地址：</label>
-
-            <div class="controls">
-                <input id="model-music" name="music" value="{{music}}" type="text" class="input-large"
-                       data-tip='{"text":"请输入音乐地址"}'>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label">隐藏设置：</label>
-
-            <div class="controls">
-                <label><input id="model-hidShare" type="checkbox" name="hidShare"
-                              value="{{hidShare}}" {{#if hidShare}}checked{{/if}}>隐藏分享</label>
-                <label><input id="model2-hidZf" type="checkbox" name="hidZf"
-                              value="{{hidZf}}" {{#if hidZf}}checked{{/if}}>隐藏转发</label>
-            </div>
-        </div>
-    </div>
-    <!-- 抽奖控制-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label">显示抽奖：</label>
-            <div class="controls">
-                <label><input id="model3-ltyType" type="radio" name="ltyType" value="0" {{#compare
-                    wwytype '===' '09'}}checked{{/compare}}>关闭</label>
-                <label><input id="model-ltyType" type="radio" name="ltyType" value="1" {{#compare
-                    wwytype '===' '00'}}checked{{/compare}}>刮刮卡</label>
-                <label><input id="model2-ltyType" type="radio" name="ltyType" value="2" {{#compare
-                    wwytype '===' '01'}}checked{{/compare}}>转盘</label>
-                <label><input id="model4-ltyType" type="radio" name="ltyType" value="3" {{#compare
-                    wwytype '===' '01'}}checked{{/compare}}>摇一摇</label>
-            </div>
-        </div>
-
-    </div>
-    <!--分享参数-->
-    <div class="hide">
-        <div class="control-group">
-            <label class="control-label">分享标题：</label>
-
-            <div class="controls">
-                <input id="model-sharetitle" name="sharetitle" value="{{sharetitle}}" type="text"
-                       class="input-middle">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">分享描述：</label>
-
-            <div class="controls">
-                <input id="model-sharedesc" name="sharedesc" value="{{sharedesc}}" type="text"
-                       class="input-middle">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">分享图片：</label>
-
-            <div class="controls control-row-auto">
-                <div id="picture-pick" class="left"></div>
-                <div class="right" style="margin-left:20px;height: 218px; background-color: #EFEBEF;">
-                    <img src="{{CONST 'HOST'}}/modules/wwy/images/sharedesc.png" id="showPic"
-                         style="width:400px; " />
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--其它参数-->
-    <div class="hide" style="">
-        <div class="control-group">
-            <label class="control-label">head css/js 内容：</label>
-
-            <div class="controls control-row-auto">
-                <textarea id="model-hstr" name="hstr" class="hstr text" rows="12"
-                          cols="95" style="width: 100%;height:250px;">{{hstr}}</textarea>
-            </div>
-        </div>
-    </div>
+</div>
 </div>
 
 </div>

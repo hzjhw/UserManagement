@@ -92,32 +92,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               target: '#model-category',
               items: list,
               change: function (categoryId) {
-                var buttons = [
-                  {
-                    value: '更换',
-                    callback: function () {
-                      ctx.showAttributes(categoryId, items);
-                    }},
-                  {
-                    value: '保留',
-                    autofocus: true,
-                    callback: function () {
-                      this.close();
-                    }
-                  }
-                ];
-                if (!ctx._isAdd) {
-                  dialog({
-                    title: '提示',
-                    content: '更换分类将更改新闻属性选项， 点击“保留”只更改分类， 不更改属性！',
-                    width: 250,
-                    button: buttons
-                  }).show($("#s1").get(0));
-                } else {
-                  ctx.showAttributes(categoryId);
-                  //TODO 新闻标签
 
-                }
               }
             });
             // 属性
@@ -126,7 +101,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               target: '#attCateHid',
               items: list,
               change: function (categoryId) {
-                ctx.showAttributes(categoryId);
+                //ctx.showAttributes(categoryId);
                 setTimeout(function () {
                   BaseUtils.resetIframe();
                 }, 500);
@@ -136,7 +111,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           });
 
         if (!ctx._isAdd) {
-          ctx.showAttributes(ctx.model.get('category'), ctx.model.get('newsAttributeMapStore'));
+          //ctx.showAttributes(ctx.model.get('category'), ctx.model.get('newsAttributeMapStore'));
         }
 
         // 产品属性

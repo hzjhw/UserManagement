@@ -3,9 +3,10 @@
  * @namespace WwyDetail
  * @author yongjin on 2014/10/31
  */
-define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', "BaseUtils", 'dialog', 'template/wwy_detail', 'PicturePick', 'WwyPicturePick'],
+define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', "BaseUtils", 'dialog',
+    'template/wwy_detail', 'PicturePick', 'WwyPicturePick', 'WwyLtyList'],
   function (require, exports, module) {
-    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, BaseUtils, PicturePick, WwyPicturePick;
+    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, WwyLtyList,dialog, BaseUtils, PicturePick, WwyPicturePick;
 
     WwyModel = require('WwyModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -16,11 +17,14 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
     BaseUtils = require('BaseUtils');
     PicturePick = require('PicturePick');
     WwyPicturePick = require('WwyPicturePick');
+    WwyLtyList = require('WwyLtyList');
 
     WwyDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #wwy-reset': 'reset'
+        'click #wwy-reset': 'reset',
+        'click .lty-add': 'ltyAdd',
+        'click .lty-show': 'ltyShow'
       },
       initialize: function () {
         debug('2.WwyDetail.initialize');
@@ -29,21 +33,39 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           model: WwyModel
         });
       },
+      ltyAdd: function(){
+        app.getView('wwyLtyList').addOne();
+      },
+      ltyShow: function(){
+        app.getView('wwyLtyList').ltyShow();
+      },
       render: function () {
         debug('4.WwyDetail.render');
         var ctx = this;
         var wwy_pic_list = [];
+        var pathObj = {
+          hidShare: false,
+          hidZf: false,
+          music: { path: '', muted: true },
+          video: '',
+          pic: {}
+        };
         //处理翻屏模式下的json
-        if (!Est.isEmpty(this.model.get('paths'))){
-          var pathObj = JSON.parse(this.model.get('paths'));
+        if (!Est.isEmpty(this.model.get('paths'))) {
+          pathObj = JSON.parse(this.model.get('paths'));
           this.model.set('hidShare', pathObj['hidShare']);
           this.model.set('hidZf', pathObj['hidZf']);
           this.model.set('music', pathObj['music']['path']);
           this.model.set('video', pathObj['video']);
-          wwy_pic_list = pathObj['pic'];
+          Est.each(pathObj['pic'], function(item){
+            item['title'] = '重新上传';
+          });
+          Est.each(pathObj['pic'], function(item){
+            item['serverPath']= item['path'];
+          });
+          wwy_pic_list = pathObj['pic'] || [];
           debug(pathObj);
         }
-
 
         this._render();
         BaseUtils.initTab({
@@ -52,10 +74,10 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           panelContainer: '#panel',
           autoRender: true,
           children: [
-            {title: '基本参数', value: '1'},
+            {title: '基本参数', value: '1', selected: true},
             {title: '转发控制', value: '2'},
             {title: '留言控制', value: '3'},
-            {title: '图片控制', value: '4', selected: true},
+            {title: '图片控制', value: '4'},
             {title: '抽奖控制', value: '5'},
             {title: '分享参数', value: '6'},
             {title: '其它参数', value: '7'}
@@ -67,7 +89,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
         });
         // 图片
         var pic_list = [];
-        if (!Est.isEmpty(this.model.get('sharepic'))){
+        if (!Est.isEmpty(this.model.get('sharepic'))) {
           pic_list.push({
             attId: '',
             serverPath: this.model.get('sharepic'),
@@ -76,13 +98,14 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
             isAddBtn: false
           });
         }
-        /*app.addView('wwyPicturePick', new PicturePick({
+
+        app.addView('wwyPicturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'wwyPicturePick',
           _isAdd: this._isAdd, // 是否为添加模式
           max: 1, // 限制最大上传个数， 默认为无限
           items: pic_list// 初始化数据
-        }));*/
+        }));
 
         // 显示图片
         app.addView('wwyImgPick', new WwyPicturePick({
@@ -93,32 +116,64 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           max: 10
         }));
 
+        // 抽奖
+        var ltyObj = {
+          lotteryImage: '',
+          lotteryRule: []
+        };
+        if (this.model.get('ltyRule')){
+          ltyObj = JSON.parse(Est.unescapeHTML(this.model.get('ltyRule')));
+        }
+        this.model.set('lotteryImage', ltyObj['lotteryImage']);
+        app.addView('wwyLtyList', new WwyLtyList({
+          el: '#lty-tbody',
+          viewId: 'wwyLtyList',
+          _isAdd: this._isAdd,
+          items: ltyObj['lotteryRule'],
+          max: 10
+        }));
 
         // 表单初始
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             // 留言选项
             var msglist = [];
-            this.$('.msgShow').each(function(){
-              if ($(this).is(":checked")){
+            this.$('.msgShow').each(function () {
+              if ($(this).is(":checked")) {
                 msglist.push($(this).val());
               }
             });
             this.model.set('msgctrl', msglist.join(', '));
-            // 图片
+            // 转发图片
             var photos = app.getView('wwyPicturePick').getItems();
             if (photos.length > 0) {
               this.model.set('sharepic', photos[0]['serverPath']);
             }
+            // 音乐
+            pathObj.music = {
+              path: this.model.get('music'),
+              muted: true
+            }
+            // 视频
+            pathObj.video = this.model.get('video');
+            // 图片
+            pathObj.pic = app.getView('wwyImgPick').getItems();
+            pathObj['hidShare'] = this.model.get('hideShare');
+            pathObj['hidZf'] = this.model.get('hidZf');
+            this.model.set('paths', JSON.stringify(pathObj));
+            // 抽奖
+            ltyObj['lotteryImage'] = this.model.get('lotteryImage');
+            ltyObj['lotteryRule'] = app.getView('wwyLtyList').getItems();
+            this.model.set('ltyRule', Est.escapeHTML(JSON.stringify(ltyObj)));
           },
           onAfterSave: function (response) {
 
           }
         });
-        this.$('input, textarea').each(function(){
+        this.$('input, textarea').each(function () {
           var title = $(this).attr('title');
-          if (title){
-            $(this).click(function(){
+          if (title) {
+            $(this).click(function () {
               BaseUtils.tooltip(title, {
                 align: 'right',
                 target: $(this).get(0)

@@ -17,7 +17,14 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
     model = BaseModel.extend({
       defaults: Est.extend({
-
+        isreplace: '00',
+        isguagua: '00',
+        picHref: '',
+        hrefBlank: false,
+        videoPic: null,
+        video: '',
+        append: [],
+        sort: 0
       }, BaseModel.prototype.defaults),
       initialize: function () {
         this._initialize();
@@ -33,7 +40,7 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
     item = BaseItem.extend({
       tagName: 'div',
-      className: 'item',
+      className: 'pic-item wwy-item',
       events: {
         'click .delete': '_del', // 删除
         'click .move-up': '_moveUp', // 上移
@@ -44,7 +51,8 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       },
       initialize: function(){
         this._initialize({
-          template: itemTemp
+          template: itemTemp,
+          modelBind: true
         });
       },
       picUpload: function(type){
@@ -95,9 +103,10 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           model: model,
           item: item,
           template: listTemp,
-          checkAppend: false
+          checkAppend: false,
+          render: '.wwy-photo-list'
         }).then(function(thisCtx){
-          if (thisCtx.collection.models.length === 1 ||
+          if (thisCtx.collection.models.length === 0 ||
             !thisCtx.options._isAdd){
             thisCtx.addOne();
           }
@@ -110,6 +119,7 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           title: '上传图片',
           isAddBtn: true
         }));
+        BaseUtils.resetIframe();
       },
       render: function(){
         this._render();
@@ -121,10 +131,18 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       getItems: function(){
         var result = [];
         Est.each(this.collection.models, function(item){
-          if (!item.get('isAddBtn') && !Est.isEmpty(item.get('attId'))){
+          if (!item.get('isAddBtn')){
             result.push({
-              attId: item.get('attId'),
-              serverPath: item.get('serverPath')
+              path: item.get('serverPath'),
+              picHref: item.get('picHref'),
+              hrefBlank: item.get('hrefBlank'),
+              type: item.get('type'),
+              isreplace: item.get('isreplace'),
+              isguagua: item.get('isguagua'),
+              video: item.get('video'),
+              videoPic: item.get('videoPic'),
+              append: item.get('append'),
+              sort: item.get('dx')
             });
           }
         });

@@ -94,7 +94,7 @@
         #jhw .photo-list .image .img-container { width: 64px; height: 64px; display: table-cell; vertical-align: middle; text-align: center; }
         #jhw .photo-list img { vertical-align: middle; }
         #jhw .photo-list .image .img-name { position: absolute; bottom: -17px; padding: 0 4px; height: 35px; line-height: 18px; color: #454545; width: 58px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
-        .pagination li.page-start, .pagination li.page-end, .pagination li.page-info, .pagination li.page-per-page, .pagination li.page-refresh{display:none;}
+        .pagination li.page-start, .pagination li.page-end, .pagination li.page-info, .pagination li.page-per-page, .pagination li.page-refresh, .pagination li.page-go{display:none;}
         #jhw #pic-source-list .photo-list .item.item-active { border-color: #79b24f; }
         #jhw .photo-list .item.item-active .image .img-name { background-color: #79b24f; color: #fff; line-height: 20px; }
         #jhw #pic-source-list .photo-list .item.hover { border-color: #d1d1d1; }
@@ -249,11 +249,11 @@ var bulidNav = function(id){
     }
 }
 function showAlbumList(){
-    if ($('#J_UpTree').size() === 0){
+    /*if ($('#J_UpTree').size() === 0){
         $('.tree-box').append('<div id="J_UpTree" class="ztree"> </div >');
-    }
+    }*/
     seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
-        if (app.getView('albumList')) app.removeView('albumList');
+        //if (app.getView('albumList')) app.removeView('albumList');
         app.addView('albumList', new AlbumList({
             el: '#J_UpTree',
             callback: function(albumId){
@@ -280,7 +280,7 @@ $(function(){
     $('#btn-source').click(function(){
         $('#pic-source').show('fast');
         seajs.use(['AlbumList', 'PhotoSelect'], function(AlbumList, PhotoSelect){
-            if (app.getView('albumList')) app.removeView('albumList');
+            //if (app.getView('albumList')) app.removeView('albumList');
             /*if ($('#pic-source-album').size() === 0){
                 $('<div id="pic-source-album" class="ztree"> </div >').after($('.source-back'));
             }*/

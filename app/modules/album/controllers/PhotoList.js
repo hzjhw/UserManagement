@@ -27,7 +27,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
 
     PhotoItem = BaseItem.extend({
       tagName: 'div',
-      className: 'item ui-widget-content',
+      className: 'pic-item item ui-widget-content',
       events: {
         'click .toggle': '_toggleChecked',
         'click .delete': '_del',

@@ -1,23 +1,42 @@
-<div class="image toggle">
-    <div class="base-msg">
-        <div class="img-container"><img
-                src="{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}?v={{uploadTime}}"
-                alt=""></div>
-        <div class="img-name" title="{{name}}">{{title}}</div>
-        <div class="qout icon"></div>
-        <ul class="handle clearfix">
-            {{#compare attId '===' ''}}
-            <li class="upload-local" style="width: 35%;color:#fff;">本地上传</li>
-            <li class="upload-source" style="width: 45%;color:#fff;">我的资源库</li>
-            {{else}}
-            <li class="move-up"
-                    ><i class="icon icon-white icon-arrow-left"></i></li>
-            <li class="move-down"
-                    ><i class="icon icon-white icon-arrow-right"></i></li>
-            <li class="delete"
-                title="删除图片"><i class="icon icon-white icon-trash"></i></li>
-            {{/compare}}
+<div class="item">
+    <div class="image toggle">
+        <div class="base-msg">
+            <div class="img-container"><img
+                    src="{{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}?v={{uploadTime}}"
+                    alt=""></div>
+            <div class="img-name" title="{{name}}">{{title}}</div>
+            <div class="qout icon"></div>
+            <ul class="handle clearfix">
+                {{#compare attId '===' ''}}
+                <li class="upload-local" style="width: 35%;color:#fff;">本地上传</li>
+                <li class="upload-source" style="width: 45%;color:#fff;">我的资源库</li>
+                {{else}}
+                <li class="move-up"
+                        ><i class="icon icon-white icon-arrow-up"></i></li>
+                <li class="move-down"
+                        ><i class="icon icon-white icon-arrow-down"></i></li>
+                <li class="delete"
+                    title="删除图片"><i class="icon icon-white icon-trash"></i></li>
+                {{/compare}}
 
-        </ul>
+            </ul>
+        </div>
     </div>
 </div>
+ <div class="wwy-item-r">
+     <div class="wwy-replace">
+         <input type="checkbox" id="model-isreplace" true-value="01" false-value="00" {{#compare isreplace '===' '01'}}checked{{/compare}} />
+         设置被转发时， 转发者是否可以将此图片替换掉
+     </div>
+     <div class="wwy-isguagua">
+         <input id="model-isguagua" type="checkbox" true-value="01" false-value="00" {{#compare isguagua '===' '01'}}checked{{/compare}}/>
+         设置是否将此图片作为刮刮卡的封面
+     </div>
+     <div class="wwy-href">
+         图片链接： <input id="model-picHref" type="text" class="input-middle" value="{{picHref}}"/>
+         <input id="model-hrefBlank" type="checkbox" {{#if hrefBlank}}checked{{/if}}/>打开新窗口：
+     </div>
+     <div class="wwy-video" style="display:none;">
+         视频地址： <input id="model-video" class="input-middel" type="text" value="{{video}}"/>
+     </div>
+ </div>

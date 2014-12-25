@@ -302,28 +302,28 @@ label.checkbox { padding-left: 5px; }
 .category-ul .gird-2{ width:32px; }
 /*相册*/
 #jhw .album-sub{padding-left:15px;}
-#jhw .album-cate-ul li{padding-top:8px;}
+#jhw .album-cate-ul li{padding-top:4px;}
 #jhw .album_left{float:left;width:15%;height:100%;}
 #jhw .album_left li{padding-left: 10px; padding-right: 0px;}
 #jhw .album_right{float:left; width:85%;height: 100%;}
 #jhw .album-cate-ul{padding-right:15px;}
-#jhw .album-cate-ul .cate-grid-row{position:relative;}
+#jhw .album-cate-ul .cate-grid-row{position:relative;padding-left: 8px; padding-bottom: 4px; border-radius: 5px;}
 #jhw .pic-container .image .handle li:hover, #jhw .pic-container .image .handle li{transition: background-color 0.5s; -moz-transition: background-color 0.5s; -webkit-transition: background-color 0.5s; -o-transition: background-color 0.5s; }
 #jhw .album-cate-ul .album-tool, #jhw .album-cate-ul .album-tool:hover{transition: opacity 0.5s; -moz-transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -o-transition: opacity 0.5s; }
 #jhw .album-cate-ul .album-tool{position:absolute;top: 0; right: 0px; z-index: 99999;display:none;opacity: 0.5;}
 #jhw .album-cate-ul .album-tool:hover{opacity: 1; }
 #jhw .album-cate-ul .hover .album-tool{display:block;padding-top: 5px; padding-right: 2px;}
 #jhw .pic-container .item { float: left; width: 160px; height: 193px; border: 2px solid #EDEDED;overflow: hidden; background-color: #fff; box-shadow: 2px 2px 6px #E2E2E2; margin: 10px 20px 10px 0; cursor: pointer;}
-#jhw .pic-container .item.hover{border-color:#d1d1d1;}
+#jhw .pic-container .pic-item.hover{border-color:#d1d1d1;}
 #jhw .pic-container .item.item-active { border-color: #79b24f; }
 #jhw .pic-container .image { width: 160px; height: 160px; position: relative; }
 #jhw .pic-container .image .img-container { width: 160px; height: 160px; display: table-cell; vertical-align: middle; text-align: center; }
 #jhw .pic-container .image .img-name { position: absolute; bottom: -33px; padding: 0 4px; height: 35px; line-height:18px;color: #454545; width: 152px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
-#jhw .pic-container .item.item-active .image .img-name{background-color: #79b24f; color: #fff; line-height: 35px;}
+#jhw .pic-container .pic-item.item-active .image .img-name{background-color: #79b24f; color: #fff; line-height: 35px;}
 #jhw .pic-container .image .qout { visibility: hidden; position: absolute; right: -1px; top: 1px; width: 33px; height: 33px; background-position: -172px -270px; }.pic-container .image .handle { position: absolute; bottom: -30px; padding-left: 14px; height: 30px; width: 146px; margin: 0; background-color: #000; background-color: rgba(0,0,0,0.8); -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
 #jhw .pic-container .image .handle li { float: left; width: 34px; text-align: center; height: 30px; margin-right: 14px; line-height: 27px; }
-#jhw .pic-container .item.hover .handle { bottom: 0; }
-#jhw .pic-container .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
+#jhw .pic-container .pic-item.hover .handle { bottom: 0; }
+#jhw .pic-container .pic-item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
 #jhw .pic-container .photo-tool .bui-grid-checkBox-container{text-align: left;padding-top:8px;}
 /*相册*/
 #jhw .bui-grid-body-pic .bui-grid-body { height: 85%; }
@@ -343,85 +343,27 @@ label.checkbox { padding-left: 5px; }
 */
 
 /*图片选择*/
-#jhw .multimage-gallery {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-}
-#jhw .multimage-gallery ul {
-    font-size: 0;
-}
-#jhw .multimage-gallery li {
-    font-size: 0;
-    display: inline-block;
-    border: 1px solid #CDCDCD;
-    margin-right: 10px;
-    position: relative;
-    vertical-align: top;
-}
-#jhw .multimage-gallery .primary {
-    margin-left: 0;
-    border: 1px solid #ffc097;
-}
-#jhw .multimage-gallery .preview {
-    z-index: 4;
-    text-align: center;
-    line-height: 90px;
-    font-family: arial;
-    background-color: #fff;
-    display: none;
-}
-#jhw .multimage-gallery .has-img .preview, #jhw .multimage-gallery .has-video .preview {
-    display: block;
-}
-#jhw .multimage-gallery .preview img {
-    max-height: 90px;
-    max-width: 90px;
-    vertical-align: middle;
-}
-#jhw .multimage-gallery .info {
-    z-index: 3;
-    text-align: center;
-    top: 30px;
-    font-size: 12px;
-}
-#jhw .multimage-info .bright {
-    display: inline;
-}
-#jhw .multimage-gallery .operate {
-    background: rgba(33,33,33,.7);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2404040, endColorstr=#b2404040);
-    z-index: 5;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 78px;
-    height: 10px;
-    display: none;
-    padding: 5px 0 5px 12px;
-}
-#jhw .multimage-gallery .hover .operate{
-    display: block;
-}
-#jhw .multimage-gallery .operate i {
-    display: inline-block;
-    cursor: pointer;
-    height: 12px;
-    width: 12px;
-    margin-right: 10px;
-    font-size: 0;
-    line-height: 0;
-    overflow: hidden;
-}
-#jhw .multimage-gallery .operate i {
-    background: url(http://img04.taobaocdn.com/tps/i4/T1IoOeXoRsXXXXXXXX-180-130.png) no-repeat;
-}
-#jhw .multimage-gallery .operate .toleft {
-    background-position: 0 -13px;
-}
-#jhw .multimage-gallery .operate .toright {
-    background-position: -13px -13px;
-}
-#jhw .multimage-gallery .operate .del {
-    background-position: -13px 0;
-}
+#jhw .multimage-gallery { margin-top: 10px; overflow: hidden; position: relative; }
+#jhw .multimage-gallery ul { font-size: 0; }
+#jhw .multimage-gallery li { font-size: 0; display: inline-block; border: 1px solid #CDCDCD; margin-right: 10px; position: relative; vertical-align: top; }
+#jhw .multimage-gallery .primary { margin-left: 0; border: 1px solid #ffc097; }
+#jhw .multimage-gallery .preview { z-index: 4; text-align: center; line-height: 90px; font-family: arial; background-color: #fff; display: none; }
+#jhw .multimage-gallery .has-img .preview, #jhw .multimage-gallery .has-video .preview { display: block; }
+#jhw .multimage-gallery .preview img { max-height: 90px; max-width: 90px; vertical-align: middle; }
+#jhw .multimage-gallery .info { z-index: 3; text-align: center; top: 30px; font-size: 12px; }
+#jhw .multimage-info .bright { display: inline; }
+#jhw .multimage-gallery .operate { background: rgba(33,33,33,.7); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2404040, endColorstr=#b2404040); z-index: 5; position: absolute; bottom: 0; left: 0; width: 78px; height: 10px; display: none; padding: 5px 0 5px 12px; }
+#jhw .multimage-gallery .hover .operate{ display: block; }
+#jhw .multimage-gallery .operate i { display: inline-block; cursor: pointer; height: 12px; width: 12px; margin-right: 10px; font-size: 0; line-height: 0; overflow: hidden; }
+#jhw .multimage-gallery .operate i { background: url(http://img04.taobaocdn.com/tps/i4/T1IoOeXoRsXXXXXXXX-180-130.png) no-repeat; }
+#jhw .multimage-gallery .operate .toleft { background-position: 0 -13px; }
+#jhw .multimage-gallery .operate .toright { background-position: -13px -13px; }
+#jhw .multimage-gallery .operate .del { background-position: -13px 0; }
+
+
+/*
+微传单*/
+#jhw .wwy-photo-list .wwy-item { overflow: hidden; }
+#jhw .wwy-photo-list .wwy-item-r{float:left;padding-top:5px;}
+#jhw #lty-tbody input{width: 90%; padding: 0; margin: 0; height: 30px;padding-left: 3%;}
+#jhw #lty-tbody .lty-inner-div{text-align: center;}

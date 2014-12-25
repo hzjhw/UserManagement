@@ -89,6 +89,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           model: WwyModel,
           collection: WwyCollection,
           item: WwyItem,
+          pagination: true,
           detail: CONST.HOST + '/modules/wwy/wwy_detail.html'
         }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);

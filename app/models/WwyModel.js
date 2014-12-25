@@ -15,6 +15,7 @@ define('WwyModel', ['jquery', 'BaseModel'],
         showmsg: '0',
         isforwoard: '0',
         ltyType: '0',
+        state: '01',
         addTime: new Date().getTime()
       }, BaseModel.prototype.defaults),
       baseId: 'wyId',

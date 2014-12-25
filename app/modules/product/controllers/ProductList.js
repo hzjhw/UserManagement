@@ -129,6 +129,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       initialize: function () {
         this._initialize({
+          viewId: 'productList',
           render: '#product-list-ul',
           enterRender: '.btn-search',
           template: listTemp,

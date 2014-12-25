@@ -8,7 +8,7 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
     'template/wwy_mobile_list', 'template/wwy_mobile_item', 'BaseUtils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyItem,
-        WwyMobileCollection, listTemp, itemTemp, BaseUtils,wyId;
+      WwyMobileCollection, listTemp, itemTemp, BaseUtils, wyId;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -23,19 +23,19 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
      * 集合类
      */
     WwyMobileCollection = BaseCollection.extend({
-        url: function () {
-            return CONST.API +  '/wwy/mobile/list/'+this.getWyId()
-        },
+      url: function () {
+        return CONST.API + '/wwy/mobile/list/' + this.getWyId()
+      },
       model: WwyModel,
       initialize: function () {
         this._initialize();
       },
-        setWyId: function (wyId) {
-            this.wyId = wyId;
-        },
-        getWyId: function () {
-            return this.wyId;
-        }
+      setWyId: function (wyId) {
+        this.wyId = wyId;
+      },
+      getWyId: function () {
+        return this.wyId;
+      }
     });
     /**
      * 单视图
@@ -74,12 +74,13 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
           collection: WwyMobileCollection,
           item: WwyMobileItem
         }).then(function (baseListCtx) {
-                baseListCtx._initPagination(baseListCtx._options);
-                baseListCtx._load({
-                    beforeLoad: function (collection) {
-                        collection.setWyId(options.wyId);
-                    }
-                })}).then(function (thisCtx) {
+          baseListCtx._initPagination(baseListCtx._options);
+          baseListCtx._load({
+            beforeLoad: function (collection) {
+              collection.setWyId(options.wyId);
+            }
+          })
+        }).then(function (thisCtx) {
           thisCtx._initPagination(thisCtx._options);
           thisCtx._load(thisCtx._options);
         });
