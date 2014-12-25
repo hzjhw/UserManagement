@@ -210,7 +210,61 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           async(result.attributes.data);
         });
       });
+    },
+    /**
+     * 获取会员等级分类
+     *
+     * @method [会员] - getMemberRankCategory
+     * @param options [extend: true/false 是否展开] [select: true/false 是否是选择框]
+     * @return {hn.promise}
+     * @author wyj 14.12.17
+     * @example
+     *    if (!app.getData('memberRankCategory')) {
+          BaseService.getMemberRankCategory({
+            extend: true,
+            select: true
+          }).then(function (list) {
+            app.setData('memberCategory', list);
+          })
+        }
+     */
+    getMemberRankCategory: function (options) {
+      debug('getMemberCategory');
+      var $q = Est.promise;
+      return new $q(function (topResolve, topReject) {
+        options.select = options ? options.select ? true : false : false;
+        options.extend = options ? options.extend ? true : false : false;
+        var getCategory = function () {
+          return new $q(function (resolve, reject) {
+            $.ajax({
+              type: 'post',
+              url: CONST.API + '/member/rank/list',
+              async: false,
+              data: {
+                _method: 'GET'
+              },
+              success: function (result) {
+                resolve(result);
+              }
+            });
+          });
+        };
+        getCategory().then(function (result) {
+          if (result.attributes) {
+            Est.each(result.attributes.data,function(item){
+              item.text=item.name;
+              item.value=item.rankId;
+            })
+          } else {
+            result.attributes.data = [];
+          }
+          result.attributes.data.unshift({text: '请选择分类', value: '/'});
+          topResolve(result.attributes.data);
+        });
+      });
     }
+
+
   };
 
   module.exports = BaseService;

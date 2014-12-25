@@ -4,10 +4,10 @@
  * @author wxw on 14-12-16
  */
 define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail',
-    'dialog', 'template/member_list_detail', 'BaseUtils','MemberAttributeModel','BaseCollection','MemberAttributesShow'],
+    'dialog', 'template/member_list_detail', 'BaseUtils','MemberAttributeModel','BaseCollection','MemberAttributesShow','BaseService'],
   function (require, exports, module) {
     var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, MemberAttributesShow, dialog, Tag, BaseUtils
-      ,MemberAttrModel,BaseCollection,attrCollection;
+      ,MemberAttrModel,BaseCollection,attrCollection ,BaseService;
 
     MemberListModel = require('MemberListModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -19,6 +19,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
     BaseUtils = require('BaseUtils');
     BaseCollection = require('BaseCollection');
     MemberAttrModel = require('MemberAttrModel');
+    BaseService = require('BaseService');
     attrCollection = BaseCollection.extend({
       url:CONST.API + '/member/attr/list/',
       model: MemberAttrModel,
@@ -45,41 +46,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           model: MemberListModel
         });
       },
-      getMemberRankCategory: function (options) {
-        debug('getMemberCategory');
-        var $q = Est.promise;
-        return new $q(function (topResolve, topReject) {
-          options.select = options ? options.select ? true : false : false;
-          options.extend = options ? options.extend ? true : false : false;
-          var getCategory = function () {
-            return new $q(function (resolve, reject) {
-              $.ajax({
-                type: 'post',
-                url: CONST.API + '/member/rank/list',
-                async: false,
-                data: {
-                  _method: 'GET'
-                },
-                success: function (result) {
-                  resolve(result);
-                }
-              });
-            });
-          };
-          getCategory().then(function (result) {
-            if (result.attributes) {
-              Est.each(result.attributes.data,function(item){
-                item.text=item.name;
-                item.value=item.rankId;
-              })
-            } else {
-              result.attributes.data = [];
-            }
-            result.attributes.data.unshift({text: '请选择分类', value: '/'});
-            topResolve(result.attributes.data);
-          });
-        });
-      },
+
       render: function () {
         debug('4.MemberDetail.render');
         var ctx = this;
@@ -96,13 +63,13 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           }
         });
         // 会员分类
-       this.getMemberRankCategory({ select: true, extend: true }
+        BaseService.getMemberRankCategory({ select: true, extend: true }
         ).then(function (list) {
             BaseUtils.initSelect({
               render: '#s1',
               target: '#model-memberRank',
-              items: list,
-              change: function (categoryId) {
+              items: list
+              /*change: function (categoryId) {
                 var buttons = [
                   {
                     value: '更换',
@@ -127,7 +94,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
                 } else {
                   ctx.showAttributes(categoryId);
                 }
-              }
+              }*/
             });
           });
 /*

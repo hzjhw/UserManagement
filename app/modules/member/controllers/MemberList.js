@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/16
  */
 define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_list','template/member_list_item','template/member_search'],
+    'template/member_category','template/member_list','template/member_list_item','template/member_search','BaseService'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
-      , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp;
+      , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp ,BaseService;
 
     MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
@@ -17,6 +17,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
     searchTemp = require('template/member_search');
     memberList = require('template/member_list');
     memberListItem = require('template/member_list_item');
+    BaseService = require('BaseService');
     /**
      * 集合类
      */
@@ -97,6 +98,15 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       searchAdvance: function () {
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
+        if (!app.getData('memberCategory')) {
+          BaseService.getMemberRankCategory({
+            tree: true,
+            extend: true,
+            select: true
+          }).then(function (list) {
+            app.setData('memberCategory', list);
+          })
+        }
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
@@ -104,10 +114,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({
-              memberCategoryList: [{
-                text: '白金',
-                value: '白金'
-              }]
+              memberCategoryList: app.getData('memberCategory')
             }),
             button: [
               {
@@ -118,7 +125,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
                   ctx._search({
                     filter: [
                       {key: 'username', value: ctx.searchKey },
-                      {key: 'memberRank.name', value: ctx.searchMemberRank}
+                      {key: 'memberRank.rankId', value: ctx.searchMemberRank === '/' ? '' : ctx.searchMemberRank}
                     ]
                   });
                   this.remove();
