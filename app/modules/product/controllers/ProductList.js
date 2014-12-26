@@ -172,9 +172,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             app.setData('productCategory', list);
           })
         }
-        seajs.use(['dialog-plus'], function (dialog) {
+        seajs.use(['dialog'], function (dialog) {
           window.dialog = dialog;
-          ctx.searchDialog = dialog({
+          window.productSearchDialog = dialog({
             id: 'search-dialog-product',
             title: '高级搜索',
             width: 600,
@@ -213,9 +213,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
               },
               { value: '关闭' }
             ],
-            oniframeload: function () {
-              this.iframeNode.contentWindow.searchDialog = ctx.searchDialog;
-            },
             onclose: function () {
               this.remove();
               if (this.returnValue) {

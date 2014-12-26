@@ -226,10 +226,10 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             app.setData('newsCategory', list);
           })
         }
-        seajs.use(['dialog-plus'], function (dialog) {
+        seajs.use(['dialog'], function (dialog) {
           window.dialog = dialog;
-          ctx.searchDialog = dialog({
-            id: 'search-dialog',
+          window.newsSearchDialog = dialog({
+            id: 'search-dialog-news',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({

@@ -54,6 +54,7 @@ define('PhotoSelect', ['PhotoModel', 'BaseCollection', 'BaseList', 'BaseItem', '
           collection: PhotoCollection,
           model: PhotoModel,
           item: PhotoItem,
+          checkAppend: false,
           pagination: true
         }).then(function (thisCtx) {
           thisCtx.collection._setItemId('all');

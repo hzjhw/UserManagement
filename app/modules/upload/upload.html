@@ -238,83 +238,38 @@ var result = [];
 var options = {};
 if (Est.isEmpty(albumId))
     albumId = '';
-var bulidNav = function(id){
-    if (id) albumId = id;
-    var breadcrumb = [];
-    Est.each(Est.bulidBreakNav(app.getData('albumList'), 'albumId', albumId, 'name', 'parentId'), function(item){
-        breadcrumb.push(item.name);
+var bulidNav = function (id) {
+    seajs.use(['BaseService'], function (BaseService) {
+        if (!app.getData('albumList')) {
+            app.setData('albumList', BaseService.getAlbumList());
+        }
+        if (id) albumId = id;
+        var breadcrumb = [];
+        Est.each(Est.bulidBreakNav(app.getData('albumList'), 'albumId', albumId, 'name', 'parentId'), function (item) {
+            breadcrumb.push(item.name);
+        });
+        if (breadcrumb.length > 0) {
+            $('.breadcrumb').html(breadcrumb.join(' > '));
+        }
     });
-    if (breadcrumb.length > 0){
-        $('.breadcrumb').html(breadcrumb.join(' > '));
-    }
 }
-function showAlbumList(){
+function showAlbumList() {
     /*if ($('#J_UpTree').size() === 0){
-        $('.tree-box').append('<div id="J_UpTree" class="ztree"> </div >');
-    }*/
-    seajs.use(['AlbumList', 'BaseService'], function(AlbumList, BaseService){
+     $('.tree-box').append('<div id="J_UpTree" class="ztree"> </div >');
+     }*/
+    seajs.use(['AlbumList'], function (AlbumList) {
         //if (app.getView('albumList')) app.removeView('albumList');
         app.addView('albumList', new AlbumList({
             el: '#J_UpTree',
-            callback: function(albumId){
+            callback: function (albumId) {
                 bulidNav(albumId);
                 $('.show-tree').click();
                 top.app && top.app.setData('curAlbumId', albumId);
                 top.$('#pagination-container .reload').click();
             }
         }));
-        if (!app.getData('albumList')){
-            app.setData('albumList', BaseService.getAlbumList());
-        }
-        bulidNav();
     });
 }
-$(function(){
-    showAlbumList();
-    $('.show-tree').toggle(function(){
-        if (!app.getView('albumList')){ showAlbumList(); }
-        $('.tree-box').show('fast');
-    }, function(){
-        $('.tree-box').hide('fast');
-    });
-    $('#btn-source').click(function(){
-        $('#pic-source').show('fast');
-        seajs.use(['AlbumList', 'PhotoSelect'], function(AlbumList, PhotoSelect){
-            //if (app.getView('albumList')) app.removeView('albumList');
-            /*if ($('#pic-source-album').size() === 0){
-                $('<div id="pic-source-album" class="ztree"> </div >').after($('.source-back'));
-            }*/
-            app.addView('albumList', new AlbumList({
-                el: '#pic-source-album',
-                instance: 'albumList',
-                callback: function(albumId){
-                    app.getView('picSource').reLoad(albumId);
-                    //bulidNav(albumId);
-                    //$('.show-tree').click();
-                    //top.app && top.app.setData('curAlbumId', albumId);
-                    //top.$('#pagination-container .reload').click();
-                }
-            }));
-            app.addView('picSource', new PhotoSelect({
-                el: '#pic-source-list',
-                callback: function(picSrc){
-
-                }
-            }));
-        })
-    });
-    if (uploadType === 'sourceUpload'){
-        $('#btn-source').click();
-    }else {
-        $('.swfupload').click();
-    }
-    $('#source-back').click(function(){
-        $('#pic-source').hide('fast');
-    });
-    $('.btn-search').click(function(){
-        app.getView('picSource').search($('.search-text').val());
-    });
-})
 
 function fileQueueError(file, errorCode, message) {
     try {
@@ -756,6 +711,53 @@ if (auto){
         $('.swfupload').click();
     }, 100);
 }
+
+$(function () {
+    bulidNav();
+    $('.show-tree').toggle(function () {
+        showAlbumList();
+        $('.tree-box').show('fast');
+    }, function () {
+        $('.tree-box').hide('fast');
+    });
+    $('#btn-source').click(function () {
+        $('#pic-source').show('fast');
+        seajs.use(['AlbumList', 'PhotoSelect'], function (AlbumList, PhotoSelect) {
+            //if (app.getView('albumList')) app.removeView('albumList');
+            /*if ($('#pic-source-album').size() === 0){
+             $('<div id="pic-source-album" class="ztree"> </div >').after($('.source-back'));
+             }*/
+            app.addView('albumList', new AlbumList({
+                el: '#pic-source-album',
+                instance: 'albumList',
+                callback: function (albumId) {
+                    app.getView('picSource').reLoad(albumId);
+                    //bulidNav(albumId);
+                    //$('.show-tree').click();
+                    //top.app && top.app.setData('curAlbumId', albumId);
+                    //top.$('#pagination-container .reload').click();
+                }
+            }));
+            app.addView('picSource', new PhotoSelect({
+                el: '#pic-source-list',
+                callback: function (picSrc) {
+
+                }
+            }));
+        })
+    });
+    if (uploadType === 'sourceUpload') {
+        $('#btn-source').click();
+    } else {
+        $('.swfupload').click();
+    }
+    $('#source-back').click(function () {
+        $('#pic-source').hide('fast');
+    });
+    $('.btn-search').click(function () {
+        app.getView('picSource').search($('.search-text').val());
+    });
+})
 </script>
 </body>
 </html>
