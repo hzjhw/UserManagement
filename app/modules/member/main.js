@@ -22,50 +22,30 @@ app.addModule('MemberAttributesShow', 'modules/member/controllers/MemberAttribut
 /**
  * 路由
  * */
-app.addRoute('member', function(){
-  seajs.use(['jquery', 'BaseView', 'MemberList','MemberRank','MemberAttribute', 'template/member_category'],
-    function (jquery, BaseView, MemberList, MemberRank, MemberAttribute, categoryTemp) {
-      var Panel = BaseView.extend({
-        el: '#jhw-main',
-        events: {
-          'click #listClick' : 'listClick',
-          'click #rankClick' : 'rankClick' ,
-          'click #attributeClick' : 'attributeClick'
-        },
-        initialize: function(){
-          this._initialize({
-            template: categoryTemp
-          });
-        },
-        render: function(){
-          this._render();
-        },
-        listClick :function(){
-          this.memberList = app.addView('memberList', new MemberList());
-        },
-        rankClick :function(){
-          this.memberRank = app.addView('memberRank', new MemberRank());
-        },
-        attributeClick :function(){
-          this.memberAttribute = app.addView('memberAttribute', new MemberAttribute());
-        }
 
-      });
-      var panel = new Panel();
-      panel.on('after', function(){
-        this.memberList = app.addView('memberList', new MemberList());
-      });
-      panel.render();
-    });
+app.addRoute('member', function(){
+  seajs.use(['jquery', 'MemberList'], function (jquery, MemberList) {
+    app.addView('memberList', new MemberList());
+  });
 });
+
+app.addRoute('member/attr', function(){
+  seajs.use(['jquery', 'MemberAttribute'], function (jquery, MemberAttribute) {
+    app.addView('memberAttribute', new MemberAttribute());
+  });
+});
+
+app.addRoute('member/rank', function(){
+  seajs.use(['jquery', 'MemberRank'], function (jquery, MemberRank) {
+    app.addView('memberRank', new MemberRank());
+  });
+});
+
 
 /**
  * 模板
  * */
 
-app.addTemplate('template/member_category', function(require, exports, module){
-  module.exports = require('modules/member/views/member_category.html');
-});
 app.addTemplate('template/member_search', function(require, exports, module){
   module.exports = require('modules/member/views/member_search.html');
 });

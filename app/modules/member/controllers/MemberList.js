@@ -3,8 +3,8 @@
  * @namespace MemberList
  * @author wxw on 2014/12/16
  */
-define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_list','template/member_list_item','template/member_search','BaseService'],
+define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'
+    ,'template/member_list','template/member_list_item','template/member_search','BaseService'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
       , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp ,BaseService;
@@ -55,7 +55,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
      * 列表视图
      */
     MemberList = BaseList.extend({
-      el: '#member-data-ul',
+      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',

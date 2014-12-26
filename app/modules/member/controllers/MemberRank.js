@@ -4,7 +4,7 @@
  * @author wxw on 2014/12/16
  */
 define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_rank','template/member_rank_item'],
+    'template/member_rank','template/member_rank_item'],
   function (require, exports, module) {
     var MemberRankModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberRankCollection
       , MemberRank , memberRank, memberRankItem ,MemberRankItem;
@@ -54,7 +54,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
      * 列表视图
      */
     MemberRank = BaseList.extend({
-      el: '#member-data-ul',
+      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',

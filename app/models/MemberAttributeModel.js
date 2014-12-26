@@ -15,12 +15,12 @@ define('MemberAttributeModel', ['jquery', 'underscore', 'backbone', 'dialog', 'B
         enterpriseId: "",
         attId: "",
         addTime:new Date().getTime(),
-        attributeType: "select",
-        isRequired: "01",
-        isEnabled: "01",
-        attributeOptionStore: "['男','女']",
+        attributeType: "text",
+        isRequired: "00",
+        isEnabled: "00",
+        attributeOptionStore: "",
         attributeOptionList: [ ],
-        name: "性别"
+        name: ""
       },
       BaseModel.prototype.defaults),
       baseUrl: CONST.API + '/member/attr/detail',

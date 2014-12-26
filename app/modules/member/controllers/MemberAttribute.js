@@ -4,7 +4,7 @@
  * @author wxw on 2014/12/16
  */
 define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/member_category','template/member_attribute','template/member_attribute_item'],
+    'template/member_attribute','template/member_attribute_item'],
   function (require, exports, module) {
     var MemberAttributeModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberAttributeCollection
       , MemberAttribute , memberAttribute, memberAttributeItem ,MemberAttributeItem;
@@ -54,13 +54,18 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       // 渲染文档
       render: function () {
         this._render();
+      },
+      detail : function(){
+        this._detail({
+
+        })
       }
     });
     /**
      * 列表视图
      */
     MemberAttribute = BaseList.extend({
-      el: '#member-data-ul',
+      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .member-attr-add': '_detail',
@@ -86,7 +91,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
       },
       detail : function(){
         this._detail({
-          height:300
+          height:350
         })
       }
     });
