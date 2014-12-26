@@ -24,6 +24,7 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 
           async:false,
           success: function(data){
             app.setData('user', data.attributes);
+            CONST.USER = data.attributes;
           }
         });
         if (!app.getData('user')){

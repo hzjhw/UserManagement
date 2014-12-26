@@ -169,7 +169,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * @author wyj 14.12.17
    */
   Handlebars.registerHelper('CONST', function(name, options){
-    return CONST[name];
+    return Est.getValue(CONST, name);
   });
 
   /**

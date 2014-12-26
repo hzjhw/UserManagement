@@ -367,3 +367,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .wwy-photo-list .wwy-item-r{float:left;padding-top:5px;}
 #jhw #lty-tbody input{width: 90%; padding: 0; margin: 0; height: 30px;padding-left: 3%;}
 #jhw #lty-tbody .lty-inner-div{text-align: center;}
+
+/*
+导航*/
+#jhw .grid-td-cate-route{width:150px;}

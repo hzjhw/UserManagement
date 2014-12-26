@@ -106,7 +106,11 @@ window.debug = function (str, options) {
     opts = Est.extend({ type: 'console' }, options);
     msg = Est.typeOf(str) === 'function' ? str() : str;
     if (!Est.isEmpty(msg)) {
-      return opts.type === 'error' ? console.error(msg) : console.log(msg);
+      if (opts.type === 'error'){
+        console.error(msg);
+      } else{
+        console.log(msg);
+      }
     }
   }
 };

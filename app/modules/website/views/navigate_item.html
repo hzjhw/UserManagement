@@ -1,0 +1,82 @@
+<div class="cate-grid gird-checkbox" style="margin-right:20px;">
+    <div class="cate-grid-cell-inner">
+        <div class="bui-grid-checkBox-container">
+            <span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
+        </div>
+    </div>
+</div>
+
+<div class="cate-grid grid-td-cate-route">
+    <div class="cate-grid-cell-inner">
+        <span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
+            <i class="icon icon-white icon-flag pointer"></i>
+        </span> <a href="{{CONST 'HOST'}}/{{page}}.html" target="_blank">/{{page}}.html</a>
+    </div>
+</div>
+<div class="cate-grid gird-2 ">
+    <div class="cate-grid-cell-inner">
+        {{#compare level '===' 1}}
+        <div class="x-grid-caret">
+            <span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse {{#compare children.length '===' 0}}x-caret-left-gray{{/compare}}"></span>
+        </div>
+        {{/compare}}
+    </div>
+</div>
+<div class="cate-grid grid-td-cate-name jhw-category">
+    <div class="cate-grid-cell-inner">
+        {{#compare level '!==' 1}}
+        {{#compare children.length '!==' 0}}&nbsp;
+        <div style="width:17px;margin-left:-5px;display:inline-block;"><span
+                class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
+        {{/compare}}
+        {{/compare}}
+        {{#compare level '!==' 1}}
+        {{#compare ../children.length '===' 0}}
+        <span class="x-caret x-caret-middle x-caret-sub cate-{{level}} x-caret-left-middle pointer node-collapse "></span>
+        {{/compare}}
+        {{/compare}}
+        <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">
+    </div>
+</div>
+<div class="cate-grid grid-td-display">
+    <div class="cate-grid-cell-inner">
+        <a href="javascript:;" class="btn-display">{{#compare display '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
+    </div>
+</div>
+<div class="cate-grid grid-td-userdefined">
+    <div class="cate-grid-cell-inner">
+        <a href="#/userdefined/{{page}}">自定义模块</a>
+    </div>
+</div>
+<div class="cate-grid grid-td-move">
+    <div class="cate-grid-cell-inner">
+        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
+              title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
+            <i class="icon icon-white icon-arrow-up pointer"></i>
+        </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
+        <span class="x-icon x-icon-small x-icon-info move-down pointer"
+              style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
+                class="icon icon-white icon-arrow-down pointer"></i></span>
+    </div>
+</div>
+
+<div class="cate-grid ">
+    <div class="cate-grid-cell-inner">
+        <button type="button" class="button button-info button-mini btn-edit"><i class="icon-white icon-edit"></i>修改
+        </button>
+        <button type="button" class="button button-info button-mini btn-design"><a href="{{CONST 'DOMAIN'}}/rest/maintain/{{CONST 'USER.username'}}/" style="color:#fff;" target="_blank"><i class="icon-white icon-wrench"></i>设计</a>
+        </button>
+        <button type="button" class="button button-info button-mini btn-publish"><i class="icon-white icon-globe"></i>发布
+        </button>
+        <button type="button" class="button button-info button-mini btn-seo"><i class="icon-white icon-search"></i>seo优化
+        </button>
+        <button type="button" class="button button-gray button-mini btn-delete"><i class="icon-trash"></i>删除
+        </button>
+    </div>
+</div>
+<div class="cate-grid">
+    <div class="cate-grid-cell-inner">
+        <!--grade:{{grade}};dx: {{dx}} belongId:{{belongId}}-->
+    </div>
+</div>
+<ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"></ul>
