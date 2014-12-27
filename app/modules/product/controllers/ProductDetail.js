@@ -67,7 +67,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             });
           });
         }
-        if (Est.isEmpty(PicturePick)){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
+        if (!PicturePick){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
         app.addView('picturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'picturePick',
@@ -194,11 +194,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           }
 
         });
-
-        setTimeout(function () {
-          BaseUtils.resetIframe();
-        }, 1000);
-
         return this;
       },
       showAttributes: function (categoryId, items) {

@@ -165,42 +165,32 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         if (this.checkboxIds = this._getCheckboxIds()) {
-          seajs.use(['dialog-plus'], function (dialog) {
-            window.dialog = dialog;
-            ctx.transferDialog = dialog({
-              id: 'transfer-dialog',
-              title: '批量转移分类',
-              width: 300,
-              content: ctx.transferTemp({
-                newsCategoryList: app.getData('newsCategory')
-              }),
-              button: [
-                {
-                  value: '确定',
-                  callback: function () {
-                    ctx.transferCategory = $('select[name=transferCategory]').val();
-                    $.ajax({
-                      type: 'POST',
-                      async: false,
-                      url: CONST.API + '/category/news/batch/transfer',
-                      data: {
-                        ids: ctx.checkboxIds.join(','),
-                        category: ctx.transferCategory
-                      },
-                      success: function (result) {
-                        BaseUtils.tip('批量隐藏成功');
-                        ctx._load();
-                      }
-                    });
-                    this.remove();
-                    return false;
-                  },
-                  autofocus: true
+          BaseUtils.dialog({
+            id: 'transfer-dialog',
+            title: '批量转移分类',
+            width: 300,
+            target: this.$('.btn-batch-category').get(0),
+            content: ctx.transferTemp({
+              newsCategoryList: app.getData('newsCategory')
+            }),
+            success: function(){
+              ctx.transferCategory = $('select[name=transferCategory]').val();
+              $.ajax({
+                type: 'POST',
+                async: false,
+                url: CONST.API + '/category/news/batch/transfer',
+                data: {
+                  ids: ctx.checkboxIds.join(','),
+                  category: ctx.transferCategory
                 },
-                { value: '关闭' }
-              ]
-            }).show(this.$('.btn-batch-category').get(0));
-          })
+                success: function (result) {
+                  BaseUtils.tip('批量隐藏成功');
+                  ctx._load();
+                }
+              });
+              this.remove();
+            }
+          });
         }
       }
     });

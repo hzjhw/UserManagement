@@ -89,7 +89,7 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         window['uploadDialog'].close().remove();
       },
       picUploadSource: function(){
-        this.picUpload('sourceUpload');
+        this.picUpload('source');
       },
       render: function(){
         this._render();

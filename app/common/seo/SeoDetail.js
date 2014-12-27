@@ -20,6 +20,7 @@ define('SeoDetail', ['BaseDetail', 'SeoModel'], function (require, exports, modu
     render: function(){
       this._render();
       this._form('#J_Form')._validate()._init({});
+      return this;
     }
   });
 

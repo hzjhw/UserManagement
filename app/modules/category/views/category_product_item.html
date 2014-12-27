@@ -21,14 +21,15 @@
 <div class="cate-grid grid-td-cate-name jhw-category">
     <div class="cate-grid-cell-inner">
         {{#compare isroot '!==' '01'}}
-            {{#compare children.length '!==' 0}}&nbsp;
-            <div style="width:17px;margin-left:-5px;display:inline-block;"><span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
-            {{/compare}}
+        {{#compare children.length '!==' 0}}&nbsp;
+        <div style="width:17px;margin-left:-5px;display:inline-block;"><span
+                class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
+        {{/compare}}
         {{/compare}}
         {{#compare isroot '!==' '01'}}
-            {{#compare ../children.length '===' 0}}
-                <span class="x-caret x-caret-middle x-caret-sub cate-{{grade}} x-caret-left-middle pointer node-collapse "></span>
-            {{/compare}}
+        {{#compare ../children.length '===' 0}}
+        <span class="x-caret x-caret-middle x-caret-sub cate-{{grade}} x-caret-left-middle pointer node-collapse "></span>
+        {{/compare}}
         {{/compare}}
         <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">
     </div>
@@ -36,9 +37,17 @@
 
 <div class="cate-grid grid-td-picture">
     <div class="cate-grid-cell-inner">
-        <span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
-            <i class="icon icon-white icon-plus-mini pointer"></i>
-        </span> 添加图片
+        <a href="javascript:;" class="edit-image">
+        {{#isEmpty image}}
+            <span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
+                <i class="icon icon-white icon-plus-mini pointer"></i>
+            </span> 添加图片
+            {{else}}
+            <span class="x-icon x-icon-small x-icon-info pointer" style="vertical-align: middle;">
+                <i class="icon icon-white icon-picture pointer"></i>
+            </span> 修改图片
+        {{/isEmpty}}
+        </a>
     </div>
 </div>
 <div class="cate-grid grid-td-time">
@@ -81,4 +90,4 @@
         <!--isroot:{{isroot}};grade:{{grade}};dx: {{dx}} belongId:{{belongId}}-->
     </div>
 </div>
-<ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"> </ul>
+<ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"></ul>

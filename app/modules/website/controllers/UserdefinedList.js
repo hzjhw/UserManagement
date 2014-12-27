@@ -18,10 +18,8 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
     UserdefinedCollection = BaseCollection.extend({
       url: function(){
         var url = CONST.API + '/userdefined02/list';
-        if (Est.isEmpty(this.options.data.page)){
-          return url;
-        }
-        return url + '?searchPage=' + this.options.data.page;
+        if (Est.isEmpty(this.options.data.page)){ return url; }
+        return url + '/' + this.options.data.page;
       },
       model: UserdefinedModel,
       initialize: function(){
@@ -71,7 +69,8 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
       el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .attributes-add': 'openAddDialog',
+        'click .attributes-add': '_detail',
+        'click .btn-search': 'search',
         'click .attributes-show': 'attributesShow'
       },
       initialize: function () {
@@ -80,20 +79,27 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
           render: '#attributes-list-ul',
           item: UserdefinedItem,
           model: UserdefinedModel,
-          collection: UserdefinedCollection
+          collection: UserdefinedCollection,
+          detail:  CONST.HOST + '/modules/website/userdefined_detail.html'
         }).then(function(thisCtx){
           thisCtx._load(thisCtx._options);
         });
       },
+      // 简单搜索
+      search: function () {
+        this.searchKey = Est.trim(this.$('.search-text').val());
+        if (Est.isEmpty(this.searchKey)) {
+          this._load({ page: 1, pageSize: 16 });
+        } else {
+          this._search({
+            filter: [
+              {key: 'name', value: this.searchKey }
+            ]
+          });
+        }
+      },
       render: function () {
         this._render();
-      },
-      openAddDialog: function () {
-        this._detail({
-          title: '属性添加',
-          height: 300,
-          url: CONST.HOST + '/modules/attributes/attributes_detail.html?categoryId=' + app.getData('attrCategoryId')
-        });
       }
     });
 

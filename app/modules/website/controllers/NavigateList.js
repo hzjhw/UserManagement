@@ -70,17 +70,21 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
         }
       },
       seo: function () {
-        BaseUtils.iframeDialog({
+        BaseUtils.dialog({
           title: 'Seo优化',
           url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
             this.model.get('page'),
           width: 600,
           height: 250,
-          success: function(result){
-            this.title('正在提交..');
-            this.iframeNode.contentWindow.$("#submit").click();
-            return false;
-          }
+          button: [ {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                // 是否执行默认的关闭操作
+                return false;
+              }}
+          ]
         });
       },
       // 修改名称

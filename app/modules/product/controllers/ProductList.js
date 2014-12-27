@@ -122,7 +122,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .btn-batch-del': '_batchDel',
         'click .product-add': '_detail',
         'click .btn-search': 'search',
-        'click .search-advance': 'searchAdvance',
+        'click .search-advance-product': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-tool-sort': 'proSort'
@@ -172,54 +172,38 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             app.setData('productCategory', list);
           })
         }
-        seajs.use(['dialog'], function (dialog) {
-          window.dialog = dialog;
-          window.productSearchDialog = dialog({
-            id: 'search-dialog-product',
-            title: '高级搜索',
-            width: 600,
-            content: ctx.searchTemp({
-              productCategoryList: app.getData('productCategory'),
-              loginViewList: app.getData('loginViewList'),
-              adsList: app.getData('adsList'),
-              searchKey: ctx.searchKey,
-              searchProdtype: ctx.searchProdtype,
-              searchCategory: ctx.searchCategory,
-              searchAds: ctx.searchAds,
-              searchLoginView: ctx.searchLoginView
-            }),
-            button: [
-              {
-                value: '搜索',
-                callback: function () {
-                  ctx.searchKey = $('input[name=searchKey]').val();
-                  ctx.searchProdtype = $('input[name=searchProdtype]').val();
-                  ctx.searchCategory = $('select[name=searchCategory]').val();
-                  ctx.searchLoginView = $('select[name=searchLoginView]').val();
-                  ctx.searchAds = $('select[name=searchAds]').val();
-                  ctx._search({
-                    filter: [
-                      {key: 'name', value: ctx.searchKey },
-                      {key: 'prodtype', value: ctx.searchProdtype} ,
-                      {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
-                      {key: 'loginView', value: ctx.searchLoginView},
-                      {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
-                    ]
-                  });
-                  this.remove();
-                  return false;
-                },
-                autofocus: true
-              },
-              { value: '关闭' }
-            ],
-            onclose: function () {
-              this.remove();
-              if (this.returnValue) {
-                $('#value').html(this.returnValue);
-              }
-            }
-          }).show(this.$('.search-advance').get(0));
+        app.emptyDialog();
+        BaseUtils.dialog({
+          title: '高级搜索',
+          width: 600,
+          target: this.$('.search-advance-product').get(0),
+          content: ctx.searchTemp({
+            productCategoryList: app.getData('productCategory'),
+            loginViewList: app.getData('loginViewList'),
+            adsList: app.getData('adsList'),
+            searchKey: ctx.searchKey,
+            searchProdtype: ctx.searchProdtype,
+            searchCategory: ctx.searchCategory,
+            searchAds: ctx.searchAds,
+            searchLoginView: ctx.searchLoginView
+          }),
+          success: function(){
+            ctx.searchKey = $('input[name=searchKey]').val();
+            ctx.searchProdtype = $('input[name=searchProdtype]').val();
+            ctx.searchCategory = $('select[name=searchCategory]').val();
+            ctx.searchLoginView = $('select[name=searchLoginView]').val();
+            ctx.searchAds = $('select[name=searchAds]').val();
+            ctx._search({
+              filter: [
+                {key: 'name', value: ctx.searchKey },
+                {key: 'prodtype', value: ctx.searchProdtype} ,
+                {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
+                {key: 'loginView', value: ctx.searchLoginView},
+                {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+              ]
+            });
+            this.close().remove();
+          }
         });
       },
       // 批量转移分类
@@ -227,42 +211,32 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         if (this.checkboxIds = this._getCheckboxIds()) {
-          seajs.use(['dialog-plus'], function (dialog) {
-            window.dialog = dialog;
-            ctx.transferDialog = dialog({
-              id: 'transfer-dialog',
-              title: '批量转移分类',
-              width: 300,
-              content: ctx.transferTemp({
-                productCategoryList: app.getData('productCategory')
-              }),
-              button: [
-                {
-                  value: '确定',
-                  callback: function () {
-                    ctx.transferCategory = $('select[name=transferCategory]').val();
-                    $.ajax({
-                      type: 'POST',
-                      async: false,
-                      url: CONST.API + '/product/batch/transfer',
-                      data: {
-                        ids: ctx.checkboxIds.join(','),
-                        category: ctx.transferCategory
-                      },
-                      success: function (result) {
-                        BaseUtils.tip('批量隐藏成功');
-                        ctx._load();
-                      }
-                    });
-                    this.remove();
-                    return false;
-                  },
-                  autofocus: true
+          BaseUtils.dialog({
+            id: 'transfer-dialog',
+            title: '批量转移分类',
+            width: 300,
+            content: ctx.transferTemp({
+              productCategoryList: app.getData('productCategory')
+            }),
+            target: this.$('.btn-batch-category').get(0),
+            success: function(){
+              ctx.transferCategory = $('select[name=transferCategory]').val();
+              $.ajax({
+                type: 'POST',
+                async: false,
+                url: CONST.API + '/product/batch/transfer',
+                data: {
+                  ids: ctx.checkboxIds.join(','),
+                  category: ctx.transferCategory
                 },
-                { value: '关闭' }
-              ]
-            }).show(this.$('.btn-batch-category').get(0));
-          })
+                success: function (result) {
+                  BaseUtils.tip('批量隐藏成功');
+                  ctx._load();
+                }
+              });
+              this.remove();
+            }
+          });
         }
       },
       // 批量隐藏

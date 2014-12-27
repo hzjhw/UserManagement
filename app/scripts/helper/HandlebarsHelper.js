@@ -161,7 +161,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    *
    */
   Handlebars.registerHelper('parseInt', function (result, options) {
-    return parseInt(result);
+    return parseInt(result, 10);
   });
 
   /**
@@ -170,6 +170,15 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('CONST', function(name, options){
     return Est.getValue(CONST, name);
+  });
+
+  /**
+   * 判断是否为空
+   * @author wyj 14.12.27
+   */
+  Handlebars.registerHelper('isEmpty', function(value, options){
+    return Est.isEmpty(value) ? options.fn(this) :
+      options.inverse(this);
   });
 
   /**
@@ -190,24 +199,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return url ? url : '';
   });
 
-  Handlebars.registerHelper('memberAttr', function (str, options) {
-    var result = '';
-    switch (str){
-      case 'text':
-        result = '文本'; break;
-      case 'number':
-        result = '数字'; break;
-      case 'alphaint':
-        result = '字母'; break;
-      case 'select':
-        result = '单选项'; break;
-      case 'checkbox':
-        result = '多选项'; break;
-      case 'date':
-        result = '日期'; break;
-    }
-    return result;
-  });
   module.exports = Handlebars;
 
 });

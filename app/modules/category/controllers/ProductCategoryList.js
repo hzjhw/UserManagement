@@ -35,7 +35,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort',
-        'change .pro-cate-name': 'editName'
+        'change .pro-cate-name': 'editName',
+        'click .edit-image': 'editImage'
       },
       initialize: function () {
         this._initialize({
@@ -46,6 +47,24 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       render: function () {
         this._render();
         return this;
+      },
+      editImage: function () {
+        var ctx = this;
+        BaseUtils.openUpload({
+          id: 'uploadDialog',
+          type: 'sourceUpload',
+          albumId: app.getData('curAlbumId'),
+          username: app.getData('user') && app.getData('user').username,
+          auto: true,
+          callback: function(result){
+            ctx.setImage(result);
+          }
+        });
+      },
+      setImage: function(result){
+        if (result.length > 0){
+          this.model.set('image', result[0]['serverPath']);
+        }
       },
       // 修改名称
       editName: function () {
@@ -87,7 +106,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           id: this.model.get('id'),
           isdisplay: this.model.get('isdisplay')
         }, this, { // ctx须初始化initModel
-          success: function () { },
+          success: function () {
+          },
           async: false,
           hideTip: true
         });
@@ -170,11 +190,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           });
         }
       },
-      btachCollapse: function(){
+      btachCollapse: function () {
         this.$('.node-tree').hide();
         this.$('.x-caret-left').removeClass('x-caret-down');
       },
-      btachExtend: function(){
+      btachExtend: function () {
         this.$('.node-tree').show();
         this.$('.x-caret-left').addClass('x-caret-down');
         this.$('.x-caret-left-gray').removeClass('x-caret-down');
@@ -193,42 +213,32 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         if (this.checkboxIds = this._getCheckboxIds()) {
-          seajs.use(['dialog-plus'], function (dialog) {
-            window.dialog = dialog;
-            ctx.transferDialog = dialog({
-              id: 'transfer-dialog',
-              title: '批量转移分类',
-              width: 300,
-              content: ctx.transferTemp({
-                productCategoryList: app.getData('productCategory')
-              }),
-              button: [
-                {
-                  value: '确定',
-                  callback: function () {
-                    ctx.transferCategory = $('select[name=transferCategory]').val();
-                    $.ajax({
-                      type: 'POST',
-                      async: false,
-                      url: CONST.API + '/category/product/batch/transfer',
-                      data: {
-                        ids: ctx.checkboxIds.join(','),
-                        category: ctx.transferCategory
-                      },
-                      success: function (result) {
-                        BaseUtils.tip('批量隐藏成功');
-                        ctx._load();
-                      }
-                    });
-                    this.remove();
-                    return false;
-                  },
-                  autofocus: true
+          BaseUtils.dialog({
+            id: 'transfer-dialog',
+            title: '批量转移分类',
+            width: 300,
+            target: this.$('.btn-batch-category').get(0),
+            content: ctx.transferTemp({
+              productCategoryList: app.getData('productCategory')
+            }),
+            success: function () {
+              ctx.transferCategory = $('select[name=transferCategory]').val();
+              $.ajax({
+                type: 'POST',
+                async: false,
+                url: CONST.API + '/category/product/batch/transfer',
+                data: {
+                  ids: ctx.checkboxIds.join(','),
+                  category: ctx.transferCategory
                 },
-                { value: '关闭' }
-              ]
-            }).show(this.$('.btn-batch-category').get(0));
-          })
+                success: function (result) {
+                  BaseUtils.tip('批量隐藏成功');
+                  ctx._load();
+                }
+              });
+              this.remove();
+            }
+          });
         }
       }
     });

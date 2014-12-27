@@ -64,4 +64,12 @@ git操作历史
  - app.setData('name', {}); // 添加数据
  - app.addRoute('name', function(){}); // 添加路由
  - app.addModule('ProductList', 'modules/product/controllers/ProductList.js'); // 添加模块
+ 
+ ### 常见问题
+1) 模型类保存不了， 谷歌提示"canceled" 错误码 -3  
+ - 对话框突然关闭
+2) dialog未执行close().remove()却意外关闭
+ - 自定义按钮callback方法中是否有return false;语句
+ 
+ 
 

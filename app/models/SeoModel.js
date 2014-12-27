@@ -10,9 +10,6 @@ define('SeoModel', ['BaseModel'], function (require, exports, module) {
 
   SeoModel = BaseModel.extend({
     defaults: Est.extend({
-      title: '',
-      keywords: '',
-      description: ''
     }, BaseModel.prototype.defaults),
     baseId: 'seoId',
     baseUrl: CONST.API + '/groupseo/detail',

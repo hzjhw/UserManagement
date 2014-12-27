@@ -143,7 +143,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;
           ctx.searchDialog = dialog({
-            id: 'search-cert-dialog',
+            id: 'dialog',
             title: '高级搜索',
             width: 600,
             content: ctx.searchTemp({

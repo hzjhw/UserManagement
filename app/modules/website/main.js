@@ -8,6 +8,7 @@ app.addModule('NavigateModel', 'models/NavigateModel.js');
 app.addModule('NavigateDetail', 'modules/website/controllers/NavigateDetail.js');
 app.addModule('UserdefinedList', 'modules/website/controllers/UserdefinedList.js');
 app.addModule('UserdefinedModel', 'models/UserdefinedModel.js');
+app.addModule('UserdefinedDetail', 'modules/website/controllers/UserdefinedDetail.js');
 
 app.addTemplate('template/navigate_list', function(require, exports, module){
   module.exports = require('modules/website/views/navigate_list.html');
@@ -30,7 +31,7 @@ app.addRoute('static', function(){
     }));
   });
 });
-app.addRoute('userdefined/:id', function(id){
+var userdefinedRoute = function(id){
   seajs.use(['UserdefinedList'], function(UserdefinedList){
     app.addView('userdefinedList', new UserdefinedList({
       viewId: 'userdefinedList',
@@ -39,4 +40,6 @@ app.addRoute('userdefined/:id', function(id){
       }
     }));
   });
-});
+}
+app.addRoute('userdefined/:id', userdefinedRoute);
+app.addRoute('userdefined', userdefinedRoute);

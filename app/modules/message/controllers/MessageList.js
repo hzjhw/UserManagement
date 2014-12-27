@@ -133,6 +133,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         var template = HandlebarsHelper.compile(emailTemp)
         model.fetch().then(function () {
           BaseUtils.dialog({
+            id: 'dialog',
             title: '邮箱绑定',
             content: template(model.toJSON()),
             target: '.btn-email-bind',
@@ -142,7 +143,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
               model.set('key', $('input[name=key]').val());
               model.save().then(function(){
               });
-              this.close();
+              this.close().remove();
             }
           });
         });
