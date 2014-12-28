@@ -79,3 +79,7 @@ app.addTemplate('template/member_attribute_detail', function(require, exports, m
 app.addTemplate('template/member_attribute_item', function (require, exports, module) {
   module.exports = require('modules/member/views/member_attribute_item.html');
 });
+app.addTemplate('template/member_attributes_show_item', function (require, exports, module) {
+  module.exports = require('modules/member/views/member_attributes_show_item.html');
+});
+

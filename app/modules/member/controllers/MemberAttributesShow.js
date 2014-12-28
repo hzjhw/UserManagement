@@ -1,10 +1,10 @@
 /**
  * @description 属性列表显示
- * @namespace AttributesList
+ * @namespace MemberAttributesShow
  * @author yongjin on 2014/11/16
  */
 
-define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/attributes_show_item'],
+define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/member_attributes_show_item'],
   function (require, exports, module) {
     var MemberAttributesShow, model, item, collection, HandlebarsHelper, BaseUtils, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
 
@@ -13,7 +13,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
-    itemTemp = require('template/attributes_show_item');
+    itemTemp = require('template/member_attributes_show_item');
     BaseUtils = require('BaseUtils');
 
     model = BaseModel.extend({
@@ -22,19 +22,10 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     });
 
     collection = BaseCollection.extend({
-      url: function () {
-        return this.getUrl() ||
-          CONST.API + '/member/attr/list/'
-      },
+      url: CONST.API + '/member/attr/list' ,
       model: model,
       initialize: function () {
         this._initialize();
-      },
-      setCategoryId: function (categoryId) {
-        this.categoryId = categoryId;
-      },
-      getCategoryId: function () {
-        return this.categoryId;
       },
       setUrl: function (url) {
         this.attUrl = url;
@@ -72,6 +63,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     });
 
     MemberAttributesShow = BaseList.extend({
+      el: "#member-attr",
       events: {
         'click .option-add': 'add',
         'click .option-remove': 'remove',
@@ -114,7 +106,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
       },
       itemRender: function (options, context) {
         Est.each(options.items, function (item) {
-          var fields = item.productAttribute;
+          var fields = item.memberAttribute;
           fields.element = item.element.substring(1, item.element.length - 1);
           context.collection.push(new model(fields));
         }, this);
