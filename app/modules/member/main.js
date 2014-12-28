@@ -44,7 +44,7 @@ app.addRoute('member/attr', function () {
           this._render();
         }
       });
-      app.addPanel('member', new MemberAttrPanel({
+      app.addPanel('memberAttr', new MemberAttrPanel({
         el: '#jhw-main'
       })).on('after', function () {
         app.addView('memberAttribute', new MemberAttribute({
@@ -69,7 +69,7 @@ app.addRoute('member/rank', function () {
           this._render();
         }
       });
-      app.addPanel('member', new MemberRandPanel({
+      app.addPanel('memberRank', new MemberRandPanel({
         el: '#jhw-main'
       })).on('after', function () {
         app.addView('memberRank', new MemberRank({

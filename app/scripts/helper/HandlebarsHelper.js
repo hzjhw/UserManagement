@@ -199,6 +199,30 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return url ? url : '';
   });
 
+  /**
+   * 属性项类型
+   * @author wyj
+   * @time 2014-03-31
+   */
+  Handlebars.registerHelper('attributeType', function (str, options) {
+    var result = '';
+    switch (str){
+      case 'text':
+        result = '文本'; break;
+      case 'number':
+        result = '数字'; break;
+      case 'alphaint':
+        result = '字母'; break;
+      case 'select':
+        result = '单选项'; break;
+      case 'checkbox':
+        result = '多选项'; break;
+      case 'date':
+        result = '日期'; break;
+    }
+    return result;
+  });
+
   module.exports = Handlebars;
 
 });

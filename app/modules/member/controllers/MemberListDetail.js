@@ -41,6 +41,17 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           .join(","));
         this._render();
 
+        BaseUtils.initTab({
+          render: '#tab',
+          elCls: 'nav-tabs',
+          panelContainer: '#panel',
+          autoRender: true,
+          children: [
+            {title: '常规', value: '1', selected: true},
+            {title: '会员属性', value: '2'}
+
+          ]
+        });
         // 表单初始化
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){

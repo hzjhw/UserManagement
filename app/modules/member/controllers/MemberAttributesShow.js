@@ -63,7 +63,6 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     });
 
     MemberAttributesShow = BaseList.extend({
-      el: "#member-attr",
       events: {
         'click .option-add': 'add',
         'click .option-remove': 'remove',
@@ -88,12 +87,8 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
             item: item,
             model: model
           }).then(function (baseListCtx) {
-            baseListCtx._initPagination(baseListCtx._options);
             baseListCtx._load({
               beforeLoad: function (collection) {
-                collection.setCategoryId(options.categoryId);
-                baseListCtx.options.url &&
-                collection.setUrl(baseListCtx.options.url);
               }
             }).then(function () {
               ctx.after();
@@ -106,7 +101,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
       },
       itemRender: function (options, context) {
         Est.each(options.items, function (item) {
-          var fields = item.memberAttribute;
+          var fields = item.att;
           fields.element = item.element.substring(1, item.element.length - 1);
           context.collection.push(new model(fields));
         }, this);
