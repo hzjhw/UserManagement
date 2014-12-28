@@ -54,7 +54,6 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
      * 列表视图
      */
     MemberRank = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',

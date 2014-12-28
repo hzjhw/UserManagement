@@ -65,7 +65,6 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
      * 列表视图
      */
     MemberAttribute = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .member-attr-add': '_detail',
