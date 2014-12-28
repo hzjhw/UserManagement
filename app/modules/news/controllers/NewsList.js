@@ -29,6 +29,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
      */
     NewsCollection = BaseCollection.extend({
       url: CONST.API + '/news/list',
+      batchDel: CONST.API + '/news/batch/del',
       model: NewsModel,
       initialize: function () {
         this._initialize();
@@ -61,7 +62,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('newsCategory', list);
+            app.addData('newsCategory', list);
           })
         }
         this.model.set('newsCategoryList', app.getData('newsCategory'));
@@ -160,13 +161,12 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
      * 列表视图
      */
     NewsList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .news-add': 'openAddDialog',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
-        'click .btn-batch-del': 'batchDel',
+        'click .btn-batch-del': '_batchDel',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category-news': 'batchCategory',
         'click .btn-tool-sort': 'proSort'
@@ -223,7 +223,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('newsCategory', list);
+            app.addData('newsCategory', list);
           })
         }
         app.emptyDialog();

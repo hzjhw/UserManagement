@@ -89,7 +89,6 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
      * 列表视图
      */
     RecruitList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',

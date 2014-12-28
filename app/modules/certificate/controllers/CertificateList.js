@@ -96,7 +96,6 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
      * 列表视图
      */
     CertificateList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',

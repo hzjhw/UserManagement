@@ -81,7 +81,6 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
     });
 
     AttributesList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .attributes-add': 'openAddDialog',
@@ -89,7 +88,7 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       },
       initialize: function () {
         //app.addView('attributesShow', new AttributesShow({ render: '#attributes-list-ul', categoryId:Est.getUrlParam('id', window.location.href)}));
-        app.setData('attrCategoryId', Est.getUrlParam('id', window.location.href));
+        app.addData('attrCategoryId', Est.getUrlParam('id', window.location.href));
         this._initialize({
           template: listTemp,
           render: '#attributes-list-ul',

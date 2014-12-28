@@ -241,7 +241,7 @@ if (Est.isEmpty(albumId))
 var bulidNav = function (id) {
     seajs.use(['BaseService'], function (BaseService) {
         if (!app.getData('albumList')) {
-            app.setData('albumList', BaseService.getAlbumList());
+            app.addData('albumList', BaseService.getAlbumList());
         }
         if (id) albumId = id;
         var breadcrumb = [];
@@ -264,7 +264,7 @@ function showAlbumList() {
             callback: function (albumId) {
                 bulidNav(albumId);
                 $('.show-tree').click();
-                top.app && top.app.setData('curAlbumId', albumId);
+                top.app && top.app.addData('curAlbumId', albumId);
                 top.$('#pagination-container .reload').click();
             }
         }));
@@ -734,7 +734,7 @@ $(function () {
                     app.getView('picSource').reLoad(albumId);
                     //bulidNav(albumId);
                     //$('.show-tree').click();
-                    //top.app && top.app.setData('curAlbumId', albumId);
+                    //top.app && top.app.addData('curAlbumId', albumId);
                     //top.$('#pagination-container .reload').click();
                 }
             }));

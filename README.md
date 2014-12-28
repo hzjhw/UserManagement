@@ -64,6 +64,7 @@ git操作历史
  - app.setData('name', {}); // 添加数据
  - app.addRoute('name', function(){}); // 添加路由
  - app.addModule('ProductList', 'modules/product/controllers/ProductList.js'); // 添加模块
+ - app.addDialog(dialog({})); // 所有对话框统一管理， 页面切换时需移除所有对话框 app.emptyDialog();
  
  ### 常见问题
 1) 模型类保存不了， 谷歌提示"canceled" 错误码 -3  

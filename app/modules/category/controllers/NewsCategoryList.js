@@ -95,7 +95,6 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
     });
 
     NewsCategoryList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .news-category-add': 'openAddDialog',
@@ -160,7 +159,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('newsCategory', list);
+            app.addData('newsCategory', list);
           })
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);

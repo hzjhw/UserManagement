@@ -104,7 +104,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('memberCategory', list);
+            app.addData('memberCategory', list);
           })
         }
         seajs.use(['dialog-plus'], function (dialog) {

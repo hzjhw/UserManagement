@@ -13,7 +13,7 @@ define('NavigateModel', ['BaseModel'], function(require, exports, module){
       display: 1,
       type: '0'
     }, BaseModel.prototype.defaults),
-    baseUrl: CONST.API + '/navigator02/detail',
+    baseUrl: CONST.API + '/navigator/detail',
     baseId: 'navigatorId',
     initialize: function(){
       this._initialize();

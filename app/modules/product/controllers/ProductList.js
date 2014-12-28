@@ -57,7 +57,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         if (!app.getData('productCategory')) {
           BaseService.getProductCategory({ tree: true, extend: true, select: true
           }).then(function (list) {
-            app.setData('productCategory', list);
+            app.addData('productCategory', list);
           })
         }
         this.model.set('productCategoryList', app.getData('productCategory'));
@@ -116,7 +116,6 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
      * 列表视图
      */
     ProductList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
@@ -169,7 +168,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('productCategory', list);
+            app.addData('productCategory', list);
           })
         }
         app.emptyDialog();
@@ -199,7 +198,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
                 {key: 'prodtype', value: ctx.searchProdtype} ,
                 {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
                 {key: 'loginView', value: ctx.searchLoginView},
-                {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+                {key: 'ads', value: ctx.searchAds}
               ]
             });
             this.close().remove();

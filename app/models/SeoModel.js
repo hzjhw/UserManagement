@@ -12,7 +12,7 @@ define('SeoModel', ['BaseModel'], function (require, exports, module) {
     defaults: Est.extend({
     }, BaseModel.prototype.defaults),
     baseId: 'seoId',
-    baseUrl: CONST.API + '/groupseo/detail',
+    baseUrl: CONST.API + '/seo/detail',
     initialize: function () {
       this._initialize();
     }

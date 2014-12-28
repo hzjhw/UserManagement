@@ -11,7 +11,6 @@ define('Main', ['BaseView', 'UserModel', 'template/main'], function(require, exp
 
 
   Main = BaseView.extend({
-    el: '#jhw-main',
     initialize: function(){
       this._initialize({
         template: template,

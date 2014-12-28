@@ -106,7 +106,8 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           collection: PhotoCollection,
           model: PhotoModel,
           item: PhotoItem,
-          pagination: true
+          pagination: true,
+          pageSize: 18
         }).then(function (thisCtx) {
           thisCtx.collection._setItemId('all');
           thisCtx._initPagination(thisCtx._options);
@@ -127,6 +128,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
       },
       reLoad: function (id) {
         this.collection._setItemId(id);
+        this.collection.paginationModel.set('page', 1);
         this._load(this._options);
       },
       search: function (searchKey) {

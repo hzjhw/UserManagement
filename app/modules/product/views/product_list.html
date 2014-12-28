@@ -29,6 +29,13 @@
                             </button>
                         </a>
                     </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button1" aria-pressed="false">
+                        <button type="button" class="button button-gray btn-batch-del"><i
+                                class="icon-trash"></i>批量删除
+                        </button>
+                        {{_options._args.name}}
+                    </li>
                     <li class=" bui-bar-item bui-bar-item-separator bui-inline-block" aria-disabled="false"
                         id="bar-item-separator1" role="separator"></li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
@@ -51,13 +58,6 @@
                         <button type="button" class="button btn-batch-display">批量隐藏
                         </button>
                     </li>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button1" aria-pressed="false">
-                        <button type="button" class="button button-gray btn-batch-del"><i
-                                class="icon-trash"></i>批量删除
-                        </button>
-                        {{_options._args.name}}
                     </li>
                 </ul>
             </div>

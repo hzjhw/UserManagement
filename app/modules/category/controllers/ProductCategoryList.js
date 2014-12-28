@@ -130,7 +130,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
     });
 
     ProductCategoryList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog',
@@ -208,7 +207,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('productCategory', list);
+            app.addData('productCategory', list);
           })
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);

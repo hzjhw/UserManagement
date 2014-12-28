@@ -23,7 +23,7 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 
         userModel.fetch({
           async:false,
           success: function(data){
-            app.setData('user', data.attributes);
+            app.addData('user', data.attributes);
             CONST.USER = data.attributes;
           }
         });

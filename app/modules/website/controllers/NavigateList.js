@@ -16,7 +16,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
     listTemp = require('template/navigate_list');
 
     NavigateCollection = BaseCollection.extend({
-      url: CONST.API + '/navigator02/list',
+      url: CONST.API + '/navigator/list',
       model: NavigateModel,
       initialize: function () {
         this._initialize();
@@ -137,7 +137,6 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
     });
 
     NavigateList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog',

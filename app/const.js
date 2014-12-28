@@ -25,30 +25,30 @@ window.CONST = CONST;
 if (typeof app === 'undefined') {
   app = new Application(CONST);
 }
-app.setData('loginViewList', [
+app.addData('loginViewList', [
   {text: '访问者可见', value: '1'},
   {text: '登录后可见', value: '0'}
 ]);
-app.setData('adsList', [
-  {text: '广告产品', value: '2'},
+app.addData('adsList', [
+  {text: '广告产品', value: ''},
   {text: '是', value: '1'},
   {text: '否', value: '0'}
 ]);
-app.setData('certificateList', [
+app.addData('certificateList', [
   {text: '基本证书', value: '01'},
   {text: '一般证书', value: '02'},
   {text: '税务证书', value: '03'},
   {text: '荣誉证书', value: '04'},
   {text: '其它证书', value: '05'}
 ]);
-app.setData('newsType', [
+app.addData('newsType', [
   {text: '全部', value: ''},
   {text: '图片新闻', value: '01'},
   {text: '一般新闻', value: '02'},
   {text: '置顶新闻', value: '03'},
   {text: '滚动新闻', value: '04'}
 ]);
-app.setData('newsState', [
+app.addData('newsState', [
   {text: '全部', value: ''},
   {text: '显示', value: '01'},
   {text: '隐藏', value: '02'},

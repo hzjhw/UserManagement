@@ -56,7 +56,7 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
         this._render();
       },
       loadPhoto: function(){
-        app.setData('curAlbumId', this.model.get('albumId'));
+        app.addData('curAlbumId', this.model.get('albumId'));
         if (app.getView('albumList')){
           app.getView('albumList').doClickFn(this.model.get('albumId'));
         }

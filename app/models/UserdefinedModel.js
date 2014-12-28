@@ -10,7 +10,7 @@ define('UserdefinedModel', ['BaseModel'], function(require, exports, module){
 
   UserdefinedModel = BaseModel.extend({
     baseId: 'userdefinedId',
-    baseUrl: CONST.API + '/userdefined02/detail',
+    baseUrl: CONST.API + '/userdefined/detail',
     defaults: Est.extend({
       name: '',
       content: ''

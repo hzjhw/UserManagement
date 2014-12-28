@@ -17,7 +17,7 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
 
     UserdefinedCollection = BaseCollection.extend({
       url: function(){
-        var url = CONST.API + '/userdefined02/list';
+        var url = CONST.API + '/userdefined/list';
         if (Est.isEmpty(this.options.data.page)){ return url; }
         return url + '/' + this.options.data.page;
       },
@@ -66,7 +66,6 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
     });
 
     UserdefinedList = BaseList.extend({
-      el: '#jhw-main',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .attributes-add': '_detail',

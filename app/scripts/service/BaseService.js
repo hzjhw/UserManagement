@@ -37,7 +37,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      *  if (!app.getData('productCategory')) {
           BaseUtils.getProductCategory({ tree: true, extend: true, select: true
           }).then(function (list) {
-            app.setData('productCategory', list);
+            app.addData('productCategory', list);
           })
         }
      */
@@ -159,7 +159,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('newsCategory', list);
+            app.addData('newsCategory', list);
           })
         }
      */
@@ -224,7 +224,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
             extend: true,
             select: true
           }).then(function (list) {
-            app.setData('memberCategory', list);
+            app.addData('memberCategory', list);
           })
         }
      */
