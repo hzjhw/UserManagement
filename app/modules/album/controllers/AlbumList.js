@@ -84,8 +84,6 @@ define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'temp
           parentId: 'parentId',
           categoryId: 'albumId',
           extend: false
-        }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options);
         });
       },
       render: function(){

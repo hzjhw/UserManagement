@@ -107,11 +107,10 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           model: PhotoModel,
           item: PhotoItem,
           pagination: true,
-          pageSize: 18
-        }).then(function (thisCtx) {
-          thisCtx.collection._setItemId('all');
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
+          pageSize: 18,
+          afterLoad: function(){
+            this.collection._setItemId('all');
+          }
         });
       },
       render: function () {

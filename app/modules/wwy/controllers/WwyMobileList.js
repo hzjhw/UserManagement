@@ -80,9 +80,6 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
               collection.setWyId(options.wyId);
             }
           })
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       }
 

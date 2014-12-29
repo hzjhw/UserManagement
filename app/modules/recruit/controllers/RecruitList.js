@@ -105,9 +105,6 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
           item: RecruitItem,
           pagination: true,
           detail: CONST.HOST + '/modules/recruit/recruit_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       // 简单搜索

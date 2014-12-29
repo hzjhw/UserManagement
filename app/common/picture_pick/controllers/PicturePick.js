@@ -97,11 +97,12 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           item: item,
           template: listTemp,
           checkAppend: false,
-          render: this.options.render || '.photo-list'
-        }).then(function(thisCtx){
-          if (thisCtx.collection.models.length === 0 ||
-            !thisCtx.options._isAdd){
-            thisCtx.addOne();
+          render: this.options.render || '.photo-list',
+          afterLoad: function(options){
+            if (this.collection.models.length === 0 ||
+              !this.options._isAdd){
+              this.addOne();
+            }
           }
         });
       },

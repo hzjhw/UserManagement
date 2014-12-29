@@ -91,9 +91,6 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           item: WwyItem,
           pagination: true,
           detail: CONST.HOST + '/modules/wwy/wwy_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       // 打开添加/修改对话框

@@ -80,8 +80,6 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
           model: UserdefinedModel,
           collection: UserdefinedCollection,
           detail:  CONST.HOST + '/modules/website/userdefined_detail.html'
-        }).then(function(thisCtx){
-          thisCtx._load(thisCtx._options);
         });
       },
       // 简单搜索

@@ -3,11 +3,11 @@
  * @namespace NewsList
  * @author jihui-wxw on 2014/12/10
  */
-define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Select', 'HandlebarsHelper',
+define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/news_list', 'template/news_item', 'BaseUtils', 'template/news_search', 'template/news_transfer',
     'template/news_sort', 'bui/calendar', 'BaseService'],
   function (require, exports, module) {
-    var NewsModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, Select, NewsList, NewsItem,
+    var NewsModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, NewsList, NewsItem,
       NewsCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, BaseService;
 
     NewsModel = require('NewsModel');
@@ -19,7 +19,6 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
     itemTemp = require('template/news_item');
     searchTemp = require('template/news_search');
     BaseUtils = require('BaseUtils');
-    Select = require('Select');
     transferTemp = require('template/news_transfer');
     BaseService = require('BaseService');
 
@@ -172,7 +171,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .btn-tool-sort': 'proSort'
       },
       initialize: function () {
-        var options = {
+        this._initialize({
           render: '#news-list-ul',
           enterRender: '.btn-search',
           template: listTemp,
@@ -180,12 +179,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           collection: NewsCollection,
           item: NewsItem,
           pagination: true
-        }
-        this._initialize(options)
-          .then(function (context) {
-            context._initPagination(options);
-            context._load(options);
-          });
+        });
       },
       // 打开添加/修改对话框
       openAddDialog: function () {

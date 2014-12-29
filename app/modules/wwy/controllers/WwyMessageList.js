@@ -93,9 +93,6 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
                 collection.setWyId(options.wyId);
               }
             })
-          }).then(function (thisCtx) {
-            thisCtx._initPagination(thisCtx._options);
-            thisCtx._load(thisCtx._options);
           });
         })
         // this.option.args.msgctrl = '1,3,4';

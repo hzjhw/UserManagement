@@ -95,9 +95,6 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           collection: MessageCollection,
           item: MessageItem,
           pagination: true
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       // 打开添加/修改对话框

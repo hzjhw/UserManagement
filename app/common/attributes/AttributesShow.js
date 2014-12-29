@@ -23,24 +23,12 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
 
     collection = BaseCollection.extend({
       url: function () {
-        return this.getUrl() ||
-          CONST.API + '/attr/list/' + this.getCategoryId();
+        return this.options.data.url ||
+          CONST.API + '/attr/list/' + this.options.data.categoryId;
       },
       model: model,
       initialize: function () {
         this._initialize();
-      },
-      setCategoryId: function (categoryId) {
-        this.categoryId = categoryId;
-      },
-      getCategoryId: function () {
-        return this.categoryId;
-      },
-      setUrl: function (url) {
-        this.attUrl = url;
-      },
-      getUrl: function () {
-        return this.attUrl;
       }
     });
 
@@ -78,15 +66,20 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         'click .getItemsBtn': 'getItems'
       },
       initialize: function (options) {
-        var ctx = this;
-        this.options = options || {};
         if (options.items) {
           this._initialize({
             render: options.render,
-            item: item, model: model, collection: collection
-          }).then(function (context) {
-            ctx.itemRender(options, context);
-            ctx.after();
+            item: item,
+            model: model,
+            collection: collection,
+            data: {
+              url: null,
+              categoryId: null
+            },
+            afterLoad: function () {
+              this.itemRender(options, this);
+              this.after();
+            }
           });
         }
         else {
@@ -94,18 +87,14 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             render: options.render,
             collection: collection,
             item: item,
-            model: model
-          }).then(function (baseListCtx) {
-            baseListCtx._initPagination(baseListCtx._options);
-            baseListCtx._load({
-              beforeLoad: function (collection) {
-                collection.setCategoryId(options.categoryId);
-                baseListCtx.options.url &&
-                collection.setUrl(baseListCtx.options.url);
-              }
-            }).then(function () {
-              ctx.after();
-            });
+            model: model,
+            data: {
+              categoryId: this.options && this.options.categoryId,
+              url: this.options && this.options.url
+            },
+            afterLoad: function () {
+              this.after();
+            }
           });
         }
       },
@@ -116,7 +105,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         Est.each(options.items, function (item) {
           var fields = item.productAttribute;
           fields.element = item.productAttribute.attributeType === 'checkbox' ? item.element.substring(1, item.element.length - 1) :
-          item.element;
+            item.element;
           context.collection.push(new model(fields));
         }, this);
       },
@@ -131,13 +120,13 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         this.render();
       },
       reload: function (categoryId) {
-        var ctx = this;
         this._load({
           beforeLoad: function (collection) {
-            collection.setCategoryId(categoryId);
+            collection.options.data.categoryId = categoryId;
+          },
+          afterLoad: function (result) {
+            this.after();
           }
-        }).then(function () {
-          ctx.after();
         });
       },
       after: function () {

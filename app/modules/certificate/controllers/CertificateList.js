@@ -116,9 +116,6 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           item: CertificateItem,
           pagination: true,
           detail: CONST.HOST + '/modules/certificate/certificate_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       // 简单搜索

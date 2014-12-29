@@ -55,11 +55,10 @@ define('PhotoSelect', ['PhotoModel', 'BaseCollection', 'BaseList', 'BaseItem', '
           model: PhotoModel,
           item: PhotoItem,
           checkAppend: false,
-          pagination: true
-        }).then(function (thisCtx) {
-          thisCtx.collection._setItemId('all');
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
+          pagination: true,
+          afterLoad: function(){
+            this.collection._setItemId('all');
+          }
         });
       },
       render: function(){

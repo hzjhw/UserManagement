@@ -156,8 +156,6 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           categoryId: 'categoryId',
           grade: '01',
           parentValue: '/'
-        }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options);
         });
       },
       openAddDialog: function () {

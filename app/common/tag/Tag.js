@@ -8,7 +8,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
     'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
   function (require, exports, module) {
     var Tag, TagList, TagItem, BaseModel, BaseCollection, BaseItem, BaseList,
-       model, collection, item, tagView, tagViewItem, tagPickerItem;
+      model, collection, item, tagView, tagViewItem, tagPickerItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
@@ -94,13 +94,10 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           render: '#tag-list-picker-ul',
           collection: collection,
           item: TagItem,
-          model: model
-        }).then(function (baseListCtx) {
-          baseListCtx._load({
-            beforeLoad: function (baseCollection) {
-              baseCollection.setTagType(options.tagType || 'product');
-            }
-          });
+          model: model,
+          beforeLoad: function () {
+            this.collection.setTagType(options.tagType || 'product');
+          }
         });
         return this;
       },
@@ -120,22 +117,17 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
         // 初始化容器
-        var opts = {
+        this._initialize({
           collection: collection,
           template: tagView,
           render: '#tag-list-ul',
           item: item,
-          model: model
-        };
-        this._initialize(opts).
-          then(function (baseListCtx) {
-          if (!options._isAdd) {
-            baseListCtx._load({
-              beforeLoad: function (baseCollection) {
-                baseCollection.setItemId(options.itemId || null);
-                baseCollection.setTagType(options.tagType || 'product');
-              }
-            });
+          model: model,
+          beforeLoad: function () {
+            if (!options._isAdd) {
+              this.collection.setItemId(options.itemId || null);
+              this.collection.setTagType(options.tagType || 'product');
+            }
           }
         });
         // 输入框

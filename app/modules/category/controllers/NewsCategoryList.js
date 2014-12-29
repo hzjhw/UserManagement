@@ -119,8 +119,6 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
           categoryId: 'categoryId',
           grade: '01',
           parentValue: '/'
-        }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options);
         });
       },
       openAddDialog: function () {

@@ -166,8 +166,6 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           categoryId: 'navigatorId',
           grade: '1',
           parentValue: null
-        }).then(function (thisCtx) {
-          thisCtx._load(thisCtx._options);
         });
       },
       render: function () {

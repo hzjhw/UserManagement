@@ -104,11 +104,12 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           item: item,
           template: listTemp,
           checkAppend: false,
-          render: '.wwy-photo-list'
-        }).then(function(thisCtx){
-          if (thisCtx.collection.models.length === 0 ||
-            !thisCtx.options._isAdd){
-            thisCtx.addOne();
+          render: '.wwy-photo-list',
+          afterLoad: function(options){
+            if (this.collection.models.length === 0 ||
+              !this.options._isAdd){
+              this.addOne();
+            }
           }
         });
       },

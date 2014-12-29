@@ -24,14 +24,14 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
         info: '',
         pic: ''
       }, BaseModel.prototype.defaults),
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
 
     collection = BaseCollection.extend({
       model: model,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -42,14 +42,14 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
         'click .delete': '_del',
         'click .btn-img-edit': 'editImg'
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           model: model,
           template: itemTemp,
           modelBind: true
         });
       },
-      editImg: function(type){
+      editImg: function (type) {
         var ctx = this;
         type = type || 'local';
         BaseUtils.openUpload({
@@ -58,41 +58,42 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
           albumId: app.getData('curAlbumId'),
           username: app.getData('user') && app.getData('user').username,
           auto: true,
-          oniframeload: function(){
-            this.iframeNode.contentWindow.uploadCallback = function(result){
+          oniframeload: function () {
+            this.iframeNode.contentWindow.uploadCallback = function (result) {
               ctx.model.set('pic', result[0]['serverPath'])
             };
           },
-          success: function(){
+          success: function () {
             var result = this.iframeNode.contentWindow.app.getView('picSource').getItems();
             ctx.model.set('pic', result[0]['serverPath'])
           }
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });
 
     WwyLtyList = BaseList.extend({
-      initialize:function(){
+      initialize: function () {
         this._initialize({
           model: model,
           collection: collection,
-          item: item
-        }).then(function(thisCtx){
-          if (thisCtx.collection.models.length === 0) {
-            thisCtx.addOne();
+          item: item,
+          afterLoad: function () {
+            if (this.collection.models.length === 0) {
+              this.addOne();
+            }
           }
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       },
-      addOne: function(){
+      addOne: function () {
         this.collection.add(new model());
       },
-      ltyShow: function(){
+      ltyShow: function () {
         var ctx = this;
         var showList = [
           { name: 'iphone6', prob: '500', level: '一等奖', sum: '1', remain: '1', info: '恭喜您， 抽中了一等奖', pic: '' },
@@ -103,13 +104,13 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
           { name: '谢谢参与', prob: '0', level: '0', sum: '0', remain: '0', info: '谢谢参与', pic: '' },
         ];
         this._empty();
-        Est.each(showList, function(item){
+        Est.each(showList, function (item) {
           ctx.collection.add(new model(item));
         });
       },
-      getItems: function(){
+      getItems: function () {
         var result = [];
-        Est.each(this.collection.models, function(item){
+        Est.each(this.collection.models, function (item) {
           result.push(item.attributes);
         });
         return result;
