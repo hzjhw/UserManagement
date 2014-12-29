@@ -5,11 +5,14 @@
 #jhw .module01 .bodyContTitle span{color:#646464;display:inline-block;width:134px;height:38px;line-height:38px;background:#fff;border:1px solid #e7e7e7;text-align:center;}
 #jhw .module01 .bodyContContent{clear:both;background:#fafafa;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;padding:12px 0 16px 15px;height:160px;}
 #jhw .module01 .bodyContContent02{display:none;}
+#jhw .module01 .bodyContContent02 a{color:#969696;}
 #jhw .module01 .notice{float:left;padding:0 10px;width:164px;height:158px;background:#fff;border:1px solid #e7e7e7;}
 #jhw .module01 .notice p{margin:0;}
 #jhw .module01 .notice p.time{color:#000;}
 #jhw .module01 .notice p.biaoti{color:#ff4400;}
+#jhw .module01 .notice p a,#jhw .module01 .notice p.content{color:#969696;}
 #jhw .module01 .notice002,#jhw .module01 .notice003{margin-left:10px;}
+#jhw .module01 .bodyContContent03 a{float:left;color:#989898;width:100px;height:40px;line-height:40px;text-align:center;border:1px solid #e7e7e7;margin-right:15px;margin-bottom:15px;}
 #jhw .module02{float:left;padding-left:15px;width:330px;margin-bottom:15px;}
 #jhw .module02 .mokuai001 img{float:left;margin-right:12px;}
 #jhw .module02 .mokuai001 p{margin:0;line-height:21px;}
