@@ -342,7 +342,6 @@ label.checkbox { padding-left: 5px; }
 .category-ul .gird-4{ width:32px; }
 .category-ul .gird-5{ width:32px; }
 */
-
 /*图片选择*/
 #jhw .multimage-gallery { margin-top: 10px; overflow: hidden; position: relative; }
 #jhw .multimage-gallery ul { font-size: 0; }
@@ -360,16 +359,16 @@ label.checkbox { padding-left: 5px; }
 #jhw .multimage-gallery .operate .toleft { background-position: 0 -13px; }
 #jhw .multimage-gallery .operate .toright { background-position: -13px -13px; }
 #jhw .multimage-gallery .operate .del { background-position: -13px 0; }
-
-
 /*
 微传单*/
 #jhw .wwy-photo-list .wwy-item { overflow: hidden; }
 #jhw .wwy-photo-list .wwy-item-r{float:left;padding-top:5px;}
 #jhw #lty-tbody input{width: 90%; padding: 0; margin: 0; height: 30px;padding-left: 3%;}
 #jhw #lty-tbody .lty-inner-div{text-align: center;}
-
 /*
 导航*/
 #jhw .grid-td-cate-route{width:200px;}
 #jhw .grid-td-navigate-name{width:250px;}
+#jhw .static-ul{ margin-bottom: 20px; overflow: hidden; background: #F8F8F8; padding: 10px; }
+#jhw .static-ul li { float: left; margin-right: 10px; margin-bottom: 5px; }
+#jhw .static-li-0 .button{background: #31A0ED; color: #fff; border: 1px solid #287AAB;}

@@ -2756,7 +2756,10 @@ table .span24 {
     background-color: #F7F7F7;
     border-color: #D3D3D3;
 }
-
+.button-gray.active, .button-gray:active, .button-gray:focus, .button-gray:hover, .open .dropdown-toggle.button-gray{
+    background-color: #F7F7F7;
+    border-color: #ddd
+}
 
 .button-warning {
     color: #fff;

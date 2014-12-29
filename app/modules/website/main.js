@@ -78,3 +78,6 @@ app.addTemplate('template/userdefined_item', function (require, exports, module)
 app.addTemplate('template/website_panel', function (require, exports, module) {
   module.exports = require('modules/website/views/website_panel.html');
 });
+app.addTemplate('template/website_static', function(require, exports, module){
+  module.exports = require('modules/website/views/website_static.html');
+});

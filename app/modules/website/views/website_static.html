@@ -1,0 +1,12 @@
+<div id="static-container">
+    {{#each pages}}
+    <ul class="static-ul">
+        {{#each item}}
+        <li class="static-li-{{@index}}">
+            <button type="button" data-url="{{CONST 'DOMAIN'}}{{url}}" class="button btn-batch-category">{{name}}
+            </button>
+        </li>
+        {{/each}}
+    </ul>
+    {{/each}}
+</div>

@@ -273,7 +273,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           return new $q(function (resolve, reject) {
             $.ajax({
               type: 'post',
-              url: CONST.API + '/navigator02/list?pageSize=1000',
+              url: CONST.API + '/navigator/list?pageSize=1000',
               async: false,
               data: {
                 _method: 'GET'
@@ -313,9 +313,29 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           topResolve(result.attributes.data);
         });
       });
+    },
+    /**
+     * 获取所有静态页面
+     *
+     * @method [静态化] - getStaticPage
+     * @returns {Array}
+     * @author wyj 14.12.28
+     *
+     */
+    getStaticPage: function(){
+      var $q = Est.promise;
+      return new $q(function(resolve, reject){
+        $.ajax({
+          type: 'post',
+          url: CONST.API + '/static/list',
+          async: false,
+          success: function(result){
+            result = result.attributes.data;
+            resolve(result);
+          }
+        });
+      });
     }
-
-
   };
 
   module.exports = BaseService;

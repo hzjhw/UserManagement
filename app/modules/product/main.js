@@ -22,9 +22,10 @@ app.addRoute('product', function () {
       app.addPanel('product', new ProductPanel({
         el: '#jhw-main'
       })).on('after', function () {
-        this.productList = new ProductList({
-          el: '.jhw-main-inner'
-        });
+        app.addView('productList', new ProductList({
+          el: '.jhw-main-inner',
+          viewId: 'productList'
+        }));
       }).render();
     });
 });

@@ -3,9 +3,11 @@
  * @namespace NavigateList
  * @author yongjin<zjut_wyj@163.com> 2014/12/26
  */
-define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', 'NavigateModel', 'template/navigate_list', 'template/navigate_item'],
+define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', 'BaseService', 'NavigateModel',
+    'template/navigate_list', 'template/navigate_item', 'template/website_static', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var NavigateList, BaseList, BaseCollection, BaseItem, BaseUtils, itemTemp, listTemp, NavigateCollection, NavigateItem, NavigateModel;
+    var NavigateList, BaseList, BaseCollection, BaseItem, BaseUtils, BaseService, itemTemp, listTemp, NavigateCollection,
+      NavigateItem, NavigateModel, staticTemp, HandlebarsHelper;
 
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
@@ -14,6 +16,9 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
     BaseUtils = require('BaseUtils');
     itemTemp = require('template/navigate_item');
     listTemp = require('template/navigate_list');
+    BaseService = require('BaseService');
+    staticTemp = require('template/website_static');
+    HandlebarsHelper = require('HandlebarsHelper');
 
     NavigateCollection = BaseCollection.extend({
       url: CONST.API + '/navigator/list',
@@ -76,7 +81,8 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
             this.model.get('page'),
           width: 600,
           height: 250,
-          button: [ {
+          button: [
+            {
               value: '保存',
               callback: function () {
                 this.title('正在提交..');
@@ -143,7 +149,8 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
         'click .btn-batch-del': 'batchDel',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-batch-collapse': 'btachCollapse',
-        'click .btn-batch-extend': 'btachExtend'
+        'click .btn-batch-extend': 'btachExtend',
+        'click .btn-static': 'staticPage'
       },
       initialize: function () {
         this._initialize({
@@ -171,6 +178,54 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           height: 250,
           url: CONST.HOST + '/modules/website/navigate_detail.html?time=' + new Date().getTime()
         });
+      },
+      staticPage: function () {
+        BaseService.getStaticPage()
+          .then(function (result) {
+            var pages = [];
+            result = Est.pluck(result, 'pages');
+            Est.each(result, function (item) {
+              var array = [];
+              Est.each(Est.arrayFromObject(item, 'sort', 'obj'), function (target) {
+                var keyValue = Est.keys(target.obj)[0];
+                array.push({
+                  name: keyValue,
+                  url: target.obj[keyValue]
+                });
+              });
+              pages.push({
+                item: array
+              });
+            });
+            debug(pages);
+            this.staticTemp = HandlebarsHelper.compile(staticTemp);
+            BaseUtils.dialog({
+              id: 'staticPage',
+              title: '页面静态化',
+              width: 900,
+              padding: 10,
+              content: this.staticTemp({
+                pages: pages
+              })
+            });
+            setTimeout(function(){
+              $('#static-container .static-ul li .button').click(function(){
+                var $button = $(this);
+                if ($button.hasClass('publishing'))return;
+                $button.addClass('publishing');
+                $button.html('静态化中...');
+                setTimeout(function(){
+                  $.ajax({
+                    type: 'post',
+                    url: $button.attr('data-url'),
+                    success: function(result){
+                      $button.html('完成');
+                    }
+                  });
+                }, 500);
+              });
+            }, 500);
+          });
       },
       // 批量删除
       batchDel: function () {

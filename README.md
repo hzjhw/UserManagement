@@ -73,4 +73,14 @@ git操作历史
  - 自定义按钮callback方法中是否有return false;语句
  
  
+### handlebars
+1) 获取索引
+{{#each array}}
+    {{@index}}: {{this}}
+{{/each}}
 
+2) 获取key
+For object iteration, use @key instead:
+{{#each object}}
+    {{@key}}: {{this}}
+{{/each}} 

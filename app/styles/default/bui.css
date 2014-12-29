@@ -1195,7 +1195,7 @@ td.bui-grid-cell-empty {
 }
 
 .bui-grid-strip .bui-grid-row-even {
-    background-color: #fafafa
+    background-color: #F9F9F9;
 }
 
 .bui-grid .bui-grid-table .bui-grid-row-hover, .bui-grid .bui-grid-table .bui-grid-row-selected, .bui-simple-grid .bui-grid-table .bui-grid-row-hover, .bui-simple-grid .bui-grid-table .bui-grid-row-selected {
