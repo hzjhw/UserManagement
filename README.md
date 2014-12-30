@@ -84,3 +84,5 @@ For object iteration, use @key instead:
 {{#each object}}
     {{@key}}: {{this}}
 {{/each}} 
+3) 获取根目录
+{{@root.level1_2}}

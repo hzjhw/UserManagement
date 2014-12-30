@@ -104,8 +104,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
       itemRender: function (options, context) {
         Est.each(options.items, function (item) {
           var fields = item.productAttribute;
-          fields.element = item.productAttribute.attributeType === 'checkbox' ? item.element.substring(1, item.element.length - 1) :
-            item.element;
+          fields.element = item.element.substring(1, item.element.length - 1);
           context.collection.push(new model(fields));
         }, this);
       },

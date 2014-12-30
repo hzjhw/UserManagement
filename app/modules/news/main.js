@@ -7,24 +7,13 @@
  * 路由
  * */
 app.addRoute('news', function () {
-  seajs.use(['jquery', 'BaseView', 'NewsList', 'template/news_panel'], function (jquery, BaseView, NewsList, template) {
-    var NewsPanel = BaseView.extend({
-      initialize: function () {
-        this._initialize({
-          template: template
-        });
-      },
-      render: function () {
-        this._render();
-      }
-    });
-    app.addPanel('news', new NewsPanel({
-      el: '#jhw-main'
-    })).on('after', function () {
-      app.addView('newsList', new NewsList({
-        el: '.jhw-main-inner'
-      }));
-    }).render();
+  seajs.use(['jquery', 'NewsList'], function (jquery, NewsList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('newsList', new NewsList({
+      el: '.jhw-main-inner'
+    }));
   });
 });
 
@@ -55,7 +44,4 @@ app.addTemplate('template/news_sort', function (require, exports, module) {
 });
 app.addTemplate('template/news_search', function (require, exports, module) {
   module.exports = require('modules/news/views/news_search.html');
-});
-app.addTemplate('template/news_panel', function (require, exports, module) {
-  module.exports = require('modules/news/views/news_panel.html');
 });

@@ -5,49 +5,25 @@
  */
 // 产品分类
 app.addRoute('category/product', function () {
-  seajs.use(['jquery', 'BaseView', 'ProductCategoryList', 'template/category_panel'],
-    function (jquery, BaseView, ProductCategoryList, template) {
-      var ProductCategoryPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('productCategory', new ProductCategoryPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('productCategoryPage', new ProductCategoryList({
-          el: '.jhw-main-inner'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'ProductCategoryList'], function (jquery, ProductCategoryList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('productCategoryPage', new ProductCategoryList({
+      el: '.jhw-main-inner'
+    }));
+  });
 });
 // 新闻分类
 app.addRoute('category/news', function () {
-  seajs.use(['jquery', 'BaseView', 'NewsCategoryList', 'template/category_panel'],
-    function (jquery, BaseView, NewsCategoryList, template) {
-      var CategoryPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('category', new CategoryPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('newsCategoryPage', new NewsCategoryList({
-          el: '.jhw-main-inner'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'NewsCategoryList'], function (jquery, NewsCategoryList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('newsCategoryPage', new NewsCategoryList({
+      el: '.jhw-main-inner'
+    }));
+  });
 });
 
 app.addModule('ProductCategoryList', 'modules/category/controllers/ProductCategoryList.js');
@@ -66,7 +42,4 @@ app.addTemplate('template/category_news_item', function (require, exports, modul
 });
 app.addTemplate('template/category_news_list', function (require, exports, module) {
   module.exports = require('modules/category/views/category_news_list.html');
-});
-app.addTemplate('template/category_panel', function (require, exports, module) {
-  module.exports = require('modules/category/views/category_panel.html');
 });

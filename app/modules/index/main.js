@@ -5,27 +5,14 @@
  */
 
 app.addRoute('index', function () {
-  seajs.use(['jquery', 'BaseView', 'Main', 'template/layout_panel'],
-    function (jquery, BaseView, Main, template) {
-      var MainPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('main', new MainPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('main', new Main({
-          el: '#jhw-main',
-          viewId: 'main'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'Main', 'ProductList'], function (jquery, Main, ProductList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('main', new Main({
+      el: '.jhw-main-inner'
+    }));
+  });
 });
 
 app.addModule('UserModel', 'models/UserModel.js');
@@ -41,7 +28,4 @@ app.addTemplate('template/layout_top', function (require, exports, module) {
 });
 app.addTemplate('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
-});
-app.addTemplate('template/layout_panel', function (require, exports, module) {
-  module.exports = require('modules/index/views/layout_panel.html')
 });

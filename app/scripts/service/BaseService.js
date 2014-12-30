@@ -335,6 +335,36 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           }
         });
       });
+    },
+    /**
+     * 获取物流公司列表
+     *
+     * @method [商城] - getDeliveryCorpList
+     * @returns {Est.promise}
+     * @author wyj 14.12.30
+     *
+     */
+    getDeliveryCorpList: function(){
+      var $q = Est.promise;
+      return new $q(function(resolve, reject){
+        $.ajax({
+          type: 'get',
+          url: CONST.API + '/deliverycorp/list',
+          async: false,
+          success: function(result){
+            result = result.attributes.data;
+            Est.each(result, function(item){
+              item.text = item.name;
+              item.value = item.corpId;
+            });
+            result.unshift({
+              text: '--请选择物流公司--',
+              value: 'null'
+            });
+            resolve(result);
+          }
+        });
+      });
     }
   };
 

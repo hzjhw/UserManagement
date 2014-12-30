@@ -7,27 +7,14 @@
  * 路由
  * */
 app.addRoute('recruit', function () {
-  seajs.use(['jquery', 'BaseView', 'RecruitList', 'template/recruit_panel'],
-    function (jquery, BaseView, RecruitList, template) {
-      var RecruitPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('recruit', new RecruitPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('recruitList', new RecruitList({
-          el: '.jhw-main-inner',
-          viewId: 'recruitList'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'RecruitList'], function (jquery, RecruitList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('recruitList', new RecruitList({
+      el: '.jhw-main-inner'
+    }))
+  });
 });
 /**
  * 模块
@@ -51,7 +38,4 @@ app.addTemplate('template/recruit_detail', function (require, exports, module) {
 });
 app.addTemplate('template/recruit_search', function (require, exports, module) {
   module.exports = require('modules/recruit/views/recruit_search.html');
-});
-app.addTemplate('template/recruit_panel', function(require, exports, module){
-  module.exports = require('modules/recruit/views/recruit_panel.html');
 });

@@ -108,8 +108,10 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           item: PhotoItem,
           pagination: true,
           pageSize: 18,
-          afterLoad: function(){
-            this.collection._setItemId('all');
+          beforeLoad: function(){
+            if (!app.getData('curAlbumId')){
+              this.collection._setItemId('all');
+            }
           }
         });
       },

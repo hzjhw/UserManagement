@@ -7,45 +7,36 @@
  * 路由
  * */
 app.addRoute('wwy', function () {
-  seajs.use(['jquery', 'BaseView', 'WwyList', 'template/wwy_panel'],
-    function (jquery, BaseView, WwyList, template) {
-      var WwyPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('wwy', new WwyPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('wwyList', new WwyList({
-          el: '.jhw-main-inner',
-          viewId: 'wwyList'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'WwyList'], function (jquery, WwyList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('wwyList', new WwyList({
+      el: '.jhw-main-inner',
+      viewId: 'wwyList'
+    }));
+  });
 });
 app.addRoute('wwy_mobile/:id', function (id) {
   seajs.use(['jquery', 'WwyMobileList'], function (jquery, WwyMobileList) {
-    var wwyMobileList = new WwyMobileList({
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main"></div>'
+    }).addView('WwyMobileList', new WwyMobileList({
       wyId: id
-    });
-    app.addView('WwyMobileList', wwyMobileList);
+    }));
   });
 });
 app.addRoute('wwy_message/:id', function (id) {
   seajs.use(['jquery', 'WwyMessageList'], function (jquery, WwyMessageList) {
-    var wwyMessageList = new WwyMessageList({
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('WwyMessageList', new WwyMessageList({
       wyId: id
-    });
-    app.addView('WwyMessageList', wwyMessageList);
+    }));
   });
 });
-
 /**
  * 模块
  * */
@@ -93,7 +84,4 @@ app.addTemplate('template/wwy_picture_pick_item', function (require, exports, mo
 });
 app.addTemplate('template/wwy_lty_item', function (require, exports, module) {
   module.exports = require('modules/wwy/views/wwy_lty_item.html');
-});
-app.addTemplate('template/wwy_panel', function (require, exports, module) {
-  module.exports = require('modules/wwy/views/wwy_panel.html');
 });

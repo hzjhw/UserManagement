@@ -7,27 +7,26 @@
  * 路由
  * */
 app.addRoute('product', function () {
-  seajs.use(['jquery', 'BaseView', 'ProductList', 'template/product_panel'],
-    function (jquery, BaseView, ProductList, template) {
-      var ProductPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('product', new ProductPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('productList', new ProductList({
-          el: '.jhw-main-inner',
-          viewId: 'productList'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('productList', new ProductList({
+      el: '.jhw-main-inner',
+      viewId: 'productList'
+    }));
+    /*$("#reflesh-page").click(function(){
+     seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
+     app.addPanel('product', {
+     el: '#jhw-main',
+     template: '<div class="jhw-main-inner"></div>'
+     }).addView('productList', new ProductList({
+     el: '.jhw-main-inner',
+     viewId: 'productList'
+     }));
+     });
+     });*/
+  });
 });
 /**
  * 模块
@@ -56,7 +55,4 @@ app.addTemplate('template/product_sort', function (require, exports, module) {
 });
 app.addTemplate('template/product_search', function (require, exports, module) {
   module.exports = require('modules/product/views/product_search.html');
-});
-app.addTemplate('template/product_panel', function (require, exports, module) {
-  module.exports = require('modules/product/views/product_panel.html');
 });

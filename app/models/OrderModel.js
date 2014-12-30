@@ -11,6 +11,8 @@ define('OrderModel', ['BaseModel'], function (require, exports, module) {
     defaults: Est.extend({
 
     }, BaseModel.prototype.defaults),
+    baseUrl: CONST.API + '/order/detail',
+    baseId: 'orderId',
     initialize: function () {
       this._initialize();
     }

@@ -34,14 +34,26 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
         'click .toggle': '_toggleChecked',
         'click .btn-edit': '_edit',
         'click .btn-delete': '_del',
+        'click .name': 'editName',
         'click .move-up': '_moveUp', // 上移
         'click .move-down': '_moveDown', // 下移
         'change .input-sort': '_saveSort' // 保存sort 注： 当字段不为sort时， 此方法不适用， 参照AttributesList中的changeSort方法
       },
       initialize: function () {
         this._initialize({
-          template: itemTemp
+          template: itemTemp,
+          detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
         });
+      },
+      editName: function(){
+        this._editField({
+          target: '.pro-list-name',
+          title: '修改名称',
+          field: 'name'
+        });
+      },
+      render: function(){
+        this._render();
       }
     });
 

@@ -1,0 +1,61 @@
+<td class="bui-grid-cell grid-td-checkbox">
+    <div class="bui-grid-cell-inner">
+        <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
+        </div>
+    </div>
+</td>
+<td class="x-grid-rownumber  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
+    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">{{add dx 1}}</span></div>
+</td>
+
+<td class="bui-grid-cell grid-td-order-number">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{orderSn}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-username">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{shipName}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-sum">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">￥{{totalAmount}}元</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-state">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{orderStatus orderStatus}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-delivery">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{shippingStatus shippingStatus}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-pay-type">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{paymentConfigName}}</span>
+    </div>
+</td>
+
+<td class="bui-grid-cell grid-td-order-delivery-type">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{deliveryType.defaultDeliveryCorp.name}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-time">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">{{addTime}}</span>
+    </div>
+</td>
+
+
+<td class="bui-grid-cell grid-td-handle">
+    <div class="bui-grid-cell-inner">
+        <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>修改
+        </button>
+        <button type="button" class="button button-gray button-mini delete"><i class="icon-trash"></i>删除
+        </button>
+    </div>
+</td>

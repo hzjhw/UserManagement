@@ -8,28 +8,15 @@
  * 路由
  * */
 app.addRoute('message', function () {
-  seajs.use(['jquery', 'BaseView', 'MessageList', 'template/message_panel'],
-    function (jquery, BaseView, MessageList, template) {
-      var MessagePanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('message', new MessagePanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('messageList', new MessageList({
-          el: '.jhw-main-inner',
-          viewId: 'messageList'
-        }));
-      }).render();
-      app.addView('messageList', new MessageList());
-    });
+  seajs.use(['jquery', 'MessageList'], function (jquery, MessageList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jwh-main-inner"></div>'
+    }).addView(('messageList', new MessageList({
+      el: '.jhw-main-inner',
+      viewId: 'messageList'
+    })));
+  });
 });
 
 /**

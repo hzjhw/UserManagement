@@ -154,6 +154,80 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   });
 
   /**
+   * 订单状态
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *
+   */
+  Handlebars.registerHelper('orderStatus', function (str, options) {
+    var result = '';
+    switch (str){
+      case 'unprocessed':
+        result = '未处理'; break;
+      case 'processed':
+        result = '已处理'; break;
+      case 'completed':
+        result = '已完成'; break;
+      case 'invalid':
+        result = '已作废'; break;
+      default:
+        result = '无状态';
+    }
+    return result;
+  });
+  /**
+   * 付款状态
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *
+   */
+  Handlebars.registerHelper('paymentStatus', function (str, options) {
+    var result = '';
+    switch (str){
+      case 'unpaid':
+        result = '未支付'; break;
+      case 'partPayment':
+        result = '部分支付'; break;
+      case 'paid':
+        result = '已支付'; break;
+      case 'partRefund':
+        result = '部分退款'; break;
+      case 'refunded':
+        result = '全额退款'; break;
+      default:
+        result = '无记录';
+    }
+    return result;
+  });
+  /**
+   * 配送状态
+   * @author wyj
+   * @time 2014-03-27
+   * @example
+   *
+   */
+  Handlebars.registerHelper('shippingStatus', function (str, options) {
+    var result = '';
+    switch (str){
+      case 'unshipped':
+        result = '未发货'; break;
+      case 'partShipped':
+        result = '部分发贫'; break;
+      case 'shipped':
+        result = '已发货'; break;
+      case 'partReshiped':
+        result = '部分退货'; break;
+      case 'reshiped':
+        result = '已退货'; break;
+      default:
+        result = '无记录';
+    }
+    return result;
+  });
+
+  /**
    * 返回整数
    * @author wxw
    * @time 2014-12-16

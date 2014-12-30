@@ -44,17 +44,39 @@ app.addRoute('album', function () {
           });
         }
       });
-      app.addPanel('album', new Panel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        this.photoList = app.addView('photoList', new PhotoList());
-        this.albumList = app.addView('albumList', new AlbumList({
-          el: '.album_left',
-          callback: function (albumId) {
-            app.getView('photoList').reLoad(albumId);
-          }
-        }));
-      }).render();
+      app.addPanel('main', {
+        el: '#jhw-main',
+        template: '<div class="jhw-main-inner"><div class="photo-bar"></div><div class="photo-main"></div></div>'
+      }).addView('album', new Panel({
+        el: '.photo-bar'
+      }).on('after', function () {
+          app.addView('photoList', new PhotoList());
+          app.addView('albumList', new AlbumList({
+            el: '.album_left',
+            callback: function (albumId) {
+              app.getView('photoList').reLoad(albumId);
+            }
+          }));
+        }).render())
+      /*.addView('photoList', new PhotoList({
+       el: '.photo-main'
+       })).addView('albumList', new AlbumList({
+       el: '.album_left',
+       callback: function (albumId) {
+       app.getView('photoList').reLoad(albumId);
+       }
+       }));*/
+
+
+      /* .on('after', function () {
+       this.photoList = app.addView('photoList', new PhotoList());
+       this.albumList = app.addView('albumList', new AlbumList({
+       el: '.album_left',
+       callback: function (albumId) {
+       app.getView('photoList').reLoad(albumId);
+       }
+       }));
+       }).render();*/
     });
 });
 

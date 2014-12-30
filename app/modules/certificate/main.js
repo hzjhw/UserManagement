@@ -8,27 +8,15 @@
  * 路由
  * */
 app.addRoute('certificate', function () {
-  seajs.use(['jquery', 'BaseView', 'CertificateList', 'template/certificate_panel'],
-    function (jquery, BaseView, CertificateList, template) {
-      var CertPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('cert', new CertPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('certificateList', new CertificateList({
-          el: '.jhw-main-inner',
-          viewId: 'certificateList'
-        }));
-      }).render();
-    });
+  seajs.use(['jquery', 'CertificateList'], function (jquery, CertificateList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('certificateList', new CertificateList({
+      el: '.jhw-main-inner',
+      viewId: 'certificateList'
+    }));
+  });
 });
 
 /**
@@ -58,7 +46,4 @@ app.addTemplate('template/certificate_sort', function (require, exports, module)
 });
 app.addTemplate('template/certificate_search', function (require, exports, module) {
   module.exports = require('modules/certificate/views/certificate_search.html');
-});
-app.addTemplate('template/certificate_panel', function (require, exports, module) {
-  module.exports = require('modules/certificate/views/certificate_panel.html');
 });

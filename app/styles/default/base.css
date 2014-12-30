@@ -187,6 +187,7 @@ div#jhw-body { overflow: hidden; background: #3388CB;}
 #jhw #load{position:absolute;width:100%;height:100%;z-index:99999999;top:2px;left:0;background:#fff;}
 #jhw #jhw-detail{padding:5px 3px;}
 #jhw .jhw-main-inner{height: 100%;}
+#jhw .layout-top, #jhw .layout-bottom{height: 50%;}
 /*列表*/
 label.checkbox { padding-left: 5px; }
 .grid-td-checkbox{ width:40px; }
@@ -277,6 +278,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .pic-container .pic-item.hover .handle { bottom: 0; }
 #jhw .pic-container .pic-item.hover .img-name { background-color: #dadada; color: #454545; line-height: 35px; }
 #jhw .pic-container .photo-tool .bui-grid-checkBox-container{text-align: left;padding-top:8px;}
+#jhw .photo-bar{height: 100%;}
 /*相册*/
 #jhw .bui-grid-body-pic .bui-grid-body { height: 85%; }
 #jhw .pic-container #toggle-all{vertical-align: middle;}
@@ -323,3 +325,6 @@ label.checkbox { padding-left: 5px; }
 导航*/
 #jhw .grid-td-cate-route{width:200px;}
 #jhw .grid-td-navigate-name{width:250px;}
+#jhw .static-ul{ margin-bottom: 20px; overflow: hidden; background: #F8F8F8; padding: 10px; }
+#jhw .static-ul li { float: left; margin-right: 10px; margin-bottom: 5px; }
+#jhw .static-li-0 .button{background: #31A0ED; color: #fff; border: 1px solid #287AAB;}

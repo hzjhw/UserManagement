@@ -19,15 +19,23 @@
                         aria-disabled="false" id="bar-item-button2" aria-pressed="false">
                         <a href="#/shop/pay_type">
                             <button type="button" class="button button-gray btn-pay-type"><i
-                                    class="icon-tasks"></i>支付方式
+                                    class="icon-tasks"></i>支付方式管理
                             </button>
                         </a>
                     </li>
                     <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
                         id="bar-item-button9" aria-pressed="false">
-                        <a href="#/shop/pay_type">
+                        <a href="#/shop/delivery_type">
                             <button type="button" class="button button-gray"><i
-                                    class="icon-road"></i>配送方式
+                                    class="icon-road"></i>配送方式管理
+                            </button>
+                        </a>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button10" aria-pressed="false">
+                        <a href="#/shop/delivery_corp">
+                            <button type="button" class="button button-gray"><i
+                                    class="icon-home"></i>物流公司管理
                             </button>
                         </a>
                     </li>
@@ -57,34 +65,39 @@
                             style="width: 40px;">
                             <div class="bui-grid-hd-inner center"><span>序号</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-picture">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品图片</span><span
+                        <th class="bui-grid-hd grid-td-order-number">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">订单编号</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-col1">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品名称</span><span
+                        <th class="bui-grid-hd grid-td-order-username">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">用户名</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品型号</span><span
+                        <th class="bui-grid-hd grid-td-order-sum">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">订单总额</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-category">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">产品分类</span><span
+                        <th class="bui-grid-hd grid-td-order-state">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">付款状态</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">添加时间</span><span
+                        <th class="bui-grid-hd grid-td-order-delivery">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">配送状态</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-display">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">显示/隐藏</span><span
+                        <th class="bui-grid-hd grid-td-order-pay-type">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付方式</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-move">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">移序</span><span
+                        <th class="bui-grid-hd grid-td-order-delivery-type">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">配送方式</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
+                        <th class="bui-grid-hd grid-td-order-time">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">下单时间</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+
                         <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>

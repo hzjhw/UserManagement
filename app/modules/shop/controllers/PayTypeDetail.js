@@ -17,7 +17,8 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
     AlipayView = BaseView.extend({
       initialize: function () {
         this._initialize({
-          template: $('#template-alipay').html()
+          template: $('#template-alipay').html(),
+          data: this.model.attributes
         }).render();
       },
       render: function () {
@@ -50,13 +51,19 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
             { text: '支付宝', value: 'alipay' }
           ],
           change: function (itemId) {
-            if (itemId === 'alipay') { ctx.showAliPay();
-            } else { ctx.removeAliPay(); }
+            if (itemId === 'alipay') {
+              ctx.showAliPay();
+            } else {
+              ctx.removeAliPay();
+            }
             setTimeout(function () {
               BaseUtils.resetIframe();
             }, 100);
           }
         });
+        if (this.model.get('paymentConfigType') === 'alipay'){
+          this.showAliPay();
+        }
         BaseUtils.initEditor({
           render: '.ckeditor'
         });
@@ -68,11 +75,14 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
           el: $('#alipay')
         }).addView('aliPay', new AlipayView({
           el: '.ali-pay-inner',
-          viewId: 'aliPay'
+          model: this.model
         }));
       },
       removeAliPay: function () {
-        app.removePanel('aliPayPanel');
+        app.removeView('aliPay');
+        app.removePanel('aliPayPanel', {
+          el: $('#alipay')
+        });
       }
     });
 

@@ -23,10 +23,17 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
     });
 
     OrderItem = BaseItem.extend({
+      tagName: 'tr',
+      className: 'bui-grid-row',
+      events: {
+        'click .edit': '_edit',
+        'click .delete': '_del'
+      },
       initialize: function(){
         this._initialize({
           template: itemTemp,
-          model: OrderModel
+          model: OrderModel,
+          detail: CONST.HOST + '/modules/shop/order_detail.html'
         });
       },
       render: function(){

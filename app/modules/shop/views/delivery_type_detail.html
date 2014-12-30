@@ -1,48 +1,70 @@
 <div id="product-add-inner">
     <form id="J_Form" action="" class="form-horizontal">
         <div class="control-group">
-            <label class="control-label"><s>*</s>支付类型：</label>
+            <label class="control-label"> <s>*</s>配送方式名称： </label>
 
             <div class="controls">
+                <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                       data-rules="{required : true}"
+                       data-tip='{"text":"请输入配送方式名称","iconCls":"icon icon-pencil"}'>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>配送类型：</label>
+            <div class="controls">
                 <div id="s1">
-                    <input type="hidden" id="model-paymentConfigType" value="{{paymentConfigType}}"
-                           name="paymentConfigType"
+                    <input type="hidden" id="model-deliveryMethod" value="{{deliveryMethod}}"
+                           name="deliveryMethod"
                            data-rules="{required : true}">
                 </div>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label"> <s>*</s>支付方式名称： </label>
-
+            <label class="control-label">默认物流公司：</label>
             <div class="controls">
-                <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                <div id="s2">
+                    <input type="hidden" id="model-defaultDeliveryCorp" value="{{defaultDeliveryCorp.corpId}}" name="defaultDeliveryCorp">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>首重量：</label>
+            <div class="controls">
+                <div id="s3">
+                    <input id="model-firstWeight" name="firstWeight" value="{{firstWeight}}" type="text" class="input-small"
+                           data-rules="{required : true}"
+                           data-tip='{"text":"请输入首重量","iconCls":"icon icon-pencil"}'>
+                    <input type="hidden" id="model-firstWeightUnit" value="{{firstWeightUnit}}" name="firstWeightUnit">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>续重量：</label>
+            <div class="controls">
+                <div id="s4">
+                    <input id="model-continueWeight" name="continueWeight" value="{{continueWeight}}" type="text" class="input-small"
+                           data-rules="{required : true}"
+                           data-tip='{"text":"请输入续重量","iconCls":"icon icon-pencil"}'>
+                    <input type="hidden" id="model-continueWeightUnit" value="{{continueWeightUnit}}" name="continueWeightUnit">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><s>*</s>首重价格：</label>
+            <div class="controls">
+                <input id="model-continueWeightPrice" name="continueWeightPrice" value="{{continueWeightPrice}}" type="text" class="input-large"
                        data-rules="{required : true}"
-                       data-tip='{"text":"请输入支付方式名称","iconCls":"icon icon-pencil"}'>
+                       data-tip='{"text":"请输入首重价格","iconCls":"icon icon-pencil"}'>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">支付手续费设置：</label>
-
+            <label class="control-label"><s>*</s>续重价格：</label>
             <div class="controls">
-                <label><input type="radio" id="model-paymentFeeType" name="paymentFeeType"
-                              value="scale" {{#compare paymentFeeType '===' 'scale'}}checked{{/compare}}>按比例收费</label>
-                <label><input type="radio" id="model2-paymentFeeType" name="paymentFeeType"
-                              value="fixed" {{#compare paymentFeeType '===' 'fixed'}}checked{{/compare}}>固定手续费</label>
+                <input id="model-firstWeightPrice" name="firstWeightPrice" value="{{firstWeightPrice}}" type="text" class="input-large"
+                       data-rules="{required : true}"
+                       data-tip='{"text":"请输入续重价格","iconCls":"icon icon-pencil"}'>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label"><s>*</s>费率/费用:</label>
-
-            <div class="controls">
-                <input type="text" name="paymentFee" id="model-paymentFee" value="{{paymentFee}}" class="input-mini"
-                       data-rules="{required : true}"/>
-            </div>
-        </div>
-
-        <div id="alipay">
-
-        </div>
-
         <div class="control-group">
             <label class="control-label">排序：</label>
 
