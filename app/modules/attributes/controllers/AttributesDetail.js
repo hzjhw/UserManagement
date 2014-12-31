@@ -46,14 +46,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
           render: '#s2',
           target: '#model-attributeType',
           itemId: 'value',
-          items: [
-            {text: '文本', value: 'text'},
-            {text: '数字', value: 'number'},
-            {text: '字母', value: 'alphaint'},
-            {text: '单选项', value: 'select'},
-            {text: '多选项', value: 'checkbox'},
-            {text: '日期', value: 'date'}
-          ]
+          items: app.getData('attributeType')
         }).then(function (select) {
           if (select === 'select' || select === 'checkbox') {
             $("#multi-attribute").show();
@@ -65,7 +58,8 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
       },
       attributeRender: function () {
         var attributesOptionList = this.model.get('attributeOptionList');
-        var options = { el: '#multi-attribute', add: function () {
+        var options = { el: '#multi-attribute',
+          add: function () {
           BaseUtils.resetIframe();
         }};
         if (attributesOptionList && attributesOptionList.length > 0) {

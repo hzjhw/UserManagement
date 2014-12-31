@@ -43,6 +43,7 @@ app.addRoute('shop/delivery_type', function () {
     }));
   });
 });
+app.addRoute
 
 app.addModule('OrderList', 'modules/shop/controllers/OrderList.js');
 app.addModule('OrderDetail', 'modules/shop/controllers/OrderDetail.js');
@@ -60,6 +61,7 @@ app.addModule('DeliveryTypeDetail', 'modules/shop/controllers/DeliveryTypeDetail
 app.addModule('DeliveryTypeModel', 'models/DeliveryTypeModel.js');
 
 app.addModule('ProductInfoList', 'modules/shop/controllers/ProductInfoList.js');
+app.addModule('OrderView', 'modules/shop/controllers/OrderView.js');
 
 app.addTemplate('template/order_list', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_list.html');
@@ -99,4 +101,7 @@ app.addTemplate('template/order_detail', function(require, exports, module){
 });
 app.addTemplate('template/product_info_item', function(require, exports, module){
   module.exports = require('modules/shop/views/product_info_item.html');
+});
+app.addTemplate('template/order_view', function(require, exports, module){
+  module.exports = require('modules/shop/views/order_view.html');
 });

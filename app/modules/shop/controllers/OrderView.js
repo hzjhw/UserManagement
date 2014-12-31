@@ -1,34 +1,47 @@
 /**
- * @description OrderDetail
- * @namespace OrderDetail
+ * @description OrderView
+ * @namespace OrderView
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_detail',
+define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_view',
     'BaseService', 'BaseUtils'],
   function (require, exports, module) {
-    var OrderDetail, OrderModel, HandlebarsHelper, BaseDetail, template, BaseService, BaseUtils;
+    var OrderView, OrderModel, HandlebarsHelper, BaseDetail, template, BaseService, BaseUtils;
 
     OrderModel = require('OrderModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
-    template = require('template/order_detail');
+    template = require('template/order_view');
     BaseService = require('BaseService');
     BaseUtils = require('BaseUtils');
 
-    OrderDetail = BaseDetail.extend({
+    OrderView = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #product-reset': 'reset'
+        'click #product-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
-        debug('2.OrderDetail.initialize');
+        debug('2.OrderView.initialize');
         this._initialize({
           template: template,
           model: OrderModel
         });
       },
+      back: function(){
+        var ctx = this;
+        seajs.use(['OrderList'], function(OrderList){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('orderList', new OrderList({
+            el: '.jhw-main-inner',
+            page: ctx.options.page
+          }));;
+        });
+      },
       render: function () {
-        debug('4.OrderDetail.render');
+        debug('4.OrderView.render');
         this._render();
         this.initTab();
         this.initDeliveryType();
@@ -37,6 +50,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         this.initProductInfoList();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
+            debugger
             console.dir(app.getView('productInfoLIst').getItems());
             this.model.set('orderItemSet', app.getView('productInfoLIst').getItems());
           }
@@ -99,6 +113,6 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       }
     });
 
-    module.exports = OrderDetail;
+    module.exports = OrderView;
 
   });

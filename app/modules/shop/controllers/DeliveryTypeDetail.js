@@ -40,10 +40,7 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
-          items: [
-            {text: '先付款后发货', value: 'deliveryAgainstPayment'},
-            {text: '货到付款', value: 'cashOnDelivery'}
-          ],
+          items: app.getData('deliveryMethod'),
           change: function(){
           }
         });
@@ -51,21 +48,13 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
           render: '#s3',
           width: 100,
           target: '#model-firstWeightUnit',
-          items: [
-            {text: '克', value: 'g'},
-            {text: '千克', value: 'kg'},
-            {text: '吨', value: 't'}
-          ]
+          items: app.getData('weightUnit')
         });
         BaseUtils.initSelect({
           render: '#s4',
           width: 100,
           target: '#model-continueWeightUnit',
-          items: [
-            {text: '克', value: 'g'},
-            {text: '千克', value: 'kg'},
-            {text: '吨', value: 't'}
-          ]
+          items:app.getData('weightUnit')
         });
         this._form('#J_Form')._validate()._init({ });
         BaseUtils.initEditor({

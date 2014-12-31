@@ -35,9 +35,12 @@ define('ProductInfoList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseModel'
       tagName: 'tr',
       className: 'bui-grid-row',
       events: {
-        'click .delete': '_del'
+        'click .delete': '_del',
+        'click .btn-quantity-minus': 'quantityMinus',
+        'click .btn-quantity-plus': 'quantityPlus'
       },
       initialize: function () {
+        this.quantity = this.model.get('productQuantity');
         this._initialize({
           template: itemTemp,
           modelBind: true
@@ -45,6 +48,13 @@ define('ProductInfoList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseModel'
       },
       render: function () {
         this._render();
+      },
+      quantityMinus: function () {
+        if (parseInt(this.quantity, 10) === 0) return;
+        this.model.set('productQuantity', this.quantity - 1);
+      },
+      quantityPlus: function () {
+        this.model.set('productQuantity', this.quantity + 1);
       }
     });
 
@@ -59,8 +69,8 @@ define('ProductInfoList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseModel'
       render: function () {
         this._render();
       },
-      getItems: function(){
-        return this.collection.models;
+      getItems: function () {
+        return Est.pluck(this.collection.models, 'attributes');
       }
     });
 

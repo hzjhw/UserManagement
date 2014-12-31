@@ -36,6 +36,7 @@ a,ins{text-decoration:none;color:#777}
 .pointer{cursor:pointer}
 .pointer:hover{color:#FF7B01;text-decoration:underline}
 .underline{text-decoration:underline}
+.relative{position:relative;}
 .bold{font-weight:700}
 .center{text-align:center}
 .noborder{border:none!important}
@@ -236,6 +237,7 @@ label.checkbox { padding-left: 5px; }
 
 #jhw .x-caret-sub{ border: none; width: 40px; vertical-align: middle; height: 40px; background: url(img/cate-sub.jpg) no-repeat scroll 18px -1px transparent;}
 #jhw .grid-td-cate-name{width:330px;}
+#jhw .cate-info{position: absolute; left: 160px; width: 250px; padding-left: 7px; line-height: 28px;margin-top:2px;}
 /* 新闻 ****************************************************************************************/
 #jhw-news{ }
 #jhw-news .news-list-name{height: 30px; overflow: hidden; display: inline-block; line-height: 15px;}
@@ -260,7 +262,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .album_left li{padding-left: 10px; padding-right: 0px;}
 #jhw .album_right{float:left; width:85%;height: 100%;}
 #jhw .album-cate-ul{padding-right:15px;}
-#jhw .album-cate-ul .cate-grid-row{position:relative;padding-left: 8px; padding-bottom: 4px; border-radius: 5px;}
+#jhw .album-cate-ul .cate-grid-row{position:relative;padding-left: 8px; padding-bottom: 4px; border-radius: 5px;overflow: hidden; white-space: nowrap;}
 #jhw .pic-container .image .handle li:hover, #jhw .pic-container .image .handle li{transition: background-color 0.5s; -moz-transition: background-color 0.5s; -webkit-transition: background-color 0.5s; -o-transition: background-color 0.5s; }
 #jhw .album-cate-ul .album-tool, #jhw .album-cate-ul .album-tool:hover{transition: opacity 0.5s; -moz-transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -o-transition: opacity 0.5s; }
 #jhw .album-cate-ul .album-tool{position:absolute;top: 0; right: 0px; z-index: 99999;display:none;opacity: 0.5;}

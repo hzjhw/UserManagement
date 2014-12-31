@@ -235,6 +235,7 @@
     background-color: #fff;
     position: relative;
     border-bottom: -1px;
+    border-left: none;
     z-index: 10
 }
 
@@ -863,7 +864,8 @@
 
 .pagination .bui-bar-item {
     float: left;
-    margin: 0
+    margin: 0;
+    margin-bottom: 5px;
 }
 
 .pagination .disabled a:hover {

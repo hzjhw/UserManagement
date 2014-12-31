@@ -69,9 +69,9 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
         case '||':
           return (v1 || v2) ? options.fn(this) :
             options.inverse(this);
-         case 'indexOf':
-           return (v1.indexOf(v2)>-1) ? options.fn(this) :
-                  options.inverse(this);
+        case 'indexOf':
+          return (v1.indexOf(v2) > -1) ? options.fn(this) :
+            options.inverse(this);
         default:
           return options.inverse(this);
       }
@@ -138,17 +138,22 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('certType', function (str, options) {
     var result = '';
-    switch (str){
+    switch (str) {
       case '01':
-        result = '基本证书'; break;
+        result = '基本证书';
+        break;
       case '02':
-        result = '一般证书'; break;
+        result = '一般证书';
+        break;
       case '03':
-        result = '税务证书'; break;
+        result = '税务证书';
+        break;
       case '04':
-        result = '荣誉证书'; break;
+        result = '荣誉证书';
+        break;
       case '05':
-        result = '其它证书'; break;
+        result = '其它证书';
+        break;
     }
     return result;
   });
@@ -162,19 +167,57 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('orderStatus', function (str, options) {
     var result = '';
-    switch (str){
+    switch (str) {
       case 'unprocessed':
-        result = '未处理'; break;
+        result = '<span style="color: red;">未处理</span>';
+        break;
       case 'processed':
-        result = '已处理'; break;
+        result = '<span style="color: orange;">已处理</span>';
+        break;
       case 'completed':
-        result = '已完成'; break;
+        result = '<span style="color: #008000;">已支付</span>';
+        break;
       case 'invalid':
-        result = '已作废'; break;
+        result = '<span style="color: gray;">已作废</span>';
+        break;
       default:
         result = '无状态';
     }
     return result;
+  });
+
+
+  Handlebars.registerHelper("x", function (expression, options) {
+    var fn = function () {
+    }, result;
+    try {
+      fn = Function.apply(this,
+        [ 'window', 'return ' + expression + ';' ]);
+    } catch (e) {
+      console.warn('[warning] {{x ' + expression + '}} is invalid javascript', e);
+    }
+    try {
+      result = fn.bind(this)(window);
+    } catch (e) {
+      console.warn('[warning] {{x ' + expression + '}} runtime error', e);
+    }
+    return result;
+  });
+  /**
+   * 复杂条件
+   *
+   * @author wyj 14.12.31
+   * @example
+   *  {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
+        this.shippingStatus == 'unshipped'"}}disabled{{/xif}}
+   *
+   */
+  Handlebars.registerHelper("xif", function (expression, options) {
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+  });
+  Handlebars.registerHelper('condition', function (str, options) {
+    return Est.template('{{' + str + '}}', this) ? options.fn(this) :
+      options.inverse(this);
   });
   /**
    * 付款状态
@@ -185,17 +228,22 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('paymentStatus', function (str, options) {
     var result = '';
-    switch (str){
+    switch (str) {
       case 'unpaid':
-        result = '未支付'; break;
+        result = '未支付';
+        break;
       case 'partPayment':
-        result = '部分支付'; break;
+        result = '部分支付';
+        break;
       case 'paid':
-        result = '已支付'; break;
+        result = '已支付';
+        break;
       case 'partRefund':
-        result = '部分退款'; break;
+        result = '部分退款';
+        break;
       case 'refunded':
-        result = '全额退款'; break;
+        result = '全额退款';
+        break;
       default:
         result = '无记录';
     }
@@ -210,17 +258,22 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('shippingStatus', function (str, options) {
     var result = '';
-    switch (str){
+    switch (str) {
       case 'unshipped':
-        result = '未发货'; break;
+        result = '未发货';
+        break;
       case 'partShipped':
-        result = '部分发贫'; break;
+        result = '部分发贫';
+        break;
       case 'shipped':
-        result = '已发货'; break;
+        result = '已发货';
+        break;
       case 'partReshiped':
-        result = '部分退货'; break;
+        result = '部分退货';
+        break;
       case 'reshiped':
-        result = '已退货'; break;
+        result = '已退货';
+        break;
       default:
         result = '无记录';
     }
@@ -242,7 +295,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * 返回全局常量
    * @author wyj 14.12.17
    */
-  Handlebars.registerHelper('CONST', function(name, options){
+  Handlebars.registerHelper('CONST', function (name, options) {
     return Est.getValue(CONST, name);
   });
 
@@ -250,7 +303,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * 判断是否为空
    * @author wyj 14.12.27
    */
-  Handlebars.registerHelper('isEmpty', function(value, options){
+  Handlebars.registerHelper('isEmpty', function (value, options) {
     return Est.isEmpty(value) ? options.fn(this) :
       options.inverse(this);
   });
@@ -265,7 +318,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     if (arguments.length < 3) {
       return src || 'upload/no-pic.jpg';
     }
-    if (src == null || src.length == 0){
+    if (src == null || src.length == 0) {
       return "";
     }
     var url2 = url.substring(url.lastIndexOf(".") + 1, url.length);
@@ -280,19 +333,25 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('attributeType', function (str, options) {
     var result = '';
-    switch (str){
+    switch (str) {
       case 'text':
-        result = '文本'; break;
+        result = '文本';
+        break;
       case 'number':
-        result = '数字'; break;
+        result = '数字';
+        break;
       case 'alphaint':
-        result = '字母'; break;
+        result = '字母';
+        break;
       case 'select':
-        result = '单选项'; break;
+        result = '单选项';
+        break;
       case 'checkbox':
-        result = '多选项'; break;
+        result = '多选项';
+        break;
       case 'date':
-        result = '日期'; break;
+        result = '日期';
+        break;
     }
     return result;
   });

@@ -1,0 +1,287 @@
+<div id="grid" class="jhw-panel">
+<div class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
+<div class="bui-grid-tbar">
+    <div class="bui-bar" role="toolbar" id="bar2">
+        <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+            <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                id="bar-item-button4" aria-pressed="false">
+                <button type="button" class="button button-gray btn-back"><i
+                        class="icon-arrow-left"></i>返回
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="bui-grid-body">
+<div id="product-add-inner">
+<form id="J_Form" action="" class="form-horizontal">
+<div id="tab"></div>
+<div id="panel" class="" style="padding:10px;">
+<!--常规-->
+<div>
+<div class="span12 span-first">
+    <div class="control-group">
+        <label class="control-label">订单编号：</label>
+
+        <div class="controls">
+            <input type="hidden" id="model-orderSn"/>
+            {{orderSn}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">商品总金额：</label>
+
+        <div class="controls">
+            <input id="model-totalAmount" type="hidden"/>
+            <span class="red">￥{{totalAmount}}元</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>配送方式：</label>
+
+        <div class="controls">
+            <div id="s2">
+                <input type="hidden" id="model-defaultDeliveryCorp" value="{{defaultDeliveryCorp}}"
+                       name="defaultDeliveryCorp"
+                       data-rules="{required : true}">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"> <s>*</s>配送费用： </label>
+
+        <div class="controls">
+            <input id="model-deliveryFee" name="deliveryFee" value="{{deliveryFee}}" type="text"
+                   class="input-normal"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入配送费用","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"> <s>*</s>商品重量： </label>
+
+        <div class="controls">
+            <div id="s3">
+                <input id="model-productWeight" name="productWeight" value="{{productWeight}}"
+                       type="text" class="input-normal"
+                       data-rules="{required : true}"
+                       data-tip='{"text":"请输入商品重量","iconCls":"icon icon-pencil"}'>
+                <input type="hidden" id="model-productWeightUnit" value="{{productWeightUnit}}"
+                       name="productWeightUnit">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            收货人姓名:
+        </label>
+
+        <div class="controls">
+            <input id="model-shipName" name="shipName" value="{{shipName}}" type="text"
+                   class="input-normal"/>
+        </div>
+
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            收货地址:
+        </label>
+
+        <div class="controls">
+            <input class="input-normal" id="model-shipAddress" name="shipAddress"
+                   value="{{shipAddress}}" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            电话：
+        </label>
+
+        <div class="controls">
+            <input id="model-shipPhone" class="input-normal" value="{{shipPhone}}" name="shipPhone"
+                   type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">用户名：</label>
+
+        <div class="controls">
+            {{shipName}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">预存款余额:</label>
+
+        <div class="controls">
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">E-mail:</label>
+
+        <div class="controls">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="span12">
+    <div class="control-group">
+        <label class="control-label">下单时间：</label>
+
+        <div class="controls">
+            {{addTime}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">订单总金额：</label>
+
+        <div class="controls">
+            <span class="red">￥{{totalAmount}}元</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>支付方式：</label>
+
+        <div class="controls">
+            <div id="s1">
+                <input type="hidden" id="model-deliveryMethod" value="{{deliveryMethod}}"
+                       name="deliveryMethod"
+                       data-rules="{required : true}">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"> <s>*</s>支付手续费： </label>
+
+        <div class="controls">
+            <input id="model-paymentFee" name="paymentFee" value="{{paymentFee}}" type="text"
+                   class="input-normal"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入支付手续费","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">
+            附言:
+        </label>
+
+        <div class="controls">
+            {{memo}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">收货地区</label>
+
+        <div class="controls bui-form-group-select" data-type="city">
+            <select class="input-small" value="山东省">
+                <option>省份</option>
+            </select>&nbsp;&nbsp;
+            <select class="input-small">
+                <option>城市</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            邮编：
+        </label>
+
+        <div class="controls">
+            <input class="input-normal" id="model-shipZipCode" value="{{shipZipCode}}nameshipZipCode"
+                   type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">手机：</label>
+
+        <div class="controls">
+            <input id="model-shipMobile" name="shipMobile" value="{{shipMobile}}" type="text"
+                   class="input-normal"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            会员等级
+        </label>
+
+        <div class="controls">
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">最后登录IP:</label>
+
+        <div class="controls">
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">积分:</label>
+
+        <div class="controls">
+
+        </div>
+    </div>
+</div>
+<div class="row actions-bar" style="display:none;">
+    <div class="form-actions span13 offset3">
+        <button id="submit" type="button" class="button button-primary">保存</button>
+        <button id="reset" type="reset" class="button">重置</button>
+    </div>
+</div>
+</div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">货号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">商品名称</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">价格</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">购买数量</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+
+                    <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="product-info-list">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+

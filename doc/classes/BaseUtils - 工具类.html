@@ -368,7 +368,24 @@
      window[&#39;replaceDialog&#39; + id].close().remove();
      };
    }
- });</code></pre>
+ });
+ // 选取图片
+ BaseUtils.openUpload({
+           id: &#39;uploadDialog&#39;,
+           type: type,
+           albumId: app.getData(&#39;curAlbumId&#39;),
+           username: app.getData(&#39;user&#39;) &amp;&amp; app.getData(&#39;user&#39;).username,
+           auto: true,
+           oniframeload: function(){
+             this.iframeNode.contentWindow.uploadCallback = function(result){
+               ctx.addItems(result);
+             };
+           },
+           success: function(){
+             var result = this.iframeNode.contentWindow.app.getView(&#39;picSource&#39;).getItems();
+             ctx.addItems(result);
+           }
+         });</code></pre>
 
             </div>
         </div>
@@ -424,7 +441,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l484"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:484</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l501"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:501</code></a>
         
         </p>
 
@@ -540,7 +557,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l306"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:306</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l323"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:323</code></a>
         
         </p>
 
@@ -645,7 +662,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l376"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:376</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l393"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:393</code></a>
         
         </p>
 
@@ -758,7 +775,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l435"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:435</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l452"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:452</code></a>
         
         </p>
 
@@ -856,7 +873,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l354"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:354</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l371"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:371</code></a>
         
         </p>
 
@@ -936,7 +953,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l244"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:244</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l261"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:261</code></a>
         
         </p>
 
@@ -1057,7 +1074,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l271"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:271</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l288"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:288</code></a>
         
         </p>
 
@@ -1183,7 +1200,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l162"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:162</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l179"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:179</code></a>
         
         </p>
 
@@ -1297,7 +1314,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l141"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:141</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l158"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:158</code></a>
         
         </p>
 
@@ -1398,7 +1415,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l204"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:204</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l221"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:221</code></a>
         
         </p>
 

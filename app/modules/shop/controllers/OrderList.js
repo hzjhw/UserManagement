@@ -27,7 +27,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
       className: 'bui-grid-row',
       events: {
         'click .edit': '_edit',
-        'click .delete': '_del'
+        'click .delete': '_del',
+        'click .view': 'viewOrder'
       },
       initialize: function(){
         this._initialize({
@@ -38,6 +39,19 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
       },
       render: function(){
         this._render();
+      },
+      viewOrder: function(){
+        var ctx = this;
+        seajs.use(['OrderView'], function(OrderView){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('orderView', new OrderView({
+            el: '.jhw-main-inner',
+            id: ctx.model.get('id'),
+            page: ctx._getPage()
+          }));;
+        });
       }
     });
 

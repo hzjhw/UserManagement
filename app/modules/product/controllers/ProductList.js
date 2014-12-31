@@ -223,7 +223,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
                   category: ctx.transferCategory
                 },
                 success: function (result) {
-                  BaseUtils.tip('批量隐藏成功');
+                  BaseUtils.tip('批量转移成功');
                   ctx._load();
                 }
               });

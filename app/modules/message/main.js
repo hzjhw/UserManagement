@@ -11,10 +11,9 @@ app.addRoute('message', function () {
   seajs.use(['jquery', 'MessageList'], function (jquery, MessageList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jwh-main-inner"></div>'
+      template: '<div class="jhw-main-inner"></div>'
     }).addView(('messageList', new MessageList({
-      el: '.jhw-main-inner',
-      viewId: 'messageList'
+      el: '.jhw-main-inner'
     })));
   });
 });

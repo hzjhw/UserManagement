@@ -45,11 +45,7 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-paymentConfigType',
-          items: [
-            { text: '预存款', value: 'deposit' },
-            { text: '线下支付', value: 'offline' },
-            { text: '支付宝', value: 'alipay' }
-          ],
+          items: app.getData('paymentType'),
           change: function (itemId) {
             if (itemId === 'alipay') {
               ctx.showAliPay();

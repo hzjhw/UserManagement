@@ -56,8 +56,10 @@ define('PhotoSelect', ['PhotoModel', 'BaseCollection', 'BaseList', 'BaseItem', '
           item: PhotoItem,
           checkAppend: false,
           pagination: true,
-          afterLoad: function(){
-            this.collection._setItemId('all');
+          beforeLoad: function(){
+            if (!app.getData('curAlbumId')){
+              this.collection._setItemId('all');
+            }
           }
         });
       },

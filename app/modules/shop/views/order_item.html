@@ -25,7 +25,7 @@
 </td>
 <td class="bui-grid-cell grid-td-order-state">
     <div class="bui-grid-cell-inner">
-        <span class="bui-grid-cell-text">{{orderStatus orderStatus}}</span>
+        <span class="bui-grid-cell-text">{{{orderStatus orderStatus}}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-order-delivery">
@@ -51,9 +51,17 @@
 </td>
 
 
-<td class="bui-grid-cell grid-td-handle">
+<td class="bui-grid-cell grid-td-handle" style="width: 250px;">
     <div class="bui-grid-cell-inner">
-        <button type="button" class="button button-info button-mini edit"><i class="icon-white icon-edit"></i>修改
+        <button type="button" class="button button-gray button-mini view">
+        <i class=" icon-search"></i>查看
+        </button>
+        <button type="button" class="button button-gray button-mini edit"
+        {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
+        this.shippingStatus == 'unshipped'"}}{{else}}disabled{{/xif}}>
+        <i class=" icon-edit"></i>修改
+        </button>
+        <button type="button" class="button button-gray button-mini handle"><i class=" icon-shopping-cart"></i>处理
         </button>
         <button type="button" class="button button-gray button-mini delete"><i class="icon-trash"></i>删除
         </button>

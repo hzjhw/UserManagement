@@ -216,6 +216,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_[private] - constructor">[private] - constructor</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[public] - _empty">[public] - _empty</a>
 
                                 
@@ -303,7 +310,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l21"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:21</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l32"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:32</code></a>
         
         </p>
 
@@ -355,6 +362,8 @@
     model: ProductModel, // 模型类
     // 可选
     enterRender: &#39;#submit&#39; // 执行回车后的按钮点击的元素选择符
+    id: ctx.model.get(&#39;id&#39;), // 当不是以dialog形式打开的时候， 需要传递ID值
+            page: ctx._getPage() // 点击返回按钮且需要定位到第几页时， 传入page值，
  });</code></pre>
 
             </div>
@@ -397,7 +406,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l42"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:42</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l55"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:55</code></a>
         
         </p>
 
@@ -461,7 +470,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l286"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:286</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l300"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:300</code></a>
         
         </p>
 
@@ -518,7 +527,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l57"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:57</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l70"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:70</code></a>
         
         </p>
 
@@ -589,7 +598,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l73"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:73</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l86"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:86</code></a>
         
         </p>
 
@@ -688,7 +697,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l273"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:273</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l287"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:287</code></a>
         
         </p>
 
@@ -755,7 +764,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l253"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:253</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l267"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:267</code></a>
         
         </p>
 
@@ -810,7 +819,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l222"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:222</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l236"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:236</code></a>
         
         </p>
 
@@ -881,7 +890,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l231"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:231</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l245"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:245</code></a>
         
         </p>
 
@@ -942,6 +951,94 @@
 </div>
 
                 
+                    <div id="method_[private] - constructor" class="method item">
+    <h3 class="name"><code>[private] - constructor</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l21"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:21</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>传递options进来</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_[public] - _empty" class="method item">
     <h3 class="name"><code>[public] - _empty</code></h3>
 
@@ -974,7 +1071,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l261"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:261</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l275"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:275</code></a>
         
         </p>
 
@@ -1052,7 +1149,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l100"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:100</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l114"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:114</code></a>
         
         </p>
 
@@ -1177,7 +1274,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l169"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:169</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l183"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:183</code></a>
         
         </p>
 
@@ -1282,7 +1379,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l130"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:130</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l144"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:144</code></a>
         
         </p>
 

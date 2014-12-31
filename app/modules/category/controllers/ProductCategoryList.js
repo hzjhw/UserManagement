@@ -3,9 +3,12 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils', 'BaseComposite', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item'],
+define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils', 'BaseComposite',
+    'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item',
+    'BaseService'],
   function (require, exports, module) {
-    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils, CategoryModel, BaseComposite, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils, CategoryModel,
+      BaseComposite, BaseItem, BaseList, BaseService, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseComposite = require('BaseComposite');
@@ -16,6 +19,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
     itemTemp = require('template/category_product_item');
     BaseUtils = require('BaseUtils');
     transferTemp = require('template/product_transfer');
+    BaseService = require('BaseService');
 
     ProductCategoryCollection = BaseComposite.extend({
       url: CONST.API + '/category/product',
@@ -29,6 +33,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       tagName: 'li',
       className: 'cate-grid-row',
       events: {
+        'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'click .edit': 'editItem',
         'click .btn-display': 'setDisplay',
@@ -36,7 +41,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort',
         'change .pro-cate-name': 'editName',
-        'click .edit-image': 'editImage'
+        'click .edit-image': 'editImage',
+        'mouseover .icon-picture': 'showImage',
+        'mouseout .icon-picture': 'hideImage'
       },
       initialize: function () {
         this._initialize({
@@ -48,6 +55,24 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this._render();
         return this;
       },
+      showImage: function (e) {
+        e.stopImmediatePropagation();
+        this.editImage = this.$('.edit-image');
+        if (!Est.isEmpty(this.model.get('image'))) {
+          this.imageTemp = HandlebarsHelper.compile("<img src='{{CONST 'PIC_URL'}}/{{picUrl image 5}}'></img>");
+          BaseUtils.tooltip(this.imageTemp(this.model.attributes), {
+            id: 'imageView',
+            align: 'left',
+            time: 100000,
+            target: this.editImage.get(0)
+          });
+        }
+        return false;
+      },
+      hideImage: function () {
+        this.tooltipDialog &&
+        this.tooltipDialog.close().remove();
+      },
       editImage: function () {
         var ctx = this;
         BaseUtils.openUpload({
@@ -56,14 +81,29 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           albumId: app.getData('curAlbumId'),
           username: app.getData('user') && app.getData('user').username,
           auto: true,
-          callback: function(result){
+          oniframeload: function () {
+            this.iframeNode.contentWindow.uploadCallback = function (result) {
+              ctx.setImage(result);
+            };
+          },
+          success: function () {
+            var result = this.iframeNode.contentWindow.app.getView('picSource').getItems();
             ctx.setImage(result);
           }
         });
       },
-      setImage: function(result){
-        if (result.length > 0){
+      setImage: function (result) {
+        if (result.length > 0) {
           this.model.set('image', result[0]['serverPath']);
+          this.model._saveField({
+            id: this.model.get('id'),
+            image: this.model.get('image')
+          }, this, { // ctx须初始化initModel
+            success: function () {
+            }, // 保存成功回调
+            async: false, // 是否同步
+            hideTip: false // 是否隐藏提示
+          });
         }
       },
       // 修改名称
@@ -200,7 +240,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('productCategory')) {
-          BaseUtils.getProductCategory({
+          BaseService.getProductCategory({
             tree: true,
             extend: true,
             select: true

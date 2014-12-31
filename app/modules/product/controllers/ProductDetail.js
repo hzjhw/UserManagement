@@ -140,21 +140,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           render: '#s2',
           width: 100,
           target: '#model-loginView',
-          items: [
-            {text: '访问者可见', value: '1'},
-            {text: '登录后可见', value: '0'}
-          ]
+          items: app.getData('loginViewList')
         });
 
         BaseUtils.initSelect({
           render: '#s2',
           width: 100,
           target: '#model-ads',
-          items: [
-            {text: '广告产品', value: '2'},
-            {text: '是', value: '1'},
-            {text: '否', value: '0'}
-          ]
+          items: app.getData('adsList')
         });
 
         BaseUtils.initSelect({
@@ -162,11 +155,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           width: 100,
           target: '#model-weightUnit',
           itemId: 'value',
-          items: [
-            {text: '克', value: 'g'},
-            {text: '千克', value: 'kg'},
-            {text: '吨', value: 't'}
-          ]
+          items:app.getData('weightUnit')
         });
 
         // 编辑器
