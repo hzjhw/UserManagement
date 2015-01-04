@@ -29,3 +29,6 @@ app.addTemplate('template/layout_top', function (require, exports, module) {
 app.addTemplate('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });
+app.addTemplate('template/nav_item', function(require, exports, module){
+  module.exports = require('modules/index/views/nav_item.html');
+});
