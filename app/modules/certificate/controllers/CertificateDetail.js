@@ -5,9 +5,10 @@
  */
 
 define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
-    'dialog', 'template/certificate_detail', 'Tag', 'BaseUtils'],
+    'dialog', 'template/certificate_detail', 'Tag', 'BaseUtils','PicturePick'],
   function (require, exports, module) {
-    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
+    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils,
+      PicturePick;
 
     CertificateModel = require('CertificateModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -17,6 +18,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
     BaseUtils = require('BaseUtils');
+    PicturePick = require('PicturePick');
 
     CertificateDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -52,6 +54,28 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
           onAfterSave: function(response){
           }
         });
+
+        // 产品图片
+        var pic_list = [];
+        if (!this._isAdd) {
+          var attList = JSON.parse(this.model.get('attList'));
+          var id=this.model.get('id');
+            pic_list.push({
+              attId: id,
+              serverPath: attList,
+              title: '重新上传',
+              hasPic: true,
+              isAddBtn: false
+          });
+        }
+        if (!PicturePick){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
+        app.addView('picturePick', new PicturePick({
+          el: '#picture-pick',
+          viewId: 'picturePick',
+          _isAdd: this._isAdd, // 是否为添加模式
+          items: pic_list, // 初始化数据
+          max: 9
+        }));
 
         setTimeout(function () {
           BaseUtils.resetIframe();

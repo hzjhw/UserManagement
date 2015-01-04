@@ -30,7 +30,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
       className: 'cate-grid-row',
       events: {
         'click .delete': '_del',
-        'click .name': 'editName',
+        'change .pro-cate-name': 'editName',
         'click .edit': 'editItem',
         'click .btn-display': 'setDisplay',
         'click .move-up': 'moveUp',

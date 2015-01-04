@@ -29,7 +29,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
         'click .toggle': '_toggleChecked',
         'click .edit': '_edit',
         'click .delete': '_del',
-        'click .view': 'viewOrder'
+        'click .view': 'viewOrder',
+        'click .handle': 'handleOrder'
       },
       initialize: function(){
         this._initialize({
@@ -48,6 +49,19 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
           }).addView('orderView', new OrderView({
+            el: '.jhw-main-inner',
+            id: ctx.model.get('id'),
+            page: ctx._getPage()
+          }));;
+        });
+      },
+      handleOrder: function(){
+        var ctx = this;
+        seajs.use(['OrderHandle'], function(OrderHandle){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('orderHandle', new OrderHandle({
             el: '.jhw-main-inner',
             id: ctx.model.get('id'),
             page: ctx._getPage()

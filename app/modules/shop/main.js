@@ -62,6 +62,7 @@ app.addModule('DeliveryTypeModel', 'models/DeliveryTypeModel.js');
 
 app.addModule('ProductInfoList', 'modules/shop/controllers/ProductInfoList.js');
 app.addModule('OrderView', 'modules/shop/controllers/OrderView.js');
+app.addModule('OrderHandle', 'modules/shop/controllers/OrderHandle.js');
 
 app.addTemplate('template/order_list', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_list.html');
@@ -104,4 +105,7 @@ app.addTemplate('template/product_info_item', function(require, exports, module)
 });
 app.addTemplate('template/order_view', function(require, exports, module){
   module.exports = require('modules/shop/views/order_view.html');
+});
+app.addTemplate('template/order_handle', function(require, exports, module){
+  module.exports = require('modules/shop/views/order_handle.html');
 });

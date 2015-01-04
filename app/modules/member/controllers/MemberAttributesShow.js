@@ -22,16 +22,10 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     });
 
     collection = BaseCollection.extend({
-      url: CONST.API + '/member/attr/list' ,
+      url: CONST.API + '/member/attr/list',
       model: model,
       initialize: function () {
         this._initialize();
-      },
-      setUrl: function (url) {
-        this.attUrl = url;
-      },
-      getUrl: function () {
-        return this.attUrl;
       }
     });
 
@@ -69,30 +63,30 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
         'click .getItemsBtn': 'getItems'
       },
       initialize: function (options) {
-        var ctx = this;
         this.options = options || {};
         if (options.items) {
           this._initialize({
-            render: options.render,
-            item: item, model: model, collection: collection
-          }).then(function (context) {
-            ctx.itemRender(options, context);
-            ctx.after();
-          });
+              render: options.render,
+              item: item,
+              model: model,
+              collection: collection,
+              afterLoad: function () {
+                this.itemRender(options, context);
+                this.after();
+              }
+            }
+          )
+          ;
         }
         else {
           this._initialize({
             render: options.render,
             collection: collection,
             item: item,
-            model: model
-          }).then(function (baseListCtx) {
-            baseListCtx._load({
-              beforeLoad: function (collection) {
-              }
-            }).then(function () {
-              ctx.after();
-            });
+            model: model,
+            afterLoad: function () {
+              this.after();
+            }
           });
         }
       },
@@ -137,8 +131,10 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
         // 转换成[{key: '', value: ''}, ... ] 数组格式
         return Est.pluck(this.collection.models, 'attributes');
       }
-    });
+    })
+    ;
 
     module.exports = MemberAttributesShow;
 
-  });
+  })
+;

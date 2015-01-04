@@ -69,9 +69,6 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
           collection: MemberRankCollection,
           item: MemberRankItem,
           detail: CONST.HOST + '/modules/member/member_rank_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       render : function(){

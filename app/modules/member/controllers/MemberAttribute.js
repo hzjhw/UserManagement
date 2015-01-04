@@ -80,9 +80,6 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
           collection: MemberAttributeCollection,
           item: MemberAttributeItem,
           detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       render : function(){

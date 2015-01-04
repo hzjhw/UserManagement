@@ -8,77 +8,41 @@
  * */
 
 app.addRoute('member', function () {
-  seajs.use(['jquery', 'BaseView', 'MemberList', 'template/member_panel'],
-    function (jquery, BaseView, MemberList, template) {
-      var MemberPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('member', new MemberPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('memberLIst', new MemberList({
-          el: '.jhw-main-inner',
-          viewId: 'memberList'
-        }));
-      }).render();
+  seajs.use(['jquery', 'MemberList'],
+    function (jquery, MemberList) {
+      app.addPanel('main', {
+        el: '#jhw-main',
+        template: '<div class="jhw-main-inner"></div>'
+      }).addView('memberList', new MemberList({
+        el: '.jhw-main-inner'
+      }));
     });
 });
 
 app.addRoute('member/attr', function () {
-  seajs.use(['jquery', 'BaseView', 'MemberAttribute', 'template/member_panel'],
-    function (jquery, BaseView, MemberAttribute, template) {
-      var MemberAttrPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('memberAttr', new MemberAttrPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('memberAttribute', new MemberAttribute({
-          el: '.jhw-main-inner',
-          viewId: 'memberAttribute'
-        }));
-      }).render();
+  seajs.use(['jquery', 'MemberAttribute'],
+    function (jquery, MemberAttribute) {
+      app.addPanel('main', {
+        el: '#jhw-main',
+        template: '<div class="jhw-main-inner"></div>'
+      }).addView('memberAttribute', new MemberAttribute({
+        el: '.jhw-main-inner'
+      }));
     });
 });
 
 app.addRoute('member/rank', function () {
-  seajs.use(['jquery', 'BaseView', 'MemberRank', 'template/member_panel'],
-    function (jquery, BaseView, MemberRank, template) {
-
-      var MemberRandPanel = BaseView.extend({
-        initialize: function () {
-          this._initialize({
-            template: template
-          });
-        },
-        render: function () {
-          this._render();
-        }
-      });
-      app.addPanel('memberRank', new MemberRandPanel({
-        el: '#jhw-main'
-      })).on('after', function () {
-        app.addView('memberRank', new MemberRank({
-          el: '.jhw-main-inner',
-          viewId: 'memberRank'
-        }));
-      }).render();
+  seajs.use(['jquery', 'MemberRank'],
+    function (jquery, MemberRank) {
+      app.addPanel('main', {
+        el: '#jhw-main',
+        template: '<div class="jhw-main-inner"></div>'
+      }).addView('memberRank', new MemberRank({
+        el: '.jhw-main-inner'
+      }));
     });
 });
+
 
 
 /**
@@ -137,7 +101,4 @@ app.addTemplate('template/member_attribute_item', function (require, exports, mo
 });
 app.addTemplate('template/member_attributes_show_item', function (require, exports, module) {
   module.exports = require('modules/member/views/member_attributes_show_item.html');
-});
-app.addTemplate('template/member_panel', function(require, exports, module){
-  module.exports = require('modules/member/views/member_panel.html');
 });

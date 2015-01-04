@@ -72,9 +72,6 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           item: MemberListItem,
           pagination: true,
           detail: CONST.HOST + '/modules/member/member_list_detail.html'
-        }).then(function (thisCtx) {
-          thisCtx._initPagination(thisCtx._options);
-          thisCtx._load(thisCtx._options);
         });
       },
       render : function(){
