@@ -35,7 +35,8 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       tagName: 'li',
       className: 'nav',
       events: {
-        'click a': 'toPage'
+        'click a': 'toPage',
+        'mouseover a': 'setChildPos'
       },
       initialize:function(){
         this._initialize({
@@ -46,7 +47,14 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
         this._render();
       },
       toPage: function(){
+        this.$el.removeClass('hover');
         Backbone.history.navigate(this.model.get('url'), true);
+      },
+      setChildPos: function(){
+        this.$('.node-tree').css({
+          top: this.$el.position().top - 1,
+          left: this.$el.width()
+        });
       }
     });
 
@@ -64,8 +72,12 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
           render: '#left-bar-ul',
           data: {},
           items: [
-            {name: '首页', url: '#', className: 'menu-index'},
-            {name: '产品管理', url: '#/product', className: 'menu-product'},
+            {name: '首页', url: '#', className: 'menu-index', children: []},
+            {name: '产品管理', url: '#/product', className: 'menu-product', children: [
+              {name: '产品添加', url: '#/product_add', className: 'menu-category', children: []},
+              {name: '分类管理', url: '#/category', className: 'menu-category', children: []},
+              {name: '产品导入', url: '#/category', className: 'menu-category', children: []}
+            ]},
             {name: '新闻管理', url: '#/news', className: 'menu-news'},
             {name: '商城管理', url: '#/shop', className: 'menu-mall'},
             {name: '微网页', url: '#/wwy', className: 'menu-microweb'},
@@ -76,7 +88,8 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
             {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
             {name: '我的工具', url: '#/tool', className: 'menu-tool'},
             {name: '退出登录', url: '#/logout', className: 'menu-login'}
-          ]
+          ],
+          subRender: '.node-tree'
         });
       },
       render: function () {
