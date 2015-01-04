@@ -98,7 +98,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           template: listTemp,
           checkAppend: false,
           render: this.options.render || '.photo-list',
-          afterLoad: function(options){
+          finally: function(options){
             if (this.collection.models.length === 0 ||
               !this.options._isAdd){
               this.addOne();

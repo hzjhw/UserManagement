@@ -77,9 +77,9 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             isAddBtn: true
           });
         }
-        app.addView('picturePick', new PicturePick({
+        app.addView('newsPicturePick', new PicturePick({
           el: '#picture-pick',
-          viewId: 'picturePick',
+          viewId: 'newsPicturePick',
           _isAdd: true, // 是否为添加模式
           items: pic_list, // 初始化数据
           max: 1

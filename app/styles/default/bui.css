@@ -235,7 +235,6 @@
     background-color: #fff;
     position: relative;
     border-bottom: -1px;
-    border-left: none;
     z-index: 10
 }
 
@@ -1180,6 +1179,7 @@ td.bui-grid-cell-empty {
 }
 #jhw .bui-grid-body{
     height: 79%; overflow-y: auto;overflow-x:hidden;
+    position: relative;
 }
 .bui-grid-width .bui-grid-body {
     overflow-x: auto;

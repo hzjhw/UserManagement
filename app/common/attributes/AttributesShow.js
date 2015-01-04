@@ -24,7 +24,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
     collection = BaseCollection.extend({
       url: function () {
         return this.options.data.url ||
-          CONST.API + '/attr/list/' + this.options.data.categoryId;
+          CONST.API + '/attr/list/' + this.options.data.categoryId || 'all';
       },
       model: model,
       initialize: function () {
@@ -104,7 +104,12 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
       itemRender: function (options, context) {
         Est.each(options.items, function (item) {
           var fields = item.productAttribute;
-          fields.element = item.element.substring(1, item.element.length - 1);
+          /*if (/^\"\[.*\"\]$/.test(item.element)){
+            fields.element = item.element.substring(2, item.element.length - 2);
+          } else{
+            fields.element = item.element;
+          }*/
+          fields.element = item.element.replace(/[\"\[\]]/g, '');
           context.collection.push(new model(fields));
         }, this);
       },
@@ -121,7 +126,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
       reload: function (categoryId) {
         this._load({
           beforeLoad: function (collection) {
-            collection.options.data.categoryId = categoryId;
+            collection.options.categoryId = categoryId;
           },
           afterLoad: function (result) {
             this.after();

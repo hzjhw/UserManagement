@@ -42,7 +42,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
@@ -70,6 +70,19 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       // 渲染文档
       render: function () {
         this._render();
+      },
+      edit: function(){
+        var ctx = this;
+        seajs.use(['ProductDetail'], function(ProductDetail){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('productDetail', new ProductDetail({
+            el: '.jhw-main-inner',
+            id: ctx.model.get('id'),
+            page: ctx._getPage()
+          }));;
+        });
       },
       // 修改分类
       changeCategory: function () {
@@ -119,7 +132,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .product-add': '_detail',
+        'click .product-add': 'edit',
         'click .btn-search': 'search',
         'click .search-advance-product': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
@@ -137,6 +150,17 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           item: ProductItem,
           pagination: true,
           detail: CONST.HOST + '/modules/product/product_detail.html'
+        });
+      },
+      // 添加产品
+      edit: function(){
+        seajs.use(['ProductDetail'], function(ProductDetail){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('productDetail', new ProductDetail({
+            el: '.jhw-main-inner'
+          }));
         });
       },
       // 简单搜索

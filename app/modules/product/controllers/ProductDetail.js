@@ -22,7 +22,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #product-reset': 'reset'
+        'click #product-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.ProductDetail.initialize');
@@ -68,9 +69,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           });
         }
         if (!PicturePick){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
-        app.addView('picturePick', new PicturePick({
+        app.addView('productPicturePick', new PicturePick({
           el: '#picture-pick',
-          viewId: 'picturePick',
+          viewId: 'productPicturePick',
           _isAdd: this._isAdd, // 是否为添加模式
           items: pic_list, // 初始化数据
           max: 9
@@ -170,7 +171,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
               return item.get('name');
             }).join(','));
-            var photos = app.getView('picturePick').getItems();
+            var photos = app.getView('productPicturePick').getItems();
             if (photos.length > 0) {
               this.model.set('photo', photos[0]['serverPath']);
               this.model.set('photoId', photos[0]['attId']);
@@ -179,7 +180,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             }
           },
           onAfterSave: function (response) {
-
+            console.log('保存成功');
           }
 
         });
@@ -195,6 +196,18 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         } else {
           this.attributes.reload(categoryId);
         }
+      },
+      back: function(){
+        var ctx = this;
+        seajs.use(['ProductList'], function(ProductList){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('productList', new ProductList({
+            el: '.jhw-main-inner',
+            page: ctx.options.page
+          }));;
+        });
       }
     });
 

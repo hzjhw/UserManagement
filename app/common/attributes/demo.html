@@ -48,6 +48,7 @@
 <div id="attributes-list"></div>
 <div>
     <a href="javascript:;" class="getItemsBtn">获取ITEMS</a>
+    <a href="javascript:;" class="changeCategory">更改分类</a>
 </div>
 <script type="text/javascript" src="../../scripts/base.js"></script>
 <script type="text/javascript" src="../../const.js"></script>
@@ -83,9 +84,13 @@
 
         // 属性显示
         seajs.use(['jquery', 'AttributesShow'], function (jquery, AttributesShow) {
-            app.addView('attributesShow', new AttributesShow({ render: '#attributes-list', categoryId: 'Category_00000000000000000023002'}));
+            app.addView('attributesShow', new AttributesShow({ render: '#attributes-list', categoryId: 'Category_00000000000000000023058'}));
+        });
+        $('.changeCategory').click(function(){
+            app.getView('attributesShow').reload('Category_00000000000000000023059');
         });
     });
+
 </script>
 </body>
 </html>

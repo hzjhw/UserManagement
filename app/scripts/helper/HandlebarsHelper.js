@@ -230,16 +230,16 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     var result = '';
     switch (str) {
       case 'unpaid':
-        result = '未支付';
+        result = '<span style="color: red;">未支付</span>';
         break;
       case 'partPayment':
-        result = '部分支付';
+        result = '<span style="color: orange;">部分支付</span>';
         break;
       case 'paid':
-        result = '已支付';
+        result = '<span style="color: green;">已支付</span>';
         break;
       case 'partRefund':
-        result = '部分退款';
+        result = '<span style="color: orange;">部分退款</span>';
         break;
       case 'refunded':
         result = '全额退款';
@@ -260,13 +260,13 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     var result = '';
     switch (str) {
       case 'unshipped':
-        result = '未发货';
+        result = '<span style="color: red;">未发货</span>';
         break;
       case 'partShipped':
-        result = '部分发贫';
+        result = '<span style="color: orange;">部分发贫</span>';
         break;
       case 'shipped':
-        result = '已发货';
+        result = '<span style="color: green;">已发货</span>';
         break;
       case 'partReshiped':
         result = '部分退货';

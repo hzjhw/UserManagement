@@ -26,6 +26,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
       tagName: 'tr',
       className: 'bui-grid-row',
       events: {
+        'click .toggle': '_toggleChecked',
         'click .edit': '_edit',
         'click .delete': '_del',
         'click .view': 'viewOrder'
