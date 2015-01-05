@@ -27,7 +27,10 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         var ctx=this;
         console.log('4.Register.render');
         this._render();
-        this._form('#J_Form')._validate()._init({
+        this._form('#J_Form')._validate({
+          url: CONST.API + '/user/validate',
+          fields: ['vali-username', 'vali-email']
+        })._init({
           onAfterSave : function(response){
             if(response.attributes.success == false ){
               ctx.refreshCode();
@@ -37,59 +40,38 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
             window.location.href = '/member/modules/login/login.html';
           }
         });
+        this.validate();
         return this;
       },
       events : {
         'click .refreshCode': 'refreshCode',
-        'blur #model-username' : 'model_username',
-        'blur #model-email' : 'model_email'
+        'blur #model-username' : 'validatea',
+        'blur #model-email' : 'validatea'
       },
       refreshCode: function(){
         var $verifyPic = this.$("#verifyPic");
         $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
       },
-      model_email : function(){
-       /* var form=this;
-        var bField = form.formValidate.getField('valikey');
-        bField.set('remote',{
-          url : CONST.API+"/user/validate?valiType=email",
-          dataType:'json',//默认为字符串
-          callback : function(data){
-            if(data.success){
-              return '';
-            }else{
-              return data.msg;
+      validate : function(){
+        BUI.use('bui/form',function(Form) {
+          var form = new Form.Form({
+            srcNode: '#J_Form'
+          }).render();
+          var emailField = form.getField('vali-email'),
+            usernameField = form.getField('vali-username');
+          emailField.set('remote', {
+            url: 'http://jihui88.com/rest/api/user/validate',
+            dataType: 'json',//默认为字符串
+            callback: function (data) {
+              if (data.success) {
+                return '';
+              } else {
+                return data.msg;
+              }
             }
-          }
-        });*/
-        var  valiValue=$('#model-email').val();
-        $.ajax({
-          type: "get",
-          url: CONST.API + '/user/validate?valiType=email&valiValue='+valiValue,
-          dataType: "json",
-          success: function (data) {
-            if(data.success){
-              return $('.model-email').hide();
-            }else{
-              return $('.model-email').show();
-            }
-          }
-        });
-
-      },
-      model_username : function(){
-        var  valiValue=$('#model-username').val();
-        $.ajax({
-          type: "get",
-          url: CONST.API + '/user/validate?valiType=username&valiValue='+valiValue,
-          dataType: "json",
-          success: function (data) {
-            if(data.success){
-              return $('.model-username').hide();
-            }else{
-              return $('.model-username').show();
-            }
-          }
+          });
+          usernameField.on('remotestart', function (ev) { //异步校验前触发，可以附加参数
+          });
         });
       }
     });
