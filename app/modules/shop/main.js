@@ -50,6 +50,9 @@ app.addModule('OrderDetail', 'modules/shop/controllers/OrderDetail.js');
 app.addModule('PayTypeList', 'modules/shop/controllers/PayTypeList.js');
 app.addModule('PayTypeModel', 'models/PayTypeModel.js');
 app.addModule('OrderModel', 'models/OrderModel.js');
+app.addModule('PaymentModel', 'models/PaymentModel.js');
+app.addModule('ShippingModel', 'models/ShippingModel.js');
+
 app.addModule('PayTypeDetail', 'modules/shop/controllers/PayTypeDetail.js');
 
 app.addModule('DeliveryCorpModel', 'models/DeliveryCorpModel.js');
@@ -61,8 +64,15 @@ app.addModule('DeliveryTypeDetail', 'modules/shop/controllers/DeliveryTypeDetail
 app.addModule('DeliveryTypeModel', 'models/DeliveryTypeModel.js');
 
 app.addModule('ProductInfoList', 'modules/shop/controllers/ProductInfoList.js');
+app.addModule('OrderLogList', 'modules/shop/controllers/OrderLogList.js');
+app.addModule('PaymentInfoList', 'modules/shop/controllers/PaymentInfoList.js');
+app.addModule('DeliveryInfoList', 'modules/shop/controllers/DeliveryInfoList.js');
 app.addModule('OrderView', 'modules/shop/controllers/OrderView.js');
 app.addModule('OrderHandle', 'modules/shop/controllers/OrderHandle.js');
+app.addModule('MemberInfo', 'modules/shop/controllers/MemberInfo.js');
+app.addModule('PaymentDetail', 'modules/shop/controllers/PaymentDetail.js');
+app.addModule('ShippingDetail', 'modules/shop/controllers/ShippingDetail.js');
+app.addModule('DeliveryList', 'modules/shop/controllers/DeliveryList.js');
 
 app.addTemplate('template/order_list', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_list.html');
@@ -108,4 +118,25 @@ app.addTemplate('template/order_view', function(require, exports, module){
 });
 app.addTemplate('template/order_handle', function(require, exports, module){
   module.exports = require('modules/shop/views/order_handle.html');
+});
+app.addTemplate('template/order_log_item', function(require, exports, module){
+  module.exports = require('modules/shop/views/order_log_item.html');
+});
+app.addTemplate('template/payment_info_item', function(require, exports, module){
+  module.exports = require('modules/shop/views/payment_info_item.html');
+});
+app.addTemplate('template/delivery_info_item', function(require, exports, module){
+  module.exports = require('modules/shop/views/delivery_info_item.html');
+});
+app.addTemplate('template/member_info', function(require, exports, module){
+  module.exports = require('modules/shop/views/member_info.html');
+});
+app.addTemplate('template/payment_detail', function(require, exports, module){
+  module.exports = require('modules/shop/views/payment_detail.html');
+});
+app.addTemplate('template/shipping_detail', function(require, exports, module){
+  module.exports = require('modules/shop/views/shipping_detail.html');
+});
+app.addTemplate('template/delivery_item', function(require, exports, module){
+  module.exports = require('modules/shop/views/delivery_item.html');
 });

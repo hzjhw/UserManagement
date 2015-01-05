@@ -48,11 +48,10 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         this.initPayType();
         this.initProductWeightUnit();
         this.initProductInfoList();
+        this.initPaymentDetail();
+        this.initShippingDetail();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
-            debugger
-            console.dir(app.getView('productInfoLIst').getItems());
-            this.model.set('orderItemSet', app.getView('productInfoLIst').getItems());
           }
         });
         return this;
@@ -66,7 +65,9 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           autoRender: true,
           children: [
             {title: '订单信息', value: '1', selected: true},
-            {title: '商品信息', value: '2'}
+            {title: '商品信息', value: '2'},
+            {title: '订单支付', value: '3'},
+            {title: '订单发货', value: '4'}
           ]
         });
       },
@@ -108,6 +109,28 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           app.addView('productInfoLIst', new ProductInfoList({
             el: '#product-info-list',
             items: orderItemSet
+          }));
+        });
+      },
+      initPaymentDetail: function(){
+        var orderId = this.model.get('orderId');
+        var attributes = this.model.attributes;
+        seajs.use(['PaymentDetail'], function(PaymentDetail){
+          app.addView('paymentDetail', new PaymentDetail({
+            el: '#payment-detail',
+            id: orderId,
+            data: attributes
+          }));
+        });
+      },
+      initShippingDetail: function(){
+        var orderId = this.model.get('orderId');
+        var attributes = this.model.attributes;
+        seajs.use(['ShippingDetail'], function(ShippingDetail){
+          app.addView('shippingDetail', new ShippingDetail({
+            el: '#shipping-detail',
+            id: orderId,
+            data: attributes
           }));
         });
       }

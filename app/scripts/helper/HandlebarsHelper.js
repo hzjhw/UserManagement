@@ -128,7 +128,38 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars.registerHelper('cutByte', function (str, len, options) {
     return Est.cutByte(str, len, options.hash.end || '...');
   });
-
+  Handlebars.registerHelper("x", function (expression, options) {
+    var fn = function () {
+    }, result;
+    try {
+      fn = Function.apply(this,
+        [ 'window', 'return ' + expression + ';' ]);
+    } catch (e) {
+      console.warn('[warning] {{x ' + expression + '}} is invalid javascript', e);
+    }
+    try {
+      result = fn.bind(this)(window);
+    } catch (e) {
+      console.warn('[warning] {{x ' + expression + '}} runtime error', e);
+    }
+    return result;
+  });
+  /**
+   * 复杂条件
+   *
+   * @author wyj 14.12.31
+   * @example
+   *  {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
+        this.shippingStatus == 'unshipped'"}}disabled{{/xif}}
+   *
+   */
+  Handlebars.registerHelper("xif", function (expression, options) {
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
+  });
+  Handlebars.registerHelper('condition', function (str, options) {
+    return Est.template('{{' + str + '}}', this) ? options.fn(this) :
+      options.inverse(this);
+  });
   /**
    * 证书分类
    * @author wyj
@@ -186,39 +217,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return result;
   });
 
-
-  Handlebars.registerHelper("x", function (expression, options) {
-    var fn = function () {
-    }, result;
-    try {
-      fn = Function.apply(this,
-        [ 'window', 'return ' + expression + ';' ]);
-    } catch (e) {
-      console.warn('[warning] {{x ' + expression + '}} is invalid javascript', e);
-    }
-    try {
-      result = fn.bind(this)(window);
-    } catch (e) {
-      console.warn('[warning] {{x ' + expression + '}} runtime error', e);
-    }
-    return result;
-  });
-  /**
-   * 复杂条件
-   *
-   * @author wyj 14.12.31
-   * @example
-   *  {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
-        this.shippingStatus == 'unshipped'"}}disabled{{/xif}}
-   *
-   */
-  Handlebars.registerHelper("xif", function (expression, options) {
-    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
-  });
-  Handlebars.registerHelper('condition', function (str, options) {
-    return Est.template('{{' + str + '}}', this) ? options.fn(this) :
-      options.inverse(this);
-  });
   /**
    * 付款状态
    * @author wyj
@@ -352,6 +350,44 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
       case 'date':
         result = '日期';
         break;
+    }
+    return result;
+  });
+// 订单日志类型
+  Handlebars.registerHelper('orderLogType', function(str, options){
+    var result  ='';
+    switch(str){
+      case 'create':
+        result = '订单创建';break;
+      case 'modify':
+        result = '订单修改'; break;
+      case 'payment':
+        result = '订单支付';break;
+      case 'refund':
+        result = '订单退款';break;
+      case 'shipping':
+        result = '订单发货'; break;
+      case 'reship':
+        result = '订单退货'; break;
+      case 'completed':
+        result = '订单完成';break;
+      case 'invlid':
+        result = '订单作废'; break;
+    }
+    return result;
+  });
+  // 收款类型
+  Handlebars.registerHelper('paymentType', function(str, options){
+    var result  ='';
+    switch(str){
+      case 'recharge':
+        result = '在线充值';break;
+      case 'deposit':
+        result = '预存款支付'; break;
+      case 'online':
+        result = '在线支付';break;
+      case 'offline':
+        result = '线下支付';break;
     }
     return result;
   });

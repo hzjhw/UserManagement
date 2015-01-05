@@ -1,24 +1,18 @@
 <div id="grid" class="jhw-panel">
 <div class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
-<div class="bui-grid-tbar">
-    <div class="bui-bar" role="toolbar" id="bar2">
-        <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
-            <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                id="bar-item-button4" aria-pressed="false">
-                <button type="button" class="button button-gray btn-back"><i
-                        class="icon-arrow-left"></i>返回
-                </button>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="bui-grid-body">
+<div class="bui-grid-body-detail">
 <div id="product-add-inner">
 <form id="J_Form" action="" class="form-horizontal">
 <div id="tab"></div>
 <div id="panel" class="" style="padding:10px;">
 <!--常规-->
 <div>
+    <div class="control-group">
+        <label class="control-label">订单状态：</label>
+        <div class="controls">
+            [{{{paymentStatus paymentStatus}}}] [{{{shippingStatus shippingStatus}}}] [{{paymentConfigName}}]
+        </div>
+    </div>
 <div class="span12 span-first">
     <div class="control-group">
         <label class="control-label">订单编号：</label>
@@ -37,50 +31,34 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><s>*</s>配送方式：</label>
+        <label class="control-label">配送方式：</label>
 
         <div class="controls">
-            <div id="s2">
-                <input type="hidden" id="model-defaultDeliveryCorp" value="{{defaultDeliveryCorp}}"
-                       name="defaultDeliveryCorp"
-                       data-rules="{required : true}">
-            </div>
+            {{deliveryType.name}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"> <s>*</s>配送费用： </label>
+        <label class="control-label">配送费用： </label>
 
         <div class="controls">
-            <input id="model-deliveryFee" name="deliveryFee" value="{{deliveryFee}}" type="text"
-                   class="input-normal"
-                   data-rules="{required : true}"
-                   data-tip='{"text":"请输入配送费用","iconCls":"icon icon-pencil"}'>
+            {{deliveryFee}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"> <s>*</s>商品重量： </label>
+        <label class="control-label">商品重量： </label>
 
         <div class="controls">
-            <div id="s3">
-                <input id="model-productWeight" name="productWeight" value="{{productWeight}}"
-                       type="text" class="input-normal"
-                       data-rules="{required : true}"
-                       data-tip='{"text":"请输入商品重量","iconCls":"icon icon-pencil"}'>
-                <input type="hidden" id="model-productWeightUnit" value="{{productWeightUnit}}"
-                       name="productWeightUnit">
-            </div>
+            {{productWeight}}{{productWeightUnit}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">
+        <label class="control-label">
             收货人姓名:
         </label>
 
         <div class="controls">
-            <input id="model-shipName" name="shipName" value="{{shipName}}" type="text"
-                   class="input-normal"/>
+            {{shipName}}
         </div>
-
     </div>
     <div class="control-group">
         <label class="control-label">
@@ -88,44 +66,40 @@
         </label>
 
         <div class="controls">
-            <input class="input-normal" id="model-shipAddress" name="shipAddress"
-                   value="{{shipAddress}}" type="text"/>
+            {{shipAddress}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">
+        <label class="control-label">
             电话：
         </label>
 
         <div class="controls">
-            <input id="model-shipPhone" class="input-normal" value="{{shipPhone}}" name="shipPhone"
-                   type="text"/>
+            {{shipPhone}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">用户名：</label>
+        <label class="control-label">用户名：</label>
 
         <div class="controls">
             {{shipName}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">预存款余额:</label>
+        <label class="control-label">预存款余额:</label>
 
         <div class="controls">
-
+            {{memberObj.deposit}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">E-mail:</label>
+        <label class="control-label">E-mail:</label>
 
         <div class="controls">
-
+            {{memberObj.email}}
         </div>
     </div>
 </div>
-
-
 <div class="span12">
     <div class="control-group">
         <label class="control-label">下单时间：</label>
@@ -142,24 +116,17 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><s>*</s>支付方式：</label>
+        <label class="control-label">支付方式：</label>
 
         <div class="controls">
-            <div id="s1">
-                <input type="hidden" id="model-deliveryMethod" value="{{deliveryMethod}}"
-                       name="deliveryMethod"
-                       data-rules="{required : true}">
-            </div>
+            {{paymentConfig.name}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"> <s>*</s>支付手续费： </label>
+        <label class="control-label">支付手续费： </label>
 
         <div class="controls">
-            <input id="model-paymentFee" name="paymentFee" value="{{paymentFee}}" type="text"
-                   class="input-normal"
-                   data-rules="{required : true}"
-                   data-tip='{"text":"请输入支付手续费","iconCls":"icon icon-pencil"}'>
+            {{paymentFee}}
         </div>
     </div>
     <div class="control-group">
@@ -174,61 +141,48 @@
     <div class="control-group">
         <label class="control-label">收货地区</label>
 
-        <div class="controls bui-form-group-select" data-type="city">
-            <select class="input-small" value="山东省">
-                <option>省份</option>
-            </select>&nbsp;&nbsp;
-            <select class="input-small">
-                <option>城市</option>
-            </select>
+        <div class="controls bui-form-group-select">
+           {{shipArea}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">
+        <label class="control-label">
             邮编：
         </label>
 
         <div class="controls">
-            <input class="input-normal" id="model-shipZipCode" value="{{shipZipCode}}nameshipZipCode"
-                   type="text"/>
+            {{shipZipCode}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">手机：</label>
+        <label class="control-label">手机：</label>
 
         <div class="controls">
-            <input id="model-shipMobile" name="shipMobile" value="{{shipMobile}}" type="text"
-                   class="input-normal"/>
+            {{shipMobile}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">
+        <label class="control-label">
             会员等级
         </label>
 
         <div class="controls">
-
+            {{memberObj.memberRank.name}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">最后登录IP:</label>
+        <label class="control-label">最后登录IP:</label>
 
         <div class="controls">
-
+            {{memberObj.loginIp}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="">积分:</label>
+        <label class="control-label">积分:</label>
 
         <div class="controls">
-
+            {{memberObj.memberRank.point}}
         </div>
-    </div>
-</div>
-<div class="row actions-bar" style="display:none;">
-    <div class="form-actions span13 offset3">
-        <button id="submit" type="button" class="button button-primary">保存</button>
-        <button id="reset" type="reset" class="button">重置</button>
     </div>
 </div>
 </div>
@@ -271,10 +225,151 @@
         </table>
     </div>
 </div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付编号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付类型</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付方式</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付金额</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付手续费</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">付款人</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付状态</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">支付时间</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="payment-info-list">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">发货编号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">配送方式名称</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">物流公司名称</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">物流编号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">物流费用</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">收货人姓名</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">收货地区</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">发货时间</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="delivery-info-list">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">日志类型</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作员</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">日志信息</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作日间</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="order-log-list">
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </div>
 </form>
 </div>
+</div>
+<div class="bui-grid-footer">
+    <div class="row">
+        <div class="form-actions span13 offset3">
+            <button id="btn-back" type="button" class="button btn-back">返回</button>
+        </div>
+    </div>
 </div>
 </div>
 

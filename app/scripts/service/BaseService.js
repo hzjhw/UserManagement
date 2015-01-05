@@ -365,6 +365,50 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           }
         });
       });
+    },
+    getDeliverTypeList: function(){
+      var $q = Est.promise;
+      return new $q(function(resolve, reject){
+        $.ajax({
+          type: 'get',
+          url: CONST.API + '/deliverytype/list',
+          async: false,
+          success: function(result){
+            result = result.attributes.data;
+            Est.each(result, function(item){
+              item.text = item.name;
+              item.value = item.typeId;
+            });
+            result.unshift({
+              text: '--请选择配送方式--',
+              value: 'null'
+            });
+            resolve(result);
+          }
+        });
+      });
+    },
+    getPaymentTypeList: function(){
+      var $q = Est.promise;
+      return new $q(function(resolve, reject){
+        $.ajax({
+          type: 'get',
+          url: CONST.API + '/paymentconfig/list',
+          async: false,
+          success: function(result){
+            result = result.attributes.data;
+            Est.each(result, function(item){
+              item.text = item.name;
+              item.value = item.paymentId;
+            });
+            result.unshift({
+              text: '--请选择支付方式--',
+              value: null
+            });
+            resolve(result);
+          }
+        });
+      });
     }
   };
 

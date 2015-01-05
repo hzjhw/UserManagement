@@ -1,0 +1,74 @@
+<form id="payment-form" action="" class="form-horizontal">
+    <input id="model-orderId" type="hidden" value="{{orderId}}"/>
+    <div class="span12">
+
+
+    <div class="control-group">
+        <label class="control-label">
+            收款银行:
+        </label>
+        <div class="controls">
+            <input type="text" id="model-payment_bankName" value="{{payment.bankName}}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            支付类型:
+        </label>
+        <div class="controls">
+            <div id="s1">
+                <input type="hidden" id="model-payment_paymentType" value="deposit">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            付款金额:
+        </label>
+        <div class="controls">
+            <input id="model-payment_totalAmount" class="input-normal" type="text" value="{{_data.totalAmount}}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            收款单备注:
+        </label>
+        <div class="controls">
+            <input id="model-payment_memo" type="text"/>
+        </div>
+    </div>
+    </div>
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label" for="">
+                收款账号:
+            </label>
+            <div class="controls">
+                <input id="model-payment_bankAccount" type="text"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="">
+                支付方式:
+            </label>
+            <div class="controls">
+                <div id="s2">
+                    <input id="model-paymentConfig_id" type="hidden"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="">
+                付款人:
+            </label>
+            <div class="controls">
+                <input id="model-payment_payer" type="text"/>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" style="clear:both;">
+        <button id="submit" type="button" class="button button-primary" {{#xif "this._data.orderStatus == 'completed' || this._data.orderStatus == 'invalid' || this._data.paymentStatus == 'paid' || this._data.paymentStatus == 'partRefund' || this._data.paymentStatus == 'refunded'"}}disabled{{/xif}}>保存</button>
+    </div>
+
+</form>

@@ -18,7 +18,8 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
     OrderDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #product-reset': 'reset'
+        'click #product-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.OrderDetail.initialize');
@@ -58,20 +59,22 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 支付方式
       initPayType: function () {
-        BaseUtils.initSelect({
-          render: '#s1',
-          target: '#model-deliveryMethod',
-          items: app.getData('deliveryMethod'),
-          change: function () {
-          }
+        BaseService.getPaymentTypeList().then(function(result){
+          BaseUtils.initSelect({
+            render: '#s1',
+            target: '#model-paymentId',
+            items: result,
+            change: function () {
+            }
+          });
         });
       },
       // 配送方式
       initDeliveryType: function () {
-        BaseService.getDeliveryCorpList().then(function (result) {
+        BaseService.getDeliverTypeList().then(function (result) {
           BaseUtils.initSelect({
             render: '#s2',
-            target: '#model-defaultDeliveryCorp',
+            target: '#model-typeId',
             items: result,
             change: function () {
             }
@@ -95,6 +98,18 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
             el: '#product-info-list',
             items: orderItemSet
           }));
+        });
+      },
+      back: function(){
+        var ctx = this;
+        seajs.use(['OrderList'], function(OrderList){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('orderList', new OrderList({
+            el: '.jhw-main-inner',
+            page: ctx.options.page
+          }));;
         });
       }
     });

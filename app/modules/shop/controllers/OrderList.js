@@ -90,7 +90,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'BaseCollection', 'te
           item: OrderItem,
           model: OrderModel,
           template: listTemp,
-          render: '#order-list-ul'
+          render: '#order-list-ul',
+          pagination: true
         });
       },
       render: function(){

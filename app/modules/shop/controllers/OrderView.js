@@ -44,10 +44,11 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         debug('4.OrderView.render');
         this._render();
         this.initTab();
-        this.initDeliveryType();
-        this.initPayType();
-        this.initProductWeightUnit();
         this.initProductInfoList();
+        this.initPaymentInfoList();
+        this.initDeliveryInfoList();
+        this.initOrderLogList();
+        this.showMemberInfo();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             debugger
@@ -66,9 +67,21 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
           autoRender: true,
           children: [
             {title: '订单信息', value: '1', selected: true},
-            {title: '商品信息', value: '2'}
+            {title: '商品信息', value: '2'},
+            {title: '收款记录', value: '3'},
+            {title: '收货记录', value: '4'},
+            {title: '订单日志', value: '5'}
           ]
         });
+      },
+      showMemberInfo: function(){
+        var memberId = this.model.get('');
+         seajs.use(['MemberInfo'], function(MemberInfo){
+           app.addView('memberInfo', new MemberInfo({
+             el: '#member-info',
+             id: memberId
+           }));
+         });
       },
       // 支付方式
       initPayType: function () {
@@ -108,6 +121,36 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
           app.addView('productInfoLIst', new ProductInfoList({
             el: '#product-info-list',
             items: orderItemSet
+          }));
+        });
+      },
+      // 收款记录
+      initPaymentInfoList: function(){
+        var paymentSet = this.model.get('paymentSet');
+        seajs.use(['PaymentInfoList'], function(PaymentInfoList){
+          app.addView('paymentInfoList', new PaymentInfoList({
+            el: '#payment-info-list',
+            items: paymentSet
+          }));
+        });
+      },
+      // 收货记录
+      initDeliveryInfoList: function(){
+        var shippingSet = this.model.get('shippingSet');
+        seajs.use(['DeliveryInfoList'], function(DeliveryInfoList){
+          app.addView('deliveryInfoList', new DeliveryInfoList({
+            el: '#delivery-info-list',
+            items: shippingSet
+          }));
+        });
+      },
+      // 订单日志
+      initOrderLogList: function(){
+        var orderLogSet = this.model.get('orderLogSet');
+        seajs.use(['OrderLogList'], function(OrderLogList){
+          app.addView('orderLogList', new OrderLogList({
+            el: '#order-log-list',
+            items: orderLogSet
           }));
         });
       }
