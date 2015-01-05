@@ -1,29 +1,82 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>Document</title>
- </head>
- <body>
-  <script type="text/javascript" src="http://jihui88.com/js/jquery.js"></script>
-<script>
-$(function(){
-	$.ajax({
-		url:"http://jihui88.com/rest/shop/cartItem/ajaxAdd",
-		type:"POST",
-		data:{
-			id:"Product_000000000000000000116202",
-			quantity:2
-		},
-		success:function(result){
-			alert(result);
-		}
-	})
-})
-</script>
- </body>
-</html>
+<form id="J_Form" action="" class="form-horizontal">
+<div id="grid" class="jhw-panel">
+<div class="bui-grid bui-simple-list bui-grid-width bui-grid-hover bui-simple-list-hover">
+<div class="bui-grid-body-detail">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">货号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">商品名称</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">价格</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">购买数量</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+
+                    <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body-detail">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="product-info-list">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+

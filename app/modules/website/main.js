@@ -17,7 +17,7 @@ app.addRoute('userdefined/:id', function (id) {
   seajs.use(['UserdefinedList'], function (UserdefinedList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jwh-main-inner"></div>'
+      template: '<div class="jhw-main-inner"></div>'
     }).addView('userdefineLIst', new UserdefinedList({
       el: '.jhw-main-inner',
       data: { page: id }
