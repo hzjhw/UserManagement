@@ -19,7 +19,8 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       el: '#jhw-detail',
       events: {
         'click #product-reset': 'reset',
-        'click .btn-back': 'back'
+        'click .btn-back': 'back',
+        'click .btn-finish': 'finish'
       },
       initialize: function () {
         debug('2.OrderHandle.initialize');
@@ -28,16 +29,32 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           model: OrderModel
         });
       },
-      back: function(){
+      finish: function () {
         var ctx = this;
-        seajs.use(['OrderList'], function(OrderList){
+        BaseUtils.comfirm({
+          content: '订单完成后将不允许对此订单进行任何操作，确定执行？',
+          success: function () {
+            $.ajax({
+              type: 'post',
+              url: CONST.API + '/order/completed/' + ctx.model.get('id'),
+              success: function () {
+                ctx.back();
+              }
+            });
+          }
+        });
+      },
+      back: function () {
+        var ctx = this;
+        seajs.use(['OrderList'], function (OrderList) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
-          }).addHandle('orderList', new OrderList({
+          }).addView('orderList', new OrderList({
             el: '.jhw-main-inner',
             page: ctx.options.page
-          }));;
+          }));
+          ;
         });
       },
       render: function () {
@@ -112,10 +129,10 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }));
         });
       },
-      initPaymentDetail: function(){
+      initPaymentDetail: function () {
         var orderId = this.model.get('orderId');
         var attributes = this.model.attributes;
-        seajs.use(['PaymentDetail'], function(PaymentDetail){
+        seajs.use(['PaymentDetail'], function (PaymentDetail) {
           app.addView('paymentDetail', new PaymentDetail({
             el: '#payment-detail',
             id: orderId,
@@ -123,10 +140,10 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }));
         });
       },
-      initShippingDetail: function(){
+      initShippingDetail: function () {
         var orderId = this.model.get('orderId');
         var attributes = this.model.attributes;
-        seajs.use(['ShippingDetail'], function(ShippingDetail){
+        seajs.use(['ShippingDetail'], function (ShippingDetail) {
           app.addView('shippingDetail', new ShippingDetail({
             el: '#shipping-detail',
             id: orderId,

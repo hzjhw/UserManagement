@@ -49,13 +49,15 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
         BaseService.getDeliveryCorpList().then(function (result) {
           BaseUtils.initSelect({
             render: '#s4',
-            target: '#model-shipping_deliveryCorp',
+            target: '#shipping_deliveryCorp',
             items: result,
-            change: function () {
+            change: function (id, ev) {
+              $("#model-shipping_deliveryCorpName").val(ev.text);
             }
           });
         });
       },
+      // 发货列表
       initDeliveryList: function () {
         var items = this.model.get('orderItemSet');
         seajs.use(['DeliveryList'], function (DeliveryList) {

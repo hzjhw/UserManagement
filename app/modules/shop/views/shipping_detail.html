@@ -19,7 +19,8 @@
 
             <div class="controls">
                 <div id="s4">
-                    <input id="model-shipping_deliveryCorp" type="hidden"/>
+                    <input id="model-shipping_deliveryCorpName" type="hidden"/>
+                    <input id="shipping_deliveryCorp" type="hidden"/>
                 </div>
             </div>
         </div>
@@ -29,7 +30,7 @@
             </label>
 
             <div class="controls">
-                <input id="model-shipping_deliveryFee" type="text" value="{{deliveryFee}}"/>
+                <input id="model-shipping_deliveryFee" type="text" value="{{deliveryFee}}" class="input-mini"/>
             </div>
         </div>
         <div class="control-group">
@@ -37,7 +38,7 @@
                 收货人姓名:
             </label>
             <div class="controls">
-                <input id="model-shipping_shipName" type="text" value="{{shipName}}"/>
+                <input id="model-shipping_shipName" type="text" value="{{shipName}}" class="input-large"/>
             </div>
         </div>
         <div class="control-group">
@@ -45,15 +46,15 @@
                 收货地址:
             </label>
             <div class="controls">
-                <input id="model-shipping_shipAddress" value="{{shipAddress}}" type="text"/>
+                <input id="model-shipping_shipAddress" value="{{shipAddress}}" type="text" class="input-large"/>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="">
-                电话:
+                电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话:
             </label>
             <div class="controls">
-                <input id="model-shipping_shipPhone" value="{{shipPhone}}" type="text"/>
+                <input id="model-shipping_shipPhone" value="{{shipPhone}}" type="text" class="input-large"/>
             </div>
         </div>
 
@@ -72,7 +73,7 @@
                 物流编号:
             </label>
             <div class="controls">
-                <input id="model-shipping_deliverySn" value="{{deliverySn}}" type="text"/>
+                <input id="model-shipping_deliverySn" value="{{deliverySn}}" type="text" class="input-large"/>
             </div>
         </div>
         <div class="control-group">
@@ -80,7 +81,7 @@
                 收货地区:
             </label>
             <div class="controls">
-                <input id="model-shipping_path" type="text" value="402881882ba8753a012ba8dc469500bc,402881882ba8753a012ba8de4dde00c5"/>
+                <input id="model-shipping_shipAreaPath" type="text" value="402881882ba8753a012ba8dc469500bc,402881882ba8753a012ba8de4dde00c5"/>
             </div>
         </div>
 
@@ -89,7 +90,7 @@
                 邮编:
             </label>
             <div class="controls">
-                <input id="model-shipping_shipZipCode" value="{{shipZipCode}}" type="text"/>
+                <input id="model-shipping_shipZipCode" value="{{shipZipCode}}" type="text" class="input-large"/>
             </div>
         </div>
         <div class="control-group">
@@ -97,7 +98,7 @@
                 手机:
             </label>
             <div class="controls">
-                <input id="model-shipping_shipMobile" value="{{shipMobile}}" type="text"/>
+                <input id="model-shipping_shipMobile" value="{{shipMobile}}" type="text" class="input-large"/>
 
             </div>
         </div>
@@ -106,11 +107,11 @@
                 发货备注:
             </lavel>
             <div class="controls">
-                <input id="model-shipping_memo" value="{{memo}}" type="text"/>
+                <input id="model-shipping_memo" value="{{memo}}" type="text" class="input-large"/>
             </div>
         </div>
     </div>
-    <div class="bui-grid-header-container" style="clear:both;">
+    <div class="bui-grid-header-container" style="clear:both;height: 40px;">
         <div class="bui-grid-header">
             <table cellspacing="0" class="bui-grid-table" cellpadding="0">
                 <thead>
@@ -152,7 +153,7 @@
             </tbody>
         </table>
     </div>
-    <div class="" style="clear:both;">
+    <div class="btn-fixed zIndex-lv1" style="clear:both;" >
         <button id="submit" type="button" class="button button-primary" {{#xif 'this._data.orderStatus == "completed" || this._data.orderStatus == "invalid" || this._data.shippingStatus == "shipped"'}}disabled{{/xif}}>保存</button>
     </div>
 

@@ -528,7 +528,6 @@ hr {
 
 [class*=span] {
     float: left;
-    margin-left: 10px
 }
 
 .container, .navbar-fixed-bottom .container, .navbar-fixed-top .container, .span24 {
@@ -3360,7 +3359,10 @@ input.calendar-time {
     text-align: right;
     line-height: 30px;
     display: inline-block;
-    width: 110px
+    width: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #F8F8F8;
 }
 
 .form-horizontal .control-label s {

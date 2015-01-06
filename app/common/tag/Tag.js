@@ -181,7 +181,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       hidePicker: function () {
         $("#tag-list-picker").hide();
       },
-      showPicker: function () {
+      showPicker: function (e) {
+        var ctx = this;
+        e.stopImmediatePropagation();
         if (!this.tagList) {
           var opts = Est.cloneDeep(this.options);
           opts.el = null;
@@ -191,6 +193,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           left: this.$input.offset().left,
           top: this.$input.offset().top + 37
         }).show();
+        $(document).one('click', function(){
+          ctx.hidePicker();
+        });
       }
     });
 

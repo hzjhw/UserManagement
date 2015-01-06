@@ -10,21 +10,33 @@
 </td>
 <td class="bui-grid-cell grid-td-order-number">
     <div class="bui-grid-cell-inner">
-        <span class="bui-grid-cell-text">{{deliveryQuantity}}</span>
-    </div>
-</td>
-<td class="bui-grid-cell grid-td-order-number">
-    <div class="bui-grid-cell-inner">
         <span class="bui-grid-cell-text">{{productQuantity}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-order-number">
     <div class="bui-grid-cell-inner">
-        <span class="bui-grid-cell-text">{{totalDeliveryQuantity}}</span>
+        <span class="bui-grid-cell-text" title="被占用数: {{freezeStore}}">{{#if store}}{{store}}{{else}}-{{/if}}</span>
     </div>
 </td>
 <td class="bui-grid-cell grid-td-order-number">
     <div class="bui-grid-cell-inner">
-        <span class="bui-grid-cell-text"><input id="model-sum" type="text" value="1" class="input-mini"/></span>
+        <span class="bui-grid-cell-text">{{deliveryQuantity}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-order-number">
+    <div class="bui-grid-cell-inner">
+        <span class="bui-grid-cell-text">
+
+            <span class="x-icon x-icon-small x-icon-info btn-quantity-minus pointer" style="vertical-align: middle;">
+                <i class="icon icon-white icon-minus-mini pointer"></i>
+            </span>
+            <input id="model-minusQuantity" type="text" data-rules="{required : true, minlength:6,maxlength:16}"
+                   data-tip='{"text":"数量不能为空！","iconCls":"icon icon-lock"}'
+                   value="{{minusQuantity}}"
+                   class="input-sort"/>
+        <span class="x-icon x-icon-small x-icon-info btn-quantity-plus pointer" style="vertical-align: middle;">
+                <i class="icon icon-white icon-plus-mini pointer"></i>
+            </span>
+            </span>
     </div>
 </td>

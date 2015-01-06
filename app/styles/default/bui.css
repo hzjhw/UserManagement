@@ -985,6 +985,7 @@
     background-color: #fff;
     height:100%;
     overflow:hidden;
+    position:relative;
 }
 
 .bui-grid td.left, .bui-grid th.left, .bui-simple-grid td.left, .bui-simple-grid th.left {
