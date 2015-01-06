@@ -36,10 +36,11 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         this.initPayType();
         this.initProductWeightUnit();
         this.initProductInfoList();
+        this.initDistrict();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
-            console.dir(app.getView('productInfoLIst').getItems());
             this.model.set('orderItemSet', app.getView('productInfoLIst').getItems());
+            this.model.set('shipAreaPath', app.getView('district1').getDistrict());
           }
         });
         return this;
@@ -59,7 +60,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 支付方式
       initPayType: function () {
-        BaseService.getPaymentTypeList().then(function(result){
+        BaseService.getPaymentTypeList().then(function (result) {
           BaseUtils.initSelect({
             render: '#s1',
             target: '#model-paymentId',
@@ -100,16 +101,24 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }));
         });
       },
-      back: function(){
+      initDistrict: function () {
+        BaseUtils.initDistrict({
+          id: 'district1',// 必填
+          target: '#city', // 目标选择符
+          path: this.model.get('shipAreaPath')
+        });
+      },
+      back: function () {
         var ctx = this;
-        seajs.use(['OrderList'], function(OrderList){
+        seajs.use(['OrderList'], function (OrderList) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
           }).addView('orderList', new OrderList({
             el: '.jhw-main-inner',
             page: ctx.options.page
-          }));;
+          }));
+          ;
         });
       }
     });

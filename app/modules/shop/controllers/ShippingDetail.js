@@ -25,10 +25,13 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
         this.initDeliveryCorp();
         this.initDeliveryType();
         this.initDeliveryList();
+        this.initDistrict();
         this._form('#shipping-detail')._validate()._init({
           onBeforeSave: function () {
             this.model.set('deliveryItemSet',
               app.getView('deliveryList').getItems());
+            this.model.set('shipping_shipAreaPath', app.getView('district1').getDistrict());
+
           }
         })
       },
@@ -65,6 +68,13 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
             el: '#delivery-list',
             items: items
           }));
+        });
+      },
+      initDistrict: function(){
+        BaseUtils.initDistrict({
+          id: 'district1',// 必填
+          target: '#district1', // 目标选择符
+          path: this.model.get('shipAreaPath')
         });
       }
     });

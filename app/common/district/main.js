@@ -10,3 +10,6 @@ app.addTemplate('template/district_list', function(require, exports, module){
 app.addTemplate('template/district_item', function(require, exports, module){
   module.exports = require('common/district/views/district_item.html');
 });
+app.addTemplate('template/district_view', function(require, exports, module){
+  module.exports = require('common/district/views/district_view.html');
+});

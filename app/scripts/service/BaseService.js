@@ -64,7 +64,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         };
         getCategory().then(function (result) {
           if (result.attributes) {
-            if (options.tree){
+            if (options.tree) {
               result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '00', {
                 categoryId: 'categoryId',// 分类ＩＤ
                 belongId: 'belongId',// 父类ＩＤ
@@ -251,9 +251,9 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         };
         getCategory().then(function (result) {
           if (result.attributes) {
-            Est.each(result.attributes.data,function(item){
-              item.text=item.name;
-              item.value=item.rankId;
+            Est.each(result.attributes.data, function (item) {
+              item.text = item.name;
+              item.value = item.rankId;
             })
           } else {
             result.attributes.data = [];
@@ -286,7 +286,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         };
         getCategory().then(function (result) {
           if (result.attributes) {
-            if (options.tree){
+            if (options.tree) {
               result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', 1, {
                 categoryId: 'navigatorId',// 分类ＩＤ
                 belongId: 'parentId',// 父类ＩＤ
@@ -322,14 +322,14 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 14.12.28
      *
      */
-    getStaticPage: function(){
+    getStaticPage: function () {
       var $q = Est.promise;
-      return new $q(function(resolve, reject){
+      return new $q(function (resolve, reject) {
         $.ajax({
           type: 'post',
           url: CONST.API + '/static/list',
           async: false,
-          success: function(result){
+          success: function (result) {
             result = result.attributes.data;
             resolve(result);
           }
@@ -344,16 +344,16 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 14.12.30
      *
      */
-    getDeliveryCorpList: function(){
+    getDeliveryCorpList: function () {
       var $q = Est.promise;
-      return new $q(function(resolve, reject){
+      return new $q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/deliverycorp/list',
           async: false,
-          success: function(result){
+          success: function (result) {
             result = result.attributes.data;
-            Est.each(result, function(item){
+            Est.each(result, function (item) {
               item.text = item.name;
               item.value = item.corpId;
             });
@@ -366,16 +366,16 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         });
       });
     },
-    getDeliverTypeList: function(){
+    getDeliverTypeList: function () {
       var $q = Est.promise;
-      return new $q(function(resolve, reject){
+      return new $q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/deliverytype/list',
           async: false,
-          success: function(result){
+          success: function (result) {
             result = result.attributes.data;
-            Est.each(result, function(item){
+            Est.each(result, function (item) {
               item.text = item.name;
               item.value = item.typeId;
             });
@@ -388,16 +388,16 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         });
       });
     },
-    getPaymentTypeList: function(){
+    getPaymentTypeList: function () {
       var $q = Est.promise;
-      return new $q(function(resolve, reject){
+      return new $q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/paymentconfig/list',
           async: false,
-          success: function(result){
+          success: function (result) {
             result = result.attributes.data;
-            Est.each(result, function(item){
+            Est.each(result, function (item) {
               item.text = item.name;
               item.value = item.paymentId;
             });
@@ -408,6 +408,25 @@ define('BaseService', ['jquery'], function (require, exports, module) {
             resolve(result);
           }
         });
+      });
+    },
+    getAreaList: function () {
+      var $q = Est.promise;
+      return new $q(function (resolve, reject) {
+        if (app.getData('arealist')) {
+          resolve(app.getData('arealist'));
+        } else{
+          $.ajax({
+            type: 'get',
+            url: CONST.API + '/area/list',
+            async: false,
+            success: function (result) {
+              result = result.attributes.data;
+              resolve(result);
+              app.addData('arealist', result);
+            }
+          });
+        }
       });
     }
   };
