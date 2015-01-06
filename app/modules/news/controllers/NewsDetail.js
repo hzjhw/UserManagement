@@ -23,7 +23,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
       el: '#jhw-detail',
       events: {
         'click #news-reset': 'reset',
-        'click #isImagenews' : 'check_img_news'
+        'click #isImagenews' : 'check_img_news',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.NewsDetail.initialize');
@@ -56,7 +57,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             BaseUtils.resetIframe();
           });
         });
-// 图片
+        // 图片
         var pic_list = [];
         if (!this._isAdd){
           var server_pic_list = JSON.parse(this.model.get('picPath'));
@@ -165,6 +166,18 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       check_img_news : function(){
 
+      },
+      back: function(){
+        var ctx = this;
+        seajs.use(['NewsList'], function(NewsList){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('newsList', new NewsList({
+            el: '.jhw-main-inner',
+            page: ctx.options.page
+          }));;
+        });
       }
     });
 

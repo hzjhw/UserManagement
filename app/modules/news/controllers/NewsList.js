@@ -162,7 +162,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
     NewsList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .news-add': 'openAddDialog',
+        'click .news-add': 'edit',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-del': '_batchDel',
@@ -182,12 +182,14 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         });
       },
       // 打开添加/修改对话框
-      openAddDialog: function () {
-        var url = CONST.HOST + '/modules/news/news_detail.html?uId='
-          + Est.nextUid();
-        this._detail({
-          title: '新闻添加',
-          url: url
+      edit: function(){
+        seajs.use(['NewsDetail'], function(NewsDetail){
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('newsDetail', new NewsDetail({
+            el: '.jhw-main-inner'
+          }));
         });
       },
       // 搜索基础方法
