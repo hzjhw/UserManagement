@@ -48,7 +48,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'click .prodtype': 'editProdtype',
-        'click .edit': 'editItem',
+        'click .edit': 'edit',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort'
@@ -93,15 +93,20 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           ctx.model.set('category', category);
         }, hideTip: true});
       },
-      // 编辑产品
-      editItem: function () {
-        var url = CONST.HOST + '/modules/news/news_detail.html?id='
-          + this.model.id;
-        var options = {
-          title: '新闻修改',
-          url: url
-        }
-        this._edit(options);
+      // 编辑新闻
+      edit: function () {
+        var ctx = this;
+        seajs.use(['NewsDetail'], function (NewsDetail) {
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('newsDetail', new NewsDetail({
+            el: '.jhw-main-inner',
+            id: ctx.model.get('id'),
+            page: ctx._getPage()
+          }));
+          ;
+        });
       },
       // 修改名称
       editName: function () {

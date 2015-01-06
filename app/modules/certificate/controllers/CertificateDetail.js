@@ -23,7 +23,8 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
     CertificateDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #certificate-reset': 'reset'
+        'click #certificate-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.CertificateDetail.initialize');
@@ -81,6 +82,19 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
           BaseUtils.resetIframe();
         }, 1000);
         return this;
+      },
+      back: function () {
+        var ctx = this;
+        seajs.use(['CertificateList'], function (CertificateList) {
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-main-inner"></div>'
+          }).addView('certificateList', new CertificateList({
+            el: '.jhw-main-inner',
+            page: ctx.options.page
+          }));
+          ;
+        });
       }
     });
 
