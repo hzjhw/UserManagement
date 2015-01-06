@@ -49,9 +49,10 @@ app.addData('deliveryMethod', [
 ]);
 // 支付方式
 app.addData('paymentType', [
-  { text: '预存款', value: 'deposit' },
+  { text: '预存款支付', value: 'deposit' },
+  { text: '在线充值', value: 'recharge' },
   { text: '线下支付', value: 'offline' },
-  { text: '支付宝', value: 'alipay' }
+  { text: '在线支付', value: 'online' }
 ]);
 // 证书类型
 app.addData('certificateList', [
