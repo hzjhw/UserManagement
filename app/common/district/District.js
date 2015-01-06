@@ -46,7 +46,7 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
         if (this._options.data.path &&
           this._options.data.path.indexOf(this.model.get('areaId')) !== -1) {
           var ctx = this;
-          setTimeout(function(){
+          setTimeout(function () {
             ctx.selectItem();
           }, 0);
           //this.$el.addClass('bui-list-item-selected');
@@ -82,7 +82,9 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
         this.$input = node;
       },
       setCurrentSelect: function (select) {
-        if (this.$currentSelect) this.$currentSelect.removeClass('bui-list-item-selected');
+        if (this.$currentSelect) {
+          this.$currentSelect.removeClass('bui-list-item-selected');
+        }
         this.$currentSelect = select;
         this.$currentSelect.addClass('bui-list-item-selected');
       },
@@ -94,13 +96,15 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
           $('.sub-district-inner' + this._options.viewId, $(this._options.target)).off().remove();
           app.addPanel('sub-district' + this._options.viewId, {
             el: this._options.target,
-            template: '<div class="district-inner sub-district-inner' + this._options.viewId + '"></div>'
+            template: '<div class="district-inner sub-district-inner' +
+              this._options.viewId + '"></div>'
           });
           this.sub = new District({
             el: '.sub-district-inner' + this._options.viewId,
             items: model.get('children'),
             viewId: 'sub-' + this._options.viewId,
-            target: this._options.target
+            target: this._options.target,
+            path: this._data.path
           });
           app.addView('sub-' + this._options.viewId, this.sub);
         }
@@ -143,6 +147,7 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
       },
       showSelect: function (e) {
         var ctx = this;
+        $(document).click();
         e.stopImmediatePropagation();
         this.$select.css({
           left: this.$('.bui-select').offset().left,
@@ -162,24 +167,23 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
         this.$select.hide();
       },
       initSelect: function (items) {
-        app.addPanel('select-' + this._options.viewId, {
-          el: 'body',
-          template: '<div class="select-container-' + this._options.viewId + '"></div>'
+        var viewId = this._options.viewId;
+        app.addPanel('select-' + viewId, { el: 'body',
+          template: '<div class="select-container-' + viewId + '"></div>'
         })
         this.selectNode = new list({
-          el: '.select-container-' + this._options.viewId,
+          el: '.select-container-' + viewId,
           items: items,
-          viewId: 'select-list-' + this._options.viewId,
+          viewId: 'select-list-' + viewId,
           target: this._options.target,
           data: {
             path: this._options.path,
             inputNode: this.$('.bui-select-input')
           }
         });
-        //ctx.selectNode.setSelectNode(ctx.selectNode);
+        app.addView('select-list-' + viewId, this.selectNode);
         this.selectNode.setInputNode(this.$('.bui-select-input'));
         this.$select = this.selectNode.getSelect();
-        app.addView('select-list-' + this._options.viewId, this.selectNode);
       },
       render: function () {
         var ctx = this;

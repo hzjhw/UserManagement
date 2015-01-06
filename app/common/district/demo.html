@@ -71,7 +71,7 @@
         { addTime: null, areaId: "402881882ba8753a012ba8c73d920045", updateTime: null, name: "秦皇岛市", path: "402881882ba8753a012ba8c689d30042,402881882ba8753a012ba8c73d920045", level: 1, belongId: '402881882ba8753a012ba8c689d30042' },
         { addTime: null, areaId: "402881882ba8753a012ba8c7656d0046", updateTime: null, name: "邯郸市", path: "402881882ba8753a012ba8c689d30042,402881882ba8753a012ba8c7656d0046", level: 1, belongId: '402881882ba8753a012ba8c689d30042' }
     ];
-    //app.addData('arealist', items); // 若去掉注释， 则使用的是上面的测试数据
+    //app.addData('arealist', items); // 去掉注释， 则使用的是上面的测试数据
     seajs.use(['District', 'BaseService'], function (District, BaseService) {
         function initArea(options) {
             app.addPanel(options.id, {
@@ -86,11 +86,11 @@
             }));
         }
 
-        /*initArea({
+        initArea({
             id: 'district',
             target: '#district-container',
             render: ''
-        });*/
+        });
         $('#getDistrict').click(function(){
             console.log(app.getView('district').getDistrict());
             alert(app.getView('district').getDistrict());
@@ -98,7 +98,7 @@
         initArea({
             id: 'district1',
             target: '#district-container1',
-            path: '402881882ba8753a012ba8bf474d001c,402881882ba8753a012ba8bfacfd001d',
+            path: '402881882ba8753a012ba8c8f0b1004e,402881882ba8753a012ba8c963fd0050',
             render: ''
         });
     });
