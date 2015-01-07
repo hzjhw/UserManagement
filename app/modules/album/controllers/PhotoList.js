@@ -64,7 +64,6 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           attId: this.model.get('attId'),
           oniframeload: function () {
             this.iframeNode.contentWindow.uploadCallback = function (result) {
-              debugger
               ctx.model.set('uploadTime', new Date().getTime());
               window['replaceDialog' + id].close().remove();
             };
@@ -111,6 +110,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           beforeLoad: function(){
             if (!app.getData('curAlbumId')){
               this.collection._setItemId('all');
+              app.addData('curAlbumId', 'all');
             }
           }
         });

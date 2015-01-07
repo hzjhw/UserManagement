@@ -70,8 +70,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         return false;
       },
       hideImage: function () {
-        this.tooltipDialog &&
-        this.tooltipDialog.close().remove();
+        window.tooltipDialog &&
+        window.tooltipDialog.close().remove();
       },
       editImage: function () {
         var ctx = this;

@@ -59,6 +59,7 @@ define('PhotoSelect', ['PhotoModel', 'BaseCollection', 'BaseList', 'BaseItem', '
           beforeLoad: function(){
             if (!app.getData('curAlbumId')){
               this.collection._setItemId('all');
+              app.addData('curAlbumId', 'all');
             }
           }
         });

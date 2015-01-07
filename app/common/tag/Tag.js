@@ -190,8 +190,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           this.tagList = new TagList(opts);
         }
         this.$picker.css({
-          left: this.$input.offset().left,
-          top: this.$input.offset().top + 37
+          left: this.$input.position().left,
+          top: this.$input.position().top + 37
         }).show();
         $(document).one('click', function(){
           ctx.hidePicker();

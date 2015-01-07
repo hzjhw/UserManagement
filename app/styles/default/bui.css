@@ -969,7 +969,6 @@
 .bui-grid-header {
     overflow: hidden;
     height:100%;
-    line-height: 40px;
 }
 
 .bui-grid-header .table {
@@ -1034,7 +1033,8 @@ td.bui-grid-cell-empty, th.bui-grid-hd-empty {
 }
 
 .bui-grid-table .bui-grid-hd-inner {
-    height: 100%;
+    padding: 10px 0;
+    height: 30px;
     overflow: hidden;
     font-weight: 700;
     background-position: 0 0;
