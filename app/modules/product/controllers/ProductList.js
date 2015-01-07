@@ -196,8 +196,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           target: this.$('.search-advance-product').get(0),
           content: ctx.searchTemp({
             productCategoryList: app.getData('productCategory'),
-            loginViewList: app.getData('loginViewList'),
-            adsList: app.getData('adsList'),
+            loginViewList: app.getStatus('loginViewList'),
+            adsList: app.getStatus('adsList'),
             searchKey: ctx.searchKey,
             searchProdtype: ctx.searchProdtype,
             searchCategory: ctx.searchCategory,

@@ -26,36 +26,36 @@ if (typeof app === 'undefined') {
   app = new Application(CONST);
 }
 // 是否登录可见
-app.addData('loginViewList', [
+app.addStatus('loginViewList', [
   {text: '访问者可见', value: '0'},
   {text: '登录后可见', value: '1'}
 ]);
 // 广告产品
-app.addData('adsList', [
+app.addStatus('adsList', [
   {text: '广告产品', value: ''},
   {text: '是', value: '1'},
   {text: '否', value: '0'}
 ]);
 // 重量单位
-app.addData('weightUnit',  [
+app.addStatus('weightUnit',  [
   {text: '克', value: 'g'},
   {text: '千克', value: 'kg'},
   {text: '吨', value: 't'}
 ]);
 // 配送方式
-app.addData('deliveryMethod', [
+app.addStatus('deliveryMethod', [
   {text: '先付款后发货', value: 'deliveryAgainstPayment'},
   {text: '货到付款', value: 'cashOnDelivery'}
 ]);
 // 支付方式
-app.addData('paymentType', [
+app.addStatus('paymentType', [
   { text: '预存款支付', value: 'deposit' },
   { text: '在线充值', value: 'recharge' },
   { text: '线下支付', value: 'offline' },
   { text: '在线支付', value: 'online' }
 ]);
 // 证书类型
-app.addData('certificateList', [
+app.addStatus('certType', [
   {text: '基本证书', value: '01'},
   {text: '一般证书', value: '02'},
   {text: '税务证书', value: '03'},
@@ -63,7 +63,7 @@ app.addData('certificateList', [
   {text: '其它证书', value: '05'}
 ]);
 // 新闻类型
-app.addData('newsType', [
+app.getStatus('newsType', [
   {text: '全部', value: ''},
   {text: '图片新闻', value: '01'},
   {text: '一般新闻', value: '02'},
@@ -71,7 +71,7 @@ app.addData('newsType', [
   {text: '滚动新闻', value: '04'}
 ]);
 // 新闻状态
-app.addData('newsState', [
+app.addStatus('newsState', [
   {text: '全部', value: ''},
   {text: '显示', value: '01'},
   {text: '隐藏', value: '02'},
@@ -79,7 +79,7 @@ app.addData('newsState', [
   {text: '通过审核', value: '04'}
 ]);
 // 属性类型
-app.addData('attributeType', [
+app.addStatus('attributeType', [
   {text: '文本', value: 'text'},
   {text: '数字', value: 'number'},
   {text: '字母', value: 'alphaint'},
@@ -88,7 +88,7 @@ app.addData('attributeType', [
   {text: '日期', value: 'date'}
 ]);
 // 付款状态
-app.addData('paymentStatus', [
+app.addStatus('paymentStatus', [
   {text: '请选择', value: '', html: '-'},
   {text: '未支付', value: 'unpaid', html: '<span style="color: red;">未支付</span>'},
   {text: '部分支付', value: 'partPayment', html: '<span style="color: orange;">部分支付</span>'},
@@ -98,7 +98,7 @@ app.addData('paymentStatus', [
 ]);
 
 // 配送状态
-app.addData('shippingStatus', [
+app.addStatus('shippingStatus', [
   {text: '请选择', value: '', html: '-'},
   {text: '未发货', value: 'unshipped', html: '<span style="color: red;">未发货</span>'},
   {text: '部分发贫', value: 'partShipped', html: '<span style="color: orange;">部分发贫</span>'},
@@ -108,12 +108,28 @@ app.addData('shippingStatus', [
 ]);
 
 // 订单状态
-app.addData('orderStatus', [
+app.addStatus('orderStatus', [
   {text: '请选择', value: '', html: '-'},
   {text: '未处理', value: 'unprocessed', html: '<span style="color: red;">未处理</span>'},
   {text: '已处理', value: 'processed', html: '<span style="color: orange;">已处理</span>'},
   {text: '已支付', value: 'completed', html: '<span style="color: #008000;">已支付</span>'},
-  {text: '已作废', value: 'invalid', html: '<span style="color: gray;">已作废</span>'},
-
+  {text: '已作废', value: 'invalid', html: '<span style="color: gray;">已作废</span>'}
+]);
+// 订单日志状态
+app.addStatus('orderLogType', [
+  {text: '请选择', value: '', html: '-'},
+  {text: '订单创建', value: 'create'},
+  {text: '订单修改', value: 'modify'},
+  {text: '订单支付', value: 'payment'},
+  {text: '订单退款', value: 'refund'},
+  {text: '订单发货', value: 'shipping'},
+  {text: '订单退货', value: 'reship'},
+  {text: '订单完成', value: 'completed'},
+  {text: '订单作废', value: 'invlid'}
+]);
+// 审核状态
+app.addStatus('state', [
+  {text: '已审核 ', value: '01', html: '<span style="color: green;">已审核</span>'},
+  {text: '已审核 ', value: '00', html: '<span style="color: red;">未审核</span>'}
 ]);
 window.app = app;

@@ -215,12 +215,12 @@
     display: inline-block;
     margin-right: 3px;
     padding: 5px 15px;
-    border: 1px solid #c3c3d6;
+    border: 1px solid #C3DEFA;
     border-bottom-color: transparent;
     -webkit-border-radius: 2px 2px 0 0;
     -moz-border-radius: 2px 2px 0 0;
     border-radius: 2px 2px 0 0;
-    background-color: #eee;
+    background-color: #E8EFF7;
     position: relative
 }
 
@@ -478,7 +478,7 @@
 .bui-select-list .bui-list-item {
     display: block;
     padding: 3px 20px;
-    color: #333;
+    color: #2370BB;
     white-space: nowrap
 }
 
@@ -945,11 +945,11 @@
 }
 
 .bui-simple-grid .bui-grid-table {
-    border: 1px solid #ddd
+    border: 1px solid #C3DEFA
 }
 
 .bui-grid-header {
-    border-top: 1px solid #ddd
+    border-top: 1px solid #C3DEFA
 }
 
 .bui-drag-line {
@@ -958,12 +958,12 @@
 }
 
 .bui-grid-body, .bui-grid-height .bui-grid-body .bui-grid-table {
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #C3DEFA
 }
 
 .bui-grid-body, .bui-grid-header {
-    border-right: 1px solid #ddd;
-    border-left: 1px solid #ddd
+    border-right: 1px solid #C3DEFA;
+    border-left: 1px solid #C3DEFA;
 }
 
 .bui-grid-header {
@@ -1073,7 +1073,7 @@ td.bui-grid-cell-empty, th.bui-grid-hd-empty {
 }
 
 .bui-grid-table .bui-grid-hd-hover .bui-grid-hd-inner, .bui-grid-table .bui-grid-hd-open .bui-grid-hd-inner {
-    background-color: #f5f5f5;
+    background-color: #F1F8FF;
     margin:0;
     padding:0;
 }
@@ -1114,7 +1114,7 @@ td.bui-grid-cell-empty, th.bui-grid-hd-empty {
 
 .bui-grid-table .bui-grid-cell {
     overflow: hidden;
-    border-top: 1px solid #ddd
+    border-top: 1px solid #C3DEFA;
 }
 
 .bui-grid-table .bui-grid-cell-empty, .bui-grid-table .bui-grid-row-group td {
@@ -1198,7 +1198,7 @@ td.bui-grid-cell-empty {
 }
 
 .bui-grid-strip .bui-grid-row-even {
-    background-color: #F9F9F9;
+    background-color: #F9FCFF;
 }
 
 .bui-grid .bui-grid-table .bui-grid-row-hover, .bui-grid .bui-grid-table .bui-grid-row-selected, .bui-simple-grid .bui-grid-table .bui-grid-row-hover, .bui-simple-grid .bui-grid-table .bui-grid-row-selected {
@@ -1307,7 +1307,7 @@ td.bui-grid-cell-empty {
 
 td.x-grid-rownumber {
     text-align: center;
-    background-color: #f5f5f5
+    background-color: #F1F8FF
 }
 td.x-grid-rownumber{
     width:40px;

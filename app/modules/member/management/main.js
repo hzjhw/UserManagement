@@ -17,8 +17,9 @@ seajs.use(['jquery', 'MemberModel'], function ($, MemberModel) {
     }
   });
   //TODO 已登录 渲染首页
-  seajs.use(['jquery', 'MemberLeftInfo', 'MemberLeftNav', 'MemberBreadcrumbNav'],
-    function (jquery, MemberLeftInfo, MemberLeftNav, MemberBreadcrumbNav) {
+  seajs.use(['jquery', 'MemberLeftInfo', 'MemberLeftNav', 'MemberBreadcrumbNav', 'MemberInfo'],
+    function (jquery, MemberLeftInfo, MemberLeftNav, MemberBreadcrumbNav, MemberInfo) {
+      // 左侧导航
       app.addPanel('left', {
         el: '#content1',
         template: '<div id="narrow_member_left_1" class="bodyCont moveChild narrow_member_left_1">加载中...</div>' +
@@ -28,13 +29,20 @@ seajs.use(['jquery', 'MemberModel'], function ($, MemberModel) {
       })).addView('memberLeftNav', new MemberLeftNav({
         el: '#narrow_member_left_2'
       }));
-      app.addPanel('right', {
-        el: '#companyIntro',
-        template: '<div id="breadcrumb">加载中...</div><div class="bodyContContent rel rightConteWidth propertyByWideIntro"> ' +
-          '<div class="bodyContContentRightCont fl tal mainTextColor break"> <div class="middle"> 加载中... <div class="blank"></div> ' +
-          '</div> <div class="bottom"></div> </div> <div class="clr"></div> </div>'
+      // 面包屑导航
+      app.addPanel('breadcrumb', {
+        el: '#breadcrumb',
+        template: '<div class="breadcrumb-inner"></div>'
       }).addView('breadcrumb', new MemberBreadcrumbNav({
-        el: '#breadcrumb'
+        el: '.breadcrumb-inner'
+      }));
+      // 主面板
+      app.addPanel('main', {
+        el: '#main',
+        template: '<div class="main-inner"></div>'
+      }).addView('memberInfoDetail', new MemberInfo({
+        el: '.main-inner',
+        data: app.getData('user')
       }));
     });
 });

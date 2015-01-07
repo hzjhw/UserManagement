@@ -141,14 +141,14 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           render: '#s2',
           width: 100,
           target: '#model-loginView',
-          items: app.getData('loginViewList')
+          items: app.getStatus('loginViewList')
         });
 
         BaseUtils.initSelect({
           render: '#s2',
           width: 100,
           target: '#model-ads',
-          items: app.getData('adsList')
+          items: app.getStatus('adsList')
         });
 
         BaseUtils.initSelect({
@@ -156,7 +156,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           width: 100,
           target: '#model-weightUnit',
           itemId: 'value',
-          items:app.getData('weightUnit')
+          items:app.getStatus('weightUnit')
         });
 
         // 编辑器

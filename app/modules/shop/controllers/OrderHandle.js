@@ -93,7 +93,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
-          items: app.getData('deliveryMethod'),
+          items: app.getStatus('deliveryMethod'),
           change: function () {
           }
         });
@@ -116,7 +116,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',
-          items: app.getData('weightUnit')
+          items: app.getStatus('weightUnit')
         });
       },
       // 商品信息

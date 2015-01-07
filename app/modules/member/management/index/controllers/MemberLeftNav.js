@@ -62,7 +62,7 @@ define('MemberLeftNav', ['BaseList', 'BaseModel', 'BaseItem', 'BaseCollection', 
           extend: true,
           items: [
             {name: '交易信息', url: '#', className: 'order', isroot: true, children: [
-              {name: '我的订单', url: '#', className: '', children: []}
+              {name: '我的订单', url: '#/order', className: '', children: []}
             ]},
             {name: '我的收藏', url: '#', className: 'category favorite', isroot: true, children: [
               {name: '商品收藏', url: '#/product_add', className: 'menu-category', children: []}

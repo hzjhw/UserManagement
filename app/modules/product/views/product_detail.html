@@ -108,22 +108,14 @@
                 <label class="control-label">是否上架：</label>
 
                 <div class="controls">
-                    <label><input id="model-isMarketable" type="radio" name="isMarketable" value="01" {{#compare
-                        isMarketable '==='
-                        '01'}}checked{{/compare}}>是</label>
-                    <label><input id="model2-isMarketable" type="radio" name="isMarketable" value="00" {{#compare
-                        isMarketable '==='
-                        '00'}}checked{{/compare}}>否</label>
+                    {{{radio name='isMarketable' value=isMarketable option='{"是": "01", "否": "00"}' }}}
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">新品商品：</label>
 
                 <div class="controls">
-                    <label><input id="model-isNew" type="radio" name="isNew" value="01" {{#compare isNew '==='
-                        '01'}}checked{{/compare}}>是</label>
-                    <label><input id="model2-isNew" type="radio" name="isNew" value="00" {{#compare isNew '==='
-                        '00'}}checked{{/compare}}>否</label>
+                    {{{radio name='isNew' value=isNew option='{"是": "01", "否": "00"}' }}}
                 </div>
             </div>
 
@@ -158,20 +150,14 @@
                 <label class="control-label">精品商品：</label>
 
                 <div class="controls">
-                    <label><input id="model-isBest" type="radio" name="isBest" value="01" {{#compare isBest '==='
-                        '01'}}checked{{/compare}}>是</label>
-                    <label><input id="model2-isBest" type="radio" name="isBest" value="00" {{#compare isBest '==='
-                        '00'}}checked{{/compare}}>否</label>
+                    {{{radio name='isBest' value=isBest option='{"是": "01", "否": "00"}' }}}
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">热销商品：</label>
 
                 <div class="controls">
-                    <label><input id="model-isHot" type="radio" name="isHot" value="01" {{#compare isHot '==='
-                        '01'}}checked{{/compare}}>是</label>
-                    <label><input id="model2-isHot" type="radio" name="isHot" value="00" {{#compare isHot '==='
-                        '00'}}checked{{/compare}}>否</label>
+                    {{{radio name='isHot' value=isHot option='{"是": "01", "否": "00"}' }}}
                 </div>
             </div>
 

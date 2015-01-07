@@ -53,7 +53,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       },
       // 初始化
       initialize: function () {
-        this.model.set('certificateList', app.getData('certificateList'));
+        this.model.set('certificateList', app.getStatus('certType'));
         this._initialize({
           template: itemTemp,
           viewId: 'certificateList',
@@ -144,12 +144,12 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
             width: 600,
             content: ctx.searchTemp({
               certificateCategoryList: app.getData('certificateCategory'),
-              loginViewList: app.getData('loginViewList'),
-              adsList: app.getData('adsList'),
+              loginViewList: app.getStatus('loginViewList'),
+              adsList: app.getStatus('adsList'),
               searchKey: ctx.searchKey,
               searchOrganize: ctx.searchOrganize,
               searchType: ctx.searchType,
-              certificateList:app.getData('certificateList')
+              certificateList:app.getStatus('certType')
             }),
             button: [
               {

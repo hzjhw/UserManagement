@@ -44,7 +44,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
             BaseUtils.initSelect({
               render: '#s1',
               target: '#model-type',
-              items: app.getData('certificateList')
+              items: app.getStatus('certType')
             });
 
         // 表单初始化

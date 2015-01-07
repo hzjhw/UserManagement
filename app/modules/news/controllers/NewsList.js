@@ -229,8 +229,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           target: this.$('.search-advance').get(0),
           content: ctx.searchTemp({
             newsCategoryList: app.getData('newsCategory'),
-            newsTypeList: app.getData('newsType'),
-            newsStateList: app.getData('newsState'),
+            newsTypeList: app.getStatus('newsType'),
+            newsStateList: app.getStatus('newsState'),
             searchKey: ctx.searchKey,
             searchCategory: ctx.searchCategory,
             searchState: ctx.searchState,

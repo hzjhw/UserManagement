@@ -16,5 +16,17 @@ app.addTemplate('template/member_left_nav_item', function (require, exports, mod
 app.addTemplate('template/member_breadcrumb_nav', function(require, exports, module){
   module.exports = require('modules/member/management/index/views/member_breadcrumb_nav.html');
 });
+app.addRoute('index', function () {
+  seajs.use(['jquery', 'MemberInfo'], function (jquery, MemberInfo) {
+    app.addPanel('main', {
+      el: '#main',
+      template: '<div class="main-inner"></div>'
+    }).addView('memberInfoDetail', new MemberInfo({
+      el: '.main-inner',
+      data: app.getData('user')
+    }));
+  });
+});
+
 
 

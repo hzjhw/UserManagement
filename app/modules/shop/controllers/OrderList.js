@@ -134,9 +134,9 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
             username: ctx.username,
             shipName: ctx.shipName,
             shipArea: ctx.shipArea,
-            paymentStatus: app.getData('paymentStatus'),
-            shippingStatus: app.getData('shippingStatus'),
-            orderStatus: app.getData('orderStatus')
+            paymentStatus: app.getStatus('paymentStatus'),
+            shippingStatus: app.getStatus('shippingStatus'),
+            orderStatus: app.getStatus('orderStatus')
           }),
           success: function () {
             ctx.orderSn = $('input[name=orderSn]').val();

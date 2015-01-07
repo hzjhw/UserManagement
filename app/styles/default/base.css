@@ -76,7 +76,7 @@ body .m0{margin:0}
  * This is licensed under the GNU LGPL, version 2.1 or later.
  * For details, see: http://www.gnu.org/licenses/lgpl-2.1.html
  */
-.ui-dialog{position:relative;background-color:#FFF;border:1px solid #999;border-radius:6px;outline:0;background-clip:padding-box;font-family:Helvetica,arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333;opacity:0;-webkit-transform:scale(0);transform:scale(0);-webkit-transition:-webkit-transform .15s ease-in-out,opacity .15s ease-in-out;transition:transform .15s ease-in-out,opacity .15s ease-in-out}
+.ui-dialog{position:relative;background-color:#FFF;border:1px solid #A5CFF7;border-radius:6px;outline:0;background-clip:padding-box;font-family:Helvetica,arial,sans-serif;font-size:14px;line-height:1.428571429;color:#4A4A4A;opacity:0;-webkit-transform:scale(0);transform:scale(0);-webkit-transition:-webkit-transform .15s ease-in-out,opacity .15s ease-in-out;transition:transform .15s ease-in-out,opacity .15s ease-in-out}
 .ui-popup-show .ui-dialog{opacity:1;-webkit-transform:scale(1);transform:scale(1)}
 .ui-popup-focus .ui-dialog{box-shadow:0 0 8px rgba(0,0,0,.1)}
 .ui-popup-modal .ui-dialog{box-shadow:0 0 8px rgba(0,0,0,.1),0 0 256px rgba(255,255,255,.3)}
@@ -117,7 +117,7 @@ body .m0{margin:0}
 .ui-popup-top-left .ui-dialog-arrow-a,.ui-popup-top-left .ui-dialog-arrow-b{left:15px}
 .ui-popup-top .ui-dialog-arrow-a,.ui-popup-top .ui-dialog-arrow-b{left:50%;margin-left:-8px}
 .ui-popup-top-right .ui-dialog-arrow-a,.ui-popup-top-right .ui-dialog-arrow-b{right:15px}
-.ui-popup-bottom .ui-dialog-arrow-a,.ui-popup-bottom-left .ui-dialog-arrow-a,.ui-popup-bottom-right .ui-dialog-arrow-a{top:-16px;border-bottom:8px solid #7C7C7C}
+.ui-popup-bottom .ui-dialog-arrow-a,.ui-popup-bottom-left .ui-dialog-arrow-a,.ui-popup-bottom-right .ui-dialog-arrow-a{top:-16px;border-bottom:8px solid #A5CFF7}
 .ui-popup-bottom .ui-dialog-arrow-b,.ui-popup-bottom-left .ui-dialog-arrow-b,.ui-popup-bottom-right .ui-dialog-arrow-b{top:-15px;border-bottom:8px solid #fff}
 .ui-popup-bottom-left .ui-dialog-arrow-a,.ui-popup-bottom-left .ui-dialog-arrow-b{left:15px}
 .ui-popup-bottom .ui-dialog-arrow-a,.ui-popup-bottom .ui-dialog-arrow-b{margin-left:-8px;left:50%}
@@ -210,7 +210,7 @@ label.checkbox { padding-left: 5px; }
 /* 产品 ****************************************************************************************/
 #jhw-product{ }
 #product-list-ul .pro-list-name{ padding: 0 5px; }
-#product-list-ul .hover, #jhw table .hover{ background-color: #f5f5f5; }
+#product-list-ul .hover, #jhw table .hover{ background-color: #F1F7FF; }
 /* 产品分类 ************************************************************************************/
 #jhw .jhw-category-product .cate-00{ margin-left:0px; }
 #jhw .jhw-category-product .cate-01{ margin:0 0 0 -22px; padding:0;}
@@ -284,7 +284,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .pic-container #toggle-all{vertical-align: middle;}
 #jhw .btn-pic-add{position:relative;}
 #jhw #fileupload{position: absolute; top: 0; right: 0; margin: 0; opacity: 0; -ms-filter: 'alpha(opacity=0)'; font-size: 200px; direction: ltr; cursor: pointer;}
-.photo-list {background: #f0f0f0; padding: 1%; height: 88%; overflow-y: auto;}
+.photo-list {background: #E8EFF7; padding: 1%; height: 86%; overflow-y: auto;}
 /*.pic-container{height: 246px;}*/
 .page-bar { width: 100%; height: 31px; z-index: 2; padding-top: 9px; padding-left: 14px; border-top: 1px solid #B3DDFF; border-bottom: 1px solid #B1DDFF; background-color: #EFF8FF; }
 .photo-tool { height: 7%; }

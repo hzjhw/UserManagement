@@ -72,7 +72,8 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
       },
       copy: function (e) {
         e.stopImmediatePropagation();
-        if (!this.copyDetail) this.copyDetail = HandlebarsHelper.compile(copyDetail);
+        if (!this.copyDetail)
+          this.copyDetail = HandlebarsHelper.compile(copyDetail);
         var dialogId = 'copy' + this.model.get('id');
         BaseUtils.dialog({
           id: 'copy' + dialogId,
@@ -107,8 +108,9 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           item: PhotoItem,
           pagination: true,
           pageSize: 18,
-          beforeLoad: function(){
-            if (!app.getData('curAlbumId')){
+          beforeLoad: function () {
+            var curAlbumId = app.getData('curAlbumId');
+            if (!curAlbumId || curAlbumId === 'all') {
               this.collection._setItemId('all');
               app.addData('curAlbumId', 'all');
             }

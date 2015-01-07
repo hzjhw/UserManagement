@@ -46,7 +46,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
           render: '#s2',
           target: '#model-attributeType',
           itemId: 'value',
-          items: app.getData('attributeType')
+          items: app.getStatus('attributeType')
         }).then(function (select) {
           if (select === 'select' || select === 'checkbox') {
             $("#multi-attribute").show();

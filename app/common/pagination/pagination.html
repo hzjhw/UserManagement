@@ -8,7 +8,7 @@
     <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page '!==' this}}danaiPageNum{{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false"><a href="javascript:;">{{this}}</a></li>
     {{/pagination}}
     <li class="page-next bui-bar-item bui-inline-block {{#compare page '===' totalPage}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
-        id="next" data-page="{{add page 1}}"><a href="javascript:;">下一页</a></li>
+        id="next" data-page="{{plus page 1}}"><a href="javascript:;">下一页</a></li>
     <li class="page-end bui-bar-item bui-inline-block {{#compare page '===' totalPage}}disabled{{else}}danaiPageNum{{/compare}}" aria-disabled="true"
         id="pageLast" data-page="{{totalPage}}"><a href="javascript:;">尾页</a></li>
     <li class="page-go bui-bar-item-text bui-bar-item bui-inline-block bui-bar-item-text-hover bui-bar-item-hover" style="line-height: 30px; padding-left: 10px;"
