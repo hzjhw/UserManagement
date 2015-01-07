@@ -87,4 +87,33 @@ app.addData('attributeType', [
   {text: '多选项', value: 'checkbox'},
   {text: '日期', value: 'date'}
 ]);
+// 付款状态
+app.addData('paymentStatus', [
+  {text: '请选择', value: '', html: '-'},
+  {text: '未支付', value: 'unpaid', html: '<span style="color: red;">未支付</span>'},
+  {text: '部分支付', value: 'partPayment', html: '<span style="color: orange;">部分支付</span>'},
+  {text: '已支付', value: 'paid', html: '<span style="color: green;">已支付</span>'},
+  {text: '部分退款', value: 'partRefund', html: '<span style="color: orange;">部分退款</span>'},
+  {text: '全额退款', value: 'refunded', html: '<span style="color: #000000;">全额退款</span>'}
+]);
+
+// 配送状态
+app.addData('shippingStatus', [
+  {text: '请选择', value: '', html: '-'},
+  {text: '未发货', value: 'unshipped', html: '<span style="color: red;">未发货</span>'},
+  {text: '部分发贫', value: 'partShipped', html: '<span style="color: orange;">部分发贫</span>'},
+  {text: '已发货', value: 'shipped', html: '<span style="color: green;">已发货</span>'},
+  {text: '部分退货', value: 'partReshiped', html: '<span style="color: black;">已发货</span>'},
+  {text: '已退货', value: 'reshiped', html: '<span style="color: black;">已退货</span>'}
+]);
+
+// 订单状态
+app.addData('orderStatus', [
+  {text: '请选择', value: '', html: '-'},
+  {text: '未处理', value: 'unprocessed', html: '<span style="color: red;">未处理</span>'},
+  {text: '已处理', value: 'processed', html: '<span style="color: orange;">已处理</span>'},
+  {text: '已支付', value: 'completed', html: '<span style="color: #008000;">已支付</span>'},
+  {text: '已作废', value: 'invalid', html: '<span style="color: gray;">已作废</span>'},
+
+]);
 window.app = app;

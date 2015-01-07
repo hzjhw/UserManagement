@@ -198,22 +198,12 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('orderStatus', function (str, options) {
     var result = '';
-    switch (str) {
-      case 'unprocessed':
-        result = '<span style="color: red;">未处理</span>';
-        break;
-      case 'processed':
-        result = '<span style="color: orange;">已处理</span>';
-        break;
-      case 'completed':
-        result = '<span style="color: #008000;">已支付</span>';
-        break;
-      case 'invalid':
-        result = '<span style="color: gray;">已作废</span>';
-        break;
-      default:
-        result = '无状态';
-    }
+    Est.each(app.getData('orderStatus'), function(item){
+      if (item.value === str){
+        result = item.html;
+        return false;
+      }
+    });
     return result;
   });
 
@@ -226,25 +216,12 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('paymentStatus', function (str, options) {
     var result = '';
-    switch (str) {
-      case 'unpaid':
-        result = '<span style="color: red;">未支付</span>';
-        break;
-      case 'partPayment':
-        result = '<span style="color: orange;">部分支付</span>';
-        break;
-      case 'paid':
-        result = '<span style="color: green;">已支付</span>';
-        break;
-      case 'partRefund':
-        result = '<span style="color: orange;">部分退款</span>';
-        break;
-      case 'refunded':
-        result = '全额退款';
-        break;
-      default:
-        result = '无记录';
-    }
+    Est.each(app.getData('paymentStatus'), function(item){
+      if (item.value === str){
+        result = item.html;
+        return false;
+      }
+    });
     return result;
   });
   /**
@@ -256,25 +233,12 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('shippingStatus', function (str, options) {
     var result = '';
-    switch (str) {
-      case 'unshipped':
-        result = '<span style="color: red;">未发货</span>';
-        break;
-      case 'partShipped':
-        result = '<span style="color: orange;">部分发贫</span>';
-        break;
-      case 'shipped':
-        result = '<span style="color: green;">已发货</span>';
-        break;
-      case 'partReshiped':
-        result = '部分退货';
-        break;
-      case 'reshiped':
-        result = '已退货';
-        break;
-      default:
-        result = '无记录';
-    }
+    Est.each(app.getData('shippingStatus'), function(item){
+      if (item.value === str){
+        result = item.html;
+        return false;
+      }
+    });
     return result;
   });
 
