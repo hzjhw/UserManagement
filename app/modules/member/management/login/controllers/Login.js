@@ -1,28 +1,20 @@
 /**
- * @description Login js
+ * @description Login
  * @namespace Login
- * @author jihui-wxw on 14-11-17
+ * @author yongjin<zjut_wyj@163.com> 2015/1/7
  */
-
-define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail', 'template/login'],
+define('Login', ['BaseDetail', 'template/login', 'LoginModel'],
   function (require, exports, module) {
-    var Login, LoginModel, HandlebarsHelper, Est, BaseDetail, template;
+    var Login, BaseDetail, template, LoginModel;
 
-    LoginModel = require('LoginModel');
-    HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/login');
-
-    /**
-     * 列表视图
-     */
+    LoginModel = require('LoginModel');
 
     Login = BaseDetail.extend({
-      el: '#jhw-login',
       initialize: function () {
-        console.log('2.Login.initialize');
         this._initialize({
-          template: $('#login_template').html(),
+          template: template,
           model: LoginModel,
           enterRender: '#submit'
         });
@@ -37,7 +29,7 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail', 'temp
               ctx.refreshCode();
               return true;
             }
-            window.location.href = '/member/index.html';
+            window.location.href = CONST.HOST + '/modules/member/management/index.html';
           }
         });
         return this;
@@ -50,7 +42,6 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail', 'temp
         $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
       }
     });
+
     module.exports = Login;
-
-
   });

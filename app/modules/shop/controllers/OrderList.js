@@ -93,7 +93,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
     OrderList = BaseList.extend({
       events: {
         'click .btn-search': 'search',
-        'click .search-advance-product': 'searchAdvance'
+        'click .search-advance-product': 'searchAdvance',
+        'click #toggle-all': '_toggleAllChecked'
       },
       initialize: function () {
         this._initialize({

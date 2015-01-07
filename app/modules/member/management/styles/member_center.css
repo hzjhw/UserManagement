@@ -145,7 +145,7 @@ body .narrow_member_left_1 .bodyContTitle {
 	line-height:10px;
 	clear: both;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_center_bg.gif) no-repeat 0px 0px;
 }
 
 body .narrow_member_left_1 .middle {
@@ -153,7 +153,7 @@ body .narrow_member_left_1 .middle {
 	line-height: 20px;
 	padding-left: 20px;
 	clear: both;
-	background: url(images/member_center_y_bg.gif) repeat-y 0px 0px;
+	background: url(img/member_center_y_bg.gif) repeat-y 0px 0px;
 }
 
 body .narrow_member_left_1 .username {
@@ -165,7 +165,7 @@ body .narrow_member_left_1 .bottom {
 	height: 20px;
 	clear: both;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px -30px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -30px;
 }
 
 body .narrow_member_left_2 {
@@ -181,14 +181,14 @@ body .narrow_member_left_2 .top {
 	clear: both;
 	padding-left: 30px;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px -60px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -60px;
 }
 
 body .narrow_member_left_2 .middle {
 	width: 210px;
 	line-height: 20px;
 	clear: both;
-	background: url(images/member_center_y_bg.gif) repeat-y 0px -210px;
+	background: url(img/member_center_y_bg.gif) repeat-y 0px -210px;
 }
 
 body .narrow_member_left_2 li {
@@ -201,40 +201,40 @@ body .narrow_member_left_2 li li {
 }
 
 body .narrow_member_left_2 li li:hover, body .narrow_member_left_2 li li.current{
-	background: url(images/member_center_bg.gif) no-repeat 0px -120px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -120px;
 }
 
 body .narrow_member_left_2 .order {
 	width: 210px;
 	padding-top: 3px;
-	background: url(images/member_menu_li_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
 }
 
 body .narrow_member_left_2 .favorite {
 	width: 210px;
 	padding-top: 3px;
-	background: url(images/member_menu_li_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
 }
 
 body .narrow_member_left_2 .message {
 	width: 210px;
 	padding-top: 3px;
-	background: url(images/member_menu_li_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
 }
 
 body .narrow_member_left_2 .profile {
 	width: 210px;
 	padding-top: 3px;
-	background: url(images/member_menu_li_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
 }
 
 body .narrow_member_left_2 .deposit {
 	width: 210px;
 	padding-top: 3px;
-	background: url(images/member_menu_li_bg.gif) no-repeat 0px 0px;
+	background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
 }
 
-body .narrow_member_left_2 p.title {
+body .narrow_member_left_2 .nav-title {
 	color:#afacac;
 	font-size:15px;
 	font-weight:normal;
@@ -247,7 +247,7 @@ body .narrow_member_left_2 .bottom {
 	height: 20px;
 	clear: both;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px -90px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -90px;
 }
 
 #content2 .bodyCont .bodyContTitle {
@@ -260,7 +260,7 @@ body .narrow_member_left_2 .bottom {
 	font-weight: bold;
 	color: #595959;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px -150px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -150px;
 }
 #content2 .bodyCont .bodyContTitle .titleLinkColor {
 color: #595959;
@@ -269,7 +269,7 @@ color: #595959;
 	width: 760px;
 	clear: both;
 	padding: 0px 10px;
-	background: url(images/member_center_y_bg.gif) repeat-y -420px 0px;
+	background: url(img/member_center_y_bg.gif) repeat-y -420px 0px;
 }
 
 #content2 .bodyCont .bottom {
@@ -277,7 +277,7 @@ color: #595959;
 	height: 18px;
 	clear: both;
 	overflow: hidden;
-	background: url(images/member_center_bg.gif) no-repeat 0px -210px;
+	background: url(img/member_center_bg.gif) no-repeat 0px -210px;
 }
 
 body table.listTable {
@@ -344,7 +344,7 @@ body table.inputTable tr:hover td {
 body ul.tab {
 	height: 29px;
 	padding-left: 161px;
-	background: url(images/member_center_x_bg.gif) 0px 0px repeat-x;
+	background: url(img/member_center_x_bg.gif) 0px 0px repeat-x;
 }
 
 body ul.tab li {
@@ -361,11 +361,11 @@ body ul.tab input {
 	outline: none;
 	cursor: pointer;
 	border: none;
-	background: url(images/member_center_bg.gif) -430px 0px no-repeat;
+	background: url(img/member_center_bg.gif) -430px 0px no-repeat;
 }
 
 body ul.tab input.current {
-	background: url(images/member_center_bg.gif) -330px 0px no-repeat;
+	background: url(img/member_center_bg.gif) -330px 0px no-repeat;
 }
 
 body .tabContent {
@@ -383,11 +383,11 @@ body .addButton {
 	outline: none;
 	cursor: pointer;
 	border: none;
-	background: url(images/member_center_bg.gif) no-repeat -210px -30px;
+	background: url(img/member_center_bg.gif) no-repeat -210px -30px;
 }
 
 body .addButton:hover {
-	background: url(images/member_center_bg.gif) no-repeat -300px -30px;
+	background: url(img/member_center_bg.gif) no-repeat -300px -30px;
 }
 
 body .submitButton {
@@ -401,11 +401,11 @@ body .submitButton {
 	outline: none;
 	cursor: pointer;
 	border: none;
-	background: url(images/member_center_bg.gif) no-repeat -210px 0px;
+	background: url(img/member_center_bg.gif) no-repeat -210px 0px;
 }
 
 body .submitButton:hover {
-	background: url(images/member_center_bg.gif) no-repeat -270px 0px;
+	background: url(img/member_center_bg.gif) no-repeat -270px 0px;
 }
 
 body .backButton {
@@ -420,11 +420,11 @@ body .backButton {
 	outline: none;
 	cursor: pointer;
 	border: none;
-	background: url(images/member_center_bg.gif) no-repeat -210px 0px;
+	background: url(img/member_center_bg.gif) no-repeat -210px 0px;
 }
 
 body .backButton:hover {
-	background: url(images/member_center_bg.gif) no-repeat -270px 0px;
+	background: url(img/member_center_bg.gif) no-repeat -270px 0px;
 }
 
 body .downIcon {
@@ -435,7 +435,7 @@ body .downIcon {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(images/member_center_bg.gif) no-repeat -210px -60px;
+	background: url(img/member_center_bg.gif) no-repeat -210px -60px;
 }
 
 body .upIcon {
@@ -446,7 +446,7 @@ body .upIcon {
 	display: -moz-inline-stack;
 	zoom: 1;
 	*display: inline;
-	background: url(images/member_center_bg.gif) no-repeat -210px -90px;
+	background: url(img/member_center_bg.gif) no-repeat -210px -90px;
 }
 
 body .favoriteList td {
