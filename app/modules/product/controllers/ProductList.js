@@ -192,7 +192,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         app.emptyDialog();
         BaseUtils.dialog({
           title: '高级搜索',
-          width: 600,
+          width: 700,
           target: this.$('.search-advance-product').get(0),
           content: ctx.searchTemp({
             productCategoryList: app.getData('productCategory'),
