@@ -6,7 +6,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 }
 
 html, body {
-	font: 12px tahoma, Arial, "ËÎÌå", Verdana, sans-serif;
+	font: 12px tahoma, Arial, "ï¿½ï¿½ï¿½ï¿½", Verdana, sans-serif;
 	background-color: #ffffff;
 }
 
@@ -106,10 +106,12 @@ width:1000px;
 margin:0 auto;
 }
 .moveList.sort1 {
+float:left;
 width:210px;
 }
 
 .moveList.sort2 {
+float:left;
 margin-left:10px;
 width:780px;
 }
