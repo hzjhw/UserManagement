@@ -488,3 +488,19 @@ body .orderList .operationInfo {
 body .orderList .operationInfo:hover {
 	background-color: #fffcf7;
 }
+
+/*
+分页*/
+.pagination li > a, .pagination li > span{
+    padding: 0px 8px;
+    color: #4B5051;
+}
+#pagination-container .page-go{display:none;}
+#pagination-container .page-refresh{display:none;}
+#pagination-container .per_page_show{height: 22px; line-height: 22px; width: 40px; vertical-align: middle;border: 1px solid #C0C0C0}
+#pagination-container .page-per-page, #pagination-container .page-info{height: 22px; line-height: 22px;}
+.pagination .active > a, .pagination .active > a:focus, .pagination .active > a:hover, .pagination .active > span, .pagination .active > span:focus, .pagination .active > span:hover{
+    border: 1px solid #ff9900;
+    background-color: #ff9900;
+    color: #fff;
+}

@@ -19,25 +19,24 @@ seajs.use(['jquery', 'MemberModel', 'backbone', 'MemberLeftInfo', 'MemberLeftNav
           CONST.USER = data.attributes;
         }
       });
-      //TODO 已登录 渲染首页
-      // 左侧导航
-      app.addPanel('left', {
-        el: '#content1',
-        template: '<div id="narrow_member_left_1" class="bodyCont moveChild narrow_member_left_1"></div>' +
-          '<div id="narrow_member_left_2" class="bodyCont moveChild narrow_member_left_2"></div>'
-      }).addView('memberLeftInfo', new MemberLeftInfo({
-        el: '#narrow_member_left_1',
-        data: app.getData('user')
-      })).addView('memberLeftNav', new MemberLeftNav({
-        el: '#narrow_member_left_2'
-      }));
-      // 面包屑导航
-      app.addPanel('breadcrumb', {
-        el: '#breadcrumb',
-        template: '<div class="breadcrumb-inner"></div>'
-      }).addView('breadcrumb', new MemberBreadcrumbNav({
-        el: '.breadcrumb-inner'
-      }));
-      Backbone.history.navigate("index");
     }
+    //TODO 已登录 渲染首页
+    // 左侧导航
+    app.addPanel('left', {
+      el: '#content1',
+      template: '<div id="narrow_member_left_1" class="bodyCont moveChild narrow_member_left_1"></div>' +
+        '<div id="narrow_member_left_2" class="bodyCont moveChild narrow_member_left_2"></div>'
+    }).addView('memberLeftInfo', new MemberLeftInfo({
+      el: '#narrow_member_left_1',
+      data: app.getData('user')
+    })).addView('memberLeftNav', new MemberLeftNav({
+      el: '#narrow_member_left_2'
+    }));
+    // 面包屑导航
+    app.addPanel('breadcrumb', {
+      el: '#breadcrumb',
+      template: '<div class="breadcrumb-inner"></div>'
+    }).addView('breadcrumb', new MemberBreadcrumbNav({
+      el: '.breadcrumb-inner'
+    }));
   });

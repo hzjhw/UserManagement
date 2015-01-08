@@ -3,10 +3,10 @@
  * @namespace MemberLeftNav
  * @author yongjin<zjut_wyj@163.com> 2015/1/7
  */
-define('MemberLeftNav', ['BaseList', 'BaseModel', 'BaseItem', 'BaseCollection', 'template/member_left_nav_item',
+define('MemberLeftNav', ['backbone', 'BaseList', 'BaseModel', 'BaseItem', 'BaseCollection', 'template/member_left_nav_item',
     'template/member_left_nav'],
   function (require, exports, module) {
-    var MemberLeftNav, BaseList, BaseModel, BaseItem, BaseCollection, model, collection, item, itemTemp, listTemp;
+    var MemberLeftNav, BaseList, BaseModel, Backbone, BaseItem, BaseCollection, model, collection, item, itemTemp, listTemp;
 
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
@@ -14,6 +14,7 @@ define('MemberLeftNav', ['BaseList', 'BaseModel', 'BaseItem', 'BaseCollection', 
     BaseCollection = require('BaseCollection');
     itemTemp = require('template/member_left_nav_item');
     listTemp = require('template/member_left_nav');
+    Backbone = require('backbone');
 
     model = BaseModel.extend({
       defaults: Est.extend({
@@ -35,12 +36,16 @@ define('MemberLeftNav', ['BaseList', 'BaseModel', 'BaseItem', 'BaseCollection', 
     item = BaseItem.extend({
       tagName: 'li',
       events: {
-        'click a': 'showBread'
+        'click a': 'toPage'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
+      },
+      toPage: function () {
+        this.$el.removeClass('hover');
+        Backbone.history.navigate(this.model.get('url'), true);
       },
       showBread: function () {
 

@@ -13,7 +13,6 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 't
 
     //分页模板
     var Pagination = Backbone.View.extend({
-      el: "#pagination-container",
       tagName: "div",
       events: {
         'change .per_page_show': 'changePerPage',
@@ -50,7 +49,7 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 't
       },
       toPage: function (num) {
         if (parseInt(num, 10) > this.model.get('totalPage') || parseInt(num, 10) < 1) return;
-        this.model.set('page', num);
+        this.model.set('page', parseInt(num, 10));
         this.model.trigger('reloadList', this.model);
       },
       reload: function(){

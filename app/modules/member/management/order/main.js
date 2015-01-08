@@ -13,7 +13,7 @@ app.addRoute('order', function () {
       data: app.getData('user'),
       items: app.getData('user')['orderSet'],
       page: 1,
-      pageSize: 15,
+      pageSize: 5,
       pagination: true
     }));
   });
