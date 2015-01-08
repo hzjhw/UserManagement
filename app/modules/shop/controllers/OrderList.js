@@ -6,8 +6,8 @@
 define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection',
     'template/order_list', 'template/order_item', 'template/order_search'],
   function (require, exports, module) {
-  var BaseList, BaseItem, BaseCollection, OrderList, BaseUtils, itemTemp, HandlebarsHelper, listTemp, OrderModel,
-    OrderCollection, OrderItem, searchTemp;
+    var BaseList, BaseItem, BaseCollection, OrderList, BaseUtils, itemTemp, HandlebarsHelper, listTemp, OrderModel,
+      OrderCollection, OrderItem, searchTemp;
 
     BaseList = require('BaseList');
     BaseItem = require('BaseItem');
@@ -22,7 +22,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
     OrderCollection = BaseCollection.extend({
       url: CONST.API + '/order/list',
       model: OrderModel,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -37,19 +37,19 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         'click .view': 'viewOrder',
         'click .handle': 'handleOrder'
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           template: itemTemp,
           model: OrderModel,
           detail: CONST.HOST + '/modules/shop/order_detail.html'
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       },
-      edit: function(){
+      edit: function () {
         var ctx = this;
-        seajs.use(['OrderDetail'], function(OrderDetail){
+        seajs.use(['OrderDetail'], function (OrderDetail) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -60,9 +60,9 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
           }));
         });
       },
-      viewOrder: function(){
+      viewOrder: function () {
         var ctx = this;
-        seajs.use(['OrderView'], function(OrderView){
+        seajs.use(['OrderView'], function (OrderView) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -70,12 +70,13 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
             el: '.jhw-main-inner',
             id: ctx.model.get('id'),
             page: ctx._getPage()
-          }));;
+          }));
+          ;
         });
       },
-      handleOrder: function(){
+      handleOrder: function () {
         var ctx = this;
-        seajs.use(['OrderHandle'], function(OrderHandle){
+        seajs.use(['OrderHandle'], function (OrderHandle) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -83,7 +84,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
             el: '.jhw-main-inner',
             id: ctx.model.get('id'),
             page: ctx._getPage()
-          }));;
+          }));
+          ;
         });
       }
     });
@@ -91,9 +93,10 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
     OrderList = BaseList.extend({
       events: {
         'click .btn-search': 'search',
-        'click .search-advance-product': 'searchAdvance'
+        'click .search-advance-product': 'searchAdvance',
+        'click #toggle-all': '_toggleAllChecked'
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           collection: OrderCollection,
           item: OrderItem,
@@ -127,35 +130,38 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
           width: 700,
           target: this.$('.search-advance-product').get(0),
           content: ctx.searchTemp({
-            productCategoryList: app.getData('productCategory'),
-            loginViewList: app.getData('loginViewList'),
-            adsList: app.getData('adsList'),
-            searchKey: ctx.searchKey,
-            searchProdtype: ctx.searchProdtype,
-            searchCategory: ctx.searchCategory,
-            searchAds: ctx.searchAds,
-            searchLoginView: ctx.searchLoginView
+            orderSn: ctx.orderSn,
+            username: ctx.username,
+            shipName: ctx.shipName,
+            shipArea: ctx.shipArea,
+            paymentStatus: app.getStatus('paymentStatus'),
+            shippingStatus: app.getStatus('shippingStatus'),
+            orderStatus: app.getStatus('orderStatus')
           }),
-          success: function(){
-            ctx.searchKey = $('input[name=searchKey]').val();
-            ctx.searchProdtype = $('input[name=searchProdtype]').val();
-            ctx.searchCategory = $('select[name=searchCategory]').val();
-            ctx.searchLoginView = $('select[name=searchLoginView]').val();
-            ctx.searchAds = $('select[name=searchAds]').val();
+          success: function () {
+            ctx.orderSn = $('input[name=orderSn]').val();
+            ctx.shipName = $('input[name=shipName]').val();
+            ctx.username = $('input[name=username]').val();
+            ctx.shipArea = $('input[name=shipArea]').val();
+            ctx.paymentStatus = $('select[name=paymentStatus]').val();
+            ctx.shippingStatus = $('select[name=shippingStatus]').val();
+            ctx.orderStatus = $('select[name=orderStatus]').val();
             ctx._search({
               filter: [
-                {key: 'name', value: ctx.searchKey },
-                {key: 'prodtype', value: ctx.searchProdtype} ,
-                {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
-                {key: 'loginView', value: ctx.searchLoginView},
-                {key: 'ads', value: ctx.searchAds}
+                {key: 'orderSn', value: ctx.orderSn },
+                {key: 'shipName', value: ctx.shipName} ,
+                {key: 'memberObj.username', value: ctx.username},
+                {key: 'shipArea', value: ctx.shipArea},
+                {key: 'paymentStatus', value: ctx.paymentStatus, match: new RegExp('^' + ctx.paymentStatus + '$')},
+                {key: 'shippingStatus', value: ctx.shippingStatus, match: new RegExp('^' + ctx.shippingStatus + '$')},
+                {key: 'orderStatus', value: ctx.orderStatus, match: new RegExp('^' + ctx.orderStatus+ '$')}
               ]
             });
             this.close().remove();
           }
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });

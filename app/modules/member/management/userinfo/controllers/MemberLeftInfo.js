@@ -11,12 +11,25 @@ define('MemberLeftInfo', ['BaseView', 'template/member_left_info'],
     template = require('template/member_left_info');
 
     MemberLeftInfo = BaseView.extend({
+      events: {
+        'click .logout': 'logout'
+      },
       initialize: function () {
         this._initialize({
           template: template,
           data: app.getData('memberInfo')
         });
         this.render();
+      },
+      logout: function(){
+        $.ajax({
+          type: 'get',
+          url: CONST.API + '/shop/member/logout',
+          async: false,
+          success: function(result){
+            top.window.reload();
+          }
+        });
       },
       render: function () {
         this._render();

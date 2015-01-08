@@ -4,9 +4,11 @@
  * @author yongjin on 2014/11/12
  */
 
-define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left', 'BaseService', 'BaseModel', 'BaseCollection', 'BaseList', 'BaseItem', 'template/nav_item'],
+define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left', 'BaseService', 'BaseModel',
+    'BaseCollection', 'BaseList', 'BaseItem', 'template/nav_item'],
   function (require, exports, module) {
-    var LeftView, BaseView, BaseUtils, leftTemp, BaseCollection, Backbone, BaseModel, BaseItem, BaseList, BaseService, model, collection, item, navTemp;
+    var LeftView, BaseView, BaseUtils, leftTemp, BaseCollection, Backbone, BaseModel, BaseItem, BaseList,
+      BaseService, model, collection, item, navTemp;
 
     BaseView = require('BaseView');
     leftTemp = require('template/layout_left');
@@ -22,7 +24,7 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
     model = BaseModel.extend({
       defaults: Est.extend({
       }, BaseModel.prototype.defaults),
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -38,19 +40,19 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
         'click a': 'toPage',
         'mouseover a': 'setChildPos'
       },
-      initialize:function(){
+      initialize: function () {
         this._initialize({
           template: navTemp
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       },
-      toPage: function(){
+      toPage: function () {
         this.$el.removeClass('hover');
         Backbone.history.navigate(this.model.get('url'), true);
       },
-      setChildPos: function(){
+      setChildPos: function () {
         this.$('.node-tree').css({
           top: this.$el.position().top - 1,
           left: this.$el.width()

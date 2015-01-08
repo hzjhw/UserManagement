@@ -438,7 +438,7 @@ body {
     font-family: ff-tisa-web-pro-1, ff-tisa-web-pro-2, "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
     font-size: 12px;
     line-height: 20px;
-    color: #333;
+    color: #696969;
     background-color: #fff
 }
 
@@ -1085,13 +1085,13 @@ a.badge:focus, a.badge:hover {
     text-shadow: none;
     color: #333;
     background-color: #fff;
-    border-color: #ccc
+    border-color: #B9DDFF;
 }
 
 .open .dropdown-toggle.x-icon-normal, .x-icon-normal.active, .x-icon-normal:active, .x-icon-normal:focus, .x-icon-normal:hover {
     color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad
+    background-color: #F4F9FF;
+    border-color: #B9DDFF;
 }
 
 .open .dropdown-toggle.x-icon-normal, .x-icon-normal.active, .x-icon-normal:active {
@@ -1142,8 +1142,8 @@ a.badge:focus, a.badge:hover {
 }
 
 .x-icon-hover, .x-icon-normal:hover {
-    color: #73787d;
-    border: 1px solid #a6a6c1
+    color: #2679CC;
+    border: 1px solid #B9DDFF;
 }
 
 .x-icon-success {
@@ -2594,15 +2594,15 @@ table .span24 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: #333;
+    color: #5390CC;
     background-color: #fff;
-    border-color: #ccc
+    border-color: #E0EEFF;
 }
 
 .button.active, .button:active, .button:focus, .button:hover, .open .dropdown-toggle.button {
     color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad
+    background-color: #F3F8FE;
+    border-color: #CDE4FE;
 }
 
 .button.active, .button:active, .open .dropdown-toggle.button {
@@ -2626,7 +2626,7 @@ table .span24 {
 }
 
 .button:focus, .button:hover {
-    color: #333;
+    color: #4D8AB3;
     text-decoration: none
 }
 
@@ -2751,13 +2751,13 @@ table .span24 {
 }
 
 .button-gray{
-    color: #908F8F;
-    background-color: #F7F7F7;
-    border-color: #D3D3D3;
+    color: #005C95;
+    background-color: #F3F8FE;
+    border-color: #BBDAFE;
 }
 .button-gray.active, .button-gray:active, .button-gray:focus, .button-gray:hover, .open .dropdown-toggle.button-gray{
-    background-color: #F7F7F7;
-    border-color: #ddd
+    background-color: #DEECFD;
+    border-color: #BCDAFF;
 }
 
 .button-warning {
@@ -3252,7 +3252,7 @@ input[type=password], input[type=text], select, textarea {
     height: 20px;
     line-height: 20px;
     padding: 4px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #B9DDFF;
     border-radius: 4px;
     vertical-align: middle;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -3362,7 +3362,7 @@ input.calendar-time {
     width: 110px;
     padding-left: 10px;
     padding-right: 10px;
-    background: #F8F8F8;
+    background: #F4F9FF;
 }
 
 .form-horizontal .control-label s {
@@ -3547,7 +3547,6 @@ form h2, form h3 {
     margin: 20px 0;
     border-radius: 4px;
     height: 32px;
-    overflow: hidden;
 }
 
 .pagination li {
@@ -3689,7 +3688,7 @@ form h2, form h3 {
     margin-bottom: 0;
     padding-left: 0;
     list-style: none;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #A3C9F4;
 }
 
 .link-tabs:after, .link-tabs:before, .nav-tabs:after, .nav-tabs:before {

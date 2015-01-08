@@ -46,7 +46,7 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-payment_paymentType',
-          items: app.getData('paymentType'),
+          items: app.getStatus('paymentType'),
           change: function (itemId) {
           }
         });

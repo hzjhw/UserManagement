@@ -41,7 +41,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': 'edit',
+        'click .edit': '_edit',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
@@ -53,7 +53,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       },
       // 初始化
       initialize: function () {
-        this.model.set('certificateList', app.getData('certificateList'));
+        this.model.set('certificateList', app.getStatus('certType'));
         this._initialize({
           template: itemTemp,
           viewId: 'certificateList',
@@ -63,17 +63,6 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       // 渲染文档
       render: function () {
         this._render();
-      },
-      // 修改
-      edit: function () {
-        seajs.use(['CertificateDetail'], function (CertificateDetail) {
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('certificateDetail', new CertificateDetail({
-            el: '.jhw-main-inner'
-          }));
-        });
       },
       // 修改分类
       changeCategory: function () {
@@ -110,7 +99,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .certificate-add': 'edit',
+        'click .certificate-add': '_detail',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
@@ -127,16 +116,6 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           item: CertificateItem,
           pagination: true,
           detail: CONST.HOST + '/modules/certificate/certificate_detail.html'
-        });
-      },
-      edit: function () {
-        seajs.use(['CertificateDetail'], function (CertificateDetail) {
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('certificateDetail', new CertificateDetail({
-            el: '.jhw-main-inner'
-          }));
         });
       },
       // 简单搜索
@@ -165,12 +144,12 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
             width: 600,
             content: ctx.searchTemp({
               certificateCategoryList: app.getData('certificateCategory'),
-              loginViewList: app.getData('loginViewList'),
-              adsList: app.getData('adsList'),
+              loginViewList: app.getStatus('loginViewList'),
+              adsList: app.getStatus('adsList'),
               searchKey: ctx.searchKey,
               searchOrganize: ctx.searchOrganize,
               searchType: ctx.searchType,
-              certificateList: app.getData('certificateList')
+              certificateList:app.getStatus('certType')
             }),
             button: [
               {

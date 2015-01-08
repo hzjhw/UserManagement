@@ -88,7 +88,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',
-          items: app.getData('weightUnit')
+          items: app.getStatus('weightUnit')
         });
       },
       // 商品信息

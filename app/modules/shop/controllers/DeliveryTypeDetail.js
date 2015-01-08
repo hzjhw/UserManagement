@@ -40,7 +40,7 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
-          items: app.getData('deliveryMethod'),
+          items: app.getStatus('deliveryMethod'),
           change: function(){
           }
         });
@@ -48,13 +48,13 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
           render: '#s3',
           width: 100,
           target: '#model-firstWeightUnit',
-          items: app.getData('weightUnit')
+          items: app.getStatus('weightUnit')
         });
         BaseUtils.initSelect({
           render: '#s4',
           width: 100,
           target: '#model-continueWeightUnit',
-          items:app.getData('weightUnit')
+          items:app.getStatus('weightUnit')
         });
         this._form('#J_Form')._validate()._init({ });
         BaseUtils.initEditor({

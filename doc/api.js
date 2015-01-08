@@ -10,7 +10,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "BaseModel - 模型类",
         "BaseUtils - 工具类",
         "BaseView - 普通视图",
-        "Est - 工具类库"
+        "Est - 工具类库",
+        "HandlebarsHelper - 标签库"
     ],
     "modules": [],
     "allModules": []
