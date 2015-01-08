@@ -1,0 +1,27 @@
+<td>
+    <a href="/member/order_view.html"><span title="">
+        {{#each orderItemSet }}
+            {{#compare @index '!==' 0}}、{{/compare}}
+            {{productName}}
+            {{#compare @index '>' 2 }}{{/compare}}
+        {{/each}}
+        {{orderItemSet.productName}}</span></a>
+</td>
+<td>
+    <a href="javascript:;" class="">{{orderSn}}</a>
+</td>
+<td>
+    <span title="{{addTime}}">{{addTime}}</span>
+</td>
+<td>
+    ￥{{totalAmount}}元
+</td>
+<td>
+    <p>
+        [{{{orderStatus orderStatus}}}]
+    </p>
+
+    <p>
+        [{{{paymentStatus paymentStatus}}}]
+    </p>
+</td>

@@ -16,3 +16,9 @@ app.addRoute('order', function () {
 });
 
 app.addModule('OrderList', 'modules/member/management/order/controllers/OrderList.js');
+app.addTemplate('template/order_list', function (require, exports, module) {
+  module.exports = require('modules/member/management/order/views/order_list.html');
+});
+app.addTemplate('template/order_item', function (require, exports, module) {
+  module.exports = require('modules/member/management/order/views/order_item.html');
+});

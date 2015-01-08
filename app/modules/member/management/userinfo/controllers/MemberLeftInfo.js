@@ -27,7 +27,8 @@ define('MemberLeftInfo', ['BaseView', 'template/member_left_info'],
           url: CONST.API + '/shop/member/logout',
           async: false,
           success: function(result){
-            top.window.reload();
+            //if (top) top.window.reload();
+            window.location.href=CONST.HOST + '/modules/member/management/login/login.html'
           }
         });
       },
