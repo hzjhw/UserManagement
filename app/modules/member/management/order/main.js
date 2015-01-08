@@ -10,7 +10,11 @@ app.addRoute('order', function () {
       template: '<div class="main-inner"></div>'
     }).addView('orderList', new OrderList({
       el: '.main-inner',
-      data: app.getData('user')
+      data: app.getData('user'),
+      items: app.getData('user')['orderSet'],
+      page: 1,
+      pageSize: 15,
+      pagination: true
     }));
   });
 });
