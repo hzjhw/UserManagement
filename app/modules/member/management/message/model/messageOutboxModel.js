@@ -10,10 +10,9 @@ define('MessageModel', ['BaseModel'], function (require, exports, module) {
 
   MessageModel = BaseModel.extend({
     defaults: Est.extend({
-      messageType:'member',
-      isSaveDraftbox:'01'
+
     }, BaseModel.prototype.defaults),
-    baseUrl: CONST.API + '/shop/message/detail',
+    baseUrl: CONST.API + '/shop/message/outbox',
     BaseId: 'messageId',
     initialize: function () {
       this._initialize();

@@ -3,35 +3,36 @@
  * @namespace messageList.js
  * @author wxw on 15-1-8
  */
-define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/message_inbox'],
+define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/message_inbox_item'
+    , 'template/message_inbox_list','MessageInboxModel'],
   function (require, exports, module) {
-    var MessageInbox, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, model, item, collection,
-      BaseModel, BaseCollection;
+    var MessageInbox, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, item, collection,
+      BaseModel, messageInboxModel;
 
     BaseView = require('BaseView');
-    itemTemp = require('template/message_inbox');
+    itemTemp = require('template/message_inbox_item');
+    listTemp = require('template/message_inbox_list');
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
+    messageInboxModel = require('MessageInboxModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
 
-    model = BaseModel.extend({
-      defaults: Est.extend({}, BaseModel.prototype.defaults),
-      initialize: function () {
-        this._initialize();
-      }
-    });
-
     collection = BaseCollection.extend({
+      url: CONST.API + '/shop/message/inbox',
       initialize: function () {
         this._initialize({
-          model: model
+          model: messageInboxModel
         });
       }
     });
 
     item = BaseItem.extend({
       tagName: 'tr',
+      events: {
+        'click .delete': '_del',
+        'click .edit': 'edit'
+      },
       initialize: function () {
         this._initialize({
           template: itemTemp
@@ -39,13 +40,27 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
       },
       render: function () {
         this.render();
+      },
+      edit: function(){
+        seajs.use(['MessageSend'], function(MessageSend){
+          app.addPanel('main', {
+            el: '.main',
+            template: '<div class="main-inner"></div>'
+          }).addView('MessageSend', new MessageSend({
+            el: '.main-inner',
+            data: app.getData('user'),
+            items: app.getData('user')['orderSet'],
+            page: 1,
+            pageSize: 15,
+            pagination: true
+          }));
+        });
       }
     });
-
     MessageInbox = BaseList.extend({
       initialize: function () {
         this._initialize({
-          model: model,
+          model: messageInboxModel,
           collection: collection,
           item: item,
           template: listTemp,

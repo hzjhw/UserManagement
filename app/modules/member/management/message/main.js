@@ -52,6 +52,8 @@ app.addRoute('message_list', function () {
 
 
 app.addModule('MessageModel', 'modules/member/management/message/model/MessageModel.js');
+app.addModule('MessageInboxModel', 'modules/member/management/message/model/MessageInboxModel.js');
+app.addModule('MessageOutboxModel', 'modules/member/management/message/model/MessageOutboxModel.js');
 app.addModule('MessageSend', 'modules/member/management/message/controllers/MessageSend.js');
 app.addModule('MessageInbox', 'modules/member/management/message/controllers/MessageInbox.js');
 app.addModule('MessageOutbox', 'modules/member/management/message/controllers/MessageOutbox.js');
@@ -59,9 +61,15 @@ app.addModule('MessageOutbox', 'modules/member/management/message/controllers/Me
 app.addTemplate('template/message_send', function (require, exports, module) {
   module.exports = require('modules/member/management/message/views/message_send.html');
 });
-app.addTemplate('template/message_inbox', function (require, exports, module) {
-  module.exports = require('modules/member/management/message/views/message_inbox.html');
+app.addTemplate('template/message_inbox_item', function (require, exports, module) {
+  module.exports = require('modules/member/management/message/views/message_inbox_item.html');
 });
-app.addTemplate('template/message_outbox', function (require, exports, module) {
-  module.exports = require('modules/member/management/message/views/message_outbox.html');
+app.addTemplate('template/message_inbox_list', function (require, exports, module) {
+  module.exports = require('modules/member/management/message/views/message_inbox_list.html');
+});
+app.addTemplate('template/message_outbox_item', function (require, exports, module) {
+  module.exports = require('modules/member/management/message/views/message_outbox_item.html');
+});
+app.addTemplate('template/message_outbox_list', function (require, exports, module) {
+  module.exports = require('modules/member/management/message/views/message_outbox_list.html');
 });

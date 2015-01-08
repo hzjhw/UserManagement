@@ -1,0 +1,19 @@
+
+
+<td colspan="1">
+    <a href="javascript:;">{{title}}</a>
+</td>
+<td>
+    <span title="{{addUser}}">{{addUser}}</span>
+</td>
+<td>
+    <span title="{{recvState}}">{{#compare recvState '==' '00'}}否{{else}}是{{/compare}}</span>
+</td>
+<td>
+    <span title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
+</td>
+<td>
+    <a href="javascript:;" class="edit"><span>回复</span></a><a href="javascript:;" class="delete"><span>删除</span></a>
+</td>
+
+    <th class="messageContentTr"><span>{{content}}</span></th>
