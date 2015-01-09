@@ -3,40 +3,40 @@
  * @namespace messageList.js
  * @author Administrator on 15-1-8
  */
-define('MessageSend', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/message_send','MessageModel'],
+define('MessageSend', ['BaseDetail', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/message_send','MessageSendModel'],
   function (require, exports, module) {
-    var MessageSend, BaseList, BaseView, message_send, BaseCollection, BaseItem, model, collection, BaseModel,messageModel;
+    var MessageSend, BaseDetail, BaseView, message_send, BaseCollection, BaseItem, collection, BaseModel,MessageSendModel;
 
     BaseView = require('BaseView');
     message_send = require('template/message_send');
-    BaseList = require('BaseList');
+    BaseDetail = require('BaseDetail');
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
 
-    messageModel = require('MessageModel');
+    MessageSendModel = require('MessageSendModel');
 
     collection = BaseCollection.extend({
       initialize: function () {
         this._initialize({
-          model: messageModel
+          model: MessageSendModel
         });
       }
     });
 
-    MessageSend = BaseList.extend({
+    MessageSend = BaseDetail.extend({
       initialize: function () {
         this._initialize({
-          model: messageModel,
+          model: MessageSendModel,
           collection: collection,
           template: message_send
         });
-        this.render();
       },
       render: function () {
         this._render();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){
+            this.model.set('_data',null)
           },
           onAfterSave: function(response){
           }

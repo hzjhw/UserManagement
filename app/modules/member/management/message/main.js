@@ -54,6 +54,7 @@ app.addRoute('message_list', function () {
 app.addModule('MessageModel', 'modules/member/management/message/model/MessageModel.js');
 app.addModule('MessageInboxModel', 'modules/member/management/message/model/MessageInboxModel.js');
 app.addModule('MessageOutboxModel', 'modules/member/management/message/model/MessageOutboxModel.js');
+app.addModule('MessageSendModel', 'modules/member/management/message/model/MessageSendModel.js');
 app.addModule('MessageSend', 'modules/member/management/message/controllers/MessageSend.js');
 app.addModule('MessageInbox', 'modules/member/management/message/controllers/MessageInbox.js');
 app.addModule('MessageOutbox', 'modules/member/management/message/controllers/MessageOutbox.js');
