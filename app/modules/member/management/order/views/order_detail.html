@@ -1,0 +1,139 @@
+<div class="operationInfo">
+    <strong class="green">订单状态 [订单编号：{{orderSn}}]</strong>
+    {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid'"}}
+        {{#xif "this.paymentConfig !== null"}}
+            {{#xif "this.paymentStatus === 'unpaid'"}}
+                <form action="payment!confirm.action" method="post">
+                    <input type="hidden" name="paymentType" value="{{paymentConfig.paymentConfigType}}" />
+                    <input type="hidden" name="order.id" value="{{orderId}}" />
+                    <p class="red">您尚未完成订单支付</p>
+                    <input type="submit" class="formButton" value="立即支付" />
+                </form>
+            {{/xif}}
+            {{#xif "this.paymentStatus === 'partPayment'"}}
+                <form action="payment!confirm.action" method="post">
+                    <input type="hidden" name="paymentType" value="{{paymentConfig.paymentConfigType}}" />
+                    <input type="hidden" name="order.id" value="${order.id}" />
+                    <p class="red">您尚未完成订单支付</p>
+                    <input type="submit" class="formButton" value="支付余款" />
+                </form>
+            {{/xif}}
+            {{else}}
+                {{{paymentStatus paymentStatus}}}
+        {{/xif}}
+
+        {{{shippingStatus shippingStatus}}}
+    {{/xif}}
+</div>
+<div class="blank"></div>
+<table class="listTable">
+    <tbody>
+    <tr>
+        <th colspan="4">收货信息</th>
+    </tr>
+    <tr>
+        <td class="title">收货人：</td>
+        <td>{{shipName}}</td>
+        <td class="title">收货地区：</td>
+        <td>{{shipArea}}</td>
+    </tr>
+    <tr>
+        <td class="title">收货地址：</td>
+        <td>{{shipAddress}}</td>
+        <td class="title">邮编：</td>
+        <td>{{shipZipCode}}</td>
+    </tr>
+    <tr>
+        <td class="title">电话：</td>
+        <td>{{shipPhone}}</td>
+        <td class="title">手机：</td>
+        <td>{{shipMobile}}</td>
+    </tr>
+    <tr>
+        <td class="title">附言：</td>
+        <td colspan="3">{{memo}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="blank"></div>
+<table class="listTable">
+    <tbody>
+    <tr>
+        <th colspan="4">支付信息</th>
+    </tr>
+    <tr>
+        <td class="title">配送方式：</td>
+        <td>{{deliveryTypeName}}</td>
+        <td class="title">支付方式：</td>
+        <td>{{paymentConfigName}}</td>
+    </tr>
+    <tr>
+        <td class="title">商品重量：</td>
+        <td>{{productWeight}} {{{weightUnit productWeightUnit}}}</td>
+        <td class="title">配送费用：</td>
+        <td><span class="red">￥{{deliveryFee}}元</span></td>
+    </tr>
+    </tbody>
+</table>
+<div class="blank"></div>
+<div class="blank"></div>
+<table class="listTable">
+    <tbody>
+    <tr>
+        <th>商品名称</th>
+        <th>购买价格</th>
+        <th>购买数量</th>
+        <th>小计</th>
+    </tr>
+    {{#each orderItemSet}}
+    <tr>
+        <td>
+            <a href="{{CONST 'PIC_URL'}}/{{product.picUrl}}"
+               target="_blank">{{productName}}</a>
+        </td>
+        <td>
+            ￥{{productPrice}}
+        </td>
+        <td>
+            {{productQuantity}}
+        </td>
+        <td>
+            <span class="subtotalPrice">￥{{subtotalPrice}}</span>
+        </td>
+    </tr>
+    {{/each}}
+    <tr>
+        <td class="info" colspan="4">
+            商品总金额：<span class="red">￥{{productTotalPrice}}元</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            配送费用：<span class="red">￥{{deliveryFee}}元</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            支付手续费：<span class="red">￥{{paymentFee}}元</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            订单总金额：<span class="red">￥{{totalAmount}}元</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="blank"></div>
+<table class="listTable">
+    <tbody>
+    <tr>
+        <th colspan="5">订单日志</th>
+    </tr>
+    <tr>
+        <th>序号</th>
+        <th>日志类型</th>
+        <th>日志信息</th>
+        <th>操作时间</th>
+        <th>操作人</th>
+    </tr>
+    {{#each orderLogSet}}
+    <tr>
+        <td>{{plus @index 1}}</td>
+        <td>{{{orderLogType orderLogType}}}</td>
+        <td>{{info}}</td>
+        <td>{{addTime}}</td>
+        <td>{{operator}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
+<div class="blank"></div>

@@ -21,14 +21,14 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 't
       },
       template: HandlebarsHelper.compile(template),
       initialize: function () {
-        debug('9.Pagination.initialize');
+        debug('7.Pagination.initialize');
         if (!this.model.get('page')) this.model.set('page', 1);
         if (!this.model.get('count')) this.model.set('count', 0);
         if (!this.model.get('pageSize')) this.model.set('pageSize', 16);
         this.render();
       },
       render: function () {
-        debug('10.Pagination.render');
+        debug('8.Pagination.render');
         var ctx = this;
 
         this.model.set('totalPage', Est.getMaxPage(this.model.get('count'), this.model.get('pageSize')));

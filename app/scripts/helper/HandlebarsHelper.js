@@ -176,7 +176,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
       var result = '';
       Est.each(val, function (item) {
         if (item.value === str) {
-          result = Est.isEmpty(item.html) ? item.value : item.html;
+          result = Est.isEmpty(item.html) ? item.text : item.html;
           return false;
         }
       });

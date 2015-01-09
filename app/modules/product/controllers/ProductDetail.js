@@ -168,9 +168,11 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             // 处理特殊字段
-            this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
-              return item.get('name');
-            }).join(','));
+            if (ctx.tagInstance){
+              this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
+                return item.get('name');
+              }).join(','));
+            }
             var photos = app.getView('productPicturePick').getItems();
             if (photos.length > 0) {
               this.model.set('photo', photos[0]['serverPath']);

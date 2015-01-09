@@ -3,11 +3,11 @@
  * @namespace OrderList
  * @author yongjin<zjut_wyj@163.com> 2015/1/8
  */
-define('OrderList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
+define('OrderList', ['BaseList', 'BaseView','backbone', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
     'template/order_item'],
   function (require, exports, module) {
     var OrderList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, model, item, collection,
-      BaseModel, BaseCollection;
+      BaseModel, BaseCollection, Backbone;
 
     BaseView = require('BaseView');
     itemTemp = require('template/order_item');
@@ -16,6 +16,7 @@ define('OrderList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Base
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
+    Backbone = require('backbone');
 
     model = BaseModel.extend({
       defaults: Est.extend({}, BaseModel.prototype.defaults),
@@ -34,10 +35,17 @@ define('OrderList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Base
 
     item = BaseItem.extend({
       tagName: 'tr',
+      events: {
+        'click .order-a': 'detail'
+      },
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
+      },
+      detail: function () {
+        app.addData('curOrderModel', Est.cloneDeep(this.model.attributes));
+        Backbone.history.navigate('#/order/detail', true);
       },
       render: function () {
         this.render();
