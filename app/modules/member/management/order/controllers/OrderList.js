@@ -3,7 +3,7 @@
  * @namespace OrderList
  * @author yongjin<zjut_wyj@163.com> 2015/1/8
  */
-define('OrderList', ['BaseList', 'BaseView','backbone', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
+define('OrderList', ['BaseList', 'BaseView', 'backbone', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
     'template/order_item'],
   function (require, exports, module) {
     var OrderList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, model, item, collection,
@@ -26,10 +26,10 @@ define('OrderList', ['BaseList', 'BaseView','backbone', 'BaseCollection', 'BaseI
     });
 
     collection = BaseCollection.extend({
+      url: CONST.API + '/shop/order/list',
+      model: model,
       initialize: function () {
-        this._initialize({
-          model: model
-        });
+        this._initialize();
       }
     });
 

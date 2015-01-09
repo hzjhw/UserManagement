@@ -26,7 +26,7 @@ git操作历史
 - http://git-scm.com/book/zh/v1
 - 抓取并合并 ：git fetch origin master:jhw -> git merge jhw
 - 提交 ：git add . -> git commit -m "wyj" -> git push origin
-
+- 更新之前必须先stash自己的内容， 为了减少git逻辑错误
 - 若抓取合并失败， 先stash自己的内容[命令git stash]， 然后执行[git merge jhw], 然后再unstash自己的[命令git stash pop]
 - 清空stash[git stash clear]
 

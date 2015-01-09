@@ -79,6 +79,7 @@ define('MemberLeftNav', ['backbone', 'BaseList', 'BaseModel', 'BaseItem', 'BaseC
             ]},
             {name: '个人资料', url: '#/userinfo', className: 'profile', isroot: true, children: [
               {name: '个人信息', url: '#/userinfo', className: '', children: []},
+              {name: '修改密码', url: '#/password', className: '', children: []},
               {name: '收货地址', url: '#/address', className: '', children: []}
             ]},
             {name: '我的预存款', url: '#/deposit', className: 'deposit', isroot: true, children: [

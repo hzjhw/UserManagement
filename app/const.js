@@ -37,7 +37,7 @@ app.addStatus('adsList', [
   {text: '否', value: '0'}
 ]);
 // 重量单位
-app.addStatus('weightUnit',  [
+app.addStatus('weightUnit', [
   {text: '克', value: 'g'},
   {text: '千克', value: 'kg'},
   {text: '吨', value: 't'}
@@ -53,6 +53,12 @@ app.addStatus('paymentType', [
   { text: '在线充值', value: 'recharge' },
   { text: '线下支付', value: 'offline' },
   { text: '在线支付', value: 'online' }
+]);
+// 支付配置类型
+app.addStatus('paymentConfigType', [
+  {text: '预存款', value: 'deposit'},
+  {text: '线下支付', value: 'offline'},
+  {text: '支付宝', value: 'alipay'}
 ]);
 // 证书类型
 app.addStatus('certType', [

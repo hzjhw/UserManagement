@@ -1,6 +1,7 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "Application - 应用程序管理器",
         "BaseCache - 数据缓存",
         "BaseCollection - 集合类",
         "BaseDetail - 详细页",

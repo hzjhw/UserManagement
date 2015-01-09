@@ -31,6 +31,7 @@ app.addRoute('index', function () {
         items: app.getData('user')['orderSet'],
         max: 5
       }));
+      app.getView('breadcrumb').reload('会员中心首页');
     });
 });
 

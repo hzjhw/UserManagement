@@ -12,7 +12,7 @@ app.addRoute('order', function () {
       el: '.main-inner',
       viewId: 'orderList',
       data: app.getData('user'),
-      items: app.getData('user')['orderSet'],
+      /*items: app.getData('user')['orderSet'],*/
       page: parseInt(Est.cookie('orderList_page')) || 1,
       pageSize: parseInt(Est.cookie('orderList_pageSize')) || 10,
       pagination: true
