@@ -43,7 +43,8 @@ define('MemberLeftNav', ['backbone', 'BaseList', 'BaseModel', 'BaseItem', 'BaseC
           template: itemTemp
         });
       },
-      toPage: function () {
+      toPage: function (e) {
+        e.stopImmediatePropagation();
         this.$el.removeClass('hover');
         Backbone.history.navigate(this.model.get('url'), true);
       },

@@ -42,8 +42,20 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
         this.render();
       },
       edit: function(){
-        app.addData('curMessageModel',this.model.get('id'));
-        Backbone.history.navigate('#/message/detail',true);
+        var ctx=this;
+          seajs.use(['jquery', 'MessageSend'], function (jquery, MessageSend) {
+            app.addPanel('main', {
+              el: '#main',
+              template: '<div class="main-inner"></div>'
+            }).addView('messageSend', new MessageSend({
+              el: '.main-inner',
+              id: ctx.model.get('messageId'),
+              messageType: 'detail',
+              data: {
+                messageType: 'detail'
+              }
+            }));
+          });
       }
     });
     MessageInbox = BaseList.extend({

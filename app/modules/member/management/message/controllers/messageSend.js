@@ -3,34 +3,25 @@
  * @namespace messageList.js
  * @author Administrator on 15-1-8
  */
-define('MessageSend', ['BaseDetail', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/message_send','MessageSendModel'],
+define('MessageSend', ['BaseDetail', 'template/message_send','MessageSendModel'],
   function (require, exports, module) {
-    var MessageSend, BaseDetail, BaseView, message_send, BaseCollection, BaseItem, collection, BaseModel,MessageSendModel;
+    var MessageSend, BaseDetail, message_send,MessageSendModel;
 
-    BaseView = require('BaseView');
     message_send = require('template/message_send');
     BaseDetail = require('BaseDetail');
-    BaseModel = require('BaseModel');
-    BaseCollection = require('BaseCollection');
-    BaseItem = require('BaseItem');
-
     MessageSendModel = require('MessageSendModel');
 
-    collection = BaseCollection.extend({
-      initialize: function () {
-        this._initialize({
-          model: MessageSendModel
-        });
-      }
-    });
 
     MessageSend = BaseDetail.extend({
+      even:{
+      'click #model1-type':'typeclick'
+      },
       initialize: function () {
         this._initialize({
           model: MessageSendModel,
-          collection: collection,
           template: message_send
         });
+
       },
       render: function () {
         this._render();

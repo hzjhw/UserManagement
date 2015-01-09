@@ -11,11 +11,7 @@ app.addRoute('message_send', function () {
       template: '<div class="main-inner"></div>'
     }).addView('messageSend', new MessageSend({
       el: '.main-inner',
-      data: app.getData('user'),
-      items: app.getData('user')['orderSet'],
-      page: 1,
-      pageSize: 15,
-      pagination: true
+      data: app.getData('user')
     }));
   });
 });

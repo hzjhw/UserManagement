@@ -10,10 +10,16 @@ define('MessageSendModel', ['BaseModel'], function (require, exports, module) {
 
   MessageSendModel = BaseModel.extend({
     defaults: Est.extend({
-      messageType:'member',
+      type:'user',
       isSaveDraftbox:'01'
     }, BaseModel.prototype.defaults),
-    baseUrl: CONST.API + '/shop/message/send',
+    baseUrl: function(){
+      var end ='send';
+      if(this.get('sendType') === 'detail'){
+        end = 'detail';
+      }
+      return CONST.API + '/shop/message/'+end;
+    },
     BaseId: 'messageId',
     initialize: function () {
       this._initialize();

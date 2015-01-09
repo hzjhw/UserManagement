@@ -4,7 +4,7 @@
     <div class="control-group">
         <label class="control-label">发送给:</label>
         <div class="controls">
-            {{{radio name='messageType' value=messageType option='{"其它会员": "member", "管理员": "admin"}' }}}
+            {{{radio name='type' value=type option='{"其它会员": "user", "管理员": "admin"}' }}}
         </div>
     </div>
     <div class="control-group">
@@ -24,9 +24,7 @@
     <div class="control-group" style="height: 80px">
         <label class="control-label"><s>*</s>内容:</label>
         <div class="controls">
-            <textarea name="content" id="model-content" class="input-large" rows="5" cols="50" style="text-indent: 0;"
-                      data-rules="{required : true}" data-tip='{"text":"请输入内容"}'>
-            </textarea>
+            <textarea name="content" id="model-content" class="input-large" rows="5" cols="50" data-rules="{required : true}" data-tip='{"text":"请输入内容"}'></textarea>
         </div>
     </div>
     <div class="control-group">
@@ -35,9 +33,20 @@
             {{{radio name='isSaveDraftbox' value=isSaveDraftbox option='{"立即发送": "01", "保存到草稿箱": "00"}' }}}
         </div>
     </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>检证码</label>
+        <div class="controls">
+            <input id="model-randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入检证码"}'>
+            <img id="verifyPic" name="verifyPic" width="56" height="25" class="validete-num refreshCode" src="/veriImg" >
+            <a class="refreshCode" href="javascript:;">换一张？</a>
+        </div>
+    </div>
     <div class="row actions-bar" >
         <div class="form-actions span13 offset3">
             <button id="submit" type="button" class="submitButton button-primary">提 交</button>
+            <button id="reset" type="reset" class="submitButton" style="margin-left:20px">重置</button>
         </div>
     </div>
 </form>
