@@ -21,6 +21,7 @@
         id="test" data-page="55"><a href="javascript:;">55</a></li>-->
     <li class="page-per-page bui-bar-item bui-inline-block">
         &nbsp;&nbsp;每页显示&nbsp;&nbsp;<select class="per_page_show" value="{{pageSize}}">
+        <option value="5" {{#compare pageSize '==' 5}}selected="selected"{{/compare}}>5</option>
         <option value="10" {{#compare pageSize '==' 10}}selected="selected"{{/compare}}>10</option>
         <option value="16" {{#compare pageSize '==' 16}}selected="selected"{{/compare}}>16</option>
         <option value="18" {{#compare pageSize '==' 18}}selected="selected"{{/compare}}>18</option>

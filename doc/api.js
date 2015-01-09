@@ -3,7 +3,6 @@ YUI.add("yuidoc-meta", function(Y) {
     "classes": [
         "BaseCache - 数据缓存",
         "BaseCollection - 集合类",
-        "BaseComposite - 树集合类",
         "BaseDetail - 详细页",
         "BaseItem - 集合中的单个视图",
         "BaseList - 列表视图",

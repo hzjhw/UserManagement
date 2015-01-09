@@ -44,6 +44,8 @@ define('Pagination', ['jquery', 'underscore', 'backbone', 'HandlebarsHelper', 't
         return this;
       },
       changePerPage: function(){
+        // 默认从第一页开始
+        this.model.set('page', 1);
         this.model.set('pageSize', this.$select.val());
         this.model.trigger('reloadList', this.model);
       },

@@ -3,15 +3,15 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils', 'BaseComposite',
+define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils',
     'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item',
-    'BaseService'],
+    'BaseService', 'BaseCollection'],
   function (require, exports, module) {
     var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils, CategoryModel,
-      BaseComposite, BaseItem, BaseList, BaseService, HandlebarsHelper, listTemp, itemTemp;
+      BaseItem, BaseList, BaseService, HandlebarsHelper, BaseCollection, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
-    BaseComposite = require('BaseComposite');
+    BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -21,7 +21,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
     transferTemp = require('template/product_transfer');
     BaseService = require('BaseService');
 
-    ProductCategoryCollection = BaseComposite.extend({
+    ProductCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/product',
       model: CategoryModel,
       initialize: function () {

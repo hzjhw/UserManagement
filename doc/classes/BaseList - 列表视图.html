@@ -45,8 +45,6 @@
             
                 <li><a href="../classes/BaseCollection - 集合类.html">BaseCollection - 集合类</a></li>
             
-                <li><a href="../classes/BaseComposite - 树集合类.html">BaseComposite - 树集合类</a></li>
-            
                 <li><a href="../classes/BaseDetail - 详细页.html">BaseDetail - 详细页</a></li>
             
                 <li><a href="../classes/BaseItem - 集合中的单个视图.html">BaseItem - 集合中的单个视图</a></li>
@@ -469,16 +467,16 @@
    model: 模型类,
    collection: 集合,
    item: this.options.items || [], //单视图
+   // 以下为可选
    template: 字符串模板,
    render: 插入列表的元素选择符, 若为空则默认插入到$el中
-   // 以下为可选
    items: [](可选， 当无需url请求时), items可为function形式传递;  若需要构建树， 则传入前的items列表必须为手动构建好的树
    data: {}, // 附加的数据 此数据在BaseList BaseItem视图中可以获取  其中BaseList中为{{name}} ; BaseItem中为{{_options.data.name}} BaseCollecton为this.options.data BaseModel为this.model.get(&#39;_options&#39;).data
    checkAppend: false, // 鼠标点击checkbox， checkbox是否追加
    enterRender: (可选) 执行回车后的按钮点击的元素选择符 如 #submit .btn-search
    pagination: true, // 是否显示分页
-   page: 1, //设置起始页
-   pageSize: 16, // 设置每页显示个数
+   page: parseInt(Est.cookie(&#39;orderList_page&#39;)) || 1, //设置起始页 所有的分页数据都会保存到cookie中， 以viewId + &#39;_page&#39;格式存储， 注意cookie取的是字符串， 要转化成int
+   pageSize: parseInt(Est.cookie(&#39;orderList_pageSize&#39;)) || 16, // 设置每页显示个数
    max: 5, // 限制显示个数
    detail: 添加页面url地址
    filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
@@ -609,7 +607,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l472"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:472</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l487"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:487</code></a>
         
         </p>
 
@@ -766,7 +764,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l839"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:839</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l854"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:854</code></a>
         
         </p>
 
@@ -857,7 +855,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l865"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:865</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l880"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:880</code></a>
         
         </p>
 
@@ -948,7 +946,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l402"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:402</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l416"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:416</code></a>
         
         </p>
 
@@ -1031,7 +1029,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l686"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:686</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l701"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:701</code></a>
         
         </p>
 
@@ -1169,7 +1167,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l521"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:521</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l536"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:536</code></a>
         
         </p>
 
@@ -1321,7 +1319,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l390"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:390</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l404"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:404</code></a>
         
         </p>
 
@@ -1558,7 +1556,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l418"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:418</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l432"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:432</code></a>
         
         </p>
 
@@ -1648,7 +1646,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l429"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:429</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l443"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:443</code></a>
         
         </p>
 
@@ -1728,7 +1726,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l372"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:372</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l385"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:385</code></a>
         
         </p>
 
@@ -1795,7 +1793,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l673"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:673</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l688"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:688</code></a>
         
         </p>
 
@@ -1875,7 +1873,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l660"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:660</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l675"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:675</code></a>
         
         </p>
 
@@ -2030,7 +2028,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l564"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:564</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l579"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:579</code></a>
         
         </p>
 
@@ -2128,7 +2126,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l440"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:440</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l454"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:454</code></a>
         
         </p>
 
@@ -2196,7 +2194,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l820"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:820</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l835"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:835</code></a>
         
         </p>
 
@@ -2501,7 +2499,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l776"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:776</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l791"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:791</code></a>
         
         </p>
 
@@ -2589,7 +2587,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l728"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:728</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l743"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:743</code></a>
         
         </p>
 
@@ -2694,7 +2692,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l484"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:484</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l499"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:499</code></a>
         
         </p>
 
@@ -2826,7 +2824,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l893"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:893</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l908"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:908</code></a>
         
         </p>
 

@@ -7,7 +7,7 @@
                     <input type="hidden" name="paymentType" value="{{paymentConfig.paymentConfigType}}" />
                     <input type="hidden" name="order.id" value="{{orderId}}" />
                     <p class="red">您尚未完成订单支付</p>
-                    <input type="submit" class="formButton" value="立即支付" />
+                    <input type="button" class="formButton btn-pay" value="立即支付" />
                 </form>
             {{/xif}}
             {{#xif "this.paymentStatus === 'partPayment'"}}

@@ -1,0 +1,24 @@
+<form action="" method="post">
+    <input type="hidden" name="paymentType" value="{{paymentType}}"/>
+    <input type="hidden" name="amountPayable" value="{{amountPayable}}"/>
+    <input type="hidden" name="paymentConfig.id" value="{{paymentConfig.paymentId}}"/>
+    <input type="hidden" name="order.id" value="{{orderId}}"/>
+
+    <p>
+        尊敬的<strong class="green">{{username}}</strong>，
+        您选择的支付方式为：<strong>{{paymentConfig.name}}</strong>
+        <a href="#/order/detail">[查看订单详情]</a>
+    </p>
+    <p>
+        支付总金额：<strong class="red">￥{{totalAmount}}元</strong>
+        {{#xif "this.paymentConfig.paymentFeeType === 'scale' && this.paymentConfig.paymentFee !== 0"}}
+            [含支付手续费费率：{{paymentConfig.paymentFee}}%]
+            {{#xif "this.paymentConfig.paymentFeeType === 'fixed' && this.paymentConfig.paymentFee !== 0"}}
+                [含支付手续费：{{paymentConfig.paymentFee}}]
+            {{/xif}}
+        {{/xif}}
+    </p>
+    <div class="buttonArea">
+        <input type="submit" class="formButton" value="确认支付"/>
+    </div>
+</form>
