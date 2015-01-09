@@ -1,0 +1,43 @@
+
+<form id="J_Form" action="" class="form-horizontal ">
+
+    <div class="control-group">
+        <label class="control-label">发送给:</label>
+        <div class="controls">
+            {{{radio name='messageType' value=messageType option='{"其它会员": "member", "管理员": "admin"}' }}}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>用户名:</label>
+        <div class="controls">
+            <input id="model-username" name="username" value="{{username}}" type="text" class="input-large"
+                   data-rules="{required : true}" data-tip='{"text":"请输入用户名"}'>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><s>*</s>标题:</label>
+        <div class="controls">
+            <input id="model-title" name="title" value="{{title}}" type="text" class="input-large"
+                   data-rules="{required : true}" data-tip='{"text":"请输入标题"}'>
+        </div>
+    </div>
+    <div class="control-group" style="height: 80px">
+        <label class="control-label"><s>*</s>内容:</label>
+        <div class="controls">
+            <textarea name="content" id="model-content" class="input-large" rows="5" cols="50" style="text-indent: 0;"
+                      data-rules="{required : true}" data-tip='{"text":"请输入内容"}'>
+            </textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"> 选项:</label>
+        <div class="controls">
+            {{{radio name='isSaveDraftbox' value=isSaveDraftbox option='{"立即发送": "01", "保存到草稿箱": "00"}' }}}
+        </div>
+    </div>
+    <div class="row actions-bar" >
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="submitButton button-primary">提 交</button>
+        </div>
+    </div>
+</form>
