@@ -23,7 +23,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
       el: '#jhw-detail',
       events: {
         'click #product-reset': 'reset',
-        'click .btn-back': 'back'
+        'click .btn-back': 'back',
+        'click .setAttribute': 'setAttribute'
       },
       initialize: function () {
         debug('2.ProductDetail.initialize');
@@ -112,6 +113,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                 }
               }
             });
+            ctx.$setAttribute = ctx.$('.setAttribute');
             // 属性
             BaseUtils.initSelect({
               render: '#attCate',
@@ -119,6 +121,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               items: list,
               change: function (categoryId) {
                 ctx.showAttributes(categoryId);
+                ctx.$setAttribute.attr('href', '#/attributes?id=' + categoryId);
                 setTimeout(function () {
                   BaseUtils.resetIframe();
                 }, 500);

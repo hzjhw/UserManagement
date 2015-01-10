@@ -15,10 +15,10 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * @author wyj 2014-03-27
    * @example
    *        {{#pagination page totalPage}}
-              <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum
-              {{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false">
-              <a href="javascript:;">{{this}}</a></li>
-            {{/pagination}}
+   <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum
+   {{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false">
+   <a href="javascript:;">{{this}}</a></li>
+   {{/pagination}}
    */
   Handlebars.registerHelper('pagination', function (page, totalPage, block) {
     var accum = '';
@@ -174,6 +174,9 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Est.each(app.getAllStatus(), function (val, key) {
     Handlebars.registerHelper(key, function (str, options) {
       var result = '';
+      if (Est.isEmpty(options)) {
+        return this[key];
+      }
       Est.each(val, function (item) {
         if (item.value === str) {
           result = Est.isEmpty(item.html) ? item.text : item.html;

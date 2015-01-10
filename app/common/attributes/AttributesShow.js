@@ -22,10 +22,11 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
     });
 
     collection = BaseCollection.extend({
-      url: function () {
-        return this.options.data.url ||
-          CONST.API + '/attr/list/' + this.options.data.categoryId || 'all';
-      },
+      url: CONST.API + '/attr/list',
+      /* url: function () {
+       var categoryId = this._itemId ? this._itemId : 'all';
+       return this.options.data.url || CONST.API + '/attr/list/' + categoryId;
+       },*/
       model: model,
       initialize: function () {
         this._initialize();
@@ -72,9 +73,8 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             item: item,
             model: model,
             collection: collection,
-            data: {
-              url: null,
-              categoryId: null
+            beforeLoad: function () {
+              this.collection.url = null;
             },
             afterLoad: function () {
               this.itemRender(options, this);
@@ -89,8 +89,10 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             item: item,
             model: model,
             data: {
-              categoryId: this.options && this.options.categoryId,
               url: this.options && this.options.url
+            },
+            beforeLoad: function () {
+              this.collection._setItemId(this.options.categoryId);
             },
             afterLoad: function () {
               this.after();
@@ -105,10 +107,10 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
         Est.each(options.items, function (item) {
           var fields = item.productAttribute;
           /*if (/^\"\[.*\"\]$/.test(item.element)){
-            fields.element = item.element.substring(2, item.element.length - 2);
-          } else{
-            fields.element = item.element;
-          }*/
+           fields.element = item.element.substring(2, item.element.length - 2);
+           } else{
+           fields.element = item.element;
+           }*/
           fields.element = item.element.replace(/[\"\[\]]/g, '');
           context.collection.push(new model(fields));
         }, this);
@@ -126,7 +128,10 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
       reload: function (categoryId) {
         this._load({
           beforeLoad: function (collection) {
-            collection.options.categoryId = categoryId;
+            if (categoryId !== '/'){
+              this.collection.url = CONST.API + '/attr/list';
+              collection._setItemId(categoryId);
+            }
           },
           afterLoad: function (result) {
             this.after();

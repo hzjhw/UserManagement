@@ -45,7 +45,6 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
         BaseUtils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
-          itemId: 'value',
           items: app.getStatus('attributeType')
         }).then(function (select) {
           if (select === 'select' || select === 'checkbox') {

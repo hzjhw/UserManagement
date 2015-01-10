@@ -73,6 +73,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       edit: function(){
         var ctx = this;
+        if (this.model.get('_isSearch')){
+          // 如果是搜索结果列表时， 使用dialog形式
+          this._edit();
+          return;
+        }
         seajs.use(['ProductDetail'], function(ProductDetail){
           app.addPanel('main', {
             el: '#jhw-main',
