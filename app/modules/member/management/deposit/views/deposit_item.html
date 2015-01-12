@@ -1,0 +1,15 @@
+<td  style="width: 100px;">
+   <span title="{{depositType}}">{{depositType}}</span>
+</td>
+<td>
+    <span title="{{debit}}">{{#compare debit '==' ''}}0{{else}}{{debit}}{{/compare}}</span>
+</td>
+<td>
+    <span title="{{payment}}">{{payment}}</span>
+</td>
+<td>
+    <span title="{{balance}}">{{balance}}</span>
+</td>
+<td>
+    <span title="{{updateTime}}">{{dateFormat updateTime 'yyyy-MM-dd hh:mm:ss'}}</span>
+</td>

@@ -28,9 +28,10 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
     });
 
     item = BaseItem.extend({
-      tagName: 'tr',
+      tagName: 'div',
       events: {
-        'click .delete': '_del'
+        'click .delete': '_del',
+        'click .message_tr' :'message_tr'
       },
       initialize: function () {
         this._initialize({
@@ -39,6 +40,9 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
       },
       render: function () {
         this.render();
+      },
+      message_tr :function(){
+          $(this).next('.message_tr2').toggle();
       }
     });
 
