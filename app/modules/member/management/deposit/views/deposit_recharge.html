@@ -1,0 +1,40 @@
+<table class="inputTable listTable" >
+    <tr>
+        <th>
+            充值金额:
+        </th>
+        <td>
+            <input type="text" name="totalAmount" class="formText {required: true, positive: true, messages: {required: '请填写充值金额！', positive: '充值金额必须大于0！'}}" />
+            <label class="requireField">*</label>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            支付方式:
+        </th>
+        <td>
+            <table class="paymentConfigTable">
+                <tr>
+                    <td class="nameTd">
+                        <label>
+                            <input type="radio" name="name" class="{required: true, messages: {required: '请选择支付方式！'}}" value="402881862b9f2bff012b9f2d616a0001" />
+                            {{name}}
+                        </label>
+                    </td>
+                    <td>
+                        {{description}}55555555555555555555555555555555555555555555555
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            &nbsp;
+        </th>
+        <td>
+            <input type="submit" class="submitButton" value="立刻充值" hidefocus="true" />
+        </td>
+    </tr>
+</table>

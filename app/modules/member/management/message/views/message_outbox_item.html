@@ -1,10 +1,6 @@
-<tr class="message_tr">
-    <td colspan="5">
-        <a href="javascript:;">{{title}}</a>  <span title="{{addUser}}">{{sendUsername}}</span>   <span title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
-        <a href="javascript:;"  class="delete"><span>删除</span></a>
-
-    </td></tr><tr class="message_tr2">
-    <td  colspan="5" >
-        <span>{{content}}</span>
-    </td>
-</tr>
+<div class="member_div">
+    <div class="member_div_in"><a href="javascript:;">{{title}}</a></div>  <div title="{{addUser}}">{{sendUsername}}</div>
+    <div title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</div>
+    <div><a href="javascript:;"  class="delete">删除</a></div>
+</div>
+<div class="member-display" style="{{#if isClicked}}display:block;{{else}}display:none;{{/if}}"> {{content}}</div>

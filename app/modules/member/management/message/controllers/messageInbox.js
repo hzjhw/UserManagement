@@ -31,7 +31,8 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
       tagName: 'tr',
       events: {
         'click .delete': '_del',
-        'click .edit': 'edit'
+        'click .edit': 'edit',
+        'click .member_div_in' : 'display'
       },
       initialize: function () {
         this._initialize({
@@ -39,7 +40,7 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
         });
       },
       render: function () {
-        this.render();
+        this._render();
       },
       edit: function(){
         var ctx=this;
@@ -56,6 +57,10 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
               }
             }));
           });
+      },
+      display :function(e){
+        e.stopImmediatePropagation();
+        this.model.set('isClicked', !this.model.get('isClicked'));
       }
     });
     MessageInbox = BaseList.extend({

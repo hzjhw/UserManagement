@@ -1,17 +1,16 @@
 /**
- * @description DepositList
- * @namespace DepositList
- * @author wxw<zjut_wyj@163.com> 2015/1/12
+ * @description DepositRecharge
+ * @namespace DepositRecharge
+ * @author wxw on 15-1-17
  */
-define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/deposit_item'
+define('DepositRecharge', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/deposit_recharge'
     , 'template/deposit_list','DepositModel'],
   function (require, exports, module) {
-    var DepositList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, item, collection,
+    var DepositRecharge, BaseList, BaseView, itemTemp,BaseCollection, BaseItem, item, collection,
       BaseModel, DepositModel;
 
     BaseView = require('BaseView');
-    itemTemp = require('template/deposit_item');
-    listTemp = require('template/deposit_list');
+    itemTemp = require('template/deposit_recharge');
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
     DepositModel = require('DepositModel');
@@ -19,7 +18,7 @@ define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Ba
     BaseItem = require('BaseItem');
 
     collection = BaseCollection.extend({
-      url: CONST.API + '/shop/deposit/list',
+      url: CONST.API + '/shop/deposit/recharge',
       initialize: function () {
         this._initialize({
           model: DepositModel
@@ -38,13 +37,13 @@ define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Ba
         this._render();
       }
     });
-    DepositList = BaseList.extend({
+    DepositRecharge = BaseList.extend({
       initialize: function () {
         this._initialize({
           model: DepositModel,
           collection: collection,
           item: item,
-          template: listTemp,
+          template: itemTemp,
           render: '.order-tbody'
         });
         this.render();
@@ -54,5 +53,5 @@ define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Ba
       }
     });
 
-    module.exports = DepositList;
+    module.exports = DepositRecharge;
   });

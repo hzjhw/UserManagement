@@ -10,7 +10,7 @@ define('MessageModel', ['BaseModel'], function (require, exports, module) {
 
   MessageModel = BaseModel.extend({
     defaults: Est.extend({
-
+      isClicked: false
     }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/shop/message/inbox',
     BaseId: 'messageId',

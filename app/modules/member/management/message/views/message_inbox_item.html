@@ -1,18 +1,7 @@
-<td colspan="1">
-    <a href="javascript:;">{{title}}</a>
-</td>
-<td>
-    <span title="{{addUser}}">{{sendUsername}}</span>
-</td>
-<td>
-    <span title="{{recvState}}">{{#compare recvState '==' '00'}}否{{else}}是{{/compare}}</span>
-</td>
-<td>
-    <span title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
-</td>
-<td>
-    <a href="javascript:;" class="edit"><span>回复</span></a><a href="javascript:;" class="delete"><span>删除</span></a>
-</td>
-<th class="messageContentTr">
-<td colspan="5"><span>{{content}}</span></td>
-</th>
+<div class="member_div">
+    <div class="member_div_in"><a href="javascript:;">{{title}}</a></div>  <div title="{{addUser}}">{{sendUsername}}</div>
+    <div title="{{recvState}}">{{#compare recvState '==' '00'}}否{{else}}是{{/compare}}</div>
+    <div title="{{addTime}}">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</div>
+    <div><a href="javascript:;" class="edit">回复</a><a href="javascript:;"  class="delete">删除</a></div>
+</div>
+<div class="member-display" style="{{#if isClicked}}display:block;{{else}}display:none;{{/if}}"> {{content}}</div>

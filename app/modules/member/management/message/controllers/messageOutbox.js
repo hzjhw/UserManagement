@@ -31,7 +31,7 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
       tagName: 'div',
       events: {
         'click .delete': '_del',
-        'click .message_tr' :'message_tr'
+        'click .member_div_in' : 'display'
       },
       initialize: function () {
         this._initialize({
@@ -39,10 +39,11 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
         });
       },
       render: function () {
-        this.render();
+        this._render();
       },
-      message_tr :function(){
-          $(this).next('.message_tr2').toggle();
+      display :function(e){
+        e.stopImmediatePropagation();
+        this.model.set('isClicked', !this.model.get('isClicked'));
       }
     });
 

@@ -2,10 +2,10 @@
    <span title="{{depositType}}">{{depositType}}</span>
 </td>
 <td>
-    <span title="{{debit}}">{{#compare debit '==' ''}}0{{else}}{{debit}}{{/compare}}</span>
+    <span title="{{debit}}">{{#unless debit}}0{{else}}{{debit}}{{/unless}}</span>
 </td>
 <td>
-    <span title="{{payment}}">{{payment}}</span>
+    <span title="{{payment}}">{{#unless payment}}0{{else}}{{payment}}{{/unless}}</span>
 </td>
 <td>
     <span title="{{balance}}">{{balance}}</span>
