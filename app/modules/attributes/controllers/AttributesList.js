@@ -45,8 +45,7 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       initialize: function () {
         this._initialize({
           template: itemTemp,
-          itemId: 'attributesList',
-          detail: CONST.HOST + '/modules/attributes/attributes_detail.html'
+          itemId: 'attributesList'
         });
       },
       render: function () {
@@ -95,7 +94,8 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
           item: AttributesItem,
           model: AttributesModel,
           collection: AttributesCollection,
-          pagination: true
+          pagination: true,
+          detail: CONST.HOST + '/modules/attributes/attributes_detail.html'
         });
       },
       render: function () {

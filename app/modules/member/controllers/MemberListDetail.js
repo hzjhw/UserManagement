@@ -55,7 +55,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         // 表单初始化
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){
-            ctx.model.set('attributeOptionList',ctx.attribute.getItems().join(","))
+            //ctx.model.set('attributeOptionList',ctx.attribute.getItems().join(","))
           },
           onAfterSave: function(response){
           }

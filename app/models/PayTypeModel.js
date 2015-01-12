@@ -11,6 +11,7 @@ define('PayTypeModel', ['BaseModel'],
 
     PayTypeModel = BaseModel.extend({
       defaults: Est.extend({
+        paymentConfigType: 'offline',
         paymentType: 'offline',
         paymentFeeType: 'scale'
       }, BaseModel.prototype.defaults),

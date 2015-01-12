@@ -48,16 +48,8 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         this._render();
       },
       edit: function () {
-        var ctx = this;
-        seajs.use(['OrderDetail'], function (OrderDetail) {
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('orderDetail', new OrderDetail({
-            el: '.jhw-main-inner',
-            id: ctx.model.get('id'),
-            page: ctx._getPage()
-          }));
+        this._edit({
+          instance: 'OrderDetail'
         });
       },
       viewOrder: function () {
@@ -154,7 +146,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
                 {key: 'shipArea', value: ctx.shipArea},
                 {key: 'paymentStatus', value: ctx.paymentStatus, match: new RegExp('^' + ctx.paymentStatus + '$')},
                 {key: 'shippingStatus', value: ctx.shippingStatus, match: new RegExp('^' + ctx.shippingStatus + '$')},
-                {key: 'orderStatus', value: ctx.orderStatus, match: new RegExp('^' + ctx.orderStatus+ '$')}
+                {key: 'orderStatus', value: ctx.orderStatus, match: new RegExp('^' + ctx.orderStatus + '$')}
               ]
             });
             this.close().remove();

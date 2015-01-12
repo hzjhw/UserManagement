@@ -70,8 +70,9 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
               item: item,
               model: model,
               collection: collection,
+              items: options.items,
               afterLoad: function () {
-                this.itemRender(options, context);
+                this.itemRender(options);
                 this.after();
               }
             }
@@ -84,6 +85,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
             collection: collection,
             item: item,
             model: model,
+            filter: [ {key: 'isEnabled', value: '01' }],
             afterLoad: function () {
               this.after();
             }
@@ -93,11 +95,13 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
       render: function () {
         this._render();
       },
-      itemRender: function (options, context) {
+      itemRender: function (options) {
         Est.each(options.items, function (item) {
           var fields = item.att;
-          fields.element = item.element.substring(1, item.element.length - 1);
-          context.collection.push(new model(fields));
+          if (item.att.isEnabled === '01'){
+            fields.element = item.element.substring(1, item.element.length - 1);
+            this.collection.push(new model(fields));
+          }
         }, this);
       },
       add: function () {

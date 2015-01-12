@@ -191,7 +191,7 @@ define('District', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Base
         if (this._options.items) {
           ctx.initSelect(this._options.items);
         } else {
-          BaseService.getAreaList().then(function (result) {
+          BaseService.getAreaList(this._options.addressUrl).then(function (result) {
             var items = Est.bulidTreeNode(result, 'level', 0, {
               categoryId: 'areaId',// 分类ＩＤ
               belongId: 'belongId',// 父类ＩＤ

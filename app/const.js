@@ -15,7 +15,8 @@ var CONST = {
   PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',
   ENTER_KEY: 13,
   COLLAPSE_SPEED: 50,
-  ENTER_KEY: 13
+  ENTER_KEY: 13,
+  SUBMIT_TIP: '提交中...<span style="color:orange;font-size: 12px;">[提交后无反馈信息?请检查每个标签页中是否有红色错误提示]</span>'
 }
 window.CONST = CONST;
 
@@ -47,14 +48,14 @@ app.addStatus('deliveryMethod', [
   {text: '先付款后发货', value: 'deliveryAgainstPayment'},
   {text: '货到付款', value: 'cashOnDelivery'}
 ]);
-// 支付方式
+// 支付方式(管理员自己设置的支付方式)
 app.addStatus('paymentType', [
   { text: '预存款支付', value: 'deposit' },
   { text: '在线充值', value: 'recharge' },
   { text: '线下支付', value: 'offline' },
   { text: '在线支付', value: 'online' }
 ]);
-// 支付配置类型
+// 支付配置类型(管理员跟银行的关系)
 app.addStatus('paymentConfigType', [
   {text: '预存款', value: 'deposit'},
   {text: '线下支付', value: 'offline'},

@@ -55,8 +55,6 @@
             
                 <li><a href="../classes/BaseModel - 模型类.html">BaseModel - 模型类</a></li>
             
-                <li><a href="../classes/BaseUtils - 工具类.html">BaseUtils - 工具类</a></li>
-            
                 <li><a href="../classes/BaseView - 普通视图.html">BaseView - 普通视图</a></li>
             
                 <li><a href="../classes/Est - 工具类库.html">Est - 工具类库</a></li>
@@ -207,13 +205,6 @@
                             </li>
                         
                             <li class="index-item method private">
-                                <a href="#method_[private] - _enterEvent">[private] - _enterEvent</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
                                 <a href="#method_[private] - _exchangeOrder">[private] - _exchangeOrder</a>
 
                                 
@@ -235,6 +226,13 @@
                             </li>
                         
                             <li class="index-item method private">
+                                <a href="#method_[private] - _init">[private] - _init</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
                                 <a href="#method_[private] - _initBind">[private] - _initBind</a>
 
                                 
@@ -242,7 +240,7 @@
                             </li>
                         
                             <li class="index-item method private">
-                                <a href="#method_[private] - _initCollection">[private] - _initCollection</a>
+                                <a href="#method_[private] - _initEnterEvent">[private] - _initEnterEvent</a>
 
                                 
                                 
@@ -355,6 +353,55 @@
                         
                             <li class="index-item method">
                                 <a href="#method_[public] - _setOption">[public] - _setOption</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__afterLoad">_afterLoad</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__beforeLoad">_beforeLoad</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__finally">_finally</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__initCollection">_initCollection</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__initList">_initList</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__initOptions">_initOptions</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__initTemplate">_initTemplate</a>
 
                                 
                                 
@@ -480,7 +527,8 @@
    page: parseInt(Est.cookie(&#39;orderList_page&#39;)) || 1, //设置起始页 所有的分页数据都会保存到cookie中， 以viewId + &#39;_page&#39;格式存储， 注意cookie取的是字符串， 要转化成int
    pageSize: parseInt(Est.cookie(&#39;orderList_pageSize&#39;)) || 16, // 设置每页显示个数
    max: 5, // 限制显示个数
-   detail: 添加页面url地址
+   detail: 添加页面url地址 配置route使用
+   route: &#39;#/product&#39;, // 详细页面路由  如果不是以dialog形式弹出时 ， 此项不能少
    filter: [ {key: &#39;name&#39;, value: this.searchKey }] // 过滤结果
    beforeLoad: function(collection){ // collection载入列表前执行
        this.setCategoryId(options.categoryId); // collection载入后执行
@@ -497,7 +545,7 @@
                  this.addOne();
                }
    },
-   // 以下为树型列表时 需要的参数(注意， 集合类继承BaseComposite)
+   // 以下为树型列表时 需要的参数
    subRender: &#39;.node-tree&#39;, // 下级分类的容器选择符
    collapse: &#39;.node-collapse&#39; 展开/收缩元素选择符
    parentId: &#39;belongId&#39;, // 分类 的父类ID
@@ -544,7 +592,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l185"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:185</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l252"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:252</code></a>
         
         </p>
 
@@ -609,7 +657,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l487"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:487</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l560"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:560</code></a>
         
         </p>
 
@@ -676,7 +724,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l252"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:252</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l319"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:319</code></a>
         
         </p>
 
@@ -766,7 +814,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l855"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:855</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l930"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:930</code></a>
         
         </p>
 
@@ -857,7 +905,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l881"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:881</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l956"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:956</code></a>
         
         </p>
 
@@ -910,63 +958,6 @@
 
             </div>
         </div>
-    
-</div>
-
-                
-                    <div id="method_[private] - _enterEvent" class="method item private">
-    <h3 class="name"><code>[private] - _enterEvent</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l416"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:416</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>回车事件</p>
-
-    </div>
-
-    
-
-    
-
     
 </div>
 
@@ -1031,7 +1022,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l702"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:702</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l777"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:777</code></a>
         
         </p>
 
@@ -1169,7 +1160,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l536"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:536</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l609"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:609</code></a>
         
         </p>
 
@@ -1264,7 +1255,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l198"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:198</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l265"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:265</code></a>
         
         </p>
 
@@ -1287,65 +1278,8 @@
 </div>
 
                 
-                    <div id="method_[private] - _initBind" class="method item private">
-    <h3 class="name"><code>[private] - _initBind</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l404"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:404</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>绑定事件， 如添加事件， 重置事件</p>
-
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_[private] - _initCollection" class="method item private">
-    <h3 class="name"><code>[private] - _initCollection</code></h3>
+                    <div id="method_[private] - _init" class="method item private">
+    <h3 class="name"><code>[private] - _init</code></h3>
 
     
         <div class="args">
@@ -1394,7 +1328,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l95"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:95</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l101"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:101</code></a>
         
         </p>
 
@@ -1457,6 +1391,120 @@
 </div>
 
                 
+                    <div id="method_[private] - _initBind" class="method item private">
+    <h3 class="name"><code>[private] - _initBind</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l475"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:475</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>绑定事件， 如添加事件， 重置事件</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_[private] - _initEnterEvent" class="method item private">
+    <h3 class="name"><code>[private] - _initEnterEvent</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l487"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:487</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>回车事件</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_[private] - _initItems" class="method item private">
     <h3 class="name"><code>[private] - _initItems</code></h3>
 
@@ -1491,7 +1539,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l167"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:167</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l228"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:228</code></a>
         
         </p>
 
@@ -1558,7 +1606,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l432"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:432</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l505"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:505</code></a>
         
         </p>
 
@@ -1648,7 +1696,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l443"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:443</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l516"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:516</code></a>
         
         </p>
 
@@ -1728,7 +1776,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l385"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:385</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l455"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:455</code></a>
         
         </p>
 
@@ -1795,7 +1843,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l689"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:689</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l764"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:764</code></a>
         
         </p>
 
@@ -1875,7 +1923,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l676"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:676</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l751"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:751</code></a>
         
         </p>
 
@@ -2030,7 +2078,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l580"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:580</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l655"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:655</code></a>
         
         </p>
 
@@ -2128,7 +2176,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l454"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:454</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l527"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:527</code></a>
         
         </p>
 
@@ -2196,7 +2244,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l836"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:836</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l911"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:911</code></a>
         
         </p>
 
@@ -2282,7 +2330,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l288"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:288</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l357"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:357</code></a>
         
         </p>
 
@@ -2376,7 +2424,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l304"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:304</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l373"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:373</code></a>
         
         </p>
 
@@ -2501,7 +2549,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l792"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:792</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l867"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:867</code></a>
         
         </p>
 
@@ -2589,7 +2637,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l744"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:744</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l819"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:819</code></a>
         
         </p>
 
@@ -2694,7 +2742,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l499"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:499</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l572"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:572</code></a>
         
         </p>
 
@@ -2826,7 +2874,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l909"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:909</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l984"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:984</code></a>
         
         </p>
 
@@ -2891,6 +2939,471 @@
 
             </div>
         </div>
+    
+</div>
+
+                
+                    <div id="method__afterLoad" class="method item private">
+    <h3 class="name"><code>_afterLoad</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l218"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:218</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>列表载入后执行</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__beforeLoad" class="method item private">
+    <h3 class="name"><code>_beforeLoad</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l207"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:207</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>列表载入前执行</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__finally" class="method item private">
+    <h3 class="name"><code>_finally</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l197"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:197</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化完成后执行</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__initCollection" class="method item private">
+    <h3 class="name"><code>_initCollection</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>collection</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l173"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:173</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化collection集合</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">collection</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__initList" class="method item private">
+    <h3 class="name"><code>_initList</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l137"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:137</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化列表视图容器</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__initOptions" class="method item private">
+    <h3 class="name"><code>_initOptions</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l126"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:126</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化参数</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__initTemplate" class="method item private">
+    <h3 class="name"><code>_initTemplate</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l160"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:160</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化模板， 若传递一个Template模板字符中进来， 则渲染页面</p>
+
+    </div>
+
+    
+
+    
+
     
 </div>
 

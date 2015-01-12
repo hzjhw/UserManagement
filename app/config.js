@@ -30,7 +30,7 @@ seajs.config({
     'BaseItem': 'lib/BaseItem.js',
     'BaseDetail': 'lib/BaseDetail.js',
     'BaseList': 'lib/BaseList.js',
-    'BaseUtils': 'lib/BaseUtils.js',
+    'BaseUtils': 'scripts/utils/BaseUtils.js',
     'BaseService': 'scripts/service/BaseService.js',
     'BaseComposite': 'lib/BaseComposite.js'
   }, app.getModules()),
@@ -48,7 +48,7 @@ seajs.config({
   // 映射配置
   map: [
     [/lib\/(.*).js/, CONST.LIB_FORDER + '/$1.js'], //['.js', '-min.js'] ,
-    [ /^(.*\.(?:css|js))(.*)$/i, '$1?' + CONST.APP_VERSION]
+    [ /^(.*\.(?:css|js|html))(.*)$/i, '$1?' + CONST.APP_VERSION]
   ],
 
   // 调试模式

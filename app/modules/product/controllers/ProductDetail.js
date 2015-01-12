@@ -33,6 +33,22 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           model: ProductModel
         });
       },
+      showAttributes: function (categoryId, items) {
+        if (!this.attributes) {
+          this.attributes = new AttributesShow({
+            render: '#attributes-list',
+            categoryId: categoryId,
+            items: items
+          });
+        } else {
+          this.attributes.reload(categoryId);
+        }
+      },
+      back: function () {
+        seajs.use(['backbone'], function (Backbone) {
+          Backbone.history.navigate('#/product', true);
+        });
+      },
       render: function () {
         debug('4.ProductDetail.render');
         var ctx = this;
@@ -69,7 +85,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             });
           });
         }
-        if (!PicturePick){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
+        if (!PicturePick) {
+          debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?');
+        }
         app.addView('productPicturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'productPicturePick',
@@ -159,7 +177,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           width: 100,
           target: '#model-weightUnit',
           itemId: 'value',
-          items:app.getStatus('weightUnit')
+          items: app.getStatus('weightUnit')
         });
 
         // 编辑器
@@ -171,7 +189,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             // 处理特殊字段
-            if (ctx.tagInstance){
+            if (ctx.tagInstance) {
               this.model.set('taglist', Est.map(ctx.tagInstance.collection.models, function (item) {
                 return item.get('name');
               }).join(','));
@@ -190,29 +208,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
 
         });
         return this;
-      },
-      showAttributes: function (categoryId, items) {
-        if (!this.attributes) {
-          this.attributes = new AttributesShow({
-            render: '#attributes-list',
-            categoryId: categoryId,
-            items: items
-          });
-        } else {
-          this.attributes.reload(categoryId);
-        }
-      },
-      back: function(){
-        var ctx = this;
-        seajs.use(['ProductList'], function(ProductList){
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('productList', new ProductList({
-            el: '.jhw-main-inner',
-            page: ctx.options.page
-          }));;
-        });
       }
     });
 

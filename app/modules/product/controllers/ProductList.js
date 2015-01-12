@@ -42,7 +42,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': 'edit',
+        'click .edit': '_edit',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
@@ -62,31 +62,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         }
         this.model.set('productCategoryList', app.getData('productCategory'));
         this._initialize({
-          template: itemTemp,
-          viewId: 'productList',
-          detail: CONST.HOST + '/modules/product/product_detail.html'
-        });
-      },
-      // 渲染文档
-      render: function () {
-        this._render();
-      },
-      edit: function(){
-        var ctx = this;
-        if (this.model.get('_isSearch')){
-          // 如果是搜索结果列表时， 使用dialog形式
-          this._edit();
-          return;
-        }
-        seajs.use(['ProductDetail'], function(ProductDetail){
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('productDetail', new ProductDetail({
-            el: '.jhw-main-inner',
-            id: ctx.model.get('id'),
-            page: ctx._getPage()
-          }));;
+          template: itemTemp
         });
       },
       // 修改分类
@@ -128,6 +104,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           title: '修改型号',
           field: 'prodtype'
         });
+      },
+      // 渲染文档
+      render: function () {
+        this._render();
       }
     });
     /**
@@ -137,7 +117,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .product-add': 'edit',
+        'click .product-add': 'detail',
         'click .btn-search': 'search',
         'click .search-advance-product': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
@@ -154,12 +134,13 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           collection: ProductCollection,
           item: ProductItem,
           pagination: true,
-          detail: CONST.HOST + '/modules/product/product_detail.html'
+          detail: CONST.HOST + '/modules/product/product_detail.html',
+          route: '#/product'
         });
       },
       // 添加产品
-      edit: function(){
-        seajs.use(['ProductDetail'], function(ProductDetail){
+      detail: function () {
+        seajs.use(['ProductDetail'], function (ProductDetail) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -209,7 +190,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             searchAds: ctx.searchAds,
             searchLoginView: ctx.searchLoginView
           }),
-          success: function(){
+          success: function () {
             ctx.searchKey = $('input[name=searchKey]').val();
             ctx.searchProdtype = $('input[name=searchProdtype]').val();
             ctx.searchCategory = $('select[name=searchCategory]').val();
@@ -241,7 +222,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
               productCategoryList: app.getData('productCategory')
             }),
             target: this.$('.btn-batch-category').get(0),
-            success: function(){
+            success: function () {
               ctx.transferCategory = $('select[name=transferCategory]').val();
               $.ajax({
                 type: 'POST',

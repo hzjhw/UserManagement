@@ -24,8 +24,9 @@ define('Login', ['BaseDetail', 'template/login', 'LoginModel'],
         console.log('4.Login.render');
         this._render();
         this._form('#J_Form')._validate()._init({
-          onAfterSave: function (response) {
-            if (response.attributes.success == false) {
+          onAfterSave: function (model) {
+            if (model.get('_response') && !model.get('_response').success) {
+              this.model.set('_response', null);
               ctx.refreshCode();
               return true;
             }

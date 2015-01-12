@@ -5,7 +5,7 @@
  */
 
 app.addRoute('index', function () {
-  seajs.use(['jquery', 'Main', 'ProductList'], function (jquery, Main, ProductList) {
+  seajs.use(['jquery', 'Main'], function (jquery, Main) {
     app.addPanel('main', {
       el: '#jhw-main',
       template: '<div class="jhw-main-inner"></div>'
@@ -29,6 +29,6 @@ app.addTemplate('template/layout_top', function (require, exports, module) {
 app.addTemplate('template/main', function (require, exports, module) {
   module.exports = require('modules/index/views/main.html');
 });
-app.addTemplate('template/nav_item', function(require, exports, module){
+app.addTemplate('template/nav_item', function (require, exports, module) {
   module.exports = require('modules/index/views/nav_item.html');
 });

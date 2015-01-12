@@ -76,7 +76,7 @@ input, select, label {
 	vertical-align: middle
 }
 
-input.formText {
+input.formText , .control-group .controls input{
 	width: 200px;
 	padding: 5px;
 	border-top: 1px solid #999999;
@@ -84,6 +84,11 @@ input.formText {
 	border-bottom: 1px solid #e1e1e1;
 	border-left: 1px solid #999999;
 }
+.control-group{
+    overflow:hidden;
+}
+
+.control-group .control-label,.control-group .controls{float:left;}
 
 input.formText:hover {
 	border: 1px solid #ff9b1f;
@@ -317,7 +322,7 @@ body table.inputTable {
 	border: 1px solid #e8e8e8;
 }
 
-body table.inputTable th {
+body table.inputTable th , .control-group .control-label{
 	width: 150px;
 	line-height: 30px;
 	padding-right: 10px;
@@ -364,7 +369,7 @@ body ul.tab input {
 	background: url(img/member_center_bg.gif) -430px 0px no-repeat;
 }
 
-body ul.tab input.current {
+body ul.tab .current input {
 	background: url(img/member_center_bg.gif) -330px 0px no-repeat;
 }
 
@@ -509,4 +514,22 @@ body .orderList .operationInfo:hover {
 
 .middle table.inputTable th {
 
+}
+input[type=password], input[type=text], select, textarea{
+    border: 1px solid #999999;
+}
+.x-icon-normal {
+    text-shadow: none;
+    color: #333;
+    background-color: #fff;
+    border-color: #999999;
+}
+.x-icon-hover, .x-icon-normal:hover {
+    color: #5D5D5E;
+    border: 1px solid #8D8D8D;
+}
+.open .dropdown-toggle.x-icon-normal, .x-icon-normal.active, .x-icon-normal:active, .x-icon-normal:focus, .x-icon-normal:hover {
+    color: #333;
+    background-color: #F1F1F1;
+    border-color: #8D8E8F;
 }

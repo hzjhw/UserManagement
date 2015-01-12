@@ -164,7 +164,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         }
      */
     getNewsCategory: function (options) {
-      debug('getNewsCategory');
+      debug('- getNewsCategory');
       return new Est.promise(function (async, topReject) {
         options.select = options ? options.select ? true : false : false;
         options.extend = options ? options.extend ? true : false : false;
@@ -410,15 +410,18 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         });
       });
     },
-    getAreaList: function () {
+    getAreaList: function (url) {
       var $q = Est.promise;
+      if (!url){
+        url = CONST.API + '/area/list';
+      }
       return new $q(function (resolve, reject) {
         if (app.getData('arealist')) {
           resolve(app.getData('arealist'));
         } else{
           $.ajax({
             type: 'get',
-            url: CONST.API + '/area/list',
+            url: url,
             async: false,
             success: function (result) {
               result = result.attributes.data;

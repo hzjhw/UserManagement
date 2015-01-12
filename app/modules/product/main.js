@@ -28,6 +28,18 @@ app.addRoute('product', function () {
      });*/
   });
 });
+app.addRoute('product/:id', function(id){
+  seajs.use(['ProductDetail'], function(ProductDetail){
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="main-inner"></div>'
+    }).addView('productDetail', new ProductDetail({
+      el: '.main-inner',
+      viewId: 'productDetail',
+      id: id
+    }));
+  });
+});
 /**
  * 模块
  * */

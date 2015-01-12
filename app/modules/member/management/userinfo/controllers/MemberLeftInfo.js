@@ -3,12 +3,13 @@
  * @namespace MemberLeftInfo
  * @author yongjin<zjut_wyj@163.com> 2015/1/7
  */
-define('MemberLeftInfo', ['BaseView', 'template/member_left_info'],
+define('MemberLeftInfo', ['BaseView', 'MemberModel', 'template/member_left_info'],
   function (require, exports, module) {
-    var MemberLeftInfo, BaseView, template;
+    var MemberLeftInfo, BaseView, template, MemberModel;
 
     BaseView = require('BaseView');
     template = require('template/member_left_info');
+    MemberModel = require('MemberModel');
 
     MemberLeftInfo = BaseView.extend({
       events: {
@@ -17,18 +18,18 @@ define('MemberLeftInfo', ['BaseView', 'template/member_left_info'],
       initialize: function () {
         this._initialize({
           template: template,
-          data: app.getData('memberInfo')
+          data: app.getData('user')
         });
         this.render();
       },
-      logout: function(){
+      logout: function () {
         $.ajax({
           type: 'get',
           url: CONST.API + '/shop/member/logout',
           async: false,
-          success: function(result){
+          success: function (result) {
             //if (top) top.window.reload();
-            window.location.href=CONST.HOST + '/modules/member/management/login/login.html'
+            window.location.href = CONST.HOST + '/modules/member/management/login/login.html'
           }
         });
       },
