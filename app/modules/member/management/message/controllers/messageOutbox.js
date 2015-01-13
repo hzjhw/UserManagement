@@ -20,10 +20,9 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
 
     collection = BaseCollection.extend({
       url: CONST.API + '/shop/message/outbox',
+      model: messageOutboxModel,
       initialize: function () {
-        this._initialize({
-          model: messageOutboxModel
-        });
+        this._initialize();
       }
     });
 
@@ -44,6 +43,13 @@ define('MessageOutbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', '
       display :function(e){
         e.stopImmediatePropagation();
         this.model.set('isClicked', !this.model.get('isClicked'));
+        var isIcon=this.model.get('isIcon');
+        if(isIcon == 'downIcon'){
+          isIcon = 'upIcon'
+        }else{
+          isIcon = 'downIcon'
+        }
+        this.model.set('isIcon',isIcon);
       }
     });
 

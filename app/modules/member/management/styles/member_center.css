@@ -517,8 +517,10 @@ body .orderList .operationInfo:hover {
 .order-tbody-member{line-height: 25px;}
 .member_div div{width:20%;float:left;}
 .order-tbody-member .member_div div{text-indent: 4px;}
-.member-display{padding: 0 8px}
+.member-display{padding: 0 8px 0 21px;}
 .order-tbody-member .member_div .member_div_in{text-indent: 8px;}
+.member_div_in .x-caret-left-middle{padding-right: 8px;}
+
 .middle table.inputTable th {
 
 }

@@ -3,14 +3,15 @@
  * @namespace messageModel.js
  * @author wxw on 15-1-8
  */
-define('MessageModel', ['BaseModel'], function (require, exports, module) {
-  var MessageModel, BaseModel;
+define('MessageInboxModel', ['BaseModel'], function (require, exports, module) {
+  var MessageInboxModel, BaseModel;
 
   BaseModel = require('BaseModel');
 
-  MessageModel = BaseModel.extend({
+  MessageInboxModel = BaseModel.extend({
     defaults: Est.extend({
-      isClicked: false
+      isClicked: false,
+      isIcon:'downIcon'
     }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/shop/message/inbox',
     BaseId: 'messageId',
@@ -19,5 +20,5 @@ define('MessageModel', ['BaseModel'], function (require, exports, module) {
     }
   });
 
-  module.exports = MessageModel;
+  module.exports = MessageInboxModel;
 });

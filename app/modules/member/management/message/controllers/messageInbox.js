@@ -20,10 +20,9 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
 
     collection = BaseCollection.extend({
       url: CONST.API + '/shop/message/inbox',
+      model: messageInboxModel,
       initialize: function () {
-        this._initialize({
-          model: messageInboxModel
-        });
+        this._initialize();
       }
     });
 
@@ -61,6 +60,13 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
       display :function(e){
         e.stopImmediatePropagation();
         this.model.set('isClicked', !this.model.get('isClicked'));
+        var isIcon=this.model.get('isIcon');
+        if(isIcon == 'downIcon'){
+          isIcon = 'upIcon'
+        }else{
+          isIcon = 'downIcon'
+        }
+        this.model.set('isIcon',isIcon);
       }
     });
     MessageInbox = BaseList.extend({
