@@ -93,7 +93,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           ctx.model.set('category', category);
         }, hideTip: true});
       },
-      // 编辑产品
+      // 编辑新闻
       editItem: function () {
         var url = CONST.HOST + '/modules/news/news_detail.html?id='
           + this.model.id;
@@ -195,10 +195,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       // 搜索基础方法
       baseSearch: function () {
         this._search([
-          { key: 'title', value: this.searchKey },
-          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory},
-          {key: 'type', value: this.searchCategory === '/' ? '' : this.searchCategory},
-          {key: 'category', value: this.searchCategory === '/' ? '' : this.searchCategory}
+          { key: 'title', value: this.searchKey }
         ], {});
       },
       // 简单搜索
@@ -225,7 +222,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         app.emptyDialog();
         BaseUtils.dialog({
           title: '高级搜索',
-          width: 600,
+          width: 700,
           target: this.$('.search-advance').get(0),
           content: ctx.searchTemp({
             newsCategoryList: app.getData('newsCategory'),
@@ -248,7 +245,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
                 {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
                 {key: 'imagenews', value: ctx.searchTypeView} ,
                 {key: 'loginView', value: ctx.searchLoginView},
-                {key: 'ads', value: ctx.searchAds === '2' ? '' : this.searchAds}
+                {key: 'display', value: ctx.newsStateList}
               ]
             });
             this.close().remove();

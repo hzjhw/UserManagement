@@ -14,20 +14,20 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label"><s>*</s>密 码：</label>
+        <label class="control-label">{{#if _isAdd }}<s>*</s>{{/if}}密 码：</label>
         <div class="controls">
             <input id="model-password" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{required : true}"
-                   data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'>
+                   {{#if _isAdd }}data-rules="{required : true}"
+                   data-tip='{"text":"请输入密码","iconCls":"icon icon-lock"}'{{/if}}>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label"><s>*</s>确认密码：</label>
+        <label class="control-label">{{#if _isAdd }}<s>*</s>{{/if}}确认密码：</label>
         <div class="controls">
             <input id="model-rePassword" name="password" value="{{password}}" type="password" class="input-large"
-                   data-rules="{minlength:6,maxlength:16,equalTo:'#model-password'}"
-                   data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}'>
+            {{#if _isAdd }} data-rules="{minlength:6,maxlength:16,equalTo:'#model-password'}"
+                   data-tip='{"text":"请再次输入密码","iconCls":"icon icon-lock"}' {{/if}}>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
         <div class="controls">
             <input id="model-email" name="email" value="{{email}}" type="text" class="input-large"
                    data-rules="{email:true,required : true}"
-                   data-tip='{"text":"请输入积分","iconCls":"icon icon-pencil"}'>
+                   data-tip='{"text":"请输入E-mail","iconCls":"icon icon-pencil"}'>
         </div>
     </div>
 

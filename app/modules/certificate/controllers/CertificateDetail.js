@@ -50,6 +50,11 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         // 表单初始化
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function(){
+            var photos = app.getView('picturePick').getItems();
+            if (photos.length > 0) {
+              this.model.set('photo', photos[0]['serverPath']);
+              this.model.set('attachmentId ', photos[0]['attId']);
+            }
           },
           onAfterSave: function(response){
           }
@@ -74,7 +79,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
           viewId: 'picturePick',
           _isAdd: this._isAdd, // 是否为添加模式
           items: pic_list, // 初始化数据
-          max: 9
+          max: 1
         }));
 
         setTimeout(function () {
