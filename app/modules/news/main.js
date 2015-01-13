@@ -16,6 +16,17 @@ app.addRoute('news', function () {
     }));
   });
 });
+app.addRoute('news_add', function(){
+  seajs.use(['NewsDetail'], function(NewsDetail){
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('newsDetail', new NewsDetail({
+      el: '.jhw-main-inner',
+      viewId: 'newsDetail'
+    }));
+  });
+});
 
 /**
  * 模块

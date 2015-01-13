@@ -3,12 +3,12 @@
  * @namespace NewsCategoryList
  * @author wxw on 2014/12/12
  */
-define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 'BaseUtils','BaseComposite', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
+define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
   function (require, exports, module) {
-    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, BaseUtils,CategoryModel, BaseComposite, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
-    BaseComposite = require('BaseComposite');
+    BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -17,7 +17,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
     BaseUtils = require('BaseUtils');
     transferTemp = require('template/news_transfer');
 
-    NewsCategoryCollection = BaseComposite.extend({
+    NewsCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/news',
       model: CategoryModel,
       initialize: function () {
@@ -117,8 +117,8 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
           collapse: '.node-collapse',
           parentId: 'belongId',
           categoryId: 'categoryId',
-          grade: '01',
-          parentValue: '/'
+          rootId: 'isroot',
+          rootValue: '01'
         });
       },
       openAddDialog: function () {
@@ -170,7 +170,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel','template/news_transfer', 
             content: ctx.transferTemp({
               newsCategoryList: app.getData('newsCategory')
             }),
-            success: function(){
+            success: function () {
               ctx.transferCategory = $('select[name=transferCategory]').val();
               $.ajax({
                 type: 'POST',

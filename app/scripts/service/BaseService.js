@@ -65,7 +65,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         getCategory().then(function (result) {
           if (result.attributes) {
             if (options.tree) {
-              result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '00', {
+              result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'isroot', '01', {
                 categoryId: 'categoryId',// 分类ＩＤ
                 belongId: 'belongId',// 父类ＩＤ
                 childTag: 'cates', // 子分类集的字段名称
@@ -185,7 +185,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
         };
         getCategory().then(function (result) {
           if (result.attributes) {
-            result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'grade', '01', {
+            result.attributes.data = Est.bulidTreeNode(result.attributes.data, 'isroot', '01', {
               categoryId: 'categoryId',// 分类ＩＤ
               belongId: 'belongId',// 父类ＩＤ
               childTag: 'cates', // 子分类集的字段名称

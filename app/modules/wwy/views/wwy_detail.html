@@ -19,8 +19,8 @@
 
         <div class="controls">
             <input id="model-title" name="title" value="{{title}}" type="text" class="input-large"
-                   title="此处为活动标题,放在留言上面,如:立即写下你的口号，赢取4999元现金大奖！"
                    data-rules="{required : true}" data-tip='{"text":"请输入活动标题"}'>
+            <span class="x-icon x-icon-info x-icon-mini x-icon-help" title="此处为活动标题,放在留言上面,如:立即写下你的口号，赢取4999元现金大奖！">?</span>
         </div>
     </div>
 
@@ -28,9 +28,10 @@
         <label class="control-label"><s>*</s>活动手机：</label>
 
         <div class="controls">
-            <input id="model-phone" name="phone" value="{{phone}}" type="text" title="用户可以在微传单上点击号码直接拨打此手机"
+            <input id="model-phone" name="phone" value="{{phone}}" type="text"
                    data-rules="{required : true}"
                    data-tip='{"text":"请输入活动标题"}' class="input-middle">
+            <span class="x-icon x-icon-info x-icon-mini x-icon-help" title="用户可以在微传单上点击号码直接拨打此手机">?</span>
         </div>
     </div>
     <div class="control-group">

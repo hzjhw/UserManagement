@@ -156,7 +156,7 @@ body .m0{margin:0}
 #jhw-left-bar ul{border-top: 1px solid #2A74AE;position:absolute;width:100%;left:0;}
 #jhw-left-bar a, #jhw-left-bar a:link{color:#fff;font-size:14px;display: block; height: 27px; padding-top: 70px; width: 100%;}
 #jhw-left-bar .hover a{background-color: #4094D7;}
-#jhw-left-bar ul li{border-top: 2px solid #3690D7;border-bottom: 1px solid #2A74AE;height: 97px; }
+#jhw-left-bar ul li{border-top: 2px solid #3690D7;border-bottom: 1px solid #2A74AE;height: 97px; position: relative;}
 #jhw-left-bar .top-more{opacity: 0.8;cursor:pointer;z-index:9999;color:#fff;position:absolute;top:0;left:0;width:100%;margin:0 auto;height:50px;line-height:50px;background:#3899DF;display:none;}
 #jhw-left-bar .bottom-more{opacity: 0.8;cursor:pointer;z-index:9999;color:#fff;position:absolute;bottom:0;left:0;width:100%;margin:0 auto;height:50px;line-height:50px;background:#3899DF;}
 #jhw-main { float: left; width: 84%; height: 98%;padding: 1%; background: #E8EFF7;}

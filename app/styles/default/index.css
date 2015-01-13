@@ -70,9 +70,23 @@
 #jhw .module04 .mokuai .yuansu002{padding-left:29px;padding-right:28px;}
 #jhw .module04 .mokuai .yuansu003{padding-left:29px;}
 #jhw .module04 .mokuai .num{color:#0164ca;}
-#jhw #left-bar-ul .hover .node-tree{display:block; width: 200%;}
-#jhw #left-bar-ul .hover .node-tree{display:block; position: absolute; left: 170px;background: #4094d7; top: -99px; z-index: 99999;}
+#jhw #left-bar-ul .hover .node-tree{display:block; width: 100%;border-top:none;}
+#jhw #left-bar-ul .hover .node-tree{display:block; position: absolute; left: 170px;background: transparent; top: -99px; z-index: 99999;padding-left: 10px;}
 #jhw #left-bar-ul .hover .node-tree a{padding-left: 0; padding-right: 0; padding-bottom: 0;height: 100%;  border-bottom: none; padding-top: 0; overflow: hidden; border-top: none;background: none;}
-#jhw #left-bar-ul .hover .node-tree li{border-top: none; border-bottom: none;height: 50px; line-height: 50px; background: #4094D7;width: 50%;float:left; }
+#jhw #left-bar-ul .hover .node-tree li{border-top: none; border-bottom: none;height: 50px; line-height: 50px; background: #4094D7;width: 100%;}
 #jhw #left-bar-ul .hover .node-tree li.hover{ background:#efefef; }
 #jhw #left-bar-ul .hover .node-tree li.hover { background: #3388CB; }
+#jhw .nav-arrow{display:none;}
+#jhw .hover .nav-arrow{display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-right:10px solid #4094d7;
+}

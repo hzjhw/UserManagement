@@ -48,8 +48,10 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       render: function () {
         this._render();
       },
-      toPage: function () {
+      toPage: function (e) {
+        e.stopImmediatePropagation();
         this.$el.removeClass('hover');
+        this.$el.parents('li:first').removeClass('hover');
         // 清空所有有关分页的cookie
         var cookies = app.getCookies();
         Est.each(cookies, function (name) {
@@ -60,8 +62,8 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       },
       setChildPos: function () {
         this.$('.node-tree').css({
-          top: this.$el.position().top - 1,
-          left: this.$el.width()
+          top: -2,
+          left: this.$el.width() - 2
         });
       }
     });
@@ -86,13 +88,25 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
               {name: '分类管理', url: '#/category/product', className: 'menu-category', children: []},
               {name: '产品导入', url: '#/category', className: 'menu-category', children: []}
             ]},
-            {name: '新闻管理', url: '#/news', className: 'menu-news'},
-            {name: '商城管理', url: '#/shop', className: 'menu-mall'},
+            {name: '新闻管理', url: '#/news', className: 'menu-news', children: [
+              {name: '新闻添加', url: '#/news_add', className: 'menu-category', children: []},
+              {name: '分类管理', url: '#/category/news', className: 'menu-category', children: []}
+            ]},
+            {name: '商城管理', url: '#/shop', className: 'menu-mall', children: [
+              {name: '支付方式管理', url: '#/shop/pay_type', className: 'menu-category', children: []},
+              {name: '配送方式管理', url: '#/shop/delivery_type', className: 'menu-category', children: []},
+              {name: '物流公司管理', url: '#/shop/delivery_corp', className: 'menu-category', children: []}
+            ]},
             {name: '微网页', url: '#/wwy', className: 'menu-microweb'},
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '图片管理', url: '#/album', className: 'menu-album'},
-            {name: '站点管理', url: '#/static', className: 'menu-static'},
-            {name: '会员管理', url: '#/member', className: 'menu-member'},
+            {name: '站点管理', url: '#/static', className: 'menu-static', children: [
+              {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []}
+            ]},
+            {name: '会员管理', url: '#/member', className: 'menu-member', children: [
+              {name: '会员等级管理', url: '#/member/rank', className: 'menu-category', children: []},
+              {name: '会员属性管理', url: '#/member/attr', className: 'menu-category', children: []}
+            ]},
             {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
             {name: '我的工具', url: '#/tool', className: 'menu-tool'},
             {name: '退出登录', url: '#/logout', className: 'menu-login'}

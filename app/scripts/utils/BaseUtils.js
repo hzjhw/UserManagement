@@ -380,7 +380,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             id: 'dialog' + Est.nextUid(),
             title: options.title,
             content: options.content,
-            width: 150,
+            width: options.width || 200,
             button: [
               {
                 value: '确定',

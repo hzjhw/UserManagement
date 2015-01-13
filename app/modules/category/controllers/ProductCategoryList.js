@@ -194,8 +194,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           collapse: '.node-collapse',
           parentId: 'belongId',
           categoryId: 'categoryId',
-          grade: '01',
-          parentValue: '/'
+          rootId: 'isroot',
+          rootValue: '01'
         });
       },
       openAddDialog: function () {

@@ -25,14 +25,13 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseServ
         });
       },
       render: function () {
-       var ctx = this;
         this._render();
         // 新闻分类
-        BaseService.getNewsCategory({ select: true, extend: true })
+        BaseService.getNewsCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
             BaseUtils.initSelect({
               render: '#s1',
-              target: '#model-category',
+              target: '#model-belongId',
               items: list
             });
           });

@@ -6,7 +6,7 @@
 define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', "BaseUtils", 'dialog',
     'template/wwy_detail', 'PicturePick', 'WwyPicturePick', 'WwyLtyList'],
   function (require, exports, module) {
-    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, WwyLtyList,dialog, BaseUtils, PicturePick, WwyPicturePick;
+    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, WwyLtyList, dialog, BaseUtils, PicturePick, WwyPicturePick;
 
     WwyModel = require('WwyModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -33,10 +33,10 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           model: WwyModel
         });
       },
-      ltyAdd: function(){
+      ltyAdd: function () {
         app.getView('wwyLtyList').addOne();
       },
-      ltyShow: function(){
+      ltyShow: function () {
         app.getView('wwyLtyList').ltyShow();
       },
       render: function () {
@@ -57,11 +57,11 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           this.model.set('hidZf', pathObj['hidZf']);
           this.model.set('music', pathObj['music']['path']);
           this.model.set('video', pathObj['video']);
-          Est.each(pathObj['pic'], function(item){
+          Est.each(pathObj['pic'], function (item) {
             item['title'] = '重新上传';
           });
-          Est.each(pathObj['pic'], function(item){
-            item['serverPath']= item['path'];
+          Est.each(pathObj['pic'], function (item) {
+            item['serverPath'] = item['path'];
           });
           wwy_pic_list = pathObj['pic'] || [];
           debug(pathObj);
@@ -121,7 +121,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           lotteryImage: '',
           lotteryRule: []
         };
-        if (this.model.get('ltyRule')){
+        if (this.model.get('ltyRule')) {
           ltyObj = JSON.parse(Est.unescapeHTML(this.model.get('ltyRule')));
         }
         this.model.set('lotteryImage', ltyObj['lotteryImage']);
@@ -170,11 +170,12 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
 
           }
         });
-        this.$('input, textarea').each(function () {
+        this.$('.x-icon-help').each(function () {
           var title = $(this).attr('title');
           if (title) {
-            $(this).click(function () {
+            $(this).mouseover(function () {
               BaseUtils.tooltip(title, {
+                id: 'wwytip',
                 align: 'right',
                 target: $(this).get(0)
               });

@@ -41,7 +41,7 @@ app.addModule('ProductDetail', 'modules/product/controllers/ProductDetail.js');
 app.addTemplate('template/product_detail', function (require, exports, module) {
   module.exports = require('modules/product/views/product_detail.html');
 });
-app.addRoute('product/:id', function (id) {
+function productDetail(id) {
   seajs.use(['ProductDetail'], function (ProductDetail) {
     app.addPanel('main', {
       el: '#jhw-main',
@@ -52,5 +52,11 @@ app.addRoute('product/:id', function (id) {
       id: id
     }));
   });
+}
+app.addRoute('product/:id', function (id) {
+  productDetail(id);
+});
+app.addRoute('product_add', function () {
+  productDetail();
 });
 
