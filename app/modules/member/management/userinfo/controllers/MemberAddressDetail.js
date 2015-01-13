@@ -13,6 +13,9 @@ define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', '
     BaseUtils = require('BaseUtils');
 
     MemberAddressDetail = BaseDetail.extend({
+      events: {
+        'click .backButton': 'back'
+      },
       initialize: function () {
         this._initialize({
           template: template,
@@ -26,6 +29,9 @@ define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', '
           path: this.model.get('areaPath'),
           url: CONST.API + '/shop/area/list'
         });
+      },
+      back: function () {
+        this._navigate('#/address');
       },
       render: function () {
         this._render();

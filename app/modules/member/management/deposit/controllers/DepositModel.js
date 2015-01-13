@@ -4,12 +4,12 @@
  * @author yongjin<zjut_wyj@163.com> 2015/1/7
  */
 
-define('depositModel', ['BaseModel'], function (require, exports, module) {
-  var depositModel, BaseModel;
+define('DepositModel', ['BaseModel'], function (require, exports, module) {
+  var DepositModel, BaseModel;
 
   BaseModel = require('BaseModel');
 
-  depositModel = BaseModel.extend({
+  DepositModel = BaseModel.extend({
     defaults: Est.extend({
     }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/shop/deposit',
@@ -19,5 +19,5 @@ define('depositModel', ['BaseModel'], function (require, exports, module) {
     }
   });
 
-  module.exports = depositModel;
+  module.exports = DepositModel;
 });

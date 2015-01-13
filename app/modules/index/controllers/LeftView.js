@@ -50,6 +50,12 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       },
       toPage: function () {
         this.$el.removeClass('hover');
+        // 清空所有有关分页的cookie
+        var cookies = app.getCookies();
+        Est.each(cookies, function (name) {
+          Est.cookie(name, null);
+        });
+        cookies.length = 0;
         Backbone.history.navigate(this.model.get('url'), true);
       },
       setChildPos: function () {

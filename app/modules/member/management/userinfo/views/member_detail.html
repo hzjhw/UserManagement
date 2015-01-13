@@ -8,13 +8,21 @@
             <td>
                 <input type="text" id="model-email" name="email" data-rules="{required : true}"
                        data-tip='{"text":"请输入邮箱地址","iconCls":"icon icon-pencil"}'
-                       class="formText" value="{{email}}">
+                       class="formText input-large" value="{{email}}">
                 <label class="requireField">*</label>
             </td>
         </tr>
         </tbody>
     </table>
-    <div id="attribute-list"></div>
+    <table class="list-table">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <div id="attribute-list"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <table class="inputTable">
         <tbody>
         <tr>

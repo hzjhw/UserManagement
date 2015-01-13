@@ -69,12 +69,19 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        this.model._saveField({
-          id: this.model.get('id'),
-          category: category
-        }, ctx, {success: function () {
-          ctx.model.set('category', category);
-        }});
+        BaseUtils.comfirm({
+          title: '提示：',
+          content: '是否更改分类？',
+          success: function () {
+            ctx.model._saveField({
+              id: ctx.model.get('id'),
+              category: category
+            }, ctx, {success: function () {
+              ctx.model.set('category', category);
+            }});
+          }
+        });
+        this._render();
       },
       // 修改名称
       editName: function () {

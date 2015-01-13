@@ -1,10 +1,13 @@
+<form id="J_Form">
 <table class="inputTable listTable" >
     <tr>
         <th>
             充值金额:
         </th>
         <td>
-            <input type="text" name="totalAmount" class="formText {required: true, positive: true, messages: {required: '请填写充值金额！', positive: '充值金额必须大于0！'}}" />
+            <input type="text" name="totalAmount" id="model-totalAmount"
+                   data-rules="{required: true, regexp:/^[1-9]{1} | [\d]+$/}" data-tip="{'text': '请填写充值金额'}" data-messages="{regexp:'充值金额必须大于0！'}"
+                   class="formText " />
             <label class="requireField">*</label>
         </td>
     </tr>
@@ -14,17 +17,6 @@
         </th>
         <td>
             <table class="paymentConfigTable">
-                <tr>
-                    <td class="nameTd">
-                        <label>
-                            <input type="radio" name="name" class="{required: true, messages: {required: '请选择支付方式！'}}" value="402881862b9f2bff012b9f2d616a0001" />
-                            {{name}}
-                        </label>
-                    </td>
-                    <td>
-                        {{description}}55555555555555555555555555555555555555555555555
-                    </td>
-                </tr>
 
             </table>
         </td>
@@ -34,7 +26,8 @@
             &nbsp;
         </th>
         <td>
-            <input type="submit" class="submitButton" value="立刻充值" hidefocus="true" />
+            <input type="button" id="submit" class="submitButton" value="立刻充值" hidefocus="true" />
         </td>
     </tr>
 </table>
+</form>

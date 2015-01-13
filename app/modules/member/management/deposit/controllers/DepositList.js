@@ -3,8 +3,8 @@
  * @namespace DepositList
  * @author wxw<zjut_wyj@163.com> 2015/1/12
  */
-define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/deposit_item'
-    , 'template/deposit_list','DepositModel'],
+define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/deposit_item' ,
+    'template/deposit_list', 'DepositModel'],
   function (require, exports, module) {
     var DepositList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseItem, item, collection,
       BaseModel, DepositModel;
@@ -20,10 +20,9 @@ define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Ba
 
     collection = BaseCollection.extend({
       url: CONST.API + '/shop/deposit/list',
+      model: DepositModel,
       initialize: function () {
-        this._initialize({
-          model: DepositModel
-        });
+        this._initialize();
       }
     });
 
@@ -47,7 +46,6 @@ define('DepositList', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'Ba
           template: listTemp,
           render: '.order-tbody'
         });
-        this.render();
       },
       render: function () {
         this._render();

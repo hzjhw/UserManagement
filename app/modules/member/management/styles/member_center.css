@@ -540,3 +540,29 @@ input[type=password], input[type=text], select, textarea{
     background-color: #F1F1F1;
     border-color: #8D8E8F;
 }
+.list-table .controls{padding-left:5px;}
+
+input.formButton {
+    width: 70px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    border: none;
+    background: url(img/form_bg.gif) 0px 0px no-repeat;
+}
+.paymentGateway input.formButton {
+    width: 81px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    background: url(img/payment_bg.gif) 0px 0px no-repeat;
+}

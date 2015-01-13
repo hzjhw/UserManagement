@@ -16,7 +16,7 @@ app.addRoute('deposit', function () {
       pageSize: parseInt(Est.cookie('orderList_pageSize')) || 10,
       pagination: true
     }));
-    app.getView('breadcrumb').reload('预存款记录'+'<span class="red">'+'[预存款余额：￥'+app.getData('user')['deposit']+'元]'+'</span>');
+    app.getView('breadcrumb').reload('预存款记录' + '<span class="red">' + '[预存款余额：￥' + app.getData('user')['deposit'] + '元]' + '</span>');
   });
 });
 app.addRoute('deposit_add', function () {
@@ -39,6 +39,7 @@ app.addRoute('deposit_add', function () {
 app.addModule('DepositModel', 'modules/member/management/deposit/controllers/DepositModel.js');
 app.addModule('DepositList', 'modules/member/management/deposit/controllers/DepositList.js');
 app.addModule('DepositRecharge', 'modules/member/management/deposit/controllers/DepositRecharge.js');
+app.addModule('DepositPaymentDetail', 'modules/member/management/deposit/controllers/DepositPaymentDetail.js');
 app.addTemplate('template/deposit_list', function (require, exports, module) {
   module.exports = require('modules/member/management/deposit/views/deposit_list.html');
 });
@@ -47,4 +48,11 @@ app.addTemplate('template/deposit_item', function (require, exports, module) {
 });
 app.addTemplate('template/deposit_recharge', function (require, exports, module) {
   module.exports = require('modules/member/management/deposit/views/deposit_recharge.html');
+});
+app.addTemplate('template/deposit_recharge_item', function (require, exports, module) {
+  module.exports = require('modules/member/management/deposit/views/deposit_recharge_item.html');
+});
+
+app.addTemplate('template/deposit_payment_detail', function (require, expotts, module) {
+  module.exports = require('modules/member/management/deposit/views/deposit_payment_detail.html');
 });
