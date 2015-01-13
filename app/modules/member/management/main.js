@@ -13,8 +13,11 @@ seajs.use(['jquery', 'MemberModel'],
         success: function (data) {
           if (Est.isEmpty(data.attributes.username)) {
             //TODO 未登录， 跳转到登录页面
-            window.location.href = CONST.HOST +
-              "/modules/member/management/login/login.html";
+            if (top){
+              top.$("#loginLink").click();
+            }
+            /*window.location.href = CONST.HOST +
+              "/modules/member/management/login/login.html";*/
           } else{
             app.addData('user', data.attributes);
             CONST.USER = data.attributes;
