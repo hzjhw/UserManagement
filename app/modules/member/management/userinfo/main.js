@@ -25,6 +25,7 @@ app.addRoute('userinfo', function () {
       viewId: 'memberDetail',
       id: app.getData('user')['memberId']
     }));
+    app.getView('breadcrumb').reload('个人信息');
   });
 });
 app.addModule('MemberDetailModel', 'modules/member/management/userinfo/models/MemberDetailModel.js');
@@ -48,6 +49,7 @@ app.addRoute('password', function () {
         viewId: 'memberProtect',
         id: app.getData('user')['memberId']
       }));
+      app.getView('breadcrumb').reload('修改密码');
     });
 });
 app.addModule('MemberPassword', 'modules/member/management/userinfo/controllers/MemberPassword.js');
@@ -74,6 +76,7 @@ app.addRoute('address', function () {
       el: '.main-inner',
       viewId: 'memberAddressList'
     }));
+    app.getView('breadcrumb').reload('收货地址');
   });
 });
 app.addRoute('address/:id', function (id) {
@@ -86,6 +89,7 @@ app.addRoute('address/:id', function (id) {
       viewId: 'memberAddressDetail',
       id: id === 'add' ? null : id
     }));
+    app.getView('breadcrumb').reload('收货地址详细');
   });
 });
 

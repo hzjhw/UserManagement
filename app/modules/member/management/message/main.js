@@ -13,6 +13,7 @@ app.addRoute('message_send', function () {
       el: '.main-inner',
       data: app.getData('user')
     }));
+    app.getView('breadcrumb').reload('发送信息');
   });
 });
 app.addRoute('message_view', function () {
@@ -28,6 +29,7 @@ app.addRoute('message_view', function () {
       pageSize: 15,
       pagination: true
     }));
+    app.getView('breadcrumb').reload('收件箱');
   });
 });
 app.addRoute('message_list', function () {
@@ -43,6 +45,7 @@ app.addRoute('message_list', function () {
       pageSize: 15,
       pagination: true
     }));
+    app.getView('breadcrumb').reload('发件箱');
   });
 });
 

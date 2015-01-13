@@ -12,7 +12,6 @@ define('DepositModel', ['BaseModel'], function (require, exports, module) {
   DepositModel = BaseModel.extend({
     defaults: Est.extend({
     }, BaseModel.prototype.defaults),
-    baseUrl: CONST.API + '/shop/deposit',
     BaseId: 'depositId',
     initialize: function () {
       this._initialize();

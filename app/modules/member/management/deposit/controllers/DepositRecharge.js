@@ -51,9 +51,6 @@ define('DepositRecharge', ['BaseList', 'BaseView', 'BaseDetail', 'BaseCollection
       }
     });
     DepositRecharge = BaseDetail.extend({
-      events: {
-        'click .submitButton': 'payment'
-      },
       initialize: function () {
         this._initialize({
           model: DepositModel,
@@ -65,6 +62,7 @@ define('DepositRecharge', ['BaseList', 'BaseView', 'BaseDetail', 'BaseCollection
         var paymentType = this.$("input[type=radio]:checked").attr('title');
         var paymentId = this.$("input[type=radio]:checked").val();
         var totalAmount = this.$('input[name=totalAmount]').val();
+        if (Est.isEmpty(paymentId))return;
         seajs.use(['DepositPaymentDetail'], function (DepositPaymentDetial) {
           app.addPanel('main', {
             el: '#main',
@@ -87,7 +85,10 @@ define('DepositRecharge', ['BaseList', 'BaseView', 'BaseDetail', 'BaseCollection
           el: '.paymentConfigTable'
         });
         this._form("#J_Form")._validate()._init({
-          onBeforeSave: function(){
+          onBeforeSave: function () {
+            this.payment();
+          },
+          onAfterSave: function () {
 
           }
         });
