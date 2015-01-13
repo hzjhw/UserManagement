@@ -5,10 +5,11 @@
  * @author wxw on 2014/12/12
  */
 define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email', 'MessageBindModel'],
+    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email', 'MessageBindModel',
+    'template/message_send'],
   function (require, exports, module) {
     var MessageModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MessageList, MessageItem,
-      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel;
+      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel ;
 
     MessageModel = require('MessageModel');
     BaseCollection = require('BaseCollection');
@@ -20,7 +21,6 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
     BaseUtils = require('BaseUtils');
     emailTemp = require('template/message_email');
     MessageBindModel = require('MessageBindModel');
-
 
     /**
      * 集合类
@@ -97,16 +97,16 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           pagination: true
         });
       },
-      // 打开添加/修改对话框
+      // 发送邮箱
       openAddDialog: function () {
-        var url = CONST.HOST + '/modules/message/message_detail.html?uId='
+        var url = CONST.HOST + '/modules/message/message_send_detail.html?uId='
           + Est.nextUid();
         this._detail({
           title: '留言信息',
           url: url,
           oniframeload: function (win) {
             win.app = app;
-            app.getView('messageDetail').setType('edit');
+            app.getView('messageSendDetail').setType('edit');
           }
         });
       },

@@ -1,19 +1,17 @@
 /**
- * @description MessageDetail
- * @namespace MessageDetail
- * @author wxw on 2014/12/31
+ * @description MessageSendDetail
+ * @namespace MessageSendDetail
+ * @author wxw on 2015/1/13
  */
-define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/message_send', 'Tag', 'BaseUtils'],
+define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/message_send',  'BaseUtils'],
   function (require, exports, module) {
-    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
+    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, dialog,  BaseUtils;
 
     MessageModel = require('MessageModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/message_send');
     dialog = require('dialog');
-    AttributesShow = require('AttributesShow');
-    Tag = require('Tag');
     BaseUtils = require('BaseUtils');
 
     MessageSendDetail = BaseDetail.extend({

@@ -24,6 +24,7 @@ app.addRoute('message', function () {
 app.addModule('MessageModel', 'models/MessageModel.js');
 app.addModule('MessageList', 'modules/message/controllers/MessageList.js');
 app.addModule('MessageDetail', 'modules/message/controllers/MessageDetail.js');
+app.addModule('MessageSendDetail', 'modules/message/controllers/MessageSendDetail.js');
 app.addModule('MessageBindModel', 'models/MessageBindModel.js');
 
 /**
@@ -41,6 +42,6 @@ app.addTemplate('template/message_detail', function (require, exports, module) {
 app.addTemplate('template/message_email', function (require, exports, module) {
   module.exports = require('modules/message/views/message_email.html');
 });
-app.addTemplate('template/message_panel', function (require, exports, module) {
-  module.exports = require('modules/message/views/message_panel.html');
+app.addTemplate('template/message_send', function (require, exports, module) {
+  module.exports = require('modules/message/views/message_send.html');
 });

@@ -61,11 +61,7 @@ define('MessageInbox', ['BaseList', 'BaseView', 'BaseCollection', 'BaseItem', 'B
         e.stopImmediatePropagation();
         this.model.set('isClicked', !this.model.get('isClicked'));
         var isIcon=this.model.get('isIcon');
-        if(isIcon == 'downIcon'){
-          isIcon = 'upIcon'
-        }else{
-          isIcon = 'downIcon'
-        }
+        isIcon = isIcon == 'downIcon'? 'upIcon':'downIcon';
         this.model.set('isIcon',isIcon);
       }
     });
