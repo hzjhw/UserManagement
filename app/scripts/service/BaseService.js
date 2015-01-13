@@ -43,12 +43,12 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      */
     getProductCategory: function (options) {
       debug('getProductCategory');
-      var $q = Est.promise;
-      return new $q(function (topResolve, topReject) {
+      var q = Est.promise;
+      return new q(function (topResolve, topReject) {
         options.select = options ? options.select ? true : false : false;
         options.extend = options ? options.extend ? true : false : false;
         var getCategory = function () {
-          return new $q(function (resolve, reject) {
+          return new q(function (resolve, reject) {
             $.ajax({
               type: 'post',
               url: CONST.API + '/category/product?pageSize=1000',
@@ -230,12 +230,12 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      */
     getMemberRankCategory: function (options) {
       debug('getMemberCategory');
-      var $q = Est.promise;
-      return new $q(function (topResolve, topReject) {
+      var q = Est.promise;
+      return new q(function (topResolve, topReject) {
         options.select = options ? options.select ? true : false : false;
         options.extend = options ? options.extend ? true : false : false;
         var getCategory = function () {
-          return new $q(function (resolve, reject) {
+          return new q(function (resolve, reject) {
             $.ajax({
               type: 'post',
               url: CONST.API + '/member/rank/list',
@@ -265,12 +265,12 @@ define('BaseService', ['jquery'], function (require, exports, module) {
     },
     getNavigateCategory: function (options) {
       debug('getNavigateCategory');
-      var $q = Est.promise;
-      return new $q(function (topResolve, topReject) {
+      var q = Est.promise;
+      return new q(function (topResolve, topReject) {
         options.select = options ? options.select ? true : false : false;
         options.extend = options ? options.extend ? true : false : false;
         var getCategory = function () {
-          return new $q(function (resolve, reject) {
+          return new q(function (resolve, reject) {
             $.ajax({
               type: 'post',
               url: CONST.API + '/navigator/list?pageSize=1000',
@@ -323,8 +323,8 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      *
      */
     getStaticPage: function () {
-      var $q = Est.promise;
-      return new $q(function (resolve, reject) {
+      var q = Est.promise;
+      return new q(function (resolve, reject) {
         $.ajax({
           type: 'post',
           url: CONST.API + '/static/list',
@@ -345,8 +345,8 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      *
      */
     getDeliveryCorpList: function () {
-      var $q = Est.promise;
-      return new $q(function (resolve, reject) {
+      var q = Est.promise;
+      return new q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/deliverycorp/list',
@@ -367,8 +367,8 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       });
     },
     getDeliverTypeList: function () {
-      var $q = Est.promise;
-      return new $q(function (resolve, reject) {
+      var q = Est.promise;
+      return new q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/deliverytype/list',
@@ -389,8 +389,8 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       });
     },
     getPaymentTypeList: function () {
-      var $q = Est.promise;
-      return new $q(function (resolve, reject) {
+      var q = Est.promise;
+      return new q(function (resolve, reject) {
         $.ajax({
           type: 'get',
           url: CONST.API + '/paymentconfig/list',
@@ -411,11 +411,11 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       });
     },
     getAreaList: function (url) {
-      var $q = Est.promise;
+      var q = Est.promise;
       if (!url){
         url = CONST.API + '/area/list';
       }
-      return new $q(function (resolve, reject) {
+      return new q(function (resolve, reject) {
         if (app.getData('arealist')) {
           resolve(app.getData('arealist'));
         } else{

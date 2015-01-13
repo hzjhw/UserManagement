@@ -8,7 +8,7 @@ var i=e[t],o=e[n],a=i,u=0;r&&"string"==typeof r.column&&(u=s(i,r.column),c(i,r.c
 CONST.LIB_FORDER = 'base';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.APP_VERSION = '20143523';
+CONST.APP_VERSION = '20143524';
 
 /**
  * @description config

@@ -9,7 +9,9 @@ define('MemberAddressModel', ['BaseModel'], function (require, exports, module) 
   BaseModel = require('BaseModel');
 
   MemberAddressModel = BaseModel.extend({
-    defaults: Est.extend({}, BaseModel.prototype.defaults),
+    defaults: Est.extend({
+      isDefault: '00'
+    }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/shop/receiver/detail',
     baseId: 'receiverId',
     initialize: function () {

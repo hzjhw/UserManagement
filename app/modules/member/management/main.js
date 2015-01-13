@@ -15,9 +15,11 @@ seajs.use(['jquery', 'MemberModel'],
             //TODO 未登录， 跳转到登录页面
             window.location.href = CONST.HOST +
               "/modules/member/management/login/login.html";
+          } else{
+            app.addData('user', data.attributes);
+            CONST.USER = data.attributes;
+            $("#load").hide();
           }
-          app.addData('user', data.attributes);
-          CONST.USER = data.attributes;
         }
       });
     }
