@@ -86,7 +86,7 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
             {name: '产品管理', url: '#/product', className: 'menu-product', children: [
               {name: '产品添加', url: '#/product_add', className: 'menu-category', children: []},
               {name: '分类管理', url: '#/category/product', className: 'menu-category', children: []},
-              {name: '产品导入', url: '#/category', className: 'menu-category', children: []}
+              {name: '产品导入', url: '#/product_import', className: 'menu-category', children: []}
             ]},
             {name: '新闻管理', url: '#/news', className: 'menu-news', children: [
               {name: '新闻添加', url: '#/news_add', className: 'menu-category', children: []},

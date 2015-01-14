@@ -26,6 +26,89 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       });
     },
     /**
+     * 用户信息
+     * @method initUser
+     * @author wyj 15.1.14
+     */
+    initUser: function (model) {
+      if (!app.getData('user')) {
+        var userModel = new model();
+        userModel.fetch({
+          async: false,
+          success: function (data) {
+            app.addData('user', data.attributes);
+            CONST.USER = data.attributes;
+          }
+        });
+      }
+    },
+    /**
+     * 首页信息
+     * @method initIndex
+     * @author wyj 15.1.14
+     */
+    initIndex: function (model) {
+      if (!app.getData('index')) {
+        var indexModel = new model();
+        indexModel.fetch({
+          async: false,
+          success: function (data) {
+            app.addData('index', data.attributes);
+          }
+        });
+      }
+    },
+    /**
+     * 产品排序
+     * @method [产品] - productSort
+     * @author wyj 15.1.14
+     * @example
+     *
+     */
+    productSort: function (options) {
+      seajs.use(['BaseUtils'], function (BaseUtils) {
+        $.ajax({
+          type: 'POST',
+          async: false,
+          url: CONST.DOMAIN + '/user_v2/product/sortPublished',
+          data: {
+            sortType: options.sortType,
+            category: options.category,
+            type: options.type
+          },
+          success: function (result) {
+            BaseUtils.tip('产品排序成功');
+            options.success &&
+            options.success.call(this, result);
+          }
+        });
+      });
+    },
+    /**
+     * 批量转移操作
+     * @method [批量] - batch
+     * @param url
+     * @param callback
+     * @author wyj 15.1.14
+     * @example
+     *
+     */
+    batch: function (options) {
+      options = Est.extend({}, options);
+      $.ajax({
+        type: 'POST',
+        async: false,
+        url: options.url,
+        data: {
+          ids: options.ids,
+          category: options.category
+        },
+        success: function (result) {
+          options.success && options.success.call(this, result);
+        }
+      });
+    },
+    /**
      * 获取产品分类
      *
      * @method [产品] - getProductCategory
@@ -412,13 +495,13 @@ define('BaseService', ['jquery'], function (require, exports, module) {
     },
     getAreaList: function (url) {
       var q = Est.promise;
-      if (!url){
+      if (!url) {
         url = CONST.API + '/area/list';
       }
       return new q(function (resolve, reject) {
         if (app.getData('arealist')) {
           resolve(app.getData('arealist'));
-        } else{
+        } else {
           $.ajax({
             type: 'get',
             url: url,

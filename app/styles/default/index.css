@@ -25,19 +25,19 @@
 #jhw .module01 .bodyContContent{clear:both;background:#fafafa;border-left:1px solid #e7e7e7;border-right:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;padding:12px 0 16px 15px;height:160px;}
 #jhw .module01 .bodyContContent02{display:none;}
 #jhw .module01 .bodyContContent03{display:none;}
-#jhw .module01 .bodyContContent02 a{color:#969696;}
+#jhw .module01 .bodyContContent02 a{color:#646464;}
 #jhw .module01 .notice{float:left;padding:0 10px;width:164px;height:158px;background:#fff;border:1px solid #e7e7e7;}
 #jhw .module01 .notice p{margin:0;}
 #jhw .module01 .notice p.time{color:#000;}
 #jhw .module01 .notice p.biaoti{color:#ff4400;}
 #jhw .module01 .notice p a,#jhw .module01 .notice p.content{color:#969696;}
 #jhw .module01 .notice002,#jhw .module01 .notice003{margin-left:10px;}
-#jhw .module01 .bodyContContent03 a{float:left;color:#989898;width:100px;height:40px;line-height:40px;text-align:center;border:1px solid #e7e7e7;margin-right:15px;margin-bottom:15px;}
+#jhw .module01 .bodyContContent03 a{color: #646464;}
 #jhw .module02{float:left;padding-left:15px;width:330px;margin-bottom:15px;}
 #jhw .module02 .mokuai001 img{float:left;margin-right:12px;}
 #jhw .module02 .mokuai001 p{margin:0;line-height:21px;}
 #jhw .module02 .mokuai001 .nihao{padding-top:2px;}
-#jhw .module02 .mokuai001 .jhwhy{display:inline-block;color:#fff;height:18px;line-height:18px;width:79px;background:#fcaf00;text-align:center;margin:6px 0;}
+#jhw .module02 .mokuai001 .jhwhy{display:inline-block;color:#fff;height:18px;line-height:18px;background:#fcaf00;text-align:center;margin:6px 0;}
 #jhw .module02 .mokuai002{clear:both;padding-top:5px;padding-bottom:7px;border-bottom:1px solid #eaeaea;}
 #jhw .module02 .mokuai002 p{margin:0;line-height:20px;}
 #jhw .module02 .mokuai002 p .num{color:#fe4b09;}
@@ -46,9 +46,11 @@
 #jhw .module02 .mokuai003 p{margin:0;line-height:20px;}
 #jhw .module02 .mokuai003 p.one{font-weight:bold;}
 #jhw .module02 .mokuai003 a.two{color:#999;float:left;padding-left:26px;padding-right:18px;background:url(img/jiantou2.png) no-repeat 13px center;height:21px;line-height:21px;border:1px solid #eaeaea;text-decoration:none;margin-top:9px;}
+#jhw .module02 .mokuai003 a.two:hover{background-color: #F6F6F6; border-color: #DADADA; color: #6D6D6D;}
 #jhw .module02 .mokuai004{float:left;padding-top:8px;padding-left:9px;width:98px;border-left:1px solid #eaeaea;}
 #jhw .module02 .mokuai004 div{padding-left:24px;}
 #jhw .module02 .mokuai004 a.two{color:#999;float:left;padding-left:26px;padding-right:10px;background:url(img/jiantou2.png) no-repeat 13px center;height:21px;line-height:21px;border:1px solid #eaeaea;text-decoration:none;margin-top:11px;}
+#jhw .module02 a.index-btn:hover{background-color: #F6F6F6; border-color: #DADADA; color: #6D6D6D;}
 #jhw .module03 {clear:both;display:inline-block;margin-bottom:15px;}
 #jhw .module03 .mokuai{color:#fff;float:left;margin-right:17px;width:226px;height:110px;text-decoration:none;cursor:pointer;text-align:right;}
 #jhw .module03 .mokuai .num{display:inline-block;margin-top:25px;font-size:14px;padding-right:15px;}
@@ -58,15 +60,24 @@
 #jhw .module03 .mokuai .ckxq02{background:url(img/jiantou.png) no-repeat 198px center #35a774;}
 #jhw .module03 .mokuai .ckxq03{background:url(img/jiantou.png) no-repeat 198px center #784683;}
 #jhw .module03 .mokuai .ckxq04{background:url(img/jiantou.png) no-repeat 198px center #e0a94f;}
-#jhw .module03 .mokuai001{background:url("img/mokuai001.jpg") no-repeat #27a9e3;}
-#jhw .module03 .mokuai002{background:url("img/mokuai002.jpg") no-repeat #28b779;}
-#jhw .module03 .mokuai003{background:url("img/mokuai003.jpg") no-repeat #852c9a;}
-#jhw .module03 .mokuai004{background:url("img/mokuai004.jpg") no-repeat #ffb84a;}
+#jhw .module03 .mokuai001{background:url("img/mokuai001.jpg") no-repeat #27a9e3;transition: all .2s ease-in-out;}
+#jhw .module03 .mokuai001:hover{background-position: 0 -5px;}
+#jhw .module03 .mokuai002{background:url("img/mokuai002.jpg") no-repeat #28b779;transition: all .2s ease-in-out;}
+#jhw .module03 .mokuai002:hover{background-position: 0 -5px;}
+#jhw .module03 .mokuai003{background:url("img/mokuai003.jpg") no-repeat #852c9a;transition: all .2s ease-in-out;}
+#jhw .module03 .mokuai003:hover{background-position: 0 -5px;}
+#jhw .module03 .mokuai004{background:url("img/mokuai004.jpg") no-repeat #ffb84a;transition: all .2s ease-in-out;}
+#jhw .module03 .mokuai004:hover{background-position: 0 -5px;}
 #jhw .module04{clear:both;}
-#jhw .module04 .mokuai{float:left;padding-left:7px;width:310px;border:1px solid #dfdfdf;}
-#jhw .module04 .mokuai .wdsp{color:#000;font-weight:bold;}
+#jhw .module04 .mokuai{float:left;padding-left:7px;width:310px;border:1px solid #dfdfdf;margin-right: 5px;height: 140px;overflow:hidden;}
+#jhw .module04 .mokuai .wdsp{color:#000;font-weight:bold;padding-top: 5px; margin-bottom: 6px;}
 #jhw .module04 .mokuai .yuansu{float:left;}
 #jhw .module04 .mokuai .yuansu001{padding-left:29px;padding-right:28px;}
+#jhw .module04 .yuansu-container{position:relative;}
+#jhw .module04 .yuansu001-div{position: absolute;left:0; top: 0;background: url(http://jihui88.com/member/images/element01.jpg) no-repeat scroll center top transparent;height: 40px; width: 50px;}
+#jhw .module04 .yuansu001-div-back{background: url(http://jihui88.com/member/images/element01.jpg) no-repeat scroll center top transparent;height: 40px; width: 50px;}
+#jhw .module04 .yuansu001-div:hover{transform: rotate3d(0,1,0,0deg);transition-duration: 0.4s;}
+#jhw .module04 .yuansu001-div-back:hover{transform: rotate3d(0,1,0,-180deg);transition-duration: 0.4s;}
 #jhw .module04 .mokuai .yuansu002{padding-left:29px;padding-right:28px;}
 #jhw .module04 .mokuai .yuansu003{padding-left:29px;}
 #jhw .module04 .mokuai .num{color:#0164ca;}
@@ -77,16 +88,6 @@
 #jhw #left-bar-ul .hover .node-tree li.hover{ background:#efefef; }
 #jhw #left-bar-ul .hover .node-tree li.hover { background: #3388CB; }
 #jhw .nav-arrow{display:none;}
-#jhw .hover .nav-arrow{display: block;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 0;
-    right: -10px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-
-    border-right:10px solid #4094d7;
-}
+#jhw .hover .nav-arrow{display: block; width: 20px; height: 20px; position: absolute; top: 0; right: -10px; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right:10px solid #4094d7; }
+#jhw .update li{ float: left; width: 46%; background: #fff; padding-top: 6px; padding-bottom: 7px; padding-left: 1%; margin-right: 2%; }
+.wdsp a { margin-left: 6px; }

@@ -19,24 +19,6 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 
         'click .top-login': 'logout'
       },
       initialize: function () {
-        var userModel = new UserModel();
-        userModel.fetch({
-          async:false,
-          success: function(data){
-            app.addData('user', data.attributes);
-            CONST.USER = data.attributes;
-          }
-        });
-        if (!app.getData('user')){
-          window.location.href = CONST.HOST + '/modules/login/login.html';
-          return false;
-        } else{
-          $("#load").hide();
-          $('#jhw-body').height($(window).height() - $('#jhw-top').height());
-          $(window).resize(function(){
-            $('#jhw-body').height($(window).height() - $('#jhw-top').height());
-          });
-        }
         this._initialize({
           template: tempTop,
           data: app.getData('user')
@@ -46,7 +28,7 @@ define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 
       render: function () {
         this._render();
       },
-      logout: function(){
+      logout: function () {
         BaseService.logout();
       }
     });

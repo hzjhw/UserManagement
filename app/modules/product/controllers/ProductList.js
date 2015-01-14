@@ -157,13 +157,14 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           }));
         });
       },
-      batchImport: function(){
-        BaseUtils.dialog({
+      batchImport: function () {
+        window.open(CONST.DOMAIN + '/user/product/selectImportType');
+        /*BaseUtils.dialog({
           title: '产品批量导入',
           width: 800,
           height: 500,
           url: CONST.DOMAIN + '/user/product/selectImportType'
-        });
+        });*/
       },
       // 简单搜索
       search: function () {
@@ -240,15 +241,11 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
             target: this.$('.btn-batch-category').get(0),
             success: function () {
               ctx.transferCategory = $('select[name=transferCategory]').val();
-              $.ajax({
-                type: 'POST',
-                async: false,
+              BaseService.batch({
                 url: CONST.API + '/product/batch/transfer',
-                data: {
-                  ids: ctx.checkboxIds.join(','),
-                  category: ctx.transferCategory
-                },
-                success: function (result) {
+                ids: ctx.checkboxIds.join(','),
+                category: ctx.transferCategory,
+                success: function () {
                   BaseUtils.tip('批量转移成功');
                   ctx._load();
                 }
@@ -269,39 +266,25 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       proSort: function () {
         var ctx = this;
         this.sortTemp = HandlebarsHelper.compile(sortTemp);
-        seajs.use(['dialog-plus'], function (dialog) {
-          window.dialog = dialog;
-          ctx.sortDialog = dialog({
-            id: 'sort-dialog',
-            title: '产品排序',
-            width: 300,
-            content: ctx.sortTemp({}),
-            button: [
-              {
-                value: '确定',
-                callback: function () {
-                  ctx.sortType = $('select[name=sortCategory]').val();
-                  $.ajax({
-                    type: 'POST',
-                    async: false,
-                    url: CONST.DOMAIN + '/user_v2/product',
-                    data: {
-                      sortType: ctx.sortType
-                    },
-                    success: function (result) {
-                      BaseUtils.tip('产品排序成功');
-                      ctx._load();
-                    }
-                  });
-                  this.remove();
-                  return false;
-                },
-                autofocus: true
-              },
-              { value: '关闭' }
-            ]
-          }).show(this.$('.btn-tool-sort').get(0));
-        })
+        BaseUtils.dialog({
+          id: 'sort-dialog',
+          title: '产品排序',
+          width: 300,
+          content: ctx.sortTemp({}),
+          target: this.$('.btn-tool-sort').get(0),
+          success: function () {
+            ctx.sortType = $('select[name=sortCategory]').val();
+            BaseService.productSort({
+              type: ctx.sortType,
+              category: ctx.searchCategory,
+              sortType: ctx.sortType,
+              success: function () {
+                ctx._load();
+              }
+            });
+            this.remove();
+          }
+        });
       }
     });
 

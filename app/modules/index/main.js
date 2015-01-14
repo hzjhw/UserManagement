@@ -14,11 +14,19 @@ app.addRoute('index', function () {
     }));
   });
 });
-
+app.addRoute('product_import', function () {
+  window.open(CONST.DOMAIN + '/user/product/selectImportType');
+});
+app.addRoute('logout', function () {
+  seajs.use(['BaseService'], function (BaseService) {
+    BaseService.logout();
+  });
+});
 app.addModule('UserModel', 'models/UserModel.js');
 app.addModule('TopView', 'modules/index/controllers/TopView.js');
 app.addModule('LeftView', 'modules/index/controllers/LeftView.js');
 app.addModule('Main', 'modules/index/controllers/Main.js');
+app.addModule('IndexModel', 'models/IndexModel.js');
 
 app.addTemplate('template/layout_left', function (require, exports, module) {
   module.exports = require('modules/index/views/layout_left.html');
@@ -32,3 +40,9 @@ app.addTemplate('template/main', function (require, exports, module) {
 app.addTemplate('template/nav_item', function (require, exports, module) {
   module.exports = require('modules/index/views/nav_item.html');
 });
+app.addModule('HelpList', 'modules/index/controllers/HelpList.js');
+app.addTemplate('template/help_item', function (require, exports, module) {
+  module.exports = require('modules/index/views/help_item.html');
+});
+
+app.addModule('MouseScroll', 'modules/index/controllers/MouseScroll.js');

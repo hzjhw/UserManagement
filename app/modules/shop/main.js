@@ -43,7 +43,34 @@ app.addRoute('shop/delivery_type', function () {
     }));
   });
 });
-app.addRoute
+app.addRoute('shop/delivery_no_send', function () {
+  seajs.use(['OrderList'], function (OrderList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('orderList', new OrderList({
+      el: '.jhw-main-inner',
+      viewId: 'orderList',
+      filter: [
+        {key: 'shippingStatus', value: 'unshipped', match: new RegExp('^unshipped$') }
+      ]
+    }));
+  });
+});
+app.addRoute('shop/delivery_no_paid', function () {
+  seajs.use(['OrderList'], function (OrderList) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('orderList', new OrderList({
+      el: '.jhw-main-inner',
+      viewId: 'orderList',
+      filter: [
+        {key: 'paymentStatus', value: 'unpaid', match: new RegExp('^unpaid$') }
+      ]
+    }));
+  });
+});
 
 app.addModule('OrderList', 'modules/shop/controllers/OrderList.js');
 app.addModule('OrderDetail', 'modules/shop/controllers/OrderDetail.js');
@@ -107,39 +134,39 @@ app.addTemplate('template/delivery_type_item', function (require, exports, modul
 app.addTemplate('template/delivery_type_detail', function (require, exports, module) {
   module.exports = require('modules/shop/views/delivery_type_detail.html');
 });
-app.addTemplate('template/order_detail', function(require, exports, module){
+app.addTemplate('template/order_detail', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_detail.html');
 });
-app.addTemplate('template/product_info_item', function(require, exports, module){
+app.addTemplate('template/product_info_item', function (require, exports, module) {
   module.exports = require('modules/shop/views/product_info_item.html');
 });
-app.addTemplate('template/order_view', function(require, exports, module){
+app.addTemplate('template/order_view', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_view.html');
 });
-app.addTemplate('template/order_handle', function(require, exports, module){
+app.addTemplate('template/order_handle', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_handle.html');
 });
-app.addTemplate('template/order_log_item', function(require, exports, module){
+app.addTemplate('template/order_log_item', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_log_item.html');
 });
-app.addTemplate('template/payment_info_item', function(require, exports, module){
+app.addTemplate('template/payment_info_item', function (require, exports, module) {
   module.exports = require('modules/shop/views/payment_info_item.html');
 });
-app.addTemplate('template/delivery_info_item', function(require, exports, module){
+app.addTemplate('template/delivery_info_item', function (require, exports, module) {
   module.exports = require('modules/shop/views/delivery_info_item.html');
 });
-app.addTemplate('template/member_info', function(require, exports, module){
+app.addTemplate('template/member_info', function (require, exports, module) {
   module.exports = require('modules/shop/views/member_info.html');
 });
-app.addTemplate('template/payment_detail', function(require, exports, module){
+app.addTemplate('template/payment_detail', function (require, exports, module) {
   module.exports = require('modules/shop/views/payment_detail.html');
 });
-app.addTemplate('template/shipping_detail', function(require, exports, module){
+app.addTemplate('template/shipping_detail', function (require, exports, module) {
   module.exports = require('modules/shop/views/shipping_detail.html');
 });
-app.addTemplate('template/delivery_item', function(require, exports, module){
+app.addTemplate('template/delivery_item', function (require, exports, module) {
   module.exports = require('modules/shop/views/delivery_item.html');
 });
-app.addTemplate('template/order_search', function(require, exports, module){
+app.addTemplate('template/order_search', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_search.html');
 });
