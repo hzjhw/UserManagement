@@ -126,6 +126,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .btn-batch-del': '_batchDel',
         'click .product-add': 'detail',
         'click .btn-search': 'search',
+        'click .btn-batch-import': 'batchImport',
         'click .search-advance-product': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category': 'batchCategory',
@@ -154,6 +155,14 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           }).addView('productDetail', new ProductDetail({
             el: '.jhw-main-inner'
           }));
+        });
+      },
+      batchImport: function(){
+        BaseUtils.dialog({
+          title: '产品批量导入',
+          width: 800,
+          height: 500,
+          url: CONST.DOMAIN + '/user/product/selectImportType'
         });
       },
       // 简单搜索

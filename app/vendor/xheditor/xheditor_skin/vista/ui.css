@@ -140,3 +140,39 @@
 }
 
 .xheHideArea{position:absolute;top:-1000px;left:-1000px;visibility:hidden;}
+
+.xheBtnQQ{
+    background-image: url("img/icons1.png");
+    height: 20px !important;
+    width: 20px !important;
+    background-position: -868px 0;
+}
+.xheBtnQQ{
+    background-image: url("../../xheditor-tools/images/icons.png");
+    background-position: -868px 0;
+    height: 20px !important;
+    width: 20px !important;
+}
+.xheBtnMap{
+    background-image: url("../../xheditor-tools/images/icons2.png");
+    background-position: -40px -40px;
+    height: 20px !important;
+    width: 20px !important;
+}
+.xheBtnLayout{
+    background-image: url("../../xheditor-tools/images/icons2.png");
+    background-position: -339px -40px;
+    height: 20px !important;
+    width: 20px !important;
+}
+.xheBtnQrcode{
+    background-image: url("../../xheditor-tools/images/qrcode.png");
+    height: 20px !important;
+    width: 20px !important;
+}
+.xheContact {
+    background-image: url("../../xheditor-tools/images/icons.png");
+    background-position: -839px 0;
+    height: 20px !important;
+    width: 20px !important;
+}

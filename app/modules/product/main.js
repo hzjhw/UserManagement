@@ -54,7 +54,7 @@ function productDetail(id) {
   });
 }
 app.addRoute('product/:id', function (id) {
-  productDetail(id);
+  productDetail(Est.decodeId(id, 'Product_', 32));
 });
 app.addRoute('product_add', function () {
   productDetail();

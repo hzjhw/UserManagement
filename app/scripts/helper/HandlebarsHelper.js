@@ -199,6 +199,15 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   });
 
   /**
+   * 缩略ID值
+   * @author wyj
+   * @time 2014-03-27
+   */
+  Handlebars.registerHelper('id2', function (id) {
+    return id == null ? "" : id.replace(/^[^1-9]+/, "")
+  });
+
+  /**
    * 返回全局常量
    * @method [常量] - CONST
    * @author wyj 14.12.17

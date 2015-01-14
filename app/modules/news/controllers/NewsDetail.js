@@ -33,6 +33,11 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           model: NewsModel
         });
       },
+      back: function () {
+        seajs.use(['backbone'], function (Backbone) {
+          Backbone.history.navigate('#/news', true);
+        });
+      },
       render: function () {
         debug('4.NewsDetail.render');
         var ctx = this;
@@ -166,18 +171,6 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       check_img_news : function(){
 
-      },
-      back: function(){
-        var ctx = this;
-        seajs.use(['NewsList'], function(NewsList){
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('newsList', new NewsList({
-            el: '.jhw-main-inner',
-            page: ctx.options.page
-          }));;
-        });
       }
     });
 

@@ -86,12 +86,19 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        this.model._saveField({
-          id: this.model.get('id'),
-          category: category
-        }, ctx, {success: function () {
-          ctx.model.set('category', category);
-        }, hideTip: true});
+        BaseUtils.comfirm({
+          title: '提示：',
+          content: '是否更改分类？',
+          success: function () {
+            ctx.model._saveField({
+              id: ctx.model.get('id'),
+              category: category
+            }, ctx, {success: function () {
+              ctx.model.set('category', category);
+            }, hideTip: true});
+          }
+        });
+        this._render();
       },
       // 编辑新闻
       editItem: function () {
@@ -182,8 +189,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         });
       },
       // 打开添加/修改对话框
-      edit: function(){
-        seajs.use(['NewsDetail'], function(NewsDetail){
+      edit: function () {
+        seajs.use(['NewsDetail'], function (NewsDetail) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -233,7 +240,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             searchState: ctx.searchState,
             searchTypeView: ctx.searchTypeView
           }),
-          success: function(){
+          success: function () {
             ctx.searchKey = $('input[name=searchKey]').val();
             ctx.searchCategory = $('select[name=searchCategory]').val();
             ctx.searchTypeView = $('select[name=searchTypeView]').val();
@@ -265,7 +272,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
               newsCategoryList: app.getData('newsCategory')
             }),
             target: this.$('.btn-batch-category').get(0),
-            success: function(){
+            success: function () {
               ctx.transferCategory = $('select[name=transferCategory]').val();
               $.ajax({
                 type: 'POST',
