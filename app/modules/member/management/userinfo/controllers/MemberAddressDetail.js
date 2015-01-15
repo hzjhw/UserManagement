@@ -25,7 +25,7 @@ define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', '
       initDistrict: function () {
         BaseUtils.initDistrict({
           id: 'district1',// 必填
-          target: '#city', // 目标选择符
+          render: '#city', // 目标选择符
           path: this.model.get('areaPath'),
           url: CONST.API + '/shop/area/list'
         });

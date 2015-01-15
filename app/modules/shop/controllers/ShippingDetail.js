@@ -73,7 +73,7 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       initDistrict: function(){
         BaseUtils.initDistrict({
           id: 'district1',// 必填
-          target: '#district1', // 目标选择符
+          render: '#district1', // 目标选择符
           path: this.model.get('shipAreaPath')
         });
       }

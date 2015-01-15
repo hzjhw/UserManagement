@@ -139,4 +139,21 @@ app.addStatus('state', [
   {text: '已审核 ', value: '01', html: '<span style="color: green;">已审核</span>'},
   {text: '已审核 ', value: '00', html: '<span style="color: red;">未审核</span>'}
 ]);
+// 经营模式
+app.addStatus('businessType', [
+  {text: '生产加工', value: '00'},
+  {text: '经营批发', value: '01'},
+  {text: '招商代理', value: '02'},
+  {text: '商业服务', value: '03'},
+  {text: '以上都不是', value: '04'}
+]);
+
+// 企业类型
+app.addStatus('enterpriseType', [
+  {text: '个人用户', value: '00'},
+  {text: '企业单位', value: '01'},
+  {text: '个体经营', value: '02'},
+  {text: '事业单位或者团体', value: '03'}
+]);
+
 window.app = app;

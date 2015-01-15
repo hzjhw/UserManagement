@@ -153,7 +153,7 @@ body .m0{margin:0}
 #jhw .jhw-top-r .top-menu {padding-top:25px;padding-right:10px;}
 #jhw .jhw-top-r .top-menu a{color:#585858;display:inline-block;margin-left:15px;padding-left:20px;text-decoration:none;}
 #jhw-left-bar{ float: left; width: 14%;text-align: center;height:100%;position:relative;}
-#jhw-left-bar ul{border-top: 1px solid #2A74AE;position:absolute;width:100%;left:0;}
+#jhw-left-bar ul{border-top: 1px solid #2A74AE;position:absolute;width:100%;left:0;overflow:hidden;}
 #jhw-left-bar a, #jhw-left-bar a:link{color:#fff;font-size:14px;display: block; height: 27px; padding-top: 70px; width: 100%;}
 #jhw-left-bar .hover a{background-color: #4094D7;}
 #jhw-left-bar ul li{border-top: 2px solid #3690D7;border-bottom: 1px solid #2A74AE;height: 97px; position: relative;}

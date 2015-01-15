@@ -64,9 +64,10 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @method [地区] - initDistrict
        * @author wyj 15.1.6
        * @example
-               BaseUtils.initDistrict({
+       BaseUtils.initDistrict({
                  id: 'district1' ,// 必填
-                 target: '#district-container', // 目标选择符
+                 render: '#district-container', // 目标选择符
+                 target: '#model-dist',
                  path: '...',
                  url: CONST.API + '/shop/receiver/list' // 自定义请求地址
                });
@@ -74,13 +75,14 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       initDistrict: function (options) {
         seajs.use(['District'], function (District) {
           app.addPanel(options.id, {
-            el: options.target,
+            el: options.render,
             template: '<div class="district-inner ' + options.id + '"></div>'
           });
           app.addView(options.id, new District({
             el: '.' + options.id,
             viewId: options.id,
-            target: options.target,
+            target: options.render, // target为需要渲染到的目标元素中
+            input: options.target, // input 为绑定的input元素
             path: options.path,
             addressUrl: options.url
           }));
@@ -261,95 +263,95 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        */
       initEditor: function (options) {
         var allPlugin = {
-          contact : {
-            c : 'xheContact',
-            t : '插入联系方式',
-            e : function() {
+          contact: {
+            c: 'xheContact',
+            t: '插入联系方式',
+            e: function () {
               var _this = this;
               _this.showIframeModal('插入联系方式',
-                CONST.DOMAIN + '/user_v2/enterprise/updateuser/getUserBySession',
-                function(v) {
+                  CONST.DOMAIN + '/user_v2/enterprise/updateuser/getUserBySession',
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 700, 510);
             }
           },
-          abbccMap : {
-            c : 'xheBtnMap',
-            t : '选择Google/Baidu地圖',
-            e : function() {
+          abbccMap: {
+            c: 'xheBtnMap',
+            t: '选择Google/Baidu地圖',
+            e: function () {
               var _this = this;
               _this.showIframeModal('选择Google/Baidu地圖',
-                CONST.HOST + '/vendor/xheditor/xheditor-tools/abbcc-map/index.html',
-                function(v) {
+                  CONST.HOST + '/vendor/xheditor/xheditor-tools/abbcc-map/index.html',
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 700, 510);
             }
           },
-          abbccLayout : {
-            c : 'xheBtnLayout',
-            t : '选择模版',
-            e : function() {
+          abbccLayout: {
+            c: 'xheBtnLayout',
+            t: '选择模版',
+            e: function () {
               var _this = this;
               _this.showIframeModal('选择模版',
                   CONST.HOST + '/vendor/xheditor/xheditor-tools/abbcc-layout/index.html',
-                function(v) {
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 660, 500);
             }
           },
-          abbccQrcode : {
-            c : 'xheBtnQrcode',
-            t : '生成二维码',
-            e : function() {
+          abbccQrcode: {
+            c: 'xheBtnQrcode',
+            t: '生成二维码',
+            e: function () {
               var _this = this;
               _this.showIframeModal('生成二维码',
                   CONST.HOST + '/vendor/xheditor/xheditor-tools/abbcc-qrcode/index.html',
-                function(v) {
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 800, 300);
             }
           },
-          abbccImages : {
-            c : 'xheIcon xheBtnImg',
-            t : '选择图片',
-            s : 'ctrl+8',
-            e : function() {
+          abbccImages: {
+            c: 'xheIcon xheBtnImg',
+            t: '选择图片',
+            s: 'ctrl+8',
+            e: function () {
               var _this = this;
               _this.showIframeModal('选择图片',
                   CONST.DOMAIN + '/common/picUpload/upload.jsp?pageType=xheditor',
-                function(v) {
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 800, 550);
             }
           },
-          abbccFlash : {
-            c : 'xheIcon xheBtnFlash',
-            t : '选择flash',
-            s : 'ctrl+7',
-            e : function() {
+          abbccFlash: {
+            c: 'xheIcon xheBtnFlash',
+            t: '选择flash',
+            s: 'ctrl+7',
+            e: function () {
               var _this = this;
               _this.showIframeModal('选择flash',
                 '/user/album/albumshowFlashPage?pageType=xheditor',
-                function(v) {
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 600, 300);
             }
           },
-          abbccQQ : {
-            c : 'xheBtnQQ',
-            t : '选择QQ/MSN/Skype/阿里旺旺/淘宝旺旺',
-            s : 'ctrl+9',
-            e : function() {
+          abbccQQ: {
+            c: 'xheBtnQQ',
+            t: '选择QQ/MSN/Skype/阿里旺旺/淘宝旺旺',
+            s: 'ctrl+9',
+            e: function () {
               var _this = this;
               _this.showIframeModal('选择QQ/MSN/Skype/阿里旺旺/淘宝旺旺',
                   CONST.DOMAIN + '/user_v2/qq/index.jsp',
-                function(v) {
+                function (v) {
                   _this.loadBookmark();
                   _this.pasteHTML(v);
                 }, 600, 300);
@@ -361,22 +363,22 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
           function startEditor(obj) {
             $(obj).xheditor(
               {
-                plugins : allPlugin,
-                tools : 'Preview,Fullscreen,Source,|,contact,abbccQQ,abbccMap,abbccLayout,abbccQrcode,|,Table,abbccImages,abbccFlash,Media,|,FontColor,BackColor,|,Align,Underline,Italic,Bold,|,FontSize,Fontface,|,Link,Unlink',
-                skin : 'vista',
-                layerShadow : 2,
-                html5Upload : false,
-                upBtnText : '浏览',
-                upLinkExt : 'jpg,png,bmp',
-                upImgUrl : '/fileUpload/uploadByJson',
-                upFlashUrl : '/fileUpload/uploadByJson',
+                plugins: allPlugin,
+                tools: 'Preview,Fullscreen,Source,|,contact,abbccQQ,abbccMap,abbccLayout,abbccQrcode,|,Table,abbccImages,abbccFlash,Media,|,FontColor,BackColor,|,Align,Underline,Italic,Bold,|,FontSize,Fontface,|,Link,Unlink',
+                skin: 'vista',
+                layerShadow: 2,
+                html5Upload: false,
+                upBtnText: '浏览',
+                upLinkExt: 'jpg,png,bmp',
+                upImgUrl: '/fileUpload/uploadByJson',
+                upFlashUrl: '/fileUpload/uploadByJson',
                 upMediaUrl: '/fileUpload/uploadByJson',
-                upFlashExt : "swf",
-                upMediaExt:'wmv,avi,wma,mp3,mid',
-                linkTag:true,
+                upFlashExt: "swf",
+                upMediaExt: 'wmv,avi,wma,mp3,mid',
+                linkTag: true,
                 height: 400,
-                internalScript:true,
-                inlineScript:true
+                internalScript: true,
+                inlineScript: true
               });
           }
 

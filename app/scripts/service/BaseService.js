@@ -514,6 +514,36 @@ define('BaseService', ['jquery'], function (require, exports, module) {
           });
         }
       });
+    },
+    /**
+     * 获取主营行业
+     * @method getIndustry
+     * @returns {Est.promise}
+     */
+    getIndustry: function () {
+      var q = Est.promise;
+      var url = CONST.API + '/enterprise/industry';
+      return new q(function (resolve, reject) {
+        if (app.getData('industry')) {
+          resolve(app.getData('industry'));
+        } else {
+          $.ajax({
+            type: 'get',
+            url: url,
+            async: false,
+            success: function (result) {
+              result = result.attributes.data;
+              Est.each(result, function (item) {
+                item.text = item.name;
+                item.value = item.syscodeId;
+              });
+              result.unshift({ text: '请选择', value: '-' });
+              resolve(result);
+              app.addData('industry', result);
+            }
+          });
+        }
+      });
     }
   };
 

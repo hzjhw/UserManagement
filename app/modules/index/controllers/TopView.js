@@ -3,14 +3,12 @@
  * @namespace TopView
  * @author yongjin on 2014/11/12
  */
-define('TopView', ['BaseView', 'BaseUtils', 'UserModel', 'template/layout_top', 'BaseService'],
+define('TopView', ['BaseView', 'template/layout_top', 'BaseService'],
   function (require, exports, module) {
-    var TopView, UserModel, BaseView, BaseUtils, tempTop, BaseService;
+    var TopView, BaseView, tempTop, BaseService;
 
-    UserModel = require('UserModel');
     BaseView = require('BaseView');
     tempTop = require('template/layout_top');
-    BaseUtils = require('BaseUtils');
     BaseService = require('BaseService');
 
     TopView = BaseView.extend({
