@@ -164,8 +164,8 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           collapse: '.node-collapse',
           parentId: 'parentId',
           categoryId: 'navigatorId',
-          grade: '1',
-          parentValue: null
+          rootId: 'grade',
+          rootValue: 1
         });
       },
       render: function () {

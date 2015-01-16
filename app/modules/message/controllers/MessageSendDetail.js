@@ -3,9 +3,9 @@
  * @namespace MessageSendDetail
  * @author wxw on 2015/1/13
  */
-define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/message_send',  'BaseUtils'],
+define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/message_send', 'BaseUtils'],
   function (require, exports, module) {
-    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, dialog,  BaseUtils;
+    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, dialog, BaseUtils;
 
     MessageModel = require('MessageModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -17,29 +17,50 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
     MessageSendDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #message-reset': 'reset'
+        'click .refreshCode': 'refreshCode'
       },
       initialize: function () {
-        debug('2.MessageDetail.initialize');
         this._initialize({
-          template : template,
+          template: template,
           model: MessageModel
         });
       },
+      refreshCode: function () {
+        var $verifyPic = this.$("#verifyPic");
+        $verifyPic.attr("src", $verifyPic.attr("src") + '?time=' + new Date().getTime())
+      },
       render: function () {
         debug('4.MessageDetail.render');
-        var ctx = this;
-        this._render();
-        // 表单初始
-        this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
-          },
-          onAfterSave: function(response){
+        this.model.set('userName', app.getData('user')['name']);
+        this.model.set('cellphone', app.getData('user')['cellphone']);
+        this.model.set('email', app.getData('user')['email']);
+        if (app.getData('curMessageUserName')) {
+          this.model.set('username', app.getData('curMessageUserName'));
+        }
+        if (app.getData('curMessageType')) {
+          switch (app.getData('curMessageType')) {
+            case '03':
+              this.model.set('type', 'user');
+              break;
+            case '04':
+              this.model.set('type', 'admin');
+              break;
+            case '07':
+              this.model.set('type', 'member');
+              break;
           }
+        }
+        this._render();
+        BaseUtils.initSelect({
+          render: '#s6',
+          target: '#model-type',
+          items: [
+            {text: '其它会员', value: 'user'},
+            {text: '我的下属会员', value: 'member'},
+            {text: '系统管理员', value: 'admin'}
+          ]
         });
-        setTimeout(function () {
-          BaseUtils.resetIframe();
-        }, 1000);
+        this._form('#J_Form')._validate()._init();
         return this;
       }
     });

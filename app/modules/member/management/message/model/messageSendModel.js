@@ -15,7 +15,7 @@ define('MessageSendModel', ['BaseModel'], function (require, exports, module) {
     }, BaseModel.prototype.defaults),
     baseUrl: function(){
       var end ='send';
-      if(this.get('_data')['messageType'] === 'detail'){
+      if(this.get('_data') && this.get('_data')['messageType'] === 'detail'){
         end = 'detail';
       }
       return CONST.API + '/shop/message/'+end;

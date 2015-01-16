@@ -7,201 +7,293 @@
 <div id="panel" class="" style="padding:10px;">
 <!--常规-->
 <div>
-    <div class="span12">
-        <div class="control-group">
-            <label class="control-label"><s>*</s>公司名称：</label>
+<div class="span12">
+    <div class="control-group">
+        <label class="control-label"><s>*</s>公司名称：</label>
 
-            <div class="controls">
-                <input id="model-name" name="name" value="{{name}}" type="text"
-                       class="input-large"
+        <div class="controls">
+            <input id="model-name" name="name" value="{{name}}" type="text"
+                   class="input-normal"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入公司名称","iconCls":"icon icon-pencil"}'>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            主营行业:
+        </label>
+
+        <div class="controls">
+            <div id="s2">
+                <input value="{{industry}}" class="input-normal" id="model-industry"
+                       type="hidden"/>
+            </div>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            企业类型:
+        </label>
+
+        <div class="controls">
+            <div id="s3">
+                <input value="{{type}}" id="model-type" class="input-normal" type="hidden"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>经营地点:
+        </label>
+
+        <div class="controls">
+            <input value="{{address}}" id="model-address" type="hidden" data-rules="{required : true}"
+                   data-tip='{"text":"请输入经营地点","iconCls":"icon icon-pencil"}'/>
+
+            <div id="district-container" class="enterprise-address">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>法人代表:
+        </label>
+
+        <div class="controls">
+            <input id="model-legalPre" value="{{legalPre}}" class="input-normal" type="text"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入法人代表","iconCls":"icon icon-pencil"}'/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>员工人数:
+        </label>
+
+        <div class="controls">
+            <input value="{{staffSum}}" id="model-staffSum" class="input-normal" type="text"
+                   data-rules="{required : true}"
+                   data-tip='{"text":"请输入员工人数","iconCls":"icon icon-pencil"}'/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">注册资本</label>
+
+        <div class="controls">
+            <input value="{{registeredCapital}}" id="model-registeredCapital" class="input-normal" type="text"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="">
+            主要市场:
+        </label>
+
+        <div class="controls">
+            <input value="{{market}}" id="model-market" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            年进口额:
+        </label>
+
+        <div class="controls">
+            <input value="{{annualImport}}" id="model-annualImport" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            帐 号:
+        </label>
+
+        <div class="controls">
+            <input value="{{bankAccount}}" id="model-bankAccount" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            研发部门人数:
+        </label>
+
+        <div class="controls">
+            <input value="{{rdSum}}" id="model-rdSum" class="input-normal" type="text"/>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            厂房面积:
+        </label>
+
+        <div class="controls">
+            <input value="{{factoryArea}}" id="model-factoryArea" class="input-normal" type="text"/>
+            平方米
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            管理体系认证:
+        </label>
+
+        <div class="controls">
+            <input value="{{qasyscert}}" id="model-qasyscert" class="input-normal" type="text"/>
+        </div>
+    </div>
+</div>
+<div class="span12">
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>主营产品:
+        </label>
+
+        <div class="controls">
+            <input id="model-mainBusiness" value="{{mainBusiness}}" class="input-normal" data-rules="{required : true}"
+                   data-tip='{"text":"请输入主营产品","iconCls":"icon icon-pencil"}'
+                   type="text"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="">
+            经营模式:
+        </label>
+
+        <div class="controls">
+            <div id="s1">
+                <input value="{{businessType}}" id="model-businessType" type="hidden"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            公司注册地:
+        </label>
+
+        <div class="controls">
+            <input value="{{dist}}" id="model-dist" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>成立时间:
+        </label>
+
+        <div class="controls">
+            <div id="s4">
+                <input id="model-regTime" name="regTime" value="{{dateFormat regTime 'yyyy-MM-dd'}}" type="text"
                        data-rules="{required : true}"
-                       data-tip='{"text":"请输入公司名称","iconCls":"icon icon-pencil"}'>
+                       data-tip='{"text":"请输入成立时间","iconCls":"icon icon-pencil"}'
+                       class="calendar input-normal">
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="">
-                主营行业:
-            </label>
-
-            <div class="controls">
-                <div id="s2">
-                    <input value="{{industry}}" class="input-large" id="model-industry"
-                           type="hidden"/>
-                </div>
-
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="">
-                企业类型:
-            </label>
-
-            <div class="controls">
-                <div id="s3">
-                    <input value="{{type}}" id="model-type" class="input-large" type="hidden"/>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="">
-                *经营地点:
-            </label>
-
-            <div class="controls">
-                <input value="{{entAddress}}" id="model-entAddress" type="hidden"/>
-
-                <div id="district-container" class="enterprise-address">
-                </div>
-            </div>
-        </div>
-
     </div>
-    <div class="span12">
-        <div class="control-group">
-            <label class="control-label" for="">
-                <s>*</s>主营产品:
-            </label>
+    <div class="control-group">
+        <label class="control-label" for="">年营业额:</label>
 
-            <div class="controls">
-                <input id="model-mainBusiness" value="{{mainBusiness}}" class="input-large"
-                       type="text"/>
-            </div>
+        <div class="controls">
+            <input value="{{annualTurnover}}" id="model-annualTurnover" class="input-normal" type="text"/>
         </div>
-
-        <div class="control-group">
-            <label class="control-label" for="">
-                经营模式:
-            </label>
-
-            <div class="controls">
-                <div id="s1">
-                    <input value="{{businessType}}" id="model-businessType" type="hidden"/>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="">
-                公司注册地:
-            </label>
-
-            <div class="controls">
-                <input value="{{dist}}" id="model-dist" class="input-large" type="text"/>
-            </div>
-        </div>
-
-
     </div>
+
+    <div class="control-group">
+        <label class="control-label" for="">
+            经营品牌:
+        </label>
+
+        <div class="controls">
+            <input value="{{brand}}" id="model-brand" class="input-normal" type="text"/>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            主要客户群:
+        </label>
+
+        <div class="controls">
+            <input value="{{customer}}" id="model-customer" class="input-normal" type="text"/>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            年出口额:
+        </label>
+
+        <div class="controls">
+            <input value="{{annualExport}}" id="model-annualExport" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            开户银行:
+        </label>
+
+        <div class="controls">
+            <input value="{{bank}}" id="model-bank" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            OEM:
+        </label>
+
+        <div class="controls">
+            <div id="s5">
+                <input value="{{oem}}" id="model-oem" class="input-normal" type="hidden"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            月产量:
+        </label>
+
+        <div class="controls">
+            <input value="{{monthProd}}" id="model-monthProd" class="input-normal" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            质量控制:
+        </label>
+
+        <div class="controls">
+            <input value="{{qualityControl}}" id="model-qualityControl" class="input-normal" type="text"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="">
+            icp备案号:
+        </label>
+
+        <div class="controls">
+            <input value="{{icp}}" id="model-icp" class="input-normal" type="text"/>
+        </div>
+    </div>
+</div>
 </div>
 <!--公司简介-->
 <div class="hide">
     <div class="control-group">
-        <label class="control-label">更改分类：</label>
+        <label class="control-label">核心关键字：</label>
 
         <div class="controls" style="position:relative;">
-            <div id="attCate">
-                <input id="attCateHid" type="hidden" value="{{category}}" name="category">
-                                            <span class="cate-info">
-                                            <label class="tips-content"><a href="#/attributes?id={{category}}"
-                                                                           class="setAttribute"
-                                                                           target="_blank">设置当前分类属性</a></label></span>
-            </div>
+            <input value="{{key}}" id="model-key" class="input-normal" type="text"/>
         </div>
     </div>
-    <div id="product-attr">
-        <div id="attributes-list">
+    <div class="control-group">
+        <label class="control-label" for="">
+            <s>*</s>公司简介:
+        </label>
 
-        </div>
-    </div>
-</div>
-<!--技术实力-->
-<div class="hide">
-    <div class="row-fluid show-grid">
-        <div class="span12 span-first">
-            <div class="control-group">
-                <label class="control-label">产品价格：</label>
-
-                <div class="controls">
-                    <input id="model-price" name="price" value="{{price}}" type="text"
-                           class="input-middle"
-                           data-tip='{"text":"产品价格","iconCls":"icon icon-pencil"}'>&nbsp;元
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">商品重量：</label>
-
-                <div class="controls">
-                    <input id="model-weight" name="weight" value="{{weight}}" type="text"
-                           class="input-small">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">库存数量：</label>
-
-                <div class="controls">
-                    <input id="model-store" name="store" value="{{store}}" type="text"
-                           class="input-small">&nbsp;件
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">是否上架：</label>
-
-                <div class="controls">
-                    {{{radio name='isMarketable' value=isMarketable option='{"是": "01", "否":
-                    "00"}' }}}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">新品商品：</label>
-
-                <div class="controls">
-                    {{{radio name='isNew' value=isNew option='{"是": "01", "否": "00"}' }}}
-                </div>
-            </div>
-
-
-        </div>
-        <div class="span12">
-            <div class="control-group">
-                <label class="control-label">市场价格：</label>
-
-                <div class="controls">
-                    <input id="model-marketPrice" name="marketPrice" value="{{marketPrice}}"
-                           type="text"
-                           class="input-middle">元
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">重量单位：</label>
-
-                <div class="controls">
-                    <div id="weightUnit">
-                        <input id="model-weightUnit" name="weightUnit" value="{{weightUnit}}"
-                               type="hidden"/>
-                    </div>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">商品积分：</label>
-
-                <div class="controls">
-                    <input id="model-point" name="point" value="{{point}}" type="text"
-                           class="input-middle">
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">精品商品：</label>
-
-                <div class="controls">
-                    {{{radio name='isBest' value=isBest option='{"是": "01", "否": "00"}' }}}
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">热销商品：</label>
-
-                <div class="controls">
-                    {{{radio name='isHot' value=isHot option='{"是": "01", "否": "00"}' }}}
-                </div>
-            </div>
+        <div class="controls control-row-auto">
+            <textarea id="model-edesc" name="edesc" class="ckeditor edesc text" rows="12" data-rules="{required : true}"
+                      data-tip='{"text":"请输入公司简介","iconCls":"icon icon-pencil"}'
+                      cols="95" style="width: 100%;height:250px;">{{edesc}}</textarea>
         </div>
     </div>
 </div>
@@ -213,7 +305,7 @@
     <div class="row" style="display:block;">
         <div class="form-actions span13 offset3">
             <button id="submit" type="button" class="button button-primary">保存</button>
-            <button id="btn-back" type="button" class="button btn-back">返回</button>
+            <button id="btn-back" type="button" class="button btn-back"><a href="#/index">返回</a></button>
         </div>
     </div>
 </div>

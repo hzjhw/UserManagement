@@ -75,7 +75,7 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
         detail.set("id", options.wyId);
         detail.fetch({
           sync: true
-        }).then(function (result) {
+        }).done(function (result) {
           ctx._initialize({
             render: '#wwy-message-list-ul',
             enterRender: '.btn-search',
@@ -85,15 +85,11 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
             item: WwyMessageItem,
             args: {
               msgctrl: detail.get("msgctrl")
+            },
+            beforeLoad: function (collection) {
+              collection.setWyId(options.wyId);
             }
-          }).then(function (baseListCtx) {
-            baseListCtx._initPagination(baseListCtx._options);
-            baseListCtx._load({
-              beforeLoad: function (collection) {
-                collection.setWyId(options.wyId);
-              }
-            })
-          });
+          })
         })
         // this.option.args.msgctrl = '1,3,4';
 

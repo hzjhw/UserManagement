@@ -35,11 +35,32 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         'click .btn-display': 'setDisplay',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort'
+        'change .input-sort': 'changeSort',
+        'click .btn-more': '_more',
+        'click .seo': 'seo'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
+        });
+      },
+      seo: function () {
+        BaseUtils.dialog({
+          title: 'Seo优化',
+          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
+            this.model.get('categoryId'),
+          width: 600,
+          height: 250,
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                // 是否执行默认的关闭操作
+                return false;
+              }}
+          ]
         });
       },
       render: function () {

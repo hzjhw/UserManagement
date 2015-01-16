@@ -9,7 +9,9 @@ define('EnterpriseModel', ['BaseModel'], function (require, exports, module) {
   BaseModel = require('BaseModel');
 
   EnterpriseModel = BaseModel.extend({
-    defaults: Est.extend({}, BaseModel.prototype.defaults),
+    defaults: Est.extend({
+      oem: '00'
+    }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/enterprise/detail',
     baseId: 'enterpriseId',
     initialize: function () {

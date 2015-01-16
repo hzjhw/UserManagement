@@ -9,7 +9,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
     'template/message_send'],
   function (require, exports, module) {
     var MessageModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MessageList, MessageItem,
-      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel ;
+      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel;
 
     MessageModel = require('MessageModel');
     BaseCollection = require('BaseCollection');
@@ -44,11 +44,17 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         'click .delete': '_del',
         'click .name': 'editName',
         'click .edit': 'editItem',
+        'click .response': 'response',
         'click .btn-recvState': 'isrecvState'
       },
       // 初始化
       initialize: function () {
         this._initialize({ template: itemTemp, model: MessageModel});
+      },
+      response: function(){
+        app.addData('curMessageUserName', this.model.get('sendUsername'));
+        app.addData('curMessageType', this.model.get('type'));
+        this._navigate('message_add');
       },
       // 渲染文档
       render: function () {
@@ -63,6 +69,8 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           url: url,
           reload: true,
           padding: 0,
+          hideSaveBtn: true,
+          hideResetBtn: true,
           oniframeload: function (win) {
             win.app = app;
           }
@@ -77,7 +85,6 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .message-add': 'openAddDialog',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
@@ -94,20 +101,8 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
           model: MessageModel,
           collection: MessageCollection,
           item: MessageItem,
-          pagination: true
-        });
-      },
-      // 发送邮箱
-      openAddDialog: function () {
-        var url = CONST.HOST + '/modules/message/message_send_detail.html?uId='
-          + Est.nextUid();
-        this._detail({
-          title: '留言信息',
-          url: url,
-          oniframeload: function (win) {
-            win.app = app;
-            app.getView('messageSendDetail').setType('edit');
-          }
+          pagination: true,
+          detail: CONST.HOST + '/modules/message/message_detail.html'
         });
       },
       // 简单搜索
@@ -137,7 +132,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
             success: function () {
               model.set('state', $('input[name=state]').val());
               model.set('key', $('input[name=key]').val());
-              model.save().then(function(){
+              model.save().then(function () {
               });
               this.close().remove();
             }

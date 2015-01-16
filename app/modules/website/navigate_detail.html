@@ -44,12 +44,12 @@
             <div class="control-group">
                 <label class="control-label">上级导航：</label>
                 <div class="controls">
-                    <div id="s1">
+                    <div id="s1" class="relative">
                         <input type="hidden" id="model-parentId" value="{{parentId}}" name="parentId">
-                    </div>
-                     <span class="tips-info">
-                        <span class="x-icon x-icon-mini x-icon-info">!</span>
+                         <span class="tips-info cate-info">
+                        <span class="x-icon x-icon-mini x-icon-info" style="vertical-align: middle;">!</span>
                         <label class="tips-content">未选择上级导航表示添加的是顶级导航</label></span>
+                    </div>
                 </div>
             </div>
             <div class="control-group">
@@ -71,7 +71,6 @@
             <div class="row actions-bar" style="display:none;">
                 <div class="form-actions span13 offset3">
                     <button id="submit" type="button" class="button button-primary">保存</button>
-                    <button id="reset" type="reset" class="button">重置</button>
                 </div>
             </div>
         </form>

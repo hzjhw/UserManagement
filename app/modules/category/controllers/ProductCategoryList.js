@@ -43,7 +43,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         'change .pro-cate-name': 'editName',
         'click .edit-image': 'editImage',
         'mouseover .icon-picture': 'showImage',
-        'mouseout .icon-picture': 'hideImage'
+        'mouseout .icon-picture': 'hideImage',
+        'click .btn-more': '_more',
+        'click .seo': 'seo'
       },
       initialize: function () {
         this._initialize({
@@ -72,6 +74,25 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       hideImage: function () {
         window.tooltipDialog &&
         window.tooltipDialog.close().remove();
+      },
+      seo: function () {
+        BaseUtils.dialog({
+          title: 'Seo优化',
+          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
+            this.model.get('id'),
+          width: 600,
+          height: 250,
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                // 是否执行默认的关闭操作
+                return false;
+              }}
+          ]
+        });
       },
       editImage: function () {
         var ctx = this;

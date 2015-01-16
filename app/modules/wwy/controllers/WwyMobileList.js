@@ -7,7 +7,7 @@
 define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/wwy_mobile_list', 'template/wwy_mobile_item', 'BaseUtils'],
   function (require, exports, module) {
-    var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyItem,
+    var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyMobileItem,
       WwyMobileCollection, listTemp, itemTemp, BaseUtils, wyId;
 
     WwyModel = require('WwyModel');
@@ -72,15 +72,11 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
           template: listTemp,
           model: WwyModel,
           collection: WwyMobileCollection,
-          item: WwyMobileItem
-        }).then(function (baseListCtx) {
-          baseListCtx._initPagination(baseListCtx._options);
-          baseListCtx._load({
-            beforeLoad: function (collection) {
-              collection.setWyId(options.wyId);
-            }
-          })
-        });
+          item: WwyMobileItem,
+          beforeLoad: function (collection) {
+            collection.setWyId(options.wyId);
+          }
+        })
       }
 
     });

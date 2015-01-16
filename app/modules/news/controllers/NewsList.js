@@ -51,8 +51,9 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .edit': 'editItem',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort'
-
+        'change .input-sort': 'changeSort',
+        'click .btn-more': '_more',
+        'click .seo': 'seo'
       },
       // 初始化
       initialize: function () {
@@ -67,6 +68,25 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this.model.set('newsCategoryList', app.getData('newsCategory'));
         this._initialize({ template: itemTemp });
 
+      },
+      seo: function () {
+        BaseUtils.dialog({
+          title: 'Seo优化',
+          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
+            this.model.get('id'),
+          width: 600,
+          height: 250,
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                // 是否执行默认的关闭操作
+                return false;
+              }}
+          ]
+        });
       },
       // 渲染文档
       render: function () {

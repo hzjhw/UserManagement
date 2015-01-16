@@ -48,8 +48,17 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         this._render();
       },
       edit: function () {
-        this._edit({
-          instance: 'OrderDetail'
+        var ctx = this;
+        seajs.use(['OrderDetail'], function (OrderDetail) {
+          app.addPanel('main', {
+            el: '#jhw-main',
+            template: '<div class="jhw-panel"></div>'
+          }).addView('orderView', new OrderDetail({
+            el: '.jhw-panel',
+            id: ctx.model.get('id'),
+            page: ctx._getPage()
+          }));
+          ;
         });
       },
       viewOrder: function () {
@@ -57,9 +66,9 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         seajs.use(['OrderView'], function (OrderView) {
           app.addPanel('main', {
             el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
+            template: '<div class="jhw-panel"></div>'
           }).addView('orderView', new OrderView({
-            el: '.jhw-main-inner',
+            el: '.jhw-panel',
             id: ctx.model.get('id'),
             page: ctx._getPage()
           }));
@@ -71,9 +80,9 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         seajs.use(['OrderHandle'], function (OrderHandle) {
           app.addPanel('main', {
             el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
+            template: '<div class="jhw-panel"></div>'
           }).addView('orderHandle', new OrderHandle({
-            el: '.jhw-main-inner',
+            el: '.jhw-panel',
             id: ctx.model.get('id'),
             page: ctx._getPage()
           }));

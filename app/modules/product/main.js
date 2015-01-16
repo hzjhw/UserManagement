@@ -26,9 +26,9 @@ app.addRoute('product', function () {
   seajs.use(['jquery', 'ProductList'], function (jquery, ProductList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('productList', new ProductList({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'productList',
       page: parseInt(Est.cookie('productList_page')) || 1,
       pageSize: parseInt(Est.cookie('productList_pageSize')) || 16
@@ -45,9 +45,9 @@ function productDetail(id) {
   seajs.use(['ProductDetail'], function (ProductDetail) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('productDetail', new ProductDetail({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'productDetail',
       id: id
     }));

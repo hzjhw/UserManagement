@@ -46,3 +46,6 @@ app.addTemplate('template/help_item', function (require, exports, module) {
 });
 
 app.addModule('MouseScroll', 'modules/index/controllers/MouseScroll.js');
+app.addTemplate('template/loading', function (require, exports, module) {
+  module.exports = require('modules/index/views/loading.html');
+});

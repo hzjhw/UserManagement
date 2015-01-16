@@ -17,7 +17,17 @@ app.addRoute('message', function () {
     })));
   });
 });
-
+app.addRoute('message_add', function () {
+  seajs.use(['MessageSendDetail'], function (MessageSendDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('messageSendDetail', new MessageSendDetail({
+      el: '.jhw-panel',
+      viewId: 'messageSendDetail'
+    }));
+  });
+});
 /**
  * 模块
  * */

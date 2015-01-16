@@ -44,7 +44,7 @@ define('ProductModel', ['jquery', 'BaseModel'],
           }
         });
       }
-
     });
+
     module.exports = ProductModel;
   });

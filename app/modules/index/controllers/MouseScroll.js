@@ -399,7 +399,7 @@ define('MouseScroll', ['jquery'], function (require, exports, module) {
 
   MouseScroll = function (options) {
     var defaults = { //default options
-      scrollerType: "hoverAccelerate", //values: "hoverPrecise", "hoverAccelerate", "clickButtons"
+      scrollerType: "hoverPrecise", //values: "hoverPrecise", "hoverAccelerate", "clickButtons"
       scrollerOrientation: "vertical", //values: "horizontal", "vertical"
       scrollEasing: "easeOutCirc", //easing type
       container: '#left-bar-container',
@@ -455,7 +455,16 @@ define('MouseScroll', ['jquery'], function (require, exports, module) {
         ClickScrolling();
       } else { //type hoverPrecise
         pos = findPos(this);
+        var stop = false;
+        var deffer = function(){
+          stop = true;
+          setTimeout(function(){
+            stop = false;
+          }, 60);
+        };
         $this.mousemove(function (e) {
+          if (stop) return;
+          deffer();
           mouseCoords = (e.pageX - pos[1]);
           mouseCoordsY = (e.pageY - pos[0]);
           var mousePercentX = mouseCoords / $this.width();
@@ -468,7 +477,7 @@ define('MouseScroll', ['jquery'], function (require, exports, module) {
           }
           var destX = Math.round(-((totalWidth - $this.width()) * (mousePercentX)));
           var destY = Math.round(-((totalHeight - $this.height()) * (mousePercentY)));
-          $scroller.stop(true, false).animate({left: destX, top: destY + 30}, options.scrollEasingAmount, options.scrollEasing);
+          $scroller.stop(true, false).animate({left: options.scrollerOrientation === 'horizontal' ? destX : pos[1], top: options.scrollerOrientation === 'horizontal' ? pos[0] : (destY + 30)}, options.scrollEasingAmount, options.scrollEasing);
         });
         $scrollerPrevButton.add($scrollerNextButton).hide(); //hide buttons
       }

@@ -27,6 +27,16 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
           wait: true
         }).done(function () {
           ctx._render();
+          BaseUtils.initTab({
+            render: '#tab',
+            elCls: 'nav-tabs',
+            panelContainer: '#panel',
+            autoRender: true,
+            children: [
+              {title: '基本信息', value: '1', selected: true},
+              {title: '公司简介', value: '2'}
+            ]
+          });
           BaseUtils.initSelect({
             render: '#s1',
             target: '#model-businessType',
@@ -47,10 +57,26 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
           BaseUtils.initDistrict({
             id: 'district1',// 必填
             render: '#district-container', // 目标选择符
-            target: '#model-entAddress',
+            target: '#model-address',
             url: CONST.API + '/area/list' // 自定义请求地址
           });
 
+          BaseUtils.initDate({
+            render: '.calendar',
+            showTime: false
+          });
+          BaseUtils.initSelect({
+            render: '#s5',
+            target: '#model-oem',
+            items: [
+              {text: '是', value: '01'},
+              {text: '否', value: '00'}
+            ]
+          });
+
+          BaseUtils.initEditor({
+            render: '.ckeditor'
+          });
           ctx._form('#J_Form')._validate()._init({
             onBeforeSave: function () {
 

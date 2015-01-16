@@ -50,7 +50,9 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .btn-display': 'setDisplay',
         'click .name': 'editName',
         'click .prodtype': 'editProdtype',
-        'change .pro-category': 'changeCategory'
+        'change .pro-category': 'changeCategory',
+        'click .btn-more': '_more',
+        'click .seo': 'seo'
       },
       // 初始化
       initialize: function () {
@@ -63,6 +65,25 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this.model.set('productCategoryList', app.getData('productCategory'));
         this._initialize({
           template: itemTemp
+        });
+      },
+      seo: function () {
+        BaseUtils.dialog({
+          title: 'Seo优化',
+          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
+            this.model.get('id'),
+          width: 600,
+          height: 250,
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                this.iframeNode.contentWindow.$("#submit").click();
+                // 是否执行默认的关闭操作
+                return false;
+              }}
+          ]
         });
       },
       // 修改分类
@@ -151,20 +172,20 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         seajs.use(['ProductDetail'], function (ProductDetail) {
           app.addPanel('main', {
             el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
+            template: '<div class="jhw-panel"></div>'
           }).addView('productDetail', new ProductDetail({
-            el: '.jhw-main-inner'
+            el: '.jhw-panel'
           }));
         });
       },
       batchImport: function () {
         window.open(CONST.DOMAIN + '/user/product/selectImportType');
         /*BaseUtils.dialog({
-          title: '产品批量导入',
-          width: 800,
-          height: 500,
-          url: CONST.DOMAIN + '/user/product/selectImportType'
-        });*/
+         title: '产品批量导入',
+         width: 800,
+         height: 500,
+         url: CONST.DOMAIN + '/user/product/selectImportType'
+         });*/
       },
       // 简单搜索
       search: function () {

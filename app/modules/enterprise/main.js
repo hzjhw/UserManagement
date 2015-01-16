@@ -38,3 +38,20 @@ app.addRoute('enterprise', function () {
     }));
   });
 });
+
+app.addRoute('technical', function () {
+  seajs.use(['TechnicalDetail'], function (TechnicalDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-main-inner"></div>'
+    }).addView('technicalDetail', new TechnicalDetail({
+      el: '.jhw-main-inner',
+      viewId: 'technicalDetail'
+    }));
+  });
+});
+app.addModule('TechnicalModel', 'models/TechnicalModel.js');
+app.addModule('TechnicalDetail', 'modules/enterprise/controllers/TechnicalDetail.js');
+app.addTemplate('template/technical_detail', function (require, exports, module) {
+  module.exports = require('modules/enterprise/views/technical_detail.html');
+});

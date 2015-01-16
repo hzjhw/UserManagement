@@ -10,9 +10,9 @@ app.addRoute('wwy', function () {
   seajs.use(['jquery', 'WwyList'], function (jquery, WwyList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('wwyList', new WwyList({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'wwyList'
     }));
   });
@@ -21,8 +21,9 @@ app.addRoute('wwy_mobile/:id', function (id) {
   seajs.use(['jquery', 'WwyMobileList'], function (jquery, WwyMobileList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('WwyMobileList', new WwyMobileList({
+      el: '.jhw-panel',
       wyId: id
     }));
   });
@@ -31,8 +32,9 @@ app.addRoute('wwy_message/:id', function (id) {
   seajs.use(['jquery', 'WwyMessageList'], function (jquery, WwyMessageList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('WwyMessageList', new WwyMessageList({
+      el: '.jhw-panel',
       wyId: id
     }));
   });
