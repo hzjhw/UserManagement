@@ -251,7 +251,8 @@ label.checkbox { padding-left: 5px; }
 .category-ul .cate-grid{ float: left; }
 .cate-grid-cell-inner{ padding: 10px 5px; position: relative; overflow: hidden; }
 .category-ul .gird-checkbox{ width:32px; }
-.category-ul .gird-2{ width:32px; }
+.category-ul .gird-2{ width:32px; height: 28px;}
+.category-ul .node-tree .cate-grid-cell-inner{padding-top: 0;padding-bottom: 0;}
 /*相册*/
 #jhw .album-sub{padding-left:15px;}
 #jhw .album-cate-ul li{padding-top:4px;}
