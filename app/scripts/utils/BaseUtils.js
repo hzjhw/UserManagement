@@ -572,8 +572,11 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             options.target = $(options.target).get(0);
           }
           options.oniframeload = function () {
-            this.iframeNode.contentWindow.topDialog = thisDialog;
-            this.iframeNode.contentWindow.app = app;
+            try {
+              this.iframeNode.contentWindow.topDialog = thisDialog;
+              this.iframeNode.contentWindow.app = app;
+            } catch (e) {
+            }
             if (typeof options.load === 'function') {
               options.load.call(this, arguments);
             }

@@ -189,7 +189,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
 
   /**
    * 返回整数
-   *@method [数字] - parseInt
+   * @method [数字] - parseInt
    * @author wxw 2014-12-16
    * @example
    *      {{parseInt 01}}
@@ -200,8 +200,8 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
 
   /**
    * 缩略ID值
+   * @method id2
    * @author wyj
-   * @time 2014-03-27
    */
   Handlebars.registerHelper('id2', function (id) {
     return id == null ? "" : id.replace(/^[^1-9]+/, "")
