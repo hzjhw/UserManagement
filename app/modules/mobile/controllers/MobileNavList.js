@@ -1,34 +1,32 @@
 /**
- * @description NavigateList
- * @namespace NavigateList
- * @author yongjin<zjut_wyj@163.com> 2014/12/26
+ * @description MobileNavList
+ * @class MobileNavList
+ * @author yongjin<zjut_wyj@163.com> 2015/1/17
  */
-define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', 'BaseService', 'NavigateModel',
-    'template/navigate_list', 'template/navigate_item', 'template/website_static', 'HandlebarsHelper'],
+define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'HandlebarsHelper', 'BaseUtils', 'BaseItem', 'MobileNavModel', 'template/mobile_nav_list',
+    'template/mobile_nav_item'],
   function (require, exports, module) {
-    var NavigateList, BaseList, BaseCollection, BaseItem, BaseUtils, BaseService, itemTemp, listTemp, NavigateCollection,
-      NavigateItem, NavigateModel, staticTemp, HandlebarsHelper;
+    var MobileNavList, BaseList, BaseCollection, BaseItem, BaseService, MobileNavModel, HandlebarsHelper, BaseUtils, itemTemp, listTemp, item, collection;
 
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
-    NavigateModel = require('NavigateModel');
+    MobileNavModel = require('MobileNavModel');
+    itemTemp = require('template/mobile_nav_item');
+    listTemp = require('template/mobile_nav_list');
     BaseUtils = require('BaseUtils');
-    itemTemp = require('template/navigate_item');
-    listTemp = require('template/navigate_list');
     BaseService = require('BaseService');
-    staticTemp = require('template/website_static');
     HandlebarsHelper = require('HandlebarsHelper');
 
-    NavigateCollection = BaseCollection.extend({
-      url: CONST.API + '/navigator/list',
-      model: NavigateModel,
+    collection = BaseCollection.extend({
+      model: MobileNavModel,
       initialize: function () {
-        this._initialize();
-      }
+        this._initialize.call(this);
+      },
+      url: CONST.API + '/mobile/navigator/list'
     });
 
-    NavigateItem = BaseItem.extend({
+    item = BaseItem.extend({
       tagName: 'li',
       className: 'cate-grid-row',
       events: {
@@ -46,16 +44,13 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       initialize: function () {
         this._initialize({
           template: itemTemp,
-          model: NavigateModel
+          model: MobileNavModel
         });
-      },
-      render: function () {
-        this._render();
       },
       publish: function () {
         var ctx = this;
         this.publishing = false;
-        var url = CONST.DOMAIN + "/rest/static/" + app.getData('user').username + "/publish?thisPage=" +
+        var url = CONST.DOMAIN + "/rest/mobileStatic/" + app.getData('user').username + "/publish?thisPage=" +
           this.model.get('page');
         var button = this.$('.btn-publish');
         if (!this.publishing) {
@@ -68,7 +63,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
             success: function (result) {
               ctx.publishing = false;
               setTimeout(function () {
-                button.html('<i class=" icon-globe"></i>发布');
+                button.html('<i class="icon-globe"></i>发布');
               }, 500);
             }
           });
@@ -77,8 +72,8 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       seo: function () {
         BaseUtils.dialog({
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('page'),
+          url: CONST.HOST + '/common/seo/seo_mobile_detail.html?id=' +
+            this.model.get('page') + '&mobile=01',
           width: 600,
           height: 250,
           button: [
@@ -139,10 +134,13 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           hideTip: true
         });
         this.model.stopCollapse = false;
+      },
+      render: function () {
+        this._render.call(this);
       }
     });
 
-    NavigateList = BaseList.extend({
+    MobileNavList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog',
@@ -154,11 +152,11 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       },
       initialize: function () {
         this._initialize({
-          model: NavigateModel,
-          item: NavigateItem,
-          collection: NavigateCollection,
-          render: '.category-ul',
+          model: MobileNavModel,
+          item: item,
+          collection: collection,
           template: listTemp,
+          render: '.category-ul',
 
           subRender: '.node-tree',
           collapse: '.node-collapse',
@@ -167,14 +165,11 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           rootId: 'grade',
           rootValue: 1
         });
-      },
-      render: function () {
-        this._render();
       }, openAddDialog: function () {
         this._detail({
           title: '导航添加',
           height: 250,
-          url: CONST.HOST + '/modules/website/navigate_detail.html?time=' + new Date().getTime()
+          url: CONST.HOST + '/modules/mobile/mobile_nav_detail.html?time=' + new Date().getTime()
         });
       },
       staticPage: function () {
@@ -206,17 +201,17 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
                 pages: pages
               })
             });
-            setTimeout(function(){
-              $('#static-container .static-ul li .button').click(function(){
+            setTimeout(function () {
+              $('#static-container .static-ul li .button').click(function () {
                 var $button = $(this);
                 if ($button.hasClass('publishing'))return;
                 $button.addClass('publishing');
                 $button.html('静态化中...');
-                setTimeout(function(){
+                setTimeout(function () {
                   $.ajax({
                     type: 'post',
                     url: $button.attr('data-url'),
-                    success: function(result){
+                    success: function (result) {
                       $button.html('完成');
                     }
                   });
@@ -259,8 +254,11 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       // 批量转移分类
       batchCategory: function (category) {
 
+      },
+      render: function () {
+        this._render();
       }
     });
 
-    module.exports = NavigateList;
+    module.exports = MobileNavList;
   });

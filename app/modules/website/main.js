@@ -41,6 +41,7 @@ app.addModule('NavigateModel', 'models/NavigateModel.js');
 app.addModule('NavigateDetail', 'modules/website/controllers/NavigateDetail.js');
 app.addModule('UserdefinedList', 'modules/website/controllers/UserdefinedList.js');
 app.addModule('UserdefinedModel', 'models/UserdefinedModel.js');
+app.addModule('UserdefinedMobileModel', 'models/UserdefinedMobileModel.js');
 app.addModule('UserdefinedDetail', 'modules/website/controllers/UserdefinedDetail.js');
 
 app.addTemplate('template/navigate_list', function (require, exports, module) {

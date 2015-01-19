@@ -1,25 +1,25 @@
 /**
  * @description 属性添加或修改视图
- * @namespace UserdefinedDetail
+ * @namespace UserdefinedMobileDetail
  * @author yongjin on 2014/11/13
  */
-define('UserdefinedDetail', ['jquery', 'UserdefinedModel', 'UserdefinedMobileModel', 'BaseDetail', 'BaseUtils'],
+define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'UserdefinedMobileModel', 'BaseDetail', 'BaseUtils'],
   function (require, exports, module) {
-    var UserdefinedDetail, UserdefinedModel, UserdefinedMobileModel, BaseDetail, BaseUtils;
+    var UserdefinedMobileDetail, UserdefinedMobileModel, UserdefinedMobileModel, BaseDetail, BaseUtils;
 
-    UserdefinedModel = require('UserdefinedModel');
+    UserdefinedMobileModel = require('UserdefinedMobileModel');
     BaseDetail = require('BaseDetail');
     BaseUtils = require('BaseUtils');
     UserdefinedMobileModel = require('UserdefinedMobileModel');
 
-    UserdefinedDetail = BaseDetail.extend({
+    UserdefinedMobileDetail = BaseDetail.extend({
       events: {
         'click #reset': 'reset'
       },
       initialize: function () {
         var opts = {
           template: $("#userdefined-detail-tpl").html(),
-          model: UserdefinedModel
+          model: UserdefinedMobileModel
         }
         if (this.options.mobile) {
           opts.model = UserdefinedMobileModel
@@ -39,6 +39,6 @@ define('UserdefinedDetail', ['jquery', 'UserdefinedModel', 'UserdefinedMobileMod
       }
     });
 
-    module.exports = UserdefinedDetail;
+    module.exports = UserdefinedMobileDetail;
 
   });
