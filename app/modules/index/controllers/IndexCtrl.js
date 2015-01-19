@@ -18,9 +18,16 @@ seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseSc
           selector: '#jhw-left-bar'
         });
       }, 0);
-      $('#jhw-body').height($(window).height() - $('#jhw-top').height());
+      function getHeight() {
+        var window_h = $(window).height();
+        var top_h = $('#jhw-top').height();
+        CONST.MAIN_HEIGHT = parseInt(window_h - top_h, 10);
+        return CONST.MAIN_HEIGHT;
+      }
+
+      $('#jhw-body').height(getHeight());
       $(window).resize(function () {
-        $('#jhw-body').height($(window).height() - $('#jhw-top').height());
+        $('#jhw-body').height(getHeight());
       });
     }
   });

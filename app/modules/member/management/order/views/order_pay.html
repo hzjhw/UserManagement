@@ -1,8 +1,9 @@
-<form action="" method="post">
+<form action="{{CONST 'DOMAIN'}}/rest/pay/todo" method="post" target="_blank">
     <input type="hidden" name="paymentType" value="{{paymentType}}"/>
     <input type="hidden" name="amountPayable" value="{{amountPayable}}"/>
-    <input type="hidden" name="paymentConfig.id" value="{{paymentConfig.paymentId}}"/>
-    <input type="hidden" name="order.id" value="{{orderId}}"/>
+    <input type="hidden" name="paymentConfigId" value="{{paymentConfig.paymentId}}"/>
+    <input type="hidden" name="url" value="{{CONST 'DOMAIN'}}"/>
+    <input type="hidden" name="orderId" value="{{orderId}}"/>
 
     <p>
         尊敬的<strong class="green">{{username}}</strong>，

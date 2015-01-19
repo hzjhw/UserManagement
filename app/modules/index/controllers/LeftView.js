@@ -83,6 +83,7 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
           data: {},
           items: [
             {name: '首页', url: '#', className: 'menu-index', children: []},
+            {name: '图片管理', url: '#/album', className: 'menu-album'},
             {name: '产品管理', url: '#/product', className: 'menu-product', children: [
               {name: '产品添加', url: '#/product_add', className: 'menu-category', children: []},
               {name: '分类管理', url: '#/category/product', className: 'menu-category', children: []},
@@ -97,21 +98,20 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
               {name: '配送方式管理', url: '#/shop/delivery_type', className: 'menu-category', children: []},
               {name: '物流公司管理', url: '#/shop/delivery_corp', className: 'menu-category', children: []}
             ]},
+            {name: '会员管理', url: '#/member', className: 'menu-member', children: [
+              {name: '会员等级管理', url: '#/member/rank', className: 'menu-category', children: []},
+              {name: '会员属性管理', url: '#/member/attr', className: 'menu-category', children: []}
+            ]},
             {name: '微网页', url: '#/wwy', className: 'menu-microweb'},
             {name: '留言管理', url: '#/message', className: 'menu-message'},
-            {name: '图片管理', url: '#/album', className: 'menu-album'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
               {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []}
             ]},
             {name: '手机网站', url: '#/mobile', className: 'menu-mobile', children: [
               {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []}
             ]},
-            {name: '会员管理', url: '#/member', className: 'menu-member', children: [
-              {name: '会员等级管理', url: '#/member/rank', className: 'menu-category', children: []},
-              {name: '会员属性管理', url: '#/member/attr', className: 'menu-category', children: []}
-            ]},
-            {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
-            {name: '我的工具', url: '#/tool', className: 'menu-tool'},
+           /* {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
+            {name: '我的工具', url: '#/tool', className: 'menu-tool'},*/
             {name: '退出登录', url: '#/logout', className: 'menu-login'}
           ],
           subRender: '.node-tree'
