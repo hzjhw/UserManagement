@@ -48,12 +48,11 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'click .prodtype': 'editProdtype',
-        'click .edit': 'editItem',
+        'click .edit': '_edit',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort',
-        'click .btn-more': '_more',
-        'click .seo': 'seo'
+        'change .input-sort': 'changeSort'
+
       },
       // 初始化
       initialize: function () {
@@ -68,25 +67,6 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this.model.set('newsCategoryList', app.getData('newsCategory'));
         this._initialize({ template: itemTemp });
 
-      },
-      seo: function () {
-        BaseUtils.dialog({
-          title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('id'),
-          width: 600,
-          height: 250,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
-                return false;
-              }}
-          ]
-        });
       },
       // 渲染文档
       render: function () {
@@ -106,19 +86,12 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        BaseUtils.comfirm({
-          title: '提示：',
-          content: '是否更改分类？',
-          success: function () {
-            ctx.model._saveField({
-              id: ctx.model.get('id'),
-              category: category
-            }, ctx, {success: function () {
-              ctx.model.set('category', category);
-            }, hideTip: true});
-          }
-        });
-        this._render();
+        this.model._saveField({
+          id: this.model.get('id'),
+          category: category
+        }, ctx, {success: function () {
+          ctx.model.set('category', category);
+        }, hideTip: true});
       },
       // 编辑新闻
       editItem: function () {
@@ -205,12 +178,14 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           model: NewsModel,
           collection: NewsCollection,
           item: NewsItem,
-          pagination: true
+          pagination: true,
+          detail: CONST.HOST + '/modules/news/news_detail.html',
+          route: '#/news'
         });
       },
       // 打开添加/修改对话框
-      edit: function () {
-        seajs.use(['NewsDetail'], function (NewsDetail) {
+      edit: function(){
+        seajs.use(['NewsDetail'], function(NewsDetail){
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -253,26 +228,30 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           target: this.$('.search-advance').get(0),
           content: ctx.searchTemp({
             newsCategoryList: app.getData('newsCategory'),
-            newsTypeList: app.getStatus('newsType'),
+            ImageNews: app.getStatus('ImageNews'),
+            RollingNews: app.getStatus('RollingNews'),
+            TopNews: app.getStatus('TopNews'),
             newsStateList: app.getStatus('newsState'),
             searchKey: ctx.searchKey,
             searchCategory: ctx.searchCategory,
-            searchState: ctx.searchState,
             searchTypeView: ctx.searchTypeView
           }),
-          success: function () {
+          success: function(){
             ctx.searchKey = $('input[name=searchKey]').val();
             ctx.searchCategory = $('select[name=searchCategory]').val();
-            ctx.searchTypeView = $('select[name=searchTypeView]').val();
+            ctx.searchImageNews = $('select[name=searchImageNews]').val();
+            ctx.searchRollingNews = $('select[name=searchRollingNews]').val();
+            ctx.searchTopNews = $('select[name=searchTopNews]').val();
             ctx.searchState = $('select[name=searchState]').val();
             //ctx.baseSearch();
             ctx._search({
               filter: [
                 {key: 'name', value: ctx.searchKey },
                 {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
-                {key: 'imagenews', value: ctx.searchTypeView} ,
-                {key: 'loginView', value: ctx.searchLoginView},
-                {key: 'display', value: ctx.newsStateList}
+                {key: 'imagenews', value: ctx.searchImageNews} ,
+                {key: 'topnews', value: ctx.searchTopNews},
+                {key: 'rollingnews', value: ctx.searchRollingNews},
+                {key: 'display', value: ctx.searchState}
               ]
             });
             this.close().remove();
@@ -292,7 +271,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
               newsCategoryList: app.getData('newsCategory')
             }),
             target: this.$('.btn-batch-category').get(0),
-            success: function () {
+            success: function(){
               ctx.transferCategory = $('select[name=transferCategory]').val();
               $.ajax({
                 type: 'POST',

@@ -1,7 +1,7 @@
 /**
  * @description config
  * @namespace config
- * @author yongjin<zjut_wyj@163.com> 2014/12/11
+ * @author wxw<zjut_wyj@163.com> 2014/12/11
  */
 /**
  * 路由
@@ -16,16 +16,23 @@ app.addRoute('news', function () {
     }));
   });
 });
-app.addRoute('news_add', function(){
+function newsDetail(id) {
   seajs.use(['NewsDetail'], function(NewsDetail){
     app.addPanel('main', {
       el: '#jhw-main',
       template: '<div class="jhw-main-inner"></div>'
     }).addView('newsDetail', new NewsDetail({
       el: '.jhw-main-inner',
-      viewId: 'newsDetail'
+      viewId: 'newsDetail',
+      id : id
     }));
   });
+}
+app.addRoute('news/:id', function (id) {
+  newsDetail(Est.decodeId(id, 'News_', 32));
+});
+app.addRoute('news_add', function () {
+  newsDetail();
 });
 
 /**

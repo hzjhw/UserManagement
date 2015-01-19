@@ -70,20 +70,26 @@ app.addStatus('certType', [
   {text: '其它证书', value: '05'}
 ]);
 // 新闻类型
-app.getStatus('newsType', [
+app.addStatus('ImageNews', [
   {text: '全部', value: ''},
-  {text: '图片新闻', value: '01'},
-  {text: '一般新闻', value: '02'},
-  {text: '置顶新闻', value: '03'},
-  {text: '滚动新闻', value: '04'}
+  {text: '是', value: '01'},
+  {text: '否', value: '02'}
+]);
+app.addStatus('RollingNews', [
+  {text: '全部', value: ''},
+  {text: '是', value: '01'},
+  {text: '否', value: '02'}
+]);
+app.addStatus('TopNews', [
+  {text: '全部', value: ''},
+  {text: '是', value: '01'},
+  {text: '否', value: '02'}
 ]);
 // 新闻状态
 app.addStatus('newsState', [
   {text: '全部', value: ''},
   {text: '显示', value: '01'},
-  {text: '隐藏', value: '02'},
-  {text: '审核中', value: '03'},
-  {text: '通过审核', value: '04'}
+  {text: '隐藏', value: '02'}
 ]);
 // 属性类型
 app.addStatus('attributeType', [

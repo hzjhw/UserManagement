@@ -53,7 +53,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
             var photos = app.getView('picturePick').getItems();
             if (photos.length > 0) {
               this.model.set('photo', photos[0]['serverPath']);
-              this.model.set('attachmentId ', photos[0]['attId']);
+              this.model.set('attachmentId', photos[0]['attId']);
             }
           },
           onAfterSave: function(response){

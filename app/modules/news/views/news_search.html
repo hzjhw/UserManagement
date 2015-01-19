@@ -14,24 +14,39 @@
         </div>
     </div>
     <div class="control-group">
-
-        <label class="control-label">新闻类型：</label>
+        <label class="control-label">图片新闻：</label>
         <div class="controls">
-            <select name="searchTypeView" class="text pro-category" >
-                {{#each newsTypeList}}
-                <option value="{{value}}" {{#compare value '===' ../searchLoginView}}selected{{/compare}}>{{text}}</option>
+            <select name="searchImageNews" class="text pro-category" >
+                {{#each ImageNews}}
+                <option value="{{value}}" {{#compare value '===' ../searchImageNews}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
         </div>
-        <label class="control-label">新闻状态：</label>
+        <label class="control-label">滚动新闻：</label>
+        <div class="controls">
+            <select name="searchRollingNews" class="text pro-category" >
+                {{#each RollingNews}}
+                <option value="{{value}}" {{#compare value '===' ../searchRollingNews}}selected{{/compare}}>{{text}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">置顶新闻：</label>
+        <div class="controls">
+            <select name="searchTopNews" class="text pro-category" >
+                {{#each TopNews}}
+                <option value="{{value}}" {{#compare value '===' ../searchTopNews}}selected{{/compare}}>{{text}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <label class="control-label">显示/隐藏：</label>
         <div class="controls">
             <select name="searchState" class="text pro-category" >
                 {{#each newsStateList}}
-                <option value="{{value}}" {{#compare value '===' ../searchAds}}selected{{/compare}}>{{text}}</option>
+                <option value="{{value}}" {{#compare value '===' ../searchState}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
         </div>
-
-
     </div>
 </form>
