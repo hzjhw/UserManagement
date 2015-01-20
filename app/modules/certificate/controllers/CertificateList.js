@@ -149,7 +149,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
               searchKey: ctx.searchKey,
               searchOrganize: ctx.searchOrganize,
               searchType: ctx.searchType,
-              certificateList:app.getStatus('certType')
+              certificateList: app.getStatus('certType')
             }),
             button: [
               {
@@ -188,44 +188,47 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       batchCategory: function (category) {
         var ctx = this;
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          seajs.use(['dialog-plus'], function (dialog) {
-            window.dialog = dialog;
-            ctx.transferDialog = dialog({
-              id: 'transfer-dialog',
-              title: '批量转移分类',
-              width: 300,
-              content: ctx.transferTemp({
-                certificateCategoryList: app.getData('certificateCategory')
-              }),
-              button: [
-                {
-                  value: '确定',
-                  callback: function () {
-                    ctx.transferCategory = $('select[name=transferCategory]').val();
-                    $.ajax({
-                      type: 'POST',
-                      async: false,
-                      url: CONST.API + '/certificate/batch/transfer',
-                      data: {
-                        ids: ctx.checkboxIds.join(','),
-                        category: ctx.transferCategory
-                      },
-                      success: function (result) {
-                        BaseUtils.tip('批量隐藏成功');
-                        ctx._load();
-                      }
-                    });
-                    this.remove();
-                    return false;
-                  },
-                  autofocus: true
-                },
-                { value: '关闭' }
-              ]
-            }).show(this.$('.btn-batch-category').get(0));
-          })
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('请至少选择一项！');
+          return;
         }
+        seajs.use(['dialog-plus'], function (dialog) {
+          window.dialog = dialog;
+          ctx.transferDialog = dialog({
+            id: 'transfer-dialog',
+            title: '批量转移分类',
+            width: 300,
+            content: ctx.transferTemp({
+              certificateCategoryList: app.getData('certificateCategory')
+            }),
+            button: [
+              {
+                value: '确定',
+                callback: function () {
+                  ctx.transferCategory = $('select[name=transferCategory]').val();
+                  $.ajax({
+                    type: 'POST',
+                    async: false,
+                    url: CONST.API + '/certificate/batch/transfer',
+                    data: {
+                      ids: ctx.checkboxIds.join(','),
+                      category: ctx.transferCategory
+                    },
+                    success: function (result) {
+                      BaseUtils.tip('批量隐藏成功');
+                      ctx._load();
+                    }
+                  });
+                  this.remove();
+                  return false;
+                },
+                autofocus: true
+              },
+              { value: '关闭' }
+            ]
+          }).show(this.$('.btn-batch-category').get(0));
+        })
       },
       // 批量隐藏
       batchDisplay: function () {

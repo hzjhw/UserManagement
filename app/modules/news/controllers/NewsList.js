@@ -184,8 +184,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         });
       },
       // 打开添加/修改对话框
-      edit: function(){
-        seajs.use(['NewsDetail'], function(NewsDetail){
+      edit: function () {
+        seajs.use(['NewsDetail'], function (NewsDetail) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
@@ -236,7 +236,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             searchCategory: ctx.searchCategory,
             searchTypeView: ctx.searchTypeView
           }),
-          success: function(){
+          success: function () {
             ctx.searchKey = $('input[name=searchKey]').val();
             ctx.searchCategory = $('select[name=searchCategory]').val();
             ctx.searchImageNews = $('select[name=searchImageNews]').val();
@@ -262,36 +262,38 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       batchCategory: function (category) {
         var ctx = this;
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.dialog({
-            id: 'transfer-dialog',
-            title: '批量转移分类',
-            width: 300,
-            content: ctx.transferTemp({
-              newsCategoryList: app.getData('newsCategory')
-            }),
-            target: this.$('.btn-batch-category').get(0),
-            success: function(){
-              ctx.transferCategory = $('select[name=transferCategory]').val();
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/news/batch/transfer',
-                data: {
-                  ids: ctx.checkboxIds.join(','),
-                  category: ctx.transferCategory
-                },
-                success: function (result) {
-                  BaseUtils.tip('批量隐藏成功');
-                  ctx._load();
-                }
-              });
-              this.remove();
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('请至少选择一项！');
+          return;
         }
+        BaseUtils.dialog({
+          id: 'transfer-dialog',
+          title: '批量转移分类',
+          width: 300,
+          content: ctx.transferTemp({
+            newsCategoryList: app.getData('newsCategory')
+          }),
+          target: this.$('.btn-batch-category').get(0),
+          success: function () {
+            ctx.transferCategory = $('select[name=transferCategory]').val();
+            $.ajax({
+              type: 'POST',
+              async: false,
+              url: CONST.API + '/news/batch/transfer',
+              data: {
+                ids: ctx.checkboxIds.join(','),
+                category: ctx.transferCategory
+              },
+              success: function (result) {
+                BaseUtils.tip('批量隐藏成功');
+                ctx._load();
+              }
+            });
+            this.remove();
+          }
+        });
       }
-
     });
 
     module.exports = NewsList;

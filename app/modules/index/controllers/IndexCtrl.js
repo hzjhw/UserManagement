@@ -21,8 +21,9 @@ seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseSc
       function getHeight() {
         var window_h = $(window).height();
         var top_h = $('#jhw-top').height();
-        CONST.MAIN_HEIGHT = parseInt(window_h - top_h, 10);
-        return CONST.MAIN_HEIGHT;
+        CONST.MAIN_HEIGHT = window_h - top_h;
+        CONST.BUI_GRID_BODY_HEIGHT = CONST.MAIN_HEIGHT - (CONST.MAIN_HEIGHT * 0.02 + (CONST.MAIN_HEIGHT - CONST.MAIN_HEIGHT * 0.02) * 0.02) - 180;
+        return parseInt(CONST.MAIN_HEIGHT, 10);
       }
 
       $('#jhw-body').height(getHeight());

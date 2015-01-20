@@ -206,17 +206,17 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
                 pages: pages
               })
             });
-            setTimeout(function(){
-              $('#static-container .static-ul li .button').click(function(){
+            setTimeout(function () {
+              $('#static-container .static-ul li .button').click(function () {
                 var $button = $(this);
                 if ($button.hasClass('publishing'))return;
                 $button.addClass('publishing');
                 $button.html('静态化中...');
-                setTimeout(function(){
+                setTimeout(function () {
                   $.ajax({
                     type: 'post',
                     url: $button.attr('data-url'),
-                    success: function(result){
+                    success: function (result) {
                       $button.html('完成');
                     }
                   });
@@ -228,24 +228,27 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       // 批量删除
       batchDel: function () {
         var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.comfirm({
-            success: function () {
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/navigator/batch/del',
-                data: {
-                  ids: ctx.checkboxIds.join(',')
-                },
-                success: function (result) {
-                  BaseUtils.tip('删除成功');
-                  ctx._load();
-                }
-              });
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('请至少选择一项！')
+          return;
         }
+        BaseUtils.comfirm({
+          success: function () {
+            $.ajax({
+              type: 'POST',
+              async: false,
+              url: CONST.API + '/navigator/batch/del',
+              data: {
+                ids: ctx.checkboxIds.join(',')
+              },
+              success: function (result) {
+                BaseUtils.tip('删除成功');
+                ctx._load();
+              }
+            });
+          }
+        });
       },
       btachCollapse: function () {
         this.$('.node-tree').hide();

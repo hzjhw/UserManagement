@@ -404,7 +404,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        *      });
        */
       tip: function (msg, options) {
-        options = options || {time: 2000, title: '提示信息：'};
+        options = options || {time: 3000, title: '提示信息：'};
         seajs.use(['dialog-plus'], function (dialog) {
           window.tipsDialog = app.addDialog(dialog({
             id: 'tip-dialog' + Est.nextUid(),

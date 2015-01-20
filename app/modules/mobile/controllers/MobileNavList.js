@@ -223,24 +223,27 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
       // 批量删除
       batchDel: function () {
         var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.comfirm({
-            success: function () {
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/navigator/batch/del',
-                data: {
-                  ids: ctx.checkboxIds.join(',')
-                },
-                success: function (result) {
-                  BaseUtils.tip('删除成功');
-                  ctx._load();
-                }
-              });
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('请至少选择一项！');
+          return;
         }
+        BaseUtils.comfirm({
+          success: function () {
+            $.ajax({
+              type: 'POST',
+              async: false,
+              url: CONST.API + '/navigator/batch/del',
+              data: {
+                ids: ctx.checkboxIds.join(',')
+              },
+              success: function (result) {
+                BaseUtils.tip('删除成功');
+                ctx._load();
+              }
+            });
+          }
+        });
       },
       btachCollapse: function () {
         this.$('.node-tree').hide();

@@ -1180,8 +1180,7 @@ td.bui-grid-cell-empty {
     line-height: 0
 }
 #jhw .bui-grid-body{
-    height: 500px;
-    overflow-y: auto;overflow-x:hidden;
+    height: 79%; overflow-y: auto;overflow-x:hidden;
     position: relative;
 }
 .bui-grid-width .bui-grid-body {

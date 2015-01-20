@@ -2602,6 +2602,7 @@ table .span24 {
     background-color: #fff;
     border-color: #E0EEFF;
 }
+#jhw .ie6 .button, #jhw .ie7 .button{margin-right: 5px;}
 
 .button.active, .button:active, .button:focus, .button:hover, .open .dropdown-toggle.button {
     color: #333;

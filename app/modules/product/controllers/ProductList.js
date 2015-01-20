@@ -67,6 +67,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           template: itemTemp
         });
       },
+      // seo修改
       seo: function () {
         BaseUtils.dialog({
           title: 'Seo优化',
@@ -145,7 +146,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .product-add': 'detail',
+        'click .btn-add': 'add',
+        'click .btn-category': 'category',
         'click .btn-search': 'search',
         'click .btn-batch-import': 'batchImport',
         'click .search-advance-product': 'searchAdvance',
@@ -168,16 +170,14 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         });
       },
       // 添加产品
-      detail: function () {
-        seajs.use(['ProductDetail'], function (ProductDetail) {
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-panel"></div>'
-          }).addView('productDetail', new ProductDetail({
-            el: '.jhw-panel'
-          }));
-        });
+      add: function () {
+        this._navigate('#/product_add');
       },
+      // 分类管理
+      category: function () {
+        this._navigate('#/category/product');
+      },
+      // 批量导入
       batchImport: function () {
         window.open(CONST.DOMAIN + '/user/product/selectImportType');
         /*BaseUtils.dialog({
@@ -251,30 +251,33 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       batchCategory: function (category) {
         var ctx = this;
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.dialog({
-            id: 'transfer-dialog',
-            title: '批量转移分类',
-            width: 300,
-            content: ctx.transferTemp({
-              productCategoryList: app.getData('productCategory')
-            }),
-            target: this.$('.btn-batch-category').get(0),
-            success: function () {
-              ctx.transferCategory = $('select[name=transferCategory]').val();
-              BaseService.batch({
-                url: CONST.API + '/product/batch/transfer',
-                ids: ctx.checkboxIds.join(','),
-                category: ctx.transferCategory,
-                success: function () {
-                  BaseUtils.tip('批量转移成功');
-                  ctx._load();
-                }
-              });
-              this.remove();
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('请至少选择一项！');
+          return;
         }
+        BaseUtils.dialog({
+          id: 'transfer-dialog',
+          title: '批量转移分类',
+          width: 300,
+          content: ctx.transferTemp({
+            productCategoryList: app.getData('productCategory')
+          }),
+          target: this.$('.btn-batch-category').get(0),
+          success: function () {
+            ctx.transferCategory = $('select[name=transferCategory]').val();
+            BaseService.batch({
+              url: CONST.API + '/product/batch/transfer',
+              ids: ctx.checkboxIds.join(','),
+              category: ctx.transferCategory,
+              success: function () {
+                BaseUtils.tip('批量转移成功');
+                ctx._load();
+              }
+            });
+            this.remove();
+          }
+        });
       },
       // 批量隐藏
       batchDisplay: function () {
@@ -283,7 +286,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           tip: '批量隐藏成功'
         });
       },
-      // 排序
+      // 产品排序
       proSort: function () {
         var ctx = this;
         this.sortTemp = HandlebarsHelper.compile(sortTemp);

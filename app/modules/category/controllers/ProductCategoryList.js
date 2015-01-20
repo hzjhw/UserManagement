@@ -194,14 +194,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .product-category-add': 'openAddDialog',
+        'click .btn-back': 'back',
         'click .btn-batch-del': 'batchDel',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-batch-collapse': 'btachCollapse',
         'click .btn-batch-extend': 'btachExtend'
-      },
-      render: function () {
-        this._render();
-        return this.el;
       },
       initialize: function (options) {
         this._initialize({
@@ -219,6 +216,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           rootValue: '01'
         });
       },
+      // 返回按钮
+      back: function () {
+        this._navigate('#/product');
+      },
+      // 分类添加
       openAddDialog: function () {
         this._detail({
           title: '分类添加',
@@ -229,29 +231,34 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       // 批量删除
       batchDel: function () {
         var ctx = this;
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.comfirm({
-            success: function () {
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/product/batch/del',
-                data: {
-                  ids: ctx.checkboxIds.join(',')
-                },
-                success: function (result) {
-                  BaseUtils.tip('删除成功');
-                  ctx._load();
-                }
-              });
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('至少选择一项');
+          return;
         }
+        BaseUtils.comfirm({
+          success: function () {
+            $.ajax({
+              type: 'POST',
+              async: false,
+              url: CONST.API + '/product/batch/del',
+              data: {
+                ids: ctx.checkboxIds.join(',')
+              },
+              success: function (result) {
+                BaseUtils.tip('删除成功');
+                ctx._load();
+              }
+            });
+          }
+        });
       },
+      // 折叠
       btachCollapse: function () {
         this.$('.node-tree').hide();
         this.$('.x-caret-left').removeClass('x-caret-down');
       },
+      // 展开
       btachExtend: function () {
         this.$('.node-tree').show();
         this.$('.x-caret-left').addClass('x-caret-down');
@@ -270,34 +277,41 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           })
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
-        if (this.checkboxIds = this._getCheckboxIds()) {
-          BaseUtils.dialog({
-            id: 'transfer-dialog',
-            title: '批量转移分类',
-            width: 300,
-            target: this.$('.btn-batch-category').get(0),
-            content: ctx.transferTemp({
-              productCategoryList: app.getData('productCategory')
-            }),
-            success: function () {
-              ctx.transferCategory = $('select[name=transferCategory]').val();
-              $.ajax({
-                type: 'POST',
-                async: false,
-                url: CONST.API + '/category/product/batch/transfer',
-                data: {
-                  ids: ctx.checkboxIds.join(','),
-                  category: ctx.transferCategory
-                },
-                success: function (result) {
-                  BaseUtils.tip('批量隐藏成功');
-                  ctx._load();
-                }
-              });
-              this.remove();
-            }
-          });
+        this.checkboxIds = this._getCheckboxIds();
+        if (this.checkboxIds.length === 0) {
+          BaseUtils.tip('至少选择一项');
+          return;
         }
+        BaseUtils.dialog({
+          id: 'transfer-dialog',
+          title: '批量转移分类',
+          width: 300,
+          target: this.$('.btn-batch-category').get(0),
+          content: ctx.transferTemp({
+            productCategoryList: app.getData('productCategory')
+          }),
+          success: function () {
+            ctx.transferCategory = $('select[name=transferCategory]').val();
+            $.ajax({
+              type: 'POST',
+              async: false,
+              url: CONST.API + '/category/product/batch/transfer',
+              data: {
+                ids: ctx.checkboxIds.join(','),
+                category: ctx.transferCategory
+              },
+              success: function (result) {
+                BaseUtils.tip('批量隐藏成功');
+                ctx._load();
+              }
+            });
+            this.remove();
+          }
+        });
+      },
+      render: function () {
+        this._render();
+        return this.el;
       }
     });
 
