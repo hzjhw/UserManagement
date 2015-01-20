@@ -37,7 +37,6 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       tagName: 'li',
       className: 'nav',
       events: {
-        'click a': 'toPage',
         'mouseover a': 'setChildPos'
       },
       initialize: function () {
@@ -59,6 +58,7 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
         });
         cookies.length = 0;
         Backbone.history.navigate(this.model.get('url'), true);
+        return false;
       },
       setChildPos: function () {
         this.$('.node-tree').css({
