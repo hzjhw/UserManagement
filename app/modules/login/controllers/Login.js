@@ -38,7 +38,8 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail', 'temp
               return true;
             }
             window.location.href = '/member/index.html';
-          }
+          },
+
         });
         return this;
       },

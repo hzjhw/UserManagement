@@ -52,25 +52,22 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
           onBeforeSave: function(){
             var photos = app.getView('picturePick').getItems();
             if (photos.length > 0) {
-              this.model.set('photo', photos[0]['serverPath']);
-              this.model.set('attachmentId', photos[0]['attId']);
+             this.model.set('attachmentId', photos[0]['attId']);
             }
           },
           onAfterSave: function(response){
           }
         });
 
-        // 产品图片
+        // 证书图片
         var pic_list = [];
         if (!this._isAdd) {
-          var attList = JSON.parse(this.model.get('attList'));
-          var id=this.model.get('id');
-            pic_list.push({
-              attId: id,
-              serverPath: attList,
-              title: '重新上传',
-              hasPic: true,
-              isAddBtn: false
+          pic_list.push({
+            attId: '4354',
+            serverPath: this.model.get('att').serverPath,
+            title: '重新上传',
+            hasPic: true,
+            isAddBtn: false
           });
         }
         if (!PicturePick){ debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?'); }
