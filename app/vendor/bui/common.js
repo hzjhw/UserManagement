@@ -2405,15 +2405,18 @@ define('bui/base',['bui/observable'],function(require){
     if(c._attrs || c == Base){
       return;
     }
+    try{
+      var superCon = c.superclass.constructor;
+      if(superCon && !superCon._attrs){
+        initClassAttrs(superCon);
+      }
+      c._attrs =  {};
 
-    var superCon = c.superclass.constructor;
-    if(superCon && !superCon._attrs){
-      initClassAttrs(superCon);
+      BUI.mixAttrs(c._attrs,superCon._attrs);
+      BUI.mixAttrs(c._attrs,c.ATTRS);
+    }catch (e){
+
     }
-    c._attrs =  {};
-    
-    BUI.mixAttrs(c._attrs,superCon._attrs);
-    BUI.mixAttrs(c._attrs,c.ATTRS);
   }
   /**
    * 基础类，此类提供以下功能

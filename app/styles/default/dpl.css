@@ -120,7 +120,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 input[type=checkbox], input[type=radio] {
     box-sizing: border-box;
-    padding: 0
+    padding: 0;
+    vertical-align: middle;
 }
 
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
@@ -1364,6 +1365,9 @@ a.badge:focus, a.badge:hover {
     background-repeat: no-repeat;
     margin-right:2px;
 }
+#jhw .ie6 button [class*=" icon-"], #jhw .ie6 button [class^=icon-],  #jhw .ie7 button [class*=" icon-"], #jhw .ie7 button [class^=icon-]{
+    vertical-align: middle;
+}
 
 [class*=" icon-mini"], [class^=icon-mini] {
     width: 12px;
@@ -1770,7 +1774,7 @@ a.badge:focus, a.badge:hover {
 }
 
 .icon-plus {
-    background-position: -407px -97px
+    background-position: -407px -96px
 }
 
 .icon-minus {
@@ -3306,6 +3310,7 @@ input, select, textarea {
     font-family: ff-tisa-web-pro-1, ff-tisa-web-pro-2, "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
     line-height: 20px
 }
+#jhw .ie6 select, #jhw .ie7 select{height: 20px;}
 
 input.input-normal, select.input-normal, textarea.input-normal {
     width: 140px
