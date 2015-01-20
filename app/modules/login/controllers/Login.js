@@ -33,12 +33,12 @@ define('Login', ['jquery', 'LoginModel', 'HandlebarsHelper', 'BaseDetail', 'temp
         this._render();
         this._form('#J_Form')._validate()._init({
           onAfterSave: function (response) {
-            if (response.attributes.success == false) {
-              ctx.refreshCode();
+            if ( response.attributes.success == true) {
+              window.location.href = '/member/index.html';
               return true;
             }
-            window.location.href = '/member/index.html';
-          },
+            ctx.refreshCode();
+          }
 
         });
         return this;
