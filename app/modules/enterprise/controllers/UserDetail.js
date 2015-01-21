@@ -72,13 +72,17 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
     UserDetail = BaseDetail.extend({
       events: {
         'click .option-add': 'optionAdd',
-        'click .location': 'location'
+        'click .location': 'location',
+        'click .back': 'back'
       },
       initialize: function () {
         this._initialize({
           template: template,
           model: UserModel
         });
+      },
+      back: function(){
+        this._navigate('#/index');
       },
       optionAdd: function () {
         this.list._add(new model());
@@ -111,7 +115,7 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
             items: JSON.parse(ctx.model.get('jsonstr'))
           }));
 
-          ctx._form('J_Form')._validate()._init({
+          ctx._form('#J_Form_login')._validate()._init({
             onBeforeSave: function () {
               this.model.set('jsonstr', JSON.stringify(ctx.list._getItems()));
             }

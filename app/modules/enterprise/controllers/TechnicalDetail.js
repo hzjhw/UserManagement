@@ -12,11 +12,17 @@ define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'templat
   BaseUtils = require('BaseUtils');
 
   TechnicalDetail = BaseDetail.extend({
+    events: {
+      'click .back': 'back'
+    },
     initialize: function () {
       this._initialize({
         template: template,
         model: TechnicalModel
       });
+    },
+    back: function () {
+      this._navigate('#/index');
     },
     render: function () {
       var ctx = this;
@@ -24,7 +30,6 @@ define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'templat
         wait: true
       }).done(function () {
         ctx._render();
-
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-technicView',
@@ -36,12 +41,7 @@ define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'templat
         BaseUtils.initEditor({
           render: '.ckeditor'
         })
-        ctx._form('#J_Form')._validate()._init({
-          onBeforeSave: function () {
-
-          }
-        });
-
+        ctx._form('#J_Form')._validate()._init();
       });
     }
   });

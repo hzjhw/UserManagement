@@ -23,7 +23,8 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
     CertificateDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #certificate-reset': 'reset'
+        'click #certificate-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.CertificateDetail.initialize');
@@ -31,6 +32,9 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
           template : template,
           model: CertificateModel
         });
+      },
+      back: function(){
+        this._navigate('#/certificate');
       },
       render: function () {
         debug('4.CertificateDetail.render');

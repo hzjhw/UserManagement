@@ -3,19 +3,19 @@
  * @namespace AlbumList
  * @author yongjin<zjut_wyj@163.com> 2014/12/15
  */
-define('AlbumList', ['BaseModel', 'BaseComposite', 'BaseList', 'BaseItem', 'template/album_list', 'template/album_item', 'AlbumModel'],
+define('AlbumList', ['BaseModel', 'BaseCollection', 'BaseList', 'BaseItem', 'template/album_list', 'template/album_item', 'AlbumModel'],
   function (require, exports, module) {
-  var AlbumList, BaseModel, BaseComposite, BaseList, BaseItem, listTemp, itemTemp, AlbumCollection, AlbumModel, AlbumItem;
+  var AlbumList, BaseModel, BaseCollection, BaseList, BaseItem, listTemp, itemTemp, AlbumCollection, AlbumModel, AlbumItem;
 
     BaseModel = require('BaseModel');
-    BaseComposite = require('BaseCollection');
+    BaseCollection = require('BaseCollection');
     BaseList = require('BaseList');
     BaseItem = require('BaseItem');
     listTemp = require('template/album_list');
     itemTemp = require('template/album_item');
     AlbumModel = require('AlbumModel');
 
-    AlbumCollection = BaseComposite.extend({
+    AlbumCollection = BaseCollection.extend({
       url: CONST.API + '/album/list',
       model: AlbumModel,
       initialize: function () {

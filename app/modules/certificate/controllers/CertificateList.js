@@ -99,7 +99,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .certificate-add': '_detail',
+        'click .certificate-add': 'add',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
@@ -115,8 +115,12 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           collection: CertificateCollection,
           item: CertificateItem,
           pagination: true,
-          detail: CONST.HOST + '/modules/certificate/certificate_detail.html'
+          detail: CONST.HOST + '/modules/certificate/certificate_detail.html',
+          route: '#/certificate_detail'
         });
+      },
+      add: function(){
+        this._navigate('#/certificate_add');
       },
       // 简单搜索
       search: function () {

@@ -18,6 +18,29 @@ app.addRoute('certificate', function () {
     }));
   });
 });
+app.addRoute('certificate_add', function(){
+  seajs.use(['CertificateDetail'], function(CertificateDetail){
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('certificateDetail', new CertificateDetail({
+      el: '.jhw-panel',
+      viewId: 'certificateDetail'
+    }));
+  });
+});
+app.addRoute('certificate_detail/:id', function(id){
+  seajs.use(['CertificateDetail'], function(CertificateDetail){
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('certificateDetail', new CertificateDetail({
+      el: '.jhw-panel',
+      viewId: 'certificateDetail',
+      id: Est.decodeId(id, 'Certificate_', 32)
+    }));
+  });
+});
 
 /**
  * 模块

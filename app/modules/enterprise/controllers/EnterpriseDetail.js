@@ -15,11 +15,17 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
     District = require('District');
 
     EnterpriseDetail = BaseDetail.extend({
+      events: {
+        'click .back': 'back'
+      },
       initialize: function () {
         this._initialize({
           template: template,
           model: EnterpriseModel
         });
+      },
+      back: function () {
+        this._navigate('#/index');
       },
       render: function () {
         var ctx = this;
@@ -77,11 +83,7 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
           BaseUtils.initEditor({
             render: '.ckeditor'
           });
-          ctx._form('#J_Form')._validate()._init({
-            onBeforeSave: function () {
-
-            }
-          });
+          ctx._form('#J_Form')._validate()._init();
         });
       }
     });
