@@ -509,6 +509,7 @@
     border-bottom-right-radius: 0
 }
 
+
 .bui-select .x-icon {
     vertical-align: middle;
     cursor: pointer;
@@ -2547,4 +2548,7 @@ td.x-grid-rownumber{
 .bui-select {
     display: inline-block;
     margin-right: 5px;
+}
+#jhw .ie6 .bui-select, #jhw .ie7 .bui-select{
+    margin-right: 0;
 }

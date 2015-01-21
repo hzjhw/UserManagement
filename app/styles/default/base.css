@@ -244,6 +244,8 @@ label.checkbox { padding-left: 5px; }
 #jhw-news-category{ }
 /*标签*/
 #jhw .bui-combox .hover{ background: #66AEE5; }
+/*选项*/
+#jhw #tab{overflow:hidden;}
 /* 属性 ***************************************************************************************/
 .attributes-item{ vertical-align: middle; overflow:hidden; }
 .attributes-item input[type=password], .attributes-item  input[type=text], .attributes-item  select, .attributes-item  textarea{ vertical-align: bottom; margin-right: 6px; height: 24px; }

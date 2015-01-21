@@ -1081,6 +1081,9 @@ a.badge:focus, a.badge:hover {
 .x-icon i {
     vertical-align: baseline
 }
+#jhw .ie6 .x-icon i , #jhw .ie7 .x-icon i {
+    vertical-align: middle;
+}
 
 .x-icon-normal {
     text-shadow: none;
@@ -3359,7 +3362,9 @@ input.calendar-time {
 .form-horizontal .control-group:after {
     clear: both
 }
-
+.form-horizontal .control-group{
+    width: 100%;
+}
 .form-horizontal .control-label {
     float: left;
     text-align: right;

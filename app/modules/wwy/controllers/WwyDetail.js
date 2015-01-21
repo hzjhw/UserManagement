@@ -164,7 +164,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
             // 抽奖
             ltyObj['lotteryImage'] = this.model.get('lotteryImage');
             ltyObj['lotteryRule'] = app.getView('wwyLtyList').getItems();
-            this.model.set('ltyRule', Est.escapeHTML(JSON.stringify(ltyObj)));
+            this.model.set('ltyRule', Est.escapeHTML($.toJSON(ltyObj)));
           },
           onAfterSave: function (response) {
 
