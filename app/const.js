@@ -162,4 +162,14 @@ app.addStatus('enterpriseType', [
   {text: '事业单位或者团体', value: '03'}
 ]);
 
+// 充值方式
+app.addStatus('depositType', [
+  {text: '会员充值', value: 'memberRecharge'},
+  {text: '会员支付', value: 'memberPayment'},
+  {text: '后台代支付', value: 'adminRecharge'},
+  {text: '后台代扣费', value: 'adminChargeback'},
+  {text: '后台代充值', value: 'adminPayment'},
+  {text: '后台退款', value: 'adminRefund'}
+]);
+
 window.app = app;

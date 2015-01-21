@@ -35,8 +35,6 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       return userModel.fetch({
         wait: true,
         success: function (data) {
-          app.addData('user', data.attributes);
-          CONST.USER = data.attributes;
           if (data.attributes && data.attributes.attributes && !data.attributes.attributes.success) {
             //alert(data.attributes.attributes.success);
             window.location.href = CONST.HOST + '/modules/login/login.html';

@@ -5,7 +5,9 @@
  */
 seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseScroll'],
   function (jquery, TopView, LeftView, UserModel, BaseService, MouseScroll) {
-    BaseService.initUser(UserModel).done(function () {
+    BaseService.initUser(UserModel).done(function (result) {
+      debug(result);
+      //if (result.attributes && !Est.isEmpty(result.attributes.success)) return;
       if (!app.getData('user')) return;
       $("#load").hide();
       app.addView('TopView', new TopView());
