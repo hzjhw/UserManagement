@@ -112,7 +112,7 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
           app.addView('optionList', ctx.list = new list({
             el: '#user-append',
             viewId: 'optionList',
-            items: JSON.parse(ctx.model.get('jsonstr'))
+            items: $.parseJSON(ctx.model.get('jsonstr'))
           }));
 
           ctx._form('#J_Form_login')._validate()._init({

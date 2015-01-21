@@ -75,7 +75,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         // 产品图片
         var pic_list = [];
         if (!this._isAdd) {
-          var server_pic_list = JSON.parse(this.model.get('productImageListStore'));
+          var server_pic_list = $.parseJSON(this.model.get('productImageListStore'));
           Est.each(server_pic_list, function (item) {
             pic_list.push({
               attId: item.id,

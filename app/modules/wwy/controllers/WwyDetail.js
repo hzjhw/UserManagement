@@ -52,7 +52,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
         };
         //处理翻屏模式下的json
         if (!Est.isEmpty(this.model.get('paths'))) {
-          pathObj = JSON.parse(this.model.get('paths'));
+          pathObj = $.parseJSON(this.model.get('paths'));
           this.model.set('hidShare', pathObj['hidShare']);
           this.model.set('hidZf', pathObj['hidZf']);
           this.model.set('music', pathObj['music']['path']);
@@ -122,7 +122,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           lotteryRule: []
         };
         if (this.model.get('ltyRule')) {
-          ltyObj = JSON.parse(Est.unescapeHTML(this.model.get('ltyRule')));
+          ltyObj = $.parseJSON(Est.unescapeHTML(this.model.get('ltyRule')));
         }
         this.model.set('lotteryImage', ltyObj['lotteryImage']);
         app.addView('wwyLtyList', new WwyLtyList({

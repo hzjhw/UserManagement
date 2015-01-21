@@ -260,7 +260,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('radio', function (options) {
     var result = [];
-    Est.each(JSON.parse(options.hash.option), function (val, key, list, index) {
+    Est.each($.parseJSON(options.hash.option), function (val, key, list, index) {
       var checked = options.hash.value === val ? 'checked' : '';
       result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name + '" value="' + val + '" ' + checked + '>' + key + '</label>&nbsp;&nbsp;');
     });
