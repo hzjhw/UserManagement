@@ -37,7 +37,8 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
       tagName: 'li',
       className: 'nav',
       events: {
-        'mouseover a': 'setChildPos'
+        'mouseover a': 'setChildPos',
+        'click a': 'toPage'
       },
       initialize: function () {
         this._initialize({

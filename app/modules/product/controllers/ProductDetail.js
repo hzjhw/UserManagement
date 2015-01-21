@@ -52,7 +52,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
       render: function () {
         debug('4.ProductDetail.render');
         var ctx = this;
-
+        alert('当前模型类里的name值为： '+ this.model.get('name') + ',现在设置模型类里的name值为44444');
+        this.model.set('name', '44444');
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();
