@@ -5,11 +5,8 @@
  */
 seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseScroll'],
   function (jquery, TopView, LeftView, UserModel, BaseService, MouseScroll) {
-    BaseService.initUser(UserModel);
-    if (!app.getData('user')) {
-      window.location.href = CONST.HOST + '/modules/login/login.html';
-      return false;
-    } else {
+    BaseService.initUser(UserModel).done(function () {
+      if (!app.getData('user')) return;
       $("#load").hide();
       app.addView('TopView', new TopView());
       setTimeout(function () {
@@ -30,5 +27,5 @@ seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseSc
       $(window).resize(function () {
         $('#jhw-body').height(getHeight());
       });
-    }
+    });
   });

@@ -17,8 +17,7 @@ define('Main', ['BaseView', 'UserModel','ToolList', 'template/main', 'BaseServic
 
     Main = BaseView.extend({
       initialize: function () {
-        BaseService.initUser(UserModel);
-        BaseService.initIndex(IndexModel);
+        //BaseService.initIndex(IndexModel);
         this._initialize({
           template: template,
           data: {

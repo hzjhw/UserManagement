@@ -31,16 +31,28 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 15.1.14
      */
     initUser: function (model) {
-      if (!app.getData('user')) {
-        var userModel = new model();
-        userModel.fetch({
-          async: false,
-          success: function (data) {
+      var userModel = new model();
+      return $.ajax({
+        type: 'GET',
+        url: CONST.API + '/user/detail',
+        async: false,
+        success: function(result){
+          alert(result.attributes.success);
+        }
+      });
+      /*return userModel.fetch({
+        wait: true,
+        success: function (data) {
+          if (data.attributes && data.attributes.attributes && !data.attributes.attributes.success) {
+            alert(data.attributes.attributes.success);
+            window.location.href = CONST.HOST + '/modules/login/login.html';
+            return false;
+          } else {
             app.addData('user', data.attributes);
             CONST.USER = data.attributes;
           }
-        });
-      }
+        }
+      });*/
     },
     /**
      * 首页信息

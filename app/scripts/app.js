@@ -6,9 +6,9 @@ break;case"email":n=/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9
  * @author yongjin<zjut_wyj@163.com> 2014/12/13
  */
 CONST.LIB_FORDER = 'base';
-CONST.DEBUG_SEAJS = false;
-CONST.DEBUG_CONSOLE = false;
-CONST.APP_VERSION = '20143525';
+CONST.DEBUG_SEAJS = true;
+CONST.DEBUG_CONSOLE = true;
+CONST.APP_VERSION = '20143527';
 
 /**
  * @description config
@@ -177,17 +177,19 @@ seajs.use(['jquery', 'underscore', 'backbone'],
 window.debug = function (str, options) {
   var opts, msg;
   if (CONST.DEBUG_CONSOLE) {
-    try{
+    try {
       opts = Est.extend({ type: 'console' }, options);
       msg = Est.typeOf(str) === 'function' ? str() : str;
       if (!Est.isEmpty(msg)) {
-        if (opts.type === 'error'){
+        if (opts.type === 'error') {
           console.error(msg);
-        } else{
+        } else if (opts.type === 'alert') {
+          alert(msg);
+        } else {
           console.log(msg);
         }
       }
-  }catch(e){
+    } catch (e) {
 
     }
 

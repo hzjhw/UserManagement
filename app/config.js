@@ -103,17 +103,19 @@ seajs.use(['jquery', 'underscore', 'backbone'],
 window.debug = function (str, options) {
   var opts, msg;
   if (CONST.DEBUG_CONSOLE) {
-    try{
+    try {
       opts = Est.extend({ type: 'console' }, options);
       msg = Est.typeOf(str) === 'function' ? str() : str;
       if (!Est.isEmpty(msg)) {
-        if (opts.type === 'error'){
+        if (opts.type === 'error') {
           console.error(msg);
-        } else{
+        } else if (opts.type === 'alert') {
+          alert(msg);
+        } else {
           console.log(msg);
         }
       }
-  }catch(e){
+    } catch (e) {
 
     }
 

@@ -568,7 +568,7 @@
                  this.addOne();
                }
    },
-   finally: function(thisOpts){ // 最终执行方法， 包括items渲染完成
+   afterRender: function(thisOpts){ // 最终执行方法， 包括items渲染完成
      if (this.collection.models.length === 0 ||
                  !this.options._isAdd){
                  this.addOne();
