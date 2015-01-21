@@ -31,30 +31,24 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 15.1.14
      */
     initUser: function (model) {
-      var userModel = new model();
-      /*return $.ajax({
-       type: 'GET',
-       url: CONST.API + '/user/detail',
-       async: false,
-       success: function(result){
-       alert(result.attributes.success);
-       }
-       });*/
-      return userModel.fetch({
-        wait: true,
-        success: function (data) {
-          app.addData('user', data.attributes);
-          CONST.USER = data.attributes;
-          if (data.attributes && data.attributes.attributes && !data.attributes.attributes.success) {
-            //alert(data.attributes.attributes.success);
-            window.location.href = CONST.HOST + '/modules/login/login.html';
-            return false;
-          } else {
+      if (!app.getData('user')) {
+        var userModel = new model();
+        return userModel.fetch({
+          wait: true,
+          success: function (data) {
             app.addData('user', data.attributes);
             CONST.USER = data.attributes;
+            if (data.attributes && data.attributes.attributes && !data.attributes.attributes.success) {
+              //alert(data.attributes.attributes.success);
+              window.location.href = CONST.HOST + '/modules/login/login.html';
+              return false;
+            } else {
+              app.addData('user', data.attributes);
+              CONST.USER = data.attributes;
+            }
           }
-        }
-      });
+        });
+      }
     },
     /**
      * 首页信息
@@ -64,8 +58,8 @@ define('BaseService', ['jquery'], function (require, exports, module) {
     initIndex: function (model) {
       if (!app.getData('index')) {
         var indexModel = new model();
-        indexModel.fetch({
-          async: false,
+        return indexModel.fetch({
+          wait: false,
           success: function (data) {
             app.addData('index', data.attributes);
           }
