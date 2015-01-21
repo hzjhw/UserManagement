@@ -8,7 +8,7 @@ break;case"email":n=/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9
 CONST.LIB_FORDER = 'base';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.APP_VERSION = '20143527';
+CONST.APP_VERSION = '20143528';
 
 /**
  * @description config

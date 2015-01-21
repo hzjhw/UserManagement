@@ -46,7 +46,7 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
       initialize: function () {
         this._initialize({
           modelBind: true,
-          template: '<label class="control-label"><input class="input-mini" id="model-text" value="{{text}}" type="text"/></label><div class="controls"><input type="text" id="model-value" value="{{value}}"/><span class="delete x-icon x-icon-small x-icon-error">×</span>&nbsp;<span class="x-icon x-icon-small x-icon-info move-up pointer"><i class="icon icon-white icon-arrow-up pointer"></i></span>&nbsp;<span class="x-icon x-icon-small x-icon-info move-down pointer"><i class="icon icon-white icon-arrow-down pointer"></i></span></div>' });
+          template: '<label class="control-label"><input class="input-mini" id="model-text" value="{{text}}" type="text"/></label><div class="controls"><input type="text" id="model-value" class="input-large" value="{{value}}"/>&nbsp;&nbsp;&nbsp;<span class="delete x-icon x-icon-small x-icon-error">×</span>&nbsp;<span class="x-icon x-icon-small x-icon-info move-up pointer"><i class="icon icon-white icon-arrow-up pointer"></i></span>&nbsp;<span class="x-icon x-icon-small x-icon-info move-down pointer"><i class="icon icon-white icon-arrow-down pointer"></i></span></div>' });
       },
       render: function () {
         this._render();

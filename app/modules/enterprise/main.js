@@ -19,9 +19,9 @@ app.addRoute('user', function () {
   seajs.use(['UserDetail'], function (UserDetail) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('userDetail', new UserDetail({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'userDetail'
     }));
   });
@@ -31,9 +31,9 @@ app.addRoute('enterprise', function () {
   seajs.use(['EnterpriseDetail'], function (EnterpriseDetail) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('enterpriseDetail', new EnterpriseDetail({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'enterpriseDetail'
     }));
   });
@@ -43,9 +43,9 @@ app.addRoute('technical', function () {
   seajs.use(['TechnicalDetail'], function (TechnicalDetail) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('technicalDetail', new TechnicalDetail({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'technicalDetail'
     }));
   });

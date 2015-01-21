@@ -104,7 +104,8 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
         'click .search-advance': 'searchAdvance',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category': 'batchCategory',
-        'click .btn-tool-sort': 'proSort'
+        'click .btn-tool-sort': 'proSort',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         this._initialize({
@@ -118,6 +119,9 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           detail: CONST.HOST + '/modules/certificate/certificate_detail.html',
           route: '#/certificate_detail'
         });
+      },
+      back: function(){
+        this._navigate('#/index', true);
       },
       add: function(){
         this._navigate('#/certificate_add');
@@ -145,7 +149,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           ctx.searchDialog = dialog({
             id: 'dialog',
             title: '高级搜索',
-            width: 600,
+            width: 700,
             content: ctx.searchTemp({
               certificateCategoryList: app.getData('certificateCategory'),
               loginViewList: app.getStatus('loginViewList'),

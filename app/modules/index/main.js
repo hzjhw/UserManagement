@@ -8,9 +8,9 @@ app.addRoute('index', function () {
   seajs.use(['jquery', 'Main'], function (jquery, Main) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('main', new Main({
-      el: '.jhw-main-inner'
+      el: '.jhw-panel'
     }));
   });
 });

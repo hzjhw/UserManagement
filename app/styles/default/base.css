@@ -262,7 +262,7 @@ label.checkbox { padding-left: 5px; }
 #jhw .album_left li{padding-left: 10px; padding-right: 0px;}
 #jhw .album_right{float:left; width:85%;height: 100%;}
 #jhw .ie6 .album_right, #jhw .ie7 .album_right{width: 83%;}
-#jhw .album-cate-ul{padding-right:15px;}
+#jhw .album-cate-ul{padding-right:15px;overflow-y: auto; height: 100%;}
 #jhw .album-cate-ul .cate-grid-row{position:relative;padding-left: 8px; padding-bottom: 4px; border-radius: 5px;overflow: hidden; white-space: nowrap;}
 #jhw .pic-container .image .handle li:hover, #jhw .pic-container .image .handle li{transition: background-color 0.5s; -moz-transition: background-color 0.5s; -webkit-transition: background-color 0.5s; -o-transition: background-color 0.5s; }
 #jhw .album-cate-ul .album-tool, #jhw .album-cate-ul .album-tool:hover{transition: opacity 0.5s; -moz-transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -o-transition: opacity 0.5s; }
@@ -293,7 +293,7 @@ label.checkbox { padding-left: 5px; }
 .page-bar { width: 99%; height: 31px; z-index: 2; padding-top: 9px; padding-left: 1%; border-top: 1px solid #B3DDFF; border-bottom: 1px solid #B1DDFF; background-color: #EFF8FF; }
 .photo-tool { height: 7%; }
 #photo-copy-dialog .body-r, #photo-copy-dialog .body-l{float:left;overflow:hidden;}
-#photo-copy-dialog .body-r{background: #efefef; padding: 20px; margin-left: 15px; width: 280px; height: 278px;}
+#photo-copy-dialog .body-r{background: #efefef; padding: 20px; margin-left: 15px; width: 270px; height: 278px;}
 #jhw .pic-container .image .handle li:hover{background:#4B4B4B;}
 /*
 .category-ul .gird-3{ width:20%; }
