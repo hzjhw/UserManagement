@@ -390,6 +390,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
             // triggering a `"change"` event.
             fetch: function(options) {
                 options = options ? _.clone(options) : {};
+                options.cache = false;
                 if (options.parse === void 0) options.parse = true;
                 var model = this;
                 var success = options.success;
@@ -783,6 +784,7 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
             // data will be passed through the `reset` method instead of `set`.
             fetch: function(options) {
                 options = options ? _.clone(options) : {};
+                options.cache = false;
                 if (options.parse === void 0) options.parse = true;
                 var success = options.success;
                 var collection = this;
