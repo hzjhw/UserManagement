@@ -21,7 +21,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
       el: '#jhw-detail',
       events: {
         'click #news-reset': 'reset',
-        'click .btn-back': 'back'
+        'click .btn-back': 'back',
+        'click #model-imagenews': 'isImagenews'
       },
       initialize: function () {
         debug('2.NewsDetail.initialize');
@@ -34,6 +35,13 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         seajs.use(['backbone'], function (Backbone) {
           Backbone.history.navigate('#/news', true);
         });
+      },
+      isImagenews : function(){
+        if($('#model-imagenews').attr('checked') == 'checked'){
+          $('.check_img_news').show();
+        }else{
+          $('.check_img_news').hide();
+        }
       },
       render: function () {
         debug('4.NewsDetail.render');

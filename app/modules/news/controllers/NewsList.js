@@ -100,16 +100,6 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         });
         this.render();
       },
-      // 编辑新闻
-      editItem: function () {
-        var url = CONST.HOST + '/modules/news/news_detail.html?id='
-          + this.model.id;
-        var options = {
-          title: '新闻修改',
-          url: url
-        }
-        this._edit(options);
-      },
       // 修改名称
       editName: function () {
         var options = {
@@ -171,7 +161,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click #toggle-all': '_toggleAllChecked',
         'click .news-add': 'edit',
         'click .btn-search': 'search',
-        'click .search-advance': 'searchAdvance',
+        'click .search-advance-news': 'searchAdvance',
         'click .btn-batch-del': '_batchDel',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category-news': 'batchCategory',
@@ -205,19 +195,17 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           }));
         });
       },
-      // 搜索基础方法
-      baseSearch: function () {
-        this._search([
-          { key: 'title', value: this.searchKey }
-        ], {});
-      },
       // 简单搜索
       search: function () {
         this.searchKey = Est.trim(this.$('.search-text').val());
         if (Est.isEmpty(this.searchKey)) {
           this._load({ page: 1, pageSize: 16 });
         } else {
-          this.baseSearch();
+          this._search({
+            filter: [
+              {key: 'title', value: this.searchKey }
+            ]
+          });
         }
       },
       // 高级搜索
@@ -257,7 +245,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
             //ctx.baseSearch();
             ctx._search({
               filter: [
-                {key: 'name', value: ctx.searchKey },
+                {key: 'title', value: ctx.searchKey },
                 {key: 'category', value: ctx.searchCategory === '/' ? '' : ctx.searchCategory},
                 {key: 'imagenews', value: ctx.searchImageNews} ,
                 {key: 'topnews', value: ctx.searchTopNews},

@@ -58,14 +58,17 @@
                             <label class="control-label">文章属性：</label>
 
                             <div class="controls bui-form-group">
+                                <label class="checkbox imagenews" for="model-imagenews">
+                                    <input type="checkbox" name="isImagenews" id="model-imagenews" true-value="01"
+                                           false-value="00" {{#compare imagenews '==' '01'}}checked{{/compare}}>图片</label>
                                 <label class="checkbox" for="model-topnews">
                                     <input type="checkbox" name="isTopnews" id="model-topnews" true-value="01"
                                            false-value="00" {{#compare topnews '==' '01'}}checked{{/compare}}>置顶</label>
                             </div>
                         </div>
 
-                        <div class="control-group check_img_news">
-                            <label class="control-label">图片新闻：</label>
+                        <div class="control-group check_img_news {{#compare imagenews '==' '01'}}show{{else}}hide{{/compare}}">
+                            <label class="control-label">图片地址：</label>
 
                             <div class="controls control-row-auto">
                                 <div id="picture-pick" style="width:580px;"></div>
