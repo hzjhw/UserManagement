@@ -64,7 +64,8 @@
  - 自定义按钮callback方法中是否有return false;语句
 3) ie7或8中打开对话框跳转到首页
  - 在oniframeload方法中是否加入 delete app.getRoutes()['index'];
- 
+4) git无法修改文件名称
+ - git mv --force app/modules/member/management/message/model/messageSendModel.js  app/modules/member/management/message/model/MessageSendModel.js 
  
 ### handlebars
 1) 获取索引
