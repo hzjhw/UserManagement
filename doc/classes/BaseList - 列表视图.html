@@ -317,6 +317,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_[public] - _dialog">[public] - _dialog</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[public] - _empty">[public] - _empty</a>
 
                                 
@@ -936,7 +943,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l994"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:994</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1033"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1033</code></a>
         
         </p>
 
@@ -2296,6 +2303,118 @@
 </div>
 
                 
+                    <div id="method_[public] - _dialog" class="method item">
+    <h3 class="name"><code>[public] - _dialog</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l994"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:994</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>静态对话框， 当你需要显示某个组件的视图但不是以iframe形式打开时</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   this._dialog({
+               moduleId: &#39;SeoDetail&#39;, // 模块ID
+               title: &#39;Seo修改&#39;, // 对话框标题
+               id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
+               width: 600, // 对话框宽度
+               height: 250, // 对话框高度
+               button: [ // 自定义按钮
+                 {
+                   value: &#39;保存&#39;,
+                   callback: function () {
+                   this.title(&#39;正在提交..&#39;);
+                   $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
+                   return false;
+                 }}
+             ]
+           });</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
                     <div id="method_[public] - _empty" class="method item">
     <h3 class="name"><code>[public] - _empty</code></h3>
 
@@ -3178,7 +3297,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1022"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1022</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1061"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1061</code></a>
         
         </p>
 

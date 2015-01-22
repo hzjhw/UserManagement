@@ -40,16 +40,17 @@
 <script type="text/javascript" src="../../modules/album/main.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
 <script type="text/javascript">
+    var detailApp = new Application();
     seajs.use(['jquery', 'AlbumDetail'], function (jquery, AlbumDetail) {
-        $(function(){
+        $(function () {
             window.parentId = Est.getUrlParam('parentId', window.location.href);
-            app.addPanel('detail', {
+            detailApp.addPanel('detail', {
                 el: '#jhw-detail',
                 template: '<div class="jhw-detail-inner"></div>'
-            })/*.addView('albumDetail', new AlbumDetail({
-             el: '.jhw-detail-inner',
-             viewId: 'albumDetail'
-             }))*/;
+            }).addView('albumDetail', new AlbumDetail({
+                el: '.jhw-detail-inner',
+                viewId: 'albumDetail'
+            }));
         })
     });
 </script>

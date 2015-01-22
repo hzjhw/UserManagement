@@ -66,6 +66,8 @@
  - 在oniframeload方法中是否加入 delete app.getRoutes()['index'];
 4) git无法修改文件名称
  - git mv --force app/modules/member/management/message/model/messageSendModel.js  app/modules/member/management/message/model/MessageSendModel.js 
+5) iframedialog打开时提示未找到el选择符
+ - 在详细页面里 新var detailApp = new Application();
  
 ### handlebars
 1) 获取索引

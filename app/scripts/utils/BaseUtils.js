@@ -538,6 +538,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        *           filename: this.model.get('filename'),
        *           serverPath: this.model.get('serverPath')
        *         }),
+       *         cover: true, // 是否显示遮罩
        *         load: function(){
        *           ...base.js
        *         },
@@ -582,7 +583,11 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
               options.load.call(this, arguments);
             }
           }
-          thisDialog = app.addDialog(dialog(options)).show(options.target);
+          if (options.cover){
+            window[options.id] = thisDialog = app.addDialog(dialog(options)).showModal(options.target);
+          } else{
+            window[options.id] = thisDialog = app.addDialog(dialog(options)).show(options.target);
+          }
         });
       },
       /**

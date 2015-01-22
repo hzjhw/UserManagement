@@ -76,7 +76,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           itemId: this.model.get('id'),
           _isAdd: false,
           width: 600,
-          height: 250
+          height: 250,
+          cover: true
         });
       },
       // seo修改
@@ -87,6 +88,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           id: this.model.get('id'),
           width: 600,
           height: 250,
+          cover: true,
           button: [
             {
               value: '保存',
