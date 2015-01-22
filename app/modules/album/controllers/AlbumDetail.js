@@ -14,7 +14,6 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
     BaseService = require('BaseService');
 
     AlbumDetail = BaseDetail.extend({
-      el: '#jhw-detail',
       events: {
         'click #album-reset': 'reset'
       },
@@ -30,14 +29,15 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         if (window.parentId) {
           this.$('#model-parentId').val(window.parentId);
         }
+        var items = BaseService.getAlbumList({
+          tree: true,
+          extend: true,
+          select: true
+        });
         BaseUtils.initSelect({
           render: '#s1',
           target: '#model-parentId',
-          items: BaseService.getAlbumList({
-            tree: true,
-            extend: true,
-            select: true
-          })
+          items: items
         });
         this._form('#J_Form')._validate()._init({
         });
