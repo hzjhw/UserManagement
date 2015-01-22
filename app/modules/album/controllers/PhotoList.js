@@ -82,11 +82,15 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           content: this.copyDetail({
             filename: this.model.get('filename'),
             serverPath: this.model.get('serverPath')
-          })
-        });
-        BaseUtils.initCopy('#photo-copy-dialog', {
-          success: function () {
-            window['copy' + dialogId].close().remove();
+          }),
+          onshow: function () {
+            BaseUtils.initCopy('#photo-copy-dialog', {
+              success: function () {
+                if (window['copy' + dialogId]) {
+                  window['copy' + dialogId].close().remove();
+                }
+              }
+            });
           }
         });
       }

@@ -678,7 +678,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l564"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:564</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l582"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:582</code></a>
         
         </p>
 
@@ -745,7 +745,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l595"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:595</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l613"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:613</code></a>
         
         </p>
 
@@ -885,7 +885,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l529"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:529</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l547"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:547</code></a>
         
         </p>
 
@@ -1741,7 +1741,23 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                
+                <pre class="code prettyprint"><code>   this._dialog({
+               moduleId: &#39;SeoDetail&#39;, // 模块ID
+               title: &#39;Seo修改&#39;, // 对话框标题
+               id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
+               width: 600, // 对话框宽度
+               height: 250, // 对话框高度
+               button: [ // 自定义按钮
+                 {
+                   value: &#39;保存&#39;,
+                   callback: function () {
+                   this.title(&#39;正在提交..&#39;);
+                   $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
+                   return false;
+                 }}
+             ]
+           });</code></pre>
+
             </div>
         </div>
     
@@ -1794,7 +1810,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l475"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:475</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l493"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:493</code></a>
         
         </p>
 

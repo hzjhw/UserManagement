@@ -6,6 +6,7 @@
  * http://zeroclipboard.org/
  * v2.1.6
  */
+define('ZeroClipboard', ['jquery'], function(require, exports, module){
 (function(window, undefined) {
   "use strict";
   /**
@@ -1780,9 +1781,15 @@
     });
   } else if (typeof module === "object" && module && typeof module.exports === "object" && module.exports) {
     module.exports = ZeroClipboard;
-  } else {
+  }
+  else if (typeof define === 'function' && define.cmd){
+    module.exports = ZeroClipboard;
+  }
+  else {
     window.ZeroClipboard = ZeroClipboard;
   }
 })(function() {
   return this || window;
 }());
+
+});

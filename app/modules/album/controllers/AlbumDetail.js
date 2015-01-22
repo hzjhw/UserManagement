@@ -26,10 +26,8 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         });
       },
       render: function () {
-        var ctx = this;
         this._render();
-        // 产品分类
-        if (window.parentId){
+        if (window.parentId) {
           this.$('#model-parentId').val(window.parentId);
         }
         BaseUtils.initSelect({

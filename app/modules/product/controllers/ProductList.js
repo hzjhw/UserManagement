@@ -70,11 +70,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // 标签
       tag: function () {
-        var id = this.model.get('id');
         this._dialog({
-          id: id,
           moduleId: 'Tag',
-          itemId: id,
+          title: '标签修改',
+          itemId: this.model.get('id'),
           _isAdd: false,
           width: 600,
           height: 250
@@ -82,33 +81,21 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       },
       // seo修改
       seo: function () {
-        var id = this.model.get('id');
-        var save = [
-          {
-            value: '保存',
-            callback: function () {
-              this.title('正在提交..');
-              $("#seo" + id + " #submit").click();
-              // 是否执行默认的关闭操作
-              return false;
-            }}
-        ];
-        BaseUtils.dialog({
-          title: 'Seo优化',
-          content: '<div id="seo' + id + '"></div>',
+        this._dialog({
+          moduleId: 'SeoDetail',
+          title: 'Seo修改',
+          id: this.model.get('id'),
           width: 600,
           height: 250,
-          button: save
-        });
-        seajs.use(['SeoDetail'], function (SeoDetail) {
-          app.addPanel('detail', {
-            el: '#seo' + id,
-            template: '<div id="seo-box"></div>'
-          }).addView('seoDetail', new SeoDetail({
-            el: '#seo-box',
-            id: id,
-            _isAdd: false // 是否初始化标签列表
-          }));
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                $("#SeoDetail" + " #submit").click();
+                return false;
+              }}
+          ]
         });
       },
       // 修改分类
