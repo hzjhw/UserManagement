@@ -63,6 +63,7 @@ app.addStatus('paymentConfigType', [
 ]);
 // 证书类型
 app.addStatus('certType', [
+  {text: '请选择分类', value: ''},
   {text: '基本证书', value: '01'},
   {text: '一般证书', value: '02'},
   {text: '税务证书', value: '03'},

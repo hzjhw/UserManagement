@@ -151,12 +151,8 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
             title: '高级搜索',
             width: 700,
             content: ctx.searchTemp({
-              certificateCategoryList: app.getData('certificateCategory'),
-              loginViewList: app.getStatus('loginViewList'),
-              adsList: app.getStatus('adsList'),
               searchKey: ctx.searchKey,
               searchOrganize: ctx.searchOrganize,
-              searchType: ctx.searchType,
               certificateList: app.getStatus('certType')
             }),
             button: [

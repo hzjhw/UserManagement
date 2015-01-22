@@ -67,7 +67,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         var pic_list = [];
         if (!this._isAdd) {
           pic_list.push({
-            attId: '4354',
+            attId:  this.model.get('attId'),
             serverPath: this.model.get('att').serverPath,
             title: '重新上传',
             hasPic: true,
