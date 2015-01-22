@@ -575,6 +575,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             try {
               this.iframeNode.contentWindow.topDialog = thisDialog;
               this.iframeNode.contentWindow.app = app;
+              delete app.getRoutes()['index'];
             } catch (e) {
             }
             if (typeof options.load === 'function') {

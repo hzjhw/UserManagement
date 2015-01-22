@@ -77,7 +77,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         });
       },
       select: function () {
-        $(".bui-combox-input-hid").val(this.model.get('name')).click();
+        if (!this.$inputHid) this.$inputHid = $(".tag-combox-input-hid");
+        this.$inputHid.attr('tagid', this.model.get('id'));
+        this.$inputHid.val(this.model.get('name')).click();
         $("#tag-list-picker").hide();
       },
       mouseover: function () {
@@ -95,6 +97,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           collection: collection,
           item: TagItem,
           model: model,
+          clearDialog: false,
           beforeLoad: function () {
             this.collection.setTagType(options.tagType || 'product');
           }
@@ -110,7 +113,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       events: {
         'keyup .tag-combox-input': 'add',
         'click .tag-combox-input': 'showPicker',
-        'click .tag-combox-input-hid': 'addHid'
+        'click .tag-combox-input-hid': 'addHid',
+        'click .bui-combox': 'focus'
       },
       initialize: function (options) {
         this.options = options || {};
@@ -123,6 +127,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           render: '#tag-list-ul',
           item: item,
           model: model,
+          clearDialog: false,
           beforeLoad: function () {
             if (!options._isAdd) {
               this.collection.setItemId(options.itemId || null);
@@ -137,19 +142,25 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
         return this;
       },
+      focus: function (e) {
+        this.$('.tag-combox-input').focus();
+        this.showPicker(e);
+      },
       setOption: function (options) {
 
       },
       add: function (e) {
         if (e.keyCode === CONST.ENTER_KEY) {
           this.insert(this.$input.val());
+
         }
         return false;
       },
       addHid: function () {
-        this.insert(this.$inputHid.val());
+        this.insert(this.$inputHid.val(), this.$inputHid.attr('tagid'));
+        this.$input.attr('tagId', '');
       },
-      insert: function (inputVal) {
+      insert: function (inputVal, tagId) {
         var ctx = this;
         var newModel, filter;
 
@@ -167,7 +178,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         }
         ;
         newModel = new model({
-          name: inputVal
+          name: inputVal,
+          tagId: tagId
         });
         newModel.save(null, {
           wait: true,
@@ -193,7 +205,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           left: this.$input.position().left,
           top: this.$input.position().top + 37
         }).show();
-        $(document).one('click', function(){
+        $(document).one('click', function () {
           ctx.hidePicker();
         });
       }

@@ -262,7 +262,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     var result = [];
     Est.each($.parseJSON(options.hash.option), function (val, key, list, index) {
       var checked = options.hash.value === val ? 'checked' : '';
-      result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name + '" value="' + val + '" ' + checked + '>' + key + '</label>&nbsp;&nbsp;');
+      result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name + '" value="' + val + '" ' + checked + '>&nbsp;' + key + '</label>&nbsp;&nbsp;');
     });
     return result.join('');
   });

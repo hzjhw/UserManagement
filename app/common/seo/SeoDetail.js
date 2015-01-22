@@ -3,17 +3,18 @@
  * @namespace Seo
  * @author yongjin<zjut_wyj@163.com> 2014/12/26
  */
-define('SeoDetail', ['BaseDetail', 'SeoModel'], function (require, exports, module) {
-  var SeoDetail, BaseDetail, SeoModel;
+define('SeoDetail', ['BaseDetail', 'SeoModel', 'template/seo_panel'], function (require, exports, module) {
+  var SeoDetail, BaseDetail, SeoModel, template;
 
   BaseDetail = require('BaseDetail');
   SeoModel = require('SeoModel');
+  template = require('template/seo_panel')
 
   SeoDetail = BaseDetail.extend({
     events: {},
     initialize: function(){
       this._initialize({
-        template: $('#template-seo').html(),
+        template: template,
         model: SeoModel
       });
     },

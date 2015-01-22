@@ -51,8 +51,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .edit': '_edit',
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
-        'change .input-sort': 'changeSort'
-
+        'change .input-sort': 'changeSort',
+        'click .btn-more': '_more'
       },
       // 初始化
       initialize: function () {
@@ -86,12 +86,19 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        this.model._saveField({
-          id: this.model.get('id'),
-          category: category
-        }, ctx, {success: function () {
-          ctx.model.set('category', category);
-        }, hideTip: true});
+        BaseUtils.comfirm({
+          title: '提示：',
+          content: '是否更改分类？',
+          success: function () {
+            ctx.model._saveField({
+              id: ctx.model.get('id'),
+              category: category
+            }, ctx, {success: function () {
+              ctx.model.set('category', category);
+            }});
+          }
+        });
+        this.render();
       },
       // 编辑新闻
       editItem: function () {
@@ -168,7 +175,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .btn-batch-del': '_batchDel',
         'click .btn-batch-display': 'batchDisplay',
         'click .btn-batch-category-news': 'batchCategory',
-        'click .btn-tool-sort': 'proSort'
+        'click .btn-tool-sort': 'proSort',
+        'click .btn-category': 'category'
       },
       initialize: function () {
         this._initialize({
@@ -182,6 +190,9 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           detail: CONST.HOST + '/modules/news/news_detail.html',
           route: '#/news'
         });
+      },
+      category: function () {
+        this._navigate('#/category/news', true);
       },
       // 打开添加/修改对话框
       edit: function () {

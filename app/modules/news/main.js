@@ -10,9 +10,9 @@ app.addRoute('news', function () {
   seajs.use(['jquery', 'NewsList'], function (jquery, NewsList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('newsList', new NewsList({
-      el: '.jhw-main-inner'
+      el: '.jhw-panel'
     }));
   });
 });
@@ -20,9 +20,9 @@ function newsDetail(id) {
   seajs.use(['NewsDetail'], function(NewsDetail){
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
+      template: '<div class="jhw-panel"></div>'
     }).addView('newsDetail', new NewsDetail({
-      el: '.jhw-main-inner',
+      el: '.jhw-panel',
       viewId: 'newsDetail',
       id : id
     }));

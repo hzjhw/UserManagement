@@ -1,104 +1,92 @@
-<div id="grid" class="jhw-panel">
-    <div id="jhw-news" class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
-        <div class="bui-grid-tbar" style="padding-bottom:5px;">
-            <div class="bui-bar" role="toolbar" id="bar2">
-                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
-                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" id="bar-item1" aria-pressed="false">
-                        <label class="checkbox" for="toggle-all">全选</label></li>
-                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" aria-pressed="false">
-                        <input type="text" class="control-text search-query search-text">&nbsp;<button type="button" class="button btn-search">搜索</button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button4" aria-pressed="false">
-                        <button type="button" class="button button-gray search-advance"><i class="icon-search"></i>高级搜索
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
-                        aria-disabled="false" id="bar-item-button2" aria-pressed="false">
-                        <button type="button" class="button button-gray news-add"><i
-                                class="icon-plus"></i>新闻添加
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button9" aria-pressed="false">
-                        <a href="#/category/news">
-                            <button type="button" class="button button-gray"><i
-                                    class="icon-th-list"></i>分类管理
-                                <button>
-                        </a>
-                    </li>
-                    <li class="bui-bar-item-separator bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-separator1" role="separator"></li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button1" aria-pressed="false">
-                        <button type="button" class="button button-gray btn-batch-del"><i class="icon-trash"></i>批量删除
-                        </button>
-                    </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
-                        id="bar-item-button3" aria-pressed="false">
-                        <button type="button" class="button button-gray btn-batch-category-news"><i class="icon-resize-full"></i>批量转移分类
-                        </button>
-                    </li>
-
-
-                </ul>
-            </div>
+<div id="jhw-news" class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
+    <div class="bui-grid-tbar" style="padding-bottom:5px;">
+        <div class="bui-bar" role="toolbar" id="bar2">
+            <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+                <li class="bui-bar-item">
+                    <label class="checkbox" for="toggle-all">全选</label></li>
+                <li class="bui-bar-item"><input type="text" class="control-text search-query search-text">&nbsp;
+                    <button type="button" class="button btn-search">搜索</button>
+                </li>
+                <li class="bui-bar-item">
+                    <button type="button" class="button button-gray search-advance-product"><i
+                            class="icon-search"></i>高级搜索
+                    </button>
+                </li>
+                <li class="bui-bar-item">
+                    <button type="button" class="button button-gray news-add"><i class="icon-plus"></i>新闻添加</button>
+                </li>
+                <li class="bui-bar-item">
+                    <button type="button" class="button button-gray btn-category"><i class="icon-th-list"></i>分类管理
+                    </button>
+                </li>
+                <li class="bui-bar-item-separator bui-bar-item bui-inline-block" aria-disabled="false"
+                    id="bar-item-separator1" role="separator"></li>
+                <li class=" bui-bar-item">
+                    <button type="button" class="button button-gray btn-batch-del"><i class="icon-trash"></i>批量删除
+                    </button>
+                </li>
+                <li class=" bui-bar-item ">
+                    <button type="button" class="button button-gray btn-batch-category-news"><i
+                            class="icon-resize-full"></i>批量转移分类
+                    </button>
+                </li>
+            </ul>
         </div>
-        <div class="bui-grid-header-container">
-            <div class="bui-grid-header">
-                <table cellspacing="0" class="bui-grid-table" cellpadding="0">
-                    <thead>
-                    <tr>
-                        <th class="bui-grid-hd grid-td-checkbox">
-                            <div class="bui-grid-hd-inner">
-                                <div class="bui-grid-checkBox-container"><input type="checkbox" id="toggle-all"></div>
-                            </div>
-                        </th>
-                        <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
-                            style="width: 40px;">
-                            <div class="bui-grid-hd-inner center"><span >序号</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-news-title">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-category">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">新闻分类</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">添加时间</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">显示/隐藏</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
+    </div>
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-checkbox">
+                        <div class="bui-grid-hd-inner">
+                            <div class="bui-grid-checkBox-container"><input type="checkbox" id="toggle-all"></div>
+                        </div>
+                    </th>
+                    <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
+                        style="width: 40px;">
+                        <div class="bui-grid-hd-inner center"><span>序号</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-news-title">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">标题</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-category">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">新闻分类</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-col2">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">添加时间</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-col2">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">显示/隐藏</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
 
-                        <th class="bui-grid-hd grid-td-col2">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">置顶</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
+                    <th class="bui-grid-hd grid-td-col2">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">置顶</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
 
-                        <th class="bui-grid-hd grid-td-move">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">移序</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                        <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
-                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
-                                    class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="bui-grid-body" style="max-height: 627px; overflow-y: scroll;overflow-x:hidden;">
-            <table cellspacing="0" cellpadding="0" class="bui-grid-table">
-                <tbody id="news-list-ul">
-                </tbody>
+                    <th class="bui-grid-hd grid-td-move">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">移序</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
             </table>
         </div>
-        <div id="pagination-container"></div>
     </div>
+    <div class="bui-grid-body" style="max-height: 627px; overflow-y: scroll;overflow-x:hidden;">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="news-list-ul">
+            </tbody>
+        </table>
+    </div>
+    <div id="pagination-container"></div>
 </div>

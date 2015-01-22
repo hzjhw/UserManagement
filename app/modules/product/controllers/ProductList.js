@@ -52,7 +52,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .prodtype': 'editProdtype',
         'change .pro-category': 'changeCategory',
         'click .btn-more': '_more',
-        'click .seo': 'seo'
+        'click .seo': 'seo',
+        'click .btn-tag': 'tag'
       },
       // 初始化
       initialize: function () {
@@ -67,24 +68,47 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           template: itemTemp
         });
       },
+      // 标签
+      tag: function () {
+        var id = this.model.get('id');
+        this._dialog({
+          id: id,
+          moduleId: 'Tag',
+          itemId: id,
+          _isAdd: false,
+          width: 600,
+          height: 250
+        });
+      },
       // seo修改
       seo: function () {
+        var id = this.model.get('id');
+        var save = [
+          {
+            value: '保存',
+            callback: function () {
+              this.title('正在提交..');
+              $("#seo" + id + " #submit").click();
+              // 是否执行默认的关闭操作
+              return false;
+            }}
+        ];
         BaseUtils.dialog({
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('id'),
+          content: '<div id="seo' + id + '"></div>',
           width: 600,
           height: 250,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
-                return false;
-              }}
-          ]
+          button: save
+        });
+        seajs.use(['SeoDetail'], function (SeoDetail) {
+          app.addPanel('detail', {
+            el: '#seo' + id,
+            template: '<div id="seo-box"></div>'
+          }).addView('seoDetail', new SeoDetail({
+            el: '#seo-box',
+            id: id,
+            _isAdd: false // 是否初始化标签列表
+          }));
         });
       },
       // 修改分类
