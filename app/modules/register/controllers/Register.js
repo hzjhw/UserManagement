@@ -37,7 +37,7 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
               return true;
             }
             BaseUtils.tip('请验证邮箱后再登录!');
-            window.location.href = '/member/modules/login/login.html';
+            //window.location.href = '/member/modules/register/register_successful.html';
           }
         });
         return this;
