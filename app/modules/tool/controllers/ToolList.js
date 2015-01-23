@@ -41,7 +41,7 @@ define('ToolList', ['BaseList', 'template/tool_list', 'template/tool_item', 'Bas
       },
       openToolDialog: function (e) {
         e.stopImmediatePropagation();
-        BaseUtils.dialog({
+        BaseUtils.iframeDialog({
           id: 'tool-dialog',
           width: 980,
           height: 'auto',
