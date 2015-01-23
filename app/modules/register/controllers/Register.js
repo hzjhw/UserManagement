@@ -37,6 +37,8 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
               return true;
             }
             this.$("#register-success").show();
+            this.$("#J_Form").hide();
+            this.email = this.model.get('email');
             //BaseUtils.dialog('请验证邮箱后再登录![登录我的邮箱]');
             //window.location.href = '/member/modules/register/register_successful.html';
           }
@@ -48,7 +50,7 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         'click .toMail': 'toMail'
       },
       toMail: function(){
-        val = this.model.get('email');
+        val = this.email;
         var houzhui = val.split('@')[1]; //后缀名
         if (houzhui.indexOf("gmail") != -1) { //谷歌
           window.open("http://mail.google.com");
