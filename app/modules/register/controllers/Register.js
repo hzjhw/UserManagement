@@ -36,14 +36,28 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
               ctx.refreshCode();
               return true;
             }
-            BaseUtils.tip('请验证邮箱后再登录!');
+            this.$("#register-success").show();
+            //BaseUtils.dialog('请验证邮箱后再登录![登录我的邮箱]');
             //window.location.href = '/member/modules/register/register_successful.html';
           }
         });
         return this;
       },
       events : {
-        'click .refreshCode': 'refreshCode'
+        'click .refreshCode': 'refreshCode',
+        'click .toMail': 'toMail'
+      },
+      toMail: function(){
+        val = this.model.get('email');
+        var houzhui = val.split('@')[1]; //后缀名
+        if (houzhui.indexOf("gmail") != -1) { //谷歌
+          window.open("http://mail.google.com");
+        }
+        else if (houzhui.indexOf("hotmail") != -1 || houzhui.indexOf("msn") != -1) {//微软
+          window.open("http://mail.live.com");
+        } else {
+          window.open("http://mail." +houzhui);
+        }
       },
       refreshCode: function(){
         var $verifyPic = this.$("#verifyPic");

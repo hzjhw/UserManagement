@@ -15,8 +15,8 @@
 
         <div class="controls">
             <input id="model-username" name="vali-username" value="{{username}}" type="text" class="input-large"
-                   data-rules="{minlength:4,maxlength:13,regexp:/^[a-zA-Z\d]\w{2,11}[a-zA-Z\d]$/}"
-                   data-messages="{regexp:'用户名只能是字母（大小写敏感），数字，下划线，不能以下划线开头和结尾!'}"
+                   data-rules="{minlength:4,maxlength:13,regexp:/^[a-zA-Z\d]{2,11}[a-zA-Z\d]$/}"
+                   data-messages="{regexp:'用户名只能是字母（大小写敏感），数字，不能以下划线开头和结尾!'}"
                    data-tip='{"text":"请输入用户名","iconCls":"icon icon-user"}'>
         </div>
     </div>
@@ -52,7 +52,9 @@
             <a class="refreshCode" href="javascript:;">换一张？</a>
         </div>
     </div>
-
+    <div id="register-success" style="display: none;border: 1px solid #F7A55F; background: #FFF8F5; padding: 20px;">
+        验证邮箱成功后即可登录后台&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="toMail">[登录我的邮箱]</a>
+    </div>
     <div class="row actions-bar">
         <div class="form-actions span13 offset3">
             <button id="submit" type="button" class="button button-primary">确定</button>
