@@ -2688,8 +2688,8 @@ table .span24 {
 
 .button-primary.active, .button-primary:active, .button-primary:focus, .button-primary:hover, .open .dropdown-toggle.button-primary {
     color: #fff;
-    background-color: #59A8E6;
-    border-color: #285e8e
+    background-color: #EB6406;
+    border-color: #EB6100;
 }
 
 .button-primary.active, .button-primary:active, .open .dropdown-toggle.button-primary {
