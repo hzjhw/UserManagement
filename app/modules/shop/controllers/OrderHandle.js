@@ -1,5 +1,5 @@
 /**
- * @description OrderHandle
+ * @description 订单处理
  * @namespace OrderHandle
  * @author wxw on 15-1-4
  */

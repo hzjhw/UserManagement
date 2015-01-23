@@ -1,5 +1,5 @@
 /**
- * @description OrderView
+ * @description 查看订单
  * @namespace OrderView
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
@@ -137,6 +137,10 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       // 收货记录
       initDeliveryInfoList: function(){
         var shippingSet = this.model.get('shippingSet');
+        var deliveryType = this.model.get('deliveryType')['defaultDeliveryCorp']['com'];
+        Est.each(shippingSet, function(item){
+          item.com = deliveryType;
+        });
         seajs.use(['DeliveryInfoList'], function(DeliveryInfoList){
           app.addView('deliveryInfoList', new DeliveryInfoList({
             el: '#delivery-info-list',

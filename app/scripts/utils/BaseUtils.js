@@ -583,9 +583,9 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
               options.load.call(this, arguments);
             }
           }
-          if (options.cover){
+          if (options.cover) {
             window[options.id] = thisDialog = app.addDialog(dialog(options)).showModal(options.target);
-          } else{
+          } else {
             window[options.id] = thisDialog = app.addDialog(dialog(options)).show(options.target);
           }
         });
@@ -679,6 +679,37 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
             ZeroClipboard.destroy();
             options.failed && options.failed.call(this, event.message);
+          });
+        });
+      },
+      /**
+       * 查看物流
+       * @method delivery
+       * @param options
+       * @author wyj 15.1.23
+       * @example
+       *        BaseUtils.delivery({
+                  com: this.model.get('deliveryType')['defaultDeliveryCorp']['com'], // 物流公司
+                  nu: this.model.get('shippingSet')[0]['deliverySn'], // 物流编号
+                  target: this.$('.delivery-view').get(0)
+                });
+       */
+      delivery: function (options) {
+        seajs.use(['HandlebarsHelper', 'template/delivery_ickd'], function (HandlebarsHelper, ickdTemp) {
+          var ickd = HandlebarsHelper.compile(ickdTemp);
+          $.ajax({
+            type: 'get',
+            url: CONST.DELIVERY_URL + "&com=" + options.com + "&nu=" + options.nu,
+            async: false,
+            dataType: 'jsonp',
+            success: function (result) {
+              BaseUtils.dialog({
+                title: '物流信息',
+                content: ickd(result),
+                width: 400,
+                target: options.target
+              });
+            }
           });
         });
       }

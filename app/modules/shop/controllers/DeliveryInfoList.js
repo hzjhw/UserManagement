@@ -1,17 +1,19 @@
 /**
- * @description DeliveryInfoList
+ * @description 收货记录
  * @namespace DeliveryInfoList
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */
-define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'template/delivery_info_item'],
+define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'HandlebarsHelper', 'BaseItem', 'BaseList', 'BaseUtils', 'template/delivery_info_item'],
   function (require, exports, module) {
-    var DeliveryInfoList, BaseModel, BaseCollection, BaseItem, BaseList, itemTemp, model, collection, item;
+    var DeliveryInfoList, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, itemTemp, BaseUtils, model, collection, item;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     itemTemp = require('template/delivery_info_item');
+    BaseUtils = require('BaseUtils');
+    HandlebarsHelper = require('HandlebarsHelper');
 
     model = BaseModel.extend({
       defaults: Est.extend({}, BaseModel.prototype.defaults),
@@ -30,9 +32,20 @@ define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList
 
     item = BaseItem.extend({
       tagName: 'tr',
+      events: {
+        'click .delivery-view': 'deliveryView'
+      },
       initialize: function () {
         this._initialize({
           template: itemTemp
+        });
+      },
+      // 查看物流信息
+      deliveryView: function () {
+        BaseUtils.delivery({
+          com: this.model.get('com'),
+          nu: this.model.get('deliverySn'),
+          target: this.$('.delivery-view').get(0)
         });
       },
       render: function () {

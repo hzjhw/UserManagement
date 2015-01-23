@@ -9,12 +9,12 @@
                         <input type="text" class="control-text search-query search-text">&nbsp;
                         <button type="button" class="button btn-search">搜索</button>
                     </li>
-                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                   <!-- <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
                         aria-disabled="false" id="bar-item-button2" aria-pressed="false">
                         <button type="button" class="button button-gray product-add"><i
                                 class="icon-plus"></i>物流公司添加
                         </button>
-                    </li>
+                    </li>-->
 
                     <li class=" bui-bar-item bui-bar-item-separator bui-inline-block" aria-disabled="false"
                         id="bar-item-separator1" role="separator"></li>
@@ -46,14 +46,14 @@
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">配送名称</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
-                        <th class="bui-grid-hd grid-td-move">
+                       <!-- <th class="bui-grid-hd grid-td-move">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">移序</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
                         </th>
                         <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
                             <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
                                     class="bui-grid-sort-icon">&nbsp;</span></div>
-                        </th>
+                        </th>-->
                     </tr>
                     </thead>
                 </table>
@@ -62,6 +62,7 @@
         <div class="bui-grid-body" style="height: {{CONST 'BUI_GRID_BODY_HEIGHT'}}px;">
             <table cellspacing="0" cellpadding="0" class="bui-grid-table">
                 <tbody id="deliver-corp-list-ul">
+                <tr><td><div class="no-result">暂无数据</div></td></tr>
                 </tbody>
             </table>
         </div>

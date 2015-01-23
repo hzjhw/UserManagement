@@ -170,3 +170,6 @@ app.addTemplate('template/delivery_item', function (require, exports, module) {
 app.addTemplate('template/order_search', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_search.html');
 });
+app.addTemplate('template/delivery_ickd', function(require, exports, module){
+  module.exports = require('modules/shop/views/delivery_ickd.html')
+});
