@@ -4,10 +4,10 @@
  * @author wxw on 14-12-16
  */
 define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail',
-    'dialog', 'template/member_list_detail', 'BaseUtils','BaseCollection','MemberAttributesShow','BaseService'],
+    'dialog', 'template/member_list_detail', 'BaseUtils', 'BaseCollection', 'MemberAttributesShow', 'BaseService'],
   function (require, exports, module) {
     var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, MemberAttributesShow, dialog, Tag, BaseUtils
-      ,BaseCollection,BaseService;
+      , BaseCollection, BaseService;
 
     MemberListModel = require('MemberListModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -24,16 +24,19 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
     MemberListDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #member-reset': 'reset'
+        'click #member-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.MemberDetail.initialize');
         this._initialize({
-          template : template,
+          template: template,
           model: MemberListModel
         });
       },
-
+      back: function () {
+        this._navigate('#/member', true);
+      },
       render: function () {
         debug('4.MemberDetail.render');
         var ctx = this;
@@ -54,10 +57,10 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         });
         // 表单初始化
         this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
+          onBeforeSave: function () {
             //ctx.model.set('attributeOptionList',ctx.attribute.getItems().join(","))
           },
-          onAfterSave: function(response){
+          onAfterSave: function (response) {
           }
         });
         // 会员分类
@@ -71,7 +74,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           });
         if (!ctx._isAdd) {
           ctx.showAttributes(ctx.model.get('memberAttributeMapStore'));
-        }else{
+        } else {
           ctx.showAttributes();
         }
         setTimeout(function () {
@@ -80,13 +83,13 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
         return this;
       },
 
-      showAttributes: function(items){
-        if (!this.attribute){
+      showAttributes: function (items) {
+        if (!this.attribute) {
           this.attribute = new MemberAttributesShow({
             render: '#attribute-list',
             items: items
           });
-        } else{
+        } else {
           this.attribute.reload();
         }
       }

@@ -16,13 +16,15 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
     itemTemp = require('template/userdefined_item');
 
     UserdefinedCollection = BaseCollection.extend({
-      url: function(){
+      url: function () {
         var url = CONST.API + '/userdefined/list';
-        if (Est.isEmpty(this.options.data.page)){ return url; }
+        if (Est.isEmpty(this.options.data.page)) {
+          return url;
+        }
         return url + '/' + this.options.data.page;
       },
       model: UserdefinedModel,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -32,7 +34,7 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del',
         'click .name': 'editName',
         'change .input-sort': 'changeSort'
@@ -42,6 +44,17 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
           template: itemTemp,
           model: UserdefinedModel,
           detail: CONST.HOST + '/modules/website/userdefined_detail.html'
+        });
+      },
+      edit: function () {
+        this._dialog({
+          moduleId: 'UserdefinedDetail',
+          title: '自定义模块修改',
+          id: this.model.get('id'),
+          width: 800,
+          onClose: function () {
+            this.model.set(app.getModels().pop());
+          }
         });
       },
       render: function () {
@@ -68,7 +81,7 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
     UserdefinedList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .attributes-add': '_detail',
+        'click .attributes-add': 'add',
         'click .btn-search': 'search',
         'click .attributes-show': 'attributesShow'
       },
@@ -79,7 +92,17 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
           item: UserdefinedItem,
           model: UserdefinedModel,
           collection: UserdefinedCollection,
-          detail:  CONST.HOST + '/modules/website/userdefined_detail.html'
+          detail: CONST.HOST + '/modules/website/userdefined_detail.html'
+        });
+      },
+      add: function () {
+        this._dialog({
+          moduleId: 'UserdefinedDetail',
+          width: 800,
+          title: '自定义模块添加',
+          onClose: function () {
+            this._reload();
+          }
         });
       },
       // 简单搜索

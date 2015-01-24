@@ -46,10 +46,8 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
           detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
         });
       },
-      edit:function(){
-        this._edit({
-          height: 300
-        })
+      edit: function () {
+        this._navigate('#/member_attr_edit/' + this.model.get('id'), true);
       },
       // 渲染文档
       render: function () {
@@ -67,7 +65,7 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
     MemberAttribute = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .member-attr-add': '_detail',
+        'click .member-attr-add': 'add',
         'click .btn-batch-del': '_batchDel'
 
       },
@@ -81,6 +79,9 @@ define('MemberAttribute', ['jquery', 'MemberAttributeModel', 'BaseCollection', '
           item: MemberAttributeItem,
           detail: CONST.HOST + '/modules/member/member_attribute_detail.html'
         });
+      },
+      add: function () {
+        this._navigate('#/member_attr_add', true);
       },
       render : function(){
         this._render();

@@ -80,7 +80,7 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
         });
       },
       back: function () {
-        this._navigate('#/shop/delivery_type', true);
+        this._navigate('#/shop', true);
       },
       add: function () {
         this._navigate('#/shop/delivery_type_add', true);

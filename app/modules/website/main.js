@@ -60,3 +60,9 @@ app.addTemplate('template/userdefined_item', function (require, exports, module)
 app.addTemplate('template/website_static', function (require, exports, module) {
   module.exports = require('modules/website/views/website_static.html');
 });
+app.addTemplate('template/navigate_detail', function (require, exports, module) {
+  module.exports = require('modules/website/views/navigate_detail.html')
+});
+app.addTemplate('template/userdefined_detail', function (require, exports, module) {
+  module.exports = require('modules/website/views/userdefined_detail.html');
+});

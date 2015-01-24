@@ -3,14 +3,15 @@
  * @namespace UserdefinedMobileDetail
  * @author yongjin on 2014/11/13
  */
-define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'UserdefinedMobileModel', 'BaseDetail', 'BaseUtils'],
+define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'UserdefinedMobileModel', 'BaseDetail', 'BaseUtils', 'template/mobile_userdefined_detail'],
   function (require, exports, module) {
-    var UserdefinedMobileDetail, UserdefinedMobileModel, UserdefinedMobileModel, BaseDetail, BaseUtils;
+    var UserdefinedMobileDetail, UserdefinedMobileModel, UserdefinedMobileModel, BaseDetail, BaseUtils, template;
 
     UserdefinedMobileModel = require('UserdefinedMobileModel');
     BaseDetail = require('BaseDetail');
     BaseUtils = require('BaseUtils');
     UserdefinedMobileModel = require('UserdefinedMobileModel');
+    template = require('template/mobile_userdefined_detail');
 
     UserdefinedMobileDetail = BaseDetail.extend({
       events: {
@@ -18,7 +19,7 @@ define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'Userdefi
       },
       initialize: function () {
         var opts = {
-          template: $("#userdefined-detail-tpl").html(),
+          template: template,
           model: UserdefinedMobileModel
         }
         if (this.options.mobile) {

@@ -17,6 +17,24 @@ app.addRoute('wwy', function () {
     }));
   });
 });
+function wwyRoute(id) {
+  seajs.use(['WwyDetail'], function (WwyDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('wwyDetail', new WwyDetail({
+      el: '.jhw-panel',
+      viewId: 'wwyDetail',
+      id: id
+    }));
+  });
+}
+app.addRoute('wwy_add', function () {
+  wwyRoute();
+});
+app.addRoute('wwy_edit/:id', function (id) {
+  wwyRoute(id);
+});
 app.addRoute('wwy_mobile/:id', function (id) {
   seajs.use(['jquery', 'WwyMobileList'], function (jquery, WwyMobileList) {
     app.addPanel('main', {

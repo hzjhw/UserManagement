@@ -239,7 +239,7 @@ label.checkbox { padding-left: 5px; }
 
 #jhw .x-caret-sub{ border: none; width: 40px; vertical-align: middle; height: 40px; background: url(img/cate-sub.jpg) no-repeat scroll 18px -1px transparent;}
 #jhw .grid-td-cate-name{width:230px;}
-#jhw .cate-info{position: absolute; left: 160px; width: 250px; padding-left: 7px; line-height: 28px;margin-top:2px;}
+#jhw .cate-info{position: absolute; left: 160px; width: 280px; padding-left: 7px; line-height: 28px;margin-top:2px;}
 /* 新闻 ****************************************************************************************/
 #jhw-news{ }
 #jhw-news .news-list-name{height: 30px; overflow: hidden; display: inline-block; line-height: 15px;}

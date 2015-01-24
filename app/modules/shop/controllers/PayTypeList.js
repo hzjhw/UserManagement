@@ -68,7 +68,8 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
         'click .btn-batch-del': '_batchDel',
         'click .product-add': 'add',
         'click .btn-search': 'search',
-        'click .search-advance-product': 'searchAdvance'
+        'click .search-advance-product': 'searchAdvance',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         this._initialize({
@@ -81,6 +82,9 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
           pagination: true,
           detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
         });
+      },
+      back: function () {
+        this._navigate('#/shop', true);
       },
       // 支付方式添加
       add: function () {

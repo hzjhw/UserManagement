@@ -35,7 +35,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del'
       },
       // 初始化
@@ -44,6 +44,9 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
           template: memberRankItem,
           detail: CONST.HOST + '/modules/member/member_rank_detail.html'
         });
+      },
+      edit: function () {
+        this._navigate('#/member_rank_edit/' + this.model.get('id'), true);
       },
       // 渲染文档
       render: function () {
@@ -57,7 +60,7 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .member-rank-add': '_detail',
+        'click .member-rank-add': 'add',
         'click .btn-search': 'search'
       },
       initialize: function () {
@@ -70,6 +73,9 @@ define('MemberRank', ['jquery', 'MemberRankModel', 'BaseCollection', 'BaseItem',
           item: MemberRankItem,
           detail: CONST.HOST + '/modules/member/member_rank_detail.html'
         });
+      },
+      add: function () {
+        this._navigate('#/member_rank_add', true);
       },
       render : function(){
         this._render({

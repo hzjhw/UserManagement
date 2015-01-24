@@ -18,15 +18,34 @@ app.addRoute('member', function () {
       }));
     });
 });
+function memberRoute(id) {
+  seajs.use(['MemberListDetail'], function (MemberListDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('memberListDetail', new MemberListDetail({
+      el: '.jhw-panel',
+      viewId: 'memberListDetail',
+      id: id
+    }));
+  })
+}
+app.addRoute('member_add', function () {
+  memberRoute();
+});
+app.addRoute('member_edit/:id', function (id) {
+  memberRoute(id);
+});
 
 app.addRoute('member/attr', function () {
   seajs.use(['jquery', 'MemberAttribute'],
     function (jquery, MemberAttribute) {
       app.addPanel('main', {
         el: '#jhw-main',
-        template: '<div class="jhw-main-inner"></div>'
+        template: '<div class="jhw-panel"></div>'
       }).addView('memberAttribute', new MemberAttribute({
-        el: '.jhw-main-inner'
+        el: '.jhw-panel',
+        viewId: 'memberAttribute'
       }));
     });
 });
@@ -36,15 +55,51 @@ app.addRoute('member/rank', function () {
     function (jquery, MemberRank) {
       app.addPanel('main', {
         el: '#jhw-main',
-        template: '<div class="jhw-main-inner"></div>'
+        template: '<div class="jhw-panel"></div>'
       }).addView('memberRank', new MemberRank({
-        el: '.jhw-main-inner'
+        el: '.jhw-panel',
+        viewId: 'memberRank'
       }));
     });
 });
 
+function memberRankRoute(id) {
+  seajs.use(['MemberRankDetail'], function (MemberRankDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('memberRankDetail', new MemberRankDetail({
+      el: '.jhw-panel',
+      viewId: 'memberRankDetail',
+      id: id
+    }));
+  });
+}
+app.addRoute('member_rank_add', function () {
+  memberRankRoute();
+});
+app.addRoute('member_rank_edit/:id', function (id) {
+  memberRankRoute(id);
+});
 
-
+function memberAttrRoute(id) {
+  seajs.use(['MemberAttributeDetail'], function (MemberAttributeDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('memberAttributeDetail', new MemberAttributeDetail({
+      el: '.jhw-panel',
+      viewId: 'memberAttributeDetail',
+      id: id
+    }));
+  });
+}
+app.addRoute('member_attr_add', function () {
+  memberAttrRoute();
+});
+app.addRoute('member_attr_edit/:id', function (id) {
+  memberAttrRoute(id);
+});
 /**
  * 模块
  * */

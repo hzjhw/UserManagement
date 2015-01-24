@@ -54,12 +54,18 @@ define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'HandlebarsHelper', '
     });
 
     DeliveryInfoList = BaseList.extend({
+      events: {
+        'click .btn-back': 'back'
+      },
       initialize: function () {
         this._initialize({
           model: model,
           collection: collection,
           item: item
         });
+      },
+      back: function(){
+        this._navigate('#/shop', true);
       },
       render: function () {
         this._render();

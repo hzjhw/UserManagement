@@ -24,7 +24,8 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
       events: {
         'click #wwy-reset': 'reset',
         'click .lty-add': 'ltyAdd',
-        'click .lty-show': 'ltyShow'
+        'click .lty-show': 'ltyShow',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.WwyDetail.initialize');
@@ -32,6 +33,9 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           template: template,
           model: WwyModel
         });
+      },
+      back: function(){
+        this._navigate('#/wwy', true);
       },
       ltyAdd: function () {
         app.getView('wwyLtyList').addOne();

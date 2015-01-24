@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/16
  */
 define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'
-    ,'template/member_list','template/member_list_item','template/member_search','BaseService'],
+    , 'template/member_list', 'template/member_list_item', 'template/member_search', 'BaseService'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
-      , MemberList, memberList, memberListItem ,MemberListItem ,searchTemp ,BaseService;
+      , MemberList, memberList, memberListItem , MemberListItem , searchTemp , BaseService;
 
     MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
@@ -36,7 +36,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del'
       },
       // 初始化
@@ -45,6 +45,9 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           template: memberListItem,
           detail: CONST.HOST + '/modules/member/member_list_detail.html'
         });
+      },
+      edit: function () {
+        this._navigate('#/member_edit/' + this.model.get('id'), true);
       },
       // 渲染文档
       render: function () {
@@ -58,7 +61,9 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .member-list-add': '_detail',
+        'click .member-list-add': 'add',
+        'click .btn-member-rank': 'memberRank',
+        'click .btn-member-attr': 'memberAttr',
         'click .btn-search': 'search',
         'click .search-advance': 'searchAdvance'
       },
@@ -74,7 +79,16 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           detail: CONST.HOST + '/modules/member/member_list_detail.html'
         });
       },
-      render : function(){
+      add: function () {
+        this._navigate('#/member_add', true);
+      },
+      memberRank: function(){
+        this._navigate('#/member/rank', true);
+      },
+      memberAttr: function(){
+        this._navigate('#/member/attr', true);
+      },
+      render: function () {
         this._render();
       },
       // 简单搜索
@@ -108,7 +122,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
           ctx.searchDialog = dialog({
             id: 'search-dialog',
             title: '高级搜索',
-            width: 600,
+            width: 650,
             content: ctx.searchTemp({
               memberCategoryList: app.getData('memberCategory')
             }),

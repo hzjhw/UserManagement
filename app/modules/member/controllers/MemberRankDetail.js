@@ -20,40 +20,39 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
     MemberRankDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #member-reset': 'reset'
+        'click #member-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.MemberDetail.initialize');
         this._initialize({
-          template : template,
+          template: template,
           model: MemberRankModel
         });
       },
+      back: function () {
+        this._navigate('#/member/rank', true);
+      },
       render: function () {
-        var ctx = this;
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();
-
-        // 表单初始化
         this._form('#J_Form')._validate()._init({
-          onBeforeSave: function(){
-            // 处理特殊字段
+          onBeforeSave: function () {
           },
-          onAfterSave: function(response){
+          onAfterSave: function (response) {
           }
         });
-
         return this;
       },
-      showAttributes: function(categoryId, items){
-        if (!this.attributes){
+      showAttributes: function (categoryId, items) {
+        if (!this.attributes) {
           this.attributes = new AttributesShow({
             render: '#attribute-list',
             categoryId: categoryId,
             items: items
           });
-        } else{
+        } else {
           this.attributes.reload(categoryId);
         }
       }

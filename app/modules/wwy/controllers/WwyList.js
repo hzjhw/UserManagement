@@ -54,18 +54,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       },
       // 查看微网页
       editItem: function () {
-        var url = CONST.HOST + '/modules/wwy/wwy_detail.html?id='
-          + this.model.toJSON().wyId;
-        var options = {
-          title: '修改微网页',
-          url: url,
-          reload: true,
-          padding: 0,
-          oniframeload: function (win) {
-            win.app = app;
-          }
-        }
-        this._edit(options);
+        this._navigate('#/wwy_edit/' + this.model.get('id'));
       }
     });
     /**
@@ -76,7 +65,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .showqrcode': 'showQrcode',
-        'click .wwy-add': '_detail',
+        'click .wwy-add': 'add',
         'click .btn-search': 'search',
         'click .btn-blacklist': 'blackList'
       },
@@ -94,17 +83,8 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
         });
       },
       // 打开添加/修改对话框
-      openAddDialog: function () {
-        var url = CONST.HOST + '/modules/wwy/wwy_detail.html?id='
-          + Est.nextUid();
-        this._detail({
-          title: '留言信息',
-          url: url,
-          oniframeload: function (win) {
-            win.app = app;
-            app.getView('wwyDetail').setType('edit');
-          }
-        });
+      add: function () {
+        this._navigate('#/wwy_add', true);
       },
       // 查看二维码
       showQrcode: function (e) {

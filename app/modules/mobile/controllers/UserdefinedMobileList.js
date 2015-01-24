@@ -16,13 +16,15 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
     itemTemp = require('template/userdefined_mobile_item');
 
     UserdefinedCollection = BaseCollection.extend({
-      url: function(){
+      url: function () {
         var url = CONST.API + '/userdefined/list';
-        if (Est.isEmpty(this.options.data.page)){ return url + '?mobile=true'; }
+        if (Est.isEmpty(this.options.data.page)) {
+          return url + '?mobile=true';
+        }
         return url + '/' + this.options.data.page + '?mobile=true';
       },
       model: UserdefinedMobileModel,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -32,7 +34,7 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del',
         'click .name': 'editName',
         'change .input-sort': 'changeSort'
@@ -42,6 +44,17 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
           template: itemTemp,
           model: UserdefinedMobileModel,
           detail: CONST.HOST + '/modules/mobile/mobile_userdefined_detail.html'
+        });
+      },
+      edit: function () {
+        this._dialog({
+          moduleId: 'UserdefinedMobileDetail',
+          title: '自定义模块修改',
+          width: 800,
+          id: this.model.get('id'),
+          onClose: function () {
+            this.model.set(app.getModels().pop());
+          }
         });
       },
       render: function () {
@@ -68,9 +81,10 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
     UserdefinedMobileList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .attributes-add': '_detail',
+        'click .attributes-add': 'add',
         'click .btn-search': 'search',
-        'click .attributes-show': 'attributesShow'
+        'click .attributes-show': 'attributesShow',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         this._initialize({
@@ -79,7 +93,20 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
           item: UserdefinedItem,
           model: UserdefinedMobileModel,
           collection: UserdefinedCollection,
-          detail:  CONST.HOST + '/modules/mobile/mobile_userdefined_detail.html'
+          detail: CONST.HOST + '/modules/mobile/mobile_userdefined_detail.html'
+        });
+      },
+      back: function(){
+        this._navigate('#/mobile', true);
+      },
+      add: function () {
+        this._dialog({
+          moduleId: 'UserdefinedMobileDetail',
+          title: '自定义模块添加',
+          width: 800,
+          onClose: function () {
+            this._reload()
+          }
         });
       },
       // 简单搜索

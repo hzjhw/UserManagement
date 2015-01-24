@@ -74,23 +74,12 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           });
         }
       },
+      // seo优化
       seo: function () {
-        BaseUtils.dialog({
+        this._dialog({
+          moduleId: 'SeoDetail',
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('page'),
-          width: 600,
-          height: 250,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
-                return false;
-              }}
-          ]
+          id: this.model.get('page')
         });
       },
       // 修改名称
@@ -145,7 +134,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
     NavigateList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .product-category-add': 'openAddDialog',
+        'click .product-category-add': 'add',
         'click .btn-batch-del': 'batchDel',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-batch-collapse': 'btachCollapse',
@@ -168,15 +157,17 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           rootValue: 1
         });
       },
-      render: function () {
-        this._render();
-      }, openAddDialog: function () {
-        this._detail({
-          title: '导航添加',
-          height: 250,
-          url: CONST.HOST + '/modules/website/navigate_detail.html?time=' + new Date().getTime()
-        });
+      // 导航添加
+      add: function () {
+        this._dialog({
+          moduleId: 'NavigateDetail',
+          title: '添加导航',
+          onClose: function () {
+            this._reload();
+          }
+        }, this);
       },
+      // 静态化
       staticPage: function () {
         BaseService.getStaticPage()
           .then(function (result) {
@@ -250,10 +241,12 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
           }
         });
       },
+      // 收缩
       btachCollapse: function () {
         this.$('.node-tree').hide();
         this.$('.x-caret-left').removeClass('x-caret-down');
       },
+      // 展开
       btachExtend: function () {
         this.$('.node-tree').show();
         this.$('.x-caret-left').addClass('x-caret-down');
@@ -262,6 +255,9 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       // 批量转移分类
       batchCategory: function (category) {
 
+      },
+      render: function () {
+        this._render();
       }
     });
 

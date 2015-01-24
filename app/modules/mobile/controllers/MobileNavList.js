@@ -70,22 +70,10 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
         }
       },
       seo: function () {
-        BaseUtils.dialog({
+        this._dialog({
+          moduleId: 'SeoMobileDetail',
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_mobile_detail.html?id=' +
-            this.model.get('page') + '&mobile=01',
-          width: 600,
-          height: 250,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
-                return false;
-              }}
-          ]
+          id: this.model.get('page')
         });
       },
       // 修改名称
@@ -99,12 +87,14 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
       },
       // 修改分类
       editItem: function () {
-        var options = {
+        this._dialog({
+          moduleId: 'MobileNavDetail',
           title: '导航修改',
-          height: 250,
-          url: CONST.HOST + '/modules/website/navigate_detail.html?id=' + this.model.id
-        }
-        this._edit(options);
+          id: this.model.get('id'),
+          onClose: function () {
+            this.model.set(app.getModels().pop());
+          }
+        });
       },
       // 修改排序
       changeSort: function (e) {
@@ -143,12 +133,13 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
     MobileNavList = BaseList.extend({
       events: {
         'click #toggle-all': '_toggleAllChecked',
-        'click .product-category-add': 'openAddDialog',
+        'click .product-category-add': 'add',
         'click .btn-batch-del': 'batchDel',
         'click .btn-batch-category': 'batchCategory',
         'click .btn-batch-collapse': 'btachCollapse',
         'click .btn-batch-extend': 'btachExtend',
-        'click .btn-static': 'staticPage'
+        'click .btn-static': 'staticPage',
+        'click .btn-userdefined': 'userdefined'
       },
       initialize: function () {
         this._initialize({
@@ -165,11 +156,17 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
           rootId: 'grade',
           rootValue: 1
         });
-      }, openAddDialog: function () {
-        this._detail({
+      },
+      userdefined: function(){
+        this._navigate('#/userdefined_mobile', true);
+      },
+      add: function () {
+        this._dialog({
+          moduleId: 'MobileNavDetail',
           title: '导航添加',
-          height: 250,
-          url: CONST.HOST + '/modules/mobile/mobile_nav_detail.html?time=' + new Date().getTime()
+          onClose: function () {
+            this._reload();
+          }
         });
       },
       staticPage: function () {

@@ -4,9 +4,9 @@
  * @author wxw on 14-12-16
  */
 define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHelper', 'BaseDetail', 'dialog',
-    'template/member_attribute_detail','AttributesAdd', 'BaseUtils'],
+    'template/member_attribute_detail', 'AttributesAdd', 'BaseUtils'],
   function (require, exports, module) {
-    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag,AttributesAdd, BaseUtils;
+    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag, AttributesAdd, BaseUtils;
 
     MemberAttributeModel = require('MemberAttributeModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,24 +14,28 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
     template = require('template/member_attribute_detail');
     dialog = require('dialog');
     Tag = require('Tag');
-    AttributesAdd =require('AttributesAdd');
+    AttributesAdd = require('AttributesAdd');
     BaseUtils = require('BaseUtils');
 
     MemberAttributeDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
-        'click #member-reset': 'reset'
+        'click #member-reset': 'reset',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.MemberDetail.initialize');
         this._initialize({
-          template : template,
+          template: template,
           model: MemberAttributeModel
         });
       },
+      back: function () {
+        this._navigate('#/member/attr', true);
+      },
       render: function () {
         this.categoryId = Est.getUrlParam('id', window.location.href);
-        this.model.set('categoryId',this.categoryId);
+        this.model.set('categoryId', this.categoryId);
         this._render();
         this.attributeSelect();
         this.attributeRender();
@@ -70,7 +74,6 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
         });
       },
       attributeRender: function () {
-        var ctx = this;
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute', add: function () {
           BaseUtils.resetIframe();

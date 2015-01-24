@@ -83,6 +83,7 @@ seajs.config({
     'marionette': 'vendor/backbone/backbone.marionette.js',
     'handlebars': 'vendor/handlebars/handlebars-debug.js',
     'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
+    'SuperView': 'lib/SuperView.js',
     'BaseView': 'lib/BaseView.js',
     'BaseCollection': 'lib/BaseCollection.js',
     'BaseModel': 'lib/BaseModel.js',
