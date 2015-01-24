@@ -510,10 +510,15 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       resetIframe: function (dialog) {
         var height = $(document).height();
         var dialog = dialog || window.topDialog || window.detailDialog;
-        if (!dialog) {
-          debug('未找到需要重置高度的对话框！');
-        }
         try {
+          if (!dialog) {
+            setTimeout(function () {
+              Est.each(app.getDialogs(), function (dialog) {
+                dialog.reset();
+              });
+            }, 100);
+            debug('未找到需要重置高度的对话框！');
+          }
           if (dialog && dialog.height) {
             dialog.height(height);
             dialog.reset();
@@ -584,9 +589,9 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             }
           }
           if (options.cover) {
-            window[options.id] = thisDialog = app.addDialog(dialog(options)).showModal(options.target);
+            thisDialog = app.addDialog(dialog(options)).showModal(options.target);
           } else {
-            window[options.id] = thisDialog = app.addDialog(dialog(options)).show(options.target);
+            thisDialog = app.addDialog(dialog(options)).show(options.target);
           }
         });
       },

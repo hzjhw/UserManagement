@@ -39,29 +39,29 @@ app.addRoute('album', function () {
           app.getView('photoList').search(this.$('.search-text').val());
         },
         albumAdd: function () {
-          /*window.parentId = app.getData('curAlbumId');
-           this._dialog({
-           moduleId: 'AlbumDetail',
-           title: '相册分类添加',
-           width: 700,
-           height: 200,
-           cover: true,
-           button: [
-           {
-           value: '保存',
-           callback: function () {
-           this.title('正在提交..');
-           $("#AlbumDetail" + " #submit").click();
-           return false;
-           }, autofocus: true}
-           ],
-           onclose: function () {
-           app.getView('albumList')._load();
-           }
-           });*/
-          app.getView('albumList')._detail({
-            end: '&parentId=' + app.getData('curAlbumId')
+          window.parentId = app.getData('curAlbumId');
+          this._dialog({
+            moduleId: 'AlbumDetail',
+            title: '相册分类添加',
+            width: 700,
+            height: 200,
+            cover: true,
+            button: [
+              {
+                value: '保存',
+                callback: function () {
+                  this.title('正在提交..');
+                  $("#AlbumDetail" + " #submit").click();
+                  return false;
+                }, autofocus: true}
+            ],
+            onclose: function () {
+              app.getView('albumList')._load();
+            }
           });
+          /*app.getView('albumList')._detail({
+           end: '&parentId=' + app.getData('curAlbumId')
+           });*/
         }
       });
       app.addPanel('main', {

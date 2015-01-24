@@ -51,6 +51,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         'click .name': 'editName',
         'click .prodtype': 'editProdtype',
         'change .pro-category': 'changeCategory',
+        'mouseover .product-img': 'showImage',
+        'mouseout .product-img': 'hideImage',
         'click .btn-more': '_more',
         'click .seo': 'seo',
         'click .btn-tag': 'tag'
@@ -67,6 +69,26 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this._initialize({
           template: itemTemp
         });
+      },
+      // 查看图片
+      showImage: function (e) {
+        e.stopImmediatePropagation();
+        this.editImage = e.target ? $(e.target) : $(e.currentTarget);
+        if (!Est.isEmpty(this.model.get('picPath'))) {
+          this.imageTemp = HandlebarsHelper.compile("<img src='{{CONST 'PIC_URL'}}/{{picUrl picPath 5}}'></img>");
+          BaseUtils.tooltip(this.imageTemp(this.model.attributes), {
+            id: 'imageView',
+            align: 'left',
+            time: 100000,
+            target: this.editImage.get(0)
+          });
+        }
+        return false;
+      },
+      // 隐藏图片
+      hideImage: function () {
+        window.tooltipDialog &&
+        window.tooltipDialog.close().remove();
       },
       // 标签
       tag: function () {

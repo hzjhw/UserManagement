@@ -161,21 +161,21 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         // 产品属性
         BaseUtils.initSelect({
           render: '#s2',
-          width: 100,
+          width: 150,
           target: '#model-loginView',
           items: app.getStatus('loginViewList')
         });
 
         BaseUtils.initSelect({
           render: '#s2',
-          width: 100,
+          width: 150,
           target: '#model-ads',
           items: app.getStatus('adsList')
         });
 
         BaseUtils.initSelect({
           render: '#weightUnit',
-          width: 100,
+          width: 150,
           target: '#model-weightUnit',
           itemId: 'value',
           items: app.getStatus('weightUnit')

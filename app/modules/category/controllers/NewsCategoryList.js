@@ -45,21 +45,21 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         });
       },
       seo: function () {
-        BaseUtils.dialog({
+        this._dialog({
+          moduleId: 'SeoDetail',
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('categoryId'),
           width: 600,
           height: 250,
+          cover: true,
+          id: this.model.get('categoryId'),
           button: [
             {
               value: '保存',
               callback: function () {
                 this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
+                $("#SeoDetail" + " #submit").click();
                 return false;
-              }}
+              }, autofocus: true}
           ]
         });
       },

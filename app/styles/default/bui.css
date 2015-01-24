@@ -629,7 +629,7 @@
 .bui-tag-follow .bui-combox-input {
     float: left;
     margin-top: 4px;
-    width: 50px
+    width: 100px
 }
 
 .bui-picker {
@@ -2549,6 +2549,7 @@ td.x-grid-rownumber{
     display: inline-block;
     margin-right: 5px;
 }
+#jhw .ie7 .bui-select, #jhw .ie6 .bui-select{float:left;margin-right:5px;}
 #jhw .ie6 .bui-select, #jhw .ie7 .bui-select{
     margin-right: 0;
 }

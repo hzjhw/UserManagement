@@ -3,7 +3,7 @@
  * @namespace CategoryAttrView
  * @author yongjin on 2014/11/13
  */
-define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/attributes_list', 'template/attributes_item'],
+define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/attributes_list', 'template/attributes_item'],
   function (require, exports, module) {
     var AttributesModel, BaseCollection, AttributesCollection, AttributesShow, AttributesItem, BaseItem, HandlebarsHelper, AttributesList, BaseList, listTemp, itemTemp;
 
@@ -17,15 +17,15 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
     AttributesShow = require('AttributesShow');
 
     AttributesCollection = BaseCollection.extend({
-      url: function(){
+      url: function () {
         var url = CONST.API + '/attr/list';
-        if (Est.isEmpty(app.getData('attrCategoryId'))){
+        if (Est.isEmpty(app.getData('attrCategoryId'))) {
           return url;
         }
         return CONST.API + '/attr/list/' + app.getData('attrCategoryId');
       },
       model: AttributesModel,
-      initialize: function(){
+      initialize: function () {
         this._initialize();
       }
     });
@@ -35,7 +35,7 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .edit': '_edit',
+        'click .edit': 'edit',
         'click .delete': '_del',
         'click .move-up': '_moveUp',
         'click .move-down': '_moveDown',
@@ -48,8 +48,26 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
           itemId: 'attributesList'
         });
       },
-      render: function () {
-        this._render();
+      // 属性修改
+      edit: function () {
+        var ctx = this;
+        this._dialog({
+          moduleId: 'AttributesDetail',
+          title: '属性修改',
+          id: this.model.get('attId'),
+          cover: true,
+          width: 650,
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在提交..');
+              $("#AttributesDetail" + " #submit").click();
+              return false;
+            }, autofocus: true}
+          ],
+          onclose: function () {
+            ctx.model.set(app.getModels().pop());
+          }
+        });
       },
       editName: function () {
         this._editField({
@@ -76,6 +94,9 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
         app.getView('attributesList')._setOption({
           sortField: 'orderList'
         })._moveDown(this.model);
+      },
+      render: function () {
+        this._render();
       }
     });
 
@@ -87,7 +108,7 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       },
       initialize: function () {
         //app.addView('attributesShow', new AttributesShow({ render: '#attributes-list-ul', categoryId:Est.getUrlParam('id', window.location.href)}));
-        app.addData('attrCategoryId', Est.getUrlParam('id', window.location.href));
+        app.addData('attrCategoryId', Est.getUrlParam('categoryId', window.location.href));
         this._initialize({
           template: listTemp,
           render: '#attributes-list-ul',
@@ -101,19 +122,36 @@ define('AttributesList', ['jquery', 'AttributesModel','AttributesShow', 'BaseCol
       render: function () {
         this._render();
       },
-      attributesShow: function(){
-        this._detail({
-          title: '效果浏览',
-          url: CONST.HOST + '/modules/attributes/attributes_show.html?categoryId=' + app.getData('attrCategoryId'),
-          hideSaveBtn: true,
-          hideResetBtn: true
+      // 属性浏览
+      attributesShow: function () {
+        this._dialog({
+          moduleId: 'AttributesShow',
+          title: '属性浏览',
+          cover: true,
+          skin: 'form-horizontal',
+          categoryId: app.getData('attrCategoryId'),
+          width: 800
         });
       },
+      // 属性添加
       openAddDialog: function () {
-        this._detail({
+        var ctx = this;
+        this._dialog({
+          moduleId: 'AttributesDetail',
           title: '属性添加',
-          height: 300,
-          url: CONST.HOST + '/modules/attributes/attributes_detail.html?categoryId=' + app.getData('attrCategoryId')
+          cover: true,
+          categoryId: app.getData('attrCategoryId'),
+          width: 650,
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在提交..');
+              $("#AttributesDetail" + " #submit").click();
+              return false;
+            }, autofocus: true}
+          ],
+          onclose: function () {
+            ctx.collection.push(app.getModels());
+          }
         });
       }
     });

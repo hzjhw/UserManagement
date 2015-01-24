@@ -65,9 +65,9 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
     TagItem = BaseItem.extend({
       tagName: 'li',
-      className: 'bui-list-item',
+      className: 'bui-list-item bui-list-item-select',
       events: {
-        'click .bui-list-item': 'select',
+        'click .district-div': 'select',
         'mouseover .bui-list-item': 'mouseover',
         'mouseout .bui-list-item': 'mouseout'
       },

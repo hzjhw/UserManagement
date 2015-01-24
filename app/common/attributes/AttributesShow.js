@@ -73,6 +73,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             item: item,
             model: model,
             collection: collection,
+            clearDialog: false,
             beforeLoad: function () {
               this.collection.url = null;
             },
@@ -88,6 +89,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollec
             collection: collection,
             item: item,
             model: model,
+            clearDialog: false,
             data: {
               url: this.options && this.options.url
             },

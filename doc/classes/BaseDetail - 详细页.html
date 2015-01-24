@@ -483,7 +483,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l391"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:391</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l396"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:396</code></a>
         
         </p>
 
@@ -710,7 +710,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l370"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:370</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l375"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:375</code></a>
         
         </p>
 
@@ -1033,7 +1033,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l331"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:331</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l332"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:332</code></a>
         
         </p>
 
@@ -1086,15 +1086,19 @@
                id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
                width: 600, // 对话框宽度
                height: 250, // 对话框高度
+               skin: &#39;form-horizontal&#39;, // className
                button: [ // 自定义按钮
                  {
                    value: &#39;保存&#39;,
                    callback: function () {
                    this.title(&#39;正在提交..&#39;);
                    $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
-                   return false;
+                   return false; // 去掉此行将直接关闭对话框
                  }}
-             ]
+               ],
+               onclose: function(){
+                   ctx.model.set(app.getModels().pop());
+               }
            });</code></pre>
 
             </div>
@@ -1135,7 +1139,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l379"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:379</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l384"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:384</code></a>
         
         </p>
 
@@ -1439,7 +1443,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l321"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:321</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l322"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:322</code></a>
         
         </p>
 

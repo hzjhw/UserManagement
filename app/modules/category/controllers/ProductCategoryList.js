@@ -57,6 +57,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this._render();
         return this;
       },
+      // 显示图片
       showImage: function (e) {
         e.stopImmediatePropagation();
         this.editImage = this.$('.edit-image');
@@ -71,29 +72,32 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         }
         return false;
       },
+      // 隐藏图片
       hideImage: function () {
         window.tooltipDialog &&
         window.tooltipDialog.close().remove();
       },
+      // Seo优化
       seo: function () {
-        BaseUtils.dialog({
+        this._dialog({
+          moduleId: 'SeoDetail',
           title: 'Seo优化',
-          url: CONST.HOST + '/common/seo/seo_detail.html?id=' +
-            this.model.get('id'),
           width: 600,
           height: 250,
+          cover: true,
+          id: this.model.get('categoryId'),
           button: [
             {
               value: '保存',
               callback: function () {
                 this.title('正在提交..');
-                this.iframeNode.contentWindow.$("#submit").click();
-                // 是否执行默认的关闭操作
+                $("#SeoDetail" + " #submit").click();
                 return false;
-              }}
+              }, autofocus: true}
           ]
         });
       },
+      // 编辑图片
       editImage: function () {
         var ctx = this;
         BaseUtils.openUpload({
@@ -137,13 +141,25 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         }, this, { hideTip: true });
       },
       // 修改分类
-      editItem: function () {
-        var options = {
-          title: '产品分类修改',
-          height: 250,
-          url: CONST.HOST + '/modules/category/product_category_detail.html?id=' + this.model.id
-        }
-        this._edit(options);
+      editItem: function (e) {
+        e.stopImmediatePropagation();
+        var ctx = this;
+        this._dialog({
+          moduleId: 'ProductCategoryDetail',
+          title: '修改分类',
+          id: this.model.get('id'),
+          width: 600,
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在保存');
+              $("#ProductCategoryDetail" + " #submit").click();
+              return false;
+            }, autofocus: true}
+          ],
+          onclose: function () {
+            ctx.model.set(app.getModels().pop());
+          }
+        });
       },
       // 修改排序
       changeSort: function (e) {
@@ -222,10 +238,22 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       },
       // 分类添加
       openAddDialog: function () {
-        this._detail({
-          title: '分类添加',
+        this._dialog({
+          moduleId: 'ProductCategoryDetail',
+          title: '产品分类添加',
+          width: 600,
           height: 250,
-          url: CONST.HOST + '/modules/category/product_category_detail.html?time=' + new Date().getTime()
+          cover: true,
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在提交..');
+              $("#ProductCategoryDetail" + " #submit").click();
+              return false;
+            }, autofocus: true}
+          ],
+          onclose: function () {
+            app.getView('productCategoryPage')._load();
+          }
         });
       },
       // 批量删除

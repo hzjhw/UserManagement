@@ -3,15 +3,16 @@
  * @namespace AttributesDetail
  * @author yongjin on 2014/11/13
  */
-define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd', 'BaseUtils'],
+define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd', 'BaseUtils', 'template/attributes_detail'],
   function (require, exports, module) {
-    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd, BaseUtils;
+    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd, BaseUtils, template;
 
     AttributesModel = require('AttributesModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     AttributesAdd = require('AttributesAdd');
     BaseUtils = require('BaseUtils');
+    template = require('template/attributes_detail');
 
     AttributesDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -20,13 +21,14 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
       },
       initialize: function () {
         this._initialize({
-          template: $("#attributes-detail-tpl").html(),
+          template: template,
           model: AttributesModel
         });
       },
       render: function () {
-        this.categoryId = Est.getUrlParam('categoryId', window.location.href);
-        this.model.set('categoryId',this.categoryId);
+        this.categoryId = this._options.categoryId ||
+          Est.getUrlParam('categoryId', window.location.href);
+        this.model.set('categoryId', this.categoryId);
         this._render();
         this.attributeSelect();
         this.attributeRender();
@@ -59,8 +61,8 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute',
           add: function () {
-          BaseUtils.resetIframe();
-        }};
+            BaseUtils.resetIframe();
+          }};
         if (attributesOptionList && attributesOptionList.length > 0) {
           options.items = attributesOptionList;
           this.showAttribute();

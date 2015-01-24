@@ -943,7 +943,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1034"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1034</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1035"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1035</code></a>
         
         </p>
 
@@ -2398,13 +2398,14 @@
                id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
                width: 600, // 对话框宽度
                height: 250, // 对话框高度
+               skin: &#39;form-horizontal&#39;, // className
                button: [ // 自定义按钮
                  {
                    value: &#39;保存&#39;,
                    callback: function () {
                    this.title(&#39;正在提交..&#39;);
                    $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
-                   return false;
+                   return false; // 去掉此行将直接关闭对话框
                  }}
              ]
            });</code></pre>
@@ -3297,7 +3298,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1062"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1062</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseList.js.html#l1063"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseList.js:1063</code></a>
         
         </p>
 

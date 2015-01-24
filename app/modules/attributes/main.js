@@ -22,3 +22,6 @@ app.addTemplate('template/attributes_item', function (require, exports, module) 
 app.addTemplate('template/attributes_list', function (require, exports, module) {
   module.exports = require('modules/attributes/views/attributes_list.html');
 });
+app.addTemplate('template/attributes_detail', function(require, exports, module){
+  module.exports = require('modules/attributes/views/attributes_detail.html')
+});

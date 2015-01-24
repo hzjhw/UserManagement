@@ -3,14 +3,15 @@
  * @namespace ProductCategoryDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils'],
+define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils', 'template/category_product_detail'],
   function (require, exports, module) {
-    var ProductCategoryDetail, CategoryModel, BaseDetail, BaseService, BaseUtils;
+    var ProductCategoryDetail, CategoryModel, BaseDetail, BaseService, BaseUtils, template;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
     BaseService = require('BaseService');
     BaseUtils = require('BaseUtils');
+    template = require('template/category_product_detail');
 
     ProductCategoryDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -20,7 +21,7 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseS
       initialize: function () {
         debug('ProductCategoryDetail.initialize');
         this._initialize({
-          template: $("#product-category-detail-tpl").html(),
+          template: template,
           model: CategoryModel
         });
       },

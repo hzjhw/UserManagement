@@ -432,7 +432,7 @@ this.photoList = app.addView(&#39;photoList&#39;, new PhotoList());</code></pre>
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseView.js.html#l143"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseView.js:143</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseView.js.html#l144"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseView.js:144</code></a>
         
         </p>
 
@@ -709,13 +709,14 @@ this.photoList = app.addView(&#39;photoList&#39;, new PhotoList());</code></pre>
                id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
                width: 600, // 对话框宽度
                height: 250, // 对话框高度
+               skin: &#39;form-horizontal&#39;, // className
                button: [ // 自定义按钮
                  {
                    value: &#39;保存&#39;,
                    callback: function () {
                    this.title(&#39;正在提交..&#39;);
                    $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
-                   return false;
+                   return false; // 去掉此行将直接关闭对话框
                  }}
              ]
            });</code></pre>
