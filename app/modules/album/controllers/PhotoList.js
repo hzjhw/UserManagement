@@ -134,6 +134,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
         }
       },
       reLoad: function (id) {
+        this._clear();
         this.collection._setItemId(id);
         this.collection.paginationModel.set('page', 1);
         this._load(this._options);
