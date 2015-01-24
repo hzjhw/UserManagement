@@ -513,9 +513,16 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
         try {
           if (!dialog) {
             setTimeout(function () {
-              Est.each(app.getDialogs(), function (dialog) {
-                dialog.reset();
-              });
+              var i = app.getDialogs().length;
+              while (i > 0) {
+                if (Est.isEmpty(app.getDialogs()[i - 1])) {
+                  //app.getDialogs()[i].remove();
+                  app.getDialogs().splice(i - 1, 1);
+                } else {
+                  app.getDialogs()[i - 1].reset();
+                }
+                i--;
+              }
             }, 100);
             debug('未找到需要重置高度的对话框！');
           }
@@ -555,7 +562,6 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       dialog: function (options) {
         var button = options.button || [];
         seajs.use(['dialog-plus'], function (dialog) {
-          var thisDialog = {};
           if (options.success) {
             button.push({ value: '确定', autofocus: true,
               callback: function () {
@@ -589,9 +595,9 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             }
           }
           if (options.cover) {
-            thisDialog = app.addDialog(dialog(options)).showModal(options.target);
+            app.addDialog(dialog(options)).showModal(options.target);
           } else {
-            thisDialog = app.addDialog(dialog(options)).show(options.target);
+            app.addDialog(dialog(options)).show(options.target);
           }
         });
       },

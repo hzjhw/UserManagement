@@ -678,7 +678,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l582"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:582</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l595"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:595</code></a>
         
         </p>
 
@@ -745,7 +745,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l613"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:613</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l626"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:626</code></a>
         
         </p>
 
@@ -885,7 +885,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l547"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:547</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l560"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:560</code></a>
         
         </p>
 
@@ -1747,15 +1747,22 @@
                id: this.model.get(&#39;id&#39;), // 初始化模块时传入的ID
                width: 600, // 对话框宽度
                height: 250, // 对话框高度
+               skin: &#39;form-horizontal&#39;, // className
                button: [ // 自定义按钮
                  {
                    value: &#39;保存&#39;,
                    callback: function () {
                    this.title(&#39;正在提交..&#39;);
                    $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
-                   return false;
+                   return false; // 去掉此行将直接关闭对话框
                  }}
-             ]
+               ],
+               onShow: function(){}, // 对话框弹出后调用
+               onClose: function(){
+                   ctx._reload(); // 列表刷新
+                   ctx.collection.push(Est.cloneDeep(app.getModels())); // 向列表末尾添加数据, 注意必须要深复制
+                   ctx.model.set(app.getModels().pop()); // 修改模型类
+               }
            });</code></pre>
 
             </div>
@@ -1810,7 +1817,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l493"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:493</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseItem.js.html#l506"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseItem.js:506</code></a>
         
         </p>
 
