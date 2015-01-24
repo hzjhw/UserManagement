@@ -1,5 +1,5 @@
 /**
- * @description const
+ * @description 全局常量
  * @namespace const
  * @author yongjin<zjut_wyj@163.com> 2014/12/18
  */

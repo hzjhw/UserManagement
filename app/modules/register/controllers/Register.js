@@ -20,7 +20,8 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
         console.log('2.Register.initialize');
         this._initialize({
           template: template,
-          model: RegisterModel
+          model: RegisterModel,
+          enterRender: '#submit'
         });
       },
       render: function () {
