@@ -70,6 +70,7 @@ app.addRoute('album', function () {
       }).addView('album', new Panel({
         el: '.photo-bar'
       }).on('after', function () {
+          app.addData('curAlbumId', 'all');
           app.addView('photoList', new PhotoList());
           app.addView('albumList', new AlbumList({
             el: '.album_left',
