@@ -1,5 +1,5 @@
 /**
- * @description PaymentInfoList
+ * @description 支付信息列表
  * @namespace PaymentInfoList
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

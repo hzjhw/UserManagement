@@ -1,5 +1,5 @@
 /**
- * @description DeliveryCorpList
+ * @description 物流公司列表
  * @namespace DeliveryCorpList
  * @author yongjin<zjut_wyj@163.com> 2014/12/30
  */

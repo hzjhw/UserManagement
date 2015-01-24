@@ -1,5 +1,5 @@
 /**
- * @description DeliveryList
+ * @description 配送
  * @namespace DeliveryList
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

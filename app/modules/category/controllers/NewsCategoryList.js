@@ -3,9 +3,9 @@
  * @namespace NewsCategoryList
  * @author wxw on 2014/12/12
  */
-define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
+define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'BaseService', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
   function (require, exports, module) {
-    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem,BaseService, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseCollection = require('BaseCollection');
@@ -16,6 +16,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
     itemTemp = require('template/category_news_item');
     BaseUtils = require('BaseUtils');
     transferTemp = require('template/news_transfer');
+    BaseService = require('BaseService');
 
     NewsCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/news',
@@ -29,6 +30,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
       tagName: 'li',
       className: 'cate-grid-row',
       events: {
+        'click .toggle': '_toggleChecked',
         'click .delete': '_del',
         'change .pro-cate-name': 'editName',
         'click .edit': 'editItem',
@@ -67,12 +69,26 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         this._render();
         return this;
       },
-      editItem: function () {
-        var options = {
+      editItem: function (e) {
+        e.stopImmediatePropagation();
+        var ctx = this;
+        this._dialog({
+          moduleId: 'NewsCategoryDetail',
           title: '新闻分类修改',
-          url: CONST.HOST + '/modules/category/news_category_detail.html?id=' + this.model.id
-        }
-        this._edit(options);
+          width: 600,
+          cover: true,
+          id: this.model.get('id'),
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在保存...');
+              $('#NewsCategoryDetail #submit').click();
+              return false;
+            }, autofocus: true}
+          ],
+          onClose: function () {
+            ctx.model.set('name', app.getModels().pop()['name']);
+          }
+        });
       },
       // 修改排序
       changeSort: function () {
@@ -149,9 +165,22 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
       },
       // 分类添加
       openAddDialog: function () {
-        this._detail({
-          title: '分类添加',
-          url: CONST.HOST + '/modules/category/news_category_detail.html?time=' + new Date().getTime()
+        var ctx = this;
+        this._dialog({
+          moduleId: 'NewsCategoryDetail',
+          title: '新闻分类添加',
+          width: 600,
+          cover: true,
+          button: [
+            {value: '保存', callback: function () {
+              this.title('正在保存...');
+              $('#NewsCategoryDetail #submit').click();
+              return false;
+            }, autofocus: true}
+          ],
+          onClose: function () {
+            ctx._reload();
+          }
         });
       },
       // 批量删除
@@ -185,7 +214,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('newsCategory')) {
-          BaseUtils.getNewsCategory({
+          BaseService.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {

@@ -1,5 +1,5 @@
 /**
- * @description ShippingDetail
+ * @description 物流信息详细
  * @namespace ShippingDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

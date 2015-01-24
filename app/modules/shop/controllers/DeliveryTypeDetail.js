@@ -1,5 +1,5 @@
 /**
- * @description DeliveryTypeDetail
+ * @description 配送类型详细
  * @namespace DeliveryTypeDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
@@ -17,6 +17,7 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
     DeliveryTypeDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.DeliveryTypeDetail.initialize');
@@ -24,6 +25,9 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
           template: template,
           model: DeliveryTypeModel
         });
+      },
+      back: function(){
+        this._navigate('#/shop/delivery_type', true);
       },
       render: function () {
         debug('4.DeliveryTypeDetail.render');

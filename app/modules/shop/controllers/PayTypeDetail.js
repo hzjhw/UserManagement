@@ -1,5 +1,5 @@
 /**
- * @description PayTypeDetail
+ * @description 支付方式详细
  * @namespace PayTypeDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
@@ -29,12 +29,34 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
     PayTypeDetail = BaseDetail.extend({
       el: '#jhw-detail',
       events: {
+        'click .btn-back': 'back'
       },
       initialize: function () {
         debug('2.PayTypeDetail.initialize');
         this._initialize({
           template: template,
           model: PayTypeModel
+        });
+      },
+      // 返回支付方式列表
+      back: function () {
+        this._navigate('#/shop/pay_type', true);
+      },
+      // 支付宝选项
+      showAliPay: function () {
+        app.addPanel('aliPayPanel', {
+          template: '<div class="ali-pay-inner"></div>',
+          el: $('#alipay')
+        }).addView('aliPay', new AlipayView({
+          el: '.ali-pay-inner',
+          model: this.model
+        }));
+      },
+      // 移除支付宝选项
+      removeAliPay: function () {
+        app.removeView('aliPay');
+        app.removePanel('aliPayPanel', {
+          el: $('#alipay')
         });
       },
       render: function () {
@@ -57,28 +79,13 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
             }, 100);
           }
         });
-        if (this.model.get('paymentConfigType') === 'alipay'){
+        if (this.model.get('paymentConfigType') === 'alipay') {
           this.showAliPay();
         }
         BaseUtils.initEditor({
           render: '.ckeditor'
         });
         return this;
-      },
-      showAliPay: function () {
-        app.addPanel('aliPayPanel', {
-          template: '<div class="ali-pay-inner"></div>',
-          el: $('#alipay')
-        }).addView('aliPay', new AlipayView({
-          el: '.ali-pay-inner',
-          model: this.model
-        }));
-      },
-      removeAliPay: function () {
-        app.removeView('aliPay');
-        app.removePanel('aliPayPanel', {
-          el: $('#alipay')
-        });
       }
     });
 

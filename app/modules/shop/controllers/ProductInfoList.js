@@ -1,5 +1,5 @@
 /**
- * @description ProductInfoList
+ * @description 商品信息列表
  * @namespace ProductInfoList
  * @author yongjin<zjut_wyj@163.com> 2014/12/30
  */

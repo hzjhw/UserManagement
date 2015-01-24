@@ -23,6 +23,24 @@ app.addRoute('shop/pay_type', function () {
     }));
   });
 });
+function payTypeRoute(id) {
+  seajs.use(['PayTypeDetail'], function (PayTypeDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('payTypeDetail', new PayTypeDetail({
+      el: '.jhw-panel',
+      id: id,
+      viewId: 'payTypeDetail'
+    }));
+  });
+}
+app.addRoute('shop/pay_type_add', function () {
+  payTypeRoute();
+});
+app.addRoute('shop/pay_type/:id', function (id) {
+  payTypeRoute(id);
+});
 app.addRoute('shop/delivery_corp', function () {
   seajs.use(['DeliveryCorpList'], function (DeliveryCorpList) {
     app.addPanel('main', {
@@ -42,6 +60,24 @@ app.addRoute('shop/delivery_type', function () {
       el: '.jhw-main-inner'
     }));
   });
+});
+function deliveryTypeRoute(id) {
+  seajs.use(['DeliveryTypeDetail'], function (DeliveryTypeDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('deliveryTypeDetail', new DeliveryTypeDetail({
+      el: '.jhw-panel',
+      viewId: 'deliveryTypeDetail',
+      id: id
+    }));
+  });
+}
+app.addRoute('shop/delivery_type_add', function () {
+  deliveryTypeRoute();
+});
+app.addRoute('shop/delivery_type/:id', function (id) {
+  deliveryTypeRoute(id);
 });
 app.addRoute('shop/delivery_no_send', function () {
   seajs.use(['OrderList'], function (OrderList) {
@@ -170,6 +206,6 @@ app.addTemplate('template/delivery_item', function (require, exports, module) {
 app.addTemplate('template/order_search', function (require, exports, module) {
   module.exports = require('modules/shop/views/order_search.html');
 });
-app.addTemplate('template/delivery_ickd', function(require, exports, module){
+app.addTemplate('template/delivery_ickd', function (require, exports, module) {
   module.exports = require('modules/shop/views/delivery_ickd.html')
 });

@@ -126,8 +126,8 @@ app.addStatus('shippingStatus', [
 app.addStatus('orderStatus', [
   {text: '请选择', value: '', html: '-'},
   {text: '未处理', value: 'unprocessed', html: '<span style="color: red;">未处理</span>'},
-  {text: '已处理', value: 'processed', html: '<span style="color: orange;">已处理</span>'},
-  {text: '已支付', value: 'completed', html: '<span style="color: #008000;">已支付</span>'},
+  {text: '已处理', value: 'processed', html: '<span style="color: green;">已处理</span>'},
+  {text: '已支付', value: 'completed', html: '<span style="color: #239AFF;">已支付</span>'},
   {text: '已作废', value: 'invalid', html: '<span style="color: gray;">已作废</span>'}
 ]);
 // 订单日志状态

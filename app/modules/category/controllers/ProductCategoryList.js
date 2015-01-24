@@ -157,7 +157,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
             }, autofocus: true}
           ],
           onClose: function () {
-            ctx.model.set(app.getModels().pop());
+            ctx.model.set('name', app.getModels().pop()['name']);
           }
         });
       },

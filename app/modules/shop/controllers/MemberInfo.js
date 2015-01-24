@@ -1,5 +1,5 @@
 /**
- * @description MemberInfo
+ * @description 用户信息
  * @namespace MemberInfo
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

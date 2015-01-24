@@ -1,5 +1,5 @@
 /**
- * @description 修改订单
+ * @description 修改订单详细页面
  * @namespace OrderDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */

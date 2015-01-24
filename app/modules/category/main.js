@@ -44,5 +44,8 @@ app.addTemplate('template/category_news_list', function (require, exports, modul
   module.exports = require('modules/category/views/category_news_list.html');
 });
 app.addTemplate('template/category_product_detail', function(require, exports, module){
-  module.exports = require('modules/category/views/category_product_detail.html')
+  module.exports = require('modules/category/views/category_product_detail.html');
+});
+app.addTemplate('template/category_news_detail', function(require, exports, module){
+  module.exports = require('modules/category/views/category_news_detail.html');
 });

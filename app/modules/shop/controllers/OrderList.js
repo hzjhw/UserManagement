@@ -1,5 +1,5 @@
 /**
- * @description OrderList
+ * @description 订单列表
  * @namespace OrderList
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
@@ -95,7 +95,10 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
       events: {
         'click .btn-search': 'search',
         'click .search-advance-product': 'searchAdvance',
-        'click #toggle-all': '_toggleAllChecked'
+        'click #toggle-all': '_toggleAllChecked',
+        'click .btn-pay-type': 'payType',
+        'click .btn-delivery-type': 'deliveryType',
+        'click .btn-delivery-corp': 'deliveryCorp'
       },
       initialize: function () {
         this._initialize({
@@ -107,6 +110,18 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
           pagination: true,
           enterRender: '.btn-search'
         });
+      },
+      // 支付方式管理
+      payType: function(){
+        this._navigate('#/shop/pay_type', true);
+      },
+      // 配送方式管理
+      deliveryType: function(){
+        this._navigate('#/shop/delivery_type', true);
+      },
+      // 物流公司查看
+      deliveryCorp: function(){
+        this._navigate('#/shop/delivery_corp', true);
       },
       // 简单搜索
       search: function () {

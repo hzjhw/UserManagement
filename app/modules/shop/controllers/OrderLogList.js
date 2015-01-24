@@ -1,5 +1,5 @@
 /**
- * @description OrderLogList
+ * @description 订单日志列表
  * @namespace OrderLogList
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

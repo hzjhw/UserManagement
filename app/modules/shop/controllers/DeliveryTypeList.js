@@ -1,5 +1,5 @@
 /**
- * @description DeliveryTypeList
+ * @description 配送方式列表
  * @namespace DeliveryTypeList
  * @author yongjin<zjut_wyj@163.com> 2014/12/30
  */
@@ -30,7 +30,7 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .btn-edit': '_edit',
+        'click .btn-edit': 'edit',
         'click .btn-del': '_del',
         'click .name': 'editName',
         'click .move-up': '_moveUp', // 上移
@@ -42,6 +42,9 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
           template: itemTemp,
           detail: CONST.HOST + '/modules/shop/delivery_type_detail.html'
         });
+      },
+      edit: function () {
+        this._navigate('#/shop/delivery_type/' + this.model.get('id'), true);
       },
       editName: function () {
         this._editField({
@@ -59,9 +62,10 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .product-add': '_detail',
+        'click .product-add': 'add',
         'click .btn-search': 'search',
-        'click .search-advance-product': 'searchAdvance'
+        'click .search-advance-product': 'searchAdvance',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         this._initialize({
@@ -74,6 +78,12 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
           pagination: true,
           detail: CONST.HOST + '/modules/shop/delivery_type_detail.html'
         });
+      },
+      back: function () {
+        this._navigate('#/shop/delivery_type', true);
+      },
+      add: function () {
+        this._navigate('#/shop/delivery_type_add', true);
       },
       render: function () {
         this._render();

@@ -1,5 +1,5 @@
 /**
- * @description PaymentDetail
+ * @description 支付详细页面
  * @namespace PaymentDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */

@@ -1,5 +1,5 @@
 /**
- * @description PayType
+ * @description 支付方式列表
  * @namespace PayType
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
@@ -32,8 +32,8 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
       className: 'bui-grid-row',
       events: {
         'click .toggle': '_toggleChecked',
-        'click .btn-edit': '_edit',
-        'click .btn-delete': '_del',
+        'click .btn-edit': 'edit',
+        'click .btn-del': '_del',
         'click .name': 'editName',
         'click .move-up': '_moveUp', // 上移
         'click .move-down': '_moveDown', // 下移
@@ -45,14 +45,19 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
           detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
         });
       },
-      editName: function(){
+      // 支付方式修改
+      edit: function () {
+        this._navigate('#/shop/pay_type/' + this.model.get('id'), true)
+      },
+      // 修改名称
+      editName: function () {
         this._editField({
           target: '.pro-list-name',
           title: '修改名称',
           field: 'name'
         });
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });
@@ -61,7 +66,7 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
       events: {
         'click #toggle-all': '_toggleAllChecked',
         'click .btn-batch-del': '_batchDel',
-        'click .product-add': '_detail',
+        'click .product-add': 'add',
         'click .btn-search': 'search',
         'click .search-advance-product': 'searchAdvance'
       },
@@ -77,8 +82,9 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
           detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
         });
       },
-      render: function () {
-        this._render();
+      // 支付方式添加
+      add: function () {
+        this._navigate('#/shop/pay_type_add', true);
       },
       // 简单搜索
       search: function () {
@@ -131,6 +137,9 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
             this.close().remove();
           }
         });
+      },
+      render: function () {
+        this._render();
       }
     });
 
