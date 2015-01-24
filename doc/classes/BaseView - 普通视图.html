@@ -432,7 +432,7 @@ this.photoList = app.addView(&#39;photoList&#39;, new PhotoList());</code></pre>
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseView.js.html#l144"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseView.js:144</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseView.js.html#l155"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseView.js:155</code></a>
         
         </p>
 
@@ -718,7 +718,13 @@ this.photoList = app.addView(&#39;photoList&#39;, new PhotoList());</code></pre>
                    $(&quot;#SeoDetail&quot; + &quot; #submit&quot;).click(); // 弹出的对话ID选择符为moduleId值
                    return false; // 去掉此行将直接关闭对话框
                  }}
-             ]
+               ],
+               onShow: function(){}, // 对话框弹出后调用
+               onClose: function(){
+                   ctx._reload(); // 列表刷新
+                   ctx.collection.push(Est.cloneDeep(app.getModels())); // 向列表末尾添加数据, 注意必须要深复制
+                   ctx.model.set(app.getModels().pop()); // 修改模型类
+               }
            });</code></pre>
 
             </div>

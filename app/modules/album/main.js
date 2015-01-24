@@ -55,7 +55,7 @@ app.addRoute('album', function () {
                   return false;
                 }, autofocus: true}
             ],
-            onclose: function () {
+            onClose: function () {
               app.getView('albumList')._load();
             }
           });

@@ -156,7 +156,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
               return false;
             }, autofocus: true}
           ],
-          onclose: function () {
+          onClose: function () {
             ctx.model.set(app.getModels().pop());
           }
         });
@@ -251,7 +251,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
               return false;
             }, autofocus: true}
           ],
-          onclose: function () {
+          onClose: function () {
             app.getView('productCategoryPage')._load();
           }
         });

@@ -64,7 +64,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
               return false;
             }, autofocus: true}
           ],
-          onclose: function () {
+          onClose: function () {
             ctx.model.set(app.getModels().pop());
           }
         });
@@ -149,8 +149,8 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
               return false;
             }, autofocus: true}
           ],
-          onclose: function () {
-            ctx.collection.push(app.getModels());
+          onClose: function () {
+            ctx._reload();
           }
         });
       }

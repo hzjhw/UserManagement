@@ -483,7 +483,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l396"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:396</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l404"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:404</code></a>
         
         </p>
 
@@ -710,7 +710,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l375"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:375</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l383"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:383</code></a>
         
         </p>
 
@@ -1096,8 +1096,11 @@
                    return false; // 去掉此行将直接关闭对话框
                  }}
                ],
-               onclose: function(){
-                   ctx.model.set(app.getModels().pop());
+               onShow: function(){}, // 对话框弹出后调用
+               onClose: function(){
+                   ctx._reload(); // 列表刷新
+                   ctx.collection.push(Est.cloneDeep(app.getModels())); // 向列表末尾添加数据, 注意必须要深复制
+                   ctx.model.set(app.getModels().pop()); // 修改模型类
                }
            });</code></pre>
 
@@ -1139,7 +1142,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l384"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:384</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseDetail.js.html#l392"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseDetail.js:392</code></a>
         
         </p>
 
