@@ -52,7 +52,8 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         'click .move-up': 'moveUp',
         'click .move-down': 'moveDown',
         'change .input-sort': 'changeSort',
-        'click .btn-more': '_more'
+        'click .btn-more': '_more',
+        'click .btn-seo': 'seo'
       },
       // 初始化
       initialize: function () {
@@ -68,9 +69,25 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this._initialize({ template: itemTemp });
 
       },
-      // 渲染文档
-      render: function () {
-        this._render();
+      // seo
+      seo: function(){
+        this._dialog({
+          moduleId: 'SeoDetail',
+          title: 'Seo修改',
+          id: this.model.get('id'),
+          width: 600,
+          height: 250,
+          cover: true,
+          button: [
+            {
+              value: '保存',
+              callback: function () {
+                this.title('正在提交..');
+                $("#SeoDetail" + " #submit").click();
+                return false;
+              }}
+          ]
+        });
       },
       // 修改排序
       changeSort: function () {
@@ -151,6 +168,9 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       // 下移
       moveDown: function () {
         app.getView('newsList')._moveDown(this.model);
+      },
+      render: function () {
+        this._render();
       }
     });
     /**
@@ -181,19 +201,13 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           route: '#/news'
         });
       },
+      // 新闻分类
       category: function () {
         this._navigate('#/category/news', true);
       },
-      // 打开添加/修改对话框
+      // 新闻添加
       edit: function () {
-        seajs.use(['NewsDetail'], function (NewsDetail) {
-          app.addPanel('main', {
-            el: '#jhw-main',
-            template: '<div class="jhw-main-inner"></div>'
-          }).addView('newsDetail', new NewsDetail({
-            el: '.jhw-main-inner'
-          }));
-        });
+        this._navigate('#/news_add', true);
       },
       // 简单搜索
       search: function () {

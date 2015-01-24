@@ -120,7 +120,8 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         'click #toggle-all': '_toggleAllChecked',
         'click .news-category-add': 'openAddDialog',
         'click .btn-batch-del': 'batchDel',
-        'click .btn-batch-category': 'batchCategory'
+        'click .btn-batch-category': 'batchCategory',
+        'click .btn-back': 'back'
       },
       render: function () {
         this._render();
@@ -142,6 +143,11 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
           rootValue: '01'
         });
       },
+      // 返回按钮
+      back: function () {
+        this._navigate('#/news');
+      },
+      // 分类添加
       openAddDialog: function () {
         this._detail({
           title: '分类添加',

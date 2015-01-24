@@ -12,7 +12,8 @@ app.addRoute('news', function () {
       el: '#jhw-main',
       template: '<div class="jhw-panel"></div>'
     }).addView('newsList', new NewsList({
-      el: '.jhw-panel'
+      el: '.jhw-panel',
+      viewId: 'newsList'
     }));
   });
 });
