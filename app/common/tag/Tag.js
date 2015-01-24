@@ -176,7 +176,6 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           this.$input.val('');
           return;
         }
-        ;
         newModel = new model({
           name: inputVal,
           tagId: tagId
@@ -185,6 +184,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           wait: true,
           success: function () {
             ctx.collection.push(newModel);
+            ctx.tagList = null;
           }
         });
         this.$input.val('');

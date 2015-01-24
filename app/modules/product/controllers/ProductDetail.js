@@ -140,7 +140,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               items: list,
               change: function (categoryId) {
                 ctx.showAttributes(categoryId);
-                ctx.$setAttribute.attr('href', '#/attributes?id=' + categoryId);
+                ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + categoryId);
                 setTimeout(function () {
                   BaseUtils.resetIframe();
                 }, 500);

@@ -10,7 +10,8 @@ define('EnterpriseModel', ['BaseModel'], function (require, exports, module) {
 
   EnterpriseModel = BaseModel.extend({
     defaults: Est.extend({
-      oem: '00'
+      oem: '00',
+      edesc: '未填写公司简介'
     }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/enterprise/detail',
     baseId: 'enterpriseId',
