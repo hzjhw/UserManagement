@@ -33,16 +33,24 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
         'click .delete': '_del',
         'click .img-name': 'editName',
         'click .copy-pic': 'copy',
-        'click .pic-replace': 'replace'
+        'click .pic-replace': 'replace',
+        'dblclick img': 'show'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
         });
       },
-      render: function () {
-        this._render();
+      // 查看图片
+      show: function () {
+        BaseUtils.dialog({
+          id: 'imgShow',
+          width: 800,
+          content: '<img src="' + CONST.PIC_URL + '/' + Est.picUrl(this.model.get('serverPath'), 3) + '" />'
+        });
+        return false;
       },
+      // 修改图片名称
       editName: function (e) {
         e.stopImmediatePropagation();
         this._editField({
@@ -51,6 +59,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           field: 'filename'
         });
       },
+      // 图片替换
       replace: function (e) {
         e.stopImmediatePropagation();
         var id = this.model.get('id');
@@ -70,6 +79,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           }
         });
       },
+      // 图片复制
       copy: function (e) {
         e.stopImmediatePropagation();
         if (!this.copyDetail)
@@ -93,6 +103,9 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
             });
           }
         });
+      },
+      render: function () {
+        this._render();
       }
     });
 
@@ -121,9 +134,6 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           }
         });
       },
-      render: function () {
-        this._render();
-      },
       toggleAllChecked: function () {
         var checked = this.allCheckbox.checked;
         this._toggleAllChecked();
@@ -148,9 +158,11 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
               { key: 'filename', value: searchKey }
             ]});
         }
+      },
+      render: function () {
+        this._render();
       }
     });
-
 
     module.exports = PhotoList;
   });

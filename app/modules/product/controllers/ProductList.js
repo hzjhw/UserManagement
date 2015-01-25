@@ -97,9 +97,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           title: '标签修改',
           itemId: this.model.get('id'),
           _isAdd: false,
-          width: 600,
-          height: 250,
-          cover: true
+          height: 250
         });
       },
       // seo修改
@@ -108,18 +106,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           moduleId: 'SeoDetail',
           title: 'Seo修改',
           id: this.model.get('id'),
-          width: 600,
-          height: 250,
-          cover: true,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                $("#SeoDetail" + " #submit").click();
-                return false;
-              }}
-          ]
+          height: 250
         });
       },
       // 修改分类
