@@ -10,7 +10,8 @@
 
 <td class="bui-grid-cell grid-td-news-title">
     <div class="bui-grid-cell-inner"><span class=""><span
-            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{title}}">{{cutByte title 50 end='...'}}</a></span><span
+            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{title}}">{{cutByte
+        title 50 end='...'}}</a></span><span
             class="x-icon x-icon-small x-icon-info name show_hide pointer"
             style="vertical-align: middle;"><i
             class="icon icon-white icon-edit pointer"></i></span></span></div>
@@ -21,7 +22,8 @@
         <div id="pro-cate-{{dx}}">
             <select name="category" class="text pro-category" value="{{category}}">
                 {{#each newsCategoryList}}
-                <option value="{{value}}" {{#compare value '===' ../category}}selected{{/compare}}>{{text}}</option>
+                <option value="{{value}}"
+                {{#compare value '===' ../category}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
         </div>
@@ -30,7 +32,8 @@
 
 <td class="bui-grid-cell grid-td-col2">
     <div class="bui-grid-cell-inner">
-        <input id="model-addTime" name="addTime" value="{{dateFormat addTime 'yyyy-MM-dd'}}" type="text" class="calendar" style="border:none">
+        <input id="model-addTime" name="addTime" value="{{dateFormat addTime 'yyyy-MM-dd'}}" type="text"
+               class="calendar" style="border:none">
     </div>
 </td>
 
@@ -48,12 +51,12 @@
 
 <td class="bui-grid-cell grid-td-move">
     <div class="bui-grid-cell-inner">
-        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
+        <span class="x-icon x-icon-small x-icon-info move-up pointer"
               title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
             <i class="icon icon-white icon-arrow-up pointer"></i>
         </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
         <span class="x-icon x-icon-small x-icon-info move-down pointer"
-              style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
+              title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
                 class="icon icon-white icon-arrow-down pointer"></i></span>
 
     </div>
@@ -65,7 +68,8 @@
         </button>
         <button type="button" class="button button-gray button-mini delete"><i class="icon-trash"></i>删除
         </button>
-        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i class="icon-chevron-down"></i>
+        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i
+                class="icon-chevron-down"></i>
         </button>
         <div class="moreOption" style="display:none;">
             <button type="button" class="button button-gray button-mini btn-seo"><i class="icon-zoom-in"></i>seo

@@ -133,8 +133,11 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       },
       // 添加推荐标签
       add: function () {
-        this._options.reference.insert(this.model.get('name'),
-          this._options.reference.check(this.model.get('name')));
+        var ctx = this;
+        this._options.reference.initTagList(this.model.get('name'))
+          .then(function (tagId) {
+            ctx._options.reference.insert(ctx.model.get('name'), tagId);
+          });
       },
       render: function () {
         this._render();
@@ -198,35 +201,59 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
 
         return this;
       },
+      // 文本框获取焦点
       focus: function (e) {
         this.$('.tag-combox-input').focus();
         this.showPicker(e);
       },
       // 添加标签
       add: function (e) {
+        var ctx = this;
         if (e.keyCode === CONST.ENTER_KEY) {
           var name = this.$input.val();
-          var tagId = this.check(name);
-          this.insert(name, tagId);
+          // promise入口 判断是否存在标签列表并初始化列表， 然后返回tagId。 核心用于获取tagId， 并调用insert方法
+          this.initTagList(name).then(function (tagId) {
+            ctx.insert(name, tagId);
+          });
         }
-        return false;
       },
-      // 判断添加的标签是否存在于列表中
-      check: function (name) {
-        var result = null;
-        if (!this.tagList) this.initTagList();
-        var index = Est.findIndex(this.tagList.collection.models, function (model) {
+      // 初始化标签
+      initTagList: function (name) {
+        var ctx = this;
+        return new Est.promise(function (resolve, reject) {
+          // 用于判断是否存在tagList, 分别作相应处理
+          if (!ctx.tagList) {
+            ctx.getTagList(function (collection) { // 用于获取标签列表
+              resolve(ctx.findTagIdByName(collection.models, name));
+            });
+          } else {
+            // 若存在tagList, 直接调用现存的标签列表
+            resolve(ctx.findTagIdByName(ctx.tagList.collection.models, name));
+          }
+        });
+      },
+      // 获取标签列表
+      getTagList: function (callback) {
+        var opts = Est.cloneDeep(this.options);
+        opts.el = null;
+        opts.afterLoad = callback;
+        this.tagList = new TagList(opts);
+      },
+      // 获取标签Id
+      findTagIdByName: function (models, name) {
+        var index = Est.findIndex(models, function (model) {
           return model.get('name') === name;
         });
         if (index !== -1) {
-          result = this.tagList.collection.models[index].get('tagId');
+          return this.tagList.collection.models[index].get('tagId');
         }
-        return result;
       },
+      // 回车输入
       addHid: function () {
         this.insert(this.$inputHid.val(), this.$inputHid.attr('tagid'));
         this.$input.attr('tagId', '');
       },
+      // 基础插入方法
       insert: function (inputVal, tagId) {
         var ctx = this;
         var newModel, filter;
@@ -243,10 +270,12 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           this.$input.val('');
           return;
         }
+        // 新建模型类
         newModel = new model({
           name: inputVal,
           tagId: tagId
         });
+        // 保存模型类
         newModel.save(null, {
           wait: true,
           success: function () {
@@ -257,17 +286,14 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         this.$input.val('');
         this.hidePicker();
       },
+      // 隐藏下拉框
       hidePicker: function () {
         $("#tag-list-picker").hide();
       },
-      initTagList: function () {
-        var opts = Est.cloneDeep(this.options);
-        opts.el = null;
-        this.tagList = new TagList(opts);
-      },
+      // 显示下拉框
       showPicker: function (e) {
-        var ctx = this;
         e.stopImmediatePropagation();
+        var ctx = this;
         if (!this.tagList) {
           this.initTagList();
         }

@@ -911,6 +911,12 @@ div#jhw-body {
     margin: 0;
     padding: 0;
     text-align: center;
+    height: 18px;
+    line-height: 18px;
+    vertical-align: text-bottom;
+}
+#jhw .ie6 input.input-sort, #jhw .ie7 input.input-sort{
+    vertical-align: middle;
 }
 
 #jhw .auto-width {
@@ -1010,6 +1016,7 @@ label.checkbox {
 .grid-td-move {
     width: 88px;
 }
+.grid-td-sort{width: 50px;}
 
 .grid-td-time {
     width: 150px;
@@ -1017,6 +1024,9 @@ label.checkbox {
 
 .grid-td-category {
     width: 180px;
+}
+.grid-td-time{
+    width: 80px;
 }
 
 .grid-td-display {
@@ -1222,7 +1232,6 @@ label.checkbox {
 }
 
 #jhw .tag-tip {
-    padding-left: 5px;
     padding-bottom: 5px;
     font-weight: bold;
 }
@@ -1342,7 +1351,7 @@ label.checkbox {
     right: 0px;
     z-index: 99999;
     display: none;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 #jhw .album-cate-ul .album-tool:hover, #jhw .hover-tool-warp .hover-tool:hover {

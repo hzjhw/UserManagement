@@ -1081,7 +1081,7 @@ a.badge:focus, a.badge:hover {
 .x-icon i {
     vertical-align: baseline
 }
-#jhw .ie6 .x-icon i , #jhw .ie7 .x-icon i {
+#jhw .ie6 .x-icon i{
     vertical-align: middle;
 }
 

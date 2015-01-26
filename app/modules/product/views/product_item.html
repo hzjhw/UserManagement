@@ -9,23 +9,34 @@
 </td>
 <td class="bui-grid-cell grid-td-picture">
     <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text"><img class="product-img"
-            src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}" width="40"
+                                                                           src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"
+                                                                           width="40"
             ></span></div>
 </td>
 
 <td class="bui-grid-cell grid-td-col1">
-    <div class="bui-grid-cell-inner"><span class=""><span
-            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{name}}">{{cutByte name 50 end='...'}}</a></span><span
-            class="x-icon x-icon-small x-icon-info name show_hide pointer"
-            style="vertical-align: middle;"><i
-            class="icon icon-white icon-edit pointer"></i></span></span></div>
+    <div class="bui-grid-cell-inner "><span class=""><span
+            class="pro-list-name"><a href="javascript:;" class="underline" target="_blank" title="{{name}}">{{cutByte
+        name 50 end='...'}}</a></span>
+        <span class="show_hide hover-tool show_hide">
+            <span class="x-icon x-icon-small x-icon-info name  pointer" title="修改名称"><i
+                    class="icon icon-white icon-edit pointer"></i></span>&nbsp;
+            <span class="x-icon x-icon-small x-icon-info move-up  pointer"><i
+                    class="icon icon-white icon-arrow-up pointer"></i></span>&nbsp;
+            <span class="x-icon x-icon-small x-icon-info move-down  pointer"><i
+                    class="icon icon-white icon-arrow-down pointer"></i></span></span> </span>
+    </div>
 </td>
 <td class="bui-grid-cell grid-td-col2">
     <div class="bui-grid-cell-inner"><span class="" title="{{prodtype}}"><span
-            class="pro-list-prodtype">{{prodtype}}</span>&nbsp;&nbsp;<span
-            class="x-icon x-icon-small x-icon-info prodtype show_hide pointer"
-            style="vertical-align: middle;"><i
-            class="icon icon-white icon-edit pointer"></i></span></span></div>
+            class="pro-list-prodtype">{{prodtype}}</span>&nbsp;&nbsp;
+        <span class="hover-tool show_hide">
+            <span
+                    class="x-icon x-icon-small x-icon-info prodtype  pointer"
+                    ><i
+                    class="icon icon-white icon-edit pointer"></i></span>
+        </span>
+        </span></div>
 </td>
 <td class="bui-grid-cell grid-td-category">
     <div class="bui-grid-cell-inner">
@@ -33,7 +44,8 @@
             <!--<input type="hidden" id="model-category-{{dx}}" value="{{category}}" name="category">-->
             <select name="category" class="text pro-category" value="{{category}}">
                 {{#each productCategoryList}}
-                <option value="{{value}}" {{#compare value '===' ../category}}selected{{/compare}}>{{text}}</option>
+                <option value="{{value}}"
+                {{#compare value '===' ../category}}selected{{/compare}}>{{text}}</option>
                 {{/each}}
             </select>
             <!--<div class="bui-select" aria-disabled="false" tabindex="0" hidefocus="true" aria-pressed="false" style="width: 150px;">
@@ -43,25 +55,27 @@
         </div>
     </div>
 </td>
-<td class="bui-grid-cell grid-td-col2">
+<td class="bui-grid-cell grid-td-time">
     <div class="bui-grid-cell-inner">
-        <input name="addTime" value="{{dateFormat addTime 'yyyy-MM-dd'}}" type="text" class="input-small" style="border:none">
+        <input name="addTime" value="{{dateFormat addTime 'yyyy-MM-dd'}}" type="text" class="input-small"
+               style="border:none">
     </div>
 </td>
 <td class="bui-grid-cell grid-td-display">
     <div class="bui-grid-cell-inner">
-        <a href="javascript:;" class="btn-display" title="是否在您的网站中显示此产品">{{#compare isdisplay '==' '1'}}已显示{{else}}已隐藏{{/compare}}</a>
+        <a href="javascript:;" class="btn-display" title="是否在您的网站中显示此产品">{{#compare isdisplay '=='
+            '1'}}已显示{{else}}已隐藏{{/compare}}</a>
     </div>
 </td>
-<td class="bui-grid-cell grid-td-move">
+<td class="bui-grid-cell grid-td-sort">
     <div class="bui-grid-cell-inner">
-        <span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
+        <!--<span class="x-icon x-icon-small x-icon-info move-up pointer" style="vertical-align: middle;"
               title="上移 (若移动到上一页， 可以试着更改每页显示个数)">
             <i class="icon icon-white icon-arrow-up pointer"></i>
-        </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
-        <span class="x-icon x-icon-small x-icon-info move-down pointer"
+        </span>&nbsp;--><input type="text" class="control-text input-sort" value="{{sort}}">
+        <!--<span class="x-icon x-icon-small x-icon-info move-down pointer"
               style="vertical-align: middle;" title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
-                class="icon icon-white icon-arrow-down pointer"></i></span>
+                class="icon icon-white icon-arrow-down pointer"></i></span>-->
 
     </div>
 </td>
@@ -72,7 +86,8 @@
         </button>
         <button type="button" class="button button-gray button-mini delete"><i class="icon-trash"></i>删除
         </button>
-        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i class="icon-chevron-down"></i>
+        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i
+                class="icon-chevron-down"></i>
         </button>
         <div class="moreOption" style="display:none;">
             <button type="button" class="button button-gray button-mini seo"><i class="icon-zoom-in"></i>seo

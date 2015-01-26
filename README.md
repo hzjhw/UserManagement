@@ -82,3 +82,47 @@ For object iteration, use @key instead:
 {{/each}} 
 3) 获取根目录
 {{@root.level1_2}}
+
+### promise示例
+// 添加标签
+add: function (e) {
+  var ctx = this;
+  if (e.keyCode === CONST.ENTER_KEY) {
+    var name = this.$input.val();
+    // promise入口 判断是否存在标签列表并初始化列表， 然后返回tagId。 核心用于获取tagId， 并调用insert方法
+    this.initTagList(name).then(function (tagId) {
+       ctx.insert(name, tagId);
+    });
+  }
+},
+// 初始化标签
+initTagList: function (name) {
+    var ctx = this;
+    return new Est.promise(function (resolve, reject) {
+        // 用于判断是否存在tagList, 分别作相应处理
+        if (!ctx.tagList) {
+            ctx.getTagList(function (collection) { // 用于获取标签列表
+                resolve(ctx.findTagIdByName(collection.models, name));
+            });
+        } else {
+            // 若存在tagList, 直接调用现存的标签列表
+            resolve(ctx.findTagIdByName(ctx.tagList.collection.models, name));
+        }
+    });
+},
+// 获取标签列表
+getTagList: function (callback) {
+    var opts = Est.cloneDeep(this.options);
+    opts.el = null;
+    opts.afterLoad = callback;
+    this.tagList = new TagList(opts);
+},
+// 获取标签Id
+findTagIdByName: function (models, name) {
+    var index = Est.findIndex(models, function (model) {
+      return model.get('name') === name;
+    });
+    if (index !== -1) {
+      return this.tagList.collection.models[index].get('tagId');
+    }
+}
