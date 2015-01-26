@@ -42,11 +42,11 @@ define('DeliveryList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', '
           modelBind: true,
           filter: function (model) {
             var minus = 0;
-            if (Est.isEmpty(model.get('minusQuantity'))){
+            if (Est.isEmpty(model.get('minusQuantity'))) {
               var num1 = model.get('productQuantity');
               var num2 = model.get('deliveryQuantity');
               minus = num1 - num2;
-            } else{
+            } else {
               minus = parseInt(model.get('minusQuantity'));
             }
             model.set('minusQuantity', minus);
@@ -68,12 +68,18 @@ define('DeliveryList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', '
     });
 
     DeliveryList = BaseList.extend({
+      events: {
+        'click .btn-back': 'back'
+      },
       initialize: function () {
         this._initialize({
           model: model,
           collection: collection,
           item: item
         });
+      },
+      back: function () {
+        this._navigate('#/shop', true);
       },
       render: function () {
         this._render();

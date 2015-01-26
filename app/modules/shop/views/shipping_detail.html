@@ -8,7 +8,7 @@
 
             <div class="controls">
                 <div id="s3">
-                    <input id="model-typeId" type="hidden"/>
+                    <input id="model-typeId" type="hidden" value="{{deliveryType.typeId}}"/>
                 </div>
             </div>
         </div>
@@ -19,8 +19,8 @@
 
             <div class="controls">
                 <div id="s4">
-                    <input id="model-shipping_deliveryCorpName" type="hidden"/>
-                    <input id="shipping_deliveryCorp" type="hidden"/>
+                    <input id="model-shipping_deliveryCorpName" type="hidden" value="{{deliveryType.defaultDeliveryCorp.corpId}}"/>
+                    <input id="shipping_deliveryCorp" type="hidden" value="{{deliveryType.defaultDeliveryCorp.corpId}}"/>
                 </div>
             </div>
         </div>

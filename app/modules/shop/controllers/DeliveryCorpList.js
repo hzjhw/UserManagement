@@ -61,7 +61,8 @@ define('DeliveryCorpList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryC
         'click .btn-batch-del': '_batchDel',
         'click .product-add': '_detail',
         'click .btn-search': 'search',
-        'click .search-advance-product': 'searchAdvance'
+        'click .search-advance-product': 'searchAdvance',
+        'click .btn-back': 'back'
       },
       initialize: function () {
         this._initialize({
@@ -74,6 +75,9 @@ define('DeliveryCorpList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryC
           pagination: true,
           detail: CONST.HOST + '/modules/shop/delivery_corp_detail.html'
         });
+      },
+      back: function () {
+        this._navigate('#/shop', true);
       },
       render: function () {
         this._render();

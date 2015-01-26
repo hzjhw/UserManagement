@@ -50,11 +50,13 @@ define('ProductInfoList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseModel'
         this._render();
       },
       quantityMinus: function () {
-        if (parseInt(this.quantity, 10) === 0) return;
-        this.model.set('productQuantity', this.quantity - 1);
+        this.quantity = parseInt(this.quantity, 10);
+        if (this.quantity === 0) return;
+        this.model.set('productQuantity', --this.quantity);
       },
       quantityPlus: function () {
-        this.model.set('productQuantity', this.quantity + 1);
+        this.quantity = parseInt(this.quantity, 10);
+        this.model.set('productQuantity', ++this.quantity);
       }
     });
 

@@ -87,7 +87,7 @@
 #jhw #left-bar-ul .hover .node-tree a{padding-left: 0; padding-right: 0; padding-bottom: 0;height: 100%;  border-bottom: none; padding-top: 0; overflow: hidden; border-top: none;background: none;}
 #jhw #left-bar-ul .hover .node-tree li{border-top: none; border-bottom: none;height: 50px; line-height: 50px; background: #4094D7;width: 100%;}
 #jhw #left-bar-ul .hover .node-tree li.hover{ background:#efefef; }
-#jhw #left-bar-ul .hover .node-tree li.hover { background: #3388CB; }
+#jhw #left-bar-ul .hover .node-tree li.hover { background: #499DDF; }
 #jhw .nav-arrow{display:none;}
 #jhw .hover .nav-arrow{display: block; width: 20px; height: 20px; position: absolute; top: 0; right: -10px; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right:10px solid #4094d7; }
 #jhw .update li{ float: left; width: 46%; background: #fff; padding-top: 6px; padding-bottom: 7px; padding-left: 1%; margin-right: 2%; }

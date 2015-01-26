@@ -485,7 +485,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
       return new q(function (resolve, reject) {
         $.ajax({
           type: 'get',
-          url: CONST.API + '/deliverycorp/list?pageSize=200',
+          url: CONST.API + '/deliverycorp/list?pageSize=500',
           async: false,
           success: function (result) {
             result = result.attributes.data;

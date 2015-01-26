@@ -129,6 +129,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }));
         });
       },
+      // 订单支付
       initPaymentDetail: function () {
         var orderId = this.model.get('orderId');
         var attributes = this.model.attributes;
@@ -140,6 +141,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }));
         });
       },
+      // 订单发货
       initShippingDetail: function () {
         var orderId = this.model.get('orderId');
         var attributes = this.model.attributes;
