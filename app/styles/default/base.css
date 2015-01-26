@@ -271,10 +271,11 @@ label.checkbox { padding-left: 5px; }
 #jhw .album-cate-ul{padding-right:15px;overflow-y: auto; height: 100%;}
 #jhw .album-cate-ul .cate-grid-row{position:relative;padding-left: 8px; padding-bottom: 4px; border-radius: 5px;overflow: hidden; white-space: nowrap;}
 #jhw .pic-container .image .handle li:hover, #jhw .pic-container .image .handle li{transition: background-color 0.5s; -moz-transition: background-color 0.5s; -webkit-transition: background-color 0.5s; -o-transition: background-color 0.5s; }
-#jhw .album-cate-ul .album-tool, #jhw .album-cate-ul .album-tool:hover{transition: opacity 0.5s; -moz-transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -o-transition: opacity 0.5s; }
-#jhw .album-cate-ul .album-tool{position:absolute;top: 0; right: 0px; z-index: 99999;display:none;opacity: 0.5;}
-#jhw .album-cate-ul .album-tool:hover{opacity: 1; }
-#jhw .album-cate-ul .hover .album-tool{display:block;padding-top: 5px; padding-right: 2px;}
+#jhw .album-cate-ul .album-tool, #jhw .hover-tool-warp .hover-tool, #jhw .album-cate-ul .album-tool:hover, #jhw .hover-tool-warp .hover-tool:hover{transition: opacity 0.5s; -moz-transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -o-transition: opacity 0.5s; }
+#jhw .album-cate-ul .album-tool, #jhw .hover-tool-warp .hover-tool{position:absolute;top: 0; right: 0px; z-index: 99999;display:none;opacity: 0.5;}
+#jhw .album-cate-ul .album-tool:hover, #jhw .hover-tool-warp  .hover-tool:hover{opacity: 1; }
+#jhw .hover-tool-warp li{position:relative;}
+#jhw .album-cate-ul .hover .album-tool, #jhw .hover-tool-warp .hover .hover-tool{display:block;padding-top: 5px; padding-right: 2px;}
 #jhw .pic-container .item { float: left; width: 160px; height: 193px; border: 2px solid #EDEDED;overflow: hidden; background-color: #fff; box-shadow: 2px 2px 6px #E2E2E2; margin: 10px 20px 10px 0; cursor: pointer;}
 #jhw .pic-container .pic-item.hover{border-color:#d1d1d1;}
 #jhw .pic-container .item.item-active { border-color: #79b24f; }
@@ -334,7 +335,7 @@ label.checkbox { padding-left: 5px; }
 
 /*
 导航*/
-#jhw .grid-td-cate-route{width:200px;}
+#jhw .grid-td-cate-route{width:140px;}
 #jhw .grid-td-navigate-name{width:250px;}
 #jhw .static-ul{ margin-bottom: 20px; overflow: hidden; background: #F8F8F8; padding: 10px; }
 #jhw .static-ul li { float: left; margin-right: 10px; margin-bottom: 5px; }

@@ -68,12 +68,22 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       className: 'bui-list-item bui-list-item-select',
       events: {
         'click .district-div': 'select',
+        'click .delete': '_del',
         'mouseover .bui-list-item': 'mouseover',
-        'mouseout .bui-list-item': 'mouseout'
+        'mouseout .bui-list-item': 'mouseout',
+        'click .edit': 'editName'
       },
       initialize: function () {
         this._initialize({
           template: tagPickerItem
+        });
+      },
+      editName: function(e){
+        e.stopImmediatePropagation();
+        this._editField({
+          target: '.edit',
+          title: '修改属性名称',
+          field: 'name'
         });
       },
       select: function () {
@@ -99,6 +109,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           model: model,
           clearDialog: false,
           beforeLoad: function () {
+            this._clear();
             this.collection.setTagType(options.tagType || 'product');
           }
         });
