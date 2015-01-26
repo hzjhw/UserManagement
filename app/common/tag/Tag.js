@@ -156,9 +156,6 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           ],
           clearDialog: false
         });
-      },
-      render: function () {
-        this._render();
       }
     });
 
@@ -173,7 +170,6 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         this.options = options || {};
         model.itemId = options.itemId || null;
         options._isAdd = options._isAdd || false;
-        // 初始化容器
         this._initialize({
           collection: collection,
           template: tagView,
@@ -205,15 +201,25 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         this.$('.tag-combox-input').focus();
         this.showPicker(e);
       },
-      setOption: function (options) {
-
-      },
+      // 添加标签
       add: function (e) {
         if (e.keyCode === CONST.ENTER_KEY) {
-          this.insert(this.$input.val());
-
+          var name = this.$input.val();
+          var tagId = this.check(name);
+          this.insert(name, tagId);
         }
         return false;
+      },
+      // 判断添加的标签是否存在于列表中
+      check: function (name) {
+        var result = null;
+        var index = Est.findIndex(this.tagList.collection.models, function (model) {
+          return model.get('name') === name;
+        });
+        if (index !== -1) {
+          result = this.tagList.collection.models[index].get('tagId');
+        }
+        return result;
       },
       addHid: function () {
         this.insert(this.$inputHid.val(), this.$inputHid.attr('tagid'));
@@ -267,9 +273,6 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         $(document).one('click', function () {
           ctx.hidePicker();
         });
-      },
-      render: function () {
-        this._render();
       }
     });
 
