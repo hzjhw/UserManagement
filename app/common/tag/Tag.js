@@ -133,7 +133,8 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       },
       // 添加推荐标签
       add: function () {
-        this._options.reference.insert(this.model.get('name'));
+        this._options.reference.insert(this.model.get('name'),
+          this._options.reference.check(this.model.get('name')));
       },
       render: function () {
         this._render();
@@ -183,7 +184,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
               this.collection.setTagType(options.tagType || 'product');
             }
           },
-          afterLoad: function () {
+          afterRender: function () {
             this.recTag = new RecTag({
               el: '.rec-tag-span',
               reference: this
@@ -213,6 +214,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       // 判断添加的标签是否存在于列表中
       check: function (name) {
         var result = null;
+        if (!this.tagList) this.initTagList();
         var index = Est.findIndex(this.tagList.collection.models, function (model) {
           return model.get('name') === name;
         });
@@ -258,13 +260,16 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       hidePicker: function () {
         $("#tag-list-picker").hide();
       },
+      initTagList: function () {
+        var opts = Est.cloneDeep(this.options);
+        opts.el = null;
+        this.tagList = new TagList(opts);
+      },
       showPicker: function (e) {
         var ctx = this;
         e.stopImmediatePropagation();
         if (!this.tagList) {
-          var opts = Est.cloneDeep(this.options);
-          opts.el = null;
-          this.tagList = new TagList(opts);
+          this.initTagList();
         }
         this.$picker.css({
           left: this.$input.position().left,
