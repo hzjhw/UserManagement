@@ -8,7 +8,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
     'template/tag_view', 'template/tag_view_item', 'template/tag_picker_item'],
   function (require, exports, module) {
     var Tag, TagList, TagItem, BaseModel, BaseCollection, BaseItem, BaseList,
-      model, collection, item, tagView, tagViewItem, tagPickerItem;
+      model, collection, item, tagView, tagViewItem, tagPickerItem, RecTag, recItem;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
@@ -78,7 +78,7 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           template: tagPickerItem
         });
       },
-      editName: function(e){
+      editName: function (e) {
         e.stopImmediatePropagation();
         this._editField({
           target: '.edit',
@@ -120,6 +120,48 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       }
     });
 
+    recItem = BaseItem.extend({
+      events: {
+        'click .rec-tag-a': 'add'
+      },
+      tagName: 'span',
+      className: 'rec-tag-name',
+      initialize: function () {
+        this._initialize({
+          template: '<a href="javascript:;" class="rec-tag-a">{{name}}&nbsp;&nbsp;&nbsp;</a>'
+        });
+      },
+      // 添加推荐标签
+      add: function () {
+        this._options.reference.insert(this.model.get('name'));
+      },
+      render: function () {
+        this._render();
+      }
+    });
+    // 推荐标签
+    RecTag = BaseList.extend({
+      initialize: function () {
+        this._initialize({
+          model: model,
+          collection: collection,
+          item: recItem,
+          items: [
+            {name: '最新'},
+            {name: '热卖'},
+            {name: '推荐'},
+            {name: '置顶'},
+            {name: '促销'},
+            {name: '打折'}
+          ],
+          clearDialog: false
+        });
+      },
+      render: function () {
+        this._render();
+      }
+    });
+
     Tag = BaseList.extend({
       events: {
         'keyup .tag-combox-input': 'add',
@@ -144,6 +186,12 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
               this.collection.setItemId(options.itemId || null);
               this.collection.setTagType(options.tagType || 'product');
             }
+          },
+          afterLoad: function () {
+            this.recTag = new RecTag({
+              el: '.rec-tag-span',
+              reference: this
+            });
           }
         });
         // 输入框
@@ -219,8 +267,12 @@ define('Tag', ['jquery', 'BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         $(document).one('click', function () {
           ctx.hidePicker();
         });
+      },
+      render: function () {
+        this._render();
       }
     });
 
     module.exports = Tag;
-  });
+  })
+;
