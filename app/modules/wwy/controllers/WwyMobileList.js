@@ -1,14 +1,13 @@
 /**
- * @descr
- * iption MessageList
- * @namespace MessageList
+ * @description 微网页手机列表
+ * @namespace WwyMobileList
  * @author wxw on 2014/12/12
  */
 define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/wwy_mobile_list', 'template/wwy_mobile_item', 'BaseUtils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyMobileItem,
-      WwyMobileCollection, listTemp, itemTemp, BaseUtils, wyId;
+      WwyMobileCollection, listTemp, itemTemp, BaseUtils;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -46,11 +45,9 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
       events: {
         'click .toggle': '_toggleChecked'
       },
-      // 初始化
       initialize: function () {
         this._initialize({ template: itemTemp, model: WwyModel});
       },
-      // 渲染文档
       render: function () {
         this._render();
       }

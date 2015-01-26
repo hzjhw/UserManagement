@@ -126,16 +126,11 @@
         <label class="control-label">显示图片：</label>
 
         <div class="controls">
-            <label><input id="model3-wwytype" type="radio" name="wwytype" value="09" {{#compare
-                wwytype '===' '09'}}checked{{/compare}}>关闭</label>
-            <label><input id="model-wwytype" type="radio" name="wwytype" value="00" {{#compare
-                wwytype '===' '00'}}checked{{/compare}}>普通模式</label>
-            <label><input id="model2-wwytype" type="radio" name="wwytype" value="01" {{#compare
-                wwytype '===' '01'}}checked{{/compare}}>翻屏模式</label>
+            {{{radio name='wwytype' value=wwytype option='{"关闭": "09", "普通模式": "00", "翻屏模式": "01"}' }}}
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">显示图片：</label>
+        <label class="control-label">图片：</label>
 
         <div class="controls control-row-auto">
             <div id="wwy-picture-pick"></div>

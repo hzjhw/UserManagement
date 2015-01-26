@@ -1,5 +1,5 @@
 /**
- * @description WwyLtyList
+ * @description 微网页抽奖列表
  * @namespace WwyLtyList
  * @author yongjin<zjut_wyj@163.com> 2014/12/25
  */

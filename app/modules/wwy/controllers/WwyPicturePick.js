@@ -1,5 +1,5 @@
 /**
- * @description WwyPicturePick
+ * @description 微网页图片
  * @namespace WwyPicturePick
  * @author yongjin<zjut_wyj@163.com> 2014/12/24
  */
@@ -49,13 +49,13 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         'click .upload-local': 'picUpload',
         'click .upload-source': 'picUploadSource'
       },
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           template: itemTemp,
           modelBind: true
         });
       },
-      picUpload: function(type){
+      picUpload: function (type) {
         var ctx = this;
         type = type || 'local';
         BaseUtils.openUpload({
@@ -64,40 +64,40 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           albumId: app.getData('curAlbumId'),
           username: app.getData('user') && app.getData('user').username,
           auto: true,
-          oniframeload: function(){
-            this.iframeNode.contentWindow.uploadCallback = function(result){
+          oniframeload: function () {
+            this.iframeNode.contentWindow.uploadCallback = function (result) {
               ctx.addItems(result);
             };
           },
-          success: function(){
+          success: function () {
             var result = this.iframeNode.contentWindow.app.getView('picSource').getItems();
             ctx.addItems(result);
           }
         });
       },
-      addItems: function(result){
-        if (result.length > 0){
+      addItems: function (result) {
+        if (result.length > 0) {
           this.model.set('attId', result[0]['attId']);
           this.model.set('serverPath', result[0]['serverPath']);
           this.model.set('title', '重新上传');
           this.model.set('isAddBtn', false);
-          if (!this.model.get('hasPic')){
+          if (!this.model.get('hasPic')) {
             this.model.set('hasPic', true);
             app.getView(this._options.viewId).addOne();
           }
         }
         window['uploadDialog'].close().remove();
       },
-      picUploadSource: function(){
+      picUploadSource: function () {
         this.picUpload('source');
       },
-      render: function(){
+      render: function () {
         this._render();
       }
     });
 
     WwyPicturePick = BaseList.extend({
-      initialize: function(){
+      initialize: function () {
         this._initialize({
           collection: collection,
           model: model,
@@ -105,15 +105,14 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           template: listTemp,
           checkAppend: false,
           render: '.wwy-photo-list',
-          afterLoad: function(options){
-            if (this.collection.models.length === 0 ||
-              !this.options._isAdd){
+          afterLoad: function (collection) {
+            if (collection.models.length === 0 || !this.options._isAdd) {
               this.addOne();
             }
           }
         });
       },
-      addOne: function(){
+      addOne: function () {
         this.collection.push(new model({
           serverPath: CONST.PIC_NONE,
           attId: '',
@@ -122,17 +121,14 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
         }));
         BaseUtils.resetIframe();
       },
-      render: function(){
-        this._render();
-      },
-      append: function(node){
+      append: function (node) {
         this.collection.add(node);
         BaseUtils.resetIframe();
       },
-      getItems: function(){
+      getItems: function () {
         var result = [];
-        Est.each(this.collection.models, function(item){
-          if (!item.get('isAddBtn')){
+        Est.each(this.collection.models, function (item) {
+          if (!item.get('isAddBtn')) {
             result.push({
               path: item.get('serverPath'),
               picHref: item.get('picHref'),
@@ -148,6 +144,9 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           }
         });
         return result;
+      },
+      render: function () {
+        this._render();
       }
     });
 

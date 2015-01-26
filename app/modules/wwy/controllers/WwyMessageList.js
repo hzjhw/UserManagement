@@ -1,14 +1,13 @@
 /**
- * @descr
- * iption MessageList
- * @namespace MessageList
+ * @description 微网页留言控制
+ * @namespace WwyMessageList
  * @author wxw on 2014/12/12
  */
 define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
     'template/wwy_message_list', 'template/wwy_message_item', 'BaseUtils'],
   function (require, exports, module) {
-    var WwyMessageModel, WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMessageList, WwyItem,
-      WwyMessageCollection, listTemp, itemTemp, BaseUtils, wyId;
+    var WwyMessageModel, WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMessageList, WwyMessageItem,
+      WwyMessageCollection, listTemp, itemTemp, BaseUtils;
 
     WwyMessageModel = require('WwyMessageModel');
     WwyModel = require('WwyModel');
@@ -38,8 +37,6 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
         return this.wyId;
       }
     });
-
-
     /**
      * 单视图
      */
@@ -50,11 +47,9 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
         'click .toggle': '_toggleChecked',
         'click .delete': '_del'
       },
-      // 初始化
       initialize: function () {
         this._initialize({ template: itemTemp, model: WwyMessageModel});
       },
-      // 渲染文档
       render: function () {
         this._render();
       }
@@ -91,10 +86,8 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
             }
           })
         })
-        // this.option.args.msgctrl = '1,3,4';
-
       }
-
     });
+
     module.exports = WwyMessageList;
   });

@@ -1,7 +1,6 @@
 /**
- * @descr
- * iption MessageList
- * @namespace MessageList
+ * @description 微网页列表
+ * @namespace WwyList
  * @author wxw on 2014/12/12
  */
 define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',

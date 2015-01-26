@@ -1,5 +1,5 @@
 /**
- * @description 产品添加或修改视图
+ * @description 微网页添加或修改视图
  * @namespace WwyDetail
  * @author yongjin on 2014/10/31
  */
@@ -45,7 +45,6 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
       },
       render: function () {
         debug('4.WwyDetail.render');
-        var ctx = this;
         var wwy_pic_list = [];
         var pathObj = {
           hidShare: false,
