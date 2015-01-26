@@ -97,7 +97,8 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           title: '标签修改',
           itemId: this.model.get('id'),
           _isAdd: false,
-          height: 250
+          height: 250,
+          hideSaveBtn: true
         });
       },
       // seo修改
