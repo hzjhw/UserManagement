@@ -74,19 +74,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this._dialog({
           moduleId: 'SeoDetail',
           title: 'Seo修改',
-          id: this.model.get('id'),
-          width: 600,
-          height: 250,
-          cover: true,
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                $("#SeoDetail" + " #submit").click();
-                return false;
-              }}
-          ]
+          id: this.model.get('id')
         });
       },
       // 修改排序

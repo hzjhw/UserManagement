@@ -55,15 +55,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
           moduleId: 'AttributesDetail',
           title: '属性修改',
           id: this.model.get('attId'),
-          cover: true,
           width: 650,
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在提交..');
-              $("#AttributesDetail" + " #submit").click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
             ctx.model.set(app.getModels().pop());
           }
@@ -127,7 +119,6 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
         this._dialog({
           moduleId: 'AttributesShow',
           title: '属性浏览',
-          cover: true,
           skin: 'form-horizontal',
           categoryId: app.getData('attrCategoryId'),
           width: 800
@@ -139,16 +130,8 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
         this._dialog({
           moduleId: 'AttributesDetail',
           title: '属性添加',
-          cover: true,
           categoryId: app.getData('attrCategoryId'),
           width: 650,
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在提交..');
-              $("#AttributesDetail" + " #submit").click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
             ctx._reload();
           }

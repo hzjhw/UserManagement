@@ -8,6 +8,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "BaseItem - 集合中的单个视图",
         "BaseList - 列表视图",
         "BaseModel - 模型类",
+        "BaseService",
         "BaseView - 普通视图",
         "Est - 工具类库",
         "HandlebarsHelper - 标签库",

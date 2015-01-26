@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BaseModel - 模型类</title>
+    <title>BaseService</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -104,7 +104,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BaseModel - 模型类 Class</h1>
+                        <h1>BaseService Class</h1>
 <div class="box meta">
     
 
@@ -112,7 +112,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:1</code></a>
+            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:1</code></a>
         </div>
     
 
@@ -124,15 +124,7 @@
 
 
 <div class="box intro">
-    <p>模型类</p>
-<ul>
-<li>initialize 实现父类_initialize</li>
-<li>defaults (可选) 默认值  如 Est.extend({}, BaseModel.prototype.defaults);</li>
-<li>baseId (可选) ID标识符 如 productId</li>
-<li>baseUrl (可选) 服务器交互地址</li>
-<li>params (可选) 附加参数 如  mobile=true&amp;type=01</li>
-<li>validate (可选) 当需要实现单个字段保存时， 需要调用父类_validation, 参照ProductModel</li>
-</ul>
+    <p>BaseService</p>
 
 </div>
 
@@ -161,49 +153,28 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_[override] - _initialize">[override] - _initialize</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[private] - _getChildren">[private] - _getChildren</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[private] - parse">[private] - parse</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_[private] - url">[private] - url</a>
+                                <a href="#method_ajax">ajax</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[public] - _saveField">[public] - _saveField</a>
+                                <a href="#method_factory">factory</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[public] - _toggle">[public] - _toggle</a>
+                                <a href="#method_initSelect">initSelect</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[public] - _validate">[public] - _validate</a>
+                                <a href="#method_initTree">initTree</a>
 
                                 
                                 
@@ -225,155 +196,12 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_[override] - _initialize" class="method item">
-    <h3 class="name"><code>[override] - _initialize</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l44"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:44</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>模型类初始化</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> this._initialize();</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[private] - _getChildren" class="method item private">
-    <h3 class="name"><code>[private] - _getChildren</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l172"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:172</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>获取子模型</p>
-
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"></span>:
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_[private] - parse" class="method item private">
-    <h3 class="name"><code>[private] - parse</code></h3>
+                    <div id="method_ajax" class="method item">
+    <h3 class="name"><code>ajax</code></h3>
 
     
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>response</code>
-                    
-                </li>
             
                 <li class="arg">
                     
@@ -394,8 +222,6 @@
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
@@ -416,7 +242,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l56"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:56</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l13"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:13</code></a>
         
         </p>
 
@@ -427,7 +253,7 @@
     </div>
 
     <div class="description">
-        <p>过滤结果, 并提示信息对话框, 若不想提示信息可以设置hideTip为true</p>
+        <p>基础ajax</p>
 
     </div>
 
@@ -436,21 +262,6 @@
             <h4>Parameters:</h4>
 
             <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">response</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
             
                 <li class="param">
                     
@@ -489,97 +300,12 @@
 </div>
 
                 
-                    <div id="method_[private] - url" class="method item private">
-    <h3 class="name"><code>[private] - url</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l25"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:25</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化请求连接, 判断是否为新对象， 否自动加上ID</p>
-
-    </div>
-
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"></span>:
-                    
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_[public] - _saveField" class="method item">
-    <h3 class="name"><code>[public] - _saveField</code></h3>
+                    <div id="method_factory" class="method item">
+    <h3 class="name"><code>factory</code></h3>
 
     
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>keyValue</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ctx</code>
-                    
-                </li>
             
                 <li class="arg">
                     
@@ -592,6 +318,10 @@
     
 
     
+        <span class="returns-inline">
+            <span class="type">Est.promise</span>
+        </span>
+    
 
     
 
@@ -616,7 +346,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l131"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:131</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l60"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:60</code></a>
         
         </p>
 
@@ -627,7 +357,7 @@
     </div>
 
     <div class="description">
-        <p>保存模型类</p>
+        <p>基础工厂类</p>
 
     </div>
 
@@ -639,36 +369,6 @@
             
                 <li class="param">
                     
-                        <code class="param-name">keyValue</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ctx</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
                         <code class="param-name">options</code>
                         <span class="type">Object</span>
                     
@@ -676,8 +376,7 @@
                     
 
                     <div class="param-description">
-                        <p>[success: 成功回调][async: 是否异步]</p>
-
+                         
                     </div>
 
                     
@@ -688,93 +387,25 @@
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
 
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   this.model._saveField({
-     id: thisNode.get(&#39;id&#39;),
-     sort: thisNode.get(&#39;sort&#39;)
-   }, ctx, { // ctx须初始化initModel
-     success: function(){}, // 保存成功回调
-     async: false, // 是否同步
-     hideTip: false // 是否隐藏提示
-   });</code></pre>
-
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Est.promise</span>:
+                    
+                
             </div>
         </div>
+    
+
     
 </div>
 
                 
-                    <div id="method_[public] - _toggle" class="method item">
-    <h3 class="name"><code>[public] - _toggle</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l189"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:189</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>设置checkbox选择框状态</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> this.model._toggle();</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[public] - _validate" class="method item">
-    <h3 class="name"><code>[public] - _validate</code></h3>
+                    <div id="method_initSelect" class="method item">
+    <h3 class="name"><code>initSelect</code></h3>
 
     
         <div class="args">
@@ -782,13 +413,13 @@
             
                 <li class="arg">
                     
-                        <code>attributes</code>
+                        <code>options</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>callback</code>
+                        <code>result</code>
                     
                 </li>
             
@@ -821,7 +452,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseModel.js.html#l200"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseModel.js:200</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l43"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:43</code></a>
         
         </p>
 
@@ -832,7 +463,7 @@
     </div>
 
     <div class="description">
-        <p>预处理验证， 若模型类里有silent=true字段，则取消验证</p>
+        <p>初始化选择框</p>
 
     </div>
 
@@ -844,7 +475,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">attributes</code>
+                        <code class="param-name">options</code>
                         <span class="type">Object</span>
                     
 
@@ -859,7 +490,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">callback</code>
+                        <code class="param-name">result</code>
                         <span class="type">Object</span>
                     
 
@@ -879,20 +510,114 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
+</div>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   validate: function (attrs) {
-     return this._validation(attrs, function (attrs) {
-       if (!attrs.sort || attrs.sort &lt; 0) {
-       this.validateMsg = &quot;sort不能为空&quot;;
-     }
-    });
-   }</code></pre>
+                
+                    <div id="method_initTree" class="method item">
+    <h3 class="name"><code>initTree</code></h3>
 
-            </div>
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>result</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
         </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l31"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:31</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化树</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">result</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
     
 </div>
 

@@ -82,19 +82,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this._dialog({
           moduleId: 'SeoDetail',
           title: 'Seo优化',
-          width: 600,
           height: 250,
-          cover: true,
-          id: this.model.get('categoryId'),
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                $("#SeoDetail" + " #submit").click();
-                return false;
-              }, autofocus: true}
-          ]
+          id: this.model.get('categoryId')
         });
       },
       // 编辑图片
@@ -148,16 +137,11 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           moduleId: 'ProductCategoryDetail',
           title: '修改分类',
           id: this.model.get('id'),
-          width: 600,
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在保存');
-              $("#ProductCategoryDetail" + " #submit").click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
-            ctx.model.set('name', app.getModels().pop()['name']);
+            var model = app.getModels().pop();
+            if (model) {
+              ctx.model.set('name', model['name']);
+            }
           }
         });
       },
@@ -241,16 +225,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this._dialog({
           moduleId: 'ProductCategoryDetail',
           title: '产品分类添加',
-          width: 600,
           height: 250,
-          cover: true,
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在提交..');
-              $("#ProductCategoryDetail" + " #submit").click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
             app.getView('productCategoryPage')._load();
           }

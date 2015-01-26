@@ -45,16 +45,6 @@ app.addRoute('album', function () {
             title: '相册分类添加',
             width: 700,
             height: 200,
-            cover: true,
-            button: [
-              {
-                value: '保存',
-                callback: function () {
-                  this.title('正在提交..');
-                  $("#AlbumDetail" + " #submit").click();
-                  return false;
-                }, autofocus: true}
-            ],
             onClose: function () {
               app.getView('albumList')._load();
             }

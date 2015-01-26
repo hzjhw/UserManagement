@@ -5,7 +5,7 @@
  */
 define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'BaseService', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
   function (require, exports, module) {
-    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem,BaseService, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, BaseService, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseCollection = require('BaseCollection');
@@ -50,19 +50,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         this._dialog({
           moduleId: 'SeoDetail',
           title: 'Seo优化',
-          width: 600,
-          height: 250,
-          cover: true,
-          id: this.model.get('categoryId'),
-          button: [
-            {
-              value: '保存',
-              callback: function () {
-                this.title('正在提交..');
-                $("#SeoDetail" + " #submit").click();
-                return false;
-              }, autofocus: true}
-          ]
+          id: this.model.get('categoryId')
         });
       },
       render: function () {
@@ -75,18 +63,12 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         this._dialog({
           moduleId: 'NewsCategoryDetail',
           title: '新闻分类修改',
-          width: 600,
-          cover: true,
           id: this.model.get('id'),
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在保存...');
-              $('#NewsCategoryDetail #submit').click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
-            ctx.model.set('name', app.getModels().pop()['name']);
+            var model = app.getModels().pop();
+            if (model) {
+              ctx.model.set('name', model['name']);
+            }
           }
         });
       },
@@ -169,15 +151,6 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         this._dialog({
           moduleId: 'NewsCategoryDetail',
           title: '新闻分类添加',
-          width: 600,
-          cover: true,
-          button: [
-            {value: '保存', callback: function () {
-              this.title('正在保存...');
-              $('#NewsCategoryDetail #submit').click();
-              return false;
-            }, autofocus: true}
-          ],
           onClose: function () {
             ctx._reload();
           }
