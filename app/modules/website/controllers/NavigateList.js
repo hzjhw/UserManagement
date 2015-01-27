@@ -169,6 +169,8 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       },
       // 静态化
       staticPage: function () {
+        var ctx = this;
+        ctx.isStatic = false;
         BaseService.getStaticPage()
           .then(function (result) {
             var pages = [];
@@ -201,17 +203,21 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
               $('#static-container .static-ul li .button').click(function () {
                 var $button = $(this);
                 if ($button.hasClass('publishing'))return;
-                $button.addClass('publishing');
-                $button.html('静态化中...');
-                setTimeout(function () {
-                  $.ajax({
-                    type: 'post',
-                    url: $button.attr('data-url'),
-                    success: function (result) {
-                      $button.html('完成');
-                    }
-                  });
-                }, 500);
+                if (!ctx.isStatic) {
+                  ctx.isStatic = true;
+                  $button.addClass('publishing');
+                  $button.html('静态化中...');
+                  setTimeout(function () {
+                    $.ajax({
+                      type: 'post',
+                      url: $button.attr('data-url'),
+                      success: function (result) {
+                        ctx.isStatic = false;
+                        $button.html('完成');
+                      }
+                    });
+                  }, 500);
+                }
               });
             }, 500);
           });
