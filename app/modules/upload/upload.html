@@ -677,9 +677,9 @@ if (auto){
     }, 100);
 }
 var bulidNav = function (id) {
-    seajs.use(['BaseService'], function (BaseService) {
+    seajs.use(['Service'], function (Service) {
         if (!app.getData('albumList')) {
-            app.addData('albumList', BaseService.getAlbumList());
+            app.addData('albumList', Service.getAlbumList());
         }
         if (id) albumId = id;
         var breadcrumb = [];

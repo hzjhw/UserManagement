@@ -4,9 +4,9 @@
  * @author yongjin on 2014/11/16
  */
 
-define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/member_attributes_show_item'],
+define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'Utils', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseModel', 'template/member_attributes_show_item'],
   function (require, exports, module) {
-    var MemberAttributesShow, model, item, collection, HandlebarsHelper, BaseUtils, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
+    var MemberAttributesShow, model, item, collection, HandlebarsHelper, Utils, BaseCollection, BaseItem, BaseList, BaseModel, itemTemp;
 
     HandlebarsHelper = require('HandlebarsHelper');
     BaseCollection = require('BaseCollection');
@@ -14,7 +14,7 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
     BaseList = require('BaseList');
     BaseModel = require('BaseModel');
     itemTemp = require('template/member_attributes_show_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     model = BaseModel.extend({
       defaults: Est.extend({ key: '选项', value: '' }, BaseModel.prototype.defaults),
@@ -125,11 +125,11 @@ define('MemberAttributesShow', ['jquery', 'HandlebarsHelper', 'BaseUtils', 'Base
         });
       },
       after: function () {
-        BaseUtils.initDate({
+        Utils.initDate({
           render: '.calendar',
           showTime: false
         });
-        BaseUtils.resetIframe();
+        Utils.resetIframe();
       },
       getItems: function () {
         // 转换成[{key: '', value: ''}, ... ] 数组格式

@@ -3,12 +3,12 @@
  * @namespace ProductCategoryList
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'BaseUtils',
+define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_transfer', 'Utils',
     'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_product_list', 'template/category_product_item',
-    'BaseService', 'BaseCollection'],
+    'Service', 'BaseCollection'],
   function (require, exports, module) {
-    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, BaseUtils, CategoryModel,
-      BaseItem, BaseList, BaseService, HandlebarsHelper, BaseCollection, listTemp, itemTemp;
+    var ProductCategoryList, transferTemp, ProductCategoryCollection, ProductCategoryItem, Utils, CategoryModel,
+      BaseItem, BaseList, Service, HandlebarsHelper, BaseCollection, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseCollection = require('BaseCollection');
@@ -17,9 +17,9 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/category_product_list');
     itemTemp = require('template/category_product_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     transferTemp = require('template/product_transfer');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
     ProductCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/product',
@@ -63,7 +63,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this.editImage = this.$('.edit-image');
         if (!Est.isEmpty(this.model.get('image'))) {
           this.imageTemp = HandlebarsHelper.compile("<img src='{{CONST 'PIC_URL'}}/{{picUrl image 5}}'></img>");
-          BaseUtils.tooltip(this.imageTemp(this.model.attributes), {
+          Utils.tooltip(this.imageTemp(this.model.attributes), {
             id: 'imageView',
             align: 'left',
             time: 100000,
@@ -89,7 +89,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       // 编辑图片
       editImage: function () {
         var ctx = this;
-        BaseUtils.openUpload({
+        Utils.openUpload({
           id: 'uploadDialog',
           type: 'sourceUpload',
           albumId: app.getData('curAlbumId'),
@@ -236,10 +236,10 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         var ctx = this;
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('至少选择一项');
+          Utils.tip('至少选择一项');
           return;
         }
-        BaseUtils.comfirm({
+        Utils.comfirm({
           success: function () {
             $.ajax({
               type: 'POST',
@@ -249,7 +249,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
                 ids: ctx.checkboxIds.join(',')
               },
               success: function (result) {
-                BaseUtils.tip('删除成功');
+                Utils.tip('删除成功');
                 ctx._load();
               }
             });
@@ -271,7 +271,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('productCategory')) {
-          BaseService.getProductCategory({
+          Service.getProductCategory({
             tree: true,
             extend: true,
             select: true
@@ -282,10 +282,10 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('至少选择一项');
+          Utils.tip('至少选择一项');
           return;
         }
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'transfer-dialog',
           title: '批量转移分类',
           width: 300,
@@ -304,7 +304,7 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
                 category: ctx.transferCategory
               },
               success: function (result) {
-                BaseUtils.tip('批量隐藏成功');
+                Utils.tip('批量隐藏成功');
                 ctx._load();
               }
             });

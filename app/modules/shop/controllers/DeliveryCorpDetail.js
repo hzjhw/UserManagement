@@ -3,13 +3,13 @@
  * @namespace DeliveryCorpDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('DeliveryCorpDetail', ['DeliveryCorpModel', 'BaseView', 'BaseDetail', 'BaseUtils', 'template/delivery_corp_detail'],
+define('DeliveryCorpDetail', ['DeliveryCorpModel', 'BaseView', 'BaseDetail', 'Utils', 'template/delivery_corp_detail'],
   function (require, exports, module) {
-    var DeliveryCorpDetail, DeliveryCorpModel, BaseDetail, BaseUtils, BaseView, template;
+    var DeliveryCorpDetail, DeliveryCorpModel, BaseDetail, Utils, BaseView, template;
 
     DeliveryCorpModel = require('DeliveryCorpModel');
     BaseDetail = require('BaseDetail');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     template = require('template/delivery_corp_detail');
     BaseView = require('BaseView');
 
@@ -28,7 +28,7 @@ define('DeliveryCorpDetail', ['DeliveryCorpModel', 'BaseView', 'BaseDetail', 'Ba
         debug('4.DeliveryCorpDetail.render');
         this._render();
         this._form('#J_Form')._validate()._init({ });
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
         return this;

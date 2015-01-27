@@ -4,10 +4,10 @@
  * @author wxw on 14-12-16
  */
 define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'BaseDetail',
-    'dialog', 'template/member_list_detail', 'BaseUtils', 'BaseCollection', 'MemberAttributesShow', 'BaseService'],
+    'dialog', 'template/member_list_detail', 'Utils', 'BaseCollection', 'MemberAttributesShow', 'Service'],
   function (require, exports, module) {
-    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, MemberAttributesShow, dialog, Tag, BaseUtils
-      , BaseCollection, BaseService;
+    var MemberListDetail, MemberListModel, HandlebarsHelper, BaseDetail, template, MemberAttributesShow, dialog, Tag, Utils
+      , BaseCollection, Service;
 
     MemberListModel = require('MemberListModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -16,9 +16,9 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
     dialog = require('dialog');
     MemberAttributesShow = require('MemberAttributesShow');
     Tag = require('Tag');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     BaseCollection = require('BaseCollection');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
 
     MemberListDetail = BaseDetail.extend({
@@ -44,7 +44,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           .join(","));
         this._render();
 
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -64,9 +64,9 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           }
         });
         // 会员分类
-        BaseService.getMemberRankCategory({ select: true, extend: true }
+        Service.getMemberRankCategory({ select: true, extend: true }
         ).then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-memberRank',
               items: list
@@ -78,7 +78,7 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           ctx.showAttributes();
         }
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       },

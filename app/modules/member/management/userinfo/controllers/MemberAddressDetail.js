@@ -3,14 +3,14 @@
  * @class MemberAddressDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/11
  */
-define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', 'BaseUtils', 'MemberAddressModel'],
+define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', 'Utils', 'MemberAddressModel'],
   function (require, exports, module) {
-    var MemberAddressDetail, BaseDetail, template, MemberAddressModel, BaseUtils;
+    var MemberAddressDetail, BaseDetail, template, MemberAddressModel, Utils;
 
     BaseDetail = require('BaseDetail');
     template = require('template/member_address_detail');
     MemberAddressModel = require('MemberAddressModel');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     MemberAddressDetail = BaseDetail.extend({
       events: {
@@ -23,7 +23,7 @@ define('MemberAddressDetail', ['BaseDetail', 'template/member_address_detail', '
         });
       },
       initDistrict: function () {
-        BaseUtils.initDistrict({
+        Utils.initDistrict({
           id: 'district1',// 必填
           render: '#city', // 目标选择符
           path: this.model.get('areaPath'),

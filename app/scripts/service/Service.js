@@ -1,19 +1,19 @@
 /**
- * @description BaseService
- * @class BaseService
+ * @description Service
+ * @class Service
  * @author yongjin<zjut_wyj@163.com> 2014/12/17
  */
-define('BaseService', ['jquery'], function (require, exports, module) {
-  var BaseService;
+define('Service', ['jquery'], function (require, exports, module) {
+  var Service;
 
-  BaseService = {
+  Service = {
     /**
      * 退出登录
      *
      * @method [登录注册] - logout
      * @author wyj 14.12.18
      * @example
-     *    BaseService.logout();
+     *    Service.logout();
      */
     logout: function () {
       $.ajax({
@@ -68,7 +68,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      *
      */
     productSort: function (options) {
-      seajs.use(['BaseUtils'], function (BaseUtils) {
+      seajs.use(['Utils'], function (Utils) {
         $.ajax({
           type: 'POST',
           async: false,
@@ -79,7 +79,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
             type: options.type
           },
           success: function (result) {
-            BaseUtils.tip('产品排序成功');
+            Utils.tip('产品排序成功');
             options.success &&
             options.success.call(this, result);
           }
@@ -120,7 +120,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @example
      *
      *  if (!app.getData('productCategory')) {
-          BaseUtils.getProductCategory({ tree: true, extend: true, select: true
+          Utils.getProductCategory({ tree: true, extend: true, select: true
           }).then(function (list) {
             app.addData('productCategory', list);
           })
@@ -185,7 +185,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @return {Array}
      * @author wyj 14.12.17
      * @example
-     *    BaseService.getAlbumList({
+     *    Service.getAlbumList({
           tree: true,
           extend: true,
           select: true
@@ -240,7 +240,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 14.12.17
      * @example
      *    if (!app.getData('newsCategory')) {
-          BaseService.getNewsCategory({
+          Service.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -305,7 +305,7 @@ define('BaseService', ['jquery'], function (require, exports, module) {
      * @author wyj 14.12.17
      * @example
      *    if (!app.getData('memberRankCategory')) {
-          BaseService.getMemberRankCategory({
+          Service.getMemberRankCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -600,6 +600,6 @@ define('BaseService', ['jquery'], function (require, exports, module) {
     }
   };
 
-  module.exports = BaseService;
+  module.exports = Service;
 })
 ;

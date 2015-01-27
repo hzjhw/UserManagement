@@ -3,15 +3,15 @@
  * @class MobileNavDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/17
  */
-define('MobileNavDetail', ['BaseDetail', 'MobileNavModel', 'BaseService', 'BaseUtils', 'template/mobile_nav_detail'],
+define('MobileNavDetail', ['BaseDetail', 'MobileNavModel', 'Service', 'Utils', 'template/mobile_nav_detail'],
   function (require, exports, module) {
-    var MobileNavDetail, BaseDetail, template, MobileNavModel, BaseService, BaseUtils;
+    var MobileNavDetail, BaseDetail, template, MobileNavModel, Service, Utils;
 
     BaseDetail = require('BaseDetail');
     template = require('template/mobile_nav_detail');
     MobileNavModel = require('MobileNavModel');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     MobileNavDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -27,9 +27,9 @@ define('MobileNavDetail', ['BaseDetail', 'MobileNavModel', 'BaseService', 'BaseU
       render: function () {
         this._render();
         // 导航
-        BaseService.getMobileNavCategory({ tree: true, select: true, extend: true })
+        Service.getMobileNavCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-parentId',
               items: list

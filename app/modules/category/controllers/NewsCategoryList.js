@@ -3,9 +3,9 @@
  * @namespace NewsCategoryList
  * @author wxw on 2014/12/12
  */
-define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'BaseService', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
+define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer', 'Service', 'Utils', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper', 'template/category_news_list', 'template/category_news_item'],
   function (require, exports, module) {
-    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, BaseService, BaseUtils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
+    var NewsCategoryList, transferTemp, NewsCategoryCollection, NewsCategoryItem, Service, Utils, CategoryModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, listTemp, itemTemp;
 
     CategoryModel = require('CategoryModel');
     BaseCollection = require('BaseCollection');
@@ -14,9 +14,9 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/category_news_list');
     itemTemp = require('template/category_news_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     transferTemp = require('template/news_transfer');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
     NewsCategoryCollection = BaseCollection.extend({
       url: CONST.API + '/category/news',
@@ -161,11 +161,11 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         var ctx = this;
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('至少选择一项');
+          Utils.tip('至少选择一项');
           return;
         }
         if (this.checkboxIds.length > 0) {
-          BaseUtils.comfirm({
+          Utils.comfirm({
             success: function () {
               $.ajax({
                 type: 'POST',
@@ -175,7 +175,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
                   ids: ctx.checkboxIds.join(',')
                 },
                 success: function (result) {
-                  BaseUtils.tip('删除成功');
+                  Utils.tip('删除成功');
                   ctx._load();
                 }
               });
@@ -187,7 +187,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('newsCategory')) {
-          BaseService.getNewsCategory({
+          Service.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -197,10 +197,10 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('至少选择一项');
+          Utils.tip('至少选择一项');
           return;
         }
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'transfer-dialog',
           title: '批量转移分类',
           width: 300,
@@ -219,7 +219,7 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
                 category: ctx.transferCategory
               },
               success: function (result) {
-                BaseUtils.tip('批量隐藏成功');
+                Utils.tip('批量隐藏成功');
                 ctx._load();
               }
             });

@@ -3,15 +3,15 @@
  * @namespace AlbumDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/15
  */
-define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'BaseUtils', 'BaseService'],
+define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Utils', 'Service'],
   function (require, exports, module) {
-    var AlbumDetail, BaseDetail, AlbumModel, detailTemp, BaseUtils, BaseService;
+    var AlbumDetail, BaseDetail, AlbumModel, detailTemp, Utils, Service;
 
     BaseDetail = require('BaseDetail');
     AlbumModel = require('AlbumModel');
     detailTemp = require('template/album_detail');
-    BaseUtils = require('BaseUtils');
-    BaseService = require('BaseService');
+    Utils = require('Utils');
+    Service = require('Service');
 
     AlbumDetail = BaseDetail.extend({
       events: {
@@ -29,12 +29,12 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         if (window.parentId) {
           this.$('#model-parentId').val(window.parentId);
         }
-        var items = BaseService.getAlbumList({
+        var items = Service.getAlbumList({
           tree: true,
           extend: true,
           select: true
         });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-parentId',
           items: items
@@ -42,7 +42,7 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Bas
         this._form('#J_Form')._validate()._init({
         });
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       }

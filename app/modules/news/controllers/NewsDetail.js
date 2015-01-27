@@ -4,9 +4,9 @@
  * @author jihui-wxw on 2014/12/10
  */
 define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', 'dialog',
-    'template/news_detail', 'BaseService', 'BaseUtils','PicturePick'],
+    'template/news_detail', 'Service', 'Utils','PicturePick'],
   function (require, exports, module) {
-    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, dialog, BaseService, BaseUtils,PicturePick;
+    var NewsDetail, NewsModel, HandlebarsHelper, BaseDetail, template, dialog, Service, Utils,PicturePick;
 
     NewsModel = require('NewsModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,8 +14,8 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
     template = require('template/news_detail');
     dialog = require('dialog');
     PicturePick = require('PicturePick');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     NewsDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -61,7 +61,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             ]
           });
           tab.on('selectedchange', function (ev) {
-            BaseUtils.resetIframe();
+            Utils.resetIframe();
           });
         });
         // 图片新闻
@@ -86,9 +86,9 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           max: 1
         }));
         // 新闻分类
-        BaseService.getNewsCategory({ select: true, extend: true })
+        Service.getNewsCategory({ select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-category',
               items: list,
@@ -96,20 +96,20 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               }
             });
             // 属性
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#attCate',
               target: '#attCateHid',
               items: list,
               change: function (categoryId) {
                 setTimeout(function () {
-                  BaseUtils.resetIframe();
+                  Utils.resetIframe();
                 }, 500);
               }
             });
           });
 
         // 新闻时间属性
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s3',
           width: 100,
           itemId:'value',
@@ -134,7 +134,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
         });
 
         // 编辑器
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
 
@@ -148,7 +148,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
           }
         });
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       }

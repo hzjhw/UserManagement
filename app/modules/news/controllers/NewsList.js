@@ -4,11 +4,11 @@
  * @author jihui-wxw on 2014/12/10
  */
 define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/news_list', 'template/news_item', 'BaseUtils', 'template/news_search', 'template/news_transfer',
-    'template/news_sort', 'bui/calendar', 'BaseService'],
+    'template/news_list', 'template/news_item', 'Utils', 'template/news_search', 'template/news_transfer',
+    'template/news_sort', 'bui/calendar', 'Service'],
   function (require, exports, module) {
     var NewsModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, NewsList, NewsItem,
-      NewsCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, BaseService;
+      NewsCollection, listTemp, itemTemp, searchTemp, Utils, transferTemp, Service;
 
     NewsModel = require('NewsModel');
     BaseCollection = require('BaseCollection');
@@ -18,9 +18,9 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
     listTemp = require('template/news_list');
     itemTemp = require('template/news_item');
     searchTemp = require('template/news_search');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     transferTemp = require('template/news_transfer');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
 
     /**
@@ -58,7 +58,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       // 初始化
       initialize: function () {
         if (!app.getData('newsCategory')) {
-          BaseService.getNewsCategory({
+          Service.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -91,7 +91,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        BaseUtils.comfirm({
+        Utils.comfirm({
           title: '提示：',
           content: '是否更改分类？',
           success: function () {
@@ -215,7 +215,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('newsCategory')) {
-          BaseService.getNewsCategory({
+          Service.getNewsCategory({
             extend: true,
             select: true
           }).then(function (list) {
@@ -223,7 +223,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           })
         }
         app.emptyDialog();
-        BaseUtils.dialog({
+        Utils.dialog({
           title: '高级搜索',
           width: 700,
           target: this.$('.search-advance').get(0),
@@ -265,10 +265,10 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('请至少选择一项！');
+          Utils.tip('请至少选择一项！');
           return;
         }
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'transfer-dialog',
           title: '批量转移分类',
           width: 300,
@@ -287,7 +287,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
                 category: ctx.transferCategory
               },
               success: function (result) {
-                BaseUtils.tip('批量隐藏成功');
+                Utils.tip('批量隐藏成功');
                 ctx._load();
               }
             });

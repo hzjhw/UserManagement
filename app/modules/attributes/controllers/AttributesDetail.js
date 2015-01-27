@@ -3,15 +3,15 @@
  * @namespace AttributesDetail
  * @author yongjin on 2014/11/13
  */
-define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd', 'BaseUtils', 'template/attributes_detail'],
+define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesAdd', 'Utils', 'template/attributes_detail'],
   function (require, exports, module) {
-    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd, BaseUtils, template;
+    var AttributesDetail, AttributesModel, HandlebarsHelper, BaseDetail, AttributesAdd, Utils, template;
 
     AttributesModel = require('AttributesModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     AttributesAdd = require('AttributesAdd');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     template = require('template/attributes_detail');
 
     AttributesDetail = BaseDetail.extend({
@@ -44,7 +44,7 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
         $("#multi-attribute").show();
       },
       attributeSelect: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
           items: app.getStatus('attributeType')
@@ -54,14 +54,14 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
           } else {
             $("#multi-attribute").hide();
           }
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         });
       },
       attributeRender: function () {
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute',
           add: function () {
-            BaseUtils.resetIframe();
+            Utils.resetIframe();
           }};
         if (attributesOptionList && attributesOptionList.length > 0) {
           options.items = attributesOptionList;

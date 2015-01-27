@@ -18,8 +18,8 @@ app.addRoute('product_import', function () {
   window.open(CONST.DOMAIN + '/user/product/selectImportType');
 });
 app.addRoute('logout', function () {
-  seajs.use(['BaseService'], function (BaseService) {
-    BaseService.logout();
+  seajs.use(['Service'], function (Service) {
+    Service.logout();
   });
 });
 app.addModule('UserModel', 'models/UserModel.js');

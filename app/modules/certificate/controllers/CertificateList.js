@@ -4,11 +4,11 @@
  * @author wxw on 14-12-15
  */
 define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/certificate_list', 'template/certificate_item', 'BaseUtils', 'template/certificate_search', 'template/certificate_transfer',
+    'template/certificate_list', 'template/certificate_item', 'Utils', 'template/certificate_search', 'template/certificate_transfer',
     'template/certificate_sort'],
   function (require, exports, module) {
     var CertificateModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, CertificateList, CertificateItem,
-      CertificateCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp;
+      CertificateCollection, listTemp, itemTemp, searchTemp, Utils, transferTemp, sortTemp;
 
     CertificateModel = require('CertificateModel');
     BaseCollection = require('BaseCollection');
@@ -18,7 +18,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
     listTemp = require('template/certificate_list');
     itemTemp = require('template/certificate_item');
     searchTemp = require('template/certificate_search');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     transferTemp = require('template/certificate_transfer');
     sortTemp = require('template/certificate_sort');
 
@@ -194,7 +194,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('请至少选择一项！');
+          Utils.tip('请至少选择一项！');
           return;
         }
         seajs.use(['dialog-plus'], function (dialog) {
@@ -220,7 +220,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
                       category: ctx.transferCategory
                     },
                     success: function (result) {
-                      BaseUtils.tip('批量隐藏成功');
+                      Utils.tip('批量隐藏成功');
                       ctx._load();
                     }
                   });
@@ -265,7 +265,7 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
                       sortType: ctx.sortType
                     },
                     success: function (result) {
-                      BaseUtils.tip('证书排序成功');
+                      Utils.tip('证书排序成功');
                       ctx._load();
                     }
                   });

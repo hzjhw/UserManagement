@@ -3,16 +3,16 @@
  * @namespace DeliveryInfoList
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */
-define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'HandlebarsHelper', 'BaseItem', 'BaseList', 'BaseUtils', 'template/delivery_info_item'],
+define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'HandlebarsHelper', 'BaseItem', 'BaseList', 'Utils', 'template/delivery_info_item'],
   function (require, exports, module) {
-    var DeliveryInfoList, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, itemTemp, BaseUtils, model, collection, item;
+    var DeliveryInfoList, BaseModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, itemTemp, Utils, model, collection, item;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     itemTemp = require('template/delivery_info_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     HandlebarsHelper = require('HandlebarsHelper');
 
     model = BaseModel.extend({
@@ -42,7 +42,7 @@ define('DeliveryInfoList', ['BaseModel', 'BaseCollection', 'HandlebarsHelper', '
       },
       // 查看物流信息
       deliveryView: function () {
-        BaseUtils.delivery({
+        Utils.delivery({
           com: this.model.get('com'),
           nu: this.model.get('deliverySn'),
           target: this.$('.delivery-view').get(0)

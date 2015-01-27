@@ -3,10 +3,10 @@
  * @namespace OrderList
  * @author yongjin<zjut_wyj@163.com> 2015/1/8
  */
-define('OrderList', ['BaseList', 'BaseView', 'backbone', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
+define('OrderList', ['BaseList', 'BaseView', 'backbone', 'Utils', 'BaseCollection', 'BaseItem', 'BaseModel', 'template/order_list',
     'template/order_item'],
   function (require, exports, module) {
-    var OrderList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, BaseUtils, BaseItem, model, item, collection,
+    var OrderList, BaseList, BaseView, itemTemp, listTemp, BaseCollection, Utils, BaseItem, model, item, collection,
       BaseModel, BaseCollection, Backbone;
 
     BaseView = require('BaseView');
@@ -17,7 +17,7 @@ define('OrderList', ['BaseList', 'BaseView', 'backbone', 'BaseUtils', 'BaseColle
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     Backbone = require('backbone');
-    BaseUtils = require('BaseUtils')
+    Utils = require('Utils')
 
     model = BaseModel.extend({
       defaults: Est.extend({}, BaseModel.prototype.defaults),
@@ -46,7 +46,7 @@ define('OrderList', ['BaseList', 'BaseView', 'backbone', 'BaseUtils', 'BaseColle
         });
       },
       delivery: function () {
-        BaseUtils.delivery({
+        Utils.delivery({
           com: this.model.get('deliveryType')['defaultDeliveryCorp']['com'],
           nu: this.model.get('shippingSet')[0]['deliverySn'],
           target: this.$('.delivery-view').get(0)

@@ -3,14 +3,14 @@
  * @namespace ProductCategoryDetail
  * @author yongjin on 2014/10/31
  */
-define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils', 'template/category_product_detail'],
+define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'Service', 'Utils', 'template/category_product_detail'],
   function (require, exports, module) {
-    var ProductCategoryDetail, CategoryModel, BaseDetail, BaseService, BaseUtils, template;
+    var ProductCategoryDetail, CategoryModel, BaseDetail, Service, Utils, template;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
     template = require('template/category_product_detail');
 
     ProductCategoryDetail = BaseDetail.extend({
@@ -28,9 +28,9 @@ define('ProductCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseS
       render: function () {
         this._render();
         // 产品分类
-        BaseService.getProductCategory({ tree: true, select: true, extend: true })
+        Service.getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-belongId',
               items: list

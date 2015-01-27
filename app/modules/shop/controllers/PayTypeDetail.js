@@ -3,14 +3,14 @@
  * @namespace PayTypeDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDetail', 'BaseUtils', 'template/pay_type_detail'],
+define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDetail', 'Utils', 'template/pay_type_detail'],
   function (require, exports, module) {
-    var PayTypeDetail, PayTypeModel, HandlebarsHelper, BaseDetail, BaseUtils, BaseView, template, AlipayView;
+    var PayTypeDetail, PayTypeModel, HandlebarsHelper, BaseDetail, Utils, BaseView, template, AlipayView;
 
     PayTypeModel = require('PayTypeModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     template = require('template/pay_type_detail');
     BaseView = require('BaseView');
 
@@ -64,7 +64,7 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
         var ctx = this;
         this._render();
         this._form('#J_Form')._validate()._init({ });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-paymentConfigType',
           items: app.getStatus('paymentConfigType'),
@@ -75,14 +75,14 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
               ctx.removeAliPay();
             }
             setTimeout(function () {
-              BaseUtils.resetIframe();
+              Utils.resetIframe();
             }, 100);
           }
         });
         if (this.model.get('paymentConfigType') === 'alipay') {
           this.showAliPay();
         }
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
         return this;

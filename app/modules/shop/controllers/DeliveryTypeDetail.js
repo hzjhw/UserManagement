@@ -3,16 +3,16 @@
  * @namespace DeliveryTypeDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'BaseUtils', 'template/delivery_type_detail', 'BaseService'],
+define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Utils', 'template/delivery_type_detail', 'Service'],
   function (require, exports, module) {
-    var DeliveryTypeDetail, DeliveryTypeModel, BaseService, BaseDetail, BaseUtils, BaseView, template;
+    var DeliveryTypeDetail, DeliveryTypeModel, Service, BaseDetail, Utils, BaseView, template;
 
     DeliveryTypeModel = require('DeliveryTypeModel');
     BaseDetail = require('BaseDetail');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     template = require('template/delivery_type_detail');
     BaseView = require('BaseView');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
     DeliveryTypeDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -32,8 +32,8 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
       render: function () {
         debug('4.DeliveryTypeDetail.render');
         this._render();
-        BaseService.getDeliveryCorpList().then(function(result){
-          BaseUtils.initSelect({
+        Service.getDeliveryCorpList().then(function(result){
+          Utils.initSelect({
             render: '#s2',
             target: '#model-defaultDeliveryCorp',
             items: result,
@@ -41,27 +41,27 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
             }
           });
         });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
           items: app.getStatus('deliveryMethod'),
           change: function(){
           }
         });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s3',
           width: 100,
           target: '#model-firstWeightUnit',
           items: app.getStatus('weightUnit')
         });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s4',
           width: 100,
           target: '#model-continueWeightUnit',
           items:app.getStatus('weightUnit')
         });
         this._form('#J_Form')._validate()._init({ });
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
         return this;

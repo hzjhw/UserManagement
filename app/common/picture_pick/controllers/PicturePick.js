@@ -3,9 +3,9 @@
  * @namespace PicturePick
  * @author yongjin<zjut_wyj@163.com> 2014/12/19
  */
-define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'template/picture_pick_list', 'template/picture_pick_item', 'BaseUtils'],
+define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'template/picture_pick_list', 'template/picture_pick_item', 'Utils'],
   function(require, exports, module){
-    var PicturePick, BaseModel, BaseCollection, BaseItem, BaseList, model, collection, item, itemTemp, listTemp, BaseUtils;
+    var PicturePick, BaseModel, BaseCollection, BaseItem, BaseList, model, collection, item, itemTemp, listTemp, Utils;
 
     BaseModel = require('BaseModel');
     BaseList = require('BaseList');
@@ -13,7 +13,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
     BaseCollection = require('BaseCollection');
     itemTemp = require('template/picture_pick_item');
     listTemp = require('template/picture_pick_list');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     model = BaseModel.extend({
       defaults: Est.extend({
@@ -51,7 +51,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
       picUpload: function(type){
         var ctx = this;
         type = type || 'local';
-        BaseUtils.openUpload({
+        Utils.openUpload({
           id: 'uploadDialog',
           type: type,
           albumId: app.getData('curAlbumId'),
@@ -113,14 +113,14 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           title: '上传图片',
           isAddBtn: true
         }));
-        BaseUtils.resetIframe();
+        Utils.resetIframe();
       },
       render: function(){
         this._render();
       },
       append: function(node){
         this.collection.add(node);
-        BaseUtils.resetIframe();
+        Utils.resetIframe();
       },
       getItems: function(){
         var result = [];

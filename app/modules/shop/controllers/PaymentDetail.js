@@ -3,15 +3,15 @@
  * @namespace PaymentDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */
-define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail', 'BaseService', 'BaseUtils'],
+define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail', 'Service', 'Utils'],
   function (require, exports, module) {
-    var PaymentDetail, BaseDetail, PaymentModel, template, BaseService, BaseUtils;
+    var PaymentDetail, BaseDetail, PaymentModel, template, Service, Utils;
 
     BaseDetail = require('BaseDetail');
     PaymentModel = require('PaymentModel');
     template = require('template/payment_detail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     PaymentDetail = BaseDetail.extend({
       initialize: function () {
@@ -32,8 +32,8 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
       },
       // 支付方式
       initPayType: function () {
-        BaseService.getPaymentTypeList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getPaymentTypeList().then(function (result) {
+          Utils.initSelect({
             render: '#s2',
             target: '#model-paymentConfig_id',
             items: result,
@@ -43,7 +43,7 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
         });
       },
       initPaymentType: function(){
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-payment_paymentType',
           items: app.getStatus('paymentType'),

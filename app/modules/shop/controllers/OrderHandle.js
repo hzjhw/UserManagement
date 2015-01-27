@@ -4,16 +4,16 @@
  * @author wxw on 15-1-4
  */
 define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_handle',
-    'BaseService', 'BaseUtils'],
+    'Service', 'Utils'],
   function (require, exports, module) {
-    var OrderHandle, OrderModel, HandlebarsHelper, BaseDetail, template, BaseService, BaseUtils;
+    var OrderHandle, OrderModel, HandlebarsHelper, BaseDetail, template, Service, Utils;
 
     OrderModel = require('OrderModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/order_handle');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     OrderHandle = BaseDetail.extend({
       el: '#jhw-detail',
@@ -31,7 +31,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       finish: function () {
         var ctx = this;
-        BaseUtils.comfirm({
+        Utils.comfirm({
           content: '订单完成后将不允许对此订单进行任何操作，确定执行？',
           success: function () {
             $.ajax({
@@ -75,7 +75,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // tab标签
       initTab: function () {
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -90,7 +90,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 支付方式
       initPayType: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
           items: app.getStatus('deliveryMethod'),
@@ -100,8 +100,8 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 配送方式
       initDeliveryType: function () {
-        BaseService.getDeliveryCorpList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getDeliveryCorpList().then(function (result) {
+          Utils.initSelect({
             render: '#s2',
             target: '#model-defaultDeliveryCorp',
             items: result,
@@ -112,7 +112,7 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 重量单位
       initProductWeightUnit: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',

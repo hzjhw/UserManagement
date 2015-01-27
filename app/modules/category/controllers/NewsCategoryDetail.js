@@ -3,14 +3,14 @@
  * @namespace NewsCategoryDetail
  * @author jihui-wxw on 2014/12/10
  */
-define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseService', 'BaseUtils', 'template/category_news_detail'],
+define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'Service', 'Utils', 'template/category_news_detail'],
   function (require, exports, module) {
-    var NewsCategoryDetail, CategoryModel, BaseDetail, BaseUtils, BaseService, template;
+    var NewsCategoryDetail, CategoryModel, BaseDetail, Utils, Service, template;
 
     CategoryModel = require('CategoryModel');
     BaseDetail = require('BaseDetail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
     template = require('template/category_news_detail');
 
     NewsCategoryDetail = BaseDetail.extend({
@@ -27,9 +27,9 @@ define('NewsCategoryDetail', ['jquery', 'CategoryModel', 'BaseDetail', 'BaseServ
       },
       render: function () {
         this._render();
-        BaseService.getNewsCategory({ tree: true, select: true, extend: true })
+        Service.getNewsCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-belongId',
               items: list

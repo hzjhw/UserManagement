@@ -3,10 +3,10 @@
  * @class MobileNavList
  * @author yongjin<zjut_wyj@163.com> 2015/1/17
  */
-define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'HandlebarsHelper', 'BaseUtils', 'BaseItem', 'MobileNavModel', 'template/mobile_nav_list',
+define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHelper', 'Utils', 'BaseItem', 'MobileNavModel', 'template/mobile_nav_list',
     'template/mobile_nav_item'],
   function (require, exports, module) {
-    var MobileNavList, BaseList, BaseCollection, BaseItem, BaseService, MobileNavModel, HandlebarsHelper, BaseUtils, itemTemp, listTemp, item, collection;
+    var MobileNavList, BaseList, BaseCollection, BaseItem, Service, MobileNavModel, HandlebarsHelper, Utils, itemTemp, listTemp, item, collection;
 
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
@@ -14,8 +14,8 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
     MobileNavModel = require('MobileNavModel');
     itemTemp = require('template/mobile_nav_item');
     listTemp = require('template/mobile_nav_list');
-    BaseUtils = require('BaseUtils');
-    BaseService = require('BaseService');
+    Utils = require('Utils');
+    Service = require('Service');
     HandlebarsHelper = require('HandlebarsHelper');
 
     collection = BaseCollection.extend({
@@ -170,7 +170,7 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
         });
       },
       staticPage: function () {
-        BaseService.getStaticPage()
+        Service.getStaticPage()
           .then(function (result) {
             var pages = [];
             result = Est.pluck(result, 'pages');
@@ -189,7 +189,7 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
             });
             debug(pages);
             this.staticTemp = HandlebarsHelper.compile(staticTemp);
-            BaseUtils.dialog({
+            Utils.dialog({
               id: 'staticPage',
               title: '页面静态化',
               width: 900,
@@ -222,10 +222,10 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
         var ctx = this;
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('请至少选择一项！');
+          Utils.tip('请至少选择一项！');
           return;
         }
-        BaseUtils.comfirm({
+        Utils.comfirm({
           success: function () {
             $.ajax({
               type: 'POST',
@@ -235,7 +235,7 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'BaseService', 'Handlebar
                 ids: ctx.checkboxIds.join(',')
               },
               success: function (result) {
-                BaseUtils.tip('删除成功');
+                Utils.tip('删除成功');
                 ctx._load();
               }
             });

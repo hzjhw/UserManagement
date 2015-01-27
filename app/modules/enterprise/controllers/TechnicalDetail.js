@@ -3,13 +3,13 @@
  * @class TechnicalDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/15
  */
-define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'template/technical_detail'], function (require, exports, module) {
-  var TechnicalDetail, TechnicalModel, BaseDetail, template, BaseUtils;
+define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'Utils', 'template/technical_detail'], function (require, exports, module) {
+  var TechnicalDetail, TechnicalModel, BaseDetail, template, Utils;
 
   BaseDetail = require('BaseDetail');
   template = require('template/technical_detail');
   TechnicalModel = require('TechnicalModel');
-  BaseUtils = require('BaseUtils');
+  Utils = require('Utils');
 
   TechnicalDetail = BaseDetail.extend({
     events: {
@@ -30,7 +30,7 @@ define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'templat
         wait: true
       }).done(function () {
         ctx._render();
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-technicView',
           items: [
@@ -38,7 +38,7 @@ define('TechnicalDetail', ['BaseDetail', 'TechnicalModel', 'BaseUtils', 'templat
             {text: '登录可见', value: '02'}
           ]
         });
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         })
         ctx._form('#J_Form')._validate()._init();

@@ -4,15 +4,15 @@
  * @author jihui-wxw on 14-11-17
  */
 
-define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail','template/register_detail', 'BaseUtils'],
+define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail','template/register_detail', 'Utils'],
   function (require, exports, module) {
-    var Register, RegisterModel, BaseUtils,HandlebarsHelper, BaseDetail,template;
+    var Register, RegisterModel, Utils,HandlebarsHelper, BaseDetail,template;
 
     RegisterModel = require('RegisterModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/register_detail');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     Register = BaseDetail.extend({
       el: '#jhw-register',
@@ -40,7 +40,7 @@ define('Register', ['jquery', 'RegisterModel', 'HandlebarsHelper', 'BaseDetail',
             this.$("#register-success").show();
             this.$("#J_Form").hide();
             this.email = this.model.get('email');
-            //BaseUtils.dialog('请验证邮箱后再登录![登录我的邮箱]');
+            //Utils.dialog('请验证邮箱后再登录![登录我的邮箱]');
             //window.location.href = '/member/modules/register/register_successful.html';
           }
         });

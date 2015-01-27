@@ -3,13 +3,13 @@
  * @namespace UserdefinedMobileDetail
  * @author yongjin on 2014/11/13
  */
-define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'UserdefinedMobileModel', 'BaseDetail', 'BaseUtils', 'template/mobile_userdefined_detail'],
+define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'UserdefinedMobileModel', 'BaseDetail', 'Utils', 'template/mobile_userdefined_detail'],
   function (require, exports, module) {
-    var UserdefinedMobileDetail, UserdefinedMobileModel, UserdefinedMobileModel, BaseDetail, BaseUtils, template;
+    var UserdefinedMobileDetail, UserdefinedMobileModel, UserdefinedMobileModel, BaseDetail, Utils, template;
 
     UserdefinedMobileModel = require('UserdefinedMobileModel');
     BaseDetail = require('BaseDetail');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     UserdefinedMobileModel = require('UserdefinedMobileModel');
     template = require('template/mobile_userdefined_detail');
 
@@ -33,7 +33,7 @@ define('UserdefinedMobileDetail', ['jquery', 'UserdefinedMobileModel', 'Userdefi
           onBeforeSave: function () {
           }
         });
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
         return this;

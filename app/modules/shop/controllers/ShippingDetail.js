@@ -3,15 +3,15 @@
  * @namespace ShippingDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/5
  */
-define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_detail', 'BaseService', 'BaseUtils'],
+define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_detail', 'Service', 'Utils'],
   function (require, exports, module) {
-    var ShippingDetail, BaseDetail, ShippingModel, template, BaseService, BaseUtils;
+    var ShippingDetail, BaseDetail, ShippingModel, template, Service, Utils;
 
     BaseDetail = require('BaseDetail');
     ShippingModel = require('ShippingModel');
     template = require('template/shipping_detail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     ShippingDetail = BaseDetail.extend({
       initialize: function () {
@@ -37,8 +37,8 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       },
       // 配送方式
       initDeliveryType: function () {
-        BaseService.getDeliverTypeList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getDeliverTypeList().then(function (result) {
+          Utils.initSelect({
             render: '#s3',
             target: '#model-typeId',
             items: result,
@@ -49,8 +49,8 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       },
       // 物流公司
       initDeliveryCorp: function () {
-        BaseService.getDeliveryCorpList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getDeliveryCorpList().then(function (result) {
+          Utils.initSelect({
             render: '#s4',
             target: '#shipping_deliveryCorp',
             items: result,
@@ -71,7 +71,7 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
         });
       },
       initDistrict: function(){
-        BaseUtils.initDistrict({
+        Utils.initDistrict({
           id: 'district1',// 必填
           render: '#district1', // 目标选择符
           path: this.model.get('shipAreaPath')

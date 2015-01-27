@@ -3,10 +3,10 @@
  * @namespace OrderList
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', 'BaseUtils', 'BaseCollection',
+define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', 'Utils', 'BaseCollection',
     'template/order_list', 'template/order_item', 'template/order_search'],
   function (require, exports, module) {
-    var BaseList, BaseItem, BaseCollection, OrderList, BaseUtils, itemTemp, HandlebarsHelper, listTemp, OrderModel,
+    var BaseList, BaseItem, BaseCollection, OrderList, Utils, itemTemp, HandlebarsHelper, listTemp, OrderModel,
       OrderCollection, OrderItem, searchTemp;
 
     BaseList = require('BaseList');
@@ -15,7 +15,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
     itemTemp = require('template/order_item');
     listTemp = require('template/order_list');
     OrderModel = require('OrderModel');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     HandlebarsHelper = require('HandlebarsHelper');
     searchTemp = require('template/order_search');
 
@@ -141,7 +141,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         app.emptyDialog();
-        BaseUtils.dialog({
+        Utils.dialog({
           title: '高级搜索',
           width: 700,
           target: this.$('.search-advance-product').get(0),

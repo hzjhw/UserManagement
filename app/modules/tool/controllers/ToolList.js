@@ -3,13 +3,13 @@
  * @class ToolList
  * @author yongjin<zjut_wyj@163.com> 2015/1/16
  */
-define('ToolList', ['BaseList', 'template/tool_list', 'template/tool_item', 'BaseUtils', 'BaseCollection', 'BaseItem', 'BaseModel'],
+define('ToolList', ['BaseList', 'template/tool_list', 'template/tool_item', 'Utils', 'BaseCollection', 'BaseItem', 'BaseModel'],
   function (require, exports, module) {
-    var ToolList, BaseList, template, BaseUtils, BaseCollection, BaseModel, BaseItem, collection, model, item, itemTemp;
+    var ToolList, BaseList, template, Utils, BaseCollection, BaseModel, BaseItem, collection, model, item, itemTemp;
 
     BaseList = require('BaseList');
     template = require('template/tool_list');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseModel = require('BaseModel');
@@ -41,7 +41,7 @@ define('ToolList', ['BaseList', 'template/tool_list', 'template/tool_item', 'Bas
       },
       openToolDialog: function (e) {
         e.stopImmediatePropagation();
-        BaseUtils.iframeDialog({
+        Utils.iframeDialog({
           id: 'tool-dialog',
           width: 980,
           height: 'auto',

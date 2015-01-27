@@ -3,10 +3,10 @@
  * @namespace WwyDetail
  * @author yongjin on 2014/10/31
  */
-define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', "BaseUtils", 'dialog',
+define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', "Utils", 'dialog',
     'template/wwy_detail', 'PicturePick', 'WwyPicturePick', 'WwyLtyList'],
   function (require, exports, module) {
-    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, WwyLtyList, dialog, BaseUtils, PicturePick, WwyPicturePick;
+    var WwyDetail, WwyModel, HandlebarsHelper, BaseDetail, template, AttributesShow, WwyLtyList, dialog, Utils, PicturePick, WwyPicturePick;
 
     WwyModel = require('WwyModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,7 +14,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
     template = require('template/wwy_detail');
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     PicturePick = require('PicturePick');
     WwyPicturePick = require('WwyPicturePick');
     WwyLtyList = require('WwyLtyList');
@@ -71,7 +71,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
         }
 
         this._render();
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -87,7 +87,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           ]
         });
         // 编辑器
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
         // 图片
@@ -177,7 +177,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           var title = $(this).attr('title');
           if (title) {
             $(this).mouseover(function () {
-              BaseUtils.tooltip(title, {
+              Utils.tooltip(title, {
                 id: 'wwytip',
                 align: 'right',
                 target: $(this).get(0)
@@ -187,7 +187,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
         });
 
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       }

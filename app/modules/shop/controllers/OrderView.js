@@ -4,16 +4,16 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
 define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_view',
-    'BaseService', 'BaseUtils'],
+    'Service', 'Utils'],
   function (require, exports, module) {
-    var OrderView, OrderModel, HandlebarsHelper, BaseDetail, template, BaseService, BaseUtils;
+    var OrderView, OrderModel, HandlebarsHelper, BaseDetail, template, Service, Utils;
 
     OrderModel = require('OrderModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/order_view');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     OrderView = BaseDetail.extend({
       el: '#jhw-detail',
@@ -60,7 +60,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       // tab标签
       initTab: function () {
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -85,7 +85,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       // 支付方式
       initPayType: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
           items: app.getStatus('deliveryMethod'),
@@ -95,8 +95,8 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       // 配送方式
       initDeliveryType: function () {
-        BaseService.getDeliveryCorpList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getDeliveryCorpList().then(function (result) {
+          Utils.initSelect({
             render: '#s2',
             target: '#model-defaultDeliveryCorp',
             items: result,
@@ -107,7 +107,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       // 重量单位
       initProductWeightUnit: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',

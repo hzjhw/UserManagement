@@ -3,15 +3,15 @@
  * @namespace WwyPicturePick
  * @author yongjin<zjut_wyj@163.com> 2014/12/24
  */
-define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseUtils', 'template/wwy_picture_pick_list', 'template/wwy_picture_pick_item'],
+define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'Utils', 'template/wwy_picture_pick_list', 'template/wwy_picture_pick_item'],
   function (require, exports, module) {
-    var WwyPicturePick, BaseModel, BaseCollection, BaseItem, BaseUtils, BaseList, model, collection, item, itemTemp, listTemp;
+    var WwyPicturePick, BaseModel, BaseCollection, BaseItem, Utils, BaseList, model, collection, item, itemTemp, listTemp;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     itemTemp = require('template/wwy_picture_pick_item');
     listTemp = require('template/wwy_picture_pick_list');
 
@@ -58,7 +58,7 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
       picUpload: function (type) {
         var ctx = this;
         type = type || 'local';
-        BaseUtils.openUpload({
+        Utils.openUpload({
           id: 'uploadDialog',
           type: type,
           albumId: app.getData('curAlbumId'),
@@ -119,11 +119,11 @@ define('WwyPicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList',
           title: '上传图片',
           isAddBtn: true
         }));
-        BaseUtils.resetIframe();
+        Utils.resetIframe();
       },
       append: function (node) {
         this.collection.add(node);
-        BaseUtils.resetIframe();
+        Utils.resetIframe();
       },
       getItems: function () {
         var result = [];

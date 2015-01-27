@@ -3,16 +3,16 @@
  * @class UserDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/15
  */
-define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUtils', 'BaseModel', 'BaseList',
+define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'Utils', 'BaseModel', 'BaseList',
     'BaseItem', 'BaseCollection'],
   function (require, exports, module) {
-    var UserDetail, BaseDetail, template, UserModel, BaseUtils, BaseList, BaseItem, BaseCollection,
+    var UserDetail, BaseDetail, template, UserModel, Utils, BaseList, BaseItem, BaseCollection,
       model, collection, item, list, BaseModel;
 
     BaseDetail = require('BaseDetail');
     template = require('template/user_detail');
     UserModel = require('UserModel');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -88,7 +88,7 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
         this.list._add(new model());
       },
       location: function () {
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'location',
           width: 700,
           height: 470,
@@ -101,7 +101,7 @@ define('UserDetail', ['BaseDetail', 'UserModel', 'template/user_detail', 'BaseUt
           wait: true
         }).done(function () {
           ctx._render();
-          BaseUtils.initSelect({
+          Utils.initSelect({
             render: '#s1',
             target: '#model-sex',
             items: [

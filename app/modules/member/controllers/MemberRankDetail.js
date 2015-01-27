@@ -4,9 +4,9 @@
  * @author wxw on 14-12-16
  */
 define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'BaseDetail',
-    'dialog', 'template/member_rank_detail', 'BaseUtils'],
+    'dialog', 'template/member_rank_detail', 'Utils'],
   function (require, exports, module) {
-    var MemberRankDetail, MemberRankModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
+    var MemberRankDetail, MemberRankModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, Utils;
 
     MemberRankModel = require('MemberRankModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,7 +15,7 @@ define('MemberRankDetail', ['jquery', 'MemberRankModel', 'HandlebarsHelper', 'Ba
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     MemberRankDetail = BaseDetail.extend({
       el: '#jhw-detail',

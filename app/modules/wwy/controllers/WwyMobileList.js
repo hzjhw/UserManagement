@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/12
  */
 define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/wwy_mobile_list', 'template/wwy_mobile_item', 'BaseUtils'],
+    'template/wwy_mobile_list', 'template/wwy_mobile_item', 'Utils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMobileList, WwyMobileItem,
-      WwyMobileCollection, listTemp, itemTemp, BaseUtils;
+      WwyMobileCollection, listTemp, itemTemp, Utils;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -16,7 +16,7 @@ define('WwyMobileList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'Ba
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/wwy_mobile_list');
     itemTemp = require('template/wwy_mobile_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     /**
      * 集合类

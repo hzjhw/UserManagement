@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/16
  */
 define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper'
-    , 'template/member_list', 'template/member_list_item', 'template/member_search', 'BaseService'],
+    , 'template/member_list', 'template/member_list_item', 'template/member_search', 'Service'],
   function (require, exports, module) {
     var MemberListModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MemberListCollection
-      , MemberList, memberList, memberListItem , MemberListItem , searchTemp , BaseService;
+      , MemberList, memberList, memberListItem , MemberListItem , searchTemp , Service;
 
     MemberListModel = require('MemberListModel');
     BaseCollection = require('BaseCollection');
@@ -17,7 +17,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
     searchTemp = require('template/member_search');
     memberList = require('template/member_list');
     memberListItem = require('template/member_list_item');
-    BaseService = require('BaseService');
+    Service = require('Service');
     /**
      * 集合类
      */
@@ -109,7 +109,7 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('memberCategory')) {
-          BaseService.getMemberRankCategory({
+          Service.getMemberRankCategory({
             tree: true,
             extend: true,
             select: true

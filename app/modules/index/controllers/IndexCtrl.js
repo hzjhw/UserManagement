@@ -3,9 +3,9 @@
  * @namespace IndexCtrl
  * @author yongjin on 2014/10/31
  */
-seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'BaseService', 'MouseScroll'],
-  function (jquery, TopView, LeftView, UserModel, BaseService, MouseScroll) {
-    BaseService.initUser(UserModel).done(function (result) {
+seajs.use(['jquery', 'TopView', 'LeftView', 'UserModel', 'Service', 'MouseScroll'],
+  function (jquery, TopView, LeftView, UserModel, Service, MouseScroll) {
+    Service.initUser(UserModel).done(function (result) {
       debug(result);
       //if (result.attributes && !Est.isEmpty(result.attributes.success)) return;
       if (!app.getData('user')) return;

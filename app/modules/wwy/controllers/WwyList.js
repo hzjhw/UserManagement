@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/12
  */
 define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/wwy_list', 'template/wwy_detail', 'template/wwy_item', 'BaseUtils'],
+    'template/wwy_list', 'template/wwy_detail', 'template/wwy_item', 'Utils'],
   function (require, exports, module) {
     var WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyList, WwyItem,
-      WwyCollection, listTemp, itemTemp, BaseUtils;
+      WwyCollection, listTemp, itemTemp, Utils;
 
     WwyModel = require('WwyModel');
     BaseCollection = require('BaseCollection');
@@ -16,7 +16,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/wwy_list');
     itemTemp = require('template/wwy_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
 
     /**

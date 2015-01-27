@@ -3,14 +3,14 @@
  * @namespace MemberPassword
  * @author yongjin<zjut_wyj@163.com> 2015/1/11
  */
-define('MemberPassword', ['BaseDetail', 'BaseModel', 'template/member_password_modify', 'BaseUtils'],
+define('MemberPassword', ['BaseDetail', 'BaseModel', 'template/member_password_modify', 'Utils'],
   function (require, exports, module) {
-    var MemberPassword, BaseDetail, BaseModel, template, model, BaseUtils;
+    var MemberPassword, BaseDetail, BaseModel, template, model, Utils;
 
     BaseDetail = require('BaseDetail');
     BaseModel = require('BaseModel');
     template = require('template/member_password_modify');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     model = BaseModel.extend({
       defaults: Est.extend({}, BaseModel.prototype.defaults),
@@ -30,7 +30,7 @@ define('MemberPassword', ['BaseDetail', 'BaseModel', 'template/member_password_m
       },
       render: function () {
         this._render();
-        BaseUtils.initTab({
+        Utils.initTab({
           srcNode: '#tab',
           elCls: 'nav-tabs',
           itemStatusCls: {

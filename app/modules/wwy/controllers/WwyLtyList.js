@@ -3,16 +3,16 @@
  * @namespace WwyLtyList
  * @author yongjin<zjut_wyj@163.com> 2014/12/25
  */
-define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'template/wwy_lty_item', 'BaseUtils'],
+define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'template/wwy_lty_item', 'Utils'],
   function (require, exports, module) {
-    var WwyLtyList, BaseModel, BaseUtils, BaseCollection, BaseItem, BaseList, itemTemp, model, item, collection;
+    var WwyLtyList, BaseModel, Utils, BaseCollection, BaseItem, BaseList, itemTemp, model, item, collection;
 
     BaseModel = require('BaseModel');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     BaseList = require('BaseList');
     itemTemp = require('template/wwy_lty_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     model = BaseModel.extend({
       defaults: Est.extend({
@@ -52,7 +52,7 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
       editImg: function (type) {
         var ctx = this;
         type = type || 'local';
-        BaseUtils.openUpload({
+        Utils.openUpload({
           id: 'uploadDialog',
           type: type,
           albumId: app.getData('curAlbumId'),

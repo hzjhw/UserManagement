@@ -5,10 +5,10 @@
  */
 
 define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/recruit_list', 'template/recruit_item', 'BaseUtils', 'template/recruit_search'],
+    'template/recruit_list', 'template/recruit_item', 'Utils', 'template/recruit_search'],
   function (require, exports, module) {
     var RecruitModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, RecruitList, RecruitItem,
-      RecruitCollection, listTemp, itemTemp, searchTemp, BaseUtils, sortTemp;
+      RecruitCollection, listTemp, itemTemp, searchTemp, Utils, sortTemp;
 
     RecruitModel = require('RecruitModel');
     BaseCollection = require('BaseCollection');
@@ -18,7 +18,7 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
     listTemp = require('template/recruit_list');
     itemTemp = require('template/recruit_item');
     searchTemp = require('template/recruit_search');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     /**
      * 集合类
@@ -146,7 +146,7 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
                       sortType: ctx.sortType
                     },
                     success: function (result) {
-                      BaseUtils.tip('招聘排序成功');
+                      Utils.tip('招聘排序成功');
                       ctx._load();
                     }
                   });

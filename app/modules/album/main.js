@@ -4,8 +4,8 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/15
  */
 app.addRoute('album', function () {
-  seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel', 'BaseUtils'],
-    function (jquery, BaseView, AlbumList, PhotoList, panelTemp, BaseUtils) {
+  seajs.use(['jquery', 'BaseView', 'AlbumList', 'PhotoList', 'template/album_panel', 'Utils'],
+    function (jquery, BaseView, AlbumList, PhotoList, panelTemp, Utils) {
 
       var Panel = BaseView.extend({
         events: {
@@ -25,7 +25,7 @@ app.addRoute('album', function () {
         picUpload: function () {
           var doResult = function () {
           }
-          BaseUtils.openUpload({
+          Utils.openUpload({
             id: 'uploadDialog',
             albumId: app.getData('curAlbumId'),
             username: app.getData('user').username,

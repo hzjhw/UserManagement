@@ -4,9 +4,9 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
 define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel', 'template/pay_type_list',
-    'BaseUtils', 'template/pay_type_item', 'HandlebarsHelper'],
+    'Utils', 'template/pay_type_item', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var PayTypeList, BaseUtils, BaseCollection, BaseItem, BaseList, PayTypeCollection, PayTypeItem, PayTypeModel,
+    var PayTypeList, Utils, BaseCollection, BaseItem, BaseList, PayTypeCollection, PayTypeItem, PayTypeModel,
       listTemp, itemTemp, HandlebarsHelper;
 
     BaseCollection = require('BaseCollection');
@@ -15,7 +15,7 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
     PayTypeModel = require('PayTypeModel');
     listTemp = require('template/pay_type_list');
     itemTemp = require('template/pay_type_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     HandlebarsHelper = require('HandlebarsHelper');
 
     PayTypeCollection = BaseCollection.extend({
@@ -109,7 +109,7 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
 
         app.emptyDialog();
-        BaseUtils.dialog({
+        Utils.dialog({
           title: '高级搜索',
           width: 600,
           target: this.$('.search-advance-product').get(0),

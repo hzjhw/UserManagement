@@ -4,17 +4,17 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/30
  */
 define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryTypeModel', 'template/delivery_type_item',
-    'template/delivery_type_list', 'BaseUtils'],
+    'template/delivery_type_list', 'Utils'],
   function (require, exports, module) {
     var DeliveryTypeList, BaseList, BaseItem, BaseCollection, DeliveryTypeItem, DeliveryTypeModel,
-      DeliveryTypeCollection, itemTemp, listTemp, BaseUtils;
+      DeliveryTypeCollection, itemTemp, listTemp, Utils;
 
     BaseList = require('BaseList');
     BaseItem = require('BaseItem');
     BaseCollection = require('BaseCollection');
     itemTemp = require('template/delivery_type_item');
     listTemp = require('template/delivery_type_list');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     DeliveryTypeModel = require('DeliveryTypeModel');
 
     DeliveryTypeCollection = BaseCollection.extend({

@@ -3,16 +3,16 @@
  * @namespace MessageSendDetail
  * @author wxw on 2015/1/13
  */
-define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/message_send', 'BaseUtils'],
+define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'dialog', 'template/message_send', 'Utils'],
   function (require, exports, module) {
-    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, dialog, BaseUtils;
+    var MessageSendDetail, MessageModel, HandlebarsHelper, BaseDetail, template, dialog, Utils;
 
     MessageModel = require('MessageModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/message_send');
     dialog = require('dialog');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     MessageSendDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -51,7 +51,7 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
           }
         }
         this._render();
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s6',
           target: '#model-type',
           items: [

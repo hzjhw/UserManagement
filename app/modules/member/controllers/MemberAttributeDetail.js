@@ -4,9 +4,9 @@
  * @author wxw on 14-12-16
  */
 define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHelper', 'BaseDetail', 'dialog',
-    'template/member_attribute_detail', 'AttributesAdd', 'BaseUtils'],
+    'template/member_attribute_detail', 'AttributesAdd', 'Utils'],
   function (require, exports, module) {
-    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag, AttributesAdd, BaseUtils;
+    var MemberAttributeDetail, MemberAttributeModel, HandlebarsHelper, BaseDetail, template, dialog, Tag, AttributesAdd, Utils;
 
     MemberAttributeModel = require('MemberAttributeModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -15,7 +15,7 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
     dialog = require('dialog');
     Tag = require('Tag');
     AttributesAdd = require('AttributesAdd');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     MemberAttributeDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -52,7 +52,7 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
       },
       attributeSelect: function () {
         var ctx = this;
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
           itemId: 'value',
@@ -70,13 +70,13 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
           } else {
             $("#multi-attribute").hide();
           }
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         });
       },
       attributeRender: function () {
         var attributesOptionList = this.model.get('attributeOptionList');
         var options = { el: '#multi-attribute', add: function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }};
         if (attributesOptionList && attributesOptionList.length > 0) {
           options.items = attributesOptionList;

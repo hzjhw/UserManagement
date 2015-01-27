@@ -4,16 +4,16 @@
  * @author yongjin on 2014/11/12
  */
 
-define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left', 'BaseService', 'BaseModel',
+define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Service', 'BaseModel',
     'BaseCollection', 'BaseList', 'BaseItem', 'template/nav_item'],
   function (require, exports, module) {
-    var LeftView, BaseView, BaseUtils, leftTemp, BaseCollection, Backbone, BaseModel, BaseItem, BaseList,
-      BaseService, model, collection, item, navTemp;
+    var LeftView, BaseView, Utils, leftTemp, BaseCollection, Backbone, BaseModel, BaseItem, BaseList,
+      Service, model, collection, item, navTemp;
 
     BaseView = require('BaseView');
     leftTemp = require('template/layout_left');
-    BaseUtils = require('BaseUtils');
-    BaseService = require('BaseService');
+    Utils = require('Utils');
+    Service = require('Service');
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
@@ -122,7 +122,7 @@ define('LeftView', ['BaseView', 'BaseUtils', 'backbone', 'template/layout_left',
         this._render();
       },
       logout: function () {
-        BaseService.logout();
+        Service.logout();
       }
 
     });

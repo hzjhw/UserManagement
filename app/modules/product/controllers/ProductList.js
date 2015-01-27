@@ -4,11 +4,11 @@
  * @author yongjin on 2014/11/16
  */
 define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/product_list', 'template/product_item', 'BaseUtils', 'template/product_search', 'template/product_transfer',
-    'template/product_sort', 'BaseService'],
+    'template/product_list', 'template/product_item', 'Utils', 'template/product_search', 'template/product_transfer',
+    'template/product_sort', 'Service'],
   function (require, exports, module) {
-    var ProductModel, BaseCollection, BaseService, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem,
-      ProductCollection, listTemp, itemTemp, searchTemp, BaseUtils, transferTemp, sortTemp;
+    var ProductModel, BaseCollection, Service, BaseItem, BaseList, HandlebarsHelper, ProductList, ProductItem,
+      ProductCollection, listTemp, itemTemp, searchTemp, Utils, transferTemp, sortTemp;
 
     ProductModel = require('ProductModel');
     BaseCollection = require('BaseCollection');
@@ -18,10 +18,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
     listTemp = require('template/product_list');
     itemTemp = require('template/product_item');
     searchTemp = require('template/product_search');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     transferTemp = require('template/product_transfer');
     sortTemp = require('template/product_sort');
-    BaseService = require('BaseService');
+    Service = require('Service');
 
     /**
      * 集合类
@@ -60,7 +60,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       // 初始化
       initialize: function () {
         if (!app.getData('productCategory')) {
-          BaseService.getProductCategory({ tree: true, extend: true, select: true
+          Service.getProductCategory({ tree: true, extend: true, select: true
           }).then(function (list) {
             app.addData('productCategory', list);
           })
@@ -76,7 +76,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this.editImage = e.target ? $(e.target) : $(e.currentTarget);
         if (!Est.isEmpty(this.model.get('picPath'))) {
           this.imageTemp = HandlebarsHelper.compile("<img src='{{CONST 'PIC_URL'}}/{{picUrl picPath 5}}'></img>");
-          BaseUtils.tooltip(this.imageTemp(this.model.attributes), {
+          Utils.tooltip(this.imageTemp(this.model.attributes), {
             id: 'imageView',
             align: 'left',
             time: 100000,
@@ -114,7 +114,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       changeCategory: function () {
         var ctx = this;
         var category = this.$('.pro-category').val();
-        BaseUtils.comfirm({
+        Utils.comfirm({
           title: '提示：',
           content: '是否更改分类？',
           success: function () {
@@ -203,7 +203,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       // 批量导入
       batchImport: function () {
         window.open(CONST.DOMAIN + '/user/product/selectImportType');
-        /*BaseUtils.dialog({
+        /*Utils.dialog({
          title: '产品批量导入',
          width: 800,
          height: 500,
@@ -228,7 +228,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('productCategory')) {
-          BaseService.getProductCategory({
+          Service.getProductCategory({
             tree: true,
             extend: true,
             select: true
@@ -237,7 +237,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           })
         }
         app.emptyDialog();
-        BaseUtils.dialog({
+        Utils.dialog({
           title: '高级搜索',
           width: 700,
           target: this.$('.search-advance-product').get(0),
@@ -276,10 +276,10 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('请至少选择一项！');
+          Utils.tip('请至少选择一项！');
           return;
         }
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'transfer-dialog',
           title: '批量转移分类',
           width: 300,
@@ -289,12 +289,12 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           target: this.$('.btn-batch-category').get(0),
           success: function () {
             ctx.transferCategory = $('select[name=transferCategory]').val();
-            BaseService.batch({
+            Service.batch({
               url: CONST.API + '/product/batch/transfer',
               ids: ctx.checkboxIds.join(','),
               category: ctx.transferCategory,
               success: function () {
-                BaseUtils.tip('批量转移成功');
+                Utils.tip('批量转移成功');
                 ctx._load();
               }
             });
@@ -313,7 +313,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
       proSort: function () {
         var ctx = this;
         this.sortTemp = HandlebarsHelper.compile(sortTemp);
-        BaseUtils.dialog({
+        Utils.dialog({
           id: 'sort-dialog',
           title: '产品排序',
           width: 300,
@@ -321,7 +321,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           target: this.$('.btn-tool-sort').get(0),
           success: function () {
             ctx.sortType = $('select[name=sortCategory]').val();
-            BaseService.productSort({
+            Service.productSort({
               type: ctx.sortType,
               category: ctx.searchCategory,
               sortType: ctx.sortType,

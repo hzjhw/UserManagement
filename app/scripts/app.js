@@ -9,7 +9,7 @@ return I("",(u={},u[""]=e,u),o,a,i,"",[])}}if(!o("json-parse")){var N,R,q=s.from
 CONST.LIB_FORDER = 'base';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.APP_VERSION = '20143529';
+CONST.APP_VERSION = '20143532';
 
 /**
  * @description config
@@ -91,8 +91,9 @@ seajs.config({
     'BaseItem': 'lib/BaseItem.js',
     'BaseDetail': 'lib/BaseDetail.js',
     'BaseList': 'lib/BaseList.js',
-    'BaseUtils': 'scripts/utils/BaseUtils.js',
-    'BaseService': 'scripts/service/BaseService.js',
+    'Utils': 'scripts/utils/Utils.js',
+    'BaseService': 'lib/BaseService.js',
+    'Service': 'scripts/service/Service.js',
     'BaseComposite': 'lib/BaseComposite.js'
   }, app.getModules()),
 

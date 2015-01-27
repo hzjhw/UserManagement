@@ -3,13 +3,13 @@
  * @namespace Index
  * @author yongjin on 2014/11/18
  */
-define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'BaseService', 'IndexModel', 'UserModel', 'HelpList'],
+define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service', 'IndexModel', 'UserModel', 'HelpList'],
   function (require, exports, module) {
-    var Main, BaseView, template, BaseService, IndexModel, ToolList, UserModel, HelpList;
+    var Main, BaseView, template, Service, IndexModel, ToolList, UserModel, HelpList;
 
     BaseView = require('BaseView');
     template = require('template/main');
-    BaseService = require('BaseService');
+    Service = require('Service');
     IndexModel = require('IndexModel');
     UserModel = require('UserModel');
     HelpList = require('HelpList');
@@ -18,8 +18,8 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'BaseServi
     Main = BaseView.extend({
       initialize: function () {
         var ctx = this;
-        BaseService.initUser(UserModel);
-        BaseService.initIndex(IndexModel).done(function () {
+        Service.initUser(UserModel);
+        Service.initIndex(IndexModel).done(function () {
           ctx._initialize({
             template: template,
             data: {

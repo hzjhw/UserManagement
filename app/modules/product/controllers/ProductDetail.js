@@ -4,9 +4,9 @@
  * @author yongjin on 2014/10/31
  */
 define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
-    'dialog', 'template/product_detail', 'Tag', 'PicturePick', 'BaseService', 'BaseUtils'],
+    'dialog', 'template/product_detail', 'Tag', 'PicturePick', 'Service', 'Utils'],
   function (require, exports, module) {
-    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick, BaseService, BaseUtils;
+    var ProductDetail, ProductModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, PicturePick, Service, Utils;
 
     ProductModel = require('ProductModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -16,8 +16,8 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
     PicturePick = require('PicturePick');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     ProductDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -58,7 +58,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           .join(","));
         this._render();
 
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -97,9 +97,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           max: 9
         }));
         // 产品分类
-        BaseService.getProductCategory({ tree: true, select: true, extend: true })
+        Service.getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-category',
               items: list,
@@ -134,7 +134,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             });
             ctx.$setAttribute = ctx.$('.setAttribute');
             // 属性
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#attCate',
               target: '#attCateHid',
               items: list,
@@ -142,7 +142,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                 ctx.showAttributes(categoryId);
                 ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + categoryId);
                 setTimeout(function () {
-                  BaseUtils.resetIframe();
+                  Utils.resetIframe();
                 }, 500);
               }
             });
@@ -159,21 +159,21 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         }
 
         // 产品属性
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s2',
           width: 150,
           target: '#model-loginView',
           items: app.getStatus('loginViewList')
         });
 
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s2',
           width: 150,
           target: '#model-ads',
           items: app.getStatus('adsList')
         });
 
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#weightUnit',
           width: 150,
           target: '#model-weightUnit',
@@ -182,7 +182,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
         });
 
         // 编辑器
-        BaseUtils.initEditor({
+        Utils.initEditor({
           render: '.ckeditor'
         });
 

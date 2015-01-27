@@ -3,20 +3,20 @@
  * @namespace NavigateList
  * @author yongjin<zjut_wyj@163.com> 2014/12/26
  */
-define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', 'BaseService', 'NavigateModel',
+define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'Utils', 'Service', 'NavigateModel',
     'template/navigate_list', 'template/navigate_item', 'template/website_static', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var NavigateList, BaseList, BaseCollection, BaseItem, BaseUtils, BaseService, itemTemp, listTemp, NavigateCollection,
+    var NavigateList, BaseList, BaseCollection, BaseItem, Utils, Service, itemTemp, listTemp, NavigateCollection,
       NavigateItem, NavigateModel, staticTemp, HandlebarsHelper;
 
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
     BaseItem = require('BaseItem');
     NavigateModel = require('NavigateModel');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     itemTemp = require('template/navigate_item');
     listTemp = require('template/navigate_list');
-    BaseService = require('BaseService');
+    Service = require('Service');
     staticTemp = require('template/website_static');
     HandlebarsHelper = require('HandlebarsHelper');
 
@@ -171,7 +171,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
       staticPage: function () {
         var ctx = this;
         ctx.isStatic = false;
-        BaseService.getStaticPage()
+        Service.getStaticPage()
           .then(function (result) {
             var pages = [];
             result = Est.pluck(result, 'pages');
@@ -190,7 +190,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
             });
             debug(pages);
             this.staticTemp = HandlebarsHelper.compile(staticTemp);
-            BaseUtils.dialog({
+            Utils.dialog({
               id: 'staticPage',
               title: '页面静态化',
               width: 900,
@@ -227,10 +227,10 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
         var ctx = this;
         this.checkboxIds = this._getCheckboxIds();
         if (this.checkboxIds.length === 0) {
-          BaseUtils.tip('请至少选择一项！')
+          Utils.tip('请至少选择一项！')
           return;
         }
-        BaseUtils.comfirm({
+        Utils.comfirm({
           success: function () {
             $.ajax({
               type: 'POST',
@@ -240,7 +240,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'BaseUtils', '
                 ids: ctx.checkboxIds.join(',')
               },
               success: function (result) {
-                BaseUtils.tip('删除成功');
+                Utils.tip('删除成功');
                 ctx._load();
               }
             });

@@ -3,13 +3,13 @@
  * @class EnterpriseDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/15
  */
-define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'District', 'BaseUtils', 'template/enterprise_detail'],
+define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'District', 'Utils', 'template/enterprise_detail'],
   function (require, exports, module) {
-    var EnterpriseDetail, BaseDetail, EnterpriseModel, BaseUtils, template, District, BaseService;
+    var EnterpriseDetail, BaseDetail, EnterpriseModel, Utils, template, District, Service;
 
     BaseDetail = require('BaseDetail');
-    BaseUtils = require('BaseUtils')
-    BaseService = require('BaseService');
+    Utils = require('Utils')
+    Service = require('Service');
     EnterpriseModel = require('EnterpriseModel');
     template = require('template/enterprise_detail');
     District = require('District');
@@ -33,7 +33,7 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
           wait: true
         }).done(function () {
           ctx._render();
-          BaseUtils.initTab({
+          Utils.initTab({
             render: '#tab',
             elCls: 'nav-tabs',
             panelContainer: '#panel',
@@ -43,35 +43,35 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
               {title: '公司简介', value: '2'}
             ]
           });
-          BaseUtils.initSelect({
+          Utils.initSelect({
             render: '#s1',
             target: '#model-businessType',
             items: app.getStatus('businessType')
           });
-          BaseService.getIndustry().then(function (result) {
-            BaseUtils.initSelect({
+          Service.getIndustry().then(function (result) {
+            Utils.initSelect({
               render: '#s2',
               target: '#model-industry',
               items: result
             });
           });
-          BaseUtils.initSelect({
+          Utils.initSelect({
             render: '#s3',
             target: '#model-type',
             items: app.getStatus('enterpriseType')
           });
-          BaseUtils.initDistrict({
+          Utils.initDistrict({
             id: 'district1',// 必填
             render: '#district-container', // 目标选择符
             target: '#model-address',
             url: CONST.API + '/area/list' // 自定义请求地址
           });
 
-          BaseUtils.initDate({
+          Utils.initDate({
             render: '.calendar',
             showTime: false
           });
-          BaseUtils.initSelect({
+          Utils.initSelect({
             render: '#s5',
             target: '#model-oem',
             items: [
@@ -80,7 +80,7 @@ define('EnterpriseDetail', ['BaseDetail', 'BaseService', 'EnterpriseModel', 'Dis
             ]
           });
 
-          BaseUtils.initEditor({
+          Utils.initEditor({
             render: '.ckeditor'
           });
           ctx._form('#J_Form')._validate()._init();

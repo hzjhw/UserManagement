@@ -4,10 +4,10 @@
  * @author wxw on 2014/12/12
  */
 define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/wwy_message_list', 'template/wwy_message_item', 'BaseUtils'],
+    'template/wwy_message_list', 'template/wwy_message_item', 'Utils'],
   function (require, exports, module) {
     var WwyMessageModel, WwyModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, WwyMessageList, WwyMessageItem,
-      WwyMessageCollection, listTemp, itemTemp, BaseUtils;
+      WwyMessageCollection, listTemp, itemTemp, Utils;
 
     WwyMessageModel = require('WwyMessageModel');
     WwyModel = require('WwyModel');
@@ -17,7 +17,7 @@ define('WwyMessageList', ['jquery', 'WwyMessageModel', 'WwyModel', 'BaseCollecti
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/wwy_message_list');
     itemTemp = require('template/wwy_message_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     /**
      * 集合类

@@ -5,11 +5,11 @@
  * @author wxw on 2014/12/12
  */
 define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper',
-    'template/message_list', 'template/message_item', 'BaseUtils', 'template/message_email', 'MessageBindModel',
+    'template/message_list', 'template/message_item', 'Utils', 'template/message_email', 'MessageBindModel',
     'template/message_send'],
   function (require, exports, module) {
     var MessageModel, BaseCollection, BaseItem, BaseList, HandlebarsHelper, MessageList, MessageItem,
-      MessageCollection, listTemp, itemTemp, BaseUtils, emailTemp, MessageBindModel;
+      MessageCollection, listTemp, itemTemp, Utils, emailTemp, MessageBindModel;
 
     MessageModel = require('MessageModel');
     BaseCollection = require('BaseCollection');
@@ -18,7 +18,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
     HandlebarsHelper = require('HandlebarsHelper');
     listTemp = require('template/message_list');
     itemTemp = require('template/message_item');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     emailTemp = require('template/message_email');
     MessageBindModel = require('MessageBindModel');
 
@@ -123,7 +123,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         var model = new MessageBindModel();
         var template = HandlebarsHelper.compile(emailTemp)
         model.fetch().then(function () {
-          BaseUtils.dialog({
+          Utils.dialog({
             id: 'dialog',
             title: '邮箱绑定',
             content: template(model.toJSON()),
@@ -141,7 +141,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       },
       // 黑名单
       blackList: function () {
-        BaseUtils.iframeDialog({
+        Utils.iframeDialog({
           title: '黑名单',
           url: CONST.DOMAIN + '/user/blacklist/view',
           width: 500

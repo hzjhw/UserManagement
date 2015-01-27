@@ -3,14 +3,14 @@
  * @namespace ProductCategoryDetail
  * @author yongjin on 2014/10/31
  */
-define('NavigateDetail', ['jquery', 'NavigateModel', 'BaseDetail', 'BaseService', 'BaseUtils', 'template/navigate_detail'],
+define('NavigateDetail', ['jquery', 'NavigateModel', 'BaseDetail', 'Service', 'Utils', 'template/navigate_detail'],
   function (require, exports, module) {
-    var NavigateDetail, NavigateModel, BaseDetail, BaseService, BaseUtils, template;
+    var NavigateDetail, NavigateModel, BaseDetail, Service, Utils, template;
 
     NavigateModel = require('NavigateModel');
     BaseDetail = require('BaseDetail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
     template = require('template/navigate_detail')
 
     NavigateDetail = BaseDetail.extend({
@@ -30,9 +30,9 @@ define('NavigateDetail', ['jquery', 'NavigateModel', 'BaseDetail', 'BaseService'
       },
       render: function () {
         this._render();
-        BaseService.getNavigateCategory({ tree: true, select: true, extend: true })
+        Service.getNavigateCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-parentId',
               items: list

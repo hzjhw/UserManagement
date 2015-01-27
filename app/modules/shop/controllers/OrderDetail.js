@@ -4,16 +4,16 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
 define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_detail',
-    'BaseService', 'BaseUtils'],
+    'Service', 'Utils'],
   function (require, exports, module) {
-    var OrderDetail, OrderModel, HandlebarsHelper, BaseDetail, template, BaseService, BaseUtils;
+    var OrderDetail, OrderModel, HandlebarsHelper, BaseDetail, template, Service, Utils;
 
     OrderModel = require('OrderModel');
     HandlebarsHelper = require('HandlebarsHelper');
     BaseDetail = require('BaseDetail');
     template = require('template/order_detail');
-    BaseService = require('BaseService');
-    BaseUtils = require('BaseUtils');
+    Service = require('Service');
+    Utils = require('Utils');
 
     OrderDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -47,7 +47,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // tab标签
       initTab: function () {
-        BaseUtils.initTab({
+        Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
           panelContainer: '#panel',
@@ -60,8 +60,8 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 支付方式
       initPayType: function () {
-        BaseService.getPaymentTypeList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getPaymentTypeList().then(function (result) {
+          Utils.initSelect({
             render: '#s1',
             target: '#model-paymentId',
             items: result,
@@ -72,8 +72,8 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 配送方式
       initDeliveryType: function () {
-        BaseService.getDeliverTypeList().then(function (result) {
-          BaseUtils.initSelect({
+        Service.getDeliverTypeList().then(function (result) {
+          Utils.initSelect({
             render: '#s2',
             target: '#model-typeId',
             items: result,
@@ -84,7 +84,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 重量单位
       initProductWeightUnit: function () {
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',
@@ -102,7 +102,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         });
       },
       initDistrict: function () {
-        BaseUtils.initDistrict({
+        Utils.initDistrict({
           id: 'district1',// 必填
           render: '#city', // 目标选择符
           path: this.model.get('shipAreaPath')

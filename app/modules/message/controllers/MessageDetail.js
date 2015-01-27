@@ -3,9 +3,9 @@
  * @namespace MessageDetail
  * @author wxw on 2014/12/31
  */
-define('MessageDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/message_detail', 'Tag', 'BaseUtils'],
+define('MessageDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow', 'dialog', 'template/message_detail', 'Tag', 'Utils'],
   function (require, exports, module) {
-    var MessageDetail, MessageModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils;
+    var MessageDetail, MessageModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, Utils;
 
     MessageModel = require('MessageModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,7 +14,7 @@ define('MessageDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDeta
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
 
     MessageDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -40,7 +40,7 @@ define('MessageDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'BaseDeta
           }
         });
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       }

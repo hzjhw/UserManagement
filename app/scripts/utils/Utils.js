@@ -1,16 +1,16 @@
 /**
  * @description 基础工具类
- * @class BaseUtils - 工具类
+ * @class Utils - 工具类
  * @author yongjin<zjut_wyj@163.com> 2014/12/2
  */
 
-define('BaseUtils', ['jquery', 'HandlebarsHelper'],
+define('Utils', ['jquery', 'HandlebarsHelper'],
   function (require, exports, module) {
-    var BaseUtils, HandlebarsHelper;
+    var Utils, HandlebarsHelper;
 
     HandlebarsHelper = require('HandlebarsHelper');
 
-    BaseUtils = {
+    Utils = {
       /**
        * 初始化选择框
        *
@@ -20,7 +20,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @return {Est.promise}
        * @author wyj 14.12.18
        * @example
-       *      BaseUtils.initSelect({
+       *      Utils.initSelect({
        *         render: '#s1',
        *         target: '#model-parentId',
        *         items: [],
@@ -64,7 +64,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @method [地区] - initDistrict
        * @author wyj 15.1.6
        * @example
-       BaseUtils.initDistrict({
+       Utils.initDistrict({
                  id: 'district1' ,// 必填
                  render: '#district-container', // 目标选择符
                  target: '#model-dist',
@@ -95,7 +95,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options
        * @author wyj 14.12.24
        * @example
-       *        BaseUtils.initTab({
+       *        Utils.initTab({
        *          render: '#tab',
        *          elCls: 'nav-tabs',
        *          panelContainer: '#panel',
@@ -114,7 +114,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
         BUI.use(['bui/tab', 'bui/mask'], function (Tab) {
           var tab = new Tab.TabPanel(options);
           tab.on('selectedchange', function (ev) {
-            BaseUtils.resetIframe();
+            Utils.resetIframe();
           });
           tab.render();
         });
@@ -127,7 +127,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @author wyj 14.12.17
        * @example
        *      // 图片添加
-       *      BaseUtils.openUpload({
+       *      Utils.openUpload({
        *       albumId: app.getData('curAlbumId'),
        *       username: app.getData('user').username, // 必填
        *       auto: true,
@@ -136,7 +136,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        *       }
        *      });
        *      // 图片替换
-       *      BaseUtils.openUpload({
+       *      Utils.openUpload({
        *        id: 'replaceDialog' + id,
        *        title: '图片替换',
        *        albumId: app.getData('curAlbumId'), // 必填
@@ -151,7 +151,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        *        }
        *      });
        *      // 选取图片
-       *      BaseUtils.openUpload({
+       *      Utils.openUpload({
                 id: 'uploadDialog',
                 type: type,
                 albumId: app.getData('curAlbumId'),
@@ -194,7 +194,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options [render: 选择符][showTime: true/false 是否显示时间]
        * @author wyj 14.12.17
        * @example
-       *      BaseUtils.initDate({
+       *      Utils.initDate({
        *         render: '.calendar',
        *         showTime: false
        *       });
@@ -216,7 +216,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @return {Est.promise}
        * @author wyj 14.12.17
        * @example
-       *      BaseUtils.initCombox({
+       *      Utils.initCombox({
        *         render: '#tag',
        *         target: '#model-tag',
        *         itemId: 'categoryId'
@@ -257,7 +257,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options
        * @author wyj 14.12.18
        * @example
-       *      BaseUtils.initEditor({
+       *      Utils.initEditor({
        *        render: '.ckeditor'
        *      });
        */
@@ -398,7 +398,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options
        * @author wyj 14.12.18
        * @example
-       *      BaseUtils.tip('提示内容', {
+       *      Utils.tip('提示内容', {
        *        time: 1000,
        *        title: '温馨提示'
        *      });
@@ -429,7 +429,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        *          var title = $(this).attr('title');
        *          if (title){
        *            $(this).click(function(){
-       *            BaseUtils.tooltip(title, {
+       *            Utils.tooltip(title, {
        *              align: 'right',
        *              target: $(this).get(0)
        *            });
@@ -459,7 +459,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param opts [title: 标题][content: 内容][success: 成功回调]
        * @author wyj 14.12.8
        * @example
-       *      BaseUtils.comfirm({
+       *      Utils.comfirm({
        *        title: '提示',
        *        target: this.$('.name').get(0),
        *        content: '是否删除?',
@@ -505,7 +505,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @method [对话框] - resetIframe
        * @author wyj 14.11.16
        * @example
-       *      BaseUtils.resetIframe(dialog);
+       *      Utils.resetIframe(dialog);
        */
       resetIframe: function (dialog) {
         var height = $(document).height();
@@ -541,7 +541,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options [title: ][width: ][height: ][target: ][success: 确定按钮回调]
        * @author wyj 14.12.18
        * @example
-       *      BaseUtils.dialog({
+       *      Utils.dialog({
        *         id: 'copyDialog',
        *         title: '复制图片',
        *         target: '.btn-email-bind',
@@ -608,7 +608,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options [url: ''] [title: 标题][width: ][height: ][success: 确定按钮成功回调方法][target:　绑定到对象]
        * @author wyj 14.12.15
        * @example
-       *      BaseUtils.iframeDialog({
+       *      Utils.iframeDialog({
        *         title: '黑名单',
        *         url: CONST.DOMAIN + '/user/blacklist/view',
        *         width: 500,
@@ -658,7 +658,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options
        * @author wyj 14.12.18
        * @example
-       *        BaseUtils.initCopy('#photo-copy-dialog', {
+       *        Utils.initCopy('#photo-copy-dialog', {
        *           success: function(){
        *             window.copyDialog.close();
        *           }
@@ -699,7 +699,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
        * @param options
        * @author wyj 15.1.23
        * @example
-       *        BaseUtils.delivery({
+       *        Utils.delivery({
                   com: this.model.get('deliveryType')['defaultDeliveryCorp']['com'], // 物流公司
                   nu: this.model.get('shippingSet')[0]['deliverySn'], // 物流编号
                   target: this.$('.delivery-view').get(0)
@@ -714,7 +714,7 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
             async: false,
             dataType: 'jsonp',
             success: function (result) {
-              BaseUtils.dialog({
+              Utils.dialog({
                 title: '物流信息',
                 content: ickd(result),
                 width: 400,
@@ -726,6 +726,6 @@ define('BaseUtils', ['jquery', 'HandlebarsHelper'],
       }
     };
 
-    module.exports = BaseUtils;
+    module.exports = Utils;
   }
 );

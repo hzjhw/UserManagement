@@ -5,9 +5,9 @@
  */
 
 define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', 'BaseDetail', 'AttributesShow',
-    'dialog', 'template/certificate_detail', 'Tag', 'BaseUtils','PicturePick'],
+    'dialog', 'template/certificate_detail', 'Tag', 'Utils','PicturePick'],
   function (require, exports, module) {
-    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, BaseUtils,
+    var CertificateDetail, CertificateModel, HandlebarsHelper, BaseDetail, template, AttributesShow, dialog, Tag, Utils,
       PicturePick;
 
     CertificateModel = require('CertificateModel');
@@ -17,7 +17,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
     dialog = require('dialog');
     AttributesShow = require('AttributesShow');
     Tag = require('Tag');
-    BaseUtils = require('BaseUtils');
+    Utils = require('Utils');
     PicturePick = require('PicturePick');
 
     CertificateDetail = BaseDetail.extend({
@@ -45,7 +45,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         this._render();
 
         // 证书分类
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#s1',
               target: '#model-type',
               items: app.getStatus('certType')
@@ -84,7 +84,7 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
         }));
 
         setTimeout(function () {
-          BaseUtils.resetIframe();
+          Utils.resetIframe();
         }, 1000);
         return this;
       }
