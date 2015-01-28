@@ -50,14 +50,17 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       // 物流公司
       initDeliveryCorp: function () {
         Service.getDeliveryCorpList().then(function (result) {
-          Utils.initSelect({
-            render: '#s4',
-            target: '#shipping_deliveryCorp',
-            items: result,
-            change: function (id, ev) {
-              $("#model-shipping_deliveryCorpName").val(ev.text);
-            }
-          });
+          seajs.use(['BaseUtils'], function (BaseUtils) {
+            BaseUtils.initSelect({
+              render: '#s4',
+              target: '#shipping_deliveryCorp',
+              items: result,
+              search: true,
+              change: function (model) {
+                $("#model-shipping_deliveryCorpName").val(model.text);
+              }
+            });
+          })
         });
       },
       // 发货列表
@@ -70,7 +73,7 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
           }));
         });
       },
-      initDistrict: function(){
+      initDistrict: function () {
         Utils.initDistrict({
           id: 'district1',// 必填
           render: '#district1', // 目标选择符

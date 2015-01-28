@@ -31,10 +31,10 @@ seajs.config({
     'BaseItem': 'lib/BaseItem.js',
     'BaseDetail': 'lib/BaseDetail.js',
     'BaseList': 'lib/BaseList.js',
-    'Utils': 'scripts/utils/Utils.js',
     'BaseService': 'lib/BaseService.js',
-    'Service': 'scripts/service/Service.js',
-    'BaseComposite': 'lib/BaseComposite.js'
+    'BaseUtils': 'lib/BaseUtils.js',
+    'Utils': 'scripts/utils/Utils.js',
+    'Service': 'scripts/service/Service.js'
   }, app.getModules()),
 
   // 路径配置

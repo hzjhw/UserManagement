@@ -494,7 +494,7 @@ define('Service', ['jquery'], function (require, exports, module) {
               item.value = item.corpId;
             });
             result.unshift({
-              text: '--请选择物流公司--',
+              text: '请选择',
               value: 'null'
             });
             resolve(result);

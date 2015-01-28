@@ -915,7 +915,8 @@ div#jhw-body {
     line-height: 18px;
     vertical-align: text-bottom;
 }
-#jhw .ie6 input.input-sort, #jhw .ie7 input.input-sort{
+
+#jhw .ie6 input.input-sort, #jhw .ie7 input.input-sort {
     vertical-align: middle;
 }
 
@@ -1016,7 +1017,10 @@ label.checkbox {
 .grid-td-move {
     width: 88px;
 }
-.grid-td-sort{width: 50px;}
+
+.grid-td-sort {
+    width: 50px;
+}
 
 .grid-td-time {
     width: 150px;
@@ -1025,7 +1029,8 @@ label.checkbox {
 .grid-td-category {
     width: 180px;
 }
-.grid-td-time{
+
+.grid-td-time {
     width: 80px;
 }
 
@@ -1080,6 +1085,39 @@ label.checkbox {
 
 #jhw .district-inner {
     float: left;
+}
+
+.bui-select-custom {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-clip: padding-box;
+}
+
+.bui-select-custom .bui-select-list {
+    border: none;
+    box-shadow: none;
+}
+
+.select-search-container input.select-search {
+    margin: 3px 0 0 2px;
+    padding: 4px 20px 4px 5px;
+    width: 100%;
+    height: auto;
+    outline: 0;
+    border: 1px solid #ddd;
+    background: url('img/chosen-sprite.png') no-repeat scroll 100% -20px #fff;
+    font-size: 1em;
+    font-family: sans-serif;
+    line-height: normal;
+    border-radius: 0;
+}
+
+.select-inner{
+    display: inline-block;
 }
 
 /*登录 注册*/

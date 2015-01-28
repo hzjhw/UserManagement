@@ -4,9 +4,9 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
 define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', 'template/order_detail',
-    'Service', 'Utils'],
+    'Service', 'BaseUtils', 'Utils'],
   function (require, exports, module) {
-    var OrderDetail, OrderModel, HandlebarsHelper, BaseDetail, template, Service, Utils;
+    var OrderDetail, OrderModel, HandlebarsHelper, BaseDetail, template, Service, Utils, BaseUtils;
 
     OrderModel = require('OrderModel');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -14,6 +14,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
     template = require('template/order_detail');
     Service = require('Service');
     Utils = require('Utils');
+    BaseUtils = require('BaseUtils');
 
     OrderDetail = BaseDetail.extend({
       el: '#jhw-detail',
@@ -61,7 +62,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       // 支付方式
       initPayType: function () {
         Service.getPaymentTypeList().then(function (result) {
-          Utils.initSelect({
+          BaseUtils.initSelect({
             render: '#s1',
             target: '#model-paymentId',
             items: result,
@@ -73,18 +74,19 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       // 配送方式
       initDeliveryType: function () {
         Service.getDeliverTypeList().then(function (result) {
-          Utils.initSelect({
+          BaseUtils.initSelect({
             render: '#s2',
             target: '#model-typeId',
             items: result,
-            change: function () {
+            change: function (model) {
+              /* $("#model-shipping_deliveryCorpName").val(model.text);*/
             }
           });
         });
       },
       // 重量单位
       initProductWeightUnit: function () {
-        Utils.initSelect({
+        BaseUtils.initSelect({
           render: '#s3',
           width: 100,
           target: '#model-productWeightUnit',
@@ -102,7 +104,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         });
       },
       initDistrict: function () {
-        Utils.initDistrict({
+        BaseUtils.initDistrict({
           id: 'district1',// 必填
           render: '#city', // 目标选择符
           path: this.model.get('shipAreaPath')

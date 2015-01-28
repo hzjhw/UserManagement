@@ -3,13 +3,14 @@
  * @namespace DeliveryTypeDetail
  * @author yongjin<zjut_wyj@163.com> 2014/12/29
  */
-define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Utils', 'template/delivery_type_detail', 'Service'],
+define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'BaseUtils', 'Utils', 'template/delivery_type_detail', 'Service'],
   function (require, exports, module) {
-    var DeliveryTypeDetail, DeliveryTypeModel, Service, BaseDetail, Utils, BaseView, template;
+    var DeliveryTypeDetail, DeliveryTypeModel, Service, BaseDetail, BaseUtils, Utils, BaseView, template;
 
     DeliveryTypeModel = require('DeliveryTypeModel');
     BaseDetail = require('BaseDetail');
     Utils = require('Utils');
+    BaseUtils = require('BaseUtils');
     template = require('template/delivery_type_detail');
     BaseView = require('BaseView');
     Service = require('Service');
@@ -26,26 +27,25 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ut
           model: DeliveryTypeModel
         });
       },
-      back: function(){
+      back: function () {
         this._navigate('#/shop/delivery_type', true);
       },
       render: function () {
         debug('4.DeliveryTypeDetail.render');
         this._render();
-        Service.getDeliveryCorpList().then(function(result){
-          Utils.initSelect({
+        Service.getDeliveryCorpList().then(function (result) {
+          BaseUtils.initSelect({
             render: '#s2',
             target: '#model-defaultDeliveryCorp',
-            items: result,
-            change: function(){
-            }
+            search: true,
+            items: result
           });
         });
         Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
           items: app.getStatus('deliveryMethod'),
-          change: function(){
+          change: function () {
           }
         });
         Utils.initSelect({
@@ -58,7 +58,7 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ut
           render: '#s4',
           width: 100,
           target: '#model-continueWeightUnit',
-          items:app.getStatus('weightUnit')
+          items: app.getStatus('weightUnit')
         });
         this._form('#J_Form')._validate()._init({ });
         Utils.initEditor({
