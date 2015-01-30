@@ -120,12 +120,16 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
       },
       initIndex: function () {
         // 主题
+        var ctx = this;
         Service.getWqtTheme({ text: 'name', value: 'path', select: true })
           .then(function (list) {
             BaseUtils.initSelect({
               render: '#titleTheme',
               target: '#model-titleTheme',
-              items: list
+              items: list,
+              change: function(model){
+                ctx.iframepage.$('.customcss').attr('href', CONST.PIC_URL + '/wqt/' + model.value);
+              }
             });
           });
         this.initDiaplay();
@@ -135,8 +139,12 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           target: '#model-font',
           items: [
             {text: '手机预设字体', value: 'Microsoft JhengHei,Microsoft YaHei,arial||0|0'},
-            {text: '粗钢笔', value: '粗钢笔2,微软雅黑,宋体,Microsoft JhengHei,Microsoft YaHei,arial|http://42.121.32.43:443/Fonts/getcss?family=%E7%B2%97%E9%92%A2%E7%AC%942&font=%E7%B2%97%E9%92%A2%E7%AC%94|1|1'}
-          ]
+            {text: '粗钢笔', value: '粗钢笔2,微软雅黑,宋体,Microsoft JhengHei,Microsoft YaHei,arial|http://42.121.32.43:443/Fonts/getcss?family=%E7%B2%97%E9%92%A2%E7%AC%942&font=%E7%B2%97%E9%92%A2%E7%AC%94|1|1'},
+            {text: '隶书', value: 'http://42.121.32.43:443/Fonts/getcss?family=%E9%BB%91%E4%BD%93215&font=%E9%BB%91%E4%BD%93&text=%0A%20.VYcdimouv%7B%7D%E4%B8%8E%E4%BA%AB%E4%BE%9B%E5%86%8C%E5%87%BD%E5%88%86%E5%8A%A1%E5%96%9C%E5%9B%9E%E5%9B%BE%E5%9C%B0%E5%A4%87%E5%A8%98%E5%A9%9A%E5%AE%A2%E5%AE%B4%E6%8F%90%E6%96%B0%E6%97%A5%E6%9C%8D%E6%9C%9F%E6%9C%AC%E7%88%B1%E7%94%A8%E7%94%B1%E7%9A%84%E7%9B%B8%E7%BA%A6%E7%BA%B1%E8%A7%86%E8%AE%AF%E9%82%80%E9%83%8E%E9%86%92%E9%A2%91%EF%BC%AD%EF%BC%B6'}
+          ],
+          change: function(model){
+            ctx.iframepage.$('.fontcss').attr('href', model.value);
+          }
         });
         // 音乐
         BaseUtils.initSelect({
@@ -277,7 +285,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           change: function (ev) {
             debug(ev.item.get('value'));
             if (ctx.iframepage) {
-              ctx.iframepage.$('#invite_detail_title_' + ev.item.get('value')).click();
+              ctx.iframepage.$('#' + ev.item.get('value') + '_detail_title').click();
             }
             if (ev.item.get('value') === 'index') {
               ctx.iframepage.$('body').scrollTop(0);
@@ -292,6 +300,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         this.initTip();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
+            this.model._hideTip();
             var pic = app.getView('invitationPicPick').getItems();
             if (pic.length > 0) {
               this.model.set('webimg', pic[0]['serverPath']);
@@ -318,6 +327,16 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             this.invitationTemplate = HandlebarsHelper.compile(invitationTemp);
             this.model.set('html', this.invitationTemplate(this.model.toJSON()));
             this._stringifyJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
+          },
+          onAfterSave: function () {
+            var ctx = this;
+            Utils.comfirm({
+              title: '',
+              content: '保存成功！',
+              success: function () {
+                ctx.$('iframe').attr('src', CONST.DOMAIN + '/wqt/' + Est.cookie('username') + '/' + ctx.model.get('wqtId') + '.html?' + Est.nextUid('v='));
+              }
+            });
           }
         });
       }

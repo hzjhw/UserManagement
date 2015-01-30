@@ -45,7 +45,10 @@ define('InvitationModel', ['BaseModel'], function (require, exports, module) {
       tip: {
         title: '喜宴提醒',
         display: '01',
-        txt: '距离开始时间还有'
+        txt: '距离开始时间还有',
+        time: Est.dateFormat(new Date(), 'yyyy-MM-dd'),
+        hour: 10,
+        minute: 20
       },
       share: {
         title: '喜 讯 分 享',
