@@ -27,7 +27,7 @@ define('InvitationModel', ['BaseModel'], function (require, exports, module) {
       },
       mv: {
         title: '婚 宴 视 频',
-        mv: '',
+        mv: 'http://',
         display: '01',
         pic: CONST.HOST + '/modules/wwy/invitation/website/images/mv.jpg'
       },
@@ -40,7 +40,9 @@ define('InvitationModel', ['BaseModel'], function (require, exports, module) {
         title: '婚 宴 地 图',
         display: '01',
         desc: '绍兴市 地址：绍兴镜湖地区 电话：13588506961',
-        addres: ''
+        address: '120,30',
+        x: 120,
+        y: 20
       },
       tip: {
         title: '喜宴提醒',

@@ -5,16 +5,18 @@
 <meta name="HandheldFriendly" content="true"/>
 <meta name="MobileOptimized" content="width"/>
 <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
-<title>Jack与Winnie婚宴邀约</title>
-<meta name="description" content="2013年06月09日 中午12时30分 金茂君悦大酒店 Jack与Winnie敬邀 "/>
-<meta property="og:url" content="http://cn.youvivid.com/mobile_invite.asp?bAutoVideo=1&amp;sn=J3NAM"/>
-<meta property="og:title" content="桃红典雅喜讯范例"/>
-<meta property="og:description" content="2013年06月09日 中午12时30分 金茂君悦大酒店 Jack与Winnie敬邀 "/>
-<meta property="og:site_name" content="YouVivid.com"/>
-<meta property="og:image" content="http://cn.youvivid.com/youvivid-jp-s3-uploads7/invite_bimage/B1539.jpg"/>
+<title>{{title}}</title>
+<meta name="description"
+      content="{{tip.time}} {{tip.hour}}时{{tip.minute}}分 {{map.desc}} {{groomname}}与{{bridename}}敬邀 "/>
+<meta property="og:url" content="{{CONST 'HOST'}}/wqt/{{username}}/{{id}}.html"/>
+<meta property="og:title" content="{{title}}"/>
+<meta property="og:description"
+      content="{{tip.time}} {{tip.hour}}时{{tip.minute}}分 {{map.desc}} {{groomname}}与{{bridename}}敬邀 "/>
+<meta property="og:site_name" content="jihui88.com"/>
+<meta property="og:image" content="{{CONST 'PIC_URL'}}/{{webimg}}?v={{version}}"/>
 <meta property="og:type" content="article"/>
-<meta property="fb:app_id" content="113568098684585"/>
-<meta property="fb:admins" content="632874169"/>
+<meta property="fb:app_id" content="{{id}}"/>
+<meta property="fb:admins" content="{{username}}"/>
 
 <script src="{{CONST 'HOST'}}/modules/wwy/invitation/website/js/jquery-latest.js"></script>
 <script type="text/javascript"
@@ -41,29 +43,9 @@
 <script type="text/javascript" src="{{CONST 'HOST'}}/modules/wwy/invitation/website/js/klass.min.js"></script>
 <script type="text/javascript"
         src="{{CONST 'HOST'}}/modules/wwy/invitation/website/js/code.photoswipe.jquery-3.0.5.min.js"></script>
-<script type="text/javascript">
-    function doNothing() {
-        /*
-         var script2 = document.createElement("script");
-         script2.src = "http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js";
-         document.body.appendChild(script2);
-         */
-    }
-    function loadScript() {
-        //alert("load map");
-        var script = document.createElement("script");
-        //script.src = "http://api.map.baidu.com/api?type=quick&v=1.0&ak=HACDI785p3wu9r5kynf6fY1i&callback=loadSearchInfoWindow";//MOBILE
-        script.src = "http://api.map.baidu.com/api?v=2.0&ak=HACDI785p3wu9r5kynf6fY1i&callback=doNothing";//此为v1.5版本的引用方式
 
-        // http://api.map.baidu.com/api?v=1.5&ak=您的密钥&callback=initialize"; //此为v1.4版本及以前版本的引用方式
-        document.body.appendChild(script);
-
-
-    }
-    //window.onload = loadScript;
-    /////addWinOnloadEvent(loadScript);
-
-</script>
+<link href="http://api.map.baidu.com/res/11/bmap.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true"></script>
 
 
 <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css"/>
@@ -114,20 +96,22 @@
     var map7072 = null;
     var marker7072;
     var map7072_zoom = 16;
-    var map7072_latcenter = 31.240871;
-    var map7072_lngcenter = 121.512502;
-    var map7072_latmarker = 31.241426;
-    var map7072_lngmarker = 121.512933;
+    var map7072_latcenter = '{{map.y}}';
+    var map7072_lngcenter = '{{map.x}}';
+    var map7072_latmarker = '{{map.y}}';
+    var map7072_lngmarker = '{{may.x}}';
     function initialize7072() {
         map7072 = new BMap.Map("map_canvas7072", {enableMapClick: false});
-        map7072.centerAndZoom(new BMap.Point(map7072_lngcenter, map7072_latcenter), 16);                 // 初始化地?，?置中心?坐?和地???
+        map7072.centerAndZoom(new BMap.Point(parseFloat(map7072_lngcenter), parseFloat(map7072_latcenter)), 16);                 // 初始化地?，?置中心?坐?和地???
         var opts = {anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM};
         map7072.addControl(new BMap.NavigationControl(opts));
-        var myIcon = new BMap.Icon("images/mobile_invite/map_marker.png", new BMap.Size(34, 34), {
+        var myIcon = new BMap.Icon("{{CONST 'HOST'}}/modules/wwy/invitation/website/images/map_marker.png", new BMap.Size(34, 34), {
             offset: new BMap.Size(17, 34),
             imageOffset: new BMap.Size(0, 0)   // ?置?片偏移
         });
-        marker7072 = new BMap.Marker(new BMap.Point(map7072_lngmarker, map7072_latmarker), {icon: myIcon}); // ?建?注
+        var mapOption = {};
+        //mapOption = {icon: myIcon}; // 坐标图标
+        marker7072 = new BMap.Marker(new BMap.Point(parseFloat(map7072_lngmarker), parseFloat(map7072_latmarker)), mapOption); // ?建?注
         map7072.addOverlay(marker7072);
     }
     function setMapCenter7072(lng, lat) {
@@ -559,7 +543,7 @@ String.prototype.Trim = function () {
 var bVideoPlaying = 0;
 var bMute = 1;
 </script>
-<link class="customcss" href="{{CONST 'PIC_URL'}}/wqt/{{titleTheme}}" rel="stylesheet" type="text/css">
+<link class="customcss" href="{{CONST 'PIC_URL'}}/wqt/{{titleTheme}}?v={{version}}" rel="stylesheet" type="text/css">
 <link class="themecss" href="{{CONST 'HOST'}}/modules/wwy/invitation/website/css/common2.css" rel="stylesheet"
       type="text/css"/>
 <link class="fontcss"
@@ -681,7 +665,7 @@ var bMute = 1;
                             <div class="inner-main-mm">
                                 <!-- 封面图 -->
                                 <img id="invite_webimg"
-                                     src="{{CONST 'PIC_URL'}}/{{webimg}}"
+                                     src="{{CONST 'PIC_URL'}}/{{webimg}}?v={{version}}"
                                      width="100%" alt="Mobile Wedding Invitations" style="cursor: pointer;">
 
                                 <div id="img_videobutton_placeholder" style="position:relative;">
@@ -785,33 +769,33 @@ var bMute = 1;
 <!--菜单-->
 <div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" role="tablist">
 <!--爱的邀约-->
-<h3 style="display:block;" id="invite_detail_title"
-    class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
-    aria-selected="false" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>
+<h3 {{{show "this.invite.display==='01'"}}} id="invite_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
+aria-selected="false" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>
 
-    <div name="button1" id="button1" class="button">
-        <div class="button-tr">
-            <div class="button-tl">
-                <div class="button-tm"></div>
-            </div>
+<div name="button1" id="button1" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
         </div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="1.png"
-                                     src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/1.png"
-                                     border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7069"
-                                                                              class="button-title">{{invite.title}}</span>&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="button-br">
-            <div class="button-bl">
-                <div class="button-bm"></div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="1.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/1.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7069"
+                                                                          class="button-title">{{invite.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
 <div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
      id="invite_detail_content7069" role="tabpanel" style="display: none;">
@@ -934,33 +918,33 @@ var bMute = 1;
     </div>
 </div>
 <!--婚纱相册-->
-<h3 style="display:block;" id="photos_detail_title"
-    class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="true"
-    aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>
+<h3 {{{show "this.photos.display==='01'"}}} id="photos_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="true"
+aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-e"></span>
 
-    <div name="button7" id="button2" class="button">
-        <div class="button-tr">
-            <div class="button-tl">
-                <div class="button-tm"></div>
-            </div>
+<div name="button7" id="button2" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
         </div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="7.png"
-                                     src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/7.png"
-                                     border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7070"
-                                                                              class="button-title">婚纱相册</span>&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="button-br">
-            <div class="button-bl">
-                <div class="button-bm"></div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="7.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/7.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7070"
+                                                                          class="button-title">婚纱相册</span>&nbsp;
+                </a>
             </div>
         </div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
 <div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
      id="invite_detail_content7070" role="tabpanel" style="display: none;">
@@ -977,10 +961,10 @@ var bMute = 1;
                     <ul id="Gallery7070" class="gallery">
                         {{#each photos.photos}}
                         <li>
-                            <a href="{{CONST 'PIC_URL'}}/{{serverPath}}"
+                            <a href="{{CONST 'PIC_URL'}}/{{serverPath}}?v={{version}}"
                                rel="external">
                                 <div class="thumb"
-                                     style=" min-height:80px; background-image: url({{CONST 'PIC_URL'}}/{{picUrl serverPath 5}});">
+                                     style=" min-height:80px; background-image: url({{CONST 'PIC_URL'}}/{{picUrl serverPath 5}}?v={{version}});">
                                     <img src="{{CONST 'HOST'}}/modules/wwy/invitation/website/images/spacer.gif"
                                          width="100%"></div>
                             </a></li>
@@ -1037,33 +1021,33 @@ var bMute = 1;
     </div>
 </div>
 <!--结婚视频-->
-<h3 style="display:block;" id="mv_detail_title"
-    class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
-    aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
+<h3 {{{show "this.mv.display==='01'"}}} id="mv_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
+aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
 
-    <div name="button2" id="button3" class="button">
-        <div class="button-tr">
-            <div class="button-tl">
-                <div class="button-tm"></div>
-            </div>
+<div name="button2" id="button3" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
         </div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="2.png"
-                                     src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/2.png"
-                                     border="0" align="absmiddle">&nbsp;<span id="invite_detail_name18354"
-                                                                              class="button-title">{{mv.title}}</span>&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="button-br">
-            <div class="button-bl">
-                <div class="button-bm"></div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="2.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/2.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name18354"
+                                                                          class="button-title">{{mv.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
 <div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
      id="invite_detail_content18354" role="tabpanel" style="display: none;">
@@ -1082,7 +1066,7 @@ var bMute = 1;
                             var xusrdata18354 = 'web/getuserdata_embed.asp?embedid=Q9G7W';
                         </script>
                         <video id="xvideo18354" width="100%" controls=""
-                               poster="{{CONST 'PIC_URL'}}/{{picUrl mv.pic 5}}"
+                               poster="{{CONST 'PIC_URL'}}/{{mv.pic}}?v={{version}}"
                                preload="meta">
                             <source src="http://youvivid-streaming.oss-cn-hangzhou.aliyuncs.com/IVT_template/wk-6GO-WUUS7A5kugNU8AQ.mp4"
                                     type="video/mp4">
@@ -1120,32 +1104,33 @@ var bMute = 1;
     </div>
 </div>
 <!--婚宴回函-->
-<h3 style="display:block;" id="message_detail_title"
-    class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
-    aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
+<h3 {{{show "this.message.display==='01'"}}} id="message_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
+aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
 
-    <div name="button3" id="button4" class="button">
-        <div class="button-tr">
-            <div class="button-tl">
-                <div class="button-tm"></div>
-            </div>
+<div name="button3" id="button4" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
         </div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="3.png"
-                                     src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/3.png" border="0"
-                                     align="absmiddle">&nbsp;<span id="invite_detail_name7071" class="button-title">{{message.title}}</span>&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="button-br">
-            <div class="button-bl">
-                <div class="button-bm"></div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="3.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/3.png?v={{version}}"
+                                 border="0"
+                                 align="absmiddle">&nbsp;<span id="invite_detail_name7071" class="button-title">{{message.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
 <div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
      id="invite_detail_content7071" role="tabpanel" style="display: block;">
@@ -1585,44 +1570,68 @@ var bMute = 1;
 
 </div>
 <!--婚宴地图-->
-<h3 style="display:block;" id="map_detail_title" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
-    <div name="button4" id="button5" class="button">
-        <div class="button-tr"><div class="button-tl"><div class="button-tm"></div></div></div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="4.png" src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/4.png" border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7072" class="button-title">{{map.title}}</span>&nbsp;</a>
-                </div>
+<h3 {{{show "this.map.display==='01'"}}} id="map_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
+aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
+
+<div name="button4" id="button5" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
+        </div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="4.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/4.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7072"
+                                                                          class="button-title">{{map.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
-        <div class="button-br"><div class="button-bl"><div class="button-bm"></div></div></div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
-<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="invite_detail_content7072" role="tabpanel" style="display: none;">
+<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
+     id="invite_detail_content7072" role="tabpanel" style="display: none;">
     <div name="detail4" id="detail5" class="detail">
-        <div class="detail-tr"><div class="detail-tl"><div class="detail-tm"></div></div></div>
+        <div class="detail-tr">
+            <div class="detail-tl">
+                <div class="detail-tm"></div>
+            </div>
+        </div>
         <div class="detail-mr">
             <div class="detail-ml">
                 <div class="detail-mm">
                     <input type="hidden" name="invite_detail_mapimgurl7072" id="invite_detail_mapimgurl7072" value="">
-                    <img class="mapimg" id="invite_detail_mapimg7072" style="width: 100%; border: thin solid rgb(153, 153, 153); display: none;" src="" width="100%">
-                    <div id="map_canvas7072" style="border:thin; border-style:solid; border-color:#999; margin-bottom:5px; width:100%; height:300px;"></div>
+                    <img class="mapimg" id="invite_detail_mapimg7072"
+                         style="width: 100%; border: thin solid rgb(153, 153, 153); display: none;" src="" width="100%">
+
+                    <div id="map_canvas7072"
+                         style="border:thin; border-style:solid; border-color:#999; margin-bottom:5px; width:100%; height:300px;"></div>
                     <div id="map_direction7072" style="width:100%" align="right">
-                        <input id="map_direction_button7072" name="map_direction_button7072" onclick="baidu_map_direction7072();" type="button" value=" 百度地图导航 ">
+                        <input id="map_direction_button7072" name="map_direction_button7072"
+                               onclick="baidu_map_direction7072();" type="button" value=" 百度地图导航 ">
                         <script language="javascript">
-                            function baidu_map_direction7072(){
+                            function baidu_map_direction7072() {
                                 addr_buf = "导航目的地";
-                                url_buf = "http://api.map.baidu.com/marker?location="+map7072_latmarker+","+map7072_lngmarker+"&zoom="+ map7072_zoom +"&title="+ encodeURIComponent(addr_buf)+"&content="+ encodeURIComponent(addr_buf)+"&output=html&src=YouVivid|" + encodeURIComponent("Fun喜讯");
+                                url_buf = "http://api.map.baidu.com/marker?location=" + map7072_latmarker + "," + map7072_lngmarker + "&zoom=" + map7072_zoom + "&title=" + encodeURIComponent(addr_buf) + "&content=" + encodeURIComponent(addr_buf) + "&output=html&src=YouVivid|" + encodeURIComponent("Fun喜讯");
                                 if (!audioPlayer.paused) {
                                     audioPlayer.pause();
                                 }
-                                window.open(url_buf );
+                                window.open(url_buf);
                             }
                         </script>
                     </div>
                     <div id="map_desc7072">{{activityplace}}<br>地址：{{activityaddress}}<br>电话：{{contactphone}}</div>
                     <script language="javascript">
-                        $(document).ready(function() {
+                        $(document).ready(function () {
                             if ($("#invite_detail_mapimgurl7072").val() == '') {
                                 $("#invite_detail_mapimg7072").hide();
                                 $("#map_canvas7072").show();
@@ -1637,41 +1646,64 @@ var bMute = 1;
                 </div>
             </div>
         </div>
-        <div class="detail-br"><div class="detail-bl"><div class="detail-bm"></div></div></div>
+        <div class="detail-br">
+            <div class="detail-bl">
+                <div class="detail-bm"></div>
+            </div>
+        </div>
     </div>
 </div>
 <!--婚宴提醒-->
-<h3 style="display:block;" id="tip_detail_title" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
-    <div name="button6" id="button6" class="button">
-        <div class="button-tr"><div class="button-tl"><div class="button-tm"></div></div></div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="6.png" src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/6.png" border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7073" class="button-title">{{tip.title}}</span>&nbsp;</a>
-                </div>
+<h3 {{{show "this.tip.display==='01'"}}} id="tip_detail_title"
+class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false"
+aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
+
+<div name="button6" id="button6" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
+        </div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="6.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/6.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7073"
+                                                                          class="button-title">{{tip.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
-        <div class="button-br"><div class="button-bl"><div class="button-bm"></div></div></div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
-<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="invite_detail_content7073" role="tabpanel" style="display: none;">
+<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
+     id="invite_detail_content7073" role="tabpanel" style="display: none;">
     <div name="detail6" id="detail6" class="detail">
-        <div class="detail-tr"><div class="detail-tl"><div class="detail-tm"></div></div></div>
+        <div class="detail-tr">
+            <div class="detail-tl">
+                <div class="detail-tm"></div>
+            </div>
+        </div>
         <div class="detail-mr">
             <div class="detail-ml">
                 <div class="detail-mm">
                     <script type="text/javascript">
                         //var countdownendtime = '2015/1/31 下午 12:00:00';
-                        var countdown_yy = {{countdown_yy}};
-                        var countdown_mm = {{countdown_mm}};
-                        var countdown_dd = {{countdown_dd}};
-                        var countdown_hh = {{countdown_hh}};
-                        var countdown_mn = {{countdown_mn}};
+                        var countdown_yy = '{{countdown_yy}}';
+                        var countdown_mm = '{{countdown_mm}}';
+                        var countdown_dd = '{{countdown_dd}}';
+                        var countdown_hh = '{{countdown_hh}}';
+                        var countdown_mn = '{{countdown_mn}}';
 
                         CountDownTimer('countdown');
 
-                        function CountDownTimer(id)
-                        {
+                        function CountDownTimer(id) {
 
                             var _second = 1000;
                             var _minute = _second * 60;
@@ -1680,9 +1712,9 @@ var bMute = 1;
                             var timer;
 
                             function showRemaining() {
-                                var end = new Date(countdown_yy,countdown_mm,countdown_dd,countdown_hh,countdown_mn,0);
+                                var end = new Date(parseInt(countdown_yy), parseInt(countdown_mm), parseInt(countdown_dd), parseInt(countdown_hh), parseInt(countdown_mn), 0);
                                 var now = new Date();
-                                var distance =  end - now;
+                                var distance = end - now;
                                 //alert (end + "\n" + now + "\n" + distance);
                                 if (distance < 0) {
 
@@ -1710,10 +1742,13 @@ var bMute = 1;
                             <span>距离开始时间还有</span>
                         </div>
                         <div style="width:100%" align="center">
-                            <div style=" width:80%; height:20px; border-radius:4px; border:1px solid #777; background-color:#FFF; font-size:16px; color:#777;" id="countdown">0天 21時 7分 33秒</div>
+                            <div style=" width:80%; height:20px; border-radius:4px; border:1px solid #777; background-color:#FFF; font-size:16px; color:#777;"
+                                 id="countdown">0天 21時 7分 33秒
+                            </div>
                         </div>
                     </div>
-                    <form name="rform" action="mobile_invite_remind_act.asp" method="post" onsubmit="javascript: return isIns2();" style="display:block;">
+                    <form name="rform" action="mobile_invite_remind_act.asp" method="post"
+                          onsubmit="javascript: return isIns2();" style="display:block;">
                         <input type="hidden" name="sn" value="J3NAM">
                         <input type="hidden" name="invite_id" value="1539">
                         <input type="hidden" name="invite_usrcookies" value="7C661FC084DF16D3109">
@@ -1721,50 +1756,92 @@ var bMute = 1;
                         <input type="hidden" name="remindphone_data" value="">
 
                         <table width="100%" cellpadding="3" cellspacing="3" border="0">
-                            <tbody><tr><td width="100%" height="30"><div id="remindtitle"><span>{{tip.txt}}</span></div></td></tr>
-                            <tr><td width="100%" height="30">姓　　名&nbsp;<input type="text" name="remindname" value="" size="16"></td></tr>
-                            <tr><td width="100%" height="30">手机号码&nbsp;<input type="text" name="remindphone" value="" size="16"></td></tr>
-                            <tr><td width="100%" height="30" align="center"><input type="submit" value=" 送 出 "></td></tr>
-                            </tbody></table>
+                            <tbody>
+                            <tr>
+                                <td width="100%" height="30">
+                                    <div id="remindtitle"><span>{{tip.txt}}</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100%" height="30">姓　　名&nbsp;<input type="text" name="remindname" value=""
+                                                                              size="16"></td>
+                            </tr>
+                            <tr>
+                                <td width="100%" height="30">手机号码&nbsp;<input type="text" name="remindphone" value=""
+                                                                              size="16"></td>
+                            </tr>
+                            <tr>
+                                <td width="100%" height="30" align="center"><input type="submit" value=" 送 出 "></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="detail-br"><div class="detail-bl"><div class="detail-bm"></div></div></div>
+        <div class="detail-br">
+            <div class="detail-bl">
+                <div class="detail-bm"></div>
+            </div>
+        </div>
     </div>
 </div>
 <!--喜讯分享-->
-<h3 style="display:block;" id="share_detail_title" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>
-    <div name="button5" id="button7" class="button">
-        <div class="button-tr"><div class="button-tl"><div class="button-tm"></div></div></div>
-        <div class="button-mr">
-            <div class="button-ml">
-                <div class="button-mm">
-                    <a href="#"><img class="iconimage" alt="5.png" src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/5.png" border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7074" class="button-title">{{share.title}}</span>&nbsp;</a>
-                </div>
+<h3 {{{show "this.share.display==='01'"}}} id="share_detail_title" class="ui-accordion-header ui-helper-reset
+ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1">
+<span class="ui-icon ui-icon-triangle-1-e"></span>
+
+<div name="button5" id="button7" class="button">
+    <div class="button-tr">
+        <div class="button-tl">
+            <div class="button-tm"></div>
+        </div>
+    </div>
+    <div class="button-mr">
+        <div class="button-ml">
+            <div class="button-mm">
+                <a href="#"><img class="iconimage" alt="5.png"
+                                 src="{{CONST 'PIC_URL'}}/wqt/css/{{themeId}}/images/icons/5.png?v={{version}}"
+                                 border="0" align="absmiddle">&nbsp;<span id="invite_detail_name7074"
+                                                                          class="button-title">{{share.title}}</span>&nbsp;
+                </a>
             </div>
         </div>
-        <div class="button-br"><div class="button-bl"><div class="button-bm"></div></div></div>
     </div>
+    <div class="button-br">
+        <div class="button-bl">
+            <div class="button-bm"></div>
+        </div>
+    </div>
+</div>
 </h3>
-<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="invite_detail_content7074" role="tabpanel" style="display: none; overflow: visible; padding-top: 0px; padding-bottom: 0px;">
+<div class="accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom"
+     id="invite_detail_content7074" role="tabpanel"
+     style="display: none; overflow: visible; padding-top: 0px; padding-bottom: 0px;">
     <div name="detail5" id="detail7" class="detail">
-        <div class="detail-tr"><div class="detail-tl"><div class="detail-tm"></div></div></div>
+        <div class="detail-tr">
+            <div class="detail-tl">
+                <div class="detail-tm"></div>
+            </div>
+        </div>
         <div class="detail-mr">
             <div class="detail-ml">
                 <div class="detail-mm">
                     <div style="margin-top:0px; margin-bottom:25px">
                         <div style="font-size:14px; margin-bottom:5px">分享网址:</div>
                         <div style="width:100%" align="center">
-                            <input style="width:80%; border:1px solid #777; text-align:center; height:20px;  font-size:16px; color:#777;" name="inviteurl" alt="请按滑鼠右键选择复制" title="请按滑鼠右键选择复制" type="text" id="inviteurl" value="{{CONST 'HOST'}}/wqt/{{username}}/{{id}}.html" size="20">
+                            <input style="width:80%; border:1px solid #777; text-align:center; height:20px;  font-size:16px; color:#777;"
+                                   name="inviteurl" alt="请按滑鼠右键选择复制" title="请按滑鼠右键选择复制" type="text" id="inviteurl"
+                                   value="{{CONST 'HOST'}}/wqt/{{username}}/{{id}}.html" size="20">
+
                             <div style="font-size:12px; margin-top:5px"></div>
                         </div>
                     </div>
 
                     <script>
-                        $(function() {
-                            $('#inviteurl').click(function(){
-                                if($.browser.msie) this.createTextRange().select();
+                        $(function () {
+                            $('#inviteurl').click(function () {
+                                if ($.browser.msie) this.createTextRange().select();
                                 else {
                                     this.selectionStart = 0;
                                     this.selectionEnd = this.value.length;
@@ -1775,17 +1852,26 @@ var bMute = 1;
                 </div>
             </div>
         </div>
-        <div class="detail-br"><div class="detail-bl"><div class="detail-bm"></div></div></div>
+        <div class="detail-br">
+            <div class="detail-bl">
+                <div class="detail-bm"></div>
+            </div>
+        </div>
     </div>
 </div>
 
 
-
 </div>
 <!--页脚-->
-<div id="footer"><div id="copyright"><div id="copyright-text"><div id="copyright-text-content">
-    本服务由http://www.jihui88.com/提供
-</div></div></div></div>
+<div id="footer">
+    <div id="copyright">
+        <div id="copyright-text">
+            <div id="copyright-text-content">
+                本服务由http://www.jihui88.com/提供
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 </div>

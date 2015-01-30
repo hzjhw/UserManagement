@@ -179,6 +179,10 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
   });
 
+  Handlebars.registerHelper('show', function(expression, options){
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? " style='display:block;' " : " style='display:none;' ";
+  });
+
   /**
    * 所有状态
    * @method [状态] - status
@@ -302,7 +306,15 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     }
     return path;
   });
-
+  /**
+   * 打版本号
+   * @method [版本] - version
+   * @example
+   *      http://www.jihui88.com?v={{version}}
+   */
+  Handlebars.registerHelper('version', function (options) {
+    return new Date().getTime();
+  });
 
   module.exports = Handlebars;
 });

@@ -68,6 +68,8 @@
  - git mv --force app/modules/member/management/message/model/messageSendModel.js  app/modules/member/management/message/model/MessageSendModel.js 
 5) iframedialog打开时提示未找到el选择符
  - 在详细页面里 新var detailApp = new Application();
+6) 图片保存不了
+ - 初始化PicturePick时 检查是否attId未配置， 若不需要ID时， 可以随便取个值如001
  
 ### handlebars
 1) 获取索引

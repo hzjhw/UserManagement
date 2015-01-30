@@ -107,7 +107,7 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           }
         });
       },
-      reset: function(){
+      reset: function () {
         this._render();
         this._options.change && this._options.change.call(this, this._getItems());
       },
@@ -139,6 +139,13 @@ define('PicturePick', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 't
           }
         });
         return result;
+      },
+      // 根据索引获取单个图片
+      getItem: function (index) {
+        var list = this.getItems();
+        index = index || 0;
+        if (list.length > index) return list[index];
+        return { attId: null, serverPath: ''};
       },
       render: function () {
         this._render();

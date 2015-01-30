@@ -13,7 +13,7 @@
 <div id="tab"></div>
 <div id="panel" class="" style="padding:10px;">
 <!--主页设置-->
-<div>
+<div style="position:relative;">
     <div class="control-group">
         <label class="control-label">选择模板：</label>
 
@@ -62,9 +62,11 @@
         <label class="control-label">封面图：</label>
 
         <div class="controls control-row-auto">
-            <div id="picture-pick" style="width:500px;"></div>
+            <div id="picture-pick" style="width:600px;"></div>
         </div>
     </div>
+    <div id="qrcode" style="position:absolute;right: 0px;top: 0px;z-index: 800;"><img
+            src="http://qr.liantu.com/api.php?w=250&text={{wqturl}}"/></div>
 </div>
 <div style="display:none;">
     <div class="control-group">
@@ -124,7 +126,7 @@
         <label class="control-label">相册图片：</label>
 
         <div class="controls control-row-auto">
-            <div id="photos-pick" style="width:500px;"></div>
+            <div id="photos-pick" style="width:615px;"></div>
         </div>
     </div>
 
@@ -237,12 +239,16 @@
 
     <div class="control-group">
         <label class="control-label">地图坐标：</label>
-
         <div class="controls control-row-auto">
-            <div id="map-pic">
-
-            </div>
+            <input id="model-map.address" class="model-map" name="model-map.address" value="{{map.address}}" type="text"/>
+            请在下方的地图上标注坐标， 点击“保存”按钮即可
+            <!--<input id="model-map.iframe" class="model-iframe" name="model-map.iframe" value="{{map.iframe}}" type="hidden"/>-->
         </div>
+    </div>
+    <div class="control-group">
+        <iframe src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe"
+                width="750" height="400"
+                style="border:1px solid #B9DDFF;"></iframe>
     </div>
 </div>
 
