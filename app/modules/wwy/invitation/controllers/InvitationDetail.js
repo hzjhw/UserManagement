@@ -256,6 +256,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         } else {
           this.model.set('wqturl', 'modules/wwy/invitation/website/index.html');
         }
+        this.model.set('themeId', this.model.get('titleTheme').replace(/^css\/(.+?)\/.*\.css$/g, '$1'));
         this._render();
         this.iframepage = this.$("#iframepage").get(0).contentWindow;
         Utils.initTab({
@@ -305,7 +306,6 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             if (mv.length > 0) {
               Est.setValue(this.model.attributes, 'mv.pic', mv[0]['serverPath']);
             }
-
             this.model.set('enterpriseId', Est.cookie('enterpriseId'));
             this.model.set('username', Est.cookie('username'));
             var date = this.model.get('tip')['time'];
