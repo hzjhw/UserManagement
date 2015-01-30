@@ -242,7 +242,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
       initTip: function () {
         Utils.initDate({
           render: '.calendar',
-          showTime: true
+          showTime: false
         });
 
       },
@@ -251,7 +251,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         // 字符串转换成JSON对象
         this._parseJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
         if (!Est.isEmpty(this.model.get('id'))) {
-          this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username')  + '/' + this.model.get('id') + '.html')
+          this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username') + '/' + this.model.get('id') + '.html')
           //this.model.set('wqturl', 'http://jihui88.com/member/modules/wwy/invitation/402881e34b3556b4014b35f40d940016.html')
         } else {
           this.model.set('wqturl', 'modules/wwy/invitation/website/index.html');
@@ -308,7 +308,12 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
 
             this.model.set('enterpriseId', Est.cookie('enterpriseId'));
             this.model.set('username', Est.cookie('username'));
-            //this.model.set('countdown_yy', Est.cookie('username'));
+            var date = this.model.get('tip')['time'];
+            this.model.set('countdown_yy', parseInt(date.substring(0, 4), 10));
+            this.model.set('countdown_mm', parseInt(date.substring(6, 8), 10) - 1);
+            this.model.set('countdown_dd', parseInt(date.substring(8, 10), 10));
+            this.model.set('countdown_hh', parseInt(this._getValue('tip.hour'), 10));
+            this.model.set('countdown_mn', parseInt(this._getValue('tip.minute'), 10));
 
             this.invitationTemplate = HandlebarsHelper.compile(invitationTemp);
             this.model.set('html', this.invitationTemplate(this.model.toJSON()));

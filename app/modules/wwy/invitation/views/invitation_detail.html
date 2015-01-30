@@ -280,8 +280,11 @@
         <label class="control-label">倒数计时设定：</label>
 
         <div class="controls control-row-auto">
-            <input id="model-tip.time" name="tip.itme" value="{{dateFormat 'tip.time' 'yyyy-MM-dd hh:mm:ss'}}"
+            <input id="model-tip.time" name="tip.time" value="{{dateFormat 'tip.time' 'yyyy-MM-dd'}}"
                    type="text" class="calendar input-large" style="width: 150px;">
+
+            <input id="model-tip.hour" class="input-mini" type="text" value="{{tip.hour}}"/>时
+            <input id="model-tip.minute" type="text" class="input-mini" value="{{tip.minute}}"/>分
         </div>
     </div>
 </div>

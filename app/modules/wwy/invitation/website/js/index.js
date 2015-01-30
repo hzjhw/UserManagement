@@ -364,7 +364,7 @@ function setMarkerPos1641638(lng, lat) {
 }
 
 
-$(document).ready(function () {
+$(function () {
   $("#accordion").accordion({ autoHeight: false }, { collapsible: true, active: false });
   //$("#accordion").accordion("activate",0);
   //$("#accordion").accordion("activate","#accordion10");
@@ -415,66 +415,66 @@ $(document).ready(function () {
    }
    });
    */
-
-  $("#accordion").bind('accordionchange', function (event, ui) {
-    if (ui.newContent.attr('id') == 'invite_detail_content1641634' && !map1641634 && $("#invite_detail_mapimgurl1641634").val() == '') {
-      initialize1641634();
-    }
-
-
-  });
-
-  var mapCanvas = document.getElementById("map_canvas1641634");
-
-  if (!mapCanvas.addEventListener) {
-    mapCanvas.attachEvent("touchstart", thisTouchStart1641634, true);
-    mapCanvas.attachEvent("touchend", thisTouchEnd1641634, true);
-    mapCanvas.attachEvent("touchmove", thisTouchMove1641634, true);
-  } else {
-    mapCanvas.addEventListener("touchstart", thisTouchStart1641634, true);
-    mapCanvas.addEventListener("touchend", thisTouchEnd1641634, true);
-    mapCanvas.addEventListener("touchmove", thisTouchMove1641634, true);
-  }
-
-  var bReloadWebFontOnce1641637 = 1;
-
-  $("#accordion").bind('accordionchangestart', function (event, ui) {
-    if (ui.newContent.attr('id') == 'invite_detail_content1641637' && bReloadWebFontOnce1641637 == 1) {
-      //alert("reloadwebfont");
-      //$("#invite_detail_editor1641637").hide();
-      reloadWebFont1641637();
-      bReloadWebFontOnce1641637 = 0;
-      //$("#invite_detail_editor1641637").show();
-    }
-  });
+  /*
+   $("#accordion").bind('accordionchange', function (event, ui) {
+   if (ui.newContent.attr('id') == 'invite_detail_content1641634' && !map1641634 && $("#invite_detail_mapimgurl1641634").val() == '') {
+   initialize1641634();
+   }
 
 
-  $("#accordion").bind('accordionchange', function (event, ui) {
-    // ui.newHeader // jQuery object, activated header
-    // ui.oldHeader // jQuery object, previous header
-    // ui.newContent // jQuery object, activated content
-    // ui.oldContent // jQuery object, previous content
-    //  alert($(ui.newContent).attr("id") + " was opened, " + $(ui.oldContent).attr("id") + " was closed");
-    //   console.log(ui.newHeader.attr('id'));
-    if (ui.newContent.attr('id') == 'invite_detail_content1641638' && !map1641638 && $("#invite_detail_mapimgurl1641638").val() == '') {
-      //alert("initialize1641638");
-      initialize1641638();
-    }
+   });*/
+
+  /*var mapCanvas = document.getElementById("map_canvas1641634");
+
+   if (!mapCanvas.addEventListener) {
+   mapCanvas.attachEvent("touchstart", thisTouchStart1641634, true);
+   mapCanvas.attachEvent("touchend", thisTouchEnd1641634, true);
+   mapCanvas.attachEvent("touchmove", thisTouchMove1641634, true);
+   } else {
+   mapCanvas.addEventListener("touchstart", thisTouchStart1641634, true);
+   mapCanvas.addEventListener("touchend", thisTouchEnd1641634, true);
+   mapCanvas.addEventListener("touchmove", thisTouchMove1641634, true);
+   }*/
+
+  /*  var bReloadWebFontOnce1641637 = 1;
+
+   $("#accordion").bind('accordionchangestart', function (event, ui) {
+   if (ui.newContent.attr('id') == 'invite_detail_content1641637' && bReloadWebFontOnce1641637 == 1) {
+   //alert("reloadwebfont");
+   //$("#invite_detail_editor1641637").hide();
+   reloadWebFont1641637();
+   bReloadWebFontOnce1641637 = 0;
+   //$("#invite_detail_editor1641637").show();
+   }
+   });
 
 
-  });
+   $("#accordion").bind('accordionchange', function (event, ui) {*/
+  // ui.newHeader // jQuery object, activated header
+  // ui.oldHeader // jQuery object, previous header
+  // ui.newContent // jQuery object, activated content
+  // ui.oldContent // jQuery object, previous content
+  //  alert($(ui.newContent).attr("id") + " was opened, " + $(ui.oldContent).attr("id") + " was closed");
+  //   console.log(ui.newHeader.attr('id'));
+  /*    if (ui.newContent.attr('id') == 'invite_detail_content1641638' && !map1641638 && $("#invite_detail_mapimgurl1641638").val() == '') {
+   //alert("initialize1641638");
+   initialize1641638();
+   }
 
-  var mapCanvas = document.getElementById("map_canvas1641638");
 
-  if (!mapCanvas.addEventListener) {
-    mapCanvas.attachEvent("touchstart", thisTouchStart1641638, true);
-    mapCanvas.attachEvent("touchend", thisTouchEnd1641638, true);
-    mapCanvas.attachEvent("touchmove", thisTouchMove1641638, true);
-  } else {
-    mapCanvas.addEventListener("touchstart", thisTouchStart1641638, true);
-    mapCanvas.addEventListener("touchend", thisTouchEnd1641638, true);
-    mapCanvas.addEventListener("touchmove", thisTouchMove1641638, true);
-  }
+   });
+
+   var mapCanvas = document.getElementById("map_canvas1641638");
+
+   if (!mapCanvas.addEventListener) {
+   mapCanvas.attachEvent("touchstart", thisTouchStart1641638, true);
+   mapCanvas.attachEvent("touchend", thisTouchEnd1641638, true);
+   mapCanvas.attachEvent("touchmove", thisTouchMove1641638, true);
+   } else {
+   mapCanvas.addEventListener("touchstart", thisTouchStart1641638, true);
+   mapCanvas.addEventListener("touchend", thisTouchEnd1641638, true);
+   mapCanvas.addEventListener("touchmove", thisTouchMove1641638, true);
+   }*/
 
   /*
    $("#accordion").bind('accordionchange', function(event, ui) {
@@ -1358,47 +1358,30 @@ $(document).ready(function () {
 });
 
 
-/*相册 *****************************************************/
-var options, instance;
-(function (window, $, PhotoSwipe) {
-  $(function () {
-    options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false,
-      captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
-    };
-    if ($('#Gallery li').size() > 0) {
-      instance = $("#Gallery a").photoSwipe(options);
-      instance.addEventHandler(PhotoSwipe.EventTypes.onBeforeShow, function (e) {
-        instanceClose = this;
-        parent.showDialog();
-      });
-      instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
-        parent.closeDialog();
-      });
-    }
-  });
-}(window, window.jQuery, window.Code.PhotoSwipe));
 
+/*
 
-function addPhotoSwipe1641631(fileid, thumbnailurl, fileurl, photocount) {
-  var li = $('<li/>').append($('<a/>').attr('href', fileurl)
-    .append($('<div class="thumb" />').attr('id', fileid).css('background-image', 'url(' + thumbnailurl + ')').css('min-height', '80px').append($('<img />').attr('src', 'images/spacer.gif').attr('width', '100%')
-    ))).appendTo('ul#Gallery');
-  if ($("#Gallery li").size() == photocount) {
-    options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false, captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
-    };
-    instance = $("#Gallery a").photoSwipe(options);
-    instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeShow, function (e) {
-      instanceClose = this;
-      parent.showDialog();
-    });
-    instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
-      parent.closeDialog();
-    });
-  }
-}
-function instance_hide() {
-  instanceClose.hide(0);
-}
+ function addPhotoSwipe1641631(fileid, thumbnailurl, fileurl, photocount) {
+ var li = $('<li/>').append($('<a/>').attr('href', fileurl)
+ .append($('<div class="thumb" />').attr('id', fileid).css('background-image', 'url(' + thumbnailurl + ')').css('min-height', '80px').append($('<img />').attr('src', 'images/spacer.gif').attr('width', '100%')
+ ))).appendTo('ul#Gallery');
+ if ($("#Gallery li").size() == photocount) {
+ options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false, captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
+ };
+ instance = $("#Gallery a").photoSwipe(options);
+ instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeShow, function (e) {
+ instanceClose = this;
+ parent.showDialog();
+ });
+ instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
+ parent.closeDialog();
+ });
+ }
+ }
+ function instance_hide() {
+ instanceClose.hide(0);
+ }
+ */
 
 /*倒计时 *************************************/
 function CountDownTimer(id, options) {
@@ -1433,3 +1416,23 @@ function CountDownTimer(id, options) {
 
   timer = setInterval(showRemaining, 1000);
 }
+/*相册 *****************************************************/
+var options, instance;
+(function (window, $, PhotoSwipe) {
+  $(function () {
+    //PhotoSwipe.activeInstances[0].instance.hide(0)
+    options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false,
+      captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
+    };
+    if ($('#Gallery li').size() > 0) {
+      instance = $("#Gallery a").photoSwipe(options);
+      /*instance.addEventHandler(PhotoSwipe.EventTypes.onBeforeShow, function (e) {
+       instanceClose = this;
+       //parent.showDialog();
+       });
+       instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
+       //parent.closeDialog();
+       });*/
+    }
+  });
+}(window, window.jQuery, window.Code.PhotoSwipe));

@@ -51,7 +51,7 @@
           href="http://42.121.32.43:443/Fonts/getcss?family=%E9%9A%B6%E4%B9%A62&amp;font=%E9%9A%B6%E4%B9%A6&amp;text=%E6%9C%AC%E6%9C%8D%E5%8A%A1%E7%94%B1YouVivid%2Ecom%E6%8F%90%E4%BE%9B%28%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C%E7%89%88%E9%99%90%E5%88%B6%E6%9C%80%E5%A4%9A5%E4%B8%AA%E6%89%8B%E6%9C%BA%E6%89%93%E5%BC%80%29%E7%8E%8B%E6%B0%B8%E8%BF%9B%E4%B8%8E%E7%8E%8B%E9%9B%85%E5%8D%95%0D%0A%E5%A9%9A%E5%AE%B4%E9%82%80%E7%BA%A62015%E5%B9%B401%E6%9C%8831%E6%97%A5%E7%88%B1+%E7%9A%84+%E9%82%80+%E7%BA%A6%E5%A9%9A+%E7%BA%B1+%E7%9B%B8+%E5%86%8C%EF%BC%AD+%EF%BC%B6+%E8%A7%86+%E9%A2%91%E5%A9%9A+%E5%AE%B4+%E5%9B%9E+%E5%87%BD%E5%A9%9A+%E5%AE%B4+%E5%9C%B0+%E5%9B%BE%E5%96%9C+%E5%AE%B4+%E6%8F%90+%E9%86%92%E5%96%9C+%E8%AE%AF+%E5%88%86+%E4%BA%AB%E5%A4%87+%E7%94%A8+%E9%82%80+%E7%BA%A6%E5%A4%87+%E7%94%A8+%E5%9C%B0+%E5%9B%BE%E5%A4%87+%E7%94%A8+%E7%9B%B8+%E5%86%8C"
           rel="stylesheet" type="text/css">
 
-    <link class="fontcss_detail" id="粗钢笔1" rel="stylesheet" type="text/css"
+   <!-- <link class="fontcss_detail" id="粗钢笔1" rel="stylesheet" type="text/css"
           href="http://42.121.32.43:443/Fonts/getcss/fc8c5791-69bb-48af-be05-5ce205986699">
     <link class="fontcss_detail" id="粗圆1" rel="stylesheet" type="text/css" href="">
     <link class="fontcss_detail" id="古印体1" rel="stylesheet" type="text/css" href="">
@@ -72,7 +72,7 @@
     <link class="fontcss_detail" id="书宋二1" rel="stylesheet" type="text/css" href="">
     <link class="fontcss_detail" id="中行书1" rel="stylesheet" type="text/css" href="">
     <link class="fontcss_detail" id="粗行楷体1" rel="stylesheet" type="text/css" href="">
-    <link class="fontcss_detail" id="甜妞体1" rel="stylesheet" type="text/css" href="">
+    <link class="fontcss_detail" id="甜妞体1" rel="stylesheet" type="text/css" href="">-->
 </head>
 <body marginwidth="0">
 <div id="Loading" style="display: block;">
@@ -1115,7 +1115,7 @@
         <div class="detail-mr">
             <div class="detail-ml">
                 <div class="detail-mm">
-                    <img src="{{CONST 'PIC_URL'}}/{{map.address}}" alt="" width="100%"/>
+                    <!--<img src="{{CONST 'PIC_URL'}}/{{map.address}}" alt="" width="100%"/>-->
                 </div>
 
             </div>
@@ -1169,11 +1169,11 @@
                 <div class="detail-mm">
                     <script>
                         CountDownTimer('countdown', {
-                            countdown_yy: 2015,
-                            countdown_mm: 2,
-                            countdown_dd: 20,
-                            countdown_hh: 12,
-                            countdown_mn: 0
+                            countdown_yy: {{countdown_yy}},
+                            countdown_mm: {{countdown_mm}},
+                            countdown_dd: {{countdown_dd}},
+                            countdown_hh: {{countdown_hh}},
+                            countdown_mn: {{countdown_mn}}
                         });
                     </script>
 
