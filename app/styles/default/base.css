@@ -1116,7 +1116,7 @@ label.checkbox {
     border-radius: 0;
 }
 
-.select-inner{
+.select-inner {
     display: inline-block;
 }
 
@@ -1530,7 +1530,7 @@ label.checkbox {
 }
 
 #jhw .bui-grid-body-detail {
-    height: 86%;
+    height: 90%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1869,3 +1869,29 @@ loading*/
 @-moz-keyframes fade { 50% { opacity: 0.5; } 100% { opacity: 1; } }
 @-o-keyframes fade { 50% { opacity: 0.5; } 100% { opacity: 1; }}
 @keyframes fade { 50% { opacity: 0.5; } 100% { opacity: 1; }}*/
+
+/*婚宴请贴*/
+#invitation-view {
+    float: left;
+    width: 320px;
+}
+#invitation-view .phone-bg{
+    width: 300px;
+    height: 680px;
+    background: url(img/phone.png) no-repeat 0 0;
+    right: 0;
+    position:relative;
+}
+
+#invitation-handle {
+    float: left;
+    width: 780px;
+}
+
+#qwt-pre td{
+    padding-bottom: 5px;
+}
+#qwt-pre label{
+    padding-right: 5px;
+}
+

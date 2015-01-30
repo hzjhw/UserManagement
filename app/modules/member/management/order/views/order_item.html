@@ -18,13 +18,13 @@
 </td>
 <td>
     <p>
-        [{{{orderStatus orderStatus}}}]
-    </p>
-
-    <p>
-        [{{{paymentStatus paymentStatus}}}]
-    </p>
-    <p>
-        [{{{shippingStatus shippingStatus}}}]<a href="javascript:;" class="delivery-view">[查看物流]</a>
+        {{#xif 'this.orderStatus === "completed" || this.orderStatus === "cancelled"'}}
+        {{{orderStatus orderStatus}}}
+        {{else}}{{#xif 'this.paymentStatus === "unpaid" || this.paymentStatus === "partPayment"'}}
+        {{{paymentStatus paymentStatus}}}
+        {{else}}
+        {{{shippingStatus shippingStatus}}}<a href="javascript:;" class="delivery-view">[查看物流]</a>
+        {{/xif}}
+        {{/xif}}
     </p>
 </td>

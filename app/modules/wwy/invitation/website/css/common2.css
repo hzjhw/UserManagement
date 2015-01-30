@@ -1,0 +1,114 @@
+a, a:hover, a:active, a:focus{
+	text-decoration:none;
+	border:none;
+	outline:none;
+	/*color:#ffd4e6;*/
+	color: inherit;
+	}
+#head
+{
+	display: none;
+}
+
+body {
+    /*font-family:Georgia, "Times New Roman", Times, serif;*/
+    font-family: '隶 书 2, 微 软 雅 黑, 宋 体, Microsoft JhengHei, Microsoft YaHei, arial';
+    margin-left: 4px;
+    margin-top: 4px;
+    margin-right: 4px;
+    font-size: 90%;
+}
+
+.ui-widget {
+    /*font-family:Georgia, "Times New Roman", Times, serif;*/
+    font-family: '隶 书 2, 微 软 雅 黑, 宋 体, Microsoft JhengHei, Microsoft YaHei, arial';
+}
+
+.play_video_button {
+    border: solid 1px #CCC; /* 邊框樣式 */
+    -moz-box-shadow: 1px 1px 5px #999; /* Firefox */
+    -webkit-box-shadow: 1px 1px 5px #999; /* Safari 和 Chrome */
+    box-shadow: 1px 1px 5px #999; /* Opera 10.5 + */
+}
+
+/*no use now */
+.title {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-box-shadow: rgba(0, 0, 0, .3) 1px 1px 2px;
+    border: 0px solid #E0E0E0;
+    background-color: #ff87c3; /* Changes the homepage menu background color */
+    text-align: center;
+    padding: 3px 0 3px 0;
+    margin-bottom: 5px;
+    font-size: 120%;
+    color: #999;
+
+    background: #ff87c3; /* Old browsers */
+    background: -moz-linear-gradient(top, #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff87c3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcecfc), color-stop(50%, #fba6e1), color-stop(51%, #fd89d7), color-stop(100%, #ff87c3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff87c3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff87c3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff87c3 100%); /* IE10+ */
+    background: linear-gradient(top, #fcecfc 0%, #fba6e1 50%, #fd89d7 51%, #ff87c3 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcecfc', endColorstr='#ff87c3', GradientType=0); /*IE6-9 */
+
+}
+
+/*jquery UI css overwrite*/
+.ui-accordion-content {
+    /*
+        filter: alpha(opacity=10);
+        opacity:0.4;
+    */
+    /*	background-image:url(images/index_bg_02.jpg);
+        background-repeat: repeat;
+        background-position: center center;
+    */
+    font-family: "微軟正黑體", "微软雅黑", "宋体", "Microsoft JhengHei", "Microsoft YaHei", verdana, tahoma, arial, serif;
+}
+
+input {
+    height: 20px;
+    font-size: 14px;
+}
+
+textarea {
+    font-size: 14px;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#Loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400%;
+    background: #ffffff;
+    margin: 0px 0 0 0px;
+    z-index: 200
+}
+
+/* #Loading2{position:absolute;top:0;left:0;width:100%;height:100%;background:#F00;margin:0px 0 0 0px; z-index:199}*/
+#heart {
+    position: absolute;
+    left: 50%;
+    top: 13%;
+    margin: -50px 0 0 -30px;
+}
+
+#Waiting {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    left: 50%;
+    top: 13%;
+    margin: 10px 0 0 -45px;
+}
+
+#mainbox {
+    margin: -15px 0 0 0;
+}

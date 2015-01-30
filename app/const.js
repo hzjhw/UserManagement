@@ -10,6 +10,7 @@ var CONST = {
   HOST: 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
   DOMAIN: 'http://jihui88.com',
+  DOMAIN_WQT: 'jihui88.com', // 微请帖
   PIC_URL: 'http://192.168.1.99:8111',
   SEP: '/',
   PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',
@@ -22,7 +23,7 @@ var CONST = {
 window.CONST = CONST;
 
 /**
- * 视图管理容器
+ * 应用程序创建
  * */
 if (typeof app === 'undefined') {
   app = new Application(CONST);

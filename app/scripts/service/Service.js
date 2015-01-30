@@ -3,8 +3,10 @@
  * @class Service
  * @author yongjin<zjut_wyj@163.com> 2014/12/17
  */
-define('Service', ['jquery'], function (require, exports, module) {
-  var Service;
+define('Service', ['jquery', 'BaseService'], function (require, exports, module) {
+  var Service, BaseService;
+
+  BaseService = require('BaseService');
 
   Service = {
     /**
@@ -41,6 +43,7 @@ define('Service', ['jquery'], function (require, exports, module) {
             return false;
           } else {
             app.addData('user', data.attributes);
+            Est.cookie('username', data.attributes.username);
             CONST.USER = data.attributes;
           }
         }
@@ -597,6 +600,16 @@ define('Service', ['jquery'], function (require, exports, module) {
           });
         }
       });
+    },
+    /**
+     * 获取请帖主题
+     * @method getWqtTheme
+     * @return {factory}
+     * @author wyj 15.1.29
+     */
+    getWqtTheme: function (options) {
+      options = Est.extend({ url: CONST.API + '/wqt/list/template' }, options);
+      return new BaseService().factory(options);
     }
   };
 

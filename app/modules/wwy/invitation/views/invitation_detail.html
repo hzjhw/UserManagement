@@ -1,0 +1,329 @@
+<form id="J_Form" action="" class="form-horizontal">
+<div class="bui-grid-body-detail">
+<div id="invitation-view">
+    <div class="phone-bg">
+        <iframe id="iframepage" name="iframepage" allowtransparency="true" scrolling="auto"
+                style=" margin-top:40px; margin-left:8px; height: 475px; width: 290px;  position: absolute"
+                src="{{wqturl}}" frameborder="0"
+                marginwidth="0"></iframe>
+    </div>
+</div>
+<div id="invitation-handle">
+
+<div id="tab"></div>
+<div id="panel" class="" style="padding:10px;">
+<!--主页设置-->
+<div>
+    <div class="control-group">
+        <label class="control-label">选择模板：</label>
+
+        <div class="controls">
+            <div id="titleTheme">
+                <input value="{{titleTheme}}" name="model-titleTheme" id="model-titleTheme"
+                       type="hidden"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">字 体：</label>
+
+        <div class="controls">
+            <div id="font">
+                <input type="hidden" id="model-font" value="{{font}}" name="font">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">音　乐:：</label>
+
+        <div class="controls">
+            <div id="music">
+                <input id="model-music" name="music" value="{{music}}" type="hidden">
+            </div>
+        </div>
+    </div>
+    <div class="control-group control-row-auto">
+        <label class="control-label" for="">主标题：</label>
+
+        <div class="controls">
+            <textarea name="title" cols="20" rows="5" id="model-title"
+                      style="width: 300px;height: 40px;">{{title}}</textarea>
+        </div>
+    </div>
+    <div class="control-group control-row-auto">
+        <label class="control-label" for="">副标题：</label>
+
+        <div class="controls">
+            <textarea name="title1" cols="20" rows="5" id="model-title1"
+                      style="width: 300px;height: 40px;">{{title1}}</textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">封面图：</label>
+
+        <div class="controls control-row-auto">
+            <div id="picture-pick" style="width:500px;"></div>
+        </div>
+    </div>
+</div>
+<div style="display:none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display01">
+                <input id="model-invite.display" class="invite_display" type="hidden" value="{{invite.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'invite.title'}}" id="model-invite.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            内容：
+        </label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-invite.content" name="invite.content" class="ckeditor text" rows="12"
+                      cols="95" style="width: 600px;height:250px;">{{json 'invite.content'}}</textarea>
+        </div>
+    </div>
+
+</div>
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display02">
+                <input id="model-photos.display" class="photos_display" type="hidden" value="{{photos.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'photos.title'}}" id="model-photos.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">相册图片：</label>
+
+        <div class="controls control-row-auto">
+            <div id="photos-pick" style="width:500px;"></div>
+        </div>
+    </div>
+
+</div>
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display03">
+                <input id="model-mv.display" class="mv_display" type="hidden" value="{{mv.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'mv.title'}}" id="model-mv.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">视频地址：</label>
+
+        <div class="controls">
+            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">视频图片：</label>
+
+        <div class="controls control-row-auto">
+            <div id="mv-pick" style="width:500px;"></div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display04">
+                <input id="model-message.display" class="message_display" type="hidden" value="{{message.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'message.title'}}" id="model-message.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">提示文字：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-message.tip" class="mv input-large"
+                      style="width: 450px;height:50px;">{{json 'message.tip'}}</textarea>
+        </div>
+    </div>
+    <!--<div class="control-group">
+        <label class="control-label" for=""><input type="checkbox" value="">显示/隐藏</label>
+
+        <div class="controls">
+            <input type="text" value="需要为您准备素食吗？"/>
+        </div>
+    </div>-->
+
+</div>
+
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display05">
+                <input id="model-map.display" class="map_display" type="hidden" value="{{map.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'map.title'}}" id="model-map.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">交通指引说明：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-map.desc" class="mv input-large"
+                      style="width: 450px;height:50px;">{{json 'map.desc'}}</textarea>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">地图坐标：</label>
+
+        <div class="controls control-row-auto">
+            <div id="map-pic">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display06">
+                <input id="model-tip.display" class="tip_display" type="hidden" value="{{tip.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{json 'tip.title'}}" id="model-tip.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">倒数计时提示文字：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-tip.txt" class="mv input-large" style="width: 450px;height:50px;">{{json
+                'tip.txt'}}</textarea>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">倒数计时设定：</label>
+
+        <div class="controls control-row-auto">
+            <input id="model-tip.time" name="tip.itme" value="{{dateFormat 'tip.time' 'yyyy-MM-dd hh:mm:ss'}}"
+                   type="text" class="calendar input-large" style="width: 150px;">
+        </div>
+    </div>
+</div>
+<div style="display: none;">
+    <div class="control-group">
+        <label class="control-label" for="">
+            是否显示此页：
+        </label>
+
+        <div class="controls">
+            <div id="display07">
+                <input id="model-share.display" class="share_display" type="hidden" value="{{share.display}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="">
+            标题：
+        </label>
+
+        <div class="controls">
+            <input value="{{share.title}}" id="model-share.title" type="text"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">分享网址：</label>
+
+        <div class="controls control-row-auto">
+            <textarea id="model-share.url" class="mv input-large"
+                      style="width: 450px;height:50px;">{{share.url}}</textarea>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="bui-grid-footer">
+    <div class="row" style="display:block;">
+        <div class="form-actions span13 offset3">
+            <button id="submit" type="button" class="button button-primary">保存</button>
+            <button id="btn-back" type="button" class="button btn-back">返回</button>
+        </div>
+    </div>
+</div>
+</form>

@@ -114,6 +114,7 @@ define('Utils', ['jquery', 'HandlebarsHelper'],
         BUI.use(['bui/tab', 'bui/mask'], function (Tab) {
           var tab = new Tab.TabPanel(options);
           tab.on('selectedchange', function (ev) {
+            options.change && options.change.call(this, ev);
             Utils.resetIframe();
           });
           tab.render();

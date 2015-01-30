@@ -90,6 +90,19 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    *      {{dateFormat $.detail_news.add_time $.lan.news.format}}
    */
   Handlebars.registerHelper('dateFormat', function (date, fmt, options) {
+    if (typeof date !== 'undefined' && Est.typeOf(date) === 'string') {
+      var list = date.split('.');
+      if (list[0] in this) {
+        if (list.length > 1) {
+          if (Est.typeOf(this[list[0]]) !== 'object') {
+            this[list[0]] = JSON.parse(this[list[0]]);
+          }
+          return Est.dateFormat(Est.getValue(this, date), fmt);
+        } else {
+          return Est.dateFormat(this[list[0]], fmt);
+        }
+      }
+    }
     return Est.dateFormat(date, fmt);
   });
 
@@ -266,6 +279,30 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     });
     return result.join('');
   });
+
+  /**
+   * 解析JSON字符串
+   * @method [JSON] - json
+   * @example
+   *      {{json 'invite.title'}}
+   */
+  Handlebars.registerHelper('json', function (path, options) {
+    if (typeof path !== 'undefined') {
+      var list = path.split('.');
+      if (list[0] in this) {
+        if (list.length > 1) {
+          if (Est.typeOf(this[list[0]]) !== 'object') {
+            this[list[0]] = JSON.parse(this[list[0]]);
+          }
+          return Est.getValue(this, path);
+        } else {
+          return this[list[0]];
+        }
+      }
+    }
+    return path;
+  });
+
 
   module.exports = Handlebars;
 });

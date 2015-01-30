@@ -86,9 +86,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             });
           });
         }
-        if (!PicturePick) {
-          debug('PicturePick模块未引入， 请检查xxx_detail.html页面是否引入common/picture_pick/main.js?');
-        }
         app.addView('productPicturePick', new PicturePick({
           el: '#picture-pick',
           viewId: 'productPicturePick',

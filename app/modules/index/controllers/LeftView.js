@@ -103,7 +103,10 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
               {name: '会员等级管理', url: '#/member/rank', className: 'menu-category', children: []},
               {name: '会员属性管理', url: '#/member/attr', className: 'menu-category', children: []}
             ]},
-            {name: '微网页', url: '#/wwy', className: 'menu-microweb'},
+            {name: '微网页', url: '#/wwy', className: 'menu-microweb', children: [
+              {name: '微传单', url: '#/wwy', className: 'menu-invitation'},
+              {name: '婚宴请帖', url: '#/wwy_invitation', className: 'menu-invitation'}
+            ]},
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
               {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []}
@@ -111,8 +114,8 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
             {name: '手机网站', url: '#/mobile', className: 'menu-mobile', children: [
               {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []}
             ]},
-           /* {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
-            {name: '我的工具', url: '#/tool', className: 'menu-tool'},*/
+            /* {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
+             {name: '我的工具', url: '#/tool', className: 'menu-tool'},*/
             {name: '退出登录', url: '#/logout', className: 'menu-login'}
           ],
           subRender: '.node-tree'
