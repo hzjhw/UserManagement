@@ -1399,3 +1399,37 @@ function addPhotoSwipe1641631(fileid, thumbnailurl, fileurl, photocount) {
 function instance_hide() {
   instanceClose.hide(0);
 }
+
+/*倒计时 *************************************/
+function CountDownTimer(id, options) {
+
+  var _second = 1000;
+  var _minute = _second * 60;
+  var _hour = _minute * 60;
+  var _day = _hour * 24;
+  var timer;
+
+  function showRemaining() {
+    var end = new Date(options.countdown_yy, options.countdown_mm, options.countdown_dd, options.countdown_hh, options.countdown_mn, 0);
+    var now = new Date();
+    var distance = end - now;
+    //alert (end + "\n" + now + "\n" + distance);
+    if (distance < 0) {
+
+      clearInterval(timer);
+      document.getElementById(id).innerHTML = '已经到期了!';
+
+      return;
+    }
+    var days = Math.floor(distance / _day);
+    var hours = Math.floor((distance % _day) / _hour);
+    var minutes = Math.floor((distance % _hour) / _minute);
+    var seconds = Math.floor((distance % _minute) / _second);
+    document.getElementById(id).innerHTML = days + '天 ';
+    document.getElementById(id).innerHTML += hours + '時 ';
+    document.getElementById(id).innerHTML += minutes + '分 ';
+    document.getElementById(id).innerHTML += seconds + '秒';
+  }
+
+  timer = setInterval(showRemaining, 1000);
+}

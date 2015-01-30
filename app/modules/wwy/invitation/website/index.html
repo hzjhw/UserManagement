@@ -14,7 +14,10 @@
     <meta property="og:type" content="article">
     <meta property="fb:app_id" content="113568098684585">
     <meta property="fb:admins" content="632874169">
-
+    <script type="text/javascript">
+        window.enterpriseId = '{{enterpriseId}}';
+        window.username = '{{username}}'
+    </script>
     <link href="http://jihui88.com/member/modules/wwy/invitation/website/css/styles_leo3.css" type="text/css"
           rel="stylesheet">
     <link href="http://jihui88.com/member/modules/wwy/invitation/website/css/photoswipe.css" type="text/css"
@@ -1165,47 +1168,13 @@
             <div class="detail-ml">
                 <div class="detail-mm">
                     <script>
-                        var countdown_yy = 2015;
-                        var countdown_mm = 2;
-                        var countdown_dd = 20;
-                        var countdown_hh = 12;
-                        var countdown_mn = 0;
-
-                        CountDownTimer('countdown');
-
-                        function CountDownTimer(id) {
-
-                            var _second = 1000;
-                            var _minute = _second * 60;
-                            var _hour = _minute * 60;
-                            var _day = _hour * 24;
-                            var timer;
-
-                            function showRemaining() {
-                                var end = new Date(countdown_yy, countdown_mm, countdown_dd, countdown_hh, countdown_mn, 0);
-                                var now = new Date();
-                                var distance = end - now;
-                                //alert (end + "\n" + now + "\n" + distance);
-                                if (distance < 0) {
-
-                                    clearInterval(timer);
-                                    document.getElementById(id).innerHTML = '已经到期了!';
-
-                                    return;
-                                }
-                                var days = Math.floor(distance / _day);
-                                var hours = Math.floor((distance % _day) / _hour);
-                                var minutes = Math.floor((distance % _hour) / _minute);
-                                var seconds = Math.floor((distance % _minute) / _second);
-                                document.getElementById(id).innerHTML = days + '天 ';
-                                document.getElementById(id).innerHTML += hours + '時 ';
-                                document.getElementById(id).innerHTML += minutes + '分 ';
-                                document.getElementById(id).innerHTML += seconds + '秒';
-                            }
-
-                            timer = setInterval(showRemaining, 1000);
-                        }
-
+                        CountDownTimer('countdown', {
+                            countdown_yy: 2015,
+                            countdown_mm: 2,
+                            countdown_dd: 20,
+                            countdown_hh: 12,
+                            countdown_mn: 0
+                        });
                     </script>
 
                     <div style="margin-top:0px; margin-bottom:25px">

@@ -44,6 +44,7 @@ define('Service', ['jquery', 'BaseService'], function (require, exports, module)
           } else {
             app.addData('user', data.attributes);
             Est.cookie('username', data.attributes.username);
+            Est.cookie('enterpriseId', data.attributes.enterpriseId);
             CONST.USER = data.attributes;
           }
         }

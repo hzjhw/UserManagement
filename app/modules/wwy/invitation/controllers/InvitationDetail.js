@@ -305,6 +305,11 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             if (mv.length > 0) {
               Est.setValue(this.model.attributes, 'mv.pic', mv[0]['serverPath']);
             }
+
+            this.model.set('enterpriseId', Est.cookie('enterpriseId'));
+            this.model.set('username', Est.cookie('username'));
+            //this.model.set('countdown_yy', Est.cookie('username'));
+
             this.invitationTemplate = HandlebarsHelper.compile(invitationTemp);
             this.model.set('html', this.invitationTemplate(this.model.toJSON()));
             this._stringifyJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
