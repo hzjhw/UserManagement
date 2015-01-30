@@ -1356,3 +1356,46 @@ $(document).ready(function () {
 
 
 });
+
+
+/*相册 *****************************************************/
+var options, instance;
+(function (window, $, PhotoSwipe) {
+  $(function () {
+    options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false,
+      captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
+    };
+    if ($('#Gallery li').size() > 0) {
+      instance = $("#Gallery a").photoSwipe(options);
+      instance.addEventHandler(PhotoSwipe.EventTypes.onBeforeShow, function (e) {
+        instanceClose = this;
+        parent.showDialog();
+      });
+      instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
+        parent.closeDialog();
+      });
+    }
+  });
+}(window, window.jQuery, window.Code.PhotoSwipe));
+
+
+function addPhotoSwipe1641631(fileid, thumbnailurl, fileurl, photocount) {
+  var li = $('<li/>').append($('<a/>').attr('href', fileurl)
+    .append($('<div class="thumb" />').attr('id', fileid).css('background-image', 'url(' + thumbnailurl + ')').css('min-height', '80px').append($('<img />').attr('src', 'images/spacer.gif').attr('width', '100%')
+    ))).appendTo('ul#Gallery');
+  if ($("#Gallery li").size() == photocount) {
+    options = {target: $("#PhotoSwipeTarget", parent.document.body), allowUserZoom: false, captionAndToolbarAutoHideDelay: 0, captionAndToolbarShowEmptyCaptions: false
+    };
+    instance = $("#Gallery a").photoSwipe(options);
+    instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeShow, function (e) {
+      instanceClose = this;
+      parent.showDialog();
+    });
+    instance.addEventHandler(window.Code.PhotoSwipe.EventTypes.onBeforeHide, function (e) {
+      parent.closeDialog();
+    });
+  }
+}
+function instance_hide() {
+  instanceClose.hide(0);
+}

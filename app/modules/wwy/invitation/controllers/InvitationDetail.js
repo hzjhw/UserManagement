@@ -251,8 +251,8 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         // 字符串转换成JSON对象
         this._parseJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
         if (!Est.isEmpty(this.model.get('id'))) {
-          //this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username')  + '/' + this.model.get('id') + '.html')
-          this.model.set('wqturl', 'http://jihui88.com/member/modules/wwy/invitation/402881e34b3556b4014b35f40d940016.html')
+          this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username')  + '/' + this.model.get('id') + '.html')
+          //this.model.set('wqturl', 'http://jihui88.com/member/modules/wwy/invitation/402881e34b3556b4014b35f40d940016.html')
         } else {
           this.model.set('wqturl', 'modules/wwy/invitation/website/index.html');
         }
