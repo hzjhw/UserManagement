@@ -232,7 +232,7 @@
         <label class="control-label">交通指引说明：</label>
 
         <div class="controls control-row-auto">
-            <textarea id="model-map.desc" class="mv input-large"
+            <textarea id="model-map.desc" class="map-info input-large"
                       style="width: 450px;height:50px;">{{json 'map.desc'}}</textarea>
         </div>
     </div>
@@ -246,7 +246,7 @@
         </div>
     </div>
     <div class="control-group">
-        <iframe src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe"
+        <iframe src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe&info=map-info"
                 width="750" height="400"
                 style="border:1px solid #B9DDFF;"></iframe>
     </div>

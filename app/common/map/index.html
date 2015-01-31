@@ -150,6 +150,7 @@ function handleResult(_mapPos, html_result) {
     parent.callback && parent.callback(html_result);
     parent.$(target).val(_mapPos.x + ',' + _mapPos.y);
     parent.$(iframe).val(html_result);
+    parent.$(info).val($('#mapInfo').val());
 }
 
 function baiduMapInitial() {
@@ -166,8 +167,9 @@ function baiduMapInitial() {
     map.disableDoubleClickZoom(); // 禁止双击放大
     map.addOverlay(marker); // 添加一个小圆点
     marker.enableDragging(true); // 设置标注可拖拽
-    var initMapInfo = window.info;
+    var initMapInfo = window.info ? parent.$('.' + info).val() : '';
     if (initMapInfo) {
+        $("#mapInfo").val(initMapInfo);
         var infoWindow = new BMap.InfoWindow(initMapInfo, { width: 'auto', height: 'auto', title: '', enableAutoPan: false }); // 创建信息窗口对象
         marker.openInfoWindow(infoWindow);
     }
@@ -249,6 +251,9 @@ $('#mapVersions').live('change', function () {
 //查询
 $('#searchMap').live('click', function () {
     searchMap();
+});
+$("#mapInfo").change(function(){
+    parent.$('.' + info).val($(this).val());
 });
 function initWhChange() {
     $('#height').change(function () {

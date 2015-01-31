@@ -284,6 +284,10 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return result.join('');
   });
 
+  Handlebars.registerHelper('encodeURIComponent', function(val, options){
+    return encodeURIComponent(val);
+  });
+
   /**
    * 解析JSON字符串
    * @method [JSON] - json
