@@ -1626,7 +1626,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                     userDomain: document.domain,
                     sendType: 'no'
                 }, success: function (data) {
-                    console.log(data);
+                    eval('(' + data + ')');
                 }
             })
         });
