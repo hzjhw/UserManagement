@@ -11,7 +11,7 @@ define('InvitationModel', ['BaseModel'], function (require, exports, module) {
   InvitationModel = BaseModel.extend({
     defaults: Est.extend({
       titleTheme: 'css/dianna_royalblue/custom4.css',
-      font: 'Microsoft JhengHei,Microsoft YaHei,arial||0|0',
+      font: '',
       music: '-',
       title: '{新郎}与{新娘} 婚宴邀约',
       title1: '2015年01月31日{宴客日期}',
