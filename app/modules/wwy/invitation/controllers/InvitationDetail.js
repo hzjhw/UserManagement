@@ -175,13 +175,13 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             });
           });
         }
-        this.invitationPhotoPick = new PicturePick({
+        this.invitationPhotoPick = app.addView('invitationPhotoPick', new PicturePick({
           el: '#photos-pick',
           viewId: 'invitationPhotoPick',
           _isAdd: this._isAdd, // 是否为添加模式
           items: pic_list, // 初始化数据
           max: 20
-        });
+        }));
       },
       initMv: function () {
         var pic_mv = [];
@@ -207,7 +207,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
       },
       initMap: function () {
         var ctx = this;
-        this.$('.map-info').keyup(function(){
+        this.$('.map-info').keyup(function () {
           ctx.iframemap.$('#mapInfo').val($(this).val());
           ctx.iframemap.$('#mapInfo').keyup();
         });
