@@ -27,7 +27,7 @@ define('InvitationModel', ['BaseModel'], function (require, exports, module) {
       },
       mv: {
         title: '婚 宴 视 频',
-        mv: 'http://',
+        mv: 'http://youvivid-streaming.oss-cn-hangzhou.aliyuncs.com/IVT_template/wk-6GO-WUUS7A5kugNU8AQ.mp4',
         display: '01',
         pic: CONST.HOST + '/modules/wwy/invitation/website/images/mv.jpg'
       },

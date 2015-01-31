@@ -175,7 +175,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             });
           });
         }
-        this.invitationPhotoPick = app.addView('invitationPhotoPick', new PicturePick({
+        app.addView('invitationPhotoPick', new PicturePick({
           el: '#photos-pick',
           viewId: 'invitationPhotoPick',
           _isAdd: this._isAdd, // 是否为添加模式
@@ -266,7 +266,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           onBeforeSave: function () {
             this.model._hideTip();
             this.model.set('webimg', this.invitationPicPick.getItem().serverPath);
-            this.model._setValue('photos.photos', this.invitationPhotoPick.getItems());
+            this.model._setValue('photos.photos',  app.getView('invitationPhotoPick').getItems());
             this.model._setValue('mv.pic', this.invitationMvPick.getItem().serverPath);
 
             this.model.set('enterpriseId', Est.cookie('enterpriseId'));
