@@ -1536,7 +1536,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 
 
 <tr>
-    <td width="100%" height="30" align="center" valign="middle"><input type="submit" value=" 送 出 "></td>
+    <td width="100%" height="30" align="center" valign="middle"><input id="message_send" type="submit" value=" 送 出 "></td>
 </tr>
 
 
@@ -1566,33 +1566,34 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 </script>
 <script>
     $(function(){
-        var name = $("input[name='t12317']").val();
-        if(name==''){
-            alert('请输入您的姓名');
-            return false;
-        }
-        var phone = $("input[name='t12323']").val();
-        if(name==''){
-            alert('请输入您的联系方式');
-            return false;
-        }
-        var content = $("#rsvptable").parent().html();
-
-        $.ajax({
-            url:"{{CONST 'DOMAIN'}}/site_message/send",
-            data:{
-                title:'婚宴回函',
-                username:username,
-                recvEnt:enterpriseId,
-                content:content,
-                domain : document.domain,
-                userDomain : document.domain,
-                sendType:'no'
-            },success:function(data){
-
+        $('#message_send').click(function(){
+            var name = $("input[name='t12317']").val();
+            if(name==''){
+                alert('请输入您的姓名');
+                return false;
             }
-        })
+            var phone = $("input[name='t12323']").val();
+            if(name==''){
+                alert('请输入您的联系方式');
+                return false;
+            }
+            var content = $("#rsvptable").parent().html();
 
+            $.ajax({
+                url:"{{CONST 'DOMAIN'}}/site_message/send",
+                data:{
+                    title:'婚宴回函',
+                    username:username,
+                    recvEnt:enterpriseId,
+                    content:content,
+                    domain : document.domain,
+                    userDomain : document.domain,
+                    sendType:'no'
+                },success:function(data){
+
+                }
+            })
+        });
     })
 </script>
 </div>
