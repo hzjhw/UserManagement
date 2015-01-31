@@ -1151,8 +1151,6 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 <div class="detail-mm">
 <div id="rsvpdiv">
 <!--回函表单-->
-<form name="iform" action="mobile_invite.asp?bAutoVideo=1&amp;sn=J3NAM" method="post"
-      onsubmit="javascript: return false;" style="display:block;">
 
 
 <input type="hidden" name="sum" value="0">
@@ -1543,7 +1541,6 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 </tbody>
 </table>
 <br>
-</form>
 <div>
     <div id="page1">
 
@@ -1583,8 +1580,8 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                 url:"{{CONST 'DOMAIN'}}/site_message/send",
                 data:{
                     title:'婚宴回函',
-                    username:username,
-                    recvEnt:enterpriseId,
+                    username:'{{username}}',
+                    recvEnt:'{{enterpriseId}}',
                     content:content,
                     domain : document.domain,
                     userDomain : document.domain,
