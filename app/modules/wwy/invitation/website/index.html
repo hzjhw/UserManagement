@@ -197,7 +197,7 @@
         if (!confirm('您确定要' + btn + '？')) {
             return false;
         } else {
-            document.iform.submit();
+            //document.iform.submit();
         }
     }
     function replaceAll(oldStr, findStr, repStr) {
@@ -1152,7 +1152,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 <div id="rsvpdiv">
 <!--回函表单-->
 <form name="iform" action="mobile_invite.asp?bAutoVideo=1&amp;sn=J3NAM" method="post"
-      onsubmit="javascript: return isIns();" style="display:block;">
+      onsubmit="javascript: return false;" style="display:block;">
 
 
 <input type="hidden" name="sum" value="0">
