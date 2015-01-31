@@ -51,7 +51,7 @@ define('OrderList', ['BaseList', 'BaseView', 'backbone', 'Utils', 'BaseCollectio
         var ctx = this;
         $.ajax({
           type: 'post',
-          url: CONST.API + '/rest/api/shop/order/completed/' + this.model.get('id'),
+          url: CONST.API + '/shop/order/completed/' + this.model.get('orderId'),
           success: function (result) {
             ctx.$('.btn-comfirm').remove();
           }

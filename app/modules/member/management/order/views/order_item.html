@@ -18,14 +18,23 @@
 </td>
 <td>
     <p>
-        {{#xif 'this.orderStatus === "completed" || this.orderStatus === "cancelled"'}}
-        {{{orderStatus orderStatus}}}
-        {{else}}{{#xif 'this.paymentStatus === "unpaid" || this.paymentStatus === "partPayment"'}}
-        {{{paymentStatus paymentStatus}}}
-        {{else}}
-        {{{shippingStatus shippingStatus}}}<a href="javascript:;" class="delivery-view">[查看物流]</a>
-        {{#compare shippingStatus '===' 'shipped'}}<input class="btn-comfirm" type="button" value="确认收货"/>{{/compare}}
-        {{/xif}}
+        {{#xif 'this.orderStatus === "cancelled"'}}
+                {{{orderStatus orderStatus}}}
+            {{else}}
+                {{#xif 'this.paymentStatus === "unpaid" || this.paymentStatus === "partPayment"'}}
+                    {{{paymentStatus paymentStatus}}}
+                {{else}}
+                    {{#xif 'this.shippingStatus === "shipped" || this.shippingStatus === "partShipped"'}}
+                        {{#xif 'this.orderStatus !== "completed"'}}
+                        {{{shippingStatus shippingStatus}}}<a href="javascript:;" class="delivery-view">[查看物流]</a>
+                        {{#xif 'this.shippingStatus === "shipped"'}}<input class="btn-comfirm" type="button" value="确认收货"/>{{/xif}}
+                        {{else}}
+                            交易成功
+                         {{/xif}}
+                    {{else}}
+                        {{{shippingStatus shippingStatus}}}
+                    {{/xif}}
+                {{/xif}}
         {{/xif}}
     </p>
 </td>

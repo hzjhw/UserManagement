@@ -66,7 +66,8 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
         'click .showqrcode': 'showQrcode',
         'click .wwy-add': 'add',
         'click .btn-search': 'search',
-        'click .btn-blacklist': 'blackList'
+        'click .btn-blacklist': 'blackList',
+        'click .btn-wqt': 'wqt'
       },
       initialize: function () {
         this.editItem = true;
@@ -80,6 +81,9 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           pagination: true,
           detail: CONST.HOST + '/modules/wwy/wwy_detail.html'
         });
+      },
+      wqt: function(){
+        this._navigate('#/wwy_invitation', true);
       },
       // 打开添加/修改对话框
       add: function () {
