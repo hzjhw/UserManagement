@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -99,20 +99,26 @@
     var map7072_latcenter = '{{map.y}}';
     var map7072_lngcenter = '{{map.x}}';
     var map7072_latmarker = '{{map.y}}';
-    var map7072_lngmarker = '{{may.x}}';
+    var map7072_lngmarker = '{{map.x}}';
+    var map7072_info = '{{map.desc}}';
     function initialize7072() {
         map7072 = new BMap.Map("map_canvas7072", {enableMapClick: false});
         map7072.centerAndZoom(new BMap.Point(parseFloat(map7072_lngcenter), parseFloat(map7072_latcenter)), 16);                 // 初始化地?，?置中心?坐?和地???
         var opts = {anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_ZOOM};
         map7072.addControl(new BMap.NavigationControl(opts));
-        var myIcon = new BMap.Icon("{{CONST 'HOST'}}/modules/wwy/invitation/website/images/map_marker.png", new BMap.Size(34, 34), {
+        var myIcon = new BMap.Icon("{{CONST 'HOST'}}/modules/wwy/invitation/website/images/map_marker.png", new BMap.Size(20, 34), {
             offset: new BMap.Size(17, 34),
             imageOffset: new BMap.Size(0, 0)   // ?置?片偏移
         });
         var mapOption = {};
-        mapOption = {icon: myIcon}; // 坐标图标
+        //mapOption = {icon: myIcon}; // 坐标图标
         marker7072 = new BMap.Marker(new BMap.Point(parseFloat(map7072_lngmarker), parseFloat(map7072_latmarker)), mapOption); // ?建?注
         map7072.addOverlay(marker7072);
+
+        if (map7072_info) {
+            var infoWindow = new BMap.InfoWindow(map7072_info, { width: 'auto', height: 'auto', title: '', enableAutoPan: false }); // 创建信息窗口对象
+            marker7072.openInfoWindow(infoWindow);
+        }
     }
     function setMapCenter7072(lng, lat) {
         map7072.setCenter(new BMap.Point(lng, lat));
@@ -135,7 +141,7 @@
                 $('html, body').animate({scrollTop: $(ui.newHeader).offset().top});
             }
             bVideoPlaying = 0;
-            if (audioPlayer.paused) {
+            if (audioPlayer && audioPlayer.paused) {
                 bMute == 0;
                 audioPlayer.play();
             }
@@ -581,7 +587,7 @@ var bMute = 1;
     }
     function winOnloadFunc() {
         stopLoading();
-        loadScript();
+        //loadScript();
     }
     var bWinOnLoadFired = 0;
     $(window).load(function () {
@@ -1075,7 +1081,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                         <script>
                             $(function () {
                                 $('#xvideo18354').bind('play', function (e) {
-                                    if (!audioPlayer.paused) {
+                                    if (audioPlayer && !audioPlayer.paused) {
                                         audioPlayer.pause();
                                     }
                                     bVideoPlaying = 1;
@@ -1622,7 +1628,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                             function baidu_map_direction7072() {
                                 addr_buf = "导航目的地";
                                 url_buf = "http://api.map.baidu.com/marker?location=" + map7072_latmarker + "," + map7072_lngmarker + "&zoom=" + map7072_zoom + "&title=" + encodeURIComponent(addr_buf) + "&content=" + encodeURIComponent(addr_buf) + "&output=html&src=YouVivid|" + encodeURIComponent("Fun喜讯");
-                                if (!audioPlayer.paused) {
+                                if (audioPlayer && !audioPlayer.paused) {
                                     audioPlayer.pause();
                                 }
                                 window.open(url_buf);
@@ -1739,7 +1745,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                     </script>
                     <div style="margin-top:0px; margin-bottom:25px">
                         <div id="countdowntitle" style="font-size:14px; margin-bottom:5px" align="center">
-                            <span>距离开始时间还有</span>
+                            <span>{{tip.txt}}</span>
                         </div>
                         <div style="width:100%" align="center">
                             <div style=" width:80%; height:20px; border-radius:4px; border:1px solid #777; background-color:#FFF; font-size:16px; color:#777;"
@@ -1757,11 +1763,6 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 
                         <table width="100%" cellpadding="3" cellspacing="3" border="0">
                             <tbody>
-                            <tr>
-                                <td width="100%" height="30">
-                                    <div id="remindtitle"><span>{{tip.txt}}</span></div>
-                                </td>
-                            </tr>
                             <tr>
                                 <td width="100%" height="30">姓　　名&nbsp;<input type="text" name="remindname" value=""
                                                                               size="16"></td>
@@ -1867,7 +1868,7 @@ ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="
     <div id="copyright">
         <div id="copyright-text">
             <div id="copyright-text-content">
-                本服务由http://www.jihui88.com/提供
+                本服务由<a href="http://m.jihui88.com/">机汇网</a>提供
             </div>
         </div>
     </div>

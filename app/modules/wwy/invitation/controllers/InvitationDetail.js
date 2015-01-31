@@ -206,6 +206,11 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         });
       },
       initMap: function () {
+        var ctx = this;
+        this.$('.map-info').keyup(function(){
+          ctx.iframemap.$('#mapInfo').val($(this).val());
+          ctx.iframemap.$('#mapInfo').keyup();
+        });
       },
       initTip: function () {
         Utils.initDate({
@@ -225,6 +230,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         this.initThemeId();
         this._render();
         this.iframepage = this.$("#iframepage").get(0).contentWindow;
+        this.iframemap = this.$('#iframemap').get(0).contentWindow;
         Utils.initTab({
           render: '#tab',
           elCls: 'nav-tabs',
