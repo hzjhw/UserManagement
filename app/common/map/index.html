@@ -140,14 +140,17 @@ function save() {
     html_result += '&info=' + encodeURIComponent(encodeURIComponent($('#mapInfo').val().split("\n").join("<br />")));
     html_result += '&mapType=' + mapType + "&x=" + mapPos.x + "&y=" + mapPos.y + "&ox=" + mapPos.ox + "&oy=" + mapPos.oy + "&z=" + mapPos.z;
     html_result += '"></iframe>';
-    parent.callback && parent.callback(html_result);
-    parent.$(target).val(_mapPos.x + ',' + _mapPos.y);
-    parent.$(iframe).val(html_result);
+    handleResult(_mapPos, html_result);
 }
 function save_without() {
     parent.callback && parent.callback();
 }
 
+function handleResult(_mapPos, html_result) {
+    parent.callback && parent.callback(html_result);
+    parent.$(target).val(_mapPos.x + ',' + _mapPos.y);
+    parent.$(iframe).val(html_result);
+}
 
 function baiduMapInitial() {
     map = new BMap.Map("mapContainer"); // map实例
@@ -174,6 +177,10 @@ function baiduMapInitial() {
         //this.clearOverlays();
         var newPoint = new BMap.Point(e.point.lng, e.point.lat);
         refreshMarker(newPoint);
+        handleResult({
+            x: e.point.lng,
+            y: e.point.lat
+        }, '');
     });
 }
 
