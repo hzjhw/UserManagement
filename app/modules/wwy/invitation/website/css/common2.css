@@ -112,3 +112,26 @@ textarea {
 #mainbox {
     margin: -15px 0 0 0;
 }
+#rsvptable input {
+    border-radius:5px;
+    border:0 none;
+    height:3em;
+    width:230px;
+    margin-top:4px;
+}
+#rsvptable #q12318 input {
+    height:18px;
+    width:auto;
+    margin-top:0;
+}
+#rsvptable input[type="submit"] {
+    padding:0 25px;
+    width:90px;
+    margin-top:0;
+}
+#rsvptable textarea {
+    border-radius:5px;
+    border:0 none;
+    width:230px;
+    margin-top:10px;
+}

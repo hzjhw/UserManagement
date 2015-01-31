@@ -224,7 +224,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         var ctx = this;
         // 字符串转换成JSON对象
         this._parseJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
-        this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username') + '/' + this.model.get('id') + '.html');
+        this.model.set('wqturl', CONST.DOMAIN + '/wqt/' + Est.cookie('username') + '/' + this.model.get('id') + '.html?diy=1');
         if (this.model._getValue('share.url') === 'http://') this.model._setValue('share.url', this.model.get('wqturl'));
         this.initThemeId();
         this._render();
