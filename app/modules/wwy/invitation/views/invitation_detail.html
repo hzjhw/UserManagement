@@ -156,7 +156,7 @@
         <label class="control-label">视频地址：</label>
 
         <div class="controls">
-            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>
+            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>&nbsp;&nbsp;支持优酷和mp4视频播放
         </div>
     </div>
     <div class="control-group">
@@ -239,14 +239,17 @@
 
     <div class="control-group">
         <label class="control-label">地图坐标：</label>
+
         <div class="controls control-row-auto">
-            <input id="model-map.address" class="model-map" name="model-map.address" value="{{map.address}}" type="text"/>
+            <input id="model-map.address" class="model-map" name="model-map.address" value="{{map.address}}"
+                   type="text"/>
             请在下方的地图上标注坐标， 点击“保存”按钮即可
             <!--<input id="model-map.iframe" class="model-iframe" name="model-map.iframe" value="{{map.iframe}}" type="hidden"/>-->
         </div>
     </div>
     <div class="control-group">
-        <iframe id="iframemap" src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe&info=map-info&zoom=16"
+        <iframe id="iframemap"
+                src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe&info=map-info&zoom=16"
                 width="750" height="400"
                 style="border:1px solid #B9DDFF;"></iframe>
     </div>

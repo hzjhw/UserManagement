@@ -1570,13 +1570,15 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 
 
 <tr>
-    <td width="100%" height="30" align="center" valign="middle"><input id="message_send" type="submit" value=" 送 出 "></td>
+    <td width="100%" height="30" align="center" valign="middle"><input id="message_send" type="submit" value=" 送 出 ">
+    </td>
 </tr>
 
 
 </tbody>
 </table>
 <br>
+
 <div>
     <div id="page1">
 
@@ -1598,31 +1600,31 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
     }
 </script>
 <script>
-    $(function(){
-        $('#message_send').click(function(){
+    $(function () {
+        $('#message_send').click(function () {
             var name = $("input[name='t12317']").val();
-            if(name==''){
+            if (name == '') {
                 alert('请输入您的姓名');
                 return false;
             }
             var phone = $("input[name='t12323']").val();
-            if(phone==''){
+            if (phone == '') {
                 alert('请输入您的联系方式');
                 return false;
             }
             var content = $("#rsvptable").parent().html();
 
             $.ajax({
-                url:"{{CONST 'DOMAIN'}}/site_message/send",
-                data:{
-                    title:'婚宴回函',
-                    username:'{{username}}',
-                    recvEnt:'{{enterpriseId}}',
-                    content:content,
-                    domain : document.domain,
-                    userDomain : document.domain,
-                    sendType:'no'
-                },success:function(data){
+                url: "{{CONST 'DOMAIN'}}/site_message/send",
+                data: {
+                    title: '婚宴回函',
+                    username: '{{username}}',
+                    recvEnt: '{{enterpriseId}}',
+                    content: content,
+                    domain: document.domain,
+                    userDomain: document.domain,
+                    sendType: 'no'
+                }, success: function (data) {
 
                 }
             })
@@ -1945,7 +1947,7 @@ ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="
 <!--音频-->
 <div style="display:none">
     <audio id="xaudio" preload="metadata" autoplay="autoplay">
-        <source src="" type="audio/mpeg">
+        <source src="{{CONST 'PIC_URL'}}/music/Marry_You.mp3" type="audio/mpeg">
     </audio>
 </div>
 <script>
