@@ -1068,13 +1068,13 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                 <div class="detail-mm">
                     <div align="center">
                         <script>
-                            var xobjurl18354 = 'swf/1405.swf';
+                            var xobjurl18354 = '{{mv.mv}}';
                             var xusrdata18354 = 'web/getuserdata_embed.asp?embedid=Q9G7W';
                         </script>
+                        <!--video-->
                         <video id="xvideo18354" width="100%" controls=""
                                poster="{{CONST 'PIC_URL'}}/{{mv.pic}}?v={{version}}"
                                preload="meta">
-                            <source src="{{mv.mv}}" type="video/swf">
                             <source src="{{mv.mv}}" type="video/mp4">
                             <source src="{{mv.mv}}" type="video/ogg">
                             你的浏览器不支持HTML5视频播放
@@ -1093,6 +1093,41 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                                 });
                             });
                         </script>
+                        <!--youku-->
+                        <div id="youkuvideo18354" style="display:none">
+                            <div id="youkuplayer18354" style="width:100%; height:200px"></div>
+                            <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+                            <script type="text/javascript">
+                                function showYoukuVideo(domid, youku_vid) {
+                                    //alert('domid:'+domid +',youku_vid='+youku_vid);
+                                    player = new YKU.Player(domid, {
+                                        styleid: '0',
+                                        client_id: 'c82e23dd17655657',
+                                        vid: youku_vid,
+                                        show_related: false,
+                                        events: {
+                                            onPlayEnd: function () { /*your code*/
+                                            },
+                                            onPlayStart: function () { /*your code*/
+                                                bVideoPlaying = 1;
+                                                if (!audioPlayer.paused) {
+                                                    audioPlayer.pause();
+                                                }
+                                            },
+                                            onPlayerReady: function () { /*your code*/
+                                            }
+                                        }
+                                    });
+                                }
+                                if (xobjurl18354.indexOf('youku') > -1) {
+                                    $('#xvideo18354').hide();
+                                    $('#youkuvideo18354').show();
+                                    showYoukuVideo('youkuplayer18354', 'XNjc2MjMyOTY4');
+                                }
+                            </script>
+                        </div>
+                        <!--flash-->
+
                         <br>
                         请点击按钮播放视频
                         <br>
