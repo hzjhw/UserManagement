@@ -24,8 +24,8 @@
 <script src="{{CONST 'HOST'}}/modules/wwy/invitation/website/js/jquery-ui.js"></script>
 <script type="text/javascript">
     var is_mobi = navigator.userAgent.toLowerCase().match(/(iPad|ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|win ce)/i) != null;
-    if(location.href.indexOf("diy=1")==-1&&!is_mobi && window.location.search.indexOf("mv=fp")<0){
-        window.location.href='{{CONST "DOMAIN"}}';
+    if (location.href.indexOf("diy=1") == -1 && !is_mobi && window.location.search.indexOf("mv=fp") < 0) {
+        window.location.href = '{{CONST "DOMAIN"}}';
     }
     var instanceClose;
     function addWinOnloadEvent(func) {
@@ -587,6 +587,12 @@ var bMute = 1;
         } else {
             bMute = 1;
         }
+    }
+    function stopMusic() {
+        audioPlayer && audioPlayer.pause();
+    }
+    function startMusic() {
+        audioPlayer && audioPlayer.play();
     }
     function stopLoading() {
         $("#Loading").fadeOut();
@@ -1622,12 +1628,12 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
             }
             var content = '【留言者姓名】：' + $("input[name=t12317]").val() + ';【是否参与我们的婚宴】：' + $('input[name=t12318]:checked').val() +
                     ';【寄送纸本喜帖】：' + $('input[name=t12321]').val() + '; 【手机号码】: ' + $('input[name=t12323]').val() + ';【祝福语】：' + $('textarea[name=t12325]').val();
-
+            $("input[name='t12317']").val('')
             $.ajax({
                 type: 'post',
                 url: "{{CONST 'DOMAIN'}}/site_message/send",
                 data: {
-                    title:  $("input[name='t12317']").val() + '的婚宴回函',
+                    title: $("input[name='t12317']").val() + '的婚宴回函',
                     username: '{{username}}',
                     recvEnt: '{{enterpriseId}}',
                     content: content,
@@ -1955,11 +1961,44 @@ ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="
 
 </div>
 <!--音频-->
+
 <div style="display:none">
     <audio id="xaudio" preload="metadata" autoplay="autoplay" loop="loop">
-        <source id="xaudio-source" src="{{CONST 'PIC_URL'}}/wqt/music/{{music}}.mp3" type="audio/mpeg">
+        <source id="xaudio-source"
+                src="{{#compare music '!==' '-'}}{{CONST 'PIC_URL'}}/wqt/music/{{music}}.mp3{{/compare}}"
+                type="audio/mpeg">
     </audio>
 </div>
+{{#xif "this.music !== '-'"}}
+<a href="javascript:void(0);" class="u-globalAudio z-play"><i class="icon-music"></i>
+    <span class="">关闭</span>
+
+    <div class="coffee-steam-box"
+         style="height: 100px; width: 50px; left: 54px; top: -50px; position: absolute; overflow: hidden; z-index: 0;"></div>
+</a>
+<script>
+    $(function () {
+        function showSpan(span, msg) {
+            $(span).addClass('z-show').html(msg);
+            setTimeout(function () {
+                $(span).removeClass('z-show');
+            }, 500);
+        }
+
+        $('.u-globalAudio').click(function () {
+            if (audioPlayer.paused) {
+                startMusic();
+                showSpan($('span', $(this)), '开启');
+                $(this).removeClass('z-pause').addClass('z-play');
+            } else {
+                $(this).addClass('z-pause').removeClass('z-play');
+                stopMusic();
+                showSpan($('span', $(this)), '关闭');
+            }
+        });
+    })
+</script>
+{{/xif}}
 <script>
     $(function () {
         $.ajax({

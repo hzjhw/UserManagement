@@ -159,8 +159,11 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             {text: 'Ode To Joy', value: 'Ode To Joy'},
           ],
           change: function (model) {
-            ctx.iframepage.$('#xaudio-source').attr('src', CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
-            ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+            if (ctx.iframepage && ctx.iframepage.$){
+              //ctx.iframepage.$('#xaudio-source').attr('src', CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+              ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+              ctx.model.set('music', model.value);
+            }
           }
         });
         var pic = [];
