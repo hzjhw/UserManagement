@@ -110,7 +110,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
               target: '#model-titleTheme',
               items: list,
               change: function (model) {
-                if (ctx.iframepage.$('.customcss').size() > 0)
+                if (ctx.iframepage.$ && ctx.iframepage.$('.customcss').size() > 0)
                   ctx.iframepage.$('.customcss').attr('href', CONST.PIC_URL + '/wqt/' + model.value);
               }
             });
@@ -125,7 +125,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             {text: '隶书', value: 'http://42.121.32.43:443/Fonts/getcss?family=%E9%BB%91%E4%BD%93215&font=%E9%BB%91%E4%BD%93&text=%0A%20.VYcdimouv%7B%7D%E4%B8%8E%E4%BA%AB%E4%BE%9B%E5%86%8C%E5%87%BD%E5%88%86%E5%8A%A1%E5%96%9C%E5%9B%9E%E5%9B%BE%E5%9C%B0%E5%A4%87%E5%A8%98%E5%A9%9A%E5%AE%A2%E5%AE%B4%E6%8F%90%E6%96%B0%E6%97%A5%E6%9C%8D%E6%9C%9F%E6%9C%AC%E7%88%B1%E7%94%A8%E7%94%B1%E7%9A%84%E7%9B%B8%E7%BA%A6%E7%BA%B1%E8%A7%86%E8%AE%AF%E9%82%80%E9%83%8E%E9%86%92%E9%A2%91%EF%BC%AD%EF%BC%B6'}
           ],
           change: function (model) {
-            if (ctx.iframepage)
+            if (ctx.iframepage && ctx.iframepage.$)
               ctx.iframepage.$('.fontcss').attr('href', model.value);
           }
         });
@@ -248,10 +248,10 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           ],
           change: function (ev) {
             debug(ev.item.get('value'));
-            if (ctx.iframepage) {
+            if (ctx.iframepage && ctx.iframepage.$) {
               ctx.iframepage.$('#' + ev.item.get('value') + '_detail_title').click();
             }
-            if (ev.item.get('value') === 'index') {
+            if (ev.item.get('value') === 'index' && ctx.iframepage.$) {
               ctx.iframepage.$('body').scrollTop(0);
             }
           }
