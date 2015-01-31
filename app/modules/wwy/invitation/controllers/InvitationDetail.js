@@ -134,8 +134,34 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           target: '#model-music',
           items: [
             {text: '无音乐', value: '-'},
-            {text: 'Marry_You', value: 'Marry_You'}
-          ]
+            {text: 'Marry_You', value: 'Marry_You'},
+            {text: 'This Ring', value: 'This Ring'},
+            {text: 'Wedding March', value: 'Wedding March'},
+            {text: '恭喜發財舞曲 (30S).mp3', value: 'gxfcwq'},
+            {text: '花與夢', value: 'hxm'},
+            {text: '舞龍鳳 (30S).mp3', value: 'wlf'},
+            {text: '邂逅', value: 'xg'},
+            {text: '新年財神到 (30S).mp3', value: 'xncsd'},
+            {text: 'Russian Wedding', value: 'Russian Wedding'},
+            {text: "She's A Rocket", value: "She's A Rocket"},
+            {text: 'Spring Vivaldi', value: 'Spring Vivaldi'},
+            {text: 'The Four Seasons(Winter)', value: 'The Four Seasons(Winter)'},
+            {text: 'The Swan', value: 'The Swan'},
+            {text: 'Marry_You', value: 'Marry_You'},
+            {text: "50's stories", value: "50's stories"},
+            {text: 'American Rodeo', value: 'American Rodeo'},
+            {text: 'Canon in D major for Strings', value: 'Canon in D major for Strings'},
+            {text: 'Canon in D Serenade', value: 'Canon in D Serenade'},
+            {text: 'Dance with Me', value: 'Dance with Me'},
+            {text: 'Fit To Be Tied-Band', value: 'Fit To Be Tied-Band'},
+            {text: 'Jesu Joy', value: 'Jesu Joy'},
+            {text: 'Make It Last', value: 'Make It Last'},
+            {text: 'Ode To Joy', value: 'Ode To Joy'},
+          ],
+          change: function (model) {
+            ctx.iframepage.$('#xaudio-source').attr('src', CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+            ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+          }
         });
         var pic = [];
         if (!this._isAdd) {
@@ -265,7 +291,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           onBeforeSave: function () {
             this.model._hideTip();
             this.model.set('webimg', this.invitationPicPick.getItem().serverPath);
-            this.model._setValue('photos.photos',  app.getView('invitationPhotoPick').getItems());
+            this.model._setValue('photos.photos', app.getView('invitationPhotoPick').getItems());
             this.model._setValue('mv.pic', this.invitationMvPick.getItem().serverPath);
 
             this.model.set('enterpriseId', Est.cookie('enterpriseId'));
