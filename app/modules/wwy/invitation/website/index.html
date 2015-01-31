@@ -710,7 +710,7 @@ var bMute = 1;
                                     $(function () {
                                         $("#img_videobutton").click(function () {
                                             if (invite_mediatype == 1) {
-                                                window.location = 'http://youvivid-streaming.oss-cn-hangzhou.aliyuncs.com/IVT_template/wk-6GO-WUUS7A5kugNU8AQ.mp4';
+                                                window.location = '{{mv.mv}}';
                                             }
                                             return false;
                                         });
@@ -1074,8 +1074,9 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                         <video id="xvideo18354" width="100%" controls=""
                                poster="{{CONST 'PIC_URL'}}/{{mv.pic}}?v={{version}}"
                                preload="meta">
-                            <source src="{{mv.mv}}"
-                                    type="video/mp4">
+                            <source src="{{mv.mv}}" type="video/swf">
+                            <source src="{{mv.mv}}" type="video/mp4">
+                            <source src="{{mv.mv}}" type="video/ogg">
                             你的浏览器不支持HTML5视频播放
                         </video>
                         <script>
