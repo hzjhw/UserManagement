@@ -70,6 +70,8 @@
  - 在详细页面里 新var detailApp = new Application();
 6) 图片保存不了
  - 初始化PicturePick时 检查是否attId未配置， 若不需要ID时， 可以随便取个值如001
+7) 添加图片后无后续图片
+ - 需添加app.addView('');
  
 ### handlebars
 1) 获取索引

@@ -1882,5 +1882,59 @@ ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="
         <source src="" type="audio/mpeg">
     </audio>
 </div>
+<script>
+    $(function () {
+        $.ajax({
+            url: '/wwy/ajaxSignature',
+            data: {
+                url: window.location.href
+            }, success: function (result) {
+                var data = eval('(' + result + ')');
+                if (data.success) {
+                    wx.config({
+                        debug: false,
+                        appId: data.appid,
+                        timestamp: data.timestamp,
+                        nonceStr: data.nonceStr,
+                        signature: data.signature,
+                        jsApiList: [
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage'
+                        ]
+                    });
+
+                    wx.ready(function () {
+                        /* wx.hideOptionMenu(); */
+                        wx.onMenuShareTimeline({
+                            title: '{{title}}', // 分享标题
+                            link: location.href, // 分享链接
+                            imgUrl: "{{CONST 'PIC_URL'}}/{{webimg}}", // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                        wx.onMenuShareAppMessage({
+                            title: "{{title}}", // 分享标题
+                            link: location.href, // 分享链接
+                            desc: "{{tip.time}} {{tip.hour}}时{{tip.minute}}分 {{map.desc}} {{groomname}}与{{bridename}}敬邀",
+                            imgUrl: "{{CONST 'PIC_URL'}}/{{webimg}}", // 分享图标
+                            success: function () {
+                                // 用户确认分享后执行的回调函数
+                            },
+                            cancel: function () {
+                                // 用户取消分享后执行的回调函数
+                            }
+                        });
+                    })
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+    })
+</script>
 </body>
 </html>
