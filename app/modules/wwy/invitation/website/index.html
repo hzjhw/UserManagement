@@ -1964,20 +1964,21 @@ ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="
 
 <div style="display:none">
     <audio id="xaudio" preload="metadata" autoplay="autoplay" loop="loop">
-        <source id="xaudio-source"
-                src="{{#compare music '!==' '-'}}{{CONST 'PIC_URL'}}/wqt/music/{{music}}.mp3{{/compare}}"
-                type="audio/mpeg">
+        <source id="xaudio-source" src="" type="audio/mpeg">
     </audio>
 </div>
 {{#xif "this.music !== '-'"}}
 <a href="javascript:void(0);" class="u-globalAudio z-play"><i class="icon-music"></i>
     <span class="">关闭</span>
-
     <div class="coffee-steam-box"
          style="height: 100px; width: 50px; left: 54px; top: -50px; position: absolute; overflow: hidden; z-index: 0;"></div>
 </a>
 <script>
     $(function () {
+        var musicUrl = "{{CONST 'PIC_URL'}}/wqt/music/{{music}}.mp3";
+        setTimeout(function(){
+            setMusic(musicUrl);
+        }, 3000);
         function showSpan(span, msg) {
             $(span).addClass('z-show').html(msg);
             setTimeout(function () {
