@@ -134,8 +134,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           target: '#model-music',
           items: [
             {text: '无音乐', value: '-'},
-            {text: '花與夢', value: 'audios_system/m1206064fcf0242da28e.mp3'},
-            {text: '邂逅', value: 'audios_system/m1206064fcf12f8bd883.mp3'}
+            {text: 'Marry_You', value: 'Marry_You'}
           ]
         });
         var pic = [];
