@@ -492,7 +492,10 @@ function showQuestion(parent_node, check) {
 
 }
 
-
+function setSelectValue(val) {
+    window.selectValue = $('input[name=t12318]').val();
+    $('input[name=t12318]').val(window.selectValue + '有 ' + val + '人参加');
+}
 function setOptionValue(id, txt, order, optionid) {
 
 
@@ -1199,7 +1202,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 <div id="qaprompt"><span>
 {{message.tip}}</span></div>
 
-
+<div id="rsvptable_send">
 <table id="rsvptable" width="100%" cellpadding="3" cellspacing="1" border="0" class="n4" style="line-height: 20px;">
 
 
@@ -1211,7 +1214,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
         <input type="hidden" name="answertype" value="2">
         <input type="hidden" name="q12317" value="">
 
-        <span class="seq">1</span>.<span id="qq12317">您的姓名</span>&nbsp;<br>
+        <span class="seq">1</span>.<span id="qq12317" class="">您的姓名</span>&nbsp;<br>
 
         <div style="margin-left:10px">
 
@@ -1238,11 +1241,11 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 
 
                 <div id="s61980" style="valign: middle;">
-                    <input type="radio" name="t12318" value="非常乐意，有{1-10}人参加">
+                    <input type="radio" name="t12318" value="非常乐意，">
 
             <span id="o61980">
 非常乐意，有
-            <select name="n12318_61980" onchange="setOptionValue('12318', this.value, '非常乐意，有{1-10}人参加', '61980');">
+            <select name="n12318_61980" onchange="setSelectValue(this.value);">
                 <option value="">请选择</option>
 
                 <option value="1">1</option>
@@ -1577,6 +1580,7 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
 
 </tbody>
 </table>
+</div>
 <br>
 
 <div>
@@ -1612,13 +1616,14 @@ aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"><
                 alert('请输入您的联系方式');
                 return false;
             }
-            var content = $("#rsvptable").parent().html();
+            var content = '【留言者姓名】：' + $("input[name=t12317]").val() + ';【是否参与我们的婚宴】：' + $('input[name=t12318]:checked').val() +
+                    ';【寄送纸本喜帖】：' + $('input[name=t12321]').val() + '; 【手机号码】: ' + $('input[name=t12323]').val() + ';【祝福语】：' + $('textarea[name=t12325]').val();
 
             $.ajax({
                 type: 'post',
                 url: "{{CONST 'DOMAIN'}}/site_message/send",
                 data: {
-                    title: '婚宴回函',
+                    title:  $("input[name='t12317']").val() + '的婚宴回函',
                     username: '{{username}}',
                     recvEnt: '{{enterpriseId}}',
                     content: content,
