@@ -156,7 +156,7 @@
         <label class="control-label">视频地址：</label>
 
         <div class="controls">
-            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>&nbsp;&nbsp;支持优酷和mp4视频播放
+            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>&nbsp;&nbsp;优酷
         </div>
     </div>
     <div class="control-group">
@@ -231,9 +231,8 @@
     <div class="control-group">
         <label class="control-label">交通指引说明：</label>
 
-        <div class="controls control-row-auto">
-            <textarea id="model-map.desc" class="map-info input-large"
-                      style="width: 450px;height:50px;">{{json 'map.desc'}}</textarea>
+        <div class="controls">
+            <input type="text" id="model-map.desc" class="map-info input-large" value="{{json 'map.desc'}}"/>
         </div>
     </div>
 
