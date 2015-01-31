@@ -38,11 +38,23 @@ define('OrderList', ['BaseList', 'BaseView', 'backbone', 'Utils', 'BaseCollectio
       tagName: 'tr',
       events: {
         'click .order-a': 'detail',
-        'click .delivery-view': 'delivery'
+        'click .delivery-view': 'delivery',
+        'click .btn-comfirm': 'comfirm'
       },
       initialize: function () {
         this._initialize({
           template: itemTemp
+        });
+      },
+      comfirm: function (e) {
+        e.stopImmediatePropagation();
+        var ctx = this;
+        $.ajax({
+          type: 'post',
+          url: CONST.API + '/rest/api/shop/order/completed/' + this.model.get('id'),
+          success: function (result) {
+            ctx.$('.btn-comfirm').remove();
+          }
         });
       },
       delivery: function () {

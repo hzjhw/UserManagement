@@ -24,6 +24,7 @@
         {{{paymentStatus paymentStatus}}}
         {{else}}
         {{{shippingStatus shippingStatus}}}<a href="javascript:;" class="delivery-view">[查看物流]</a>
+        {{#compare shippingStatus '===' 'shipped'}}<input class="btn-comfirm" type="button" value="确认收货"/>{{/compare}}
         {{/xif}}
         {{/xif}}
     </p>

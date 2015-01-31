@@ -119,7 +119,7 @@ app.addStatus('shippingStatus', [
   {text: '未发货', value: 'unshipped', html: '<span style="color: red;">未发货</span>'},
   {text: '部分发贫', value: 'partShipped', html: '<span style="color: orange;">部分发贫</span>'},
   {text: '已发货', value: 'shipped', html: '<span style="color: green;">已发货</span>'},
-  {text: '部分退货', value: 'partReshiped', html: '<span style="color: black;">已发货</span>'},
+  {text: '部分退货', value: 'partReshiped', html: '<span style="color: black;">部分退货</span>'},
   {text: '已退货', value: 'reshiped', html: '<span style="color: black;">已退货</span>'}
 ]);
 
