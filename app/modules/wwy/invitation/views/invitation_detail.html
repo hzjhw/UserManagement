@@ -75,7 +75,7 @@
         </label>
 
         <div class="controls">
-            <div id="display01">
+            <div id="invite_display">
                 <input id="model-invite.display" class="invite_display" type="hidden" value="{{invite.display}}"/>
             </div>
         </div>
@@ -108,7 +108,7 @@
         </label>
 
         <div class="controls">
-            <div id="display02">
+            <div id="photos_display">
                 <input id="model-photos.display" class="photos_display" type="hidden" value="{{photos.display}}"/>
             </div>
         </div>
@@ -138,7 +138,7 @@
         </label>
 
         <div class="controls">
-            <div id="display03">
+            <div id="mv_display">
                 <input id="model-mv.display" class="mv_display" type="hidden" value="{{mv.display}}"/>
             </div>
         </div>
@@ -153,10 +153,17 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">视频地址：</label>
+        <label class="control-label">mp4视频地址：</label>
 
         <div class="controls">
-            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>&nbsp;&nbsp;优酷
+            <input id="model-mv.mv" class="mv input-large" value="{{json 'mv.mv'}}" type="text"/>&nbsp;&nbsp;支持mp4格式
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">优酷视频：</label>
+
+        <div class="controls">
+            <input id="model-mv.youkuId" class="mv input-large" value="{{json 'mv.youkuId'}}" type="text"/>
         </div>
     </div>
     <div class="control-group">
@@ -175,7 +182,7 @@
         </label>
 
         <div class="controls">
-            <div id="display04">
+            <div id="message_display">
                 <input id="model-message.display" class="message_display" type="hidden" value="{{message.display}}"/>
             </div>
         </div>
@@ -197,13 +204,14 @@
                       style="width: 450px;height:50px;">{{json 'message.tip'}}</textarea>
         </div>
     </div>
-    <!--<div class="control-group">
-        <label class="control-label" for=""><input type="checkbox" value="">显示/隐藏</label>
+    <div class="control-group">
+        <label class="control-label">回函内容：</label>
 
-        <div class="controls">
-            <input type="text" value="需要为您准备素食吗？"/>
+        <div class="controls control-row-auto">
+            <textarea id="model-message.template" class="input-large ckeditor"
+                      style="width: 600px;height:50px;">{{json 'message.template'}}</textarea>
         </div>
-    </div>-->
+    </div>
 
 </div>
 
@@ -214,7 +222,7 @@
         </label>
 
         <div class="controls">
-            <div id="display05">
+            <div id="map_display">
                 <input id="model-map.display" class="map_display" type="hidden" value="{{map.display}}"/>
             </div>
         </div>
@@ -268,10 +276,13 @@
         </div>
     </div>
     <div class="control-group">
-        <iframe id="iframemap"
-                src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe&info=map-info&zoom=16"
-                width="750" height="400"
-                style="border:1px solid #B9DDFF;"></iframe>
+        <label class="control-label" for="">坐标选取：</label>
+        <div class="controls control-row-auto">
+            <iframe id="iframemap"
+                    src="{{CONST 'HOST'}}/common/map/index.html?width=600&height=400&address={{map.address}}&target=model-map&iframe=model-iframe&info=map-info&zoom=16"
+                    width="600" height="400"
+                    style="border:1px solid #B9DDFF;"></iframe>
+        </div>
     </div>
 </div>
 
@@ -282,7 +293,7 @@
         </label>
 
         <div class="controls">
-            <div id="display06">
+            <div id="tip_display">
                 <input id="model-tip.display" class="tip_display" type="hidden" value="{{tip.display}}"/>
             </div>
         </div>
@@ -324,7 +335,7 @@
         </label>
 
         <div class="controls">
-            <div id="display07">
+            <div id="share_display">
                 <input id="model-share.display" class="share_display" type="hidden" value="{{share.display}}"/>
             </div>
         </div>

@@ -64,8 +64,8 @@ define('MemberListDetail', ['jquery', 'MemberListModel', 'HandlebarsHelper', 'Ba
           }
         });
         // 会员分类
-        Service.getMemberRankCategory({ select: true, extend: true }
-        ).then(function (list) {
+        Service.getMemberRankCategory({ select: true, extend: true })
+          .then(function (list) {
             Utils.initSelect({
               render: '#s1',
               target: '#model-memberRank',

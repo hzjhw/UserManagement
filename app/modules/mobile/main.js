@@ -27,27 +27,15 @@ app.addRoute('userdefined_mobile', function () {
   seajs.use(['UserdefinedMobileList'], function (UserdefinedMobileList) {
     app.addPanel('main', {
       el: '#jhw-main',
-      template: '<div class="jhw-main-inner"></div>'
-    }).addView('userdefinedMobileList', new UserdefinedMobileList({
-      el: '.jhw-main-inner',
-      data: { page: null }
-    }));
-  });
-});
-app.addTemplate('template/mobile_nav_detail', function (require, exports, module) {
-  module.exports = require('modules/mobile/views/mobile_nav_detail.html');
-});
-
-app.addRoute('userdefined_mobile', function () {
-  seajs.use(['UserdefinedMobileList'], function (UserdefinedMobileList) {
-    app.addPanel('main', {
-      el: '#jhw-main',
       template: '<div class="jhw-panel"></div>'
     }).addView('UserdefinedMobileList', new UserdefinedMobileList({
       el: '.jhw-panel',
       viewId: 'UserdefinedMobileList'
     }));
   });
+});
+app.addTemplate('template/mobile_nav_detail', function (require, exports, module) {
+  module.exports = require('modules/mobile/views/mobile_nav_detail.html');
 });
 app.addRoute('userdefined_mobile/:id', function (id) {
   seajs.use(['UserdefinedMobileList'], function (UserdefinedMobileList) {
@@ -61,7 +49,6 @@ app.addRoute('userdefined_mobile/:id', function (id) {
     }));
   });
 });
-app.addModule('UserdefinedMobileModel', 'models/UserdefinedMobileModel.js');
 app.addModule('MobileNavDetail', 'modules/mobile/controllers/MobileNavDetail.js');
 app.addModule('UserdefinedMobileList', 'modules/mobile/controllers/UserdefinedMobileList.js');
 app.addModule('UserdefinedMobileDetail', 'modules/mobile/controllers/UserdefinedMobileDetail.js');

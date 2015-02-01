@@ -61,28 +61,30 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 支付方式
       initPayType: function () {
-        Service.getPaymentTypeList().then(function (result) {
-          BaseUtils.initSelect({
-            render: '#s1',
-            target: '#model-paymentId',
-            items: result,
-            change: function () {
-            }
+        Service.getPaymentTypeList({select: true})
+          .then(function (result) {
+            BaseUtils.initSelect({
+              render: '#s1',
+              target: '#model-paymentId',
+              items: result,
+              change: function () {
+              }
+            });
           });
-        });
       },
       // 配送方式
       initDeliveryType: function () {
-        Service.getDeliverTypeList().then(function (result) {
-          BaseUtils.initSelect({
-            render: '#s2',
-            target: '#model-typeId',
-            items: result,
-            change: function (model) {
-              /* $("#model-shipping_deliveryCorpName").val(model.text);*/
-            }
+        Service.getDeliverTypeList({select: true})
+          .then(function (result) {
+            BaseUtils.initSelect({
+              render: '#s2',
+              target: '#model-typeId',
+              items: result,
+              change: function (model) {
+                /* $("#model-shipping_deliveryCorpName").val(model.text);*/
+              }
+            });
           });
-        });
       },
       // 重量单位
       initProductWeightUnit: function () {

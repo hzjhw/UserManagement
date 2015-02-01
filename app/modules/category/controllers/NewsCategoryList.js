@@ -187,12 +187,10 @@ define('NewsCategoryList', ['jquery', 'CategoryModel', 'template/news_transfer',
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('newsCategory')) {
-          Service.getNewsCategory({
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.addData('newsCategory', list);
-          })
+          Service.getNewsCategory({ extend: true, select: true })
+            .then(function (list) {
+              app.addData('newsCategory', list);
+            })
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();

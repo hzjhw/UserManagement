@@ -56,3 +56,6 @@ app.addTemplate('template/invitation_index', function (require, exports, module)
 app.addTemplate('template/invitation_pre', function (require, exports, module) {
   module.exports = require('modules/wwy/invitation/views/invitation_pre.html');
 });
+app.addTemplate('template/invitation_wedding', function (require, exprots, module) {
+  module.exports = require('modules/wwy/invitation/website/templates/wedding.html')
+});

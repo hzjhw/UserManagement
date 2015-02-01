@@ -105,7 +105,7 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
             ]},
             {name: '微网页', url: '#/wwy', className: 'menu-microweb', children: [
               {name: '微传单', url: '#/wwy', className: 'menu-invitation'},
-              {name: '微请帖', url: '#/wwy_invitation', className: 'menu-invitation'}
+              {name: '微邀请', url: '#/wwy_invitation', className: 'menu-invitation'}
             ]},
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [

@@ -82,10 +82,10 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
       add: function () {
         this._navigate('#/member_add', true);
       },
-      memberRank: function(){
+      memberRank: function () {
         this._navigate('#/member/rank', true);
       },
-      memberAttr: function(){
+      memberAttr: function () {
         this._navigate('#/member/attr', true);
       },
       render: function () {
@@ -109,13 +109,10 @@ define('MemberList', ['jquery', 'MemberListModel', 'BaseCollection', 'BaseItem',
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('memberCategory')) {
-          Service.getMemberRankCategory({
-            tree: true,
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.addData('memberCategory', list);
-          })
+          Service.getMemberRankCategory({ tree: true, extend: true, select: true })
+            .then(function (list) {
+              app.addData('memberCategory', list);
+            })
         }
         seajs.use(['dialog-plus'], function (dialog) {
           window.dialog = dialog;

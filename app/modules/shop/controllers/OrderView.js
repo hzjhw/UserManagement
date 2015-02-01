@@ -28,16 +28,17 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
           model: OrderModel
         });
       },
-      back: function(){
+      back: function () {
         var ctx = this;
-        seajs.use(['OrderList'], function(OrderList){
+        seajs.use(['OrderList'], function (OrderList) {
           app.addPanel('main', {
             el: '#jhw-main',
             template: '<div class="jhw-main-inner"></div>'
           }).addView('orderList', new OrderList({
             el: '.jhw-main-inner',
             page: ctx.options.page
-          }));;
+          }));
+          ;
         });
       },
       render: function () {
@@ -74,14 +75,14 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
           ]
         });
       },
-      showMemberInfo: function(){
+      showMemberInfo: function () {
         var memberId = this.model.get('');
-         seajs.use(['MemberInfo'], function(MemberInfo){
-           app.addView('memberInfo', new MemberInfo({
-             el: '#member-info',
-             id: memberId
-           }));
-         });
+        seajs.use(['MemberInfo'], function (MemberInfo) {
+          app.addView('memberInfo', new MemberInfo({
+            el: '#member-info',
+            id: memberId
+          }));
+        });
       },
       // 支付方式
       initPayType: function () {
@@ -95,15 +96,16 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
       },
       // 配送方式
       initDeliveryType: function () {
-        Service.getDeliveryCorpList().then(function (result) {
-          Utils.initSelect({
-            render: '#s2',
-            target: '#model-defaultDeliveryCorp',
-            items: result,
-            change: function () {
-            }
+        Service.getDeliveryCorpList({select: true})
+          .then(function (result) {
+            Utils.initSelect({
+              render: '#s2',
+              target: '#model-defaultDeliveryCorp',
+              items: result,
+              change: function () {
+              }
+            });
           });
-        });
       },
       // 重量单位
       initProductWeightUnit: function () {
@@ -125,9 +127,9 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         });
       },
       // 收款记录
-      initPaymentInfoList: function(){
+      initPaymentInfoList: function () {
         var paymentSet = this.model.get('paymentSet');
-        seajs.use(['PaymentInfoList'], function(PaymentInfoList){
+        seajs.use(['PaymentInfoList'], function (PaymentInfoList) {
           app.addView('paymentInfoList', new PaymentInfoList({
             el: '#payment-info-list',
             items: paymentSet
@@ -135,13 +137,13 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         });
       },
       // 收货记录
-      initDeliveryInfoList: function(){
+      initDeliveryInfoList: function () {
         var shippingSet = this.model.get('shippingSet');
         var deliveryType = this.model.get('deliveryType')['defaultDeliveryCorp']['com'];
-        Est.each(shippingSet, function(item){
+        Est.each(shippingSet, function (item) {
           item.com = deliveryType;
         });
-        seajs.use(['DeliveryInfoList'], function(DeliveryInfoList){
+        seajs.use(['DeliveryInfoList'], function (DeliveryInfoList) {
           app.addView('deliveryInfoList', new DeliveryInfoList({
             el: '#delivery-info-list',
             items: shippingSet
@@ -149,9 +151,9 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         });
       },
       // 订单日志
-      initOrderLogList: function(){
+      initOrderLogList: function () {
         var orderLogSet = this.model.get('orderLogSet');
-        seajs.use(['OrderLogList'], function(OrderLogList){
+        seajs.use(['OrderLogList'], function (OrderLogList) {
           app.addView('orderLogList', new OrderLogList({
             el: '#order-log-list',
             items: orderLogSet

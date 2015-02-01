@@ -100,15 +100,16 @@ define('OrderHandle', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
       },
       // 配送方式
       initDeliveryType: function () {
-        Service.getDeliveryCorpList().then(function (result) {
-          Utils.initSelect({
-            render: '#s2',
-            target: '#model-defaultDeliveryCorp',
-            items: result,
-            change: function () {
-            }
+        Service.getDeliveryCorpList({select: true})
+          .then(function (result) {
+            Utils.initSelect({
+              render: '#s2',
+              target: '#model-defaultDeliveryCorp',
+              items: result,
+              change: function () {
+              }
+            });
           });
-        });
       },
       // 重量单位
       initProductWeightUnit: function () {

@@ -3,16 +3,15 @@
  * @class EnterpriseDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/15
  */
-define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'District', 'Utils', 'template/enterprise_detail'],
+define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'Utils', 'template/enterprise_detail'],
   function (require, exports, module) {
-    var EnterpriseDetail, BaseDetail, EnterpriseModel, Utils, template, District, Service;
+    var EnterpriseDetail, BaseDetail, EnterpriseModel, Utils, template, Service;
 
     BaseDetail = require('BaseDetail');
     Utils = require('Utils')
     Service = require('Service');
     EnterpriseModel = require('EnterpriseModel');
     template = require('template/enterprise_detail');
-    District = require('District');
 
     EnterpriseDetail = BaseDetail.extend({
       events: {
@@ -48,13 +47,14 @@ define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'Distric
             target: '#model-businessType',
             items: app.getStatus('businessType')
           });
-          Service.getIndustry().then(function (result) {
-            Utils.initSelect({
-              render: '#s2',
-              target: '#model-industry',
-              items: result
+          Service.getIndustry({ select: true })
+            .then(function (result) {
+              Utils.initSelect({
+                render: '#s2',
+                target: '#model-industry',
+                items: result
+              });
             });
-          });
           Utils.initSelect({
             render: '#s3',
             target: '#model-type',
@@ -66,7 +66,6 @@ define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'Distric
             target: '#model-address',
             url: CONST.API + '/area/list' // 自定义请求地址
           });
-
           Utils.initDate({
             render: '.calendar',
             showTime: false
@@ -79,7 +78,6 @@ define('EnterpriseDetail', ['BaseDetail', 'Service', 'EnterpriseModel', 'Distric
               {text: '否', value: '00'}
             ]
           });
-
           Utils.initEditor({
             render: '.ckeditor'
           });

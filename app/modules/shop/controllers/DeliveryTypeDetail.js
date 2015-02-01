@@ -33,14 +33,15 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
       render: function () {
         debug('4.DeliveryTypeDetail.render');
         this._render();
-        Service.getDeliveryCorpList().then(function (result) {
-          BaseUtils.initSelect({
-            render: '#s2',
-            target: '#model-defaultDeliveryCorp',
-            search: true,
-            items: result
+        Service.getDeliveryCorpList({select: true})
+          .then(function (result) {
+            BaseUtils.initSelect({
+              render: '#s2',
+              target: '#model-defaultDeliveryCorp',
+              search: true,
+              items: result
+            });
           });
-        });
         Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',

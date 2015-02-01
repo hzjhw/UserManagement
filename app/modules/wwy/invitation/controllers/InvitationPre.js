@@ -3,9 +3,10 @@
  * @class InvitationPre
  * @author yongjin<zjut_wyj@163.com> 2015/1/29
  */
-define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_pre', 'Utils', 'HandlebarsHelper', 'template/invitation_index'],
+define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_pre', 'Utils', 'HandlebarsHelper',
+    'template/invitation_index', 'template/invitation_wedding'],
   function (require, exports, module) {
-    var InvitationPre, BaseDetail, template, InvitationModel, Utils, HandlebarsHelper, invitationTemp;
+    var InvitationPre, BaseDetail, template, InvitationModel, Utils, HandlebarsHelper, invitationTemp, weddingTemp;
 
     BaseDetail = require('BaseDetail');
     InvitationModel = require('InvitationModel');
@@ -13,6 +14,7 @@ define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_p
     Utils = require('Utils');
     HandlebarsHelper = require('HandlebarsHelper');
     invitationTemp = require('template/invitation_index');
+    weddingTemp = require('template/invitation_wedding');
 
     InvitationPre = BaseDetail.extend({
       initialize: function () {
@@ -23,7 +25,6 @@ define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_p
       },
       render: function () {
         this._render();
-        // 初始化时间
         Utils.initDate({
           render: '.calendar',
           showTime: false
@@ -32,7 +33,6 @@ define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_p
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             this.model._hideTip();
-            this.model.set('title', this.model.get('groomname') + '与' + this.model.get('bridename') + ' 婚宴邀约');
             this.model.set('title1', Est.dateFormat(this.model.get('activitydate'), 'yyyy年MM月dd日'));
             this._setValue('tip.time', Est.dateFormat(this.model.get('activitydate'), 'yyyy-MM-dd'));
             this._setValue('tip.hour', this.model.get('hour'));
@@ -47,10 +47,10 @@ define('InvitationPre', ['BaseDetail', 'InvitationModel', 'template/invitation_p
             this.model.set('countdown_dd', parseInt(date.substring(8, 10), 10));
             this.model.set('countdown_hh', parseInt(this._getValue('tip.hour'), 10));
             this.model.set('countdown_mn', parseInt(this._getValue('tip.minute'), 10));
+            this.model._setValue('message.template', weddingTemp);
             this.invitationTemplate = HandlebarsHelper.compile(invitationTemp);
             this.model.set('html', this.invitationTemplate(this.model.toJSON()));
             this._stringifyJSON(['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share']);
-            debug('beforeSave');
           },
           onAfterSave: function (model) {
             app.emptyDialog();

@@ -58,19 +58,17 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
       // 初始化
       initialize: function () {
         if (!app.getData('newsCategory')) {
-          Service.getNewsCategory({
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.addData('newsCategory', list);
-          })
+          Service.getNewsCategory({ extend: true, select: true })
+            .then(function (list) {
+              app.addData('newsCategory', list);
+            })
         }
         this.model.set('newsCategoryList', app.getData('newsCategory'));
         this._initialize({ template: itemTemp });
 
       },
       // seo
-      seo: function(){
+      seo: function () {
         this._dialog({
           moduleId: 'SeoDetail',
           title: 'Seo修改',
@@ -215,12 +213,10 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
         var ctx = this;
         this.searchTemp = HandlebarsHelper.compile(searchTemp);
         if (!app.getData('newsCategory')) {
-          Service.getNewsCategory({
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.addData('newsCategory', list);
-          })
+          Service.getNewsCategory({ extend: true, select: true })
+            .then(function (list) {
+              app.addData('newsCategory', list);
+            })
         }
         app.emptyDialog();
         Utils.dialog({

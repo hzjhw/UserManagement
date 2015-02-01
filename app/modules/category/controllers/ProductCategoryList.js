@@ -271,13 +271,10 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
       batchCategory: function (category) {
         var ctx = this;
         if (!app.getData('productCategory')) {
-          Service.getProductCategory({
-            tree: true,
-            extend: true,
-            select: true
-          }).then(function (list) {
-            app.addData('productCategory', list);
-          })
+          Service.getProductCategory({ tree: true, extend: true, select: true })
+            .then(function (list) {
+              app.addData('productCategory', list);
+            })
         }
         this.transferTemp = HandlebarsHelper.compile(transferTemp);
         this.checkboxIds = this._getCheckboxIds();

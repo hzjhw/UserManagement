@@ -37,31 +37,33 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       },
       // 配送方式
       initDeliveryType: function () {
-        Service.getDeliverTypeList().then(function (result) {
-          Utils.initSelect({
-            render: '#s3',
-            target: '#model-typeId',
-            items: result,
-            change: function () {
-            }
+        Service.getDeliverTypeList({select: true})
+          .then(function (result) {
+            Utils.initSelect({
+              render: '#s3',
+              target: '#model-typeId',
+              items: result,
+              change: function () {
+              }
+            });
           });
-        });
       },
       // 物流公司
       initDeliveryCorp: function () {
-        Service.getDeliveryCorpList().then(function (result) {
-          seajs.use(['BaseUtils'], function (BaseUtils) {
-            BaseUtils.initSelect({
-              render: '#s4',
-              target: '#shipping_deliveryCorp',
-              items: result,
-              search: true,
-              change: function (model) {
-                $("#model-shipping_deliveryCorpName").val(model.text);
-              }
-            });
-          })
-        });
+        Service.getDeliveryCorpList({select: true})
+          .then(function (result) {
+            seajs.use(['BaseUtils'], function (BaseUtils) {
+              BaseUtils.initSelect({
+                render: '#s4',
+                target: '#shipping_deliveryCorp',
+                items: result,
+                search: true,
+                change: function (model) {
+                  $("#model-shipping_deliveryCorpName").val(model.text);
+                }
+              });
+            })
+          });
       },
       // 发货列表
       initDeliveryList: function () {

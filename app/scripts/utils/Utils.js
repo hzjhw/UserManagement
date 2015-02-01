@@ -4,11 +4,12 @@
  * @author yongjin<zjut_wyj@163.com> 2014/12/2
  */
 
-define('Utils', ['jquery', 'HandlebarsHelper'],
+define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
   function (require, exports, module) {
-    var Utils, HandlebarsHelper;
+    var Utils, HandlebarsHelper, BaseUtils;
 
     HandlebarsHelper = require('HandlebarsHelper');
+    BaseUtils = require('BaseUtils');
 
     Utils = {
       /**
@@ -33,6 +34,7 @@ define('Utils', ['jquery', 'HandlebarsHelper'],
        *       });
        */
       initSelect: function (options) {
+        //BaseUtils.initSelect(options);
         var $q = Est.promise;
         return new $q(function (resove, reject) {
           var container = {};
@@ -517,7 +519,6 @@ define('Utils', ['jquery', 'HandlebarsHelper'],
               var i = app.getDialogs().length;
               while (i > 0) {
                 if (Est.isEmpty(app.getDialogs()[i - 1])) {
-                  //app.getDialogs()[i].remove();
                   app.getDialogs().splice(i - 1, 1);
                 } else {
                   app.getDialogs()[i - 1].reset();
@@ -525,7 +526,6 @@ define('Utils', ['jquery', 'HandlebarsHelper'],
                 i--;
               }
             }, 100);
-            debug('未找到需要重置高度的对话框！');
           }
           if (dialog && dialog.height) {
             dialog.height(height);

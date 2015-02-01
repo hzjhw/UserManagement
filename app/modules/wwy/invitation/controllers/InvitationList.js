@@ -57,7 +57,7 @@ define('InvitationList', ['BaseList', 'BaseItem', 'InvitationModel', 'BaseCollec
     add: function () {
       this._dialog({
         moduleId: 'InvitationPre',
-        title: '添加请帖'
+        title: '添加邀请'
       });
     },
     render: function () {

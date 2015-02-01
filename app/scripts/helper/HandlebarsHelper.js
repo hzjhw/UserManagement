@@ -30,6 +30,31 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   });
 
   /**
+   * 根据path获取值
+   * @method getValue
+   * @author wyj 15.2.1
+   * @example
+   *      Handlebars.helpers["getValue"].apply(this, date)
+   */
+  Handlebars.registerHelper('getValue', function (path, options) {
+    if (typeof path !== 'undefined' && Est.typeOf(path) === 'string') {
+      var list = path.split('.');
+      if (list[0] in this) {
+        if (list.length > 1) {
+          if (Est.typeOf(this[list[0]]) !== 'object') {
+            this[list[0]] = JSON.parse(this[list[0]]);
+          }
+          return Est.getValue(this, path);
+        } else {
+          return this[list[0]];
+        }
+      }
+    } else {
+      return path;
+    }
+  });
+
+  /**
    * 比较
    * @method [判断] - compare
    * @author wyj 2014-03-27
@@ -90,20 +115,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    *      {{dateFormat $.detail_news.add_time $.lan.news.format}}
    */
   Handlebars.registerHelper('dateFormat', function (date, fmt, options) {
-    if (typeof date !== 'undefined' && Est.typeOf(date) === 'string') {
-      var list = date.split('.');
-      if (list[0] in this) {
-        if (list.length > 1) {
-          if (Est.typeOf(this[list[0]]) !== 'object') {
-            this[list[0]] = JSON.parse(this[list[0]]);
-          }
-          return Est.dateFormat(Est.getValue(this, date), fmt);
-        } else {
-          return Est.dateFormat(this[list[0]], fmt);
-        }
-      }
-    }
-    return Est.dateFormat(date, fmt);
+    return Est.dateFormat(Handlebars.helpers["getValue"].call(this, date), fmt);
   });
 
   /**
@@ -179,7 +191,14 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
   });
 
-  Handlebars.registerHelper('show', function(expression, options){
+  /**
+   * 显示隐藏
+   * @method show
+   * @author wyj 15.2.1
+   * @example
+   *      <h3 {{{show "this.photos.display==='01'"}}}></h3>
+   */
+  Handlebars.registerHelper('show', function (expression, options) {
     return Handlebars.helpers["x"].apply(this, [expression, options]) ? " style='display:block;' " : " style='display:none;' ";
   });
 
@@ -256,12 +275,8 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('picUrl', function (src, number, opts) {
     var url = src;
-    if (arguments.length < 3) {
-      return src || 'upload/no-pic.jpg';
-    }
-    if (src == null || src.length == 0) {
-      return "";
-    }
+    if (arguments.length < 3) return src || 'upload/no-pic.jpg';
+    if (src == null || src.length == 0) return "";
     var url2 = url.substring(url.lastIndexOf(".") + 1, url.length);
     url = url.substring(0, url.lastIndexOf(".")) + "_" + number + "." + url2;
     return url ? url : '';
@@ -279,13 +294,41 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     var result = [];
     Est.each($.parseJSON(options.hash.option), function (val, key, list, index) {
       var checked = options.hash.value === val ? 'checked' : '';
-      result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name + '" value="' + val + '" ' + checked + '>&nbsp;' + key + '</label>&nbsp;&nbsp;');
+      result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name +
+        '" value="' + val + '" ' + checked + '>&nbsp;' + key + '</label>&nbsp;&nbsp;');
     });
     return result.join('');
   });
 
-  Handlebars.registerHelper('encodeURIComponent', function(val, options){
+  /**
+   * 编译url
+   * @method [url] - encodeURLComponent
+   * @author wyj 15.2.1
+   * @example
+   *      {{encodeURIComponent url}}
+   */
+  Handlebars.registerHelper('encodeURIComponent', function (val, options) {
     return encodeURIComponent(val);
+  });
+
+  /**
+   * 请求模板
+   * @method [模板] - template
+   * @author wyj 15.2.1
+   * @example
+   *      {{template redding}}
+   */
+  Handlebars.registerHelper('template', function (name, options) {
+    return (function (name, options, ctx) {
+      new Est.promise(function (resolve, reject) {
+        seajs.use([name], function (template) {
+          var tpl = Handlebars.compile(template);
+          resolve(tpl(this));
+        });
+      }).then(function (result) {
+          options.fn(ctx);
+        })
+    })(name, options, this);
   });
 
   /**
@@ -295,20 +338,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    *      {{json 'invite.title'}}
    */
   Handlebars.registerHelper('json', function (path, options) {
-    if (typeof path !== 'undefined') {
-      var list = path.split('.');
-      if (list[0] in this) {
-        if (list.length > 1) {
-          if (Est.typeOf(this[list[0]]) !== 'object') {
-            this[list[0]] = JSON.parse(this[list[0]]);
-          }
-          return Est.getValue(this, path);
-        } else {
-          return this[list[0]];
-        }
-      }
-    }
-    return path;
+    return Handlebars.helpers["getValue"].call(this, path);
   });
   /**
    * 打版本号

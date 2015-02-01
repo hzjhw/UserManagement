@@ -26,21 +26,16 @@ define('AlbumDetail', ['BaseDetail', 'AlbumModel', 'template/album_detail', 'Uti
       },
       render: function () {
         this._render();
-        if (window.parentId) {
-          this.$('#model-parentId').val(window.parentId);
-        }
-        var items = Service.getAlbumList({
-          tree: true,
-          extend: true,
-          select: true
-        });
-        Utils.initSelect({
-          render: '#s1',
-          target: '#model-parentId',
-          items: items
-        });
-        this._form('#J_Form')._validate()._init({
-        });
+        if (window.parentId) this.$('#model-parentId').val(window.parentId);
+        Service.getAlbumList({ tree: true, extend: true, select: true })
+          .then(function (result) {
+            Utils.initSelect({
+              render: '#s1',
+              target: '#model-parentId',
+              items: result
+            });
+          });
+        this._form('#J_Form')._validate()._init({ });
         setTimeout(function () {
           Utils.resetIframe();
         }, 1000);

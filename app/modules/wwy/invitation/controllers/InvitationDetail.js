@@ -3,10 +3,11 @@
  * @class InvitationDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/28
  */
-define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils', 'Service', 'HandlebarsHelper', 'template/invitation_detail',
-    'PicturePick', 'template/invitation_index'],
+define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils', 'Service', 'HandlebarsHelper',
+    'template/invitation_detail', 'PicturePick', 'template/invitation_index'],
   function (require, exports, module) {
-    var InvitationDetail, BaseDetail, template, InvitationModel, Utils, BaseUtils, PicturePick, Service , invitationTemp, HandlebarsHelper;
+    var InvitationDetail, BaseDetail, template, InvitationModel, Utils, BaseUtils, PicturePick, Service ,
+      invitationTemp, HandlebarsHelper;
 
     BaseDetail = require('BaseDetail');
     template = require('template/invitation_detail');
@@ -33,15 +34,16 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         this._navigate('#/wwy_invitation', true);
       },
       init: function () {
-        var ctx = this;
         this.setIndex();
         this.setInvite();
         this.setPhotos();
-
+        this.initBind();
+      },
+      initBind: function () {
+        var ctx = this;
         this.listenTo(this.model, 'change:title', this.setIndex);
         this.listenTo(this.model, 'change:title1', this.setIndex);
         this.listenTo(this.model, 'change:webimg', this.setIndex);
-
         this.$('#model-invite.title').bind('change', function () {
           ctx.setInvite();
         });
@@ -51,7 +53,6 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         this.iframepage.$('.model-title1').html(this.model.get('title1'));
         this.iframepage.$('.model-webimg').html(this.model.get('webimg'));
       },
-      // 设置爱的邀约
       setInvite: function () {
         this.iframepage.$('.invite-title').html(this.model.get('invite')['title']);
         this.iframepage.$('.invite-content').html(this.model.get('invite')['content']);
@@ -61,44 +62,17 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         this.iframepage.$('.model-photos.content').html(this.model.get('photos')['photos']);
       },
       initDiaplay: function () {
-        this.displayItems = [
+        var displayList = ['invite', 'photos', 'mv', 'message', 'map', 'tip', 'share'];
+        var displayItems = [
           {text: '是', value: '01'},
           {text: '否', value: '00'}
         ];
-        BaseUtils.initSelect({
-          render: '#display01',
-          target: '.invite_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display02',
-          target: '.photos_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display03',
-          target: '.mv_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display04',
-          target: '.message_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display05',
-          target: '.map_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display06',
-          target: '.tip_display',
-          items: this.displayItems
-        });
-        BaseUtils.initSelect({
-          render: '#display07',
-          target: '.share_display',
-          items: this.displayItems
+        Est.each(displayList, function (item) {
+          BaseUtils.initSelect({
+            render: '#' + item + '_display',
+            target: '.' + item + '_display',
+            items: displayItems
+          });
         });
       },
       initIndex: function () {
@@ -120,7 +94,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           render: '#font',
           target: '#model-font',
           items: [
-            {text: '手机预设字体', value: ''},
+            {text: '手机预设字体', value: '-'},
             {text: '粗钢笔', value: CONST.HOST + '/modules/wwy/invitation/website/font/cgb'},
             {text: '隶书', value: CONST.HOST + '/modules/wwy/invitation/website/font/ls'}
           ],
@@ -134,32 +108,32 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           target: '#model-music',
           items: [
             {text: '无音乐', value: '-'},
-            {text: 'Marry_You', value: 'Marry_You'},
-            {text: 'This Ring', value: 'This Ring'},
-            {text: 'Wedding March', value: 'Wedding March'},
-            {text: '恭喜發財舞曲 (30S).mp3', value: 'gxfcwq'},
-            {text: '花與夢', value: 'hxm'},
-            {text: '舞龍鳳 (30S).mp3', value: 'wlf'},
-            {text: '邂逅', value: 'xg'},
             {text: '新年財神到 (30S).mp3', value: 'xncsd'},
-            {text: 'Russian Wedding', value: 'Russian Wedding'},
+            {text: '恭喜發財舞曲 (30S).mp3', value: 'gxfcwq'},
+            {text: '舞龍鳳 (30S).mp3', value: 'wlf'},
+            {text: '花與夢', value: 'hxm'},
+            {text: '邂逅', value: 'xg'},
+            {text: 'This Ring', value: 'This Ring'},
+            {text: 'Canon in D Serenade', value: 'Canon in D Serenade'},
             {text: "She's A Rocket", value: "She's A Rocket"},
+            {text: 'Russian Wedding', value: 'Russian Wedding'},
             {text: 'Spring Vivaldi', value: 'Spring Vivaldi'},
             {text: 'The Four Seasons(Winter)', value: 'The Four Seasons(Winter)'},
             {text: 'The Swan', value: 'The Swan'},
+            {text: 'Wedding March', value: 'Wedding March'},
             {text: 'Marry_You', value: 'Marry_You'},
             {text: "50's stories", value: "50's stories"},
             {text: 'American Rodeo', value: 'American Rodeo'},
             {text: 'Canon in D major for Strings', value: 'Canon in D major for Strings'},
-            {text: 'Canon in D Serenade', value: 'Canon in D Serenade'},
             {text: 'Dance with Me', value: 'Dance with Me'},
             {text: 'Fit To Be Tied-Band', value: 'Fit To Be Tied-Band'},
             {text: 'Jesu Joy', value: 'Jesu Joy'},
+            {text: 'Marry_You', value: 'Marry_You'},
             {text: 'Make It Last', value: 'Make It Last'},
             {text: 'Ode To Joy', value: 'Ode To Joy'},
           ],
           change: function (model) {
-            if (ctx.iframepage && ctx.iframepage.$){
+            if (ctx.iframepage && ctx.iframepage.$) {
               //ctx.iframepage.$('#xaudio-source').attr('src', CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
               ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
               ctx.model.set('music', model.value);
@@ -266,13 +240,13 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           autoRender: true,
           children: [
             {title: '主页设置', value: 'index', selected: true},
-            {title: '爱的邀约', value: 'invite'},
-            {title: '婚纱相册', value: 'photos'},
-            {title: '婚宴视频', value: 'mv'},
-            {title: '婚宴回函', value: 'message'},
-            {title: '婚宴地图', value: 'map'},
-            {title: '喜宴提醒', value: 'tip'},
-            {title: '喜讯分享', value: 'share'}
+            {title: '活动邀约', value: 'invite'},
+            {title: '活动相册', value: 'photos'},
+            {title: '活动视频', value: 'mv'},
+            {title: '活动回函', value: 'message'},
+            {title: '活动地图', value: 'map'},
+            {title: '活动提醒', value: 'tip'},
+            {title: '活动分享', value: 'share'}
           ],
           change: function (ev) {
             debug(ev.item.get('value'));

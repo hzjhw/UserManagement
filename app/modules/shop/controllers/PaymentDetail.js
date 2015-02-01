@@ -32,17 +32,18 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
       },
       // 支付方式
       initPayType: function () {
-        Service.getPaymentTypeList().then(function (result) {
-          Utils.initSelect({
-            render: '#s2',
-            target: '#model-paymentConfig_id',
-            items: result,
-            change: function () {
-            }
+        Service.getPaymentTypeList({select: true})
+          .then(function (result) {
+            Utils.initSelect({
+              render: '#s2',
+              target: '#model-paymentConfig_id',
+              items: result,
+              change: function () {
+              }
+            });
           });
-        });
       },
-      initPaymentType: function(){
+      initPaymentType: function () {
         Utils.initSelect({
           render: '#s1',
           target: '#model-payment_paymentType',

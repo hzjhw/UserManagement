@@ -1,108 +1,487 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <script>
-        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
-    </script>
-    <meta charset="UTF-8">
-    <title>相册管理</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="fragment" content="!">
-    <meta name="description" content="Description"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" href="../../styles/default/base.css"/>
-    <link href="../../styles/default/dpl.css" rel="stylesheet">
-    <link href="../../styles/default/bui.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
-    <![endif]-->
-    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
-    <style>
-        /* 上传*/
-        /* -----------------------------------------------
-            BASIC ELEMENTS
-           ----------------------------------------------- */
-        /* -- Text Styles ------------------------------- */
-        .swfupload code { display: block; background:#edffb8 none repeat scroll 0%; border-color:#b2da3a; border-style:solid; border-width:1px 0; font-size: 1em; margin: 1em 0pt; overflow:auto; padding: 0.3em 0.4em; white-space:pre; }
-        /* -- Form Styles ------------------------------- */
-        .swfupload form { margin: 0; padding: 0; }
-        .swfupload  div.fieldset { border:  1px solid #afe14c; margin: 10px 0; padding: 20px 10px; }
-        .swfupload div.fieldset span.legend { position: relative; background-color: #FFF; padding: 3px; top: -30px; font: 700 14px Arial, Helvetica, sans-serif; color: #73b304; }
-        .swfupload div.flash { width: 375px; margin: 10px 5px; border-color: #D9E4FF; -moz-border-radius-topleft : 5px; -webkit-border-top-left-radius : 5px; -moz-border-radius-topright : 5px; -webkit-border-top-right-radius : 5px; -moz-border-radius-bottomleft : 5px; -webkit-border-bottom-left-radius : 5px; -moz-border-radius-bottomright : 5px; -webkit-border-bottom-right-radius : 5px; }
-        .swfupload button, .swfupload input,.swfupload  select,.swfupload  textarea { border-width: 1px; margin-bottom: 10px; padding: 2px 3px; }
-        .swfupload input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
-        .swfupload label { width: 150px; text-align: right; display:block; margin-right: 5px; }
-        .swfupload #btnSubmit { margin: 0 0 0 155px ; }
-        /* -- Table Styles ------------------------------- */
-        .swfupload td { font: 10pt Helvetica, Arial, sans-serif; vertical-align: top; }
-        .swfupload .progressWrapper { width: 357px; overflow: hidden; }
-        .swfupload .progressContainer { margin: 5px; padding: 4px; border: solid 1px #E8E8E8; background-color: #F7F7F7; overflow: hidden; }
-        /* Message */
-        .swfupload .message { margin: 1em 0; padding: 10px 20px; border: solid 1px #FFDD99; background-color: #FFFFCC; overflow: hidden; }
-        /* Error */
-        .swfupload .red { border: solid 1px #B50000; background-color: #FFEBEB; }
-        /* Current */
-        .swfupload .green { border: solid 1px #DDF0DD; background-color: #EBFFEB; }
-        /* Complete */
-        .swfupload .swfupload .blue { border: solid 1px #CEE2F2; background-color: #F0F5FF; }
-        .swfupload .progressName { font-size: 8pt; font-weight: 700; color: #555; width: 323px; height: 14px; text-align: left; white-space: nowrap; overflow: hidden; }
-        .swfupload .progressBarInProgress, .swfupload .progressBarComplete, .swfupload .progressBarError { font-size: 0; width: 0%; height: 2px; background-color: blue; margin-top: 2px; }
-        .swfupload .progressBarComplete { width: 100%; background-color: green; visibility: hidden; }
-        .swfupload .progressBarError { width: 100%; background-color: red; visibility: hidden; }
-        .swfupload .progressBarStatus { margin-top: 2px; width: 337px; font-size: 7pt; font-family: Arial; text-align: left; white-space: nowrap; }
-        .swfupload a.progressCancel { font-size: 0; display: block; height: 14px; width: 14px; background-image: url(img/cancelbutton.gif); background-repeat: no-repeat; background-position: -14px 0px; float: right; }
-        .swfupload a.progressCancel:hover { background-position: 0px 0px; }
-        .swfupload .swfupload{width:50px;height:20px; background-color: #dfdfdf;}
-        /* -- SWFUpload Object Styles ------------------------------- */
-        .swfupload .swfupload { vertical-align: top; }
-        .up-modal .modal-subTitle { margin-top: 0px; background: #FAFAFA; padding: 10px 15px 10px 13px; line-height: 27px; }
-        .up-modal .location-label { float: left; }
-        .breadcrumb { padding: 0 22px; margin: 0; list-style: none; background-color: #f5f5f5; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
-        .up-modal .breadcrumb { float: left; width: 430px; padding: 0 22px 0 10px; background-color: transparent; border: none; }
-        .breadcrumb>li { display: inline-block; text-shadow: 0 1px 0 #fff; }
-        .up-modal .location-change { position: relative; float: left; }
-        .btn { display: inline-block; padding: 3px 12px; margin-bottom: 0; font-size: 12px; font-weight: normal; line-height: 20px; text-align: center; vertical-align: middle; cursor: pointer; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; }
-        .icon-local { background-image: url("http://gtms03.alicdn.com/tps/i3/T10moYFwlcXXbtZ_ga-204-618.png"); background-repeat: no-repeat; }
-        .up-modal .location-change .pos-icon { width: 16px; height: 16px; display: inline-block; line-height: 15px; margin: 3px 6px 0 0; vertical-align: text-top; float: left; background-position: -192px -80px; }
-        .btn-default { border-color: #ccc; background-color: #fff; color: #333; }
-        .up-modal .tree-box { display: none; position: absolute; right: 0; top: 27px; height: 220px; width: 569px; overflow: auto; background-color: #fff; border: 1px solid #c8c8c8; z-index: 1; }
-        .up-modal .setting { padding: 0 15px 0px 15px; clear:both;}
-        .up-modal .setting>div { float: left; }
-        .up-modal .setting .is-water, .up-modal .setting .is-protect { margin-right: 10px; }
-        label { display: block; margin-bottom: 5px; }
-        .up-modal .up-tips { margin: 0 15px 20px; padding: 10px; background-color: #FAFAFA; line-height:22px;}
-        .up-modal .up-tips .little { float: left; }
-        .up-modal .up-tips ul { float: left; }
-        .up-modal .up-tips ul li { text-align: left; }
-        .upload-container{ padding: 0px 15px 0px 20px; height: 170px;}
-        .upload-container .upload-left ,.upload-container .upload-right{ float: left; width: 50%; overflow: hidden; }
-        #J_UpTree{padding-left:5px;}
-        #J_UpSetting input{vertical-align: middle;}
+<script>
+    document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+</script>
+<meta charset="UTF-8">
+<title>相册管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="fragment" content="!">
+<meta name="description" content="Description"/>
+<meta name="viewport" content="width=device-width"/>
+<link rel="stylesheet" href="../../styles/default/base.css"/>
+<link href="../../styles/default/dpl.css" rel="stylesheet">
+<link href="../../styles/default/bui.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+<![endif]-->
+<link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+<style>
+/* 上传*/
+/* -----------------------------------------------
+    BASIC ELEMENTS
+   ----------------------------------------------- */
+/* -- Text Styles ------------------------------- */
+.swfupload code {
+    display: block;
+    background: #edffb8 none repeat scroll 0%;
+    border-color: #b2da3a;
+    border-style: solid;
+    border-width: 1px 0;
+    font-size: 1em;
+    margin: 1em 0pt;
+    overflow: auto;
+    padding: 0.3em 0.4em;
+    white-space: pre;
+}
 
-        /*资源库*/
-        div#pic-source { position: absolute; top: 0; left: 0; z-index: 90000; background: #fff; width: 98%; height: 100%; padding: 1%; padding-top: 0;}
-        .source-back{height:32px;padding-bottom: 3px;}
-        div#pic-source-album { float: left; width: 128px; overflow: hidden; }
-        div#pic-source-list { float: left; width: 500px; }
+/* -- Form Styles ------------------------------- */
+.swfupload form {
+    margin: 0;
+    padding: 0;
+}
 
-        #jhw #pic-source-list .photo-list .item { float: left; width: 64px; height: 78px; border: 2px solid #EDEDED; background-color: #fff; box-shadow: 2px 2px 6px #E2E2E2; margin: 0px 20px 10px 0; cursor: pointer; overflow: hidden; }
-        #jhw .photo-list .image { width: 64px; height: 78px; position: relative; }
-        #jhw .photo-list .image .img-container { width: 64px; height: 64px; display: table-cell; vertical-align: middle; text-align: center; }
-        #jhw .photo-list img { vertical-align: middle; }
-        #jhw .photo-list .image .img-name { position: absolute; bottom: -17px; padding: 0 4px; height: 35px; line-height: 18px; color: #454545; width: 58px; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; text-align: center; background-color: #fff; z-index: 1; -webkit-transition: all .2s ease-in-out; -o-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
-        .pagination li.page-start, .pagination li.page-end, .pagination li.page-info, .pagination li.page-per-page, .pagination li.page-refresh, .pagination li.page-go{display:none;}
-        #jhw #pic-source-list .photo-list .item.item-active { border-color: #79b24f; }
-        #jhw .photo-list .item.item-active .image .img-name { background-color: #79b24f; color: #fff; line-height: 20px; }
-        #jhw #pic-source-list .photo-list .item.hover { border-color: #d1d1d1; }
-        #jhw #pic-source-list .photo-list .item.hover .img-name { background-color: #dadada; color: #454545; line-height: 22px; }
+.swfupload div.fieldset {
+    border: 1px solid #afe14c;
+    margin: 10px 0;
+    padding: 20px 10px;
+}
 
-        #jhw #pic-source-album .album-cate-ul{padding-left:4px;}
-        #pic-source-list{ height: 94%;}
-        .pic-source{height: 100%;}
-        .photo-list-container{height:100%;}
-        #jhw #pic-source-album .album-tool { display: none; }
-        #jhw #btn-source{display:block;background: url(images/resource.jpg) no-repeat scroll 0 0 transparent;width:150px;height:150px;cursor:pointer;margin-top:-8px;}
-    </style>
+.swfupload div.fieldset span.legend {
+    position: relative;
+    background-color: #FFF;
+    padding: 3px;
+    top: -30px;
+    font: 700 14px Arial, Helvetica, sans-serif;
+    color: #73b304;
+}
+
+.swfupload div.flash {
+    width: 375px;
+    margin: 10px 5px;
+    border-color: #D9E4FF;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+}
+
+.swfupload button, .swfupload input, .swfupload select, .swfupload textarea {
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 2px 3px;
+}
+
+.swfupload input[disabled] {
+    border: 1px solid #ccc
+}
+
+/* FF 2 Fix */
+.swfupload label {
+    width: 150px;
+    text-align: right;
+    display: block;
+    margin-right: 5px;
+}
+
+.swfupload #btnSubmit {
+    margin: 0 0 0 155px;
+}
+
+/* -- Table Styles ------------------------------- */
+.swfupload td {
+    font: 10pt Helvetica, Arial, sans-serif;
+    vertical-align: top;
+}
+
+.swfupload .progressWrapper {
+    width: 357px;
+    overflow: hidden;
+}
+
+.swfupload .progressContainer {
+    margin: 5px;
+    padding: 4px;
+    border: solid 1px #E8E8E8;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+/* Message */
+.swfupload .message {
+    margin: 1em 0;
+    padding: 10px 20px;
+    border: solid 1px #FFDD99;
+    background-color: #FFFFCC;
+    overflow: hidden;
+}
+
+/* Error */
+.swfupload .red {
+    border: solid 1px #B50000;
+    background-color: #FFEBEB;
+}
+
+/* Current */
+.swfupload .green {
+    border: solid 1px #DDF0DD;
+    background-color: #EBFFEB;
+}
+
+/* Complete */
+.swfupload .swfupload .blue {
+    border: solid 1px #CEE2F2;
+    background-color: #F0F5FF;
+}
+
+.swfupload .progressName {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #555;
+    width: 323px;
+    height: 14px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.swfupload .progressBarInProgress, .swfupload .progressBarComplete, .swfupload .progressBarError {
+    font-size: 0;
+    width: 0%;
+    height: 2px;
+    background-color: blue;
+    margin-top: 2px;
+}
+
+.swfupload .progressBarComplete {
+    width: 100%;
+    background-color: green;
+    visibility: hidden;
+}
+
+.swfupload .progressBarError {
+    width: 100%;
+    background-color: red;
+    visibility: hidden;
+}
+
+.swfupload .progressBarStatus {
+    margin-top: 2px;
+    width: 337px;
+    font-size: 7pt;
+    font-family: Arial;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.swfupload a.progressCancel {
+    font-size: 0;
+    display: block;
+    height: 14px;
+    width: 14px;
+    background-image: url(img/cancelbutton.gif);
+    background-repeat: no-repeat;
+    background-position: -14px 0px;
+    float: right;
+}
+
+.swfupload a.progressCancel:hover {
+    background-position: 0px 0px;
+}
+
+.swfupload .swfupload {
+    width: 50px;
+    height: 20px;
+    background-color: #dfdfdf;
+}
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.swfupload .swfupload {
+    vertical-align: top;
+}
+
+.up-modal .modal-subTitle {
+    margin-top: 0px;
+    background: #FAFAFA;
+    padding: 10px 15px 10px 13px;
+    line-height: 27px;
+}
+
+.up-modal .location-label {
+    float: left;
+}
+
+.breadcrumb {
+    padding: 0 22px;
+    margin: 0;
+    list-style: none;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.up-modal .breadcrumb {
+    float: left;
+    width: 430px;
+    padding: 0 22px 0 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.breadcrumb > li {
+    display: inline-block;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.up-modal .location-change {
+    position: relative;
+    float: left;
+}
+
+.btn {
+    display: inline-block;
+    padding: 3px 12px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.icon-local {
+    background-image: url("http://gtms03.alicdn.com/tps/i3/T10moYFwlcXXbtZ_ga-204-618.png");
+    background-repeat: no-repeat;
+}
+
+.up-modal .location-change .pos-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    line-height: 15px;
+    margin: 3px 6px 0 0;
+    vertical-align: text-top;
+    float: left;
+    background-position: -192px -80px;
+}
+
+.btn-default {
+    border-color: #ccc;
+    background-color: #fff;
+    color: #333;
+}
+
+.up-modal .tree-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 27px;
+    height: 220px;
+    width: 569px;
+    overflow: auto;
+    background-color: #fff;
+    border: 1px solid #c8c8c8;
+    z-index: 1;
+}
+
+.up-modal .setting {
+    padding: 0 15px 0px 15px;
+    clear: both;
+}
+
+.up-modal .setting > div {
+    float: left;
+}
+
+.up-modal .setting .is-water, .up-modal .setting .is-protect {
+    margin-right: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.up-modal .up-tips {
+    margin: 0 15px 20px;
+    padding: 10px;
+    background-color: #FAFAFA;
+    line-height: 22px;
+}
+
+.up-modal .up-tips .little {
+    float: left;
+}
+
+.up-modal .up-tips ul {
+    float: left;
+}
+
+.up-modal .up-tips ul li {
+    text-align: left;
+}
+
+.upload-container {
+    padding: 0px 15px 0px 20px;
+    height: 170px;
+}
+
+.upload-container .upload-left, .upload-container .upload-right {
+    float: left;
+    width: 50%;
+    overflow: hidden;
+}
+
+#J_UpTree {
+    padding-left: 5px;
+}
+
+#J_UpSetting input {
+    vertical-align: middle;
+}
+
+/*资源库*/
+div#pic-source {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90000;
+    background: #fff;
+    width: 98%;
+    height: 100%;
+    padding: 1%;
+    padding-top: 0;
+}
+
+.source-back {
+    height: 32px;
+    padding-bottom: 3px;
+}
+
+div#pic-source-album {
+    float: left;
+    width: 128px;
+    overflow: hidden;
+}
+
+div#pic-source-list {
+    float: left;
+    width: 500px;
+}
+
+#jhw #pic-source-list .photo-list .item {
+    float: left;
+    width: 64px;
+    height: 78px;
+    border: 2px solid #EDEDED;
+    background-color: #fff;
+    box-shadow: 2px 2px 6px #E2E2E2;
+    margin: 0px 20px 10px 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#jhw .photo-list .image {
+    width: 64px;
+    height: 78px;
+    position: relative;
+}
+
+#jhw .photo-list .image .img-container {
+    width: 64px;
+    height: 64px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#jhw .photo-list img {
+    vertical-align: middle;
+}
+
+#jhw .photo-list .image .img-name {
+    position: absolute;
+    bottom: -17px;
+    padding: 0 4px;
+    height: 35px;
+    line-height: 18px;
+    color: #454545;
+    width: 58px;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    background-color: #fff;
+    z-index: 1;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.pagination li.page-start, .pagination li.page-end, .pagination li.page-info, .pagination li.page-per-page, .pagination li.page-refresh, .pagination li.page-go {
+    display: none;
+}
+
+#jhw #pic-source-list .photo-list .item.item-active {
+    border-color: #79b24f;
+}
+
+#jhw .photo-list .item.item-active .image .img-name {
+    background-color: #79b24f;
+    color: #fff;
+    line-height: 20px;
+}
+
+#jhw #pic-source-list .photo-list .item.hover {
+    border-color: #d1d1d1;
+}
+
+#jhw #pic-source-list .photo-list .item.hover .img-name {
+    background-color: #dadada;
+    color: #454545;
+    line-height: 22px;
+}
+
+#jhw #pic-source-album .album-cate-ul {
+    padding-left: 4px;
+}
+
+#pic-source-list {
+    height: 94%;
+}
+
+.pic-source {
+    height: 100%;
+}
+
+.photo-list-container {
+    height: 100%;
+}
+
+#jhw #pic-source-album .album-tool {
+    display: none;
+}
+
+#jhw #btn-source {
+    display: block;
+    background: url(images/resource.jpg) no-repeat scroll 0 0 transparent;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    margin-top: -8px;
+}
+</style>
 </head>
 <!--[if IE 6]>
 <body class="ie6" id="jhw"><![endif]-->
@@ -147,20 +526,21 @@
         </div>
     </div>
     <!--上传按钮-->
-<div class="upload-container">
-    <div class="upload-left">
-        <span id="spanSWFUploadButton"></span>
-        <div id="uploadProcess"></div>
-        <ul id="showNewUploadFileContent"
-            class="showFilesContent startToUpload" style="position: relative;">
-        </ul>
+    <div class="upload-container">
+        <div class="upload-left">
+            <span id="spanSWFUploadButton"></span>
+
+            <div id="uploadProcess"></div>
+            <ul id="showNewUploadFileContent"
+                class="showFilesContent startToUpload" style="position: relative;">
+            </ul>
+        </div>
+        <div class="upload-right">
+            <div id="btn-source">
+                &nbsp;
+            </div>
+        </div>
     </div>
-   <div class="upload-right">
-       <div id="btn-source">
-           &nbsp;
-       </div>
-   </div>
-</div>
     <!--选项设置-->
     <!--<div class="setting clearfix" id="J_UpSetting">
         <div class="is-protect">
@@ -222,7 +602,7 @@
 <script type="text/javascript" src="../../config.js"></script>
 
 <script type="text/javascript">
-var uploadCallback = uploadCallback || function(){
+var uploadCallback = uploadCallback || function () {
     console.log('success');
 }
 var albumId = Est.getUrlParam('albumId', window.location.href);
@@ -302,7 +682,7 @@ function uploadProgress(file, bytesLoaded) {
 
 function uploadSuccess(file, serverData) {
     try {
-        if (Est.isEmpty(serverData)){
+        if (Est.isEmpty(serverData)) {
             alert('服务器上未返回数据！');
         }
         var progress = new FileProgress(file, this.customSettings.upload_target);
@@ -315,7 +695,7 @@ function uploadSuccess(file, serverData) {
         progress.setStatus("缩略图生成完毕.");
         progress.toggleCancel(true);
         serverData = serverData.split(',');
-        if (serverData.length === 2){
+        if (serverData.length === 2) {
             result.push({
                 attId: serverData[1].replace(/\"/g, ''),
                 serverPath: serverData[0].replace(/\"/g, '').replace(/\\\//g, "/")
@@ -643,7 +1023,8 @@ var swfOptions = {
     // my website reacts to the SWFUpload events.
     file_queue_error_handler: fileQueueError,
     file_dialog_complete_handler: fileDialogComplete,
-    file_dialog_start_handler: function(){},
+    file_dialog_start_handler: function () {
+    },
     upload_progress_handler: uploadProgress,
     upload_error_handler: uploadError,
     upload_success_handler: uploadSuccess,
@@ -671,15 +1052,17 @@ var swfOptions = {
     debug: false
 };
 var swfu = new SWFUpload(swfOptions);
-if (auto){
-    setTimeout(function(){
+if (auto) {
+    setTimeout(function () {
         $('.swfupload').click();
     }, 100);
 }
 var bulidNav = function (id) {
     seajs.use(['Service'], function (Service) {
         if (!app.getData('albumList')) {
-            app.addData('albumList', Service.getAlbumList());
+            Service.getAlbumList({}).then(function (result) {
+                app.addData('albumList', result);
+            })
         }
         if (id) albumId = id;
         var breadcrumb = [];
@@ -742,37 +1125,37 @@ $(function () {
             }).addView('albumList', new AlbumList({
                 el: '.album-list',
                 viewId: 'albumList',
-                callback: function(albumId){
+                callback: function (albumId) {
                     app.getView('picSource').reLoad(albumId);
                 }
             }));
             /*app.addView('albumList', new AlbumList({
-                el: '#pic-source-album',
-                instance: 'albumList',
-                callback: function (albumId) {
-                    app.getView('picSource').reLoad(albumId);
-                    //bulidNav(albumId);
-                    //$('.show-tree').click();
-                    //top.app && top.app.addData('curAlbumId', albumId);
-                    //top.$('#pagination-container .reload').click();
-                }
-            }));*/
+             el: '#pic-source-album',
+             instance: 'albumList',
+             callback: function (albumId) {
+             app.getView('picSource').reLoad(albumId);
+             //bulidNav(albumId);
+             //$('.show-tree').click();
+             //top.app && top.app.addData('curAlbumId', albumId);
+             //top.$('#pagination-container .reload').click();
+             }
+             }));*/
             app.addPanel('picSource', {
                 el: '#pic-source-list',
                 template: '<div class="pic-source"></div>'
             }).addView('picSource', new PhotoSelect({
                 el: '.pic-source',
                 viewId: 'picSource',
-                callback: function(){
+                callback: function () {
 
                 }
             }));
-           /* app.addView('picSource', new PhotoSelect({
-                el: '#pic-source-list',
-                callback: function (picSrc) {
+            /* app.addView('picSource', new PhotoSelect({
+             el: '#pic-source-list',
+             callback: function (picSrc) {
 
-                }
-            }));*/
+             }
+             }));*/
         })
     });
     if (uploadType === 'sourceUpload') {
