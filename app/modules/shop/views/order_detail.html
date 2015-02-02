@@ -48,7 +48,7 @@
 
         <div class="controls">
             <input id="model-invoiceName" {{disabled 'this.isInvoice!=="01"'}} name="invoiceName" value="{{invoiceName}}" type="text"
-                   class="input-middle">&nbsp;&nbsp;<label class="" for="model-isInoice"><input id="model-isInoice"  type="checkbox" name="isInvoice"
+                   class="input-middle">&nbsp;&nbsp;<label class="" for="model-isInoice"><input id="model-isInvoice"  type="checkbox" name="isInvoice"
                                                                                   value="{{isInvoice}}" {{#compare
             isInvoice '===' '01'}}checked=checked{{/compare}}/>是否开据发票</label>
         </div>

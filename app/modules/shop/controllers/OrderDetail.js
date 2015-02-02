@@ -38,6 +38,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         this.initProductWeightUnit();
         this.initProductInfoList();
         this.initDistrict();
+        this.initBind();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             this.model.set('orderItemSet', app.getView('productInfoLIst').getItems());
@@ -45,6 +46,11 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
           }
         });
         return this;
+      },
+      initBind: function(){
+        debugger
+        this.modelBinder = new this._modelBinder();
+        this.modelBinder.bind(this.model, this.el);
       },
       // tab标签
       initTab: function () {
