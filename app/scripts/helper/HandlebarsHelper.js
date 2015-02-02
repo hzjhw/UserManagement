@@ -167,8 +167,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * @method [判断] - xif
    * @author wyj 14.12.31
    * @example
-   *      {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
-              this.shippingStatus == 'unshipped'"}}disabled{{/xif}}
+   *       return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
    *
    */
   Handlebars.registerHelper("x", function (expression, options) {
@@ -187,19 +186,17 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     }
     return result;
   });
-  Handlebars.registerHelper("xif", function (expression, options) {
-    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
-  });
 
   /**
-   * 显示隐藏
-   * @method show
-   * @author wyj 15.2.1
+   * xif条件表达式
+   * @method [判断] - xif
+   * @author wyj 15.2.2
    * @example
-   *      <h3 {{{show "this.photos.display==='01'"}}}></h3>
+   *    {{#xif "this.orderStatus != 'completed' && this.orderStatus != 'invalid' && this.paymentStatus == 'unpaid' &&
+              this.shippingStatus == 'unshipped'"}}disabled{{/xif}}
    */
-  Handlebars.registerHelper('show', function (expression, options) {
-    return Handlebars.helpers["x"].apply(this, [expression, options]) ? " style='display:block;' " : " style='display:none;' ";
+  Handlebars.registerHelper("xif", function (expression, options) {
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);
   });
 
   /**
@@ -298,6 +295,28 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
         '" value="' + val + '" ' + checked + '>&nbsp;' + key + '</label>&nbsp;&nbsp;');
     });
     return result.join('');
+  });
+
+  /**
+   * 显示隐藏
+   * @method show
+   * @author wyj 15.2.1
+   * @example
+   *      <h3 {{{show "this.photos.display==='01'"}}}></h3>
+   */
+  Handlebars.registerHelper('show', function (expression, options) {
+    return Handlebars.helpers["x"].apply(this, [expression, options]) ? " style='display:block;' " : " style='display:none;' ";
+  });
+
+  /**
+   * 表单元素不可编辑
+   * @method [表单] - disabled
+   * @author wyj 15.2.1
+   * @example
+   *      <input type="text" {{disabled isDisabled}} />
+   */
+  Handlebars.registerHelper('disabled', function (expression, options) {
+    return Handlebars.helpers['x'].apply(this, [expression, options]) ? ' disabled=disabled ' : '';
   });
 
   /**

@@ -22,12 +22,17 @@ textarea { font-size: 14px; }
 #mainbox { margin: -15px 0 0 0; } #rsvptable input { border-radius:5px; border:0 none; height:3em; width:230px; margin-top:4px; } #rsvptable #q12318 input { height:18px; width:auto; margin-top:0; }
 #rsvptable input[type="submit"] { padding:0 25px; width:90px; margin-top:0; }
 #rsvptable textarea { border-radius:5px; border:0 none; width:230px; margin-top:10px; }
-.u-globalAudio { color: #fff; text-decoration: none; font-size: 24px; position: fixed; right: 10px; bottom: 10px; display: block; z-index: 9999; }
-.u-globalAudio .icon-music { width: 33px; height: 33px; background: url(images/units-icons.png); display: block; }
+
+.u-globalAudio { color: #fff; text-decoration: none; font-size: 24px; position: fixed; right: 10px; top: 10px; display: block; z-index: 9999; }
+.music-02 .icon-music { width: 33px; height: 33px; background: url(images/units-icons.png); display: block; }
 .u-globalAudio .coffee-steam-box { -webkit-transform: translate(-40px,-40px); }
 .u-globalAudio span { position: absolute; left: -60px; top: 10px; text-shadow: 1px 1px 1px #000; letter-spacing: 2px; -webkit-transition: all .2s linear; opacity: 0; -webkit-transform: translateX(-20px); }
 .u-globalAudio span.z-show { opacity: 1; -webkit-transform: translateX(0px) }
+
 .u-globalAudio.z-play .icon-music { -webkit-animation: reverseRotataZ 1.2s linear infinite; }
 @-webkit-keyframes reverseRotataZ { 0% { -webkit-transform: rotateZ(0deg) } 100% { -webkit-transform: rotateZ(-360deg) } }
 @-webkit-keyframes rotataZ { 0% { -webkit-transform: rotateZ(0deg) } 100% { -webkit-transform: rotateZ(360deg) } }
 @-webkit-keyframes fur { 0% { opacity: 0 } 100% { opacity: .2 } }
+
+.music-01 {width: 25px; height: 25px; background-image: url(images/music-on.png); -webkit-background-size: cover;display: block;  }
+.music-01.z-pause{ background-image: url(images/music-off.png); }
