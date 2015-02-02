@@ -135,7 +135,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           change: function (model) {
             if (ctx.iframepage && ctx.iframepage.$) {
               //ctx.iframepage.$('#xaudio-source').attr('src', CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
-              ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
+              ctx.iframepage.setMusic && ctx.iframepage.setMusic(CONST.PIC_URL + '/wqt/music/' + model.value + '.mp3');
               ctx.model.set('music', model.value);
             }
           }
@@ -254,7 +254,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
               ctx.iframepage.$('#' + ev.item.get('value') + '_detail_title').click();
             }
             if (ev.item.get('value') === 'index' && ctx.iframepage.$) {
-              ctx.iframepage.$('body').stop(true, true).animate({scrollTop:0}, '500');
+              ctx.iframepage.$('body').stop(true, true).animate({scrollTop: 0}, '500');
             }
           }
         });
