@@ -254,7 +254,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
               ctx.iframepage.$('#' + ev.item.get('value') + '_detail_title').click();
             }
             if (ev.item.get('value') === 'index' && ctx.iframepage.$) {
-              ctx.iframepage.$('body').scrollTop(0);
+              ctx.iframepage.$('body').stop(true, true).animate({scrollTop:0}, '500');
             }
           }
         });
