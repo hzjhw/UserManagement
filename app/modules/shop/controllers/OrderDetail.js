@@ -48,15 +48,20 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         return this;
       },
       initBind: function () {
-        debugger
+        this.model.set('isInvoice', !Est.isEmpty(this.model.get('invoiceName')));
         this.modelBinder = new this._modelBinder();
         this.modelBinder.bind(this.model, this.el, {
           isInvoice: [
             {selector: '[name=isInvoice]'},
-            {selector: '[name=invoiceName],[name=invoiceAmount]', elAttribute: 'enabled', converter: function (direction, value) {
-              return value === '00';
-            }
-            }
+            {selector: '[name=invoiceName],[name=invoiceAmount]', elAttribute: 'enabled', converter: function (direction, value, attName, model) {
+              return value;
+            }},
+            {selector: '[name=invoiceAmount]', elAttribute: 'value', converter: function (dir, val, attName, model, boundEls) {
+              return val ? model.get('invoiceAmount') : 0;
+            }},
+            {selector: '[name=invoiceName]', elAttribute: 'value', converter: function (dir, val, attName, model, boundEls) {
+              return val ? model.get('invoiceName') : '';
+            }}
           ]
         });
       },

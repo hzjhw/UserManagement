@@ -9,7 +9,8 @@ define('OrderModel', ['BaseModel'], function (require, exports, module) {
 
   OrderModel = BaseModel.extend({
     defaults: Est.extend({
-      isInvoice: '00'
+      isInvoice: false,
+      invoiceAmount: 0
     }, BaseModel.prototype.defaults),
     baseUrl: CONST.API + '/order/detail',
     baseId: 'orderId',

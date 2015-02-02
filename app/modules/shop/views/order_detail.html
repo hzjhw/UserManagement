@@ -47,10 +47,11 @@
         <label class="control-label">抬头发票： </label>
 
         <div class="controls">
-            <input id="model-invoiceName" {{disabled 'this.isInvoice!=="01"'}} name="invoiceName" value="{{invoiceName}}" type="text"
-                   class="input-middle">&nbsp;&nbsp;<label class="" for="model-isInvoice"><input id="model-isInvoice"  type="checkbox" name="isInvoice"
-                                                                                  value="{{isInvoice}}" {{#compare
-            isInvoice '===' '01'}}checked=checked{{/compare}}/>是否开据发票</label>
+            <input id="model-invoiceName" name="invoiceName"
+            value="{{invoiceName}}" type="text"
+            class="input-middle">&nbsp;&nbsp;<label class="" for="model-isInvoice">
+            <input id="model-isInvoice" type="checkbox" name="isInvoice" value="{{isInvoice}}" {{checked
+            'this.invoiceName'}}>是否开据发票</label>
         </div>
     </div>
     <div class="control-group">
@@ -160,7 +161,9 @@
         <label class="control-label">税金：</label>
 
         <div class="controls">
-            <input id="model-invoiceAmount" name="invoiceAmount" {{disabled 'this.isInvoice!=="01"'}} value="{{invoiceAmount}}" class="input-large" type="text"/>
+            <input id="model-invoiceAmount" name="invoiceAmount"
+                   value="{{#isEmpty invoiceName}}0{{else}}{{invoiceAmount}}{{/isEmpty}}" class="input-large"
+                   type="text"/>
         </div>
     </div>
     <div class="control-group">

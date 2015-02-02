@@ -313,10 +313,22 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * @method [表单] - disabled
    * @author wyj 15.2.1
    * @example
-   *      <input type="text" {{disabled isDisabled}} />
+   *      <input type="text" {{disabled 'this.isDisabled'}} />
    */
   Handlebars.registerHelper('disabled', function (expression, options) {
     return Handlebars.helpers['x'].apply(this, [expression, options]) ? ' disabled=disabled ' : '';
+  });
+
+
+  /**
+   * 判断checkbox是否选中
+   * @method [表单] - checked
+   * @author wyj 15.2.1
+   * @example
+   *        <input type="checked"  {{checked 'this.isChecked'}} />
+   */
+  Handlebars.registerHelper('checked', function (expression, options) {
+    return Handlebars.helpers['x'].apply(this, [expression, options]) ? 'checked' : '';
   });
 
   /**
