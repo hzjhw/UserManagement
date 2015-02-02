@@ -47,10 +47,18 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
         });
         return this;
       },
-      initBind: function(){
+      initBind: function () {
         debugger
         this.modelBinder = new this._modelBinder();
-        this.modelBinder.bind(this.model, this.el);
+        this.modelBinder.bind(this.model, this.el, {
+          isInvoice: [
+            {selector: '[name=isInvoice]'},
+            {selector: '[name=invoiceName],[name=invoiceAmount]', elAttribute: 'enabled', converter: function (direction, value) {
+              return value === '00';
+            }
+            }
+          ]
+        });
       },
       // tab标签
       initTab: function () {

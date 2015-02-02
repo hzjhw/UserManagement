@@ -246,12 +246,13 @@
             }
             var content = '【留言者姓名】：' + $("input[name=t12317]").val() + ';【是否参与我们的婚宴】：' + $('input[name=t12318]:checked').val() +
                     ';【寄送纸本喜帖】：' + $('input[name=t12321]').val() + '; 【手机号码】: ' + $('input[name=t12323]').val() + ';【祝福语】：' + $('textarea[name=t12325]').val();
+            var _title = $("input[name='t12317']").val();
             $("input[name='t12317']").val('')
             $.ajax({
                 type: 'post',
                 url: "{{CONST 'DOMAIN'}}/site_message/send",
                 data: {
-                    title: $("input[name='t12317']").val() + '的婚宴回函',
+                    title: _title + '的婚宴回函',
                     username: '{{username}}',
                     recvEnt: '{{enterpriseId}}',
                     content: content,
