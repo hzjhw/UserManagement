@@ -267,6 +267,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_[表单] - checked">[表单] - checked</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[表单] - disabled">[表单] - disabled</a>
 
                                 
@@ -363,7 +370,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l353"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:353</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l365"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:365</code></a>
         
         </p>
 
@@ -427,7 +434,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l322"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:322</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l334"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:334</code></a>
         
         </p>
 
@@ -751,7 +758,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l165"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:165</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l190"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:190</code></a>
         
         </p>
 
@@ -762,7 +769,7 @@
     </div>
 
     <div class="description">
-        <p>复杂条件</p>
+        <p>xif条件表达式</p>
 
     </div>
 
@@ -775,7 +782,8 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>  return Handlebars.helpers[&quot;x&quot;].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);</code></pre>
+                <p>   {{#xif &quot;this.orderStatus != &#39;completed&#39; &amp;&amp; this.orderStatus != &#39;invalid&#39; &amp;&amp; this.paymentStatus == &#39;unpaid&#39; &amp;&amp;
+             this.shippingStatus == &#39;unshipped&#39;&quot;}}disabled{{/xif}}</p>
 
             </div>
         </div>
@@ -815,7 +823,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l190"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:190</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l165"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:165</code></a>
         
         </p>
 
@@ -826,7 +834,7 @@
     </div>
 
     <div class="description">
-        <p>xif条件表达式</p>
+        <p>复杂条件</p>
 
     </div>
 
@@ -839,8 +847,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p>   {{#xif &quot;this.orderStatus != &#39;completed&#39; &amp;&amp; this.orderStatus != &#39;invalid&#39; &amp;&amp; this.paymentStatus == &#39;unpaid&#39; &amp;&amp;
-             this.shippingStatus == &#39;unshipped&#39;&quot;}}disabled{{/xif}}</p>
+                <pre class="code prettyprint"><code>  return Handlebars.helpers[&quot;x&quot;].apply(this, [expression, options]) ? options.fn(this) : options.inverse(this);</code></pre>
 
             </div>
         </div>
@@ -1200,7 +1207,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l333"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:333</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l345"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:345</code></a>
         
         </p>
 
@@ -1264,7 +1271,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l362"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:362</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l374"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:374</code></a>
         
         </p>
 
@@ -1351,6 +1358,70 @@
 </div>
 
                 
+                    <div id="method_[表单] - checked" class="method item">
+    <h3 class="name"><code>[表单] - checked</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_scripts_helper_HandlebarsHelper.js.html#l323"><code>C:\software\WebstormProjects\UserManagement\app\scripts\helper\HandlebarsHelper.js:323</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>判断checkbox是否选中</p>
+
+    </div>
+
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   &lt;input type=&quot;checked&quot;  {{checked &#39;this.isChecked&#39;}} /&gt;</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
                     <div id="method_[表单] - disabled" class="method item">
     <h3 class="name"><code>[表单] - disabled</code></h3>
 
@@ -1407,7 +1478,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> &lt;input type=&quot;text&quot; {{disabled isDisabled}} /&gt;</code></pre>
+                <pre class="code prettyprint"><code> &lt;input type=&quot;text&quot; {{disabled &#39;this.isDisabled&#39;}} /&gt;</code></pre>
 
             </div>
         </div>
