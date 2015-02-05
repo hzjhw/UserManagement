@@ -57,8 +57,27 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'Utils', 'Serv
         this.publishing = false;
         var url = CONST.DOMAIN + "/rest/static/" + app.getData('user').username + "/publish?thisPage=" +
           this.model.get('page');
-        var button = this.$('.btn-publish');
-        if (!this.publishing) {
+        var $button = this.$('.btn-publish');
+
+        setTimeout(function () {
+            if ($button.hasClass('publishing'))return;
+            if (!ctx.isStatic) {
+              ctx.isStatic = true;
+              $button.addClass('publishing');
+              $button.html('<i class="icon-time"></i>发布中...');
+              setTimeout(function () {
+                $.ajax({
+                  type: 'post',
+                  url: url,
+                  success: function (result) {
+                    ctx.isStatic = false;
+                    $button.html('<i class="icon-ok"></i>完成');
+                  }
+                });
+              }, 500);
+            }
+        }, 500);
+        /*if (!this.publishing) {
           this.publishing = true;
           button.html('<i class="icon-white icon-globe"></i>发布中...');
           $.ajax({
@@ -72,7 +91,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'Utils', 'Serv
               }, 500);
             }
           });
-        }
+        }*/
       },
       // seo优化
       seo: function () {
