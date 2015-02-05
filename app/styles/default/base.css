@@ -1894,4 +1894,7 @@ loading*/
 #qwt-pre label{
     padding-right: 5px;
 }
-
+.bui-datepicker{
+    z-index: 1060;
+}
+.bui-picker{z-index: 1200;}

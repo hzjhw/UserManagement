@@ -52,6 +52,7 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'Utils', 'Serv
       render: function () {
         this._render();
       },
+      // 页面发布
       publish: function () {
         var ctx = this;
         this.publishing = false;
@@ -60,38 +61,23 @@ define('NavigateList', ['BaseList', 'BaseCollection', 'BaseItem', 'Utils', 'Serv
         var $button = this.$('.btn-publish');
 
         setTimeout(function () {
-            if ($button.hasClass('publishing'))return;
-            if (!ctx.isStatic) {
-              ctx.isStatic = true;
-              $button.addClass('publishing');
-              $button.html('<i class="icon-time"></i>发布中...');
-              setTimeout(function () {
-                $.ajax({
-                  type: 'post',
-                  url: url,
-                  success: function (result) {
-                    ctx.isStatic = false;
-                    $button.html('<i class="icon-ok"></i>完成');
-                  }
-                });
-              }, 500);
-            }
+          if ($button.hasClass('publishing'))return;
+          if (!ctx.isStatic) {
+            ctx.isStatic = true;
+            $button.addClass('publishing');
+            $button.html('<i class="icon-time"></i>发布中...');
+            setTimeout(function () {
+              $.ajax({
+                type: 'post',
+                url: url,
+                success: function (result) {
+                  ctx.isStatic = false;
+                  $button.html('<i class="icon-ok"></i>完成');
+                }
+              });
+            }, 500);
+          }
         }, 500);
-        /*if (!this.publishing) {
-          this.publishing = true;
-          button.html('<i class="icon-white icon-globe"></i>发布中...');
-          $.ajax({
-            type: 'post',
-            url: url,
-            async: false,
-            success: function (result) {
-              ctx.publishing = false;
-              setTimeout(function () {
-                button.html('<i class=" icon-globe"></i>发布');
-              }, 500);
-            }
-          });
-        }*/
       },
       // seo优化
       seo: function () {

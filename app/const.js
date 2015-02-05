@@ -35,7 +35,7 @@ app.addStatus('loginViewList', [
 ]);
 // 广告产品
 app.addStatus('adsList', [
-  {text: '广告产品', value: ''},
+  {text: '是否广告产品？', value: '/'},
   {text: '是', value: '1'},
   {text: '否', value: '0'}
 ]);

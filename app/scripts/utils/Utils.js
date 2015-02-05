@@ -442,13 +442,14 @@ define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
        */
       tooltip: function (msg, options) {
         options = Est.extend({
-          id: 'dialog' + Est.nextUid(),
+          id: Est.nextUid('dialog'),
           content: msg,
           time: 4000,
           align: 'right',
           padding: 5
         }, options);
         seajs.use(['dialog-plus'], function (dialog) {
+          window.tooltipDialog && window.tooltipDialog.close();
           window.tooltipDialog = app.addDialog(dialog(options)).show(options.target);
           setTimeout(function () {
             window.tooltipDialog.close().remove();
