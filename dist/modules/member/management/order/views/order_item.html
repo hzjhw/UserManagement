@@ -1,0 +1,40 @@
+<td>
+    <a href="#/order/detail" class="order-a"><span title="">
+        {{#each orderItemSet }}
+            {{#compare @index '!==' 0}}、{{/compare}}
+            {{productName}}
+            {{#compare @index '>' 2 }}{{/compare}}
+        {{/each}}
+        {{orderItemSet.productName}}</span></a>
+</td>
+<td>
+    <a href="javascript:;" class="">{{orderSn}}</a>
+</td>
+<td>
+    <span title="{{addTime}}">{{addTime}}</span>
+</td>
+<td>
+    ￥{{totalAmount}}元
+</td>
+<td>
+    <p>
+        {{#xif 'this.orderStatus === "cancelled"'}}
+                {{{orderStatus orderStatus}}}
+            {{else}}
+                {{#xif 'this.paymentStatus === "unpaid" || this.paymentStatus === "partPayment"'}}
+                    {{{paymentStatus paymentStatus}}}
+                {{else}}
+                    {{#xif 'this.shippingStatus === "shipped" || this.shippingStatus === "partShipped"'}}
+                        {{#xif 'this.orderStatus !== "completed"'}}
+                        {{{shippingStatus shippingStatus}}}<a href="javascript:;" class="delivery-view">[查看物流]</a>
+                        {{#xif 'this.shippingStatus === "shipped"'}}<input class="btn-comfirm" type="button" value="确认收货"/>{{/xif}}
+                        {{else}}
+                            交易成功
+                         {{/xif}}
+                    {{else}}
+                        {{{shippingStatus shippingStatus}}}
+                    {{/xif}}
+                {{/xif}}
+        {{/xif}}
+    </p>
+</td>

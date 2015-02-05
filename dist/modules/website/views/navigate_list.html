@@ -1,0 +1,108 @@
+<div id="grid" class="jhw-panel">
+    <div class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
+        <div class="bui-grid-tbar">
+            <div class="bui-bar" role="toolbar" id="bar2">
+                <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+                    <li class="bui-bar-item bui-inline-block" aria-disabled="false" id="bar-item1" aria-pressed="false">
+                        <label class="checkbox" for="toggle-all">全选</label></li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button2" aria-pressed="false">
+                        <button type="button" class="button button-gray product-category-add"><i
+                                class="icon-plus"></i>导航添加
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button9" aria-pressed="false">
+                        <a href="#/userdefined"><button type="button" class="button button-gray userdefined-all"><i
+                                class="icon-tasks"></i>所有自定义模块
+                        </button></a>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block bui-bar-item-button-hover bui-bar-item-hover"
+                        aria-disabled="false" id="bar-item-button10" aria-pressed="false">
+                        <a href="javascript:;"><button type="button" class="button button-gray btn-static"><i
+                                class="icon-globe"></i>静态化
+                        </button></a>
+                    </li>
+                    <li class="bui-bar-item-separator bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-separator1" role="separator"></li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button3" aria-pressed="false">
+                        <button type="button" class="button btn-batch-category"><i
+                                class="icon-resize-full"></i>批量转移导航
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button1" aria-pressed="false">
+                        <button type="button" class="button  btn-batch-del"><i
+                                class="icon-trash"></i>批量删除
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button4" aria-pressed="false">
+                        <button type="button" class="button btn-batch-extend"></i>展开
+                        </button>
+                    </li>
+                    <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                        id="bar-item-button5" aria-pressed="false">
+                        <button type="button" class="button btn-batch-collapse"></i>折叠
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bui-grid-header-container">
+            <div class="bui-grid-header">
+                <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="bui-grid-hd grid-td-checkbox">
+                            <div class="bui-grid-hd-inner">
+                                <div class="bui-grid-checkBox-container"><input type="checkbox" id="toggle-all"></div>
+                            </div>
+                        </th>
+                        <th class="bui-grid-hd x-grid-rownumber bui-grid-hd-hover" aria-disabled="false"
+                            style="width: 40px;">
+                            <div class="bui-grid-hd-inner center"><span></span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-navigate-name">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">导航名称</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd grid-td-cate-route">
+                            <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">导航路径</span><span
+                                    class="bui-grid-sort-icon">&nbsp;</span></div>
+                        </th>
+                        <th class="bui-grid-hd">
+                            <div class="bui-grid-hd-inner">
+                                <div class="grid-td-display" style="float:left;">
+                                    <span class="bui-grid-hd-title">显示/隐藏</span><span
+                                        class="bui-grid-sort-icon">&nbsp;</span>
+                                </div>
+                                <div class="grid-td-userdefined" style="float:left;">
+                                    <span class="bui-grid-hd-title">自定义模块</span><span
+                                        class="bui-grid-sort-icon">&nbsp;</span>
+                                </div>
+
+                                <div class="grid-td-move" style="float:left;">
+                                    <span class="bui-grid-hd-title">移序</span><span
+                                        class="bui-grid-sort-icon">&nbsp;</span>
+                                </div>
+                                <div class="grid-td-handle" style="float:left;">
+                                    <span class="bui-grid-hd-title">操作</span><span
+                                        class="bui-grid-sort-icon">&nbsp;</span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bui-grid-body" style="height: {{CONST 'BUI_GRID_BODY_HEIGHT_NO_PAGINATION'}}px;">
+            <div id="category-widget" class="jhw-product-category jhw-category-product">
+                <ul class="category-ul">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

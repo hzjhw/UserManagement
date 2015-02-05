@@ -1,0 +1,16 @@
+<td class="nameTd">
+    <label>
+        <input type="radio" title="{{name}}" id="model-paymentId" name="name" class="{required: true, messages: {required: '请选择支付方式！'}}"
+               value="{{paymentId}}"/>
+        {{name}}
+    </label>
+</td>
+<td>
+    {{#xif "this.paymentFeeType === 'scale' && this.paymentFee !== 0"}}
+    [支付手续费费率：{{paymentFee}}%]
+    {{#xif "this.paymentFeeType === 'fixed' && this.paymentFee !== 0"}}
+    [支付手续费：{{paymentFee}}]
+    {{/xif}}
+    {{/xif}}
+    <p>{{description}}</p>
+</td>

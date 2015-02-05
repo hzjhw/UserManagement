@@ -1,0 +1,34 @@
+<div class="blank"></div>
+<table class="listTable">
+    <tbody>
+    <tr>
+        <td colspan="4">
+            您目前是[{{memberRank.name}}]
+        </td>
+    </tr>
+    <tr>
+        <th>帐户总积分</th>
+        <td>{{memberRank.point}}</td>
+        <th>订单总数量</th>
+        <td>
+            {{orderCount}}&nbsp;&nbsp;
+            <a href="#/order">[查看订单列表]</a>
+        </td>
+    </tr>
+    <tr>
+        <th>预存款余额</th>
+        <td>￥{{deposit}}元</td>
+        <th>未读消息数</th>
+        <td>
+            {{msgNoReadCount}}&nbsp;&nbsp;
+            <a href="#/message_view">[查看收件箱]</a>
+        </td>
+    </tr>
+    <tr>
+        <th>注册日期</th>
+        <td>{{addTime}}</td>
+        <th>最后登录IP</th>
+        <td>{{loginIp}}</td>
+    </tr>
+    </tbody>
+</table>

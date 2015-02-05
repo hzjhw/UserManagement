@@ -1,0 +1,69 @@
+<div id="message-send-inner">
+    <form id="J_Form" action="" class="form-horizontal">
+        <div id="tab"></div>
+        <div id="panel" class="" style="padding:10px;">
+            <!--常规-->
+            <div>
+                <div class="control-group">
+                    <label class="control-label" for="">
+                        发送给：
+                    </label>
+                    <input id="model-fromName" value="{{userName}}" type="hidden"/>
+                    <input id="model-fromPhone" value="{{cellphone}}" type="hidden"/>
+                    <input id="model-fromEmail" value="{{email}}" type="hidden"/>
+                    <div class="controls">
+                        <div id="s6">
+                            <input value="{{type}}" id="model-type" type="hidden"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>收 信 人：</label>
+
+                    <div class="controls">
+                        <input id="model-username" class="message-username  input-large" type="text" title="{{username}}"
+                               data-rules="{required:true}" value="{{username}}"></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">留言主题：</label>
+
+                    <div class="controls">
+                        <input id="model-title" class="message-title input-large" type="text" title="{{title}}" value="{{title}}"></input>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><s>*</s>留言内容：</label>
+
+                    <div class="controls">
+                        <span class="content"><textarea cols="10" id="model-content"
+                                                        data-rules="{required:true}"></textarea></span>
+                    </div>
+                </div>
+                <br><br>
+                <div class="control-group">
+                    <label class="control-label" for="">
+                        验证码：
+                    </label>
+
+                    <div class="controls">
+                        <input id="model-randCode" name="randCode" value="{{randCode}}" type="text" class="input-small"
+                               data-rules="{required : true}"
+                               data-tip='{"text":"请输入检证码"}'>
+                        <img id="verifyPic" name="verifyPic" width="56" height="25" class="validete-num refreshCode"
+                             src="/veriImg">
+                        <a class="refreshCode" href="javascript:;">换一张？</a>
+                    </div>
+                </div>
+
+                <div class="row actions-bar" style="">
+                    <div class="form-actions span13 offset3">
+                        <button id="submit" type="button" class="button button-primary">点此发送留言</button>
+                        <a href="#/message"><button id="back" type="button" class="button">返回</button></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

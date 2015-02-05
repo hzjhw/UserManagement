@@ -1,0 +1,14 @@
+<form id="J_Form" action="{{CONST 'DOMAIN'}}/rest/pay/toDeposit" method="post" target="_blank">
+    <p>
+        尊敬的<strong class="green">{{_data.username}}</strong>，
+        您选择的支付方式为：<strong>{{_data.paymentType}}</strong>
+        <input type="hidden" name="paymentConfigId" id="model-paymentId" type="text" value="{{_data.paymentId}}"/>
+
+    </p><p>
+    <input type="hidden" name="totalfee" id="model-totalfee" value="{{_data.totalAmount}}">
+    支付总金额：<strong class="red">￥{{_data.totalAmount}}元</strong>
+</p>
+    <div class="buttonArea paymentGateway">
+        <input type="submit" id="submit" class="formButton" value="确认支付">
+    </div>
+</form>

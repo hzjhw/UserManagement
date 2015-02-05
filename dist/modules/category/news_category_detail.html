@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+    </script>
+    <meta charset="UTF-8">
+    <title>新闻分类管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="../../styles/default/base.css"/>
+    <link href="../../styles/default/dpl.css" rel="stylesheet">
+    <link href="../../styles/default/bui.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+    <![endif]-->
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+</head>
+<!--[if IE 6]>
+<body class="ie6" id="jhw"><![endif]-->
+<!--[if IE 7]>
+<body class="ie7" id="jhw"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8" id="jhw"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9" id="jhw"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10" id="jhw"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11" id="jhw"><![endif]-->
+<!--[if !IE]>-->
+<body id="jhw">
+<!--<![endif]-->
+<div id="jhw-detail"></div>
+<script type="text/template" id="news-category-detail-tpl">
+    <div id="news-add-inner">
+        <form id="J_Form" action="" class="form-horizontal">
+            <input type="hidden" id="model-type" name="type" value="11"/>
+            <div class="control-group">
+                <label class="control-label">上级分类：</label>
+                <div class="controls">
+                    <div id="s1">
+                        <input type="hidden" id="model-belongId" value="{{belongId}}" name="belongId">
+                    </div>
+                </div>
+                <span class="tips-info">
+                        <span class="x-icon x-icon-mini x-icon-info">!</span>
+                        <label class="tips-content">未选择分类表示添加的是顶级分类</label></span>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><s>*</s>分类名称：</label>
+                <div class="controls">
+                    <input id="model-name" name="name" value="{{name}}" type="text" class="input-large"
+                           data-rules="{required : true}"
+                           data-tip='{"text":"请输入分类名称","iconCls":"icon icon-pencil"}'>
+                </div>
+            </div>
+            <div class="row actions-bar" style="display:none;">
+                <div class="form-actions span13 offset3">
+                    <button id="submit" type="button" class="button button-primary">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+<script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../const.js"></script>
+<script type="text/javascript" src="../../config.local.js"></script>
+<script type="text/javascript" src="../../common/attributes/config.js"></script>
+<script type="text/javascript" src="../../common/tag/config.js"></script>
+<script type="text/javascript" src="../../modules/category/main.js"></script>
+<script type="text/javascript" src="../../modules/attributes/main.js"></script>
+<script type="text/javascript" src="../../common/pagination/config.js"></script>
+<script type="text/javascript" src="../../config.js"></script>
+<script type="text/javascript">
+    seajs.use(['jquery', 'NewsCategoryDetail'], function (jquery, NewsCategoryDetail) {
+        new NewsCategoryDetail();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+/**********base.css**********/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    font: 12px tahoma, Arial, "����", Verdana, sans-serif;
+    background-color: #ffffff;
+}
+
+a {
+    color: #656d77;
+    text-decoration: none;
+}
+
+.black {
+    color: black;
+}
+
+.blue {
+    color: blue;
+}
+
+.green {
+    color: green;
+}
+
+.gray {
+    color: gray;
+}
+
+.red {
+    color: red;
+}
+
+.white {
+    color: white;
+}
+
+a:hover {
+    color: #ff6600;
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+}
+
+.blank {
+    width: 100%;
+    height: 10px;
+    clear: both;
+    overflow: hidden;
+}
+
+input, select, label {
+    vertical-align: middle
+}
+
+input.formText, .control-group .controls input {
+    padding: 5px;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    border-left: 1px solid #999999;
+}
+
+.control-group {
+    overflow: hidden;
+}
+
+.control-group .control-label, .control-group .controls {
+    float: left;
+}
+
+input.formText:hover {
+    border: 1px solid #ff9b1f;
+    background-color: #fefbf7;
+}
+
+input.formText:focus {
+    background-color: #fff8ef;
+}
+
+/**********member_center.css**********/
+.outBg {
+    background: #fff;
+}
+
+.inBg {
+    width: 1000px;
+    background: none;
+}
+
+#content {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.moveList.sort1 {
+    float: left;
+    width: 210px;
+}
+
+.moveList.sort2 {
+    float: left;
+    margin-left: 10px;
+    width: 780px;
+}
+
+.bodyCont {
+    border: 0 none;
+    margin-bottom: 10px;
+}
+
+.bodyContTitle {
+    padding: 0;
+}
+
+.bodyContContent {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+body .narrow_member_left_1 {
+    width: 210px;
+    clear: both;
+    color: #595959;
+}
+
+body .narrow_member_left_1 p {
+    color: #595959;
+}
+
+body .narrow_member_left_1 a {
+    color: #32517f;
+}
+
+body .narrow_member_left_1 .bodyContTitle {
+    width: 210px;
+    height: 10px;
+    line-height: 10px;
+    clear: both;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_1 .middle {
+    width: 190px;
+    line-height: 20px;
+    padding-left: 20px;
+    clear: both;
+    background: url(img/member_center_y_bg.gif) repeat-y 0px 0px;
+}
+
+body .narrow_member_left_1 .username {
+    font-weight: bold;
+}
+
+body .narrow_member_left_1 .bottom {
+    width: 210px;
+    height: 20px;
+    clear: both;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px -30px;
+}
+
+body .narrow_member_left_2 {
+    width: 210px;
+    clear: both;
+    color: #595959;
+}
+
+body .narrow_member_left_2 .top {
+    width: 180px;
+    height: 29px;
+    line-height: 29px;
+    clear: both;
+    padding-left: 30px;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px -60px;
+}
+
+body .narrow_member_left_2 .middle {
+    width: 210px;
+    line-height: 20px;
+    clear: both;
+    background: url(img/member_center_y_bg.gif) repeat-y 0px -210px;
+}
+
+body .narrow_member_left_2 li {
+    line-height: 30px;
+}
+
+body .narrow_member_left_2 li li {
+    line-height: 30px;
+    padding-left: 30px;
+}
+
+body .narrow_member_left_2 li li:hover, body .narrow_member_left_2 li li.current {
+    background: url(img/member_center_bg.gif) no-repeat 0px -120px;
+}
+
+body .narrow_member_left_2 .order {
+    width: 210px;
+    padding-top: 3px;
+    background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_2 .favorite {
+    width: 210px;
+    padding-top: 3px;
+    background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_2 .message {
+    width: 210px;
+    padding-top: 3px;
+    background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_2 .profile {
+    width: 210px;
+    padding-top: 3px;
+    background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_2 .deposit {
+    width: 210px;
+    padding-top: 3px;
+    background: url(img/member_menu_li_bg.gif) no-repeat 0px 0px;
+}
+
+body .narrow_member_left_2 .nav-title {
+    color: #afacac;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+    padding-left: 13px;
+}
+
+body .narrow_member_left_2 .bottom {
+    width: 210px;
+    height: 20px;
+    clear: both;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px -90px;
+}
+
+#content2 .bodyCont .bodyContTitle {
+    width: 740px;
+    height: 45px;
+    line-height: 40px;
+    padding-left: 40px;
+    clear: both;
+    font-size: 14px;
+    font-weight: bold;
+    color: #595959;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px -150px;
+}
+
+#content2 .bodyCont .bodyContTitle .titleLinkColor {
+    color: #595959;
+}
+
+#content2 .bodyCont .middle {
+    width: 760px;
+    clear: both;
+    padding: 0px 10px;
+    background: url(img/member_center_y_bg.gif) repeat-y -420px 0px;
+}
+
+#content2 .bodyCont .bottom {
+    width: 780px;
+    height: 18px;
+    clear: both;
+    overflow: hidden;
+    background: url(img/member_center_bg.gif) no-repeat 0px -210px;
+}
+
+body table.listTable {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    table-layout: fixed;
+}
+
+body table.listTable th {
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+    background-color: #f6f6f6;
+}
+
+body table.listTable td {
+    line-height: 28px;
+    padding: 3px 10px;
+    text-align: left;
+    color: #595959;
+    word-break: break-all;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+body table.listTable tr:hover {
+    background-color: #ffffd4
+}
+
+body table.listTable .title {
+    width: 70px;
+    font-weight: bold;
+}
+
+body table.inputTable {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+}
+
+body table.inputTable th, .control-group .control-label {
+    width: 150px;
+    line-height: 30px;
+    padding-right: 10px;
+    text-align: right;
+    color: #333333;
+    background-color: #fafafa;
+}
+
+body table.inputTable tr:hover th {
+    background-color: #eeeeee;
+}
+
+body table.inputTable td {
+    line-height: 28px;
+    padding: 3px 5px;
+    text-align: left;
+    color: #595959;
+}
+
+body table.inputTable tr:hover td {
+    background-color: #fafafa;
+}
+
+body ul.tab {
+    height: 29px;
+    padding-left: 161px;
+    background: url(img/member_center_x_bg.gif) 0px 0px repeat-x;
+}
+
+body ul.tab li {
+    float: left;
+}
+
+body ul.tab input {
+    width: 100px;
+    height: 29px;
+    line-height: 29px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: url(img/member_center_bg.gif) -430px 0px no-repeat;
+}
+
+body ul.tab .current input {
+    background: url(img/member_center_bg.gif) -330px 0px no-repeat;
+}
+
+body .tabContent {
+    border-top: none;
+}
+
+body .addButton {
+    width: 76px;
+    height: 26px;
+    line-height: 26px;
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #cb2b00;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: url(img/member_center_bg.gif) no-repeat -210px -30px;
+}
+
+body .addButton:hover {
+    background: url(img/member_center_bg.gif) no-repeat -300px -30px;
+}
+
+body .submitButton {
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+    display: block;
+    float: left;
+    font-size: 12px;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: url(img/member_center_bg.gif) no-repeat -210px 0px;
+}
+
+body .submitButton:hover {
+    background: url(img/member_center_bg.gif) no-repeat -270px 0px;
+}
+
+body .backButton {
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+    display: block;
+    margin-left: 30px;
+    float: left;
+    font-size: 12px;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background: url(img/member_center_bg.gif) no-repeat -210px 0px;
+}
+
+body .backButton:hover {
+    background: url(img/member_center_bg.gif) no-repeat -270px 0px;
+}
+
+body .downIcon {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    display: -moz-inline-stack;
+    zoom: 1;
+    *display: inline;
+    background: url(img/member_center_bg.gif) no-repeat -210px -60px;
+}
+
+body .upIcon {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    display: -moz-inline-stack;
+    zoom: 1;
+    *display: inline;
+    background: url(img/member_center_bg.gif) no-repeat -210px -90px;
+}
+
+body .favoriteList td {
+    padding: 5px 5px 4px 5px;
+    border-bottom: 1px dashed #e3e3e3;
+}
+
+body .favoriteList .productImage img {
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    border: 1px solid #e3e3e3;
+}
+
+body .depositRecharge .paymentConfigTable {
+    width: 100%;
+}
+
+body .depositRecharge .paymentConfigTable td.nameTd {
+    width: 150px;
+    line-height: 30px;
+    text-align: left;
+    border: 1px solid #e3e3e3;
+    background-color: #fafafa;
+}
+
+body .depositRecharge .paymentConfigTable td {
+    line-height: 30px;
+    border: 1px solid #e3e3e3;
+}
+
+body .orderList .operationInfo {
+    line-height: 25px;
+    padding: 10px;
+    border: 1px solid #ff8c00;
+    background-color: #fffaef;
+}
+
+body .orderList .operationInfo:hover {
+    background-color: #fffcf7;
+}
+
+/*
+分页*/
+.pagination li > a, .pagination li > span {
+    padding: 0px 8px;
+    color: #4B5051;
+}
+
+#pagination-container .page-go {
+    display: none;
+}
+
+#pagination-container .page-refresh {
+    display: none;
+}
+
+#pagination-container .per_page_show {
+    height: 22px;
+    line-height: 22px;
+    width: 60px;
+    vertical-align: middle;
+    border: 1px solid #C0C0C0
+}
+
+#pagination-container .page-per-page, #pagination-container .page-info {
+    height: 22px;
+    line-height: 22px;
+}
+
+.pagination .active > a, .pagination .active > a:focus, .pagination .active > a:hover, .pagination .active > span, .pagination .active > span:focus, .pagination .active > span:hover {
+    border: 1px solid #ff9900;
+    background-color: #ff9900;
+    color: #fff;
+}
+
+/*暂无数据*/
+#jhw .no-result {
+    padding: 10px;
+    border: none;
+    border-left: none;
+    background: #fff;
+    border-right: none;
+    text-align: center;
+}
+
+/*留言*/
+.member_div {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+}
+
+.order-tbody-member {
+    line-height: 25px;
+}
+
+.member_div div {
+    width: 20%;
+    float: left;
+}
+
+.order-tbody-member .member_div div {
+    text-indent: 4px;
+}
+
+.member-display {
+    padding: 0 8px 0 21px;
+}
+
+.order-tbody-member .member_div .member_div_in {
+    text-indent: 8px;
+}
+
+.member_div_in .x-caret-left-middle {
+    padding-right: 8px;
+}
+
+.middle table.inputTable th {
+
+}
+
+input[type=password], input[type=text], select, textarea {
+    border: 1px solid #999999;
+}
+
+.x-icon-normal {
+    text-shadow: none;
+    color: #333;
+    background-color: #fff;
+    border-color: #999999;
+}
+
+.x-icon-hover, .x-icon-normal:hover {
+    color: #5D5D5E;
+    border: 1px solid #8D8D8D;
+}
+
+.open .dropdown-toggle.x-icon-normal, .x-icon-normal.active, .x-icon-normal:active, .x-icon-normal:focus, .x-icon-normal:hover {
+    color: #333;
+    background-color: #F1F1F1;
+    border-color: #8D8E8F;
+}
+
+.list-table .controls {
+    padding-left: 5px;
+}
+
+input.formButton {
+    width: 70px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    border: none;
+    background: url(img/form_bg.gif) 0px 0px no-repeat;
+}
+
+.paymentGateway input.formButton {
+    width: 81px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    background: url(img/payment_bg.gif) 0px 0px no-repeat;
+}

@@ -1,0 +1,338 @@
+<div class="bui-grid bui-simple-list bui-grid-width  bui-grid-strip bui-grid-hover bui-simple-list-hover">
+<!--<div class="bui-grid-tbar">
+    <div class="bui-bar" role="toolbar" id="bar2">
+        <ul class="bui-bar bui-grid-button-bar" role="toolbar" id="bar4">
+            <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                aria-pressed="false">
+                <a href="#/shop/delivery_type">
+                    <button type="button" class="button button-gray">订单支付
+                    </button>
+                </a>
+            </li>
+            <li class="bui-bar-item-button bui-bar-item bui-inline-block" aria-disabled="false"
+                aria-pressed="false">
+                <a href="#/shop/delivery_type">
+                    <button type="button" class="button button-gray">订单发货
+                    </button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>-->
+
+<div class="bui-grid-body-detail">
+<div id="product-add-inner">
+<form id="J_Form" action="" class="form-horizontal">
+<div id="tab"></div>
+<div id="panel" class="" style="padding:10px;">
+<!--常规-->
+<div>
+    <div class="control-group">
+        <label class="control-label">订单状态：</label>
+
+        <div class="controls">
+            [{{{paymentStatus paymentStatus}}}] [{{{shippingStatus shippingStatus}}}] [{{paymentConfigName}}]
+        </div>
+    </div>
+    <div class="span12 span-first">
+        <div class="control-group">
+            <label class="control-label">订单编号：</label>
+
+            <div class="controls">
+                <input type="hidden" id="model-orderSn"/>
+                {{orderSn}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">商品总金额：</label>
+
+            <div class="controls">
+                <input id="model-totalAmount" type="hidden"/>
+                <span class="red">￥{{totalAmount}}元</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">配送方式：</label>
+
+            <div class="controls">
+                {{deliveryType.name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">配送费用： </label>
+
+            <div class="controls">
+                {{deliveryFee}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">商品重量： </label>
+
+            <div class="controls">
+                {{productWeight}}{{productWeightUnit}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                收货人姓名:
+            </label>
+
+            <div class="controls">
+                {{shipName}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                收货地址:
+            </label>
+
+            <div class="controls">
+                {{shipAddress}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                电话：
+            </label>
+
+            <div class="controls">
+                {{shipPhone}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">用户名：</label>
+
+            <div class="controls">
+                {{shipName}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">预存款余额:</label>
+
+            <div class="controls">
+                {{memberObj.deposit}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">E-mail:</label>
+
+            <div class="controls">
+                {{memberObj.email}}
+            </div>
+        </div>
+    </div>
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label">下单时间：</label>
+
+            <div class="controls">
+                {{addTime}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">订单总金额：</label>
+
+            <div class="controls">
+                <span class="red">￥{{totalAmount}}元</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">支付方式：</label>
+
+            <div class="controls">
+                {{paymentConfig.name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">支付手续费： </label>
+
+            <div class="controls">
+                {{paymentFee}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                附言:
+            </label>
+
+            <div class="controls">
+                {{memo}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">收货地区</label>
+
+            <div class="controls bui-form-group-select">
+                {{shipArea}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                邮编：
+            </label>
+
+            <div class="controls">
+                {{shipZipCode}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">手机：</label>
+
+            <div class="controls">
+                {{shipMobile}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                会员等级
+            </label>
+
+            <div class="controls">
+                {{memberObj.memberRank.name}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">最后登录IP:</label>
+
+            <div class="controls">
+                {{memberObj.loginIp}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">积分:</label>
+
+            <div class="controls">
+                {{memberObj.memberRank.point}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hide">
+    <div class="bui-grid-header-container">
+        <div class="bui-grid-header">
+            <table cellspacing="0" class="bui-grid-table" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">货号</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">商品名称</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">价格</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                    <th class="bui-grid-hd grid-td-order-number">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">购买数量</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+
+                    <th class="bui-grid-hd grid-td-handle" style="padding-right:16px;">
+                        <div class="bui-grid-hd-inner"><span class="bui-grid-hd-title">操作</span><span
+                                class="bui-grid-sort-icon">&nbsp;</span></div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="bui-grid-body" style="height: {{CONST 'BUI_GRID_BODY_HEIGHT'}}px;">
+        <table cellspacing="0" cellpadding="0" class="bui-grid-table">
+            <tbody id="product-info-list">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="hide">
+    <div class="span12 span-first">
+        <div class="control-group">
+            <label class="control-label" for="">
+                订单编号:
+            </label>
+
+            <div class="controls">
+                {{orderSn}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="">
+                订单总金额:
+            </label>
+
+            <div class="controls">
+                {{totalAmount}}
+            </div>
+        </div>
+    </div>
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label" for="">
+                下单时间:
+            </label>
+
+            <div class="controls">
+                {{addTime}}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="">
+                已付金额:
+            </label>
+
+            <div class="controls">
+                {{paidAmount}}
+            </div>
+        </div>
+    </div>
+
+    <div id="payment-detail" style="clear:both;"></div>
+</div>
+<div class="hide">
+    <div class="span12 span-first">
+        <div class="control-group">
+            <label class="control-label" for="">
+                订单编号:
+            </label>
+
+            <div class="controls">
+                {{orderSn}}
+            </div>
+        </div>
+
+    </div>
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label" for="">
+                下单时间:
+            </label>
+
+            <div class="controls">
+                {{addTime}}
+            </div>
+        </div>
+
+    </div>
+
+    <div id="shipping-detail" style="clear:both;"></div>
+</div>
+</div>
+</form>
+</div>
+</div>
+<div class=" btn-fixed">
+    <div class="row">
+        <div class="form-actions span13 offset3">
+            <button id="btn-finish" type="button" class="button btn-finish">订单完成</button>
+            <button id="btn-back" type="button" class="button btn-back">返回</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+

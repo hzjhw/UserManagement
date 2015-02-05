@@ -1,0 +1,53 @@
+<td class="bui-grid-cell grid-td-checkbox">
+    <div class="bui-grid-cell-inner">
+        <div class="bui-grid-checkBox-container"><span class="x-grid-checkbox"><input class="toggle" type="checkbox" {{#if checked}}checked{{/if}}></span>
+        </div>
+    </div>
+</td>
+<td class="x-grid-rownumber  bui-grid-cell grid-td-grid-hd1" data-column-id="grid-hd1" data-column-field="">
+    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text " title="">{{plus dx 1}}</span></div>
+</td>
+
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span id="model-title" class="pro-list-title" title="{{title}}">{{title}}</span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-picture">
+    <div class="bui-grid-cell-inner">
+        <span id="model-fromName" class="pro-list-fromName" title="0"><a href="index.html#/wwy_mobile/{{wyId}}">{{clickCount}}</a></span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-picture">
+    <div class="bui-grid-cell-inner"><span class="bui-grid-cell-text">
+        <a href="index.html#/wwy_message/{{wyId}}">{{msgCount}}</a></span></div>
+</td>
+
+<td class="bui-grid-cell grid-td-picture">
+    <div class="bui-grid-cell-inner">
+        <span class="pro-list-type">
+        {{#compare state '===' '01'}}已审核{{/compare}}{{#compare state '===' '00'}}未审核{{/compare}}
+        </span>
+    </div>
+</td>
+
+<td class="bui-grid-cell grid-td-col1">
+    <div class="bui-grid-cell-inner">
+        <span class="pro-list-ip" title=""><a href="javascript:;" wyId="{{wyId}}" class="showqrcode">查看</a></span>
+    </div>
+</td>
+<td class="bui-grid-cell grid-td-category">
+    <div class="bui-grid-cell-inner">
+        <span id="model-addTime" class="btn-addTime">{{dateFormat addTime 'yyyy-MM-dd hh:mm:ss'}}</span>
+    </div>
+</td>
+
+
+<td class="bui-grid-cell grid-td-handle">
+    <div class="bui-grid-cell-inner">
+        <button type="button" class="button button-gray button-mini edit"><i class="icon-edit"></i>查看
+        </button>
+        <button type="button" class="button button-gray button-mini delete"><i class=" icon-trash"></i>删除
+        </button>
+    </div>
+</td>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-javascript', 'javascript');
+    </script>
+    <meta charset="UTF-8">
+    <title>产品管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="fragment" content="!">
+    <meta name="description" content="Description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="../../styles/default/base.css"/>
+    <link href="../../styles/default/dpl.css" rel="stylesheet">
+    <link href="../../styles/default/bui.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
+    <![endif]-->
+    <link href="../../vendor/pace/themes/pace-theme-barber-shop.css" rel="stylesheet"/>
+</head>
+<!--[if IE 6]>
+<body class="ie6" id="jhw"><![endif]-->
+<!--[if IE 7]>
+<body class="ie7" id="jhw"><![endif]-->
+<!--[if IE 8]>
+<body class="ie8" id="jhw"><![endif]-->
+<!--[if IE 9]>
+<body class="ie9" id="jhw"><![endif]-->
+<!--[if IE 10]>
+<body class="ie10" id="jhw"><![endif]-->
+<!--[if IE 11]>
+<body class="ie11" id="jhw"><![endif]-->
+<!--[if !IE]>-->
+<body id="jhw">
+<!--<![endif]-->
+<div id="jhw-detail" style="width: 800px;height: 500px;overflow:hidden;"></div>
+<!--template-->
+<script type="text/template" id="userdefined-detail-tpl">
+
+</script>
+
+<script type="text/javascript" src="../../scripts/base.js"></script>
+<script type="text/javascript" src="../../const.js"></script>
+<script type="text/javascript" src="../../config.local.js"></script>
+<script type="text/javascript" src="../../modules/website/main.js"></script>
+<script type="text/javascript" src="../../config.js"></script>
+<script type="text/javascript">
+    seajs.use(['jquery', 'UserdefinedDetail'], function (jquery, UserdefinedDetail) {
+        app.addView('userdefinedDetail', new UserdefinedDetail({
+            viewId: 'userdefinedDetail',
+            el: '#jhw-detail'
+        }));
+    });
+</script>
+</body>
+</html>

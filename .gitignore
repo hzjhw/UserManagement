@@ -6,7 +6,14 @@
 /config.js
 /uploads
 /logs
-/dist
+
+/dist/config.local.js
+/dist/base
+/dist/demo
+/dist/test
+/dis/config.local.js
+/dis/test.html
+
 test
 .settings
 npm-debug.log
