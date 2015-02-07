@@ -109,7 +109,8 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
             ]},
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
-              {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []}
+              {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []},
+              {name: '外观设计', url: '', className: 'menu-category', children: []}
             ]},
             {name: '手机网站', url: '#/mobile', className: 'menu-mobile', children: [
               {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []}

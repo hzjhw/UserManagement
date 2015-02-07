@@ -72,6 +72,8 @@
  - 初始化PicturePick时 检查是否attId未配置， 若不需要ID时， 可以随便取个值如001
 7) 添加图片后无后续图片
  - 需添加app.addView('');
+8) 加载文件404
+ - 检查config.local.js是否引入
  
 ### handlebars
 1) 获取索引

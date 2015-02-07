@@ -1119,6 +1119,7 @@ label.checkbox {
 .select-inner {
     display: inline-block;
 }
+.select{white-space: nowrap;}
 
 /*登录 注册*/
 .model-email, .model-username {
@@ -1136,7 +1137,6 @@ label.checkbox {
 }
 
 #product-list-ul .pro-list-name {
-    padding: 0 5px;
 }
 
 #product-list-ul .hover, #jhw table .hover {
