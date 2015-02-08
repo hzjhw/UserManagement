@@ -163,7 +163,7 @@ define('Service', ['jquery', 'BaseService'], function (require, exports, module)
     },
     getIndustry: function (options) {
       debug('- 获取主营行业');
-      return BaseService().factory(Est.extend({
+      return new BaseService().factory(Est.extend({
         url: CONST.API + '/enterprise/industry',
         select: true,
         text: 'name',
