@@ -18,10 +18,11 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
     UserdefinedCollection = BaseCollection.extend({
       url: function () {
         var url = CONST.API + '/userdefined/list';
+        var end = '?page=' + this.paginationModel.get('page') + '&pageSize=' + this.paginationModel.get('pageSize');
         if (Est.isEmpty(this.options.data.page)) {
-          return url;
+          return url + end;
         }
-        return url + '/' + this.options.data.page;
+        return url + '/' + this.options.data.page + end;
       },
       model: UserdefinedModel,
       initialize: function () {
