@@ -20,6 +20,7 @@ app.addRoute('userdefined/:id', function (id) {
       template: '<div class="jhw-main-inner"></div>'
     }).addView('userdefineLIst', new UserdefinedList({
       el: '.jhw-main-inner',
+      pageSize: 500,
       data: { page: id }
     }));
   });
@@ -30,6 +31,7 @@ app.addRoute('userdefined', function () {
       el: '#jhw-main',
       template: '<div class="jhw-main-inner"></div>'
     }).addView('userdefinedLIst', new UserdefinedList({
+      pageSize: 500,
       el: '.jhw-main-inner',
       data: { page: null }
     }));
