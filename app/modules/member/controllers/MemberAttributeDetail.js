@@ -51,7 +51,6 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
         $("#multi-attribute").show();
       },
       attributeSelect: function () {
-        var ctx = this;
         Utils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
@@ -63,14 +62,15 @@ define('MemberAttributeDetail', ['jquery', 'MemberAttributeModel', 'HandlebarsHe
             {text: '单选项', value: 'select'},
             {text: '多选项', value: 'checkbox'},
             {text: '日期', value: 'date'}
-          ]
-        }).then(function (select) {
-          if (select === 'select' || select === 'checkbox') {
-            $("#multi-attribute").show();
-          } else {
-            $("#multi-attribute").hide();
+          ],
+          change: function (item) {
+            if (item.value === 'select' || item.value === 'checkbox') {
+              $("#multi-attribute").show();
+            } else {
+              $("#multi-attribute").hide();
+            }
+            Utils.resetIframe();
           }
-          Utils.resetIframe();
         });
       },
       attributeRender: function () {

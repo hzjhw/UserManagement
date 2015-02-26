@@ -489,7 +489,7 @@
     background-color: #f5f5f5
 }
 
-.bui-select-list .bui-list-item-selected {
+.bui-select-list .bui-list-item-selected,#jhw .bui-select-list .item-active {
     color: #fff;
     text-decoration: none;
     outline: 0;

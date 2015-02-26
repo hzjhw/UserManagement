@@ -10,6 +10,7 @@ app.addRoute('category/product', function () {
       el: '#jhw-main',
       template: '<div class="jhw-main-inner"></div>'
     }).addView('productCategoryPage', new ProductCategoryList({
+      viewId: 'productCategoryPage',
       el: '.jhw-main-inner'
     }));
   });
@@ -21,6 +22,7 @@ app.addRoute('category/news', function () {
       el: '#jhw-main',
       template: '<div class="jhw-main-inner"></div>'
     }).addView('newsCategoryPage', new NewsCategoryList({
+      viewId: 'newsCategoryPage',
       el: '.jhw-main-inner'
     }));
   });

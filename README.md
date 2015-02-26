@@ -10,6 +10,9 @@
 ### Backbone API文档 - MVC框架
 - http://backbonejs.org/
 
+### Backbone.ModelBinder API文档 - 模型绑定
+- https://github.com/theironcook/Backbone.ModelBinder
+
 ### seajs API文档 - 模块加载
 - http://seajs.org/docs/#docs
 

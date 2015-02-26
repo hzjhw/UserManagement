@@ -89,9 +89,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
-          items: app.getStatus('deliveryMethod'),
-          change: function () {
-          }
+          items: app.getStatus('deliveryMethod')
         });
       },
       // 配送方式
@@ -101,9 +99,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
             Utils.initSelect({
               render: '#s2',
               target: '#model-defaultDeliveryCorp',
-              items: result,
-              change: function () {
-              }
+              items: result
             });
           });
       },

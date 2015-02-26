@@ -43,11 +43,19 @@
             
                 <li><a href="../classes/Application - 应用程序管理器.html">Application - 应用程序管理器</a></li>
             
+                <li><a href="../classes/BaseCollection.html">BaseCollection</a></li>
+            
+                <li><a href="../classes/BaseDetail - 详细页面.html">BaseDetail - 详细页面</a></li>
+            
+                <li><a href="../classes/BaseItem - 单视图.html">BaseItem - 单视图</a></li>
+            
+                <li><a href="../classes/BaseList - 列表视图.html">BaseList - 列表视图</a></li>
+            
                 <li><a href="../classes/BaseModel - 模型类.html">BaseModel - 模型类</a></li>
             
-                <li><a href="../classes/BaseService.html">BaseService</a></li>
+                <li><a href="../classes/BaseService - 数据请求.html">BaseService - 数据请求</a></li>
             
-                <li><a href="../classes/BaseUtils.html">BaseUtils</a></li>
+                <li><a href="../classes/BaseUtils - 工具类.html">BaseUtils - 工具类</a></li>
             
                 <li><a href="../classes/BaseView - 普通视图.html">BaseView - 普通视图</a></li>
             
@@ -55,7 +63,7 @@
             
                 <li><a href="../classes/HandlebarsHelper - 标签库.html">HandlebarsHelper - 标签库</a></li>
             
-                <li><a href="../classes/SuperView.html">SuperView</a></li>
+                <li><a href="../classes/SuperView - 顶级父类.html">SuperView - 顶级父类</a></li>
             
             </ul>
 
@@ -116,7 +124,8 @@
 
 
 <div class="box intro">
-    <p>应用程序管理器</p>
+    <p>应用程序管理器 - 中介者模式， 用于注册视图、模块、路由、模板等
+注册视图、注册模块等以抽象工厂模式实现</p>
 
 </div>
 
@@ -222,7 +231,21 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_[模板] - addCompileTemp">[模板] - addCompileTemp</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_[模板] - addTemplate">[模板] - addTemplate</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_[模板] - getCompileTemp">[模板] - getCompileTemp</a>
 
                                 
                                 
@@ -409,7 +432,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l383"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:383</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l401"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:401</code></a>
         
         </p>
 
@@ -468,7 +491,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l394"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:394</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l412"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:412</code></a>
         
         </p>
 
@@ -1290,6 +1313,115 @@
 </div>
 
                 
+                    <div id="method_[模板] - addCompileTemp" class="method item">
+    <h3 class="name"><code>[模板] - addCompileTemp</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>compile</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l352"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:352</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>添加编译模板</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">compile</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_[模板] - addTemplate" class="method item">
     <h3 class="name"><code>[模板] - addTemplate</code></h3>
 
@@ -1406,6 +1538,110 @@
 
             </div>
         </div>
+    
+</div>
+
+                
+                    <div id="method_[模板] - getCompileTemp" class="method item">
+    <h3 class="name"><code>[模板] - getCompileTemp</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l361"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:361</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>获取编译模板</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"></span>:
+                    
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
@@ -1538,7 +1774,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l352"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:352</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l370"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:370</code></a>
         
         </p>
 
@@ -1635,7 +1871,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l374"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:374</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l392"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:392</code></a>
         
         </p>
 
@@ -1718,7 +1954,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l363"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:363</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l381"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:381</code></a>
         
         </p>
 
@@ -2973,7 +3209,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l404"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:404</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l422"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:422</code></a>
         
         </p>
 
@@ -3030,7 +3266,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l452"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:452</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l470"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:470</code></a>
         
         </p>
 
@@ -3087,7 +3323,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l465"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:465</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l483"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:483</code></a>
         
         </p>
 
@@ -3144,7 +3380,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l443"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:443</code></a>
+        <a href="../files/C:_software_WebstormProjects_Utils_app_backbone_Application.js.html#l461"><code>C:\software\WebstormProjects\Utils\app\backbone\Application.js:461</code></a>
         
         </p>
 

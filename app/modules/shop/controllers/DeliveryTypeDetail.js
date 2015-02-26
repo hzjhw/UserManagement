@@ -45,9 +45,7 @@ define('DeliveryTypeDetail', ['DeliveryTypeModel', 'BaseView', 'BaseDetail', 'Ba
         Utils.initSelect({
           render: '#s1',
           target: '#model-deliveryMethod',
-          items: app.getStatus('deliveryMethod'),
-          change: function () {
-          }
+          items: app.getStatus('deliveryMethod')
         });
         Utils.initSelect({
           render: '#s3',

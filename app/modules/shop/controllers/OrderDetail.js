@@ -85,9 +85,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
             BaseUtils.initSelect({
               render: '#s1',
               target: '#model-paymentId',
-              items: result,
-              change: function () {
-              }
+              items: result
             });
           });
       },
@@ -98,10 +96,7 @@ define('OrderDetail', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail',
             BaseUtils.initSelect({
               render: '#s2',
               target: '#model-typeId',
-              items: result,
-              change: function (model) {
-                /* $("#model-shipping_deliveryCorpName").val(model.text);*/
-              }
+              items: result
             });
           });
       },

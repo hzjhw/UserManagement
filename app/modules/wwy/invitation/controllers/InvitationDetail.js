@@ -3,17 +3,16 @@
  * @class InvitationDetail
  * @author yongjin<zjut_wyj@163.com> 2015/1/28
  */
-define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils', 'Service', 'HandlebarsHelper',
+define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'Service', 'HandlebarsHelper',
     'template/invitation_detail', 'PicturePick', 'template/invitation_index'],
   function (require, exports, module) {
-    var InvitationDetail, BaseDetail, template, InvitationModel, Utils, BaseUtils, PicturePick, Service ,
+    var InvitationDetail, BaseDetail, template, InvitationModel, Utils, PicturePick, Service ,
       invitationTemp, HandlebarsHelper;
 
     BaseDetail = require('BaseDetail');
     template = require('template/invitation_detail');
     InvitationModel = require('InvitationModel');
     Utils = require('Utils');
-    BaseUtils = require('BaseUtils');
     PicturePick = require('PicturePick');
     invitationTemp = require('template/invitation_index');
     HandlebarsHelper = require('HandlebarsHelper');
@@ -68,7 +67,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
           {text: '否', value: '00'}
         ];
         Est.each(displayList, function (item) {
-          BaseUtils.initSelect({
+          Utils.initSelect({
             render: '#' + item + '_display',
             target: '.' + item + '_display',
             items: displayItems
@@ -79,7 +78,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
         var ctx = this;
         Service.getWqtTheme({ text: 'name', value: 'path', select: true })
           .then(function (list) {
-            BaseUtils.initSelect({
+            Utils.initSelect({
               render: '#titleTheme',
               target: '#model-titleTheme',
               items: list,
@@ -90,7 +89,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
             });
           });
         this.initDiaplay();
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#font',
           target: '#model-font',
           items: [
@@ -103,7 +102,7 @@ define('InvitationDetail', ['BaseDetail', 'InvitationModel', 'Utils', 'BaseUtils
               ctx.iframepage.$('.fontcss').attr('href', model.value);
           }
         });
-        BaseUtils.initSelect({
+        Utils.initSelect({
           render: '#music',
           target: '#model-music',
           items: [

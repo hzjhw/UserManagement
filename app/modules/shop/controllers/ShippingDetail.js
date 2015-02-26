@@ -42,9 +42,7 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
             Utils.initSelect({
               render: '#s3',
               target: '#model-typeId',
-              items: result,
-              change: function () {
-              }
+              items: result
             });
           });
       },
@@ -52,17 +50,15 @@ define('ShippingDetail', ['ShippingModel', 'BaseDetail', 'template/shipping_deta
       initDeliveryCorp: function () {
         Service.getDeliveryCorpList({select: true})
           .then(function (result) {
-            seajs.use(['BaseUtils'], function (BaseUtils) {
-              BaseUtils.initSelect({
-                render: '#s4',
-                target: '#shipping_deliveryCorp',
-                items: result,
-                search: true,
-                change: function (model) {
-                  $("#model-shipping_deliveryCorpName").val(model.text);
-                }
-              });
-            })
+            Utils.initSelect({
+              render: '#s4',
+              target: '#shipping_deliveryCorp',
+              items: result,
+              search: true,
+              change: function (model) {
+                $("#model-shipping_deliveryCorpName").val(model.text);
+              }
+            });
           });
       },
       // 发货列表

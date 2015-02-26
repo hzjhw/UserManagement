@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BaseUtils - 工具类</title>
+    <title>BaseService - 数据请求</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -104,7 +104,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BaseUtils - 工具类 Class</h1>
+                        <h1>BaseService - 数据请求 Class</h1>
 <div class="box meta">
     
 
@@ -112,7 +112,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:1</code></a>
+            Defined in: <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l1"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:1</code></a>
         </div>
     
 
@@ -124,7 +124,7 @@
 
 
 <div class="box intro">
-    <p>BaseUtils</p>
+    <p>BaseService - 单例模式， 只创建一个实例化对象</p>
 
 </div>
 
@@ -153,42 +153,28 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_[上传] - initUpload">[上传] - initUpload</a>
+                                <a href="#method_ajax">ajax</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[地区] - initDistrict">[地区] - initDistrict</a>
+                                <a href="#method_factory">factory</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[复制] - initCopy">[复制] - initCopy</a>
+                                <a href="#method_initDefault">initDefault</a>
 
                                 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_[表单] - initEditor">[表单] - initEditor</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_[调用] - execute">[调用] - execute</a>
-
-                                
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_initDropDown">initDropDown</a>
+                                <a href="#method_initExtend">initExtend</a>
 
                                 
                                 
@@ -196,6 +182,13 @@
                         
                             <li class="index-item method">
                                 <a href="#method_initSelect">initSelect</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_initTree">initTree</a>
 
                                 
                                 
@@ -217,8 +210,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_[上传] - initUpload" class="method item">
-    <h3 class="name"><code>[上传] - initUpload</code></h3>
+                    <div id="method_ajax" class="method item">
+    <h3 class="name"><code>ajax</code></h3>
 
     
         <div class="args">
@@ -227,435 +220,6 @@
                 <li class="arg">
                     
                         <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l155"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:155</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>图片上传</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>[render:　选择符][context: 上下文]</p>
-
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> // 图片添加
- Utils.openUpload({
-  albumId: app.getData(&#39;curAlbumId&#39;),
-  username: app.getData(&#39;user&#39;).username, // 必填
-  auto: true,
-  oniframeload: function(){
-    this.iframeNode.contentWindow.uploadCallback = doResult;
-  }
- });
- // 图片替换
- Utils.openUpload({
-   id: &#39;replaceDialog&#39; + id,
-   title: &#39;图片替换&#39;,
-   albumId: app.getData(&#39;curAlbumId&#39;), // 必填
-   username: app.getData(&#39;user&#39;).username, // 必填
-   replace: true, // 必填
-   attId: this.model.get(&#39;attId&#39;), // 必填
-   oniframeload: function () {
-     this.iframeNode.contentWindow.uploadCallback = function (results) { // results返回结果
-     ctx.model.set(&#39;uploadTime&#39;, new Date().getTime());
-     window[&#39;replaceDialog&#39; + id].close().remove();
-     };
-   }
- });
- // 选取图片
- Utils.openUpload({
-           id: &#39;uploadDialog&#39;,
-           type: type,
-           albumId: app.getData(&#39;curAlbumId&#39;),
-           username: app.getData(&#39;user&#39;) &amp;&amp; app.getData(&#39;user&#39;).username,
-           auto: true,
-           oniframeload: function(){
-             this.iframeNode.contentWindow.uploadCallback = function(result){
-               ctx.addItems(result);
-             };
-           },
-           success: function(){
-             var result = this.iframeNode.contentWindow.app.getView(&#39;picSource&#39;).getItems();
-             ctx.addItems(result);
-           }
-         });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[地区] - initDistrict" class="method item">
-    <h3 class="name"><code>[地区] - initDistrict</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l125"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化级联地区</p>
-
-    </div>
-
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   BaseUtils.initDistrict({
-            id: &#39;district1&#39; ,// 必填
-            render: &#39;#district-container&#39;, // 目标选择符
-            target: &#39;#model-dist&#39;,
-            path: &#39;...&#39;,
-            url: CONST.API + &#39;/shop/receiver/list&#39; // 自定义请求地址
-          });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[复制] - initCopy" class="method item">
-    <h3 class="name"><code>[复制] - initCopy</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>selecter</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l351"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:351</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化复制按钮</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">selecter</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code>   Utils.initCopy(&#39;#photo-copy-dialog&#39;, {
-      success: function(){
-        window.copyDialog.close();
-      }
-    });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[表单] - initEditor" class="method item">
-    <h3 class="name"><code>[表单] - initEditor</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l212"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:212</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>初始化编辑器</p>
-
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> Utils.initEditor({
-   render: &#39;.ckeditor&#39;
- });</code></pre>
-
-            </div>
-        </div>
-    
-</div>
-
-                
-                    <div id="method_[调用] - execute" class="method item">
-    <h3 class="name"><code>[调用] - execute</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>name</code>
                     
                 </li>
             
@@ -692,7 +256,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l390"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:390</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l18"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:18</code></a>
         
         </p>
 
@@ -703,7 +267,7 @@
     </div>
 
     <div class="description">
-        <p>调用方法 - 命令模式[说明， 只有在需要记录日志，撤销、恢复操作等功能时调用该方法]</p>
+        <p>基础ajax</p>
 
     </div>
 
@@ -715,7 +279,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">name</code>
+                        <code class="param-name">options</code>
                         <span class="type">Object</span>
                     
 
@@ -747,22 +311,11 @@
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
-
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.execute( &quot;initSelect&quot;, {
-   ...
- }, this);</code></pre>
-
-            </div>
-        </div>
-    
 </div>
 
                 
-                    <div id="method_initDropDown" class="method item">
-    <h3 class="name"><code>initDropDown</code></h3>
+                    <div id="method_factory" class="method item">
+    <h3 class="name"><code>factory</code></h3>
 
     
         <div class="args">
@@ -778,6 +331,10 @@
         </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type">Est.promise</span>
+        </span>
     
 
     
@@ -803,7 +360,7 @@
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l68"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:68</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l103"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:103</code></a>
         
         </p>
 
@@ -814,7 +371,7 @@
     </div>
 
     <div class="description">
-        <p>初始化下拉框</p>
+        <p>基础工厂类 - 工厂模式，通过不同的url请求不同的数据</p>
 
     </div>
 
@@ -844,37 +401,41 @@
     
 
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Est.promise</span>:
+                    
+                
+            </div>
+        </div>
+    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initDropDown({
-       target: &#39;#drop-down-content&#39;, // 显示下拉框的触发按钮
-       height: 250, // 默认为auto
-       width: 150, // 默认为auto
-       //overflowX: &#39;auto&#39;, // 默认为hidden
-       content: $(&#39;#template-drop-down&#39;).html(), // 显示内容
-       callback: function (options) { // 下拉框渲染完成后的回调函数
-           setTimeout(function(){
-               app.getView(options.dropDownId).reflesh(function () { // 刷新
-                   this._options.items = [&#39;111&#39;]; // 重新设置options参数里的items
-               });
-               app.getView(options.dropDownId).hide(); // dropDownId 为当前下拉框的viewId
-           }, 1000);
-       }
-   });
-BaseUtils.initDropDown({
-       target: &#39;#drop-down-module-id&#39;,
-       moduleId: &#39;AttributesAdd&#39;,
-       items: [&#39;111&#39;, &#39;222&#39;, &#39;333&#39;],
-       callback: function(options){
-           setTimeout(function(){
-               app.getView(options.dropDownId).hide();
-           }, 1000);
-       }
-   });</code></pre>
+                <pre class="code prettyprint"><code> new BaseService().factory({
+         url: &#39;&#39;, // 请求地址
+         select: true, // 是否构建下拉框
+         tree: true, // 是否构建树
+         extend: true, // 是否全部展开
+         defaults： false, // 是否添加默认选项
+
+         rootKey: &#39;isroot&#39;, // 构建树时的父级字段名称
+         rootValue: &#39;01&#39;, // 父级字段值
+         categoryId: &#39;categoryId&#39;, //分类 Id
+         belongId: &#39;belongId&#39;, // 父类ID
+         childTag: &#39;cates&#39;, // 子集字段名称
+         sortBy: &#39;sort&#39;, // 根据某个字段排序
+
+         text: &#39;name&#39;, // 下拉框名称
+         value: &#39;categoryId&#39;, // 下拉框值
+       });</code></pre>
 
             </div>
         </div>
@@ -882,8 +443,8 @@ BaseUtils.initDropDown({
 </div>
 
                 
-                    <div id="method_initSelect" class="method item">
-    <h3 class="name"><code>initSelect</code></h3>
+                    <div id="method_initDefault" class="method item">
+    <h3 class="name"><code>initDefault</code></h3>
 
     
         <div class="args">
@@ -892,6 +453,12 @@ BaseUtils.initDropDown({
                 <li class="arg">
                     
                         <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>result</code>
                     
                 </li>
             
@@ -924,7 +491,225 @@ BaseUtils.initDropDown({
             
         
         
-        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseUtils.js.html#l9"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseUtils.js:9</code></a>
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l91"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:91</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>添加默认选项</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">result</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_initExtend" class="method item">
+    <h3 class="name"><code>initExtend</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>result</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l79"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:79</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化是否展开</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">result</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_initSelect" class="method item">
+    <h3 class="name"><code>initSelect</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>result</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l59"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:59</code></a>
         
         </p>
 
@@ -960,6 +745,21 @@ BaseUtils.initDropDown({
                     
                 </li>
             
+                <li class="param">
+                    
+                        <code class="param-name">result</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
             </ul>
         </div>
     
@@ -967,24 +767,114 @@ BaseUtils.initDropDown({
     
 
     
-        <div class="example">
-            <h4>Example:</h4>
+</div>
 
-            <div class="example-content">
-                <pre class="code prettyprint"><code> BaseUtils.initSelect({
-       render: &#39;#select&#39;,  // 渲染区域
-       target: &#39;#model-categoryId&#39;, // 目标input元素
-       text: &#39;name&#39;, // 名称字段
-       value: &#39;categoryId&#39;, // 值字段
-       items: app.getData(&#39;product_category_list&#39;), // 列表
-       search: true, // 是否显示搜索框
-       change: function (ev) { // select事件
-           console.log(ev);
-       }
-   });</code></pre>
+                
+                    <div id="method_initTree" class="method item">
+    <h3 class="name"><code>initTree</code></h3>
 
-            </div>
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>options</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>result</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
         </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/C:_software_WebstormProjects_UserManagement_app_base_BaseService.js.html#l36"><code>C:\software\WebstormProjects\UserManagement\app\base\BaseService.js:36</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>初始化树</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">options</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">result</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
     
 </div>
 

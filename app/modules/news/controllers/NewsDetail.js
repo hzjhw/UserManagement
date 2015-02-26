@@ -92,7 +92,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               render: '#s1',
               target: '#model-category',
               items: list,
-              change: function (categoryId) {
+              change: function (item) {
               }
             });
             // 属性
@@ -100,7 +100,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
               render: '#attCate',
               target: '#attCateHid',
               items: list,
-              change: function (categoryId) {
+              change: function (item) {
                 setTimeout(function () {
                   Utils.resetIframe();
                 }, 500);
@@ -128,7 +128,7 @@ define('NewsDetail', ['jquery', 'NewsModel', 'HandlebarsHelper', 'BaseDetail', '
             {text: '10', value: '10'}
           ],
           change : function(event){
-            var addtime=parseFloat(ctx.model.get('addTime'))+parseFloat(event*60*60*24*1000);
+            var addtime=parseFloat(ctx.model.get('addTime'))+parseFloat(event.value*60*60*24*1000);
             $("#model-addTime").val(Est.dateFormat(addtime, 'yyyy-MM-dd'));
           }
         });

@@ -68,8 +68,8 @@ define('PayTypeDetail', ['PayTypeModel', 'BaseView', 'HandlebarsHelper', 'BaseDe
           render: '#s1',
           target: '#model-paymentConfigType',
           items: app.getStatus('paymentConfigType'),
-          change: function (itemId) {
-            if (itemId === 'alipay') {
+          change: function (item) {
+            if (item.value === 'alipay') {
               ctx.showAliPay();
             } else {
               ctx.removeAliPay();

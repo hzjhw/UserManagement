@@ -1548,7 +1548,7 @@ t && define(function() {
       mn.rtrim = et,
       mn.trim = tt,
       mn.deepTrim = nt,
-      mn.reverse = rt,
+      mn.reverse = rt g
       mn.removeAt = it,
       mn.arrayRemove = ot,
       mn.keys = at,

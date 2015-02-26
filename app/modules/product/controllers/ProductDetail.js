@@ -100,12 +100,12 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               render: '#s1',
               target: '#model-category',
               items: list,
-              change: function (categoryId) {
+              change: function (item) {
                 var buttons = [
                   {
                     value: '更换',
                     callback: function () {
-                      ctx.showAttributes(categoryId, []);
+                      ctx.showAttributes(item.categoryId, []);
                     }},
                   {
                     value: '保留',
@@ -123,7 +123,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                     button: buttons
                   }).show($("#s1").get(0));
                 } else {
-                  ctx.showAttributes(categoryId);
+                  ctx.showAttributes(item.categoryId);
                   //TODO 产品标签
 
                 }
@@ -135,9 +135,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               render: '#attCate',
               target: '#attCateHid',
               items: list,
-              change: function (categoryId) {
-                ctx.showAttributes(categoryId);
-                ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + categoryId);
+              change: function (item) {
+                ctx.showAttributes(item.categoryId);
+                ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + item.categoryId);
                 setTimeout(function () {
                   Utils.resetIframe();
                 }, 500);

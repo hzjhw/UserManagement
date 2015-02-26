@@ -37,9 +37,7 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
             Utils.initSelect({
               render: '#s2',
               target: '#model-paymentConfig_id',
-              items: result,
-              change: function () {
-              }
+              items: result
             });
           });
       },
@@ -47,9 +45,7 @@ define('PaymentDetail', ['BaseDetail', 'PaymentModel', 'template/payment_detail'
         Utils.initSelect({
           render: '#s1',
           target: '#model-payment_paymentType',
-          items: app.getStatus('paymentType'),
-          change: function (itemId) {
-          }
+          items: app.getStatus('paymentType')
         });
       }
     });

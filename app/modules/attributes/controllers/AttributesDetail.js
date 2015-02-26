@@ -47,14 +47,15 @@ define('AttributesDetail', ['jquery', 'AttributesModel', 'HandlebarsHelper', 'Ba
         Utils.initSelect({
           render: '#s2',
           target: '#model-attributeType',
-          items: app.getStatus('attributeType')
-        }).then(function (select) {
-          if (select === 'select' || select === 'checkbox') {
-            $("#multi-attribute").show();
-          } else {
-            $("#multi-attribute").hide();
+          items: app.getStatus('attributeType'),
+          change: function (item) {
+            if (item.value === 'select' || item.value === 'checkbox') {
+              $("#multi-attribute").show();
+            } else {
+              $("#multi-attribute").hide();
+            }
+            Utils.resetIframe();
           }
-          Utils.resetIframe();
         });
       },
       attributeRender: function () {

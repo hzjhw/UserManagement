@@ -79,6 +79,7 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
           template: leftTemp,
           model: model,
           item: item,
+          viewId: 'leftView',
           collection: collection,
           render: '#left-bar-ul',
           data: {},
