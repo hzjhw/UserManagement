@@ -16,6 +16,9 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service',
     ToolList = require('ToolList');
 
     Main = BaseView.extend({
+      events: {
+        'click .btn-response': 'response'
+      },
       initialize: function () {
         var ctx = this;
         Service.initUser(UserModel);
@@ -29,6 +32,22 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service',
           });
           ctx.render();
         });
+      },
+      // 意见反馈
+      response: function () {
+        this._dialog({
+          moduleId: 'MessageSendDetail', // 模块ID
+          title: '意见反馈', // 对话框标题
+          width: 600, // 对话框宽度
+          height: 250, // 对话框高度
+          skin: 'form-horizontal', // className
+          type: 'admin',
+          onShow: function () {
+            $('.actions-bar').hide();
+          }, // 对话框弹出后调用
+          onClose: function () {
+          }
+        }, this);
       },
       render: function () {
         this._render();
@@ -88,6 +107,7 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service',
           $("#jhw .module01 .bodyContTitle span.qiehuan003").css({"color": "#646464", "background": "#fafafa", "border-bottom": "1px solid #fafafa"});
           $("#jhw .module01 .bodyContTitle span.qiehuan001,#jhw .module01 .bodyContTitle span.qiehuan002").css({"color": "#646464", "background": "#fff", "border": "1px solid #e7e7e7"});
         });
+
         return this;
       }
     });

@@ -11,25 +11,28 @@
                     <input id="model-fromName" value="{{userName}}" type="hidden"/>
                     <input id="model-fromPhone" value="{{cellphone}}" type="hidden"/>
                     <input id="model-fromEmail" value="{{email}}" type="hidden"/>
+
                     <div class="controls">
                         <div id="s6">
                             <input value="{{type}}" id="model-type" type="hidden"/>
                         </div>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label"><s>*</s>收 信 人：</label>
+                <div class="control-group" id="input-username">
+                    <label class="control-label">收 信 人：</label>
 
                     <div class="controls">
-                        <input id="model-username" class="message-username  input-large" type="text" title="{{username}}"
-                               data-rules="{required:true}" value="{{username}}"></input>
+                        <input id="model-username" class="message-username  input-large" type="text"
+                               title="{{username}}"
+                               value="{{username}}"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">留言主题：</label>
 
                     <div class="controls">
-                        <input id="model-title" class="message-title input-large" type="text" title="{{title}}" value="{{title}}"></input>
+                        <input id="model-title" class="message-title input-large" type="text" title="{{title}}"
+                               value="{{title}}"></input>
                     </div>
                 </div>
                 <div class="control-group">
@@ -41,6 +44,7 @@
                     </div>
                 </div>
                 <br><br>
+
                 <div class="control-group">
                     <label class="control-label" for="">
                         验证码：
@@ -59,7 +63,9 @@
                 <div class="row actions-bar" style="">
                     <div class="form-actions span13 offset3">
                         <button id="submit" type="button" class="button button-primary">点此发送留言</button>
-                        <a href="#/message"><button id="back" type="button" class="button">返回</button></a>
+                        <a href="#/message">
+                            <button id="back" type="button" class="button">返回</button>
+                        </a>
                     </div>
                 </div>
 

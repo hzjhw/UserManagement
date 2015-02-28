@@ -31,6 +31,9 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
       },
       render: function () {
         debug('4.MessageDetail.render');
+        if (this._options.type) {
+          this.model.set('type', this._options.type);
+        }
         this.model.set('userName', app.getData('user')['name']);
         this.model.set('cellphone', app.getData('user')['cellphone']);
         this.model.set('email', app.getData('user')['email']);
@@ -58,7 +61,14 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
             {text: '其它会员', value: 'user'},
             {text: '我的下属会员', value: 'member'},
             {text: '系统管理员', value: 'admin'}
-          ]
+          ],
+          change: Est.proxy(function(item){
+            if (item.value === 'admin'){
+              this.$('#input-username').hide();
+            } else{
+              this.$('#input-username').show();
+            }
+          }, this)
         });
         this._form('#J_Form')._validate()._init();
         return this;

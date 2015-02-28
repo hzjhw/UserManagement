@@ -92,3 +92,4 @@
 #jhw .hover .nav-arrow{display: block; width: 20px; height: 20px; position: absolute; top: 0; right: -10px; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right:10px solid #4094d7; }
 #jhw .update li{ float: left; width: 46%; background: #fff; padding-top: 6px; padding-bottom: 7px; padding-left: 1%; margin-right: 2%; }
 .wdsp a { margin-left: 6px; }
+.ui-dialog #MessageSendDetail .actions-bar{display:none;}

@@ -200,6 +200,7 @@ define('Select', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseVi
         Est.each(items, function (item) {
           if (item[this._options.value] === id) {
             this.$('.bui-select-input').val(item[this._options.text]);
+            this._options.change && this._options.change.call(this, item);
           }
         }, this)
       },
