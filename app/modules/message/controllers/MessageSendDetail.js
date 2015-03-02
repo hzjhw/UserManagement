@@ -34,9 +34,11 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
         if (this._options.type) {
           this.model.set('type', this._options.type);
         }
-        this.model.set('userName', app.getData('user')['name']);
-        this.model.set('cellphone', app.getData('user')['cellphone']);
-        this.model.set('email', app.getData('user')['email']);
+        if (app.getData('user')){
+          this.model.set('userName', app.getData('user')['name']);
+          this.model.set('cellphone', app.getData('user')['cellphone']);
+          this.model.set('email', app.getData('user')['email']);
+        }
         if (app.getData('curMessageUserName')) {
           this.model.set('username', app.getData('curMessageUserName'));
         }
@@ -58,8 +60,8 @@ define('MessageSendDetail', ['jquery', 'MessageModel', 'HandlebarsHelper', 'Base
           render: '#s6',
           target: '#model-type',
           items: [
-            {text: '其它会员', value: 'user'},
-            {text: '我的下属会员', value: 'member'},
+            {text: '同级会员', value: 'user'},
+            {text: '子会员', value: 'member'},
             {text: '系统管理员', value: 'admin'}
           ],
           change: Est.proxy(function(item){

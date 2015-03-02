@@ -49,7 +49,7 @@ define('OrderView', ['jquery', 'OrderModel', 'HandlebarsHelper', 'BaseDetail', '
         this.initPaymentInfoList();
         this.initDeliveryInfoList();
         this.initOrderLogList();
-        this.showMemberInfo();
+        //this.showMemberInfo();
         this._form('#J_Form')._validate()._init({
           onBeforeSave: function () {
             debugger

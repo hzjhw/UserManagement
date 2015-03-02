@@ -213,7 +213,8 @@ define('ProductCategoryList', ['jquery', 'CategoryModel', 'template/product_tran
           parentId: 'belongId',
           categoryId: 'categoryId',
           rootId: 'isroot',
-          rootValue: '01'
+          rootValue: '01',
+          extend: true
         });
       },
       // 返回按钮

@@ -25,7 +25,7 @@ define('MessageModel', ['jquery', 'BaseModel'],
         fromEmail: "",
         fromPhone: null,
         addUser: null,
-        type: "05",
+        type: "user",
         content: ""
       }, BaseModel.prototype.defaults),
       baseId: 'messageId',

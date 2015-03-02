@@ -51,7 +51,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       initialize: function () {
         this._initialize({ template: itemTemp, model: MessageModel});
       },
-      response: function(){
+      response: function () {
         app.addData('curMessageUserName', this.model.get('sendUsername'));
         app.addData('curMessageType', this.model.get('type'));
         this._navigate('message_add');
@@ -62,20 +62,36 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       },
       // 查看留言
       editItem: function () {
-        var url = CONST.HOST + '/modules/message/message_detail.html?id='
-          + this.model.toJSON().messageId;
-        var options = {
-          title: '留言信息',
-          url: url,
-          reload: true,
-          padding: 0,
+        this._dialog({
+          moduleId: 'MessageDetail',
+          id: this.model.get('id'),
+          title: '留言查看',
+          width: 700,
           hideSaveBtn: true,
-          hideResetBtn: true,
-          oniframeload: function (win) {
-            win.app = app;
-          }
-        }
-        this._edit(options);
+          onclose: Est.proxy(function () {
+            var ctx = this;
+            this.model.fetch({
+              wait: true,
+              success: function () {
+                ctx.model.reset && ctx.model.reset();
+              }
+            });
+          }, this)
+        });
+        /*var url = CONST.HOST + '/modules/message/message_detail.html?id='
+         + this.model.toJSON().messageId;
+         var options = {
+         title: '留言信息',
+         url: url,
+         reload: true,
+         padding: 0,
+         hideSaveBtn: true,
+         hideResetBtn: true,
+         oniframeload: function (win) {
+         win.app = app;
+         }
+         }
+         this._edit(options);*/
       }
     });
     /**
