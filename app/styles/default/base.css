@@ -885,6 +885,7 @@ body .m0 {
     height: 93%;
     width: 98%;
     float: left;
+    overflow:auto;
 }
 
 div#jhw-body {

@@ -38,8 +38,7 @@
     var arg = GetQueryString('id');
     arg = arg.replace(/[^1-9]/g,"");
     var urlpath = "http://www.jihui88.com/wwy/info?arg="+arg;
-   var img = '<img src="http://qr.liantu.com/api.php?w=250&text="'+urlpath+'">';
-    $(".wwy_qrcode").html(img);
+    $(".wwy_qrcode").html($('<img src="http://qr.liantu.com/api.php?w=250&text='+urlpath+'&time='+new Date().getTime()+'">'));
 </script>
 </body>
 </html>
