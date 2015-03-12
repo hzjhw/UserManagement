@@ -241,6 +241,7 @@ define('Select', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseVi
           this.initSelect(this._options.items);
         }
         this.$select.css({
+          zIndex: 1200,
           left: this.$('.bui-select').offset().left,
           top: this.$('.bui-select').offset().top + 31
         }).show();

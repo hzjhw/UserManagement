@@ -1322,6 +1322,7 @@ label.checkbox {
 .category-ul .node-tree .cate-grid-cell-inner {
     padding-top: 1px;
     padding-bottom: 1px;
+    white-space: nowrap;
 }
 
 /*相册*/
