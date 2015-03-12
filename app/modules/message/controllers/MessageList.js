@@ -56,7 +56,7 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         app.addData('curMessageType', this.model.get('type'));
         if(this.model.get('fromName') == null || this.model.get('fromName') == 'anonymous')
             this._dialog({
-                title: '提示',width: 200,content: "回复对象不存在"
+                title: '提示',width: 200,content: "回复对象不存在",hideSaveBtn: true
             });
         return false;
         this._navigate('message_add');
