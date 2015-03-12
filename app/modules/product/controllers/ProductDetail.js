@@ -94,6 +94,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
           max: 9
         }));
         // 产品分类
+        this.change = false;
         Service.getProductCategory({ tree: true, select: true, extend: true })
           .then(function (list) {
             Utils.initSelect({
@@ -101,6 +102,10 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               target: '#model-category',
               items: list,
               change: function (item) {
+                if (!ctx.change) {
+                  ctx.change = true;
+                  return;
+                }
                 var buttons = [
                   {
                     value: '更换',
@@ -150,7 +155,6 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
               _isAdd: ctx._isAdd // 是否初始化标签列表
             });
           });
-
         if (!ctx._isAdd) {
           ctx.showAttributes(ctx.model.get('category'), ctx.model.get('productAttributeMapStore'));
         }

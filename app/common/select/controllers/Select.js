@@ -110,7 +110,10 @@ define('Select', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseVi
       setInputValue: function (val, model) {
         this.$input.val(val);
         this._select = model['value'];
-        this._options.change && this._options.change.call(this, model);
+        if (!this._options._init){
+          this._options.change && this._options.change.call(this, model);
+        }
+        this._options._init = false;
       },
       setInputNode: function (node) {
         this.$input = node;
@@ -179,6 +182,7 @@ define('Select', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'BaseVi
           input: this._options.input,
           change: this._options.change,
           clearDialog: false,
+          _init: true,
           speed: 1,
           data: {
             tpl: this._options.tpl,
