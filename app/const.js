@@ -10,6 +10,7 @@ var CONST = {
   HOST: 'http://jihui88.com/member',
   API: 'http://jihui88.com/rest/api',
   DOMAIN: 'http://jihui88.com',
+  DOMAIN_TAIL: 'jihui88.com', // 去http://
   DOMAIN_WQT: 'jihui88.com', // 微请帖
   PIC_URL: 'http://192.168.1.99:8111',
   SEP: '/',

@@ -114,10 +114,15 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
               {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []},
-              {name: '外观设计', url: this.getDesignUrl(), className: 'menu-category', children: []}
+              {name: '我的网站', url: 'http://' + app.getData('user')['username'] + '.' + CONST.DOMAIN_TAIL, className: 'menu-website', children: []},
+              {name: '外观设计', url: this.getDesignUrl(), className: 'menu-design', children: []},
+              {name: '地图定位', url: CONST.DOMAIN + '/user/platform/include/mapbar/map.jsp', className: 'menu-map', children: []}
             ]},
             {name: '手机网站', url: '#/mobile', className: 'menu-mobile', children: [
-              {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []}
+              {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []},
+              {name: '我的网站', url: 'http://m.' + app.getData('user')['username'] + '.' + CONST.DOMAIN_TAIL, className: 'menu-website', children: []},
+              {name: '外观设计', url: this.getMobileDesignUrl(), className: 'menu-design', children: []},
+              {name: '地图定位', url: CONST.DOMAIN + '/user/platform/include/mapbar/map.jsp', className: 'menu-map', children: []}
             ]},
             /* {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
              {name: '我的工具', url: '#/tool', className: 'menu-tool'},*/
@@ -128,6 +133,9 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
       },
       getDesignUrl: function () {
         return Utils.getDesignUrl();
+      },
+      getMobileDesignUrl: function(){
+        return Utils.getMobileDesignUrl();
       },
       render: function () {
         this._render();

@@ -127,8 +127,9 @@ define('Service', ['jquery', 'BaseService'], function (require, exports, module)
     },
     getStaticPage: function (options) {
       debug('- 获取所有静态页面');
+      var url = CONST.API + '/static/list';
       return new BaseService().factory(Est.extend({
-        url: CONST.API + '/static/list'
+        url: url
       }, options));
     },
     getDeliveryCorpList: function (options) {

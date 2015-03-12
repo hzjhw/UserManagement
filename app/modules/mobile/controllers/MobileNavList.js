@@ -3,10 +3,10 @@
  * @class MobileNavList
  * @author yongjin<zjut_wyj@163.com> 2015/1/17
  */
-define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHelper', 'Utils', 'BaseItem', 'MobileNavModel', 'template/mobile_nav_list',
+define('MobileNavList', ['BaseList', 'BaseCollection', 'template/website_static',  'Service', 'HandlebarsHelper', 'Utils', 'BaseItem', 'MobileNavModel', 'template/mobile_nav_list',
     'template/mobile_nav_item'],
   function (require, exports, module) {
-    var MobileNavList, BaseList, BaseCollection, BaseItem, Service, MobileNavModel, HandlebarsHelper, Utils, itemTemp, listTemp, item, collection;
+    var MobileNavList, BaseList, BaseCollection, BaseItem, Service, MobileNavModel, HandlebarsHelper, Utils, itemTemp, listTemp, item, collection, staticTemp;
 
     BaseList = require('BaseList');
     BaseCollection = require('BaseCollection');
@@ -17,6 +17,7 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHel
     Utils = require('Utils');
     Service = require('Service');
     HandlebarsHelper = require('HandlebarsHelper');
+    staticTemp = require('template/website_static');
 
     collection = BaseCollection.extend({
       model: MobileNavModel,
@@ -52,22 +53,26 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHel
         this.publishing = false;
         var url = CONST.DOMAIN + "/rest/mobileStatic/" + app.getData('user').username + "/publish?thisPage=" +
           this.model.get('page');
-        var button = this.$('.btn-publish');
-        if (!this.publishing) {
-          this.publishing = true;
-          button.html('<i class="icon-white icon-globe"></i>发布中...');
-          $.ajax({
-            type: 'post',
-            url: url,
-            async: false,
-            success: function (result) {
-              ctx.publishing = false;
-              setTimeout(function () {
-                button.html('<i class="icon-globe"></i>发布');
-              }, 500);
-            }
-          });
-        }
+        var $button = this.$('.btn-publish');
+
+        setTimeout(function () {
+          if ($button.hasClass('publishing'))return;
+          if (!ctx.isStatic) {
+            ctx.isStatic = true;
+            $button.addClass('publishing');
+            $button.html('<i class="icon-time"></i>发布中...');
+            setTimeout(function () {
+              $.ajax({
+                type: 'post',
+                url: url,
+                success: function (result) {
+                  ctx.isStatic = false;
+                  $button.html('<i class="icon-ok"></i>完成');
+                }
+              });
+            }, 500);
+          }
+        }, 500);
       },
       seo: function () {
         this._dialog({
@@ -157,7 +162,7 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHel
           rootValue: 1
         });
       },
-      userdefined: function(){
+      userdefined: function () {
         this._navigate('#/userdefined_mobile', true);
       },
       add: function () {
@@ -170,7 +175,12 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHel
         });
       },
       staticPage: function () {
-        Service.getStaticPage()
+
+        var ctx = this;
+        ctx.isStatic = false;
+        Service.getStaticPage({
+          isMobile: true
+        })
           .then(function (result) {
             var pages = [];
             result = Est.pluck(result, 'pages');
@@ -202,17 +212,21 @@ define('MobileNavList', ['BaseList', 'BaseCollection', 'Service', 'HandlebarsHel
               $('#static-container .static-ul li .button').click(function () {
                 var $button = $(this);
                 if ($button.hasClass('publishing'))return;
-                $button.addClass('publishing');
-                $button.html('静态化中...');
-                setTimeout(function () {
-                  $.ajax({
-                    type: 'post',
-                    url: $button.attr('data-url'),
-                    success: function (result) {
-                      $button.html('完成');
-                    }
-                  });
-                }, 500);
+                if (!ctx.isStatic) {
+                  ctx.isStatic = true;
+                  $button.addClass('publishing');
+                  $button.html('静态化中...');
+                  setTimeout(function () {
+                    $.ajax({
+                      type: 'post',
+                      url: $button.attr('data-url'),
+                      success: function (result) {
+                        ctx.isStatic = false;
+                        $button.html('完成');
+                      }
+                    });
+                  }, 500);
+                }
               });
             }, 500);
           });

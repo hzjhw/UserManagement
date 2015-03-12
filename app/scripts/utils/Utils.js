@@ -582,6 +582,9 @@ define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
             break;
         }
         return url;
+      },
+      getMobileDesignUrl: function(){
+        return ('/rest/mobileMaintain/' + app.getData('user')['username']);
       }
     };
 
