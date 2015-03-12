@@ -54,6 +54,11 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
       response: function () {
         app.addData('curMessageUserName', this.model.get('sendUsername'));
         app.addData('curMessageType', this.model.get('type'));
+        if(this.model.get('fromName') == null || this.model.get('fromName') == 'anonymous')
+            this._dialog({
+                title: '提示',width: 200,content: "回复对象不存在"
+            });
+        return false;
         this._navigate('message_add');
       },
       // 渲染文档

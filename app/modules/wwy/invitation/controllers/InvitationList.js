@@ -27,6 +27,7 @@ define('InvitationList', ['BaseList', 'BaseItem', 'InvitationModel', 'BaseCollec
     events: {
       'click .btn-edit': 'edit',
       'click .btn-del': '_del'
+
     },
     initialize: function () {
       this._initialize({
@@ -43,7 +44,8 @@ define('InvitationList', ['BaseList', 'BaseItem', 'InvitationModel', 'BaseCollec
 
   InvitationList = BaseList.extend({
     events: {
-      'click .btn-add': 'add'
+      'click .btn-add': 'add',
+      'click .btn-wcd': 'wcd'
     },
     initialize: function () {
       this._initialize({
@@ -60,6 +62,9 @@ define('InvitationList', ['BaseList', 'BaseItem', 'InvitationModel', 'BaseCollec
         title: '添加邀请'
       });
     },
+      wcd: function(){
+          this._navigate('#/wwy', true);
+      },
     render: function () {
       this._render();
     }
