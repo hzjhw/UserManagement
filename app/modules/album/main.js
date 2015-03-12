@@ -21,6 +21,18 @@ app.addRoute('album', function () {
         },
         render: function () {
           this._render();
+          app.addData('searchType', 'name');
+          Utils.initSelect({
+            render: '#searchType',
+            target: '#searchType-input',
+            items: [
+              {text: '按名称搜索', value: 'name'},
+              {text: '按图片地址搜索', value: 'src'}
+            ],
+            change: function(item){
+              app.addData('searchType', item.value);
+            }
+          });
         },
         picUpload: function () {
           var doResult = function () {
@@ -36,7 +48,7 @@ app.addRoute('album', function () {
           });
         },
         search: function () {
-          app.getView('photoList').search(this.$('.search-text').val());
+          app.getView('photoList').search(this.$('.search-text').val(), app.getData('searchType'));
         },
         albumAdd: function () {
           window.parentId = app.getData('curAlbumId');

@@ -149,13 +149,14 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
         this.collection.paginationModel.set('page', 1);
         this._load(this._options);
       },
-      search: function (searchKey) {
+      search: function (searchKey, searchType) {
         if (Est.isEmpty(searchKey)) {
           this._load({ page: 1, pageSize: 16 });
         } else {
+          var key = searchType === 'name'? 'filename': 'serverPath';
           this._search({
             filter: [
-              { key: 'filename', value: searchKey }
+              { key: key, value: searchKey }
             ]});
         }
       },
