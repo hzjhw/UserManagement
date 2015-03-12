@@ -124,7 +124,7 @@ define('PhotoList', ['BaseCollection', 'BaseItem', 'BaseList', 'HandlebarsHelper
           model: PhotoModel,
           item: PhotoItem,
           pagination: true,
-          pageSize: 18,
+          pageSize: 16,
           beforeLoad: function () {
             var curAlbumId = app.getData('curAlbumId');
             if (!curAlbumId || curAlbumId === 'all') {

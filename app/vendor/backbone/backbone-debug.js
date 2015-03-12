@@ -464,6 +464,10 @@ define("backbone", [ "underscore", "jquery" ], function(require, exports, module
                     model.trigger("destroy", model, model.collection, options);
                 };
                 options.success = function(resp) {
+                    if (!resp.success){
+                      options.error && options.error.call(this, resp);
+                      return;
+                    }
                     if (options.wait || model.isNew()) destroy();
                     if (success) success(model, resp, options);
                     if (!model.isNew()) model.trigger("sync", model, resp, options);

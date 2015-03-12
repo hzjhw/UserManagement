@@ -558,6 +558,30 @@ define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
             }
           });
         });
+      },
+      getDesignUrl: function () {
+        var grade = app.getData('user')['grade'];
+        var url = CONST.DOMAIN;
+        switch (grade) {
+          case '07':
+            url += ('/rest/maintain/' + app.getData('user')['username']);
+            break;
+          case '01':
+            url += ('/maintain/' + app.getData('user')['username']);
+            break;
+          case '02':
+            url += ('/rest/maintain/' + app.getData('user')['username']);
+            break;
+          case '03':
+            url += '/rest/industry/maintain/' + app.getData('user')['username'];
+            break;
+          case '05':
+            url += '/rest/groupsMaintain/' + app.getData('user')['username'];
+          default:
+            url += ('/rest/maintain/' + app.getData('user')['username']);
+            break;
+        }
+        return url;
       }
     };
 

@@ -3,9 +3,9 @@
  * @namespace Index
  * @author yongjin on 2014/11/18
  */
-define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service', 'IndexModel', 'UserModel', 'HelpList'],
+define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service', 'IndexModel', 'UserModel', 'HelpList', 'Utils'],
   function (require, exports, module) {
-    var Main, BaseView, template, Service, IndexModel, ToolList, UserModel, HelpList;
+    var Main, BaseView, template, Service, IndexModel, ToolList, UserModel, HelpList, Utils;
 
     BaseView = require('BaseView');
     template = require('template/main');
@@ -14,6 +14,7 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service',
     UserModel = require('UserModel');
     HelpList = require('HelpList');
     ToolList = require('ToolList');
+    Utils = require('Utils');
 
     Main = BaseView.extend({
       events: {
@@ -27,7 +28,8 @@ define('Main', ['BaseView', 'UserModel', 'ToolList', 'template/main', 'Service',
             template: template,
             data: {
               user: app.getData('user'),
-              index: app.getData('index')
+              index: app.getData('index'),
+              designUrl: Utils.getDesignUrl()
             }
           });
           ctx.render();

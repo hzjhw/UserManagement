@@ -381,34 +381,5 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return new Date().getTime();
   });
 
-  /**
-   * 外观设计地址
-   * @method [设计] - designUrl
-   * @example
-   *
-   */
-  Handlebars.registerHelper('designUrl', function(options){
-      var grade =  app.getData('user')['grade'];
-    var url = "";
-    switch (grade){
-      case '07':
-        url += '';
-        break;
-      case '01':
-        url += '';
-        break;
-      case '02':
-        url += '';
-        break;
-      case '03':
-        url += '';
-        break;
-      default:
-        url += '';
-        break;
-    }
-
-  });
-
   module.exports = Handlebars;
 });

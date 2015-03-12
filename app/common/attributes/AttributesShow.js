@@ -88,6 +88,7 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'Utils', 'BaseCollection
           });
         }
         else {
+          if (!this.options.categoryId) this.options.categoryId = '/';
           this._initialize({
             render: options.render,
             collection: collection,
@@ -140,10 +141,11 @@ define('AttributesShow', ['jquery', 'HandlebarsHelper', 'Utils', 'BaseCollection
         if (Est.typeOf(categoryId) === 'array'){
           this._options.items = categoryId;
         }
+        this._clear();
+        if (!categoryId) return;
         this._load({
           beforeLoad: function (collection) {
-            this._clear();
-            if (categoryId !== '/' && !this._options.items) {
+            if (categoryId && categoryId !== '/' && !this._options.items) {
               this.collection.url = CONST.API + '/attr/list';
               collection._setItemId(categoryId);
             }

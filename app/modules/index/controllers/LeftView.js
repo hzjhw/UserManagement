@@ -58,6 +58,9 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
           Est.cookie(name, null);
         });
         cookies.length = 0;
+        if (this.model.get('url').indexOf('#') !== 0) {
+          window.open(this.model.get('url'));
+        }
         Backbone.history.navigate(this.model.get('url'), true);
         return false;
       },
@@ -111,7 +114,7 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
             {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
               {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []},
-              {name: '外观设计', url: '', className: 'menu-category', children: []}
+              {name: '外观设计', url: this.getDesignUrl(), className: 'menu-category', children: []}
             ]},
             {name: '手机网站', url: '#/mobile', className: 'menu-mobile', children: [
               {name: '自定义模块管理', url: '#/userdefined_mobile', className: 'menu-category', children: []}
@@ -122,6 +125,9 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
           ],
           subRender: '.node-tree'
         });
+      },
+      getDesignUrl: function () {
+        return Utils.getDesignUrl();
       },
       render: function () {
         this._render();

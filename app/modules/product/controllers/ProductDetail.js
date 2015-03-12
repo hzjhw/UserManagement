@@ -106,6 +106,7 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                   ctx.change = true;
                   return;
                 }
+                //app.getView('productAttribute').enable();
                 var buttons = [
                   {
                     value: '更换',
@@ -128,9 +129,9 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
                     button: buttons
                   }).show($("#s1").get(0));
                 } else {
-                  ctx.showAttributes(item.categoryId);
+                  //ctx.showAttributes(item.categoryId);
                   //TODO 产品标签
-
+                  app.getView('productAttribute').changeSelect(item.categoryId);
                 }
               }
             });
@@ -139,10 +140,15 @@ define('ProductDetail', ['jquery', 'ProductModel', 'HandlebarsHelper', 'BaseDeta
             Utils.initSelect({
               render: '#attCate',
               target: '#attCateHid',
+              viewId: 'productAttribute',
               items: list,
               change: function (item) {
                 ctx.showAttributes(item.categoryId);
-                ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + item.categoryId);
+                if (!item.categoryId) {
+                  ctx.$setAttribute.attr('href', 'javascript:;');
+                }else{
+                  ctx.$setAttribute.attr('href', '#/attributes?categoryId=' + item.categoryId);
+                }
                 setTimeout(function () {
                   Utils.resetIframe();
                 }, 500);
