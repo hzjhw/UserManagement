@@ -52,9 +52,9 @@ define('MessageList', ['jquery', 'MessageModel', 'BaseCollection', 'BaseItem', '
         this._initialize({ template: itemTemp, model: MessageModel});
       },
       response: function () {
-        app.addData('curMessageUserName', this.model.get('sendUsername'));
+        app.addData('curMessageUserName', this.model.get('addUser'));
         app.addData('curMessageType', this.model.get('type'));
-        if(this.model.get('fromName') == null || this.model.get('fromName') == 'anonymous'){
+        if(Est.isEmpty(this.model.get('addUser'))){
             this._dialog({
                 title: '提示',width: 200,content: "收信人不存在",hideSaveBtn: true
             });
