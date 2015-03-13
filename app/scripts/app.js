@@ -4,7 +4,17 @@
 CONST.LIB_FORDER = 'base';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.APP_VERSION = '20143532';
+CONST.APP_VERSION = '20143534';
+
+
+CONST.HOST = 'http://jihui88.com/member';
+CONST.API = 'http://jihui88.com/rest/api';
+CONST.DOMAIN = 'http://jihui88.com';
+CONST.DOMAIN_TAIL = 'jihui88.com';
+CONST.DOMAIN_WQT = 'jihui88.com'; // 微请帖
+CONST.PIC_URL = 'http://192.168.1.99:8111';
+CONST.SEP = '/';
+CONST.PIC_NONE = 'upload/g/g2/ggggfj/picture/2015/03/12/e85c18da-0658-43b7-8203-f19e754a023f.jpg';
 /**
  * @description config
  * @namespace config

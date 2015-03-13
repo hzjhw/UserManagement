@@ -7,12 +7,8 @@
 /uploads
 /logs
 
-/dist/config.local.js
-/dist/base
-/dist/demo
-/dist/test
-/dis/config.local.js
-/dis/test.html
+/dist
+
 
 test
 .settings
