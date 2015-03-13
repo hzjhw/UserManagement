@@ -1,0 +1,931 @@
+body {background:none;font-size:62.5%;}
+div.arrow-up {}
+div.container {width:100%;}
+div.mobileicon,div#section20 {display:none;}
+div.join,footer {}
+
+#section21 .zf_button {display:block !important;}
+#section21 .rotate .rotate-bg canvas {display:none;}
+#section21 .rotate .rotate-bg canvas#sector {display:block;}
+#section21 .zp_txt {margin:0 5%;}
+#section21 .zp_txt p {font-size:1.5em;line-height:1.5em;text-align:justify;color:#333;}
+#section21 .zp_txt p a {color:#f00;text-decoration:none;}
+#section21 .zp_txt p span {color:#f00;}
+#pageContain { overflow: hidden;}
+.page { display: none; width: 100%; height: 100%; overflow: hidden; position: absolute; top: 0; left: 0;}
+.contain { width: 100%; height: 100%; display: none; position: relative; z-index: 0;}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    #pageContain .page .contain {max-height:508px;}
+}
+.current .contain, .slide .contain { display: block;}
+.current { display: block; z-index: 1;}
+.slide { display: block; z-index: 2;}
+.swipe { display: block; z-index: 3; transition-duration: 0ms !important; -webkit-transition-duration: 0ms !important;}
+/*第一屏*/
+.page1 { background: none;}
+.page1 .contain .page1_bg {position:absolute;z-index:1;width:100%;height:100%;}
+.page1 .contain .page1_txt {position:absolute;z-index:2;top:59%;width:100%;
+    animation:page1_txt 1s;
+    -moz-animation:page1_txt 1s; /* Firefox */
+    -webkit-animation:page1_txt 1s; /* Safari and Chrome */
+    -o-animation:page1_txt 1s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page1 .contain .page1_bg {height:auto;}
+    .page1 .contain .page1_txt {top:65%;}
+}
+@keyframes page1_txt
+{
+    from {left:640px;}
+    to {left:0;}
+}
+@-moz-keyframes page1_txt /* Firefox */
+{
+    fromfrom {left:640px;}
+    to {left:0;}
+}
+@-webkit-keyframes page1_txt /* Safari and Chrome */
+{
+    from {left:640px;}
+    to {left:0;}
+}
+@-o-keyframes page1_txt /* Opera */
+{
+    from {left:640px;}
+    to {left:0;}
+}
+/*第二屏*/
+.page2 { background: none;}
+.page2 .contain .page2_bg {position:absolute;z-index:1;width:100%;height:100%;}
+.page2 .contain .page2_txt {position:absolute;z-index:2;top:57%;width:100%;
+    animation:page2_txt 1s;
+    -moz-animation:page2_txt 1s; /* Firefox */
+    -webkit-animation:page2_txt 1s; /* Safari and Chrome */
+    -o-animation:page2_txt 1s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page2 .contain .page2_bg {height:auto;}
+    .page2 .contain .page2_txt {top:65%;}
+}
+@keyframes page2_txt
+{
+    from {left:-640px;}
+    to {right:0;}
+}
+@-moz-keyframes page2_txt /* Firefox */
+{
+    fromfrom {left:-640px;}
+    to {left:0;}
+}
+@-webkit-keyframes page2_txt /* Safari and Chrome */
+{
+    from {left:-640px;}
+    to {left:0;}
+}
+@-o-keyframes page2_txt /* Opera */
+{
+    from {left:-640px;}
+    to {left:0;}
+}
+/*第三屏*/
+.page3 { background: none;}
+.page3 .contain .page3_bg {position:absolute;z-index:1;width:100%;height:100%;}
+.page3 .contain .page3_txt {position:absolute;z-index:2;bottom:23%;width:100%;
+    animation:page3_txt 2s;
+    -moz-animation:page3_txt 2s; /* Firefox */
+    -webkit-animation:page3_txt 2s; /* Safari and Chrome */
+    -o-animation:page3_txt 2s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page3 .contain .page3_bg {height:auto;}
+    .page3 .contain .page3_txt {top:65%;}
+}
+@keyframes page3_txt
+{
+    from {left:640px;}
+    to {left:0;}
+}
+@-moz-keyframes page3_txt /* Firefox */
+{
+    from {left:640px;}
+    to {left:0;}
+}
+@-webkit-keyframes page3_txt /* Safari and Chrome */
+{
+    from {left:640px;}
+    to {left:0;}
+}
+@-o-keyframes page3_txt /* Opera */
+{
+    from {left:640px;}
+    to {left:0;}
+}
+/*第四屏*/
+.page4 { background: #fff;}
+.page4 .contain .page4_a {position:absolute;z-index:1;width:100%;top:0;
+    animation:page4_a 2s;
+    -moz-animation:page4_a 2s; /* Firefox */
+    -webkit-animation:page4_a 2s; /* Safari and Chrome */
+    -o-animation:page4_a 2s; /* Opera */
+}
+@keyframes page4_a
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page4_a /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page4_a /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page4_a /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page4 .contain .page4_b {position:absolute;z-index:1;width:100%;top:16%;
+    animation:page4_b 2.2s;
+    -moz-animation:page4_b 2.2s; /* Firefox */
+    -webkit-animation:page4_b 2.2s; /* Safari and Chrome */
+    -o-animation:page4_b 2.2s; /* Opera */
+}
+@keyframes page4_b
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page4_b /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page4_b /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page4_b /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page4 .contain .page4_c {position:absolute;z-index:1;width:100%;top:32%;
+    animation:page4_c 2.4s;
+    -moz-animation:page4_c 2.4s; /* Firefox */
+    -webkit-animation:page4_c 2.4s; /* Safari and Chrome */
+    -o-animation:page4_c 2.4s; /* Opera */
+}
+@keyframes page4_c
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page4_c /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page4_c /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page4_c /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page4 .contain .page4_d {position:absolute;z-index:1;width:100%;top:48%;
+    animation:page4_d 2.6s;
+    -moz-animation:page4_d 2.6s; /* Firefox */
+    -webkit-animation:page4_d 2.6s; /* Safari and Chrome */
+    -o-animation:page4_d 2.6s; /* Opera */
+}
+@keyframes page4_d
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page4_d /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page4_d /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page4_d /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page4 .contain .page4_e {position:absolute;z-index:1;width:100%;bottom:0;
+    animation:page4_e 2.8s;
+    -moz-animation:page4_e 2.8s; /* Firefox */
+    -webkit-animation:page4_e 2.8s; /* Safari and Chrome */
+    -o-animation:page4_e 2.8s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page4 .contain .page4_e {bottom:-3%;}
+}
+@keyframes page4_e
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page4_e /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page4_e /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page4_e /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+/*第五屏*/
+.page5 { background: #dedddb;}
+.page5 .contain .page5_bg {position:absolute;z-index:1;width:100%;bottom:0;height:100%;
+    animation:page5_bg 1s;
+    -moz-animation:page5_bg 1s; /* Firefox */
+    -webkit-animation:page5_bg 1s; /* Safari and Chrome */
+    -o-animation:page5_bg 1s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page5 .contain .page5_bg {height:auto;}
+    .page5 .contain .page5_bg {max-height:508px;}
+}
+@keyframes page5_bg
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-moz-keyframes page5_bg /* Firefox */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-webkit-keyframes page5_bg /* Safari and Chrome */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-o-keyframes page5_bg /* Opera */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+.page5 .contain .page5_a {position:absolute;z-index:2;top:0;width:100%;
+    animation:page5_a 2s;
+    -moz-animation:page5_a 2s; /* Firefox */
+    -webkit-animation:page5_a 2s; /* Safari and Chrome */
+    -o-animation:page5_a 2s; /* Opera */
+}
+@keyframes page5_a
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-moz-keyframes page5_a /* Firefox */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-webkit-keyframes page5_a /* Safari and Chrome */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-o-keyframes page5_a /* Opera */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+.page5 .contain .page5_b {position:absolute;z-index:3;bottom:0;width:100%;
+    animation:page5_b 3s;
+    -moz-animation:page5_b 3s; /* Firefox */
+    -webkit-animation:page5_b 3s; /* Safari and Chrome */
+    -o-animation:page5_b 3s; /* Opera */
+}
+@keyframes page5_b
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-moz-keyframes page5_b /* Firefox */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-webkit-keyframes page5_b /* Safari and Chrome */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-o-keyframes page5_b /* Opera */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+/*第六屏*/
+.page6 { background:none;}
+.page6 .contain .page6_bg {position:absolute;z-index:1;bottom:0;width:100%;height:100%;
+    animation:page6_bg 1s;
+    -moz-animation:page6_bg 1s; /* Firefox */
+    -webkit-animation:page6_bg 1s; /* Safari and Chrome */
+    -o-animation:page6_bg 1s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page6 .contain .page6_bg {height:auto;}
+    .page6 .contain .page6_bg {max-height:508px;}
+}
+@keyframes page6_bg
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-moz-keyframes page6_bg /* Firefox */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-webkit-keyframes page6_bg /* Safari and Chrome */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+@-o-keyframes page6_bg /* Opera */
+{
+    from {bottom:-1008px;opacity:0;}
+    to {bottom:0;opacity:100;}
+}
+.page6 .contain .page6_a {position:absolute;z-index:2;top:0;width:100%;
+    animation:page6_a 2s;
+    -moz-animation:page6_a 2s; /* Firefox */
+    -webkit-animation:page6_a 2s; /* Safari and Chrome */
+    -o-animation:page6_a 2s; /* Opera */
+}
+@keyframes page6_a
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-moz-keyframes page6_a /* Firefox */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-webkit-keyframes page6_a /* Safari and Chrome */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+@-o-keyframes page6_a /* Opera */
+{
+    from {top:-1008px;opacity:0;}
+    to {top:0;opacity:100;}
+}
+/*第七屏*/
+.page7 { background:none;}
+.page7 .contain .page7_bg {position:absolute;z-index:1;left:0;top:0;width:100%;height:100%;
+    animation:page7_bg 2s;
+    -moz-animation:page7_bg 2s; /* Firefox */
+    -webkit-animation:page7_bg 2s; /* Safari and Chrome */
+    -o-animation:page7_bg 2s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page7 .contain .page7_bg {height:auto;}
+    .page7 .contain .page7_bg {max-height:508px;top:-3%;}
+}
+@keyframes page7_bg
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page7_bg /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page7_bg /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page7_bg /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page7 .contain .page7_a {position:absolute;z-index:2;left:0;top:12%;width:100%;
+    animation:page7_a 2s;
+    -moz-animation:page7_a 2s; /* Firefox */
+    -webkit-animation:page7_a 2s; /* Safari and Chrome */
+    -o-animation:page7_a 2s; /* Opera */
+}
+@keyframes page7_a
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page7_a /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page7_a /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page7_a /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page7 .contain .page7_b {position:absolute;z-index:2;left:0;top:24%;width:100%;
+    animation:page7_b 2.5s;
+    -moz-animation:page7_b 2.5s; /* Firefox */
+    -webkit-animation:page7_b 2.5s; /* Safari and Chrome */
+    -o-animation:page7_b 2.5s; /* Opera */
+}
+@keyframes page7_b
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page7_b /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page7_b /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page7_b /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page7 .contain .page7_c {position:absolute;z-index:2;left:0;top:47%;width:100%;
+    animation:page7_c 3s;
+    -moz-animation:page7_c 3s; /* Firefox */
+    -webkit-animation:page7_c 3s; /* Safari and Chrome */
+    -o-animation:page7_c 3s; /* Opera */
+}
+@keyframes page7_c
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page7_c /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page7_c /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page7_c /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page7 .contain .page7_d {position:absolute;z-index:2;left:0;top:70%;width:100%;
+    animation:page7_d 3.5s;
+    -moz-animation:page7_d 3.5s; /* Firefox */
+    -webkit-animation:page7_d 3.5s; /* Safari and Chrome */
+    -o-animation:page7_d 3.5s; /* Opera */
+}
+@keyframes page7_d
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page7_d /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page7_d /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page7_d /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+/*第八屏*/
+.page8 { background:none;}
+.page8 .contain .page8_bg {position:absolute;z-index:1;left:0;top:0;width:100%;height:100%;
+    animation:page8_bg 2s;
+    -moz-animation:page8_bg 2s; /* Firefox */
+    -webkit-animation:page8_bg 2s; /* Safari and Chrome */
+    -o-animation:page8_bg 2s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page8 .contain .page8_bg {height:auto;}
+    .page8 .contain .page8_bg {max-height:508px;top:-3%;}
+}
+@keyframes page8_bg
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page8_bg /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page8_bg /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page8_bg /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page8 .contain .page8_a {position:absolute;z-index:2;left:0;top:12%;width:100%;
+    animation:page8_a 2s;
+    -moz-animation:page8_a 2s; /* Firefox */
+    -webkit-animation:page8_a 2s; /* Safari and Chrome */
+    -o-animation:page8_a 2s; /* Opera */
+}
+@keyframes page8_a
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page8_a /* Firefox */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page8_a /* Safari and Chrome */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page8_a /* Opera */
+{
+    from {left:-640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page8 .contain .page8_b {position:absolute;z-index:2;left:0;top:24%;width:100%;
+    animation:page8_b 2.5s;
+    -moz-animation:page8_b 2.5s; /* Firefox */
+    -webkit-animation:page8_b 2.5s; /* Safari and Chrome */
+    -o-animation:page8_b 2.5s; /* Opera */
+}
+@keyframes page8_b
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page8_b /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page8_b /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page8_b /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page8 .contain .page8_c {position:absolute;z-index:2;left:0;top:47%;width:100%;
+    animation:page8_c 3s;
+    -moz-animation:page8_c 3s; /* Firefox */
+    -webkit-animation:page8_c 3s; /* Safari and Chrome */
+    -o-animation:page8_c 3s; /* Opera */
+}
+@keyframes page8_c
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page8_c /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page8_c /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page8_c /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page8 .contain .page8_d {position:absolute;z-index:2;left:0;top:68%;width:100%;
+    animation:page8_d 3.5s;
+    -moz-animation:page8_d 3.5s; /* Firefox */
+    -webkit-animation:page8_d 3.5s; /* Safari and Chrome */
+    -o-animation:page8_d 3.5s; /* Opera */
+}
+@keyframes page8_d
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page8_d /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page8_d /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page8_d /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+/*第九屏*/
+.page9 { background:none;}
+.page9 .contain .page9_bg {position:relative;z-index:1;width:100%;}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page9 .contain .page9_bg {max-height:508px;top:-3%;}
+}
+.page9 .contain .page9_a {position:absolute;z-index:2;left:0;bottom:80%;width:100%;
+    animation:page9_a 1s;
+    -moz-animation:page9_a 1s; /* Firefox */
+    -webkit-animation:page9_a 1s; /* Safari and Chrome */
+    -o-animation:page9_a 1s; /* Opera */
+}
+@keyframes page9_a
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_a /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_a /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_a /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_b {position:absolute;z-index:2;left:0;bottom:74%;width:100%;
+    animation:page9_b 2s;
+    -moz-animation:page9_b 2s; /* Firefox */
+    -webkit-animation:page9_b 2s; /* Safari and Chrome */
+    -o-animation:page9_b 2s; /* Opera */
+}
+@keyframes page9_b
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_b /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_b /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_b /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_c {position:absolute;z-index:2;left:0;bottom:67%;width:100%;
+    animation:page9_c 2.5s;
+    -moz-animation:page9_c 2.5s; /* Firefox */
+    -webkit-animation:page9_c 2.5s; /* Safari and Chrome */
+    -o-animation:page9_c 2.5s; /* Opera */
+}
+@keyframes page9_c
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_c /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_c /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_c /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_d {position:absolute;z-index:2;left:0;bottom:63%;width:100%;
+    animation:page9_d 3s;
+    -moz-animation:page9_d 3s; /* Firefox */
+    -webkit-animation:page9_d 3s; /* Safari and Chrome */
+    -o-animation:page9_d 3s; /* Opera */
+}
+@keyframes page9_d
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_d /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_d /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_d /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_e {position:absolute;z-index:2;left:0;bottom:59%;width:100%;
+    animation:page9_e 3.5s;
+    -moz-animation:page9_e 3.5s; /* Firefox */
+    -webkit-animation:page9_e 3.5s; /* Safari and Chrome */
+    -o-animation:page9_e 3.5s; /* Opera */
+}
+@keyframes page9_e
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_e /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_e /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_e /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_f {position:absolute;z-index:2;left:0;bottom:55%;width:100%;
+    animation:page9_f 4s;
+    -moz-animation:page9_f 4s; /* Firefox */
+    -webkit-animation:page9_f 4s; /* Safari and Chrome */
+    -o-animation:page9_f 4s; /* Opera */
+}
+@keyframes page9_f
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_f /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_f /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_f /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+.page9 .contain .page9_g {position:absolute;z-index:2;left:0;bottom:51%;width:100%;
+    animation:page9_g 4.5s;
+    -moz-animation:page9_g 4.5s; /* Firefox */
+    -webkit-animation:page9_g 4.5s; /* Safari and Chrome */
+    -o-animation:page9_g 4.5s; /* Opera */
+}
+@keyframes page9_g
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-moz-keyframes page9_g /* Firefox */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-webkit-keyframes page9_g /* Safari and Chrome */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+@-o-keyframes page9_g /* Opera */
+{
+    from {left:640px;opacity:0;}
+    to {left:0;opacity:100;}
+}
+/*第十屏*/
+.page10 { background:none;}
+.page10 .contain .page10_bg {position:relative;z-index:1;width:100%;height:100%;}
+.page10 .contain .page10_a {position:absolute;z-index:3;left:0;top:26%;width:100%;
+    animation:page10_a 10s;
+    -moz-animation:page10_a 10s; /* Firefox */
+    -webkit-animation:page10_a 10s; /* Safari and Chrome */
+    -o-animation:page10_a 10s; /* Opera */
+}
+/* for 400px or less */
+@media screen and (max-width: 320px) {
+    .page10 .contain .page10_bg {height:auto;}
+}
+@keyframes page10_a
+{
+    from {opacity:0;}
+    to {opacity:100;}
+}
+@-moz-keyframes page10_a /* Firefox */
+{
+    from {opacity:0;}
+    to {opacity:100;}
+}
+@-webkit-keyframes page10_a /* Safari and Chrome */
+{
+    from {opacity:0;}
+    to {opacity:100;}
+}
+@-o-keyframes page10_a /* Opera */
+{
+    from {opacity:0;}
+    to {opacity:100;}
+}
+
+#navBar { display:none;}
+#music_btn {z-index: 3; position: absolute; bottom: 2%;left:2%;margin:0;padding:0;width:35px;height:35px;}
+#hands {z-index: 3; position: absolute; bottom: 2%;right:10%;margin:0;padding:0;width:40px;height:40px;
+    animation:hands 2s infinite;
+    -moz-animation:hands 2s infinite; /* Firefox */
+    -webkit-animation:hands 2s infinite; /* Safari and Chrome */
+    -o-animation:hands 2s infinite; /* Opera */
+}
+@keyframes hands
+{
+    from {right:0;opacity:0;}
+    to {right:10%;opacity:1;}
+}
+@-moz-keyframes hands /* Firefox */
+{
+    from {right:0;opacity:0;}
+    to {right:10%;opacity:1;}
+}
+@-webkit-keyframes hands /* Safari and Chrome */
+{
+    from {right:0;opacity:0;}
+    to {right:10%;opacity:1;}
+}
+@-o-keyframes hands /* Opera */
+{
+    from {right:0;opacity:0;}
+    to {right:10%;opacity:1;}
+}
