@@ -111,7 +111,6 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
               {name: '微传单', url: '#/wwy', className: 'menu-invitation'},
               {name: '微邀请', url: '#/wwy_invitation', className: 'menu-invitation'}
             ]},
-            {name: '留言管理', url: '#/message', className: 'menu-message'},
             {name: '站点管理', url: '#/static', className: 'menu-static', children: [
               {name: '自定义模块管理', url: '#/userdefined', className: 'menu-category', children: []},
               {name: '我的网站', url: 'http://' + app.getData('user')['username'] + '.' + CONST.DOMAIN_TAIL, className: 'menu-website', children: []},
@@ -124,6 +123,7 @@ define('LeftView', ['BaseView', 'Utils', 'backbone', 'template/layout_left', 'Se
               {name: '外观设计', url: this.getMobileDesignUrl(), className: 'menu-design', children: []},
               {name: '地图定位', url: CONST.DOMAIN + '/user/platform/include/mapbar/map.jsp', className: 'menu-map', children: []}
             ]},
+            {name: '留言管理', url: '#/message', className: 'menu-message'},
             /* {name: '证书管理', url: '#/certificate', className: 'menu-certificate'},
              {name: '我的工具', url: '#/tool', className: 'menu-tool'},*/
             {name: '退出登录', url: '#/logout', className: 'menu-login'}
