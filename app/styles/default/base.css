@@ -1145,7 +1145,7 @@ label.checkbox {
 }
 
 /* 产品分类 ************************************************************************************/
-#jhw .jhw-category-product .cate-00 {
+/*#jhw .jhw-category-product .cate-00 {
     margin-left: 0px;
 }
 
@@ -1223,14 +1223,14 @@ label.checkbox {
 
 #jhw .jhw-category-news .cate-05 .x-caret-down {
     border: none;
-}
+}*/
 
 #jhw .x-caret-sub {
     border: none;
-    width: 40px;
+    width: 24px;
     vertical-align: middle;
     height: 40px;
-    background: url(img/cate-sub.jpg) no-repeat scroll 18px -1px transparent;
+    background: url(img/cate-sub.jpg) no-repeat scroll 3px -1px transparent;
 }
 
 #jhw .grid-td-cate-name {
@@ -1315,15 +1315,11 @@ label.checkbox {
     width: 32px;
 }
 
-.category-ul .gird-2 {
-    width: 32px;
-    height: 28px;
-}
-
 .category-ul .node-tree .cate-grid-cell-inner {
     padding-top: 1px;
     padding-bottom: 1px;
     white-space: nowrap;
+    padding-left: 0px;
 }
 
 /*相册*/
@@ -1589,11 +1585,12 @@ label.checkbox {
     background: #4B4B4B;
 }
 
-/*
-.category-ul .gird-3{ width:20%; }
-.category-ul .gird-4{ width:32px; }
-.category-ul .gird-5{ width:32px; }
-*/
+.category-ul .gird-1{width: 30px;}
+.category-ul .gird-2 { width: 32px; height: 28px; }
+.category-ul .gird-3{ width:60px; }
+.category-ul .gird-4{ width:86px; }
+.category-ul .gird-5{ width:120px; }
+.tree-arrow{width:24px;text-align:center;margin-left:-5px;display:inline-block;}
 /*图片选择*/
 #jhw .multimage-gallery {
     margin-top: 10px;

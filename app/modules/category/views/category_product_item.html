@@ -7,7 +7,7 @@
 </div>
 
 
-<div class="cate-grid gird-2 ">
+<div class="cate-grid gird-{{level}} ">
     <div class="cate-grid-cell-inner">
         {{#compare isroot '===' '01'}}
         <div class="x-grid-caret">
@@ -22,7 +22,7 @@
     <div class="cate-grid-cell-inner">
         {{#compare isroot '!==' '01'}}
         {{#compare children.length '!==' 0}}&nbsp;
-        <div style="width:17px;margin-left:-5px;display:inline-block;"><span
+        <div class="tree-arrow"><span
                 class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
         {{/compare}}
         {{/compare}}
