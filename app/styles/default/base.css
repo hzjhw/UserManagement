@@ -1232,11 +1232,41 @@ label.checkbox {
     height: 40px;
     background: url(img/cate-sub.jpg) no-repeat scroll 3px -1px transparent;
 }
-
+#jhw .node-tree .category-div-1 {
+    width: auto;
+}
+#jhw .node-tree .category-div-1 input.input-middle.pro-cate-name {
+    width: 170px;
+}
+#jhw .category-div-1 input.input-middle.pro-cate-name {
+    width: 172px;
+}
+#jhw .node-tree .category-div-3 {
+    width: auto;
+}
+#jhw .node-tree .category-div-3 input.input-middle.pro-cate-name {
+    width: 112px;
+}
+#jhw .node-tree .category-div-4 {
+    width: auto;
+}
+#jhw .node-tree .category-div-4 input.input-middle.pro-cate-name {
+    width: 86px;
+}
+#jhw .node-tree .category-div-5 {
+    width: auto;
+}
+#jhw .node-tree .category-div-5 input.input-middle.pro-cate-name {
+    width: 53px;
+}
 #jhw .grid-td-cate-name {
     width: 230px;
 }
-
+#jhw .grid-td-tree{
+    overflow: hidden;
+    width: 270px;
+    float: left;
+}
 #jhw .cate-info {
     position: absolute;
     left: 160px;
@@ -1316,10 +1346,10 @@ label.checkbox {
 }
 
 .category-ul .node-tree .cate-grid-cell-inner {
-    padding-top: 1px;
+    /*padding-top: 1px;
     padding-bottom: 1px;
     white-space: nowrap;
-    padding-left: 0px;
+    padding-left: 0px;*/
 }
 
 /*相册*/

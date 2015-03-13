@@ -5,34 +5,35 @@
         </div>
     </div>
 </div>
-
-<div class="cate-grid gird-{{level}} ">
-    <div class="cate-grid-cell-inner">
-        {{#compare isroot '===' '01'}}
-        <div class="x-grid-caret">
-            <span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse {{#compare children.length '===' 0}}x-caret-left-gray{{/compare}}"></span>
+<div class="grid-td-tree">
+    <div class="cate-grid gird-{{level}} ">
+        <div class="cate-grid-cell-inner">
+            {{#compare isroot '===' '01'}}
+            <div class="x-grid-caret">
+                <span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse {{#compare children.length '===' 0}}x-caret-left-gray{{/compare}}"></span>
+            </div>
+            {{/compare}}
         </div>
-        {{/compare}}
+    </div>
+
+
+    <div class="cate-grid grid-td-cate-name jhw-category category-div-{{level}}">
+        <div class="cate-grid-cell-inner">
+            {{#compare isroot '!==' '01'}}
+            {{#compare children.length '!==' 0}}&nbsp;
+            <div class="tree-arrow"><span
+                    class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
+            {{/compare}}
+            {{/compare}}
+            {{#compare isroot '!==' '01'}}
+            {{#compare ../children.length '===' 0}}
+            <span class="x-caret x-caret-middle x-caret-sub cate-{{grade}} x-caret-left-middle pointer node-collapse "></span>
+            {{/compare}}
+            {{/compare}}
+            <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">
+        </div>
     </div>
 </div>
-
-
-<div class="cate-grid grid-td-cate-name jhw-category">
-    <div class="cate-grid-cell-inner">
-        {{#compare isroot '!==' '01'}}
-        {{#compare children.length '!==' 0}}&nbsp;
-        <div class="tree-arrow"><span class="x-caret x-caret-middle x-caret-left x-caret-left-middle pointer node-collapse"></span></div>
-        {{/compare}}
-        {{/compare}}
-        {{#compare isroot '!==' '01'}}
-        {{#compare ../children.length '===' 0}}
-        <span class="x-caret x-caret-middle x-caret-sub cate-{{grade}} x-caret-left-middle pointer node-collapse "></span>
-        {{/compare}}
-        {{/compare}}
-        <input name="name" value="{{name}}" type="text" class="input-middle pro-cate-name">
-    </div>
-</div>
-
 <div class="cate-grid grid-td-time">
     <div class="cate-grid-cell-inner">
         {{dateFormat addTime 'yyyy-MM-dd'}}
@@ -51,7 +52,7 @@
             <i class="icon icon-white icon-arrow-up pointer"></i>
         </span>&nbsp;<input type="text" class="control-text input-sort" value="{{sort}}">
         <span class="x-icon x-icon-small x-icon-info move-down pointer"
-               title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
+              title="下移 (若移动到下一页， 可以试着更改每页显示个数)"><i
                 class="icon icon-white icon-arrow-down pointer"></i></span>
     </div>
 </div>
@@ -62,7 +63,8 @@
         </button>
         <button type="button" class="button button-gray button-mini delete"><i class=" icon-trash"></i>删除
         </button>
-        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i class="icon-chevron-down"></i>
+        <button type="button" class="button button-gray button-mini btn-more" title="更多选项"><i
+                class="icon-chevron-down"></i>
         </button>
         <div class="moreOption" style="display:none;">
             <button type="button" class="button button-gray button-mini seo"><i class="icon-zoom-in"></i>seo
@@ -71,4 +73,4 @@
     </div>
 </div>
 
-<ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"> </ul>
+<ul class="cate-{{grade}}-ul  node-tree" style="clear:both;"></ul>
