@@ -41,7 +41,8 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
         'click .delete': '_del',
         'click .name': 'editName',
         'click .edit': 'editItem',
-        'click .btn-recvState': 'isrecvState'
+        'click .btn-recvState': 'isrecvState',
+        'click .btn-leaflet': 'editLeaflet'
       },
       // 初始化
       initialize: function () {
@@ -54,6 +55,10 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       // 查看微网页
       editItem: function () {
         this._navigate('#/wwy_edit/' + this.model.get('id'));
+      },
+      // 修改微传单(新)
+      editLeaflet: function () {
+        this._navigate('#/leaflet' + this.model.get('id'));
       }
     });
     /**
@@ -67,7 +72,8 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
         'click .wwy-add': 'add',
         'click .btn-search': 'search',
         'click .btn-blacklist': 'blackList',
-        'click .btn-wqt': 'wqt'
+        'click .btn-wqt': 'wqt',
+        'click .btn-leaflet-add': 'addLeaflet'
       },
       initialize: function () {
         this.editItem = true;
@@ -82,12 +88,19 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
           detail: CONST.HOST + '/modules/wwy/wwy_detail.html'
         });
       },
-      wqt: function(){
+      wqt: function () {
         this._navigate('#/wwy_invitation', true);
       },
       // 打开添加/修改对话框
       add: function () {
         this._navigate('#/wwy_add', true);
+      },
+      // 添加微传单(新)
+      addLeaflet: function () {
+        this._dialog({
+          moduleId: 'LeafletPre',
+          title: '添加微传单'
+        });
       },
       // 查看二维码
       showQrcode: function (e) {
