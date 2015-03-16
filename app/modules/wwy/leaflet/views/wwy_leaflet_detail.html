@@ -69,27 +69,44 @@
             src="http://qr.liantu.com/api.php?w=250&text={{wqturl}}"/></div>
 </div>
 <div style="display:none;">
-    <div class="control-group">
-        <label class="control-label" for="">
-            是否显示此页：
-        </label>
-
-        <div class="controls">
-            <div id="invite_display">
-                <input id="model-invite.display" class="invite_display" type="hidden" value="{{invite.display}}"/>
-            </div>
+    <div class="wwy_canvas_page" >
+        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}" ></span>
+        <span><img class="wwy-img"  src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+    </div>
+    <div class="wwy_canvas">
+    <div class="wwy_canvas_tools">
+         <span><a href="">tools1</a></span><span><a href="">tools1</a></span><span><a href="">tools1</a></span>
+    </div>
+        <div class="wwy_canvas_img">
+            <div ></div>
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label" for="">
-            内容：
-        </label>
-        <div class="controls control-row-auto">
-            <textarea id="model-invite.content" name="invite.content" class="ckeditor text" rows="12"
-                      cols="95" style="width: 600px;height:250px;">{{json 'invite.content'}}</textarea>
-        </div>
-    </div>
+
+<style>
+    .wwy_canvas_page {width:15%;float:left}
+    .wwy_canvas {float:left;width:84%;}
+    .wwy_canvas_page img{margin-bottom: 10px;width:70px;}
+    .wwy_canvas_tools{height:55px}
+    .wwy_canvas_tools span{width: 80px;
+        display: inline-block;
+        height: 35px;background: #f8f8f8;
+        margin-right: 15px;
+        line-height: 35px;
+        text-align: center;}
+    .wwy_canvas_img{width: 100%;
+        background: #E8EFF7;margin-top: 20px;
+        height: 100%;
+        display: block;
+        margin: 0;}
+    .wwy_canvas_img div{background: #fff;
+        display: inline-block;
+        width: 90%;
+        height: 350px;
+        margin: 5%;}
+</style>
 
 </div>
 
