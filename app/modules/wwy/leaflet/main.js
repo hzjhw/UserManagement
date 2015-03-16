@@ -3,7 +3,7 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/3/13
  */
-app.addModule('WwyWwyLeafletDetail', 'modules/wwy/leaflet/controllers/WwyWwyLeafletDetail.js');
+app.addModule('WwyLeafletDetail', 'modules/wwy/leaflet/controllers/WwyLeafletDetail.js');
 app.addModule('WwyLeafletPre', 'modules/wwy/leaflet/controllers/WwyLeafletPre.js');
 app.addTemplate('template/wwy_leaflet_detail', function (require, exports, module) {
   module.exports = require('modules/wwy/leaflet/views/wwy_leaflet_detail.html');
