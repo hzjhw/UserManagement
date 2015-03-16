@@ -97,7 +97,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       // 添加微传单(新)
       addLeaflet: function () {
         this._dialog({
-          moduleId: 'LeafletPre',
+          moduleId: 'WwyLeafletPre',
           title: '添加微传单'
         });
       },
