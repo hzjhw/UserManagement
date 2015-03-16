@@ -58,7 +58,7 @@ define('WwyList', ['jquery', 'WwyModel', 'BaseCollection', 'BaseItem', 'BaseList
       },
       // 修改微传单(新)
       editLeaflet: function () {
-        this._navigate('#/leaflet' + this.model.get('id'));
+        this._navigate('#/wwy_leaflet/' + this.model.get('id'));
       }
     });
     /**

@@ -1,0 +1,35 @@
+<form id="J_Form" action="" class="form-horizontal">
+
+    <div id="qwt-pre"
+         style="font-size: 16px; overflow: hidden; width: 500px; min-height: 0px;"
+         class="ui-dialog-content ui-widget-content" scrolltop="0" scrollleft="0">
+        <p class="validateTips">填写完成后点击确定,系统将自动生成您的传单:</p>
+        <table width="100%" border="0">
+            <tbody>
+            <tr>
+                <td width="19%" style="text-align: right"><label>活动标题: </label></td>
+                <td width="81%"><input
+                        class="text ui-widget-content ui-corner-all input-prompt-2" type="text" data-rules="{required: true}" data-tip='{"text":"请输入活动标题","iconCls":"icon icon-pencil"}'
+                        id="model-title" name="leaflet_title" value="" size="15">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">此处为活动标题,放在留言上面,如:立即写下你的口号，赢取4999元现金大奖！</td>
+            </tr>
+            <tr>
+                <td width="19%" style="text-align: right"><label>活动手机: </label></td>
+                <td width="81%"><input
+                        class="text ui-widget-content ui-corner-all input-prompt-2" type="text" title="" data-rules="{required: true}" data-tip='{"text":"请输入活动手机","iconCls":"icon icon-pencil"}'
+                        id="model-phone" name="leaflet-phone" value="" size="15">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">用户可以在微传单上点击号码直接拨打此手机</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <input id="submit" type="hidden" class="button button-primary"/>
+</form>

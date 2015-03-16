@@ -3,11 +3,44 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/3/13
  */
-app.addModule('LeafletDetail', 'modules/wwy/leaflet/controllers/LeafletDetail.js');
-app.addModule('LeafletPre', 'modules/wwy/leaflet/controllers/LeafletPre.js');
-app.addTemplate('template/leaflet_detail', function (require, exports, module) {
-  module.exports = require('modules/wwy/leaflet/views/leaflet_detail.html');
+app.addModule('WwyWwyLeafletDetail', 'modules/wwy/leaflet/controllers/WwyWwyLeafletDetail.js');
+app.addModule('WwyLeafletPre', 'modules/wwy/leaflet/controllers/WwyLeafletPre.js');
+app.addTemplate('template/wwy_leaflet_detail', function (require, exports, module) {
+  module.exports = require('modules/wwy/leaflet/views/wwy_leaflet_detail.html');
 });
-app.addTemplate('template/leaflet_pre', function (require, exprots, module) {
-  module.exports = require('modules/wwy/leaflet/views/leaflet_pre.html');
+app.addTemplate('template/wwy_leaflet_pre', function (require, exprots, module) {
+  module.exports = require('modules/wwy/leaflet/views/wwy_leaflet_pre.html');
+});
+app.addTemplate('template/wwy_leaflet_index', function (require, exports, module) {
+  module.exports = require('modules/wwy/leaflet/website/index.html');
+});
+
+function leafletDetail(id) {
+  seajs.use(['WwyLeafletDetail'], function (WwyLeafletDetail) {
+    app.addPanel('main', {
+      el: '#jhw-main',
+      template: '<div class="jhw-panel"></div>'
+    }).addView('wwyLeafletDetail', new WwyLeafletDetail({
+      el: '.jhw-panel',
+      viewId: 'wwyLeafletDetail',
+      id: id
+    }));
+  });
+}
+app.addRoute('wwy_leaflet/:id', function (id) {
+  leafletDetail(id);
+});
+app.addRoute('wwy_leaflet_add', function () {
+  leafletDetail();
+});
+
+app.addModule('WwyLeafletPage', 'modules/wwy/leaflet/controllers/WwyLeafletPage.js');
+app.addModule('WwyLeafletCanvas', 'modules/wwy/leaflet/controllers/WwyLeafletCanvas.js');
+app.addModule('WwyLeafletTool', 'modules/wwy/leaflet/controllers/WwyLeafletTool.js');
+app.addModule('WwyLeafletPageModel', 'models/WwyLeafletPageModel.js');
+app.addTemplate('template/wwy_leaflet_pages_list', function(require, exports, module){
+  module.exports = require('modules/wwy/leaflet/views/wwy_leaflet_pages_list.html');
+});
+app.addTemplate('template/wwy_leaflet_pages_item', function(require, exports, module){
+  module.exports = require('modules/wwy/leaflet/views/wwy_leaflet_pages_item.html');
 });
