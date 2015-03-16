@@ -3,18 +3,18 @@
  * @class WwyLeafletDetail
  * @author yongjin<zjut_wyj@163.com> 2015/3/13
  */
-define('WwyLeafletDetail', ['BaseDetail', 'template/leaflet_detail', 'WwyModel', 'Utils', 'Service',
-  'HandlebarsHelper', 'PicturePick', 'template/leaflet_index'], function (require, exports, module) {
+define('WwyLeafletDetail', ['BaseDetail', 'template/wwy_leaflet_detail', 'WwyModel', 'Utils', 'Service',
+  'HandlebarsHelper', 'PicturePick', 'template/wwy_leaflet_index'], function (require, exports, module) {
   var WwyLeafletDetail, BaseDetail, template, WwyModel, Utils, Service, HandlebarsHelper, PicturePick, indexTemp;
 
   BaseDetail = require('BaseDetail');
-  template = require('template/leaflet_detail');
+  template = require('template/wwy_leaflet_detail');
   WwyModel = require('WwyModel');
   Utils = require('Utils');
   Service = require('Service');
   HandlebarsHelper = require('HandlebarsHelper');
   PicturePick = require('PicturePick');
-  indexTemp = require('template/leaflet_index');
+  indexTemp = require('template/wwy_leaflet_index');
 
   WwyLeafletDetail = BaseDetail.extend({
     events: {
