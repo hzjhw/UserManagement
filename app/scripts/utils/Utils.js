@@ -560,7 +560,9 @@ define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
         });
       },
       getDesignUrl: function () {
-        var grade = app.getData('user')['grade'];
+        var user = app.getData('user');
+        if (!user) return '';
+        var grade = user['grade'];
         var url = CONST.DOMAIN;
         switch (grade) {
           case '07':
