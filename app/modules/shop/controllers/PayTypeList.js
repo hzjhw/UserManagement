@@ -41,8 +41,7 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
       },
       initialize: function () {
         this._initialize({
-          template: itemTemp,
-          detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
+          template: itemTemp
         });
       },
       // 支付方式修改
@@ -79,8 +78,7 @@ define('PayTypeList', ['BaseCollection', 'BaseItem', 'BaseList', 'PayTypeModel',
           collection: PayTypeCollection,
           enterRender: '.btn-search',
           template: listTemp,
-          pagination: true,
-          detail: CONST.HOST + '/modules/shop/pay_type_detail.html'
+          pagination: true
         });
       },
       back: function () {

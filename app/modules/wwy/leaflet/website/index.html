@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="MobileOptimized" content="width"/>
+    <meta name="viewport" content="width=320, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
+    <title>{{title}}</title>
+    <script type="text/javascript">
+        var is_mobi = navigator.userAgent.toLowerCase().match(/(iPad|ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|win ce)/i) != null;
+        if (location.href.indexOf("diy=1") == -1 && !is_mobi && window.location.search.indexOf("mv=fp") < 0) {
+            window.location.href = '{{CONST "DOMAIN"}}';
+        }
+    </script>
+</head>
+<body>
+<!--加载动画-->
+<div id="Loading" style="display: block;">
+    <div id="heart">
+        <a href="#" onclick="stopLoading();"><img
+                src="{{CONST 'HOST'}}/modules/wwy/invitation/website/images/funssage_loading2.gif"></a>
+    </div>
+    <div id="Waiting">
+        <span style="text-align:center; color:#F00">
+        </span>
+    </div>
+</div>
+
+</body>
+</html>

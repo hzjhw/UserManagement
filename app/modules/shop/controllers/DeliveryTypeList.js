@@ -39,8 +39,7 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
       },
       initialize: function () {
         this._initialize({
-          template: itemTemp,
-          detail: CONST.HOST + '/modules/shop/delivery_type_detail.html'
+          template: itemTemp
         });
       },
       edit: function () {
@@ -75,8 +74,7 @@ define('DeliveryTypeList', ['BaseList', 'BaseItem', 'BaseCollection', 'DeliveryT
           collection: DeliveryTypeCollection,
           enterRender: '.btn-search',
           template: listTemp,
-          pagination: true,
-          detail: CONST.HOST + '/modules/shop/delivery_type_detail.html'
+          pagination: true
         });
       },
       back: function () {

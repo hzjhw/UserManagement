@@ -50,15 +50,14 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
       },
       // 属性修改
       edit: function () {
-        var ctx = this;
         this._dialog({
           moduleId: 'AttributesDetail',
           title: '属性修改',
           id: this.model.get('attId'),
           width: 650,
-          onClose: function () {
-            ctx.model.set(app.getModels().pop());
-          }
+          onClose: Est.proxy(function () {
+            this.model.set(app.getModels().pop());
+          }, this)
         });
       },
       editName: function () {
@@ -69,12 +68,11 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
         }, this);
       },
       changeSort: function () {
-        var ctx = this;
         var sort = this.$('.input-sort').val();
         this.model._saveField({ id: this.model.get('id'), orderList: sort
-        }, ctx, { success: function () {
-          ctx.model.set('orderList', sort);
-        }, hideTip: true
+        }, this, { success: Est.proxy(function () {
+          this.model.set('orderList', sort);
+        }, this), hideTip: true
         });
       },
       moveUp: function () {
@@ -99,7 +97,6 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
         'click .attributes-show': 'attributesShow'
       },
       initialize: function () {
-        //app.addView('attributesShow', new AttributesShow({ render: '#attributes-list-ul', categoryId:Est.getUrlParam('id', window.location.href)}));
         app.addData('attrCategoryId', Est.getUrlParam('categoryId', window.location.href));
         this._initialize({
           template: listTemp,
@@ -107,8 +104,7 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
           item: AttributesItem,
           model: AttributesModel,
           collection: AttributesCollection,
-          pagination: true,
-          detail: CONST.HOST + '/modules/attributes/attributes_detail.html'
+          pagination: true
         });
       },
       render: function () {
@@ -126,15 +122,14 @@ define('AttributesList', ['jquery', 'AttributesModel', 'AttributesShow', 'BaseCo
       },
       // 属性添加
       openAddDialog: function () {
-        var ctx = this;
         this._dialog({
           moduleId: 'AttributesDetail',
           title: '属性添加',
           categoryId: app.getData('attrCategoryId'),
           width: 650,
-          onClose: function () {
-            ctx._reload();
-          }
+          onClose: Est.proxy(function () {
+            this._reload();
+          }, this)
         });
       }
     });

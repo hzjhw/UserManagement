@@ -4,19 +4,19 @@
 CONST.LIB_FORDER = 'lib';
 CONST.DEBUG_SEAJS = true;
 CONST.DEBUG_CONSOLE = true;
-CONST.APP_VERSION = '201503131542';
+CONST.APP_VERSION = '201503131543';
 
 
 
 
-CONST.HOST = 'http://jihui88.com/member';
+/*CONST.HOST = 'http://jihui88.com/member';
 CONST.API = 'http://jihui88.com/rest/api';
 CONST.DOMAIN = 'http://jihui88.com';
 CONST.DOMAIN_TAIL = 'jihui88.com';
 CONST.DOMAIN_WQT = 'jihui88.com'; // 微请帖
 CONST.PIC_URL = 'http://192.168.1.99:8111';
 CONST.SEP = '/';
-CONST.PIC_NONE = 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg';
+CONST.PIC_NONE = 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg';*/
 
 /**
  * @description config
@@ -24,17 +24,17 @@ CONST.PIC_NONE = 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-
  * @author yongjin<zjut_wyj@163.com> 2014/12/11
  */
 
-app.addModule('AttributesAdd', 'common/attributes/AttributesAdd.js');
-app.addModule('AttributesShow', 'common/attributes/AttributesShow.js');
+app.addModule('AttributesAdd', 'common/attributes/controllers/AttributesAdd.js');
+app.addModule('AttributesShow', 'common/attributes/controllers/AttributesShow.js');
 
 app.addTemplate('template/attributes_option_template', function (require, exports, module) {
-  module.exports = require('common/attributes/attributes_option_template.html');
+  module.exports = require('common/attributes/views/attributes_option_template.html');
 });
 app.addTemplate('template/attributes_option_item', function (require, exports, module) {
-  module.exports = require('common/attributes/attributes_option_item.html');
+  module.exports = require('common/attributes/views/attributes_option_item.html');
 });
 app.addTemplate('template/attributes_show_item', function (require, exports, module) {
-  module.exports = require('common/attributes/attributes_show_item.html');
+  module.exports = require('common/attributes/views/attributes_show_item.html');
 });
 
 /**
@@ -43,10 +43,10 @@ app.addTemplate('template/attributes_show_item', function (require, exports, mod
  * @author yongjin<zjut_wyj@163.com> 2014/12/11
  */
 app.addTemplate('template/pagination', function (require, exports, module) {
-  module.exports = require('common/pagination/pagination.html');
+  module.exports = require('common/pagination/views/pagination.html');
 });
-app.addModule('Pagination', 'common/pagination/Pagination.js');
-app.addModule('PaginationModel', 'common/pagination/PaginationModel.js');
+app.addModule('Pagination', 'common/pagination/controllers/Pagination.js');
+app.addModule('PaginationModel', 'common/pagination/models/PaginationModel.js');
 
 
 /**
@@ -63,7 +63,7 @@ app.addTemplate('template/tag_view_item', function (require, exports, module) {
 app.addTemplate('template/tag_picker_item', function (require, exports, module) {
   module.exports = require('common/tag/views/tag_picker_item.html');
 });
-app.addModule('Tag', 'common/tag/Tag.js');
+app.addModule('Tag', 'common/tag/controllers/Tag.js');
 
 /**
  * @description config

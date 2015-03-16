@@ -43,8 +43,7 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
       initialize: function () {
         this._initialize({
           template: itemTemp,
-          model: UserdefinedModel,
-          detail: CONST.HOST + '/modules/website/userdefined_detail.html'
+          model: UserdefinedModel
         });
       },
       edit: function () {
@@ -92,8 +91,7 @@ define('UserdefinedList', ['jquery', 'UserdefinedModel', 'BaseCollection', 'Base
           render: '#attributes-list-ul',
           item: UserdefinedItem,
           model: UserdefinedModel,
-          collection: UserdefinedCollection,
-          detail: CONST.HOST + '/modules/website/userdefined_detail.html'
+          collection: UserdefinedCollection
         });
       },
       add: function () {

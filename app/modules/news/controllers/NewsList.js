@@ -182,9 +182,7 @@ define('NewsList', ['jquery', 'NewsModel', 'BaseCollection', 'BaseItem', 'BaseLi
           model: NewsModel,
           collection: NewsCollection,
           item: NewsItem,
-          pagination: true,
-          detail: CONST.HOST + '/modules/news/news_detail.html',
-          route: '#/news'
+          pagination: true
         });
       },
       // 新闻分类

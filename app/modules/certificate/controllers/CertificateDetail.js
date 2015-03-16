@@ -38,12 +38,9 @@ define('CertificateDetail', ['jquery', 'CertificateModel', 'HandlebarsHelper', '
       },
       render: function () {
         debug('4.CertificateDetail.render');
-        var ctx = this;
-
         this.model.set('taglist', Est.pluck(Est.pluck(this.model.get('tagMapStore'), 'tag'), 'name')
           .join(","));
         this._render();
-
         // 证书分类
             Utils.initSelect({
               render: '#s1',

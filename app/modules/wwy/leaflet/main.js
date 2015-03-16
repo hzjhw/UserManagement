@@ -11,15 +11,3 @@ app.addTemplate('template/leaflet_detail', function (require, exports, module) {
 app.addTemplate('template/leaflet_pre', function (require, exprots, module) {
   module.exports = require('modules/wwy/leaflet/views/leaflet_pre.html');
 });
-
-app.addRoute('leaflet', function(){
-  seajs.use(['LeafletList'], function(LeafletList){
-    app.addPanel('main', {
-      el: '#jhw-main',
-      template: '<div class="jhw-panel"></div>'
-    }).addView('leafletList', new LeafletList({
-      el: '.jhw-panel',
-      viewId: 'leafletList'
-    }));
-  });
-});

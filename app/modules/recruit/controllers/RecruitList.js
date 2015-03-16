@@ -52,8 +52,7 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
         this.model.set('recruitList', app.getData('recruitList'));
         this._initialize({
           template: itemTemp,
-          viewId: 'recruitList',
-          detail: CONST.HOST + '/modules/recruit/recruit_detail.html'
+          viewId: 'recruitList'
         });
       },
       // 渲染文档
@@ -103,8 +102,7 @@ define('RecruitList', ['jquery', 'RecruitModel', 'BaseCollection', 'BaseItem', '
           model: RecruitModel,
           collection: RecruitCollection,
           item: RecruitItem,
-          pagination: true,
-          detail: CONST.HOST + '/modules/recruit/recruit_detail.html'
+          pagination: true
         });
       },
       // 简单搜索

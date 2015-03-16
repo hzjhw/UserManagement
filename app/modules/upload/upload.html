@@ -10,9 +10,12 @@
 <meta name="fragment" content="!">
 <meta name="description" content="Description"/>
 <meta name="viewport" content="width=device-width"/>
+
+<!-- build:css ../../styles/default/upload.css -->
 <link rel="stylesheet" href="../../styles/default/base.css"/>
 <link href="../../styles/default/dpl.css" rel="stylesheet">
 <link href="../../styles/default/bui.css" rel="stylesheet">
+<!-- endbuild -->
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../../vendor/patch/patch.min.js"></script>
 <![endif]-->
@@ -541,46 +544,6 @@ div#pic-source-list {
             </div>
         </div>
     </div>
-    <!--选项设置-->
-    <!--<div class="setting clearfix" id="J_UpSetting">
-        <div class="is-protect">
-            <label>
-                <input type="checkbox" id="J_IsProtectUp" checked="checked"> 上传为非防盗链图片
-            </label>
-        </div>
-        <div class="is-water">
-            <label>
-                <input type="checkbox" id="J_IsWater">添加水印
-            </label>
-        </div>
-        <div class="is-resize">
-            <label>
-                <input type="checkbox" id="J_IsResize">图片宽度调整
-            </label>
-            <div class="size my-dropdown" style="display: none;">
-                <div class="dropdown" id="J_Resize">
-                    <a class="dropdown-toggle" data-type="620" data-spm-anchor-id="a1z28.7093685.0.0"><span>手机图片</span><i class="drop-icon"></i></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation">
-                            <a role="menuitem" data-type="620" class="noqouted">手机图片</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" data-type="800" class="qouted">800px</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" data-type="640" class="noqouted">640px</a>
-                        </li>
-                        <li role="presentation">
-                            <a role="menuitem" data-type="0" class="all">自定义</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="user-size" style="display:none;">
-                <input type="number" id="J_UserSize" step="10" value="0">px
-            </div>
-        </div>
-    </div>-->
 
     <!--小提示-->
     <div class="up-tips clearfix">
@@ -592,6 +555,7 @@ div#pic-source-list {
         </ul>
     </div>
 </div>
+<!-- build:js ../../scripts/upload.js -->
 <script type="text/javascript" src="../../vendor/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="../../modules/upload/swfupload.js"></script>
 <script type="text/javascript" src="../../scripts/base.js"></script>
@@ -601,7 +565,7 @@ div#pic-source-list {
 <script type="text/javascript" src="../../modules/album/main.js"></script>
 <script type="text/javascript" src="../../common/pagination/config.js"></script>
 <script type="text/javascript" src="../../config.js"></script>
-
+<!-- endbuild -->
 <script type="text/javascript">
 var uploadCallback = uploadCallback || function () {
     console.log('success');

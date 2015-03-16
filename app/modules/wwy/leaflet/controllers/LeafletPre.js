@@ -3,13 +3,13 @@
  * @class LeafletPre
  * @author yongjin<zjut_wyj@163.com> 2015/3/13
  */
-define('LeafletPre', ['BaseDetail', 'InvitationModel', 'template/leaflet_pre', 'Utils', 'HandlebarsHelper',
+define('LeafletPre', ['BaseDetail', 'WwyModel', 'template/leaflet_pre', 'Utils', 'HandlebarsHelper',
   'template/leaflet_index'], function (require, exports, module) {
-  var LeafletPre, BaseDetail, template, LeafletModel, Utils, HandlebarsHelper, leafletTemp;
+  var LeafletPre, BaseDetail, template, WwyModel, Utils, HandlebarsHelper, leafletTemp;
 
   BaseDetail = require('BaseDetail');
   template = require('template/leaflet_pre');
-  LeafletModel = require('LeafletModel');
+  WwyModel = require('WwyModel');
   Utils = require('Utils');
   HandlebarsHelper = require('HandlebarsHelper');
   leafletTemp = require('template/leaflet_index');
@@ -18,7 +18,7 @@ define('LeafletPre', ['BaseDetail', 'InvitationModel', 'template/leaflet_pre', '
     initialize: function () {
       this._initialize({
         template: template,
-        model: LeafletModel
+        model: WwyModel
       });
     },
     render: function () {

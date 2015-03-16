@@ -187,9 +187,7 @@ define('ProductList', ['jquery', 'ProductModel', 'BaseCollection', 'BaseItem', '
           model: ProductModel,
           collection: ProductCollection,
           item: ProductItem,
-          pagination: true,
-          detail: CONST.HOST + '/modules/product/product_detail.html',
-          route: '#/product'
+          pagination: true
         });
       },
       // 添加产品

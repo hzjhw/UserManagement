@@ -40,8 +40,7 @@ define('OrderList', ['BaseList', 'OrderModel', 'BaseItem', 'HandlebarsHelper', '
       initialize: function () {
         this._initialize({
           template: itemTemp,
-          model: OrderModel,
-          detail: CONST.HOST + '/modules/shop/order_detail.html'
+          model: OrderModel
         });
       },
       render: function () {

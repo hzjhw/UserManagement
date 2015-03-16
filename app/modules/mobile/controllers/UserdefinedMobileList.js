@@ -42,8 +42,7 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
       initialize: function () {
         this._initialize({
           template: itemTemp,
-          model: UserdefinedMobileModel,
-          detail: CONST.HOST + '/modules/mobile/mobile_userdefined_detail.html'
+          model: UserdefinedMobileModel
         });
       },
       edit: function () {
@@ -92,8 +91,7 @@ define('UserdefinedMobileList', ['jquery', 'UserdefinedMobileModel', 'BaseCollec
           render: '#attributes-list-ul',
           item: UserdefinedItem,
           model: UserdefinedMobileModel,
-          collection: UserdefinedCollection,
-          detail: CONST.HOST + '/modules/mobile/mobile_userdefined_detail.html'
+          collection: UserdefinedCollection
         });
       },
       back: function(){

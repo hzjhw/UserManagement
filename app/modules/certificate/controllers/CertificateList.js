@@ -66,14 +66,13 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
       },
       // 修改分类
       changeCategory: function () {
-        var ctx = this;
         var category = this.$('.pro-category').val();
         this.model._saveField({
           id: this.model.get('id'),
           category: category
-        }, ctx, {success: function () {
-          ctx.model.set('category', category);
-        }});
+        }, this, {success: Est.proxy(function () {
+          this.model.set('category', category);
+        }, this)});
       },
       // 修改名称
       editName: function () {
@@ -115,15 +114,13 @@ define('CertificateList', ['jquery', 'CertificateModel', 'BaseCollection', 'Base
           model: CertificateModel,
           collection: CertificateCollection,
           item: CertificateItem,
-          pagination: true,
-          detail: CONST.HOST + '/modules/certificate/certificate_detail.html',
-          route: '#/certificate_detail'
+          pagination: true
         });
       },
-      back: function(){
+      back: function () {
         this._navigate('#/index', true);
       },
-      add: function(){
+      add: function () {
         this._navigate('#/certificate_add');
       },
       // 简单搜索
