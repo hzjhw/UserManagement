@@ -3,16 +3,16 @@
  * @class WwyLeafletPre
  * @author yongjin<zjut_wyj@163.com> 2015/3/13
  */
-define('WwyLeafletPre', ['BaseDetail', 'WwyModel', 'template/leaflet_pre', 'Utils', 'HandlebarsHelper',
-  'template/leaflet_index'], function (require, exports, module) {
+define('WwyLeafletPre', ['BaseDetail', 'WwyModel', 'template/wwy_leaflet_pre', 'Utils', 'HandlebarsHelper',
+  'template/wwy_leaflet_index'], function (require, exports, module) {
   var WwyLeafletPre, BaseDetail, template, WwyModel, Utils, HandlebarsHelper, leafletTemp;
 
   BaseDetail = require('BaseDetail');
-  template = require('template/leaflet_pre');
+  template = require('template/wwy_leaflet_pre');
   WwyModel = require('WwyModel');
   Utils = require('Utils');
   HandlebarsHelper = require('HandlebarsHelper');
-  leafletTemp = require('template/leaflet_index');
+  leafletTemp = require('template/wwy_leaflet_index');
 
   WwyLeafletPre =  BaseDetail.extend({
     initialize: function () {
