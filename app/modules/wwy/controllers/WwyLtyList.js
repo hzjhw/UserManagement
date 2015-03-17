@@ -103,7 +103,9 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
           { name: '代币券10元', prob: '10', level: '五等奖', sum: '500', remain: '500', info: '恭喜您， 抽中了五等奖', pic: '' },
           { name: '谢谢参与', prob: '0', level: '0', sum: '0', remain: '0', info: '谢谢参与', pic: '' },
         ];
+        debugger
         this._empty();
+        ctx.collection.models.length = 0;
         Est.each(showList, function (item) {
           ctx.collection.add(new model(item));
         });
@@ -116,7 +118,10 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
             result.push(item.attributes);
           }
         });
-        return result;
+        result = Est.sortBy(result, function(item){
+          return parseInt(item['prob'], 10);
+        });
+        return result.reverse();
       }
     });
 
