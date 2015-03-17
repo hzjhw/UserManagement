@@ -33,18 +33,20 @@
             src="http://qr.liantu.com/api.php?w=250&text={{leafletUrl}}"/></div>
 </div>
 <div style="display:none;">
-    <div class="wwy_canvas_page" >
-        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}" ></span>
-        <span><img class="wwy-img"  src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
-        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
-        <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
-    </div>
-    <div class="wwy_canvas">
-    <div class="wwy_canvas_tools">
-         <span><a href="">tools1</a></span><span><a href="">tools1</a></span><span><a href="">tools1</a></span>
-    </div>
-        <div class="wwy_canvas_img">
-            <div ></div>
+    <div class="row show-grid">
+        <div class="span8 wwy_canvas_page">
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}" ></span>
+            <span><img class="wwy-img"  src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+        </div>
+        <div class="span16 wwy_canvas_tools">
+            <span><a href="javascript:;"><i class="icon-font"></i> 文本</a></span><span> <i class="icon-picture"></i><a href="javascript:;">图片</a></span>
+            <div class="wwy_canvas">
+                <div class="wwy_canvas_img">
+                    <div ></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -52,7 +54,7 @@
 <style>
     .wwy_canvas_page {width:15%;float:left}
     .wwy_canvas {float:left;width:84%;}
-    .wwy_canvas_page img{margin-bottom: 10px;width:70px;}
+    .wwy_canvas_page img{margin-bottom: 10px;width:100px;}
     .wwy_canvas_tools{height:55px}
     .wwy_canvas_tools span{width: 80px;
         display: inline-block;
