@@ -13,7 +13,8 @@ define('WwyLeafletPageModel', ['BaseModel'], function (require, exports, module)
       display: '01',
       content: '',
       modules: [],
-      video: {}
+      video: {},
+      background: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg'
     }, BaseModel.prototype.default),
     baseId: 'id',
     initialize: function () {
