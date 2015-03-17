@@ -35,13 +35,16 @@
 <div style="display:none;">
     <div class="row show-grid">
         <div class="span8 wwy_canvas_page">
-            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}" ></span>
-            <span><img class="wwy-img"  src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
-            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
-            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl picPath 6}}"></span>
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg' 5}}" ></span>
+            <span><img class="wwy-img"  src="{{CONST 'PIC_URL'}}/{{picUrl 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg' 5}}"></span>
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg' 5}}"></span>
+            <span><img class="wwy-img" src="{{CONST 'PIC_URL'}}/{{picUrl 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg' 5}}"></span>
         </div>
         <div class="span16 wwy_canvas_tools">
-            <span><a href="javascript:;"><i class="icon-font"></i> 文本</a></span><span> <i class="icon-picture"></i><a href="javascript:;">图片</a></span>
+            <div style="overflow:hidden;height: 35px;">
+                <button type="button" class="button button-gray btn-text-add"><i class="icon-font"></i>添加文本</button>
+            </div>
+
             <div class="wwy_canvas">
                 <div class="wwy_canvas_img">
                     <div ></div>
@@ -53,9 +56,9 @@
 
 <style>
     .wwy_canvas_page {width:15%;float:left}
-    .wwy_canvas {float:left;width:84%;}
+    .wwy_canvas {float:left;width:100%;}
     .wwy_canvas_page img{margin-bottom: 10px;width:100px;}
-    .wwy_canvas_tools{height:55px}
+    .wwy_canvas_tools{height:auto;}
     .wwy_canvas_tools span{width: 80px;
         display: inline-block;
         height: 35px;background: #f8f8f8;
@@ -69,8 +72,8 @@
         margin: 0;}
     .wwy_canvas_img div{background: #fff;
         display: inline-block;
-        width: 90%;
-        height: 350px;
+        width: 320px;
+        height: 480px;
         margin: 5%;}
 </style>
 

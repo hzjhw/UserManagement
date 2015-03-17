@@ -111,7 +111,10 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
       getItems: function () {
         var result = [];
         Est.each(this.collection.models, function (item) {
-          result.push(item.attributes);
+          if (!Est.isEmpty(item.get('name'))){
+            item.unset('checked', 'children', 'dx', '_options', '_items', '_collection', '_data');
+            result.push(item.attributes);
+          }
         });
         return result;
       }

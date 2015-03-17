@@ -168,6 +168,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
             ltyObj['lotteryImage'] = this.model.get('lotteryImage');
             ltyObj['lotteryRule'] = app.getView('wwyLtyList').getItems();
             this.model.set('ltyRule', Est.escapeHTML($.toJSON(ltyObj)));
+
           },
           onAfterSave: function (response) {
 

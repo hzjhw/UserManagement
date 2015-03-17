@@ -32,7 +32,6 @@ define('WwyLeafletPre', ['BaseDetail', 'WwyModel', 'template/wwy_leaflet_pre', '
           this._stringifyJSON(['pages', 'music', 'loading', 'transition']);
         },
         onAfterSave: function (model) {
-          debugger
           app.emptyDialog();
           this._navigate('#/wwy_leaflet/' + model.get('id'), this);
         }

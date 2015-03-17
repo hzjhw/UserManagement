@@ -28,11 +28,9 @@ function leafletDetail(id) {
   });
 }
 app.addRoute('wwy_leaflet/:id', function (id) {
-  debugger
   leafletDetail(id);
 });
 app.addRoute('wwy_leaflet_add', function () {
-  debugger
   leafletDetail();
 });
 
