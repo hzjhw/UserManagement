@@ -114,14 +114,21 @@ define('WwyLtyList', ['BaseModel', 'BaseCollection', 'BaseItem', 'BaseList', 'te
         var result = [];
         Est.each(this.collection.models, function (item) {
           if (!Est.isEmpty(item.get('name'))){
-            item.unset('checked', 'children', 'dx', '_options', '_items', '_collection', '_data');
-            result.push(item.attributes);
+            var _item = Est.cloneDeep(item.attributes);
+            delete _item['checked'];
+            delete _item['children'];
+            delete _item['dx'];
+            delete _item['_options'];
+            delete _item['_items'];
+            delete _item['_collection'];
+            delete _item['_data'];
+            result.push(_item);
           }
         });
-        result = Est.sortBy(result, function(item){
+       /* result = Est.sortBy(result, function(item){
           return parseInt(item['prob'], 10);
-        });
-        return result.reverse();
+        });*/
+        return result;
       }
     });
 
