@@ -15,58 +15,22 @@
 <!--主页设置-->
 <div style="position:relative;">
     <div class="control-group">
-        <label class="control-label">选择模板：</label>
+        <label class="control-label">活动标题：</label>
 
         <div class="controls">
-            <div id="titleTheme">
-                <input value="{{titleTheme}}" name="model-titleTheme" id="model-titleTheme"
-                       type="hidden"/>
+            <div id="title">
+                <input value="{{title}}" name="model-title" id="model-title" type="text" class="input-large"/>
             </div>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">字 体：</label>
-
+        <label class="control-label">活动手机：</label>
         <div class="controls">
-            <div id="font">
-                <input type="hidden" id="model-font" value="{{font}}" name="font">
-            </div>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">音　乐:：</label>
-
-        <div class="controls">
-            <div id="music">
-                <input id="model-music" name="music" value="{{music}}" type="hidden">
-            </div>
-        </div>
-    </div>
-    <div class="control-group control-row-auto">
-        <label class="control-label" for="">主标题：</label>
-
-        <div class="controls">
-            <textarea name="title" cols="20" rows="5" id="model-title"
-                      style="width: 300px;height: 40px;">{{title}}</textarea>
-        </div>
-    </div>
-    <div class="control-group control-row-auto">
-        <label class="control-label" for="">副标题：</label>
-
-        <div class="controls">
-            <textarea name="title1" cols="20" rows="5" id="model-title1"
-                      style="width: 300px;height: 40px;">{{title1}}</textarea>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">封面图：</label>
-
-        <div class="controls control-row-auto">
-            <div id="picture-pick" style="width:600px;"></div>
+           <input value="{{phone}}" name="model-phone" id="model-phone" type="text" class="input-large"/>
         </div>
     </div>
     <div id="qrcode" style="position:absolute;right: 0px;top: 0px;z-index: 800;"><img
-            src="http://qr.liantu.com/api.php?w=250&text={{wqturl}}"/></div>
+            src="http://qr.liantu.com/api.php?w=250&text={{leafletUrl}}"/></div>
 </div>
 <div style="display:none;">
     <div class="wwy_canvas_page" >

@@ -14,11 +14,13 @@ seajs.config({
 
   // 别名配置
   alias: Application.extend({
-    'Zepto': 'vendor/zepto/zepto.min.js',
-    'jquery': 'vendor/jquery/jquery-1.10.2.js',
-    'handlebars': 'vendor/handlebars/handlebars-min.js',
-    'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js'
-  }, App.getModules()),
+    'Zepto': CONST.HOST + '/vendor/zepto/zepto.min.js',
+    'jquery': CONST.HOST + '/vendor/jquery/jquery-1.10.2.js',
+    'handlebars': CONST.HOST + '/vendor/handlebars/handlebars-min.js',
+    'HandlebarsHelper': CONST.HOST + '/scripts/helper/HandlebarsHelper.js',
+    'FullPage': CONST.HOST + '/vendor/FullPage/FullPage.js',
+    'WwyLeafletFullPage': CONST.HOST + '/modules/wwy/leaflet/modules/FullPage/WwyLeafletFullPage.js'
+  }, app.getModules()),
 
   // 路径配置
   paths: {
@@ -47,6 +49,6 @@ seajs.config({
 /**
  * 注册模板
  * */
-Application.each(App.getTemplates(), function (value, key) {
+Application.each(app.getTemplates(), function (value, key) {
   define(key, value);
 });

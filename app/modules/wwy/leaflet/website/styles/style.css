@@ -1,6 +1,216 @@
+html {
+    -ms-touch-action: none; /* 阻止windows Phone 的默认触摸事件 */
+}
+
+body,
+div,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    width: 100%;
+    *cursor: default;
+    overflow: hidden;
+    font: 16px/1.5 "Microsoft YaHei", Helvetica, STHeiti STXihei, Microsoft JhengHei, Arial;
+}
+
+#pageContain {
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.contain {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: relative;
+    z-index: 0;
+}
+
+.current .contain, .slide .contain {
+    display: block;
+}
+
+.current {
+    display: block;
+    z-index: 1;
+}
+
+.slide {
+    display: block;
+    z-index: 2;
+}
+
+.swipe {
+    display: block;
+    z-index: 3;
+    transition-duration: 0ms !important;
+    -webkit-transition-duration: 0ms !important;
+}
+
+.page1 {
+    background: #37c1e3;
+}
+
+.page2 {
+    background: #009922;
+}
+
+.page3 {
+    background: #992211;
+}
+
+.page4 {
+    background: #ff00ff;
+}
+
+.page5 {
+    background: #00ff00;
+}
+
+.page6 {
+    background: #22ffff;
+}
+
+#navBar {
+    z-index: 3;
+    position: absolute;
+    font-size: 0px;
+    line-height: 0;
+    bottom: 10px;
+    text-align: center;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+}
+
+#navBar .active {
+    background: #ccc;
+}
+
+#navBar li {
+    background: transparent;
+    border: 1px solid #ccc;
+    display: inline-block;
+    font-size: 0px;
+    margin: 0 4px;
+    *float: left;
+    *zoom: 1;
+    cursor: pointer;
+    transition: all .7s ease;
+    border-radius: 50%;
+    line-height: 10px;
+    text-align: center;
+    width: 10px;
+    height: 10px;
+}
+
+#prev, #next {
+    z-index: 4;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    cursor: pointer;
+    margin-top: -20px;
+}
+
+#prev {
+    left: 0
+}
+
+#next {
+    right: 0
+}
+
+.nav {
+    z-index: 5;
+    position: fixed;
+    _position: absolute;
+    background: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+}
+
+.nav li {
+    display: inline;
+    float: right;
+    margin: 0 12px;
+}
+
 /*加载动画*/
-#Loading { position: absolute; top: 0; left: 0; width: 100%; height:100%; background: #ffffff; margin: 0px 0 0 0px; z-index: 999999999 }
-#heart { position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -60px; }
-#Waiting { position: absolute; width: 100px; text-align: center; left: 50%; top: 13%; margin: 10px 0 0 -45px; }
-.loading-text{text-align: center;font-size: 30px;padding: 20px;}
-.loading{display: block; width: 100px; position: absolute; background: url(img/loading.gif) no-repeat scroll center center #000; z-index: 999999999; height: 100px; left: 50%; border-radius: 10px; margin-left: -50px; opacity: 0.7; margin-top: -50px; top: 50%;}
+#leaflet #Loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    margin: 0px 0 0 0px;
+    z-index: 999999999
+}
+
+#leaflet #heart {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -30px 0 0 -30px;
+}
+
+#leaflet #Waiting {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    left: 50%;
+    top: 13%;
+    margin: 10px 0 0 -45px;
+}
+
+#leaflet .loading-text {
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+}
+
+#leaflet .loading {
+    display: block;
+    width: 100px;
+    position: absolute;
+    background: url(img/loading.gif) no-repeat scroll center center #000;
+    z-index: 999999999;
+    height: 100px;
+    left: 50%;
+    border-radius: 10px;
+    margin-left: -50px;
+    opacity: 0.7;
+    margin-top: -50px;
+    top: 50%;
+}
+
+/*
+内容*/
+#leaflet #content {
+    position: relative;
+}

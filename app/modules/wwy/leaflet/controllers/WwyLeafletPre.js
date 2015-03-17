@@ -25,12 +25,14 @@ define('WwyLeafletPre', ['BaseDetail', 'WwyModel', 'template/wwy_leaflet_pre', '
       this._render();
       this._form('#J_Form')._validate()._init({
         onBeforeSave: function () {
+          this.model._hideTip();
           this.leafletTemplate = HandlebarsHelper.compile(leafletTemp);
           this.model.set('type', 'leaflet');
           this.model.set('html', this.leafletTemplate(this.model.toJSON()));
           this._stringifyJSON(['pages', 'music', 'loading', 'transition']);
         },
         onAfterSave: function (model) {
+          debugger
           app.emptyDialog();
           this._navigate('#/wwy_leaflet/' + model.get('id'), this);
         }
