@@ -583,10 +583,10 @@ define('Utils', ['jquery', 'HandlebarsHelper', 'BaseUtils'],
             url += ('/rest/maintain/' + app.getData('user')['username']);
             break;
         }
-        return url;
+        return url+'/';
       },
       getMobileDesignUrl: function(){
-        return ('/rest/mobileMaintain/' + app.getData('user')['username']);
+        return ('/rest/mobileMaintain/' + app.getData('user')['username']+'/');
       }
     };
 
