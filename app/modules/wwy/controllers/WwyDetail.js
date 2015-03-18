@@ -34,7 +34,7 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
           model: WwyModel
         });
       },
-      back: function(){
+      back: function () {
         this._navigate('#/wwy', true);
       },
       ltyAdd: function () {
@@ -186,6 +186,15 @@ define('WwyDetail', ['jquery', 'WwyModel', 'HandlebarsHelper', 'BaseDetail', 'At
             });
           }
         });
+
+        seajs.use(['WwyLtyResultList'], Est.proxy(function (WwyLtyResultList) {
+          app.addView('wwyLtyResultList', new WwyLtyResultList({
+            el: '#lty-result-list-ul',
+            viewId: 'wwyLtyResultList',
+            wwyId: this.model.get('id'),
+            items: [{"state":"00","addTime":1426588992214,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051301","lotyName":"谢谢参与","levels":"0","mobile":"15911997988"},{"state":"00","addTime":1426588972705,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051201","lotyName":"谢谢参与","levels":"0","mobile":"15857996279"},{"state":"00","addTime":1426588951096,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051101","lotyName":"谢谢参与","levels":"0","mobile":"15258981659"},{"state":"00","addTime":1426588846755,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050807","lotyName":"谢谢参与","levels":"0","mobile":"13951369816"},{"state":"00","addTime":1426588846459,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050806","lotyName":"谢谢参与","levels":"0","mobile":"18729005362"},{"state":"00","addTime":1426588834600,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050805","lotyName":"谢谢参与","levels":"0","mobile":"15911997988"},{"state":"00","addTime":1426588830323,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050905","lotyName":"谢谢参与","levels":"0","mobile":"18729005362"},{"state":"00","addTime":1426588826851,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050804","lotyName":"谢谢参与","levels":"0","mobile":"13795436799"},{"state":"00","addTime":1426588817184,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050904","lotyName":"谢谢参与","levels":"0","mobile":"18729005362"},{"state":"00","addTime":1426588816144,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051005","lotyName":"谢谢参与","levels":"0","mobile":"15911997988"},{"state":"00","addTime":1426588810075,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051004","lotyName":"谢谢参与","levels":"0","mobile":"13901746766"},{"state":"00","addTime":1426588801357,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051003","lotyName":"谢谢参与","levels":"0","mobile":"18113373586"},{"state":"00","addTime":1426588801158,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051002","lotyName":"谢谢参与","levels":"0","mobile":"18729005362"},{"state":"00","addTime":1426588799963,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000051001","lotyName":"谢谢参与","levels":"0","mobile":"15911997988"},{"state":"00","addTime":1426588795393,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050903","lotyName":"谢谢参与","levels":"0","mobile":"13858929391"},{"state":"00","addTime":1426588786857,"wwyId":"wwy_0000000000000000000000000316","openid":null,"lotyId":"loty_000000000000000000000050902","lotyName":"谢谢参与","levels":"0","mobile":"15911997988"}]
+          }));
+        }, this));
 
         setTimeout(function () {
           Utils.resetIframe();

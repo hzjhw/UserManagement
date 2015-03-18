@@ -28,7 +28,7 @@ define('WwyLeafletDetail', ['BaseDetail', 'template/wwy_leaflet_detail', 'WwyMod
       });
     },
     back: function () {
-      this._navigate('#/wwy_leaflet', true);
+      this._navigate('#/wwy', true);
     },
     initThemeId: function () {
       this.model.set('themeId', this.model.get('titleTheme').replace(/^css\/(.+?)\/.*\.css$/g, '$1'));

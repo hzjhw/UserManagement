@@ -105,3 +105,9 @@ app.addTemplate('template/wwy_picture_pick_item', function (require, exports, mo
 app.addTemplate('template/wwy_lty_item', function (require, exports, module) {
   module.exports = require('modules/wwy/views/wwy_lty_item.html');
 });
+
+app.addModule('WwyLtyResultList', 'modules/wwy/controllers/WwyLtyResultList.js');
+
+app.addTemplate('template/wwy_lty_result_item', function(require, exports, module){
+  module.exports = require('modules/wwy/views/wwy_lty_result_item.html');
+});
